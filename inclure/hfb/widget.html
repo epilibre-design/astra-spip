@@ -1,0 +1,10 @@
+[(#REM)
+
+	Éléments « widget-N » : zone de widgets, en-tête ou pied de page, composée des blocs
+	choisis (inclure/widgets/), le bloc « texte » utilisant le titre et le texte de l'élément.
+
+	Paramètres : id, numero, groupe (entete | pied), id_rubrique
+
+]#SET{r,#ENV{groupe}|astra_hfb_reglages{#ENV{id}}}#SET{cote,#ENV{groupe}|=={pied}|?{footer,header}}<aside class="#GET{cote}-widget-area widget-area site-#GET{cote}-focus-item #GET{cote}-widget-area-inner" data-section="sidebar-widgets-#GET{cote}-widget-#ENV{numero}" aria-label="[(#ENV{groupe}|=={pied}|?{<:astra:widgets_pied:>,<:astra:widgets_entete:>}|attribut_html)] #ENV{numero}">
+	<BOUCLE_blocs(DATA){source table, #ENV{groupe}|astra_hfb_blocs_element{#ENV{id}}}><INCLURE{fond=#VAL{inclure/widgets/}|concat{#VALEUR}}{balise=section}{titre=#GET{r}|table_valeur{titre}}{texte=#GET{r}|table_valeur{texte}}{id_rubrique} /></BOUCLE_blocs>
+</aside>

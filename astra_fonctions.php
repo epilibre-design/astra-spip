@@ -46,6 +46,78 @@ function astra_hfb_panneau(): array {
 }
 
 /**
+ * Une rangée d'un contexte du builder (voir astra_hfb_rangees()), ou [] si elle n'est pas affichée.
+ */
+function astra_hfb_rangee(string $rangee, string $contexte): array {
+	foreach (astra_hfb_rangees($contexte) as $r) {
+		if ($r['rangee'] === $rangee) {
+			return $r;
+		}
+	}
+	return [];
+}
+
+/**
+ * Réglages d'un élément du builder : groupe 'entete' ou 'pied', identifiant de l'élément.
+ */
+function astra_hfb_reglages(string $groupe, string $id): array {
+	$elements = astra_hfb_config()['elements'];
+	return isset($elements[$groupe][$id]) && is_array($elements[$groupe][$id]) ? $elements[$groupe][$id] : [];
+}
+
+/**
+ * Blocs valides d'une zone de widgets, dans l'ordre configuré.
+ */
+function astra_hfb_blocs_element(string $groupe, string $id): array {
+	$blocs = astra_hfb_reglages($groupe, $id)['blocs'] ?? [];
+	return array_values(array_intersect(is_array($blocs) ? $blocs : [], astra_hfb_blocs()));
+}
+
+/**
+ * Bouton d'appel à l'action prêt à afficher : libellé, lien, cible, style.
+ */
+function astra_hfb_bouton(string $groupe, string $id): array {
+	$r = astra_hfb_reglages($groupe, $id);
+	$libelle = trim((string) ($r['libelle'] ?? ''));
+	$lien = trim((string) ($r['lien'] ?? ''));
+	return [
+		'libelle' => $libelle !== '' ? $libelle : _T('astra:bouton_defaut'),
+		'lien' => $lien !== '' ? $lien : url_de_base(),
+		'cible' => ($r['nouvel_onglet'] ?? 'non') === 'oui' ? '_blank' : '_self',
+		'contour' => ($r['style'] ?? 'plein') === 'contour',
+	];
+}
+
+/**
+ * Mode du menu mobile : 'dropdown' ou 'off-canvas'.
+ */
+function astra_hfb_menu_mobile(): string {
+	return astra_hfb_config()['menu_mobile'];
+}
+
+/**
+ * Icônes sociales d'un élément, prêtes à afficher : réseau, adresse, libellé, couleur, SVG.
+ */
+function astra_hfb_icones(string $groupe, string $id): array {
+	include_once __DIR__ . '/inc/astra_icones.php';
+	$reseaux = astra_hfb_reseaux();
+	$svg = astra_icones_sociales();
+	$icones = [];
+	foreach (astra_hfb_reglages($groupe, $id)['reseaux'] ?? [] as $item) {
+		$reseau = is_array($item) ? ($item['reseau'] ?? '') : '';
+		if (!isset($reseaux[$reseau])) {
+			continue;
+		}
+		$url = (string) ($item['url'] ?? '');
+		if ($reseau === 'email' && $url !== '' && strpos($url, 'mailto:') !== 0) {
+			$url = 'mailto:' . $url;
+		}
+		$icones[] = ['reseau' => $reseau, 'url' => $url, 'libelle' => $reseaux[$reseau][0], 'couleur' => $reseaux[$reseau][1], 'svg' => $svg[$reseau]];
+	}
+	return $icones;
+}
+
+/**
  * Valeurs par défaut de la configuration, alignées sur celles du Customizer d'Astra
  *
  * @return array<string, string>

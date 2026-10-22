@@ -1,0 +1,18 @@
+[(#REM)
+
+	Bloc de widget : sous-rubriques de la rubrique courante (rubriques racines à défaut).
+
+	Paramètres : balise (aside | section), id_rubrique
+
+]<B_sous_rubriques>
+<[(#ENV{balise,aside})] id="rubriques-1" class="widget widget_categories">
+	<h2 class="widget-title"><:astra:sous_rubriques:></h2>
+	<nav aria-label="<:astra:sous_rubriques|attribut_html:>">
+	<ul>
+		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent=#ENV{id_rubrique,0}}{par num titre, titre}>
+		<li class="cat-item cat-item-#ID_RUBRIQUE"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li>
+		</BOUCLE_sous_rubriques>
+	</ul>
+	</nav>
+</[(#ENV{balise,aside})]>
+</B_sous_rubriques>

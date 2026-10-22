@@ -1,0 +1,14 @@
+[(#REM)
+
+	Bloc de widget : nuage des mots-clés utilisés par des articles.
+
+	Paramètres : balise (aside | section)
+
+]<B_mots>
+<[(#ENV{balise,aside})] id="tag_cloud-1" class="widget widget_tag_cloud">
+	<h2 class="widget-title"><:astra:mots_cles:></h2>
+	<div class="tagcloud">
+		<BOUCLE_mots(MOTS){par titre}{0,40}><BOUCLE_mot_utilise(ARTICLES){id_mot}{0,1}><a href="#_mots:URL_MOT" class="tag-cloud-link tag-link-#_mots:ID_MOT">[(#_mots:TITRE|supprimer_numero)]</a> </BOUCLE_mot_utilise></BOUCLE_mots>
+	</div>
+</[(#ENV{balise,aside})]>
+</B_mots>

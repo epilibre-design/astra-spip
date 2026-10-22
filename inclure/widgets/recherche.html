@@ -1,0 +1,10 @@
+[(#REM)
+
+	Bloc de widget : recherche.
+
+	Paramètres : balise (aside | section)
+
+]<[(#ENV{balise,aside})] id="search-1" class="widget widget_search">
+	<h2 class="widget-title"><:astra:rechercher:></h2>
+	#FORMULAIRE_RECHERCHE
+</[(#ENV{balise,aside})]>

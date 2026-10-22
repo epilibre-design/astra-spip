@@ -121,3 +121,14 @@
 
 /* Pagination : flèche gauche symétrique de la flèche droite */
 .ast-pagination .ast-left-arrow { margin-right: .2em; }
+
+/* Builder : bouton au style « contour » (réglage propre au portage) */
+.ast-hfb-bouton-contour .ast-custom-button {
+	background-color: transparent;
+	color: var(--ast-global-color-0);
+	border: 2px solid var(--ast-global-color-0);
+}
+.ast-hfb-bouton-contour .ast-custom-button-link:hover .ast-custom-button {
+	background-color: var(--ast-global-color-0);
+	color: var(--ast-global-color-5);
+}

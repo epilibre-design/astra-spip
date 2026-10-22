@@ -1,0 +1,11 @@
+[(#REM)
+
+	Élément « copyright » du pied de page : texte du réglage texte_pied,
+	ou mention par défaut.
+
+]<div class="ast-builder-layout-element ast-flex site-footer-focus-item ast-footer-copyright" data-section="section-footer-builder">
+	<div class="ast-footer-copyright">
+	[(#NOM_SITE_SPIP|astra_texte_pied)]
+	[(#NOM_SITE_SPIP|astra_texte_pied|non)<p>[(#NOM_SITE_SPIP|astra_copyright)] | <:astra:propulse_par:> <a href="https://www.spip.net/" rel="nofollow noopener">SPIP</a> &amp; <a href="https://wpastra.com/" rel="nofollow noopener" target="_blank"><:astra:theme_astra:></a></p>]
+	</div>
+</div>

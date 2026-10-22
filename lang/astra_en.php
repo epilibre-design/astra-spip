@@ -10,6 +10,7 @@ return [
 	'aller_au_contenu' => 'Skip to content',
 	'anonyme' => 'Anonymous',
 	'articles_recents' => 'Recent Posts',
+	'bouton_defaut' => 'Button',
 
 	// C
 	'cfg_afficher_auteurs' => 'Show article authors',
@@ -47,6 +48,8 @@ return [
 	'cfg_texte_pied_explication' => 'SPIP shortcuts allowed. <code>[annee]</code> and <code>[site]</code> are replaced by the year and the site name. Leave empty for the default text.',
 	'cfg_typographie' => 'Typography',
 	'commentaires_recents' => 'Recent Comments',
+	'compte_connexion' => 'Log in',
+	'compte_espace_prive' => 'Admin area',
 	'copyright' => 'Copyright © @annee@ @site@',
 
 	// D
@@ -65,7 +68,9 @@ return [
 
 	// N
 	'navigation_articles' => 'Posts',
+	'navigation_pied' => 'Footer Site Navigation',
 	'navigation_principale' => 'Primary Site Navigation',
+	'navigation_secondaire' => 'Secondary Site Navigation',
 	'nb_commentaires_sur' => '@nb@ thoughts on “@titre@”',
 	'notes' => 'Notes',
 
@@ -74,6 +79,7 @@ return [
 	'page_inexistante_texte' => 'It looks like the link pointing here was faulty. Maybe try searching?',
 	'page_introuvable' => 'Page not found',
 	'pagination' => 'Post pagination',
+	'panneau_fermer' => 'Close menu',
 	'par' => 'By',
 	'precedent' => 'Previous',
 	'propulse_par' => 'Powered by',
@@ -106,4 +112,8 @@ return [
 	// V
 	'voir_articles_de' => 'View all posts by @nom@',
 	'voir_en_ligne' => 'See online',
+
+	// W
+	'widgets_entete' => 'Header Widget',
+	'widgets_pied' => 'Footer Widget',
 ];

@@ -1,0 +1,19 @@
+[(#REM)
+
+	Éléments « menu-1 », « menu-2 » (en-tête) et « menu » (pied de page, un seul niveau).
+
+	Paramètres : id, numero, groupe (entete | pied), appareil, id_rubrique, id_secteur, type_page
+
+]#SET{r,#ENV{groupe}|astra_hfb_reglages{#ENV{id}}}<BOUCLE_entete(CONDITION){si #ENV{groupe}|=={entete}}>
+<div class="ast-builder-menu-[(#ENV{numero})] ast-builder-menu ast-flex ast-builder-menu-#ENV{numero}-focus-item ast-builder-layout-element site-header-focus-item" data-section="section-hb-menu-#ENV{numero}">
+	<div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility site-header-focus-item" id="[(#ENV{numero}|=={1}|?{primary,secondary_menu})]-site-navigation-[(#ENV{appareil}|=={ordinateur}|?{desktop,mobile})]" aria-label="[(#ENV{numero}|=={1}|?{<:astra:navigation_principale:>,<:astra:navigation_secondaire:>}|attribut_html)]" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation ast-inline-flex"><ul id="ast-hf-menu-#ENV{numero}[-(#ENV{appareil}|!={ordinateur}|?{#ENV{appareil}})]" class="main-header-menu ast-menu-shadow ast-nav-menu ast-flex submenu-with-border stack-on-mobile">
+		<INCLURE{fond=inclure/hfb/menu-items}{source=#GET{r}|table_valeur{source}}{id_source=#GET{r}|table_valeur{id}}{niveaux=2}{accueil=#ENV{numero}|=={1}|?{oui,''}}{id_rubrique}{id_secteur}{type_page} />
+	</ul></div></nav></div></div>
+</div>
+</BOUCLE_entete>
+<div class="footer-widget-area widget-area site-footer-focus-item" data-section="section-footer-menu">
+	<div class="footer-bar-navigation"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility footer-navigation" id="footer-site-navigation" aria-label="<:astra:navigation_pied|attribut_html:>" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="footer-nav-wrap"><ul id="astra-footer-menu" class="ast-nav-menu ast-flex astra-footer-[(#GET{r}|table_valeur{disposition}|=={vertical}|?{vertical,horizontal})]-menu astra-footer-tablet-vertical-menu astra-footer-mobile-vertical-menu">
+		<INCLURE{fond=inclure/hfb/menu-items}{source=#GET{r}|table_valeur{source}}{id_source=#GET{r}|table_valeur{id}}{niveaux=1}{id_rubrique}{id_secteur}{type_page} />
+	</ul></div></nav></div>
+</div>
+<//B_entete>

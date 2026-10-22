@@ -1,0 +1,39 @@
+[(#REM)
+
+	Entrées d'un menu, selon sa source, avec le balisage du menu d'Astra
+	(sous-menus déroulants, bouton de dépliage mobile).
+
+	Paramètres :
+	- source : racine | rubrique | groupe_mots | pages
+	- id_source : rubrique ou groupe de mots selon la source
+	- niveaux : 2 (avec sous-menus) ou 1
+	- accueil : 'oui' pour ajouter le lien « Accueil » (réglage menu_accueil)
+	- id_rubrique, id_secteur, type_page : page courante (état actif)
+
+][(#VAL{menu_accueil}|astra_conf|=={oui}|et{#ENV{accueil}|=={oui}}|oui)
+<li class="menu-item menu-item-home[ (#ENV{type_page}|=={sommaire}|oui)current-menu-item]"><a href="#URL_SITE_SPIP/" class="menu-link"><:astra:accueil:></a></li>]
+<BOUCLE_si_rubriques(CONDITION){si #ENV{source}|in_array{#LISTE{racine,rubrique}}}>
+<BOUCLE_rubriques(RUBRIQUES){id_parent=#ENV{source}|=={rubrique}|?{#ENV{id_source},0}}{par num titre, titre}>
+#SET{enfants,''}<BOUCLE_test_enfants(RUBRIQUES){id_parent=#ID_RUBRIQUE}{0,1}>[(#ENV{niveaux}|!={1}|oui)#SET{enfants,oui}]</BOUCLE_test_enfants>
+<li class="menu-item menu-item-rubrique-#ID_RUBRIQUE[ (#GET{enfants}|oui)menu-item-has-children][ (#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)current-menu-item][ (#ID_RUBRIQUE|=={#ENV{id_secteur}}|et{#ID_RUBRIQUE|!={#ENV{id_rubrique}}}|oui)current-menu-ancestor]"><a href="#URL_RUBRIQUE" class="menu-link"[ (#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)][(#GET{enfants}|oui)<span role="presentation" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span></span>]</a>
+	<BOUCLE_si_sous_menu(CONDITION){si #GET{enfants}}>
+	<button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text"><:astra:deplier_menu:></span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span></button>
+	<ul class="sub-menu">
+		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent=#ID_RUBRIQUE}{par num titre, titre}>
+		<li class="menu-item menu-item-rubrique-#ID_RUBRIQUE[ (#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)current-menu-item]"><a href="#URL_RUBRIQUE" class="menu-link"[ (#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)]</a></li>
+		</BOUCLE_sous_rubriques>
+	</ul>
+	</BOUCLE_si_sous_menu>
+</li>
+</BOUCLE_rubriques>
+</BOUCLE_si_rubriques>
+<BOUCLE_si_mots(CONDITION){si #ENV{source}|=={groupe_mots}}>
+<BOUCLE_mots(MOTS){id_groupe=#ENV{id_source}}{par num titre, titre}><BOUCLE_articles_mot(ARTICLES){id_mot}{doublons}{par num titre, titre}>
+<li class="menu-item menu-item-article-#ID_ARTICLE"><a href="#URL_ARTICLE" class="menu-link">[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_articles_mot></BOUCLE_mots>
+</BOUCLE_si_mots>
+<BOUCLE_si_pages(CONDITION){si #ENV{source}|=={pages}|et{#VAL{pages}|test_plugin_actif}}>
+<BOUCLE_pages(ARTICLES){id_rubrique=-1}{par num titre, titre}>
+<li class="menu-item menu-item-article-#ID_ARTICLE[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)current-menu-item]"><a href="#URL_ARTICLE" class="menu-link">[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_pages>
+</BOUCLE_si_pages>

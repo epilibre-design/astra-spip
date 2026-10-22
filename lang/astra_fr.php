@@ -10,6 +10,7 @@ return [
 	'aller_au_contenu' => 'Aller au contenu',
 	'anonyme' => 'Anonyme',
 	'articles_recents' => 'Articles récents',
+	'bouton_defaut' => 'Bouton',
 
 	// C
 	'cfg_afficher_auteurs' => 'Afficher les auteurs des articles',
@@ -47,6 +48,8 @@ return [
 	'cfg_texte_pied_explication' => 'Raccourcis SPIP acceptés. <code>[annee]</code> et <code>[site]</code> sont remplacés par l’année et le nom du site. Laisser vide pour le texte par défaut.',
 	'cfg_typographie' => 'Typographie',
 	'commentaires_recents' => 'Commentaires récents',
+	'compte_connexion' => 'Se connecter',
+	'compte_espace_prive' => 'Espace privé',
 	'copyright' => 'Copyright © @annee@ @site@',
 
 	// D
@@ -65,7 +68,9 @@ return [
 
 	// N
 	'navigation_articles' => 'Articles',
+	'navigation_pied' => 'Navigation du pied de page',
 	'navigation_principale' => 'Navigation principale du site',
+	'navigation_secondaire' => 'Navigation secondaire du site',
 	'nb_commentaires_sur' => '@nb@ commentaires sur « @titre@ »',
 	'notes' => 'Notes',
 
@@ -74,6 +79,7 @@ return [
 	'page_inexistante_texte' => 'Le lien qui vous a mené ici semble erroné. Peut-être essayer une recherche ?',
 	'page_introuvable' => 'Page introuvable',
 	'pagination' => 'Pagination des articles',
+	'panneau_fermer' => 'Fermer le menu',
 	'par' => 'Par',
 	'precedent' => 'Précédent',
 	'propulse_par' => 'Propulsé par',
@@ -106,4 +112,8 @@ return [
 	// V
 	'voir_articles_de' => 'Voir tous les articles de @nom@',
 	'voir_en_ligne' => 'Voir en ligne',
+
+	// W
+	'widgets_entete' => 'Widgets d’en-tête',
+	'widgets_pied' => 'Widgets du pied de page',
 ];

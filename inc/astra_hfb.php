@@ -30,6 +30,9 @@ function astra_hfb_defauts(): array {
 		}
 	}
 	$pied['below']['below_1'] = ['copyright'];
+	// Icônes par défaut d'Astra, sans adresse.
+	$reseaux = [['reseau' => 'facebook', 'url' => ''], ['reseau' => 'twitter', 'url' => ''], ['reseau' => 'instagram', 'url' => '']];
+	$widget = ['blocs' => [], 'titre' => '', 'texte' => ''];
 	return [
 		'entete_ordinateur' => $entete(ASTRA_HFB_ZONES, ['primary_left' => ['logo'], 'primary_right' => ['menu-1']]),
 		'entete_mobile' => ['popup' => ['popup_content' => ['mobile-menu']]]
@@ -48,11 +51,51 @@ function astra_hfb_defauts(): array {
 			'entete' => [
 				'menu-1' => ['source' => 'racine', 'id' => 0],
 				'menu-2' => ['source' => 'racine', 'id' => 0],
+				'html-1' => ['texte' => ''],
+				'html-2' => ['texte' => ''],
+				'button-1' => ['libelle' => '', 'lien' => '', 'nouvel_onglet' => 'non', 'style' => 'plein'],
+				'social-icons-1' => ['reseaux' => $reseaux],
+				'widget-1' => $widget,
+				'widget-2' => $widget,
 			],
 			'pied' => [
-				'menu' => ['source' => 'racine', 'id' => 0],
+				'menu' => ['source' => 'racine', 'id' => 0, 'disposition' => 'horizontal'],
+				'html-1' => ['texte' => ''],
+				'html-2' => ['texte' => ''],
+				'social-icons-1' => ['reseaux' => $reseaux],
+				'widget-1' => $widget,
+				'widget-2' => $widget,
+				'widget-3' => $widget,
+				'widget-4' => $widget,
 			],
 		],
+	];
+}
+
+/**
+ * Blocs proposés dans les zones de widgets (squelettes inclure/widgets/<bloc>.html).
+ */
+function astra_hfb_blocs(): array {
+	return ['recherche', 'sous_rubriques', 'articles_recents', 'forums_recents', 'mots_cles', 'texte'];
+}
+
+/**
+ * Réseaux sociaux proposés : libellé et couleur (couleurs du sélecteur d'Astra,
+ * Mastodon absent d'Astra : couleur de la marque).
+ */
+function astra_hfb_reseaux(): array {
+	return [
+		'facebook' => ['Facebook', '#557dbc'],
+		'twitter' => ['Twitter', '#7acdee'],
+		'twitter-x' => ['X', '#000000'],
+		'instagram' => ['Instagram', '#8a3ab9'],
+		'linkedin' => ['LinkedIn', '#1c86c6'],
+		'youtube' => ['YouTube', '#e96651'],
+		'mastodon' => ['Mastodon', '#6364ff'],
+		'bluesky' => ['Bluesky', '#1285fe'],
+		'github' => ['GitHub', '#24292e'],
+		'rss' => ['RSS', '#f09124'],
+		'email' => ['E-mail', '#ea4335'],
 	];
 }
 

@@ -1,0 +1,10 @@
+[(#REM)
+
+	Bloc de widget : texte libre (raccourcis SPIP), avec un titre facultatif.
+
+	Paramètres : balise (aside | section), titre, texte
+
+]<[(#ENV{balise,aside})] class="widget widget_text">[
+	<h2 class="widget-title">(#ENV{titre}|textebrut)</h2>]
+	<div class="textwidget">[(#ENV*{texte}|propre)]</div>
+</[(#ENV{balise,aside})]>

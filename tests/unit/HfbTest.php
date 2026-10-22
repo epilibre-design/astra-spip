@@ -52,6 +52,24 @@ final class HfbTest extends TestCase {
 		$this->assertSame(['source' => 'racine', 'id' => 3], $c['elements']['entete']['menu-1']);
 	}
 
+	public function testReglagesParDefautDesElements(): void {
+		$c = astra_hfb_normaliser([]);
+		$this->assertSame(['facebook', 'twitter', 'instagram'], array_column($c['elements']['entete']['social-icons-1']['reseaux'], 'reseau'));
+		$this->assertSame('horizontal', $c['elements']['pied']['menu']['disposition']);
+		$this->assertSame('', $c['elements']['pied']['html-2']['texte']);
+	}
+
+	public function testListeDeReseauxRemplaceeEnBloc(): void {
+		$c = astra_hfb_normaliser(['elements' => ['pied' => ['social-icons-1' => ['reseaux' => [['reseau' => 'mastodon', 'url' => 'https://m.example']]]]]]);
+		$this->assertSame(['mastodon'], array_column($c['elements']['pied']['social-icons-1']['reseaux'], 'reseau'));
+		$this->assertSame(['facebook', 'twitter', 'instagram'], array_column($c['elements']['entete']['social-icons-1']['reseaux'], 'reseau'));
+	}
+
+	public function testChaqueReseauAUneIcone(): void {
+		require_once dirname(__DIR__, 2) . '/inc/astra_icones.php';
+		$this->assertSame([], array_diff(array_keys(astra_hfb_reseaux()), array_keys(astra_icones_sociales())));
+	}
+
 	public function testMenuMobileInvalideRevientAuDeroulant(): void {
 		$this->assertSame('off-canvas', astra_hfb_normaliser(['menu_mobile' => 'off-canvas'])['menu_mobile']);
 		$this->assertSame('dropdown', astra_hfb_normaliser(['menu_mobile' => 'plein-ecran'])['menu_mobile']);

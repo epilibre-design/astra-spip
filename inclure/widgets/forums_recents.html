@@ -1,0 +1,18 @@
+[(#REM)
+
+	Bloc de widget : commentaires récents.
+
+	Paramètres : balise (aside | section)
+
+]<B_forums_recents>
+<[(#ENV{balise,aside})] id="recent-comments-1" class="widget widget_recent_comments">
+	<h2 class="widget-title"><:astra:commentaires_recents:></h2>
+	<nav aria-label="<:astra:commentaires_recents|attribut_html:>">
+	<ul id="recentcomments">
+		<BOUCLE_forums_recents(FORUMS){objet=article}{plat}{par date}{inverse}{0,5}>
+		<li class="recentcomments"><span class="comment-author-link">[(#NOM|sinon{<:astra:anonyme:>})]</span> <:astra:sur:> <BOUCLE_art_forum(ARTICLES){id_article=#ID_OBJET}><a href="#URL_ARTICLE#forum#ID_FORUM">[(#TITRE|supprimer_numero)]</a></BOUCLE_art_forum></li>
+		</BOUCLE_forums_recents>
+	</ul>
+	</nav>
+</[(#ENV{balise,aside})]>
+</B_forums_recents>

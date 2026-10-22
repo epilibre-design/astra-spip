@@ -1,0 +1,9 @@
+[(#REM)
+
+	Élément « html-N » : texte libre (raccourcis SPIP), en-tête ou pied de page.
+
+	Paramètres : id, numero, groupe (entete | pied)
+
+]#SET{r,#ENV{groupe}|astra_hfb_reglages{#ENV{id}}}<div class="[(#ENV{groupe}|=={pied}|?{'footer-widget-area widget-area site-footer-focus-item ast-footer-html-','ast-builder-layout-element ast-flex site-header-focus-item ast-header-html-'})]#ENV{numero}" data-section="section-[(#ENV{groupe}|=={pied}|?{fb,hb})]-html-#ENV{numero}">
+	<div class="ast-header-html inner-link-style-"><div class="ast-builder-html-element">[(#GET{r}|table_valeur{texte}|propre)]</div></div>
+</div>

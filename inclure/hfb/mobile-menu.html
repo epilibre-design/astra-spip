@@ -1,0 +1,11 @@
+[(#REM)
+
+	Élément « mobile-menu » : menu du panneau mobile, de même source que menu-1.
+
+	Paramètres : id_rubrique, id_secteur, type_page
+
+]#SET{r,#VAL{entete}|astra_hfb_reglages{menu-1}}<div class="ast-builder-menu-mobile ast-builder-menu ast-builder-menu-mobile-focus-item ast-builder-layout-element site-header-focus-item" data-section="section-header-mobile-menu">
+	<div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility site-header-focus-item" id="ast-mobile-site-navigation" aria-label="<:astra:navigation_principale|attribut_html:>" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="ast-hf-mobile-menu" class="main-header-menu ast-nav-menu ast-flex submenu-with-border astra-menu-animation-fade stack-on-mobile">
+		<INCLURE{fond=inclure/hfb/menu-items}{source=#GET{r}|table_valeur{source}}{id_source=#GET{r}|table_valeur{id}}{niveaux=2}{accueil=oui}{id_rubrique}{id_secteur}{type_page} />
+	</ul></div></nav></div></div>
+</div>

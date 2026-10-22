@@ -2,6 +2,8 @@
 // Charge le SPIP 4.4 de test installé par scripts/install-spip-test.sh.
 $spipRoot = dirname(__DIR__) . '/vendor/spip/spip';
 chdir($spipRoot);
+// Les tests changent la configuration d'un cas à l'autre : pas de cache des pages et inclusions.
+define('_NO_CACHE', -1);
 // SPIP 4.4 démarre son noyau (SpipLeague) par l'autoloader de Composer.
 require_once $spipRoot . '/vendor/autoload.php';
 require_once $spipRoot . '/ecrire/inc_version.php';
