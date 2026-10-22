@@ -1,7 +1,8 @@
 # Site Garden Maintenance pour SPIP — script d'installation
 
-Date : 2026-10-22. Statut : brouillon. Les choix marqués « à confirmer » attendent l'avis de
-Gilles ; aucun code n'est écrit avant validation.
+Date : 2026-10-22. Statut : à relire. Choix tranchés par Gilles le 2026-10-22 : dépôt séparé,
+contenu de substitution, tiptap_spip installé, formulaire de contact CVT. Aucun code n'est écrit
+avant validation de la spec.
 
 ## Objectif
 
@@ -41,9 +42,9 @@ Points relevés pendant le chantier du builder, à vérifier dans ce contexte :
   plugin après activation (`test_plugin_actif`), car `plugins:activer` peut sortir en code 0
   sans rien activer.
 
-## Organisation du dépôt (à confirmer)
+## Organisation du dépôt
 
-Recommandé : **un dépôt de site distinct**, organisé comme site-tuto. Astra SPIP reste un thème
+Retenu : **un dépôt de site distinct**, organisé comme site-tuto. Astra SPIP reste un thème
 générique, sans contenu de démonstration.
 
 ```
@@ -60,9 +61,8 @@ garden-spip/
 Astra SPIP est installé par le script : lien symbolique vers un dépôt local (`ASTRA_SPIP`), sinon
 clone de `github.com/epilibre-design/astra-spip` (pas encore publié sur SPIP Zone).
 
-Alternative : un script de démonstration dans Astra SPIP (`demo/garden/install.sh`) qui installe
-un SPIP dans un dossier choisi. Plus simple à maintenir avec le thème, mais il mêle au thème la
-configuration d'un modèle particulier.
+Alternative écartée : un script de démonstration dans Astra SPIP (`demo/garden/install.sh`). Il
+mêlerait au thème la configuration d'un modèle particulier.
 
 ## Ce que le script configure
 
@@ -88,19 +88,21 @@ aucun texte ni aucune image du modèle.
 | `show_on_front`, `page_on_front` | page statique « Home » | — | Manque : accueil statique (spec pages uniques, A3) |
 | Réglages des pages | titre masqué, pleine largeur | — | Manque : réglages par page (spec pages uniques, A4) |
 
-## Contenu (à confirmer)
+## Contenu
 
 Le modèle compte six pages (Home, About, Services, Projects, FAQ, Contact), trois menus, quatre
 widgets et 44 pièces jointes (inventaire : `docs/inventaires/garden-maintenance.md`). Règle du
 projet : les textes et photos des modèles ne sont jamais versionnés.
 
-Options :
+Retenu : **contenu de substitution**. Le seed (`plugins/garden/seed/`, versionné) crée les six
+pages uniques, les menus et les widgets avec des textes écrits pour le site, en reprenant la
+structure des pages du modèle (sections, colonnes, listes, FAQ, compteurs) mais pas ses textes.
+Images : aucune au lot 1 ; ensuite, seulement des images libres dont l'auteur, la source et la
+licence sont consignés dans le seed. Le site est montrable et redistribuable sous les licences du
+dépôt.
 
-1. **Contenu de substitution** (recommandé pour commencer) : le seed crée les six pages uniques,
-   les menus et les widgets avec des textes écrits pour le site, et aucune photo ou des images
-   libres dont la licence est consignée. Le site est montrable et redistribuable.
-2. **Contenu du modèle téléchargé à l'installation** : le script récupère l'export WXR et les
-   médias sur websitedemos.net, sans les versionner. Conditions préalables :
+Écarté pour l'instant : **le contenu du modèle téléchargé à l'installation** (export WXR et médias
+récupérés sur websitedemos.net, non versionnés). Il supposerait :
    - vérifier que les conditions d'utilisation des contenus de démonstration de Brainstorm Force
      le permettent hors de WordPress ;
    - un chemin d'import : wp2spip lit une base WordPress, pas un fichier WXR. Il faudrait soit un
@@ -109,7 +111,7 @@ Options :
    - la conversion des blocs Spectra, sans laquelle la quasi-totalité des textes est perdue (ils
      sont stockés dans les attributs des blocs).
 
-L'option 2 ne devient utile qu'après la conversion Spectra.
+Cette piste ne pourrait être rouverte qu'après la conversion Spectra.
 
 ## Dépendances
 
@@ -118,10 +120,18 @@ L'option 2 ne devient utile qu'après la conversion Spectra.
 | astra | thème | GPL v3 | dépôt local ou GitHub |
 | pages | pages uniques | GPL v3 | SPIP Zone |
 | a2a | sous-pages (si le contenu en a) | à relever dans son `paquet.xml` | SPIP Zone |
-| tiptap_spip | éditeur (à confirmer) | GPL v3 | SPIP Zone ou dépôt local |
+| tiptap_spip | éditeur, installé dès le lot 1 | GPL v3 | SPIP Zone (`plugins:svp:telecharger`), ou dépôt local via `TIPTAP_SPIP` |
 
-Le formulaire de contact (SureForms dans le modèle) sera un formulaire CVT du plugin du site, ou
-le plugin Formidable : choix à faire avec le lot « interactions » de l'inventaire.
+tiptap_spip n'est pas modifié. Les besoins d'édition propres au modèle (FAQ, compteurs, sections)
+seront des extensions dans le plugin du site ou un plugin dédié, sur le modèle de
+`/src/tiptap-spip/docs/site/developper/faq.md`, au lot 4.
+
+**Formulaire de contact** : formulaire CVT `contact` du plugin du site (champs du modèle : nom,
+adresse électronique, sujet, message, tous obligatoires), sans plugin de formulaires. Il est
+inséré dans la page Contact par un modèle SPIP (`<formulaire|contact>`). À préciser dans la spec du
+lot correspondant : destinataire (`email_webmaster` par défaut), envoi par `notifications_envoyer_mails`
+ou `envoyer_mail`, messages de succès et d'erreur, protection contre les envois abusifs (champ
+piège et limite de fréquence, ou plugin nospam s'il est retenu).
 
 ## Lots
 
@@ -129,10 +139,10 @@ Le script est livré dès le lot 1 et enrichi à chaque lot.
 
 | Lot | Contenu du script | Dépend de |
 |---|---|---|
-| 1 — Socle | spip-cli, SPIP 4.4, SQLite, plugins, astra ; palette (8 couleurs), largeur, en-tête et pied ; six pages de substitution et menu principal | builder (fait) |
+| 1 — Socle | spip-cli, SPIP 4.4, SQLite, plugins (pages, a2a, tiptap_spip), astra ; palette (8 couleurs), largeur, en-tête et pied ; six pages de substitution et menu principal | builder (fait) |
 | 2 — Pages | accueil statique, pages sans titre et pleine largeur | spec pages uniques (A3, A4) |
 | 3 — Habillage | 9e couleur, fontes, répartition tablette du pied, menus dans les widgets, Google Reviews | évolutions du builder et du formulaire du thème |
-| 4 — Contenu | selon l'option retenue ci-dessus | conversion Spectra, CSS des blocs |
+| 4 — Contenu | sections de substitution (colonnes, listes, FAQ, compteurs, carte), formulaire de contact CVT, extensions d'édition | CSS des blocs ; composants à définir (spec dédiée) |
 
 ## Validation
 
@@ -145,9 +155,11 @@ Le script est livré dès le lot 1 et enrichi à chaque lot.
   sur ordinateur, tablette et mobile : en-tête et pied d'abord, pages à partir du lot 4. Les
   écarts dus aux manques listés ci-dessus sont consignés, pas masqués.
 
-## Questions ouvertes
+## Décisions
 
-1. Dépôt distinct ou script dans Astra SPIP ?
-2. Contenu de substitution ou contenu du modèle téléchargé à l'installation ?
-3. Éditeur tiptap_spip installé dès le lot 1 ?
-4. Formulaire de contact : CVT propre au site ou Formidable ?
+Le 2026-10-22, Gilles a retenu :
+
+1. dépôt séparé, organisé comme site-tuto ;
+2. contenu de substitution, aucun texte ni photo du modèle ;
+3. tiptap_spip installé dès le lot 1 ;
+4. formulaire de contact CVT propre au site.
