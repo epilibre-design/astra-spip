@@ -17,6 +17,9 @@
 
 	<licence lien="https://spdx.org/licenses/GPL-3.0-or-later.html">GPL-3.0-or-later</licence>
 
+	<utilise nom="pages" compatibilite="[2.0.0;]" />
+	<utilise nom="a2a" compatibilite="[4.2.0;]" />
+
 	<menu nom="configurer_astra" titre="astra:titre_configurer" parent="menu_squelette" icone="images/astra-xx.svg" action="configurer_astra" />
 	<menu nom="configurer_astra_hfb" titre="astra:hfb_titre" parent="menu_squelette" icone="images/astra-xx.svg" action="configurer_astra_hfb" />
 </paquet>
