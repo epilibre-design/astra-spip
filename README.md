@@ -61,6 +61,21 @@ sous-rubriques (sous-menus déroulants, menu mobile).
 - Affichage du nom du site, du slogan, des auteurs, des extraits, du lien « Accueil » et du bouton de retour en haut.
 - Texte du pied de page (raccourcis SPIP, marqueurs `[annee]` et `[site]`).
 
+## Tests
+
+Prérequis : PHP 8.2+ et Composer pour l'outillage (le plugin lui-même fonctionne en PHP 7.4+),
+spip-cli avec le correctif de la MR !91 pour l'environnement d'intégration.
+
+    composer install
+    composer tests-unit                                   # sans SPIP
+    SPIP_CLI="php /chemin/spip-cli/bin/spip" composer install-spip-test
+    composer tests-integration                            # SPIP 4.4 de test, SQLite
+
+Les références WordPress du builder sont décrites dans `tests/references/README.md`.
+
+Le builder d'en-tête et de pied de page est vérifié sur SPIP 4.4 uniquement : SPIP 4.2 et 5.0,
+bien que déclarés compatibles, ne sont pas vérifiés pour cette fonction.
+
 ## Licence
 
 GNU GPL v3 ou ultérieure (fichier `LICENSE`).

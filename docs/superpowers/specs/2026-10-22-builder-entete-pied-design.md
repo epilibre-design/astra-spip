@@ -91,6 +91,9 @@ générique, qui réintroduirait des éléments supprimés dans les listes) :
 Le formulaire enregistre toujours toutes les zones explicitement : l'héritage ne joue que pour une
 configuration partielle (écrite à la main ou par une version antérieure du plugin).
 
+Vérifié sur SPIP 4.4 : `ecrire_config()` conserve une liste vide dans la méta (test
+`HfbConfigurationTest::testListeVideEnregistreeRetireLeMenu`).
+
 ### Registre des éléments
 
 Un registre explicite décrit chaque élément autorisé : son identifiant, le groupe de réglages

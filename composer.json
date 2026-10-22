@@ -7,10 +7,17 @@
 		"phpunit/phpunit": "^11.5"
 	},
 	"config": {
-		"platform": {"php": "8.2"},
+		"platform": {
+			"php": "8.2"
+		},
 		"sort-packages": true
 	},
 	"scripts": {
-		"tests-unit": "phpunit --colors --testsuite unit"
+		"install-spip-test": "sh scripts/install-spip-test.sh",
+		"tests-unit": "phpunit --colors --testsuite unit",
+		"tests-integration": [
+			"test -f vendor/spip/spip/config/connect.php || { echo 'SPIP de test absent : lancez SPIP_CLI=… composer install-spip-test' >&2; exit 1; }",
+			"phpunit --colors --testsuite integration --bootstrap tests/bootstrap_integration.php"
+		]
 	}
 }
