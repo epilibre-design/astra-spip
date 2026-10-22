@@ -31,6 +31,21 @@ $SPIP_CLI plugins:activer astra -y
 $SPIP_CLI php:eval 'include_spip("inc/plugin"); echo test_plugin_actif("astra") ? "astra-actif\n" : "astra-inactif\n";' | grep -q '^astra-actif$' \
 	|| { echo "Le plugin astra n'est pas actif" >&2; exit 1; }
 
+# Plugin Pages (GPL v3), source « pages » des menus. Archive récupérée directement :
+# plugins:svp:telecharger ne trouve pas le plugin sous SQLite (comparaison de préfixe sensible à la casse).
+if [ ! -f plugins/auto/pages/paquet.xml ]; then
+	archive=$(mktemp -d)
+	curl -sfL -o "$archive/pages.zip" https://files.spip.org/spip-zone/spip-contrib-extensions/pages-70f6d-pages-v2.4.1.zip
+	unzip -q "$archive/pages.zip" -d "$archive"
+	mv "$archive/pages-v2.4.1" plugins/auto/pages
+	rm -rf "$archive"
+fi
+$SPIP_CLI plugins:activer pages -y
+# plugins:activer ne lance pas l'installation du plugin (champ spip_articles.page).
+$SPIP_CLI plugins:maj:bdd
+$SPIP_CLI php:eval 'include_spip("inc/plugin"); echo test_plugin_actif("pages") ? "pages-actif\n" : "pages-inactif\n";' | grep -q '^pages-actif$' \
+	|| { echo "Le plugin pages n'est pas actif" >&2; exit 1; }
+
 # Rubriques et articles de démonstration (menus) : recréés à chaque exécution.
 # Insertions SQL directes : objet_instituer() refuse de publier sans auteur connecté.
 $SPIP_CLI php:eval '
@@ -49,6 +64,8 @@ $jardinage = $rubrique("10. Jardinage", 0);
 $article("Article de Jardinage", $jardinage);
 $article("Article du potager", $rubrique("Potager", $jardinage));
 $article("Article des actualités", $rubrique("20. Actualités", 0));
+// Page unique (plugin Pages) : hors rubrique, id_rubrique = -1.
+sql_insertq("spip_articles", ["titre" => "Mentions légales", "texte" => "Texte.", "id_rubrique" => -1, "page" => "mentions", "statut" => "publie", "date" => $date, "lang" => "fr"]);
 calculer_rubriques();
 propager_les_secteurs();
 include_spip("inc/config");

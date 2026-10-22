@@ -7,6 +7,6 @@
 	- rangee : above | primary | below
 	- zone : left | left_center | center | right_center | right
 	- appareil : ordinateur | mobile
-	- id_rubrique, id_secteur, type_page : page courante (état actif des menus)
+	- id_rubrique, id_secteur, id_article, type_page : page courante (état actif des menus)
 
-]<BOUCLE_elements(DATA){source table, #ENV{rangee}|astra_hfb_rangee{#ENV{contexte}}|table_valeur{zones}|table_valeur{#ENV{zone}}}><INCLURE{fond=#VALEUR{fond}}{id=#VALEUR{id}}{numero=#VALEUR{numero}}{groupe=#VALEUR{groupe}}{appareil}{id_rubrique}{id_secteur}{type_page} /></BOUCLE_elements>
+]<BOUCLE_elements(DATA){source table, #ENV{rangee}|astra_hfb_rangee{#ENV{contexte}}|table_valeur{zones}|table_valeur{#ENV{zone}}}><INCLURE{fond=#VALEUR{fond}}{id=#VALEUR{id}}{numero=#VALEUR{numero}}{groupe=#VALEUR{groupe}}{appareil}{id_rubrique}{id_secteur}{id_article}{type_page} /></BOUCLE_elements>

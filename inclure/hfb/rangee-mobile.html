@@ -6,7 +6,7 @@
 
 	Paramètres :
 	- rangee : above | primary | below
-	- id_rubrique, id_secteur, type_page : page courante
+	- id_rubrique, id_secteur, id_article, type_page : page courante
 
 ]#SET{r,#ENV{rangee}|astra_hfb_rangee{entete_mobile}}<BOUCLE_rangee(CONDITION){si #GET{r}}>
 <div class="ast-[(#ENV{rangee}|=={primary}|?{main,#ENV{rangee}})]-header-wrap [(#ENV{rangee}|=={primary}|oui)main-header-bar-wrap]">
@@ -14,19 +14,19 @@
 		<div class="ast-builder-grid-row [(#GET{r}|table_valeur{cotes}|?{ast-builder-grid-row-has-sides,'ast-grid-center-col-layout-only ast-flex'})] [(#GET{r}|table_valeur{centre}|?{ast-grid-center-col-layout,ast-builder-grid-row-no-center})]">
 			<BOUCLE_gauche(CONDITION){si #GET{r}|table_valeur{cotes}}>
 			<div class="site-header-#ENV{rangee}-section-left site-header-section ast-flex site-header-section-left">
-				<INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=left}{appareil=mobile}{id_rubrique}{id_secteur}{type_page} />
-				<BOUCLE_centre_gauche(CONDITION){si #GET{r}|table_valeur{centre}}><INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=left_center}{appareil=mobile}{id_rubrique}{id_secteur}{type_page} /></BOUCLE_centre_gauche>
+				<INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=left}{appareil=mobile}{id_rubrique}{id_secteur}{id_article}{type_page} />
+				<BOUCLE_centre_gauche(CONDITION){si #GET{r}|table_valeur{centre}}><INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=left_center}{appareil=mobile}{id_rubrique}{id_secteur}{id_article}{type_page} /></BOUCLE_centre_gauche>
 			</div>
 			</BOUCLE_gauche>
 			<BOUCLE_centre(CONDITION){si #GET{r}|table_valeur{centre}}>
 			<div class="site-header-#ENV{rangee}-section-center site-header-section ast-flex ast-grid-section-center">
-				<INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=center}{appareil=mobile}{id_rubrique}{id_secteur}{type_page} />
+				<INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=center}{appareil=mobile}{id_rubrique}{id_secteur}{id_article}{type_page} />
 			</div>
 			</BOUCLE_centre>
 			<BOUCLE_droite(CONDITION){si #GET{r}|table_valeur{cotes}}>
 			<div class="site-header-#ENV{rangee}-section-right site-header-section ast-flex ast-grid-right-section">
-				<BOUCLE_centre_droite(CONDITION){si #GET{r}|table_valeur{centre}}><INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=right_center}{appareil=mobile}{id_rubrique}{id_secteur}{type_page} /></BOUCLE_centre_droite>
-				<INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=right}{appareil=mobile}{id_rubrique}{id_secteur}{type_page} />
+				<BOUCLE_centre_droite(CONDITION){si #GET{r}|table_valeur{centre}}><INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=right_center}{appareil=mobile}{id_rubrique}{id_secteur}{id_article}{type_page} /></BOUCLE_centre_droite>
+				<INCLURE{fond=inclure/hfb/zone}{contexte=entete_mobile}{rangee}{zone=right}{appareil=mobile}{id_rubrique}{id_secteur}{id_article}{type_page} />
 			</div>
 			</BOUCLE_droite>
 		</div>

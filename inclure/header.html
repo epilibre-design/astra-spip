@@ -7,6 +7,7 @@
 	Paramètres :
 	- id_rubrique : rubrique courante (pour l'état actif du menu)
 	- id_secteur : secteur courant
+	- id_article : article courant (état actif des menus de pages et de mots-clés)
 	- type_page : sommaire, rubrique, article…
 
 ]<a class="skip-link screen-reader-text" href="#content" title="<:astra:aller_au_contenu|attribut_html:>"><:astra:aller_au_contenu:></a>
@@ -14,17 +15,17 @@
 <header class="site-header header-main-layout-1 ast-primary-menu-enabled ast-logo-title-inline ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline" id="masthead" itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead">
 	<div id="ast-desktop-header" data-toggle-type="[(#VAL|astra_hfb_menu_mobile)]">
 		<BOUCLE_rangees_ordinateur(DATA){source table, #VAL{entete_ordinateur}|astra_hfb_rangees}>
-		<INCLURE{fond=inclure/hfb/rangee-ordinateur}{rangee=#VALEUR{rangee}}{id_rubrique}{id_secteur}{type_page} />
+		<INCLURE{fond=inclure/hfb/rangee-ordinateur}{rangee=#VALEUR{rangee}}{id_rubrique}{id_secteur}{id_article}{type_page} />
 		</BOUCLE_rangees_ordinateur>
 	</div>
 	<div id="ast-mobile-header" class="ast-mobile-header-wrap" data-type="[(#VAL|astra_hfb_menu_mobile)]">
 		<BOUCLE_rangees_mobile(DATA){source table, #VAL{entete_mobile}|astra_hfb_rangees}>
-		<INCLURE{fond=inclure/hfb/rangee-mobile}{rangee=#VALEUR{rangee}}{id_rubrique}{id_secteur}{type_page} />
+		<INCLURE{fond=inclure/hfb/rangee-mobile}{rangee=#VALEUR{rangee}}{id_rubrique}{id_secteur}{id_article}{type_page} />
 		</BOUCLE_rangees_mobile>
 		<BOUCLE_si_deroulant(CONDITION){si #VAL|astra_hfb_menu_mobile|=={dropdown}}>
 		<B_panneau>
 		<div class="ast-mobile-header-content content-align-flex-start">
-			<BOUCLE_panneau(DATA){source table, #VAL|astra_hfb_panneau}><INCLURE{fond=#VALEUR{fond}}{id=#VALEUR{id}}{numero=#VALEUR{numero}}{groupe=#VALEUR{groupe}}{appareil=panneau}{id_rubrique}{id_secteur}{type_page} /></BOUCLE_panneau>
+			<BOUCLE_panneau(DATA){source table, #VAL|astra_hfb_panneau}><INCLURE{fond=#VALEUR{fond}}{id=#VALEUR{id}}{numero=#VALEUR{numero}}{groupe=#VALEUR{groupe}}{appareil=panneau}{id_rubrique}{id_secteur}{id_article}{type_page} /></BOUCLE_panneau>
 		</div>
 		</B_panneau>
 		</BOUCLE_si_deroulant>

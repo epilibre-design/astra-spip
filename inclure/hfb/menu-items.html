@@ -8,7 +8,7 @@
 	- id_source : rubrique ou groupe de mots selon la source
 	- niveaux : 2 (avec sous-menus) ou 1
 	- accueil : 'oui' pour ajouter le lien « Accueil » (réglage menu_accueil)
-	- id_rubrique, id_secteur, type_page : page courante (état actif)
+	- id_rubrique, id_secteur, id_article, type_page : page courante (état actif)
 
 ][(#VAL{menu_accueil}|astra_conf|=={oui}|et{#ENV{accueil}|=={oui}}|oui)
 <li class="menu-item menu-item-home[ (#ENV{type_page}|=={sommaire}|oui)current-menu-item]"><a href="#URL_SITE_SPIP/" class="menu-link"><:astra:accueil:></a></li>]
@@ -29,11 +29,11 @@
 </BOUCLE_si_rubriques>
 <BOUCLE_si_mots(CONDITION){si #ENV{source}|=={groupe_mots}}>
 <BOUCLE_mots(MOTS){id_groupe=#ENV{id_source}}{par num titre, titre}><BOUCLE_articles_mot(ARTICLES){id_mot}{doublons}{par num titre, titre}>
-<li class="menu-item menu-item-article-#ID_ARTICLE"><a href="#URL_ARTICLE" class="menu-link">[(#TITRE|supprimer_numero)]</a></li>
+<li class="menu-item menu-item-article-#ID_ARTICLE[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)current-menu-item]"><a href="#URL_ARTICLE" class="menu-link"[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_articles_mot></BOUCLE_mots>
 </BOUCLE_si_mots>
 <BOUCLE_si_pages(CONDITION){si #ENV{source}|=={pages}|et{#VAL{pages}|test_plugin_actif}}>
 <BOUCLE_pages(ARTICLES){id_rubrique=-1}{par num titre, titre}>
-<li class="menu-item menu-item-article-#ID_ARTICLE[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)current-menu-item]"><a href="#URL_ARTICLE" class="menu-link">[(#TITRE|supprimer_numero)]</a></li>
+<li class="menu-item menu-item-article-#ID_ARTICLE[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)current-menu-item]"><a href="#URL_ARTICLE" class="menu-link"[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_pages>
 </BOUCLE_si_pages>

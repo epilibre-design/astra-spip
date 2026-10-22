@@ -95,6 +95,9 @@ spip-cli avec le correctif de la MR !91 pour l'environnement d'intégration.
     SPIP_CLI="php /chemin/spip-cli/bin/spip" composer install-spip-test
     composer tests-integration                            # SPIP 4.4 de test, SQLite
 
+L'environnement d'intégration comprend le plugin Pages (GPL v3) et une page unique, pour tester
+les menus alimentés par les pages uniques.
+
 Les références WordPress du builder sont décrites dans `tests/references/README.md`. Avec ces
 références, un WordPress de test et le SPIP de test servi par un serveur web :
 
@@ -102,8 +105,11 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8404
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire.cjs
 
-- `comparer_html.php` compare la structure HTML de l'en-tête, du panneau mobile et du pied de
-  page (rangées, zones, éléments) à celle de WordPress, pour les cinq configurations de référence ;
+- `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
+  page à celle de WordPress, pour les cinq configurations de référence : balises, classes et
+  identifiants des rangées, des zones et des éléments, et du premier niveau à l'intérieur de
+  chaque élément. Les contenus, les formulaires et les SVG ne sont pas comparés : ce n'est pas
+  une identité complète du HTML ;
 - `comparer_captures.sh` compare au pixel près l'en-tête, le pied de page et le menu mobile
   ouvert, sur ordinateur et sur mobile (seuil : 1 % de pixels différents, variable `SEUIL`) ; les
   images et leurs différences sont enregistrées dans `tests/comparaison/sorties/` ;
