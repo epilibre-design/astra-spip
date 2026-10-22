@@ -29,7 +29,9 @@ Ce qui est repris tel quel :
 - droits ouverts sur `config`, `IMG`, `local`, `tmp`, `plugins/auto` (PHP et ligne de commande
   écrivent tous les deux) ;
 - contenu créé par une commande spip-cli du plugin du site (`tuto:seed` → `garden:seed`), qui ne
-  crée que les objets manquants (option `--maj` pour remplacer) ;
+  crée que les objets manquants (option `--maj` pour remplacer). **Écart avec le modèle** :
+  le seed de site-tuto réécrit les métas et la configuration à chaque passage
+  (`inc/tuto_seed.php`) ; Garden ne le fait pas (voir « Relances et personnalisations ») ;
 - `cache:vider`, puis affichage de l'adresse et du compte créé.
 
 Points relevés pendant le chantier du builder, à vérifier dans ce contexte :
@@ -63,6 +65,38 @@ clone de `github.com/epilibre-design/astra-spip` (pas encore publié sur SPIP Zo
 
 Alternative écartée : un script de démonstration dans Astra SPIP (`demo/garden/install.sh`). Il
 mêlerait au thème la configuration d'un modèle particulier.
+
+## Relances et personnalisations
+
+Un site installé est ensuite personnalisé (palette, menus, textes des pages). Relancer le script,
+pour réparer une installation ou passer au lot suivant, ne doit pas défaire ces changements. Le
+seed distingue trois opérations :
+
+| Opération | Quand | Effet |
+|---|---|---|
+| **Création initiale** | premier passage (aucune version de seed enregistrée) | crée objets et réglages, enregistre `garden/seed/version` = numéro du lot et, pour chaque objet créé, son identifiant (`garden/seed/objets/<clé>`) |
+| **Migration** | passage avec un lot plus récent que `garden/seed/version` | applique, dans l'ordre, les étapes des lots manquants ; chaque étape n'**ajoute** que ce que son lot introduit (nouveau réglage, nouvelle page) et ne réécrit pas une valeur existante ; met à jour la version |
+| **Réapplication** | seulement sur demande : `garden:seed --reinitialiser[=<partie>]` (parties : `config`, `pages`, `menus`…) | remet les valeurs de démonstration de la partie demandée, après confirmation (ou `-y`) |
+
+Une relance au même lot ne modifie rien. Un réglage n'est écrit par une migration que s'il est
+absent (`lire_config()` renvoie `null`) ; une page ou un menu n'est créé que si son identifiant
+enregistré n'existe plus ou n'a jamais été créé. Une page supprimée volontairement par
+l'administrateur n'est pas recréée par une migration : son identifiant reste enregistré, avec une
+marque de suppression constatée.
+
+## Version d'Astra SPIP requise
+
+Chaque lot déclare la version minimale d'Astra SPIP dont il a besoin (accueil statique, réglages par
+page, évolutions du builder). Le plugin `garden` l'exprime dans `paquet.xml`
+(`<necessite nom="astra" compatibilite="[x.y.z;]" />`) et le seed la vérifie avant d'écrire la
+moindre configuration : si l'Astra installé est trop ancien, le script s'arrête en code 1 avec la
+version trouvée et la version requise, sans rien écrire. Un plugin actif ne suffit pas : un Astra
+trop ancien ignorerait les réglages enregistrés.
+
+Côté installation, `ASTRA_SPIP` (dépôt local) ou le clone GitHub sont suivis d'une vérification de
+la version de `paquet.xml` ; le clone utilise une étiquette de version (`ASTRA_SPIP_REF`, par défaut
+celle requise par le dernier lot), pas la branche `main`. Astra SPIP numérote donc ses versions à
+chaque fonction dont dépend un lot (aujourd'hui : builder = version actuelle du `paquet.xml`).
 
 ## Ce que le script configure
 
@@ -149,6 +183,19 @@ Le script est livré dès le lot 1 et enrichi à chaque lot.
 - Depuis un dossier vide : le script se termine sans erreur et affiche le compte créé ; le site
   public répond, avec l'en-tête et le pied attendus.
 - Relance immédiate : aucune étape refaite, aucun objet en double.
+- Personnalisations conservées : sur un site installé, modifier le texte d'une page, une couleur de
+  la palette et un placement du builder, relancer le script, vérifier que les trois sont intacts.
+- Passage d'un lot au suivant : installer au lot N, personnaliser comme ci-dessus, relancer avec
+  le lot N + 1 ; les ajouts du lot N + 1 sont présents, les personnalisations intactes, la version
+  enregistrée est N + 1.
+- Réapplication : `garden:seed --reinitialiser=config` remet la palette de démonstration et ne
+  touche pas aux pages.
+- Astra trop ancien : avec une version d'Astra SPIP inférieure à celle requise, le script s'arrête
+  en code 1 sans écrire de configuration.
+- Lot 4 : le modèle qui insère le formulaire de contact (`<formulaire|contact>`) est fourni par
+  `garden` et le formulaire s'affiche dans la page Contact ; ouvrir chaque page dans tiptap_spip
+  puis l'enregistrer sans modification laisse son texte et ses composants identiques
+  (comparaison du champ `texte` avant et après). Installer l'éditeur ne prouve pas cet aller-retour.
 - Vérifications automatiques en fin de script : plugins actifs (`test_plugin_actif`), configuration
   `astra/hfb` relue, six pages publiées.
 - Comparaison visuelle avec le site de démonstration (`websitedemos.net/garden-maintenance-09`)

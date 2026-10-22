@@ -233,15 +233,21 @@ Règles d'évaluation, sur l'arbre du sélecteur (analyseur CSS, pas expressions
 
 - une classe positive (`.x`, hors négation) : satisfiable si elle est conservée ; une classe perdue
   rend le sélecteur composé insatisfiable ;
-- `:not(liste)` : toujours satisfiable si la liste ne vise que des classes perdues (elle est alors
-  toujours vraie) ; si elle vise des classes conservées, elle reste telle quelle ;
-- `:is(liste)` et `:where(liste)` : satisfiables si au moins une branche l'est ; les branches
-  insatisfiables sont retirées, la pseudo-classe gardée avec les autres (la spécificité de
-  `:where()` reste nulle) ;
+- `:not(liste)` : satisfiable si la liste ne vise que des classes perdues (elle est alors
+  toujours vraie) ; si elle vise des classes conservées, on la considère satisfiable ;
+- `:is(liste)` et `:where(liste)` : satisfiables si au moins une branche l'est ;
 - sélecteurs d'attribut sur `style` (`[style*=flex-basis]`) : insatisfiables, wp2spip retire
   l'attribut `style` ;
-- liste de sélecteurs d'une règle : les branches insatisfiables sont retirées, la règle est gardée
-  avec les autres ; elle n'est écartée que si aucune branche ne reste.
+- en cas de doute (pseudo-classe ou construction non prise en charge par l'évaluation), le
+  sélecteur est considéré satisfiable : on garde trop plutôt que pas assez.
+
+**Le générateur ne réécrit jamais l'intérieur d'un sélecteur.** Il ne fait qu'une chose : retirer
+d'une liste de sélecteurs (`a, b, c { … }`) les sélecteurs complexes entiers démontrés
+insatisfiables, et écarter la règle si aucun ne reste. Les branches impossibles d'un `:is()` ou
+d'un `:not()` restent en place : la spécificité de ces pseudo-classes est celle de leur argument le
+plus spécifique, et retirer une branche, même impossible, pourrait la diminuer et changer la règle
+gagnante. Retirer un sélecteur entier d'une liste ne change pas la spécificité des autres, chacun
+ayant la sienne.
 
 Les règles déjà présentes à l'identique dans `css/astra-dynamic.css` ne sont pas répétées. La
 liste des classes conservées est celle de wp2spip (`wp2spip_balise_nettoyee()` : préfixe
@@ -336,11 +342,16 @@ Même méthode que pour le builder : références WordPress, rendu SPIP, compara
   exemple : propriété calculée égale à la valeur par défaut) et le reste du bloc avec le seuil
   habituel, en masquant uniquement la zone concernée. Un écart sans perte caractérisée est un
   défaut à corriger, pas une exception.
-- **Générateur** : tests unitaires de l'évaluation des sélecteurs : classe conservée ou perdue,
-  `:not()` sur classe perdue (`.wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column`
-  gardé) et sur classe conservée, `:is()` et `:where()` avec branches mixtes (branches retirées,
-  pseudo-classe gardée), attribut `style`, liste de sélecteurs partiellement valide, règles dans
-  une media query.
+- **Générateur** :
+  - tests unitaires de l'évaluation des sélecteurs : classe conservée ou perdue, `:not()` sur
+    classe perdue (`.wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column` gardé) et
+    sur classe conservée, `:is()` et `:where()` avec branches mixtes (sélecteur gardé **à
+    l'identique**, branches impossibles comprises), attribut `style`, liste de sélecteurs
+    partiellement valide, règles dans une media query ;
+  - test de cascade dans Chromium : pour des paires de règles en concurrence (dont un `:is()` avec
+    une branche impossible plus spécifique), la propriété calculée sur un HTML importé est la même
+    avec la feuille d'origine de WordPress et avec la feuille générée. Ce test porte sur la valeur
+    calculée, pas seulement sur les éléments sélectionnés.
 
 ### Non-régression
 
