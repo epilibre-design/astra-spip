@@ -14,7 +14,7 @@
 	<credit lien="https://wpastra.com/">Thème Astra original © Brainstorm Force (GPL v2+)</credit>
 	<credit lien="https://downloads.wordpress.org/theme/astra.4.11.0.zip">Sources du thème Astra 4.11.0</credit>
 
-	<licence lien="https://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL v2 ou ultérieure</licence>
+	<licence lien="https://spdx.org/licenses/GPL-3.0-or-later.html">GPL-3.0-or-later</licence>
 
 	<menu nom="configurer_astra" titre="astra:titre_configurer" parent="menu_squelette" icone="images/astra-xx.svg" action="configurer_astra" />
 </paquet>

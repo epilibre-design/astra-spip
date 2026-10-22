@@ -63,5 +63,13 @@ sous-rubriques (sous-menus déroulants, menu mobile).
 
 ## Licence
 
-GNU GPL v2 ou ultérieure, comme le thème Astra d'origine
-(© Brainstorm Force, basé sur Underscores © Automattic).
+GNU GPL v3 ou ultérieure (fichier `LICENSE`).
+
+Le plugin reprend du code du thème Astra (© Brainstorm Force, basé sur Underscores © Automattic),
+distribué sous GPL v2 ou ultérieure, ce qui permet sa redistribution sous GPL v3 :
+
+- `css/main.min.css` et `js/frontend.min.js` : fichiers d'Astra 4.11.0, sans modification ;
+- `css/astra-dynamic.css` : CSS généré par Astra, adapté ;
+- le balisage HTML des squelettes, qui reproduit celui d'Astra.
+
+Astra intègre des icônes IcoMoon-Free, distribuées sous CC BY 4.0 ou GPL.
