@@ -84,11 +84,11 @@ export WP=$S/wp PW=$S/pw
 
 - [ ] **Step 1: Figer les widgets de la barre latérale**
 
-Enregistrer les widgets actuels de `sidebar-1` (blocs par défaut de WordPress, utilisés par les références du portage initial) :
+Enregistrer les widgets actuels de `sidebar-1` et les options `widget_<type>` qui les décrivent (widgets classiques ou blocs, utilisés par les références du portage initial) :
 
 ```bash
 mkdir -p tests/references/wp
-wp --path=$WP eval 'echo wp_json_encode(["widget_block" => get_option("widget_block"), "sidebars_widgets" => ["wp_inactive_widgets" => [], "sidebar-1" => get_option("sidebars_widgets")["sidebar-1"] ?? [], "array_version" => 3]], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);' > tests/references/wp/widgets-base.json
+wp --path=$WP eval '$ids = get_option("sidebars_widgets")["sidebar-1"] ?? []; $options = []; foreach ($ids as $id) { $type = preg_replace("/-\d+$/", "", $id); $options["widget_" . $type] = get_option("widget_" . $type); } echo wp_json_encode(["options" => $options, "sidebars_widgets" => ["wp_inactive_widgets" => [], "sidebar-1" => $ids, "array_version" => 3]], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);' > tests/references/wp/widgets-base.json
 php -r '$j = json_decode(file_get_contents("tests/references/wp/widgets-base.json"), true); echo count($j["sidebars_widgets"]["sidebar-1"]), " widgets\n";'
 ```
 
@@ -115,7 +115,9 @@ function ref_etat_initial(): void {
 	remove_theme_mods();
 	delete_option('widget_text');
 	$base = json_decode(file_get_contents(__DIR__ . '/widgets-base.json'), true);
-	update_option('widget_block', $base['widget_block']);
+	foreach ($base['options'] as $option => $valeur) {
+		update_option($option, $valeur);
+	}
 	update_option('sidebars_widgets', $base['sidebars_widgets']);
 	ref_categories();
 }
@@ -194,6 +196,7 @@ function ref_widget_texte(string $zone, string $titre, string $texte): void {
 require __DIR__ . '/commun.php';
 ref_etat_initial();
 ref_menu('Principal', 'primary');
+ref_menu('Principal', 'mobile_menu');
 ```
 
 `tests/references/wp/R1-entete-complet.php` :
@@ -203,6 +206,7 @@ ref_menu('Principal', 'primary');
 require __DIR__ . '/commun.php';
 ref_etat_initial();
 ref_menu('Principal', 'primary');
+ref_menu('Principal', 'mobile_menu');
 ref_menu('Secondaire', 'secondary_menu');
 ref_reglages([
 	'header-desktop-items' => [
@@ -231,6 +235,7 @@ ref_reglages([
 require __DIR__ . '/commun.php';
 ref_etat_initial();
 ref_menu('Principal', 'primary');
+ref_menu('Principal', 'mobile_menu');
 ref_reglages([
 	'header-desktop-items' => [
 		'popup'   => ['popup_content' => ['mobile-menu']],
@@ -257,6 +262,7 @@ ref_widget_texte('header-widget-1', 'Horaires', 'Lundi–vendredi, 9 h – 18 h'
 require __DIR__ . '/commun.php';
 ref_etat_initial();
 ref_menu('Principal', 'primary');
+ref_menu('Principal', 'mobile_menu');
 ref_menu('Pied', 'footer_menu');
 ref_reglages([
 	'footer-desktop-items' => [
@@ -284,6 +290,7 @@ foreach ([1, 2, 3, 4] as $i) {
 require __DIR__ . '/commun.php';
 ref_etat_initial();
 ref_menu('Principal', 'primary');
+ref_menu('Principal', 'mobile_menu');
 ref_menu('Pied', 'footer_menu');
 ref_reglages([
 	'footer-desktop-items' => [
@@ -304,16 +311,27 @@ ref_widget_texte('footer-widget-1', 'À propos', 'Quelques mots sur le site.');
 
 - [ ] **Step 4: Écrire les éléments attendus**
 
-Chaque fichier `.json` liste les sélecteurs qui doivent être **visibles** en ordinateur (1280 px) et en mobile (390 px), ceux qui doivent seulement **exister** dans le DOM, et le menu mobile attendu (`dropdown`, `off-canvas` ou `null`). Les classes viennent des gabarits d'Astra 4.11.0.
+Chaque fichier `.json` liste les sélecteurs qui doivent être **visibles** en ordinateur (1280 px) et en mobile (390 px), ceux qui doivent seulement **exister** dans le DOM, le menu mobile attendu (`dropdown`, `off-canvas` ou `null`) et les sélecteurs qui doivent exister une fois le menu mobile ouvert (`menuOuvert`, dont le sous-menu). Les classes viennent des gabarits d'Astra 4.11.0.
 
 `tests/references/wp/R0-defaut.json` :
 
 ```json
 {
-	"ordinateur": [".site-primary-header-wrap .site-branding", ".ast-builder-menu-1", ".site-below-footer-wrap .ast-footer-copyright"],
-	"mobile": [".ast-mobile-header-wrap .menu-toggle"],
-	"presents": [".ast-builder-menu-1 .sub-menu"],
-	"menuMobile": "dropdown"
+	"ordinateur": [
+		".site-primary-header-wrap .site-branding",
+		".ast-builder-menu-1",
+		".site-below-footer-wrap .ast-footer-copyright"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	]
 }
 ```
 
@@ -321,10 +339,25 @@ Chaque fichier `.json` liste les sélecteurs qui doivent être **visibles** en o
 
 ```json
 {
-	"ordinateur": [".ast-above-header-wrap .ast-header-html-1", ".ast-above-header-wrap .ast-header-social-wrap", ".site-primary-header-wrap .ast-header-search", ".site-primary-header-wrap .ast-header-button-1", ".ast-below-header-wrap .ast-builder-menu-2"],
-	"mobile": [".ast-mobile-header-wrap .ast-header-html-1", ".ast-mobile-header-wrap .menu-toggle"],
-	"presents": [".ast-builder-menu-1 .sub-menu", ".ast-builder-menu-2 .sub-menu"],
-	"menuMobile": "dropdown"
+	"ordinateur": [
+		".ast-above-header-wrap .ast-header-html-1",
+		".ast-above-header-wrap .ast-header-social-wrap",
+		".site-primary-header-wrap .ast-header-search",
+		".site-primary-header-wrap .ast-header-button-1",
+		".ast-below-header-wrap .ast-builder-menu-2"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .ast-header-html-1",
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu",
+		".ast-builder-menu-2 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	]
 }
 ```
 
@@ -332,10 +365,23 @@ Chaque fichier `.json` liste les sélecteurs qui doivent être **visibles** en o
 
 ```json
 {
-	"ordinateur": [".ast-grid-center-col-layout .site-branding", ".site-primary-header-wrap .ast-header-account", ".ast-below-header-wrap [class*='header-widget-area']", ".ast-below-header-wrap .ast-header-html-2"],
-	"mobile": [".ast-mobile-header-wrap .menu-toggle", ".ast-mobile-header-wrap .ast-header-account"],
-	"presents": [".ast-mobile-popup-drawer"],
-	"menuMobile": "off-canvas"
+	"ordinateur": [
+		".ast-grid-center-col-layout .site-branding",
+		".site-primary-header-wrap .ast-header-account",
+		".ast-below-header-wrap [class*='header-widget-area']",
+		".ast-below-header-wrap .ast-header-html-2"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle",
+		".ast-mobile-header-wrap .ast-header-account"
+	],
+	"presents": [
+		".ast-mobile-popup-drawer"
+	],
+	"menuMobile": "off-canvas",
+	"menuOuvert": [
+		"#ast-mobile-popup .ast-builder-menu-mobile .sub-menu"
+	]
 }
 ```
 
@@ -343,10 +389,24 @@ Chaque fichier `.json` liste les sélecteurs qui doivent être **visibles** en o
 
 ```json
 {
-	"ordinateur": [".site-above-footer-wrap .ast-footer-html-1", ".site-above-footer-wrap .ast-footer-social-wrap", ".site-primary-footer-wrap .footer-widget-area", ".site-below-footer-wrap .ast-footer-copyright", ".site-below-footer-wrap .footer-nav-wrap"],
-	"mobile": [".site-below-footer-wrap .ast-footer-copyright"],
-	"presents": [".site-primary-footer-wrap.ast-builder-grid-row-4-equal", ".site-primary-footer-wrap .site-footer-section-4"],
-	"menuMobile": "dropdown"
+	"ordinateur": [
+		".site-above-footer-wrap .ast-footer-html-1",
+		".site-above-footer-wrap .ast-footer-social-wrap",
+		".site-primary-footer-wrap .footer-widget-area",
+		".site-below-footer-wrap .ast-footer-copyright",
+		".site-below-footer-wrap .footer-nav-wrap"
+	],
+	"mobile": [
+		".site-below-footer-wrap .ast-footer-copyright"
+	],
+	"presents": [
+		".site-primary-footer-wrap.ast-builder-grid-row-4-equal",
+		".site-primary-footer-wrap .site-footer-section-4"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	]
 }
 ```
 
@@ -354,10 +414,22 @@ Chaque fichier `.json` liste les sélecteurs qui doivent être **visibles** en o
 
 ```json
 {
-	"ordinateur": [".site-primary-footer-wrap .footer-nav-wrap", ".site-primary-footer-wrap .ast-footer-html-1", ".site-below-footer-wrap .ast-footer-html-2"],
-	"mobile": [".site-below-footer-wrap .ast-footer-copyright"],
-	"presents": [".site-primary-footer-wrap.ast-builder-grid-row-3-cwide", ".site-below-footer-wrap.ast-builder-grid-row-2-lheavy"],
-	"menuMobile": "dropdown"
+	"ordinateur": [
+		".site-primary-footer-wrap .footer-nav-wrap",
+		".site-primary-footer-wrap .ast-footer-html-1",
+		".site-below-footer-wrap .ast-footer-html-2"
+	],
+	"mobile": [
+		".site-below-footer-wrap .ast-footer-copyright"
+	],
+	"presents": [
+		".site-primary-footer-wrap.ast-builder-grid-row-3-cwide",
+		".site-below-footer-wrap.ast-builder-grid-row-2-lheavy"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	]
 }
 ```
 
@@ -401,6 +473,10 @@ const { chromium } = require('playwright');
           : page.locator('.ast-mobile-header-content').first();
         try {
           await panneau.waitFor({ state: 'visible', timeout: 3000 });
+          await page.waitForTimeout(800); // fin de l'animation d'ouverture
+          for (const sel of attendu.menuOuvert || []) {
+            if ((await page.locator(sel).count()) === 0) echecs.push(`mobile : absent du menu ouvert : ${sel}`);
+          }
         } catch (e) {
           echecs.push(`mobile : le menu ${attendu.menuMobile} ne s'ouvre pas`);
         }

@@ -1,0 +1,19 @@
+{
+	"ordinateur": [
+		".ast-grid-center-col-layout .site-branding",
+		".site-primary-header-wrap .ast-header-account",
+		".ast-below-header-wrap [class*='header-widget-area']",
+		".ast-below-header-wrap .ast-header-html-2"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle",
+		".ast-mobile-header-wrap .ast-header-account"
+	],
+	"presents": [
+		".ast-mobile-popup-drawer"
+	],
+	"menuMobile": "off-canvas",
+	"menuOuvert": [
+		"#ast-mobile-popup .ast-builder-menu-mobile .sub-menu"
+	]
+}

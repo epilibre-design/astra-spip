@@ -1,0 +1,20 @@
+{
+	"ordinateur": [
+		".site-above-footer-wrap .ast-footer-html-1",
+		".site-above-footer-wrap .ast-footer-social-wrap",
+		".site-primary-footer-wrap .footer-widget-area",
+		".site-below-footer-wrap .ast-footer-copyright",
+		".site-below-footer-wrap .footer-nav-wrap"
+	],
+	"mobile": [
+		".site-below-footer-wrap .ast-footer-copyright"
+	],
+	"presents": [
+		".site-primary-footer-wrap.ast-builder-grid-row-4-equal",
+		".site-primary-footer-wrap .site-footer-section-4"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	]
+}

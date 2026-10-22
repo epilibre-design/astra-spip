@@ -1,0 +1,21 @@
+{
+	"ordinateur": [
+		".ast-above-header-wrap .ast-header-html-1",
+		".ast-above-header-wrap .ast-header-social-wrap",
+		".site-primary-header-wrap .ast-header-search",
+		".site-primary-header-wrap .ast-header-button-1",
+		".ast-below-header-wrap .ast-builder-menu-2"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .ast-header-html-1",
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu",
+		".ast-builder-menu-2 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	]
+}

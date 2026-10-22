@@ -1,0 +1,18 @@
+{
+	"ordinateur": [
+		".site-primary-footer-wrap .footer-nav-wrap",
+		".site-primary-footer-wrap .ast-footer-html-1",
+		".site-below-footer-wrap .ast-footer-html-2"
+	],
+	"mobile": [
+		".site-below-footer-wrap .ast-footer-copyright"
+	],
+	"presents": [
+		".site-primary-footer-wrap.ast-builder-grid-row-3-cwide",
+		".site-below-footer-wrap.ast-builder-grid-row-2-lheavy"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	]
+}

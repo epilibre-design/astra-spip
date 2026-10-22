@@ -1,0 +1,26 @@
+{
+    "options": {
+        "widget_search": {
+            "_multiwidget": 1,
+            "1": {
+                "title": "Recherche"
+            }
+        },
+        "widget_recent-posts": {
+            "_multiwidget": 1,
+            "1": {
+                "title": "Articles récents",
+                "number": 0,
+                "show_date": false
+            }
+        }
+    },
+    "sidebars_widgets": {
+        "wp_inactive_widgets": [],
+        "sidebar-1": [
+            "search-1",
+            "recent-posts-1"
+        ],
+        "array_version": 3
+    }
+}
