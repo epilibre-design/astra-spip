@@ -2126,7 +2126,7 @@ git commit -m "Vérifier la cascade du CSS des blocs généré"
 - Consumes : CSS des blocs (tâches 7–8), gabarit de page (tâche 3), wp2spip (`/src/wordpress/wp2spip`, `outils/preparer_spip.sh`, commande `wordpress:importer`).
 - Produces : WordPress MySQL des blocs (variable `WP_BLOCS`, servi sur `http://127.0.0.1:8405`), SPIP importé (`SPIP_BLOCS`, servi sur `http://127.0.0.1:8406`), comparateurs.
 
-Prérequis à demander avant de commencer : un compte MySQL local autorisé à créer une base (`BLOCS_DB_USER`, `BLOCS_DB_PASS`). Le WordPress de test actuel utilise SQLite, que wp2spip ne lit pas.
+Prérequis : une base MySQL locale existante et un compte qui y a tous les droits (`BLOCS_DB_NAME`, `BLOCS_DB_USER`, `BLOCS_DB_PASS`) ; le compte n'a pas le droit de créer une base, le script ne la crée donc pas. Gilles a fourni une base de test ; ses identifiants ne sont pas versionnés, on les passe par l'environnement. Les tables WordPress portent le préfixe `wpblocs_` pour partager la base sans collision. Le WordPress de test actuel utilise SQLite, que wp2spip ne lit pas ; le SPIP importé reste en SQLite (défaut de `preparer_spip.sh`).
 
 - [ ] **Step 1 : images de test**
 
@@ -2158,15 +2158,17 @@ Expected: deux fichiers PNG ; noter les empreintes dans `tests/references/README
 #!/usr/bin/env bash
 # WordPress 7.1.3 sur MySQL avec Astra 4.11.0 officiel, pour la page de démonstration des blocs
 # (wp2spip lit une base MySQL). Usage :
-#   WP_BLOCS=<dossier> ASTRA_WP=<thème astra 4.11.0> BLOCS_DB_USER=… BLOCS_DB_PASS=… scripts/install-wp-blocs.sh
+#   WP_BLOCS=<dossier> ASTRA_WP=<thème astra 4.11.0> BLOCS_DB_NAME=… BLOCS_DB_USER=… BLOCS_DB_PASS=… \
+#   scripts/install-wp-blocs.sh
+# La base doit exister : le script ne la crée pas.
 set -euo pipefail
-: "${WP_BLOCS:?}" "${ASTRA_WP:?}" "${BLOCS_DB_USER:?}" "${BLOCS_DB_PASS:?}"
-BASE=${BLOCS_DB_NAME:-wp_blocs}
+: "${WP_BLOCS:?}" "${ASTRA_WP:?}" "${BLOCS_DB_NAME:?}" "${BLOCS_DB_USER:?}" "${BLOCS_DB_PASS:?}"
 mkdir -p "$WP_BLOCS"
 cd "$WP_BLOCS"
 [ -f wp-load.php ] || wp core download --version=7.1.3 --locale=fr_FR
-[ -f wp-config.php ] || wp config create --dbname="$BASE" --dbuser="$BLOCS_DB_USER" --dbpass="$BLOCS_DB_PASS" --dbhost=127.0.0.1
-wp db create 2>/dev/null || true
+[ -f wp-config.php ] || wp config create --dbname="$BLOCS_DB_NAME" --dbuser="$BLOCS_DB_USER" --dbpass="$BLOCS_DB_PASS" \
+	--dbhost=localhost --dbprefix=wpblocs_
+wp db check >/dev/null
 wp core is-installed || wp core install --url=http://127.0.0.1:8405 --title="Mon site" --admin_user=admin --admin_password=admin --admin_email=admin@example.test --skip-email
 [ -e wp-content/themes/astra ] || ln -s "$ASTRA_WP" wp-content/themes/astra
 wp theme activate astra
