@@ -115,4 +115,53 @@ final class HfbRenduTest extends TestCase {
 		$this->assertGreaterThan(0, $this->compter($x, $menu . '/li[contains(@class, "menu-item-has-children")]/ul[@class="sub-menu"]/li/a'));
 		$this->assertSame(1, $this->compter($x, '//*[@id="ast-desktop-header"]//' . self::classe('ast-builder-menu-2') . '//ul[@id="ast-hf-menu-2"]'));
 	}
+
+	private function pied(?array $config): DOMXPath {
+		effacer_config('astra/hfb');
+		if ($config !== null) {
+			ecrire_config('astra/hfb', $config);
+		}
+		return self::xpath(recuperer_fond('inclure/footer', ['type_page' => 'sommaire']));
+	}
+
+	public function testEnTeteMobileR1EtPanneauDeroulant(): void {
+		$x = $this->entete(self::configR1());
+		$m = '//*[@id="ast-mobile-header"]';
+		$this->assertSame(1, $this->compter($x, $m . '[@data-type="dropdown"]'));
+		$haute = $m . '/' . self::classe('ast-above-header-wrap') . '/' . self::classe('ast-above-header-bar site-above-header-wrap ast-builder-grid-row-layout-default');
+		$this->assertSame(1, $this->compter($x, $haute . '/' . self::classe('ast-builder-grid-row ast-grid-center-col-layout-only ast-grid-center-col-layout') . '/' . self::classe('site-header-above-section-center') . '//' . self::classe('ast-header-html-1')));
+		$principale = $m . '/' . self::classe('ast-main-header-wrap main-header-bar-wrap') . '/' . self::classe('ast-primary-header-bar main-header-bar site-primary-header-wrap');
+		$this->assertSame(1, $this->compter($x, $principale . '//' . self::classe('site-header-primary-section-right') . '//' . self::classe('ast-header-search')));
+		$this->assertSame(1, $this->compter($x, $principale . '//' . self::classe('site-header-primary-section-right') . '//button[contains(@class, "menu-toggle")]'));
+		$panneau = $m . '/' . self::classe('ast-mobile-header-content content-align-flex-start');
+		$this->assertGreaterThan(0, $this->compter($x, $panneau . '/' . self::classe('ast-builder-menu-mobile') . '//ul[@id="ast-hf-mobile-menu"]/li'));
+		$this->assertSame(0, $this->compter($this->pied(self::configR1()), '//*[@id="ast-mobile-popup-wrapper"]'));
+	}
+
+	public function testPanneauLateralR2DansLePied(): void {
+		$x = $this->entete(self::configR2());
+		$m = '//*[@id="ast-mobile-header"]';
+		$this->assertSame(1, $this->compter($x, $m . '[@data-type="off-canvas"]'));
+		$this->assertSame(0, $this->compter($x, $m . '//' . self::classe('ast-mobile-header-content')));
+		$this->assertSame(1, $this->compter($x, $m . '//' . self::classe('ast-builder-grid-row ast-builder-grid-row-has-sides ast-grid-center-col-layout') . '/' . self::classe('site-header-primary-section-center') . '//' . self::classe('site-branding')));
+
+		$p = $this->pied(self::configR2());
+		$tiroir = '//*[@id="ast-mobile-popup-wrapper"]/*[@id="ast-mobile-popup"][contains(@class, "ast-mobile-popup-drawer")]';
+		$this->assertSame(1, $this->compter($p, $tiroir . '/' . self::classe('ast-mobile-popup-overlay')));
+		$this->assertSame(1, $this->compter($p, $tiroir . '/' . self::classe('ast-mobile-popup-inner') . '/' . self::classe('ast-mobile-popup-header') . '/button[@id="menu-toggle-close"]'));
+		$contenu = $tiroir . '/' . self::classe('ast-mobile-popup-inner') . '/' . self::classe('ast-mobile-popup-content');
+		$ordre = [];
+		foreach ($p->query($contenu . '/*') as $n) {
+			$ordre[] = preg_match('/ast-builder-menu-mobile|ast-header-search/', $n->getAttribute('class'), $mm) ? $mm[0] : $n->getAttribute('class');
+		}
+		$this->assertSame(['ast-builder-menu-mobile', 'ast-header-search'], $ordre);
+		$this->assertSame(1, $this->compter($p, '//*[@id="ast-mobile-popup-wrapper"]/following-sibling::footer[@id="colophon"]'));
+	}
+
+	public function testAucunPanneauSansBoutonDeMenu(): void {
+		$config = ['entete_mobile' => ['primary' => ['primary_right' => []]]];
+		$this->assertSame(0, $this->compter($this->entete($config), '//' . self::classe('ast-mobile-header-content')));
+		$config['menu_mobile'] = 'off-canvas';
+		$this->assertSame(0, $this->compter($this->pied($config), '//*[@id="ast-mobile-popup-wrapper"]'));
+	}
 }
