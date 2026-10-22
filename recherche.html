@@ -1,0 +1,41 @@
+[(#REM)
+
+	Résultats de recherche (search.php d'Astra)
+
+]<!DOCTYPE html>
+<html dir="#LANG_DIR" lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js">
+<head>
+<title>[(#VAL{astra:resultats_recherche}|_T{#ARRAY{recherche,#ENV{recherche}}}|textebrut)] – [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="robots" content="noindex" />
+<INCLURE{fond=inclure/head} />
+</head>
+<body itemtype="https://schema.org/SearchResultsPage" itemscope="itemscope" class="[(#VAL{recherche}|astra_body_class)]">
+<INCLURE{fond=inclure/header}{type_page=recherche} />
+<div id="content" class="site-content">
+	<div class="ast-container">
+		<INCLURE{fond=inclure/sidebar}{type_page=recherche}{position=left-sidebar} />
+		<div id="primary" class="content-area primary ast-grid-3 ast-blog-layout-4-grid">
+			<section class="ast-archive-description">
+				<h1 class="page-title ast-archive-title"><:astra:resultats_pour:> <span>[(#ENV{recherche})]</span></h1>
+				<INCLURE{fond=inclure/ariane}{titre=#VAL{astra:resultats_recherche}|_T{#ARRAY{recherche,#ENV{recherche}}}} />
+			</section>
+			<main id="main" class="site-main">
+				<B_articles>
+				<div class="ast-row">
+					<BOUCLE_articles(ARTICLES){recherche}{par points}{inverse}{pagination #VAL{articles_par_page}|astra_conf|astra_largeur{1}}>
+					<INCLURE{fond=inclure/article-resume}{id_article} />
+					</BOUCLE_articles>
+				</div>
+			</main><!-- #main -->
+			[(#PAGINATION{astra})]
+				</B_articles>
+				<INCLURE{fond=inclure/aucun-resultat}{recherche} />
+			</main><!-- #main -->
+				<//B_articles>
+		</div><!-- #primary -->
+		<INCLURE{fond=inclure/sidebar}{type_page=recherche}{position=right-sidebar} />
+	</div> <!-- ast-container -->
+</div><!-- #content -->
+<INCLURE{fond=inclure/footer} />
+</body>
+</html>

@@ -1,0 +1,35 @@
+[(#REM)
+
+	Page introuvable (404.php d'Astra, ast-404-layout-1)
+
+]#HTTP_HEADER{Status: 404 Not Found}
+<!DOCTYPE html>
+<html dir="#LANG_DIR" lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js">
+<head>
+<title><:astra:page_introuvable:> – [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="robots" content="noindex" />
+<INCLURE{fond=inclure/head} />
+</head>
+<body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="[(#VAL{404}|astra_body_class)]">
+<INCLURE{fond=inclure/header}{type_page=404} />
+<div id="content" class="site-content">
+	<div class="ast-container">
+		<div id="primary" class="content-area primary">
+			<section class="error-404 not-found">
+				<div class="ast-404-layout-1">
+					<header class="page-header"><h1 class="page-title"><:astra:page_inexistante:></h1></header><!-- .page-header -->
+					<div class="page-content">
+						<h3 class="page-sub-title"><:astra:page_inexistante_texte:></h3>
+						[<p class="ast-404-erreur">(#ENV{erreur})</p>]
+						<div class="ast-404-search">
+							<div class="widget widget_search">#FORMULAIRE_RECHERCHE</div>
+						</div>
+					</div><!-- .page-content -->
+				</div>
+			</section><!-- .error-404 -->
+		</div><!-- #primary -->
+	</div> <!-- ast-container -->
+</div><!-- #content -->
+<INCLURE{fond=inclure/footer} />
+</body>
+</html>

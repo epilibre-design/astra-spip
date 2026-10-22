@@ -1,0 +1,44 @@
+[(#REM)
+
+	Mot-clé : archive d'étiquette d'Astra
+
+]<BOUCLE_mot_principal(MOTS){id_mot}>
+<!DOCTYPE html>
+<html dir="#LANG_DIR" lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut)] – [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|sinon{#TEXTE}|couper{150}|attribut_html)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="[(#VAL{mot}|astra_body_class{#ID_MOT})]">
+<INCLURE{fond=inclure/header}{type_page=mot} />
+<div id="content" class="site-content">
+	<div class="ast-container">
+		<INCLURE{fond=inclure/sidebar}{type_page=mot}{position=left-sidebar} />
+		<div id="primary" class="content-area primary ast-grid-3 ast-blog-layout-4-grid">
+			<section class="ast-archive-description">
+				<h1 class="page-title ast-archive-title">[(#TITRE|supprimer_numero)]</h1>
+				[<div class="ast-archive-texte">(#DESCRIPTIF)</div>]
+				[<div class="ast-archive-texte">(#TEXTE)</div>]
+			</section>
+			<main id="main" class="site-main">
+				<B_articles>
+				<div class="ast-row">
+					<BOUCLE_articles(ARTICLES){id_mot}{par date}{inverse}{pagination #VAL{articles_par_page}|astra_conf|astra_largeur{1}}>
+					<INCLURE{fond=inclure/article-resume}{id_article} />
+					</BOUCLE_articles>
+				</div>
+			</main><!-- #main -->
+			[(#PAGINATION{astra})]
+				</B_articles>
+				<INCLURE{fond=inclure/aucun-resultat} />
+			</main><!-- #main -->
+				<//B_articles>
+		</div><!-- #primary -->
+		<INCLURE{fond=inclure/sidebar}{type_page=mot}{position=right-sidebar} />
+	</div> <!-- ast-container -->
+</div><!-- #content -->
+<INCLURE{fond=inclure/footer} />
+</body>
+</html>
+</BOUCLE_mot_principal>

@@ -1,0 +1,26 @@
+[(#REM)
+
+	Résumé d'article dans les listes (blog-layout-4 d'Astra) :
+	logo, rubrique, titre, auteurs / date, extrait.
+
+	Paramètre : id_article
+
+]<BOUCLE_article(ARTICLES){id_article}>
+<article class="post-#ID_ARTICLE post type-post status-publish format-standard hentry category-#ID_RUBRIQUE ast-grid-common-col ast-full-width ast-article-post remove-featured-img-padding" id="post-#ID_ARTICLE" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+	<div class="ast-post-format- [(#LOGO_ARTICLE|?{'',ast-no-thumb})] blog-layout-4 ast-article-inner">
+		<div class="post-content ast-grid-common-col">
+			<div class="ast-blog-featured-section post-thumb ast-blog-single-element">[<div class="post-thumb-img-content post-thumb"><a href="#URL_ARTICLE">(#LOGO_ARTICLE|image_passe_partout{800,450}|image_recadre{800:450}|inserer_attribut{class,attachment-large size-large wp-post-image}|inserer_attribut{alt,''}|inserer_attribut{itemprop,image}|inserer_attribut{loading,lazy})</a></div>]</div>
+			<BOUCLE_rubrique(RUBRIQUES){id_rubrique}><span class="ast-blog-single-element ast-taxonomy-container cat-links default"><a href="#URL_RUBRIQUE" rel="category">[(#TITRE|supprimer_numero)]</a></span></BOUCLE_rubrique>
+			<h2 class="entry-title ast-blog-single-element" itemprop="headline"><a href="#URL_ARTICLE" rel="bookmark">[(#TITRE|supprimer_numero)]</a></h2>
+			<header class="entry-header ast-blog-single-element ast-blog-meta-container">
+				<div class="entry-meta"><BOUCLE_si_auteurs(CONDITION){si #VAL{afficher_auteurs}|astra_conf|=={oui}}><B_auteurs><BOUCLE_auteurs(AUTEURS){id_article}{", "}><span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"><a title="[(#VAL{astra:voir_articles_de}|_T{#ARRAY{nom,#NOM|textebrut}}|attribut_html)]" href="#URL_AUTEUR" rel="author" class="url fn n" itemprop="url"><span class="author-name" itemprop="name">#NOM</span></a></span></BOUCLE_auteurs> / </B_auteurs></BOUCLE_si_auteurs><span class="posted-on"><span class="published" itemprop="datePublished"><time datetime="[(#DATE|date_iso)]">[(#DATE|affdate)]</time></span></span></div>
+			</header><!-- .entry-header -->
+			[(#VAL{afficher_extrait}|astra_conf|=={oui}|oui)
+			[<div class="ast-excerpt-container ast-blog-single-element">
+				<p>(#INTRODUCTION{1000}|astra_extrait)</p>
+			</div>]]
+			<div class="entry-content clear" itemprop="text"></div><!-- .entry-content .clear -->
+		</div><!-- .post-content -->
+	</div> <!-- .blog-layout-4 -->
+</article><!-- #post-## -->
+</BOUCLE_article>

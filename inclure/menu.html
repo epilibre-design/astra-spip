@@ -1,0 +1,26 @@
+[(#REM)
+
+	Menu principal : rubriques de premier niveau et leurs sous-rubriques,
+	balisage du menu d'Astra (sous-menus déroulants, bouton de dépliage mobile).
+
+	Paramètres :
+	- mobile : 'oui' pour la variante du menu mobile
+	- id_rubrique, id_secteur : rubrique et secteur courants
+
+]<ul class="main-header-menu[ (#ENV{mobile}|non)ast-menu-shadow] ast-nav-menu ast-flex submenu-with-border[ (#ENV{mobile}|oui)astra-menu-animation-fade] stack-on-mobile">
+	[(#VAL{menu_accueil}|astra_conf|=={oui}|oui)
+	<li class="menu-item menu-item-home[ (#ENV{type_page}|=={sommaire}|oui)current-menu-item]"><a href="#URL_SITE_SPIP/" class="menu-link"><:astra:accueil:></a></li>]
+	<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre, titre}>
+	#SET{enfants,''}<BOUCLE_test_enfants(RUBRIQUES){id_parent=#ID_RUBRIQUE}{0,1}>#SET{enfants,oui}</BOUCLE_test_enfants>
+	<li class="menu-item menu-item-rubrique-#ID_RUBRIQUE[ (#GET{enfants}|oui)menu-item-has-children][ (#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)current-menu-item][ (#ID_RUBRIQUE|=={#ENV{id_secteur}}|et{#ID_RUBRIQUE|!={#ENV{id_rubrique}}}|oui)current-menu-ancestor]"><a href="#URL_RUBRIQUE" class="menu-link"[ (#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)][(#GET{enfants}|oui)<span role="presentation" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span></span>]</a>
+		<B_sous_rubriques>
+		<button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text"><:astra:deplier_menu:></span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span></button>
+		<ul class="sub-menu">
+			<BOUCLE_sous_rubriques(RUBRIQUES){id_parent=#ID_RUBRIQUE}{par num titre, titre}>
+			<li class="menu-item menu-item-rubrique-#ID_RUBRIQUE[ (#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)current-menu-item]"><a href="#URL_RUBRIQUE" class="menu-link"[ (#ID_RUBRIQUE|=={#ENV{id_rubrique}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)]</a></li>
+			</BOUCLE_sous_rubriques>
+		</ul>
+		</B_sous_rubriques>
+	</li>
+	</BOUCLE_rubriques>
+</ul>

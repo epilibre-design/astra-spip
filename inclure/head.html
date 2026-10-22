@@ -1,0 +1,14 @@
+[(#REM)
+
+	En-tête HTML commun : feuilles de style Astra et variables issues de la configuration
+
+]<meta charset="#CHARSET" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content="SPIP[ (#SPIP_VERSION)] — thème Astra" />
+<link rel="alternate" type="application/rss+xml" title="[(#NOM_SITE_SPIP|attribut_html)]" href="#URL_PAGE{backend}" />
+#INSERT_HEAD_CSS
+<link rel="stylesheet" id="astra-theme-css-css" href="[(#CHEMIN{css/main.min.css}|timestamp)]" media="all" />
+<link rel="stylesheet" id="astra-dynamic-css" href="[(#CHEMIN{css/astra-dynamic.css}|timestamp)]" media="all" />
+<INCLURE{fond=inclure/head-vars} />
+<link rel="stylesheet" id="astra-spip-css" href="[(#CHEMIN{css/astra-spip.css}|timestamp)]" media="all" />
+#INSERT_HEAD

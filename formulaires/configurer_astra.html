@@ -1,0 +1,100 @@
+[(#REM)
+
+	Configuration du thème Astra (réglages du Customizer transposés)
+	Enregistrement automatique dans la meta « astra » (CVT configurer_ implicite).
+
+]<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE
+		<input type="hidden" name="_meta_casier" value="astra" />
+
+		<fieldset>
+			<legend><:astra:cfg_palette:></legend>
+			<p class="explication"><:astra:cfg_palette_explication:></p>
+			<div class="editer-groupe">
+				<BOUCLE_couleurs(DATA){enum 0,8}>
+				<div class="editer editer_couleur_#VALEUR">
+					<label for="couleur_#VALEUR">[(#VAL{astra:cfg_couleur_}|concat{#VALEUR}|_T)]</label>
+					<input type="color" class="text" name="couleur_#VALEUR" id="couleur_#VALEUR" value="[(#ENV{couleur_#VALEUR}|sinon{#VAL{couleur_#VALEUR}|astra_conf}|astra_couleur)]" />
+				</div>
+				</BOUCLE_couleurs>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend><:astra:cfg_mise_en_page:></legend>
+			<div class="editer-groupe">
+				<div class="editer editer_largeur_conteneur">
+					<label for="largeur_conteneur"><:astra:cfg_largeur_conteneur:></label>
+					<input type="number" min="600" max="3000" step="10" class="text" name="largeur_conteneur" id="largeur_conteneur" value="[(#ENV{largeur_conteneur}|sinon{#VAL{largeur_conteneur}|astra_conf})]" />
+				</div>
+				<div class="editer editer_largeur_etroite">
+					<label for="largeur_etroite"><:astra:cfg_largeur_etroite:></label>
+					<input type="number" min="400" max="3000" step="10" class="text" name="largeur_etroite" id="largeur_etroite" value="[(#ENV{largeur_etroite}|sinon{#VAL{largeur_etroite}|astra_conf})]" />
+				</div>
+				#SET{disposition_listes,#ENV{disposition_listes}|sinon{#VAL{disposition_listes}|astra_conf}}
+				<div class="editer editer_disposition_listes">
+					<label for="disposition_listes"><:astra:cfg_disposition_listes:></label>
+					<select name="disposition_listes" id="disposition_listes">
+						<BOUCLE_disp_listes(DATA){liste right-sidebar, left-sidebar, no-sidebar}>
+						<option value="#VALEUR"[(#VALEUR|=={#GET{disposition_listes}}|oui)selected="selected"]>[(#VAL{astra:cfg_disposition_}|concat{#VALEUR|replace{-,_}}|_T)]</option>
+						</BOUCLE_disp_listes>
+					</select>
+				</div>
+				#SET{disposition_articles,#ENV{disposition_articles}|sinon{#VAL{disposition_articles}|astra_conf}}
+				<div class="editer editer_disposition_articles">
+					<label for="disposition_articles"><:astra:cfg_disposition_articles:></label>
+					<select name="disposition_articles" id="disposition_articles">
+						<BOUCLE_disp_articles(DATA){liste narrow, right-sidebar, left-sidebar, no-sidebar}>
+						<option value="#VALEUR"[(#VALEUR|=={#GET{disposition_articles}}|oui)selected="selected"]>[(#VAL{astra:cfg_disposition_}|concat{#VALEUR|replace{-,_}}|_T)]</option>
+						</BOUCLE_disp_articles>
+					</select>
+				</div>
+				<div class="editer editer_articles_par_page">
+					<label for="articles_par_page"><:astra:cfg_articles_par_page:></label>
+					<input type="number" min="1" max="100" class="text" name="articles_par_page" id="articles_par_page" value="[(#ENV{articles_par_page}|sinon{#VAL{articles_par_page}|astra_conf})]" />
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend><:astra:cfg_typographie:></legend>
+			<div class="editer-groupe">
+				<div class="editer editer_police_texte">
+					<label for="police_texte"><:astra:cfg_police_texte:></label>
+					<p class="explication"><:astra:cfg_police_explication:></p>
+					<input type="text" class="text" name="police_texte" id="police_texte" value="[(#ENV{police_texte})]" placeholder="Georgia, serif" />
+				</div>
+				<div class="editer editer_police_titres">
+					<label for="police_titres"><:astra:cfg_police_titres:></label>
+					<input type="text" class="text" name="police_titres" id="police_titres" value="[(#ENV{police_titres})]" />
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend><:astra:cfg_affichage:></legend>
+			<div class="editer-groupe">
+				<BOUCLE_oui_non(DATA){liste afficher_titre_site, afficher_slogan, menu_accueil, afficher_auteurs, afficher_extrait, bouton_haut}>
+				#SET{valeur,#ENV{#VALEUR}|sinon{#VALEUR|astra_conf}}
+				<div class="editer editer_#VALEUR">
+					<div class="choix">
+						<input type="hidden" name="#VALEUR" value="non" />
+						<input type="checkbox" class="checkbox" name="#VALEUR" id="#VALEUR" value="oui"[(#GET{valeur}|=={oui}|oui)checked="checked"] />
+						<label for="#VALEUR">[(#VAL{astra:cfg_}|concat{#VALEUR}|_T)]</label>
+					</div>
+				</div>
+				</BOUCLE_oui_non>
+				<div class="editer editer_texte_pied">
+					<label for="texte_pied"><:astra:cfg_texte_pied:></label>
+					<p class="explication"><:astra:cfg_texte_pied_explication:></p>
+					<textarea name="texte_pied" id="texte_pied" rows="3" class="textarea">[(#ENV{texte_pied})]</textarea>
+				</div>
+			</div>
+		</fieldset>
+
+		<p class="boutons"><input type="submit" class="submit btn" value="<:bouton_enregistrer:>" /></p>
+	</div></form>
+</div>

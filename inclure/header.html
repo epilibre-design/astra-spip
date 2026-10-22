@@ -1,0 +1,63 @@
+[(#REM)
+
+	En-tête du site (header builder d'Astra) : identité du site, menu principal,
+	et sa déclinaison mobile (bouton + menu déroulant).
+
+	Paramètres :
+	- id_rubrique : rubrique courante (pour l'état actif du menu)
+	- id_secteur : secteur courant
+
+]<a class="skip-link screen-reader-text" href="#content" title="<:astra:aller_au_contenu|attribut_html:>"><:astra:aller_au_contenu:></a>
+<div class="hfeed site" id="page">
+<header class="site-header header-main-layout-1 ast-primary-menu-enabled ast-logo-title-inline ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline" id="masthead" itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead">
+	<div id="ast-desktop-header" data-toggle-type="dropdown">
+		<div class="ast-main-header-wrap main-header-bar-wrap">
+			<div class="ast-primary-header-bar ast-primary-header main-header-bar site-header-focus-item" data-section="section-primary-header-builder">
+				<div class="site-primary-header-wrap ast-builder-grid-row-container site-header-focus-item ast-container" data-section="section-primary-header-builder">
+					<div class="ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
+						<div class="site-header-primary-section-left site-header-section ast-flex site-header-section-left">
+							<div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="title_tagline">
+								<INCLURE{fond=inclure/identite} />
+							</div>
+						</div>
+						<div class="site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+							<div class="ast-builder-menu-1 ast-builder-menu ast-flex ast-builder-menu-1-focus-item ast-builder-layout-element site-header-focus-item" data-section="section-hb-menu-1">
+								<div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation ast-flex-1"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility" id="primary-site-navigation" aria-label="<:astra:navigation_principale|attribut_html:>" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div id="ast-hf-menu-1" class="main-navigation ast-inline-flex"><INCLURE{fond=inclure/menu}{id_rubrique}{id_secteur}{type_page}{mobile=''} /></div></nav></div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="ast-mobile-header" class="ast-mobile-header-wrap" data-type="dropdown">
+		<div class="ast-main-header-wrap main-header-bar-wrap">
+			<div class="ast-primary-header-bar ast-primary-header main-header-bar site-primary-header-wrap site-header-focus-item ast-builder-grid-row-layout-default ast-builder-grid-row-tablet-layout-default ast-builder-grid-row-mobile-layout-default" data-section="section-primary-header-builder">
+				<div class="ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
+					<div class="site-header-primary-section-left site-header-section ast-flex site-header-section-left">
+						<div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="title_tagline">
+							<INCLURE{fond=inclure/identite} />
+						</div>
+					</div>
+					<div class="site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+						<div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="section-header-mobile-trigger">
+							<div class="ast-button-wrap">
+								<button type="button" class="menu-toggle main-header-menu-toggle ast-mobile-menu-trigger-minimal" aria-expanded="false">
+									<span class="screen-reader-text"><:astra:menu_principal:></span>
+									<span class="mobile-menu-toggle-icon">
+										<span aria-hidden="true" class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg class="ast-mobile-svg ast-menu-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 13h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 7h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 19h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1z"></path></svg></span><span aria-hidden="true" class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg class="ast-mobile-svg ast-close-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"></path></svg></span>
+									</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ast-mobile-header-content content-align-flex-start">
+			<div class="ast-builder-menu-mobile ast-builder-menu ast-builder-menu-mobile-focus-item ast-builder-layout-element site-header-focus-item" data-section="section-header-mobile-menu">
+				<div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility" id="ast-mobile-site-navigation" aria-label="<:astra:navigation_principale|attribut_html:>" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div id="ast-hf-mobile-menu" class="main-navigation"><INCLURE{fond=inclure/menu}{id_rubrique}{id_secteur}{type_page}{mobile=oui} /></div></nav></div></div>
+			</div>
+		</div>
+	</div>
+</header><!-- #masthead -->

@@ -1,0 +1,12 @@
+[(#REM)
+
+	Variables CSS d'Astra pilotées par la configuration du thème
+	(palette globale, largeurs de conteneur, polices)
+
+]<style id="astra-theme-css-inline-css">
+:root{<BOUCLE_couleurs(DATA){enum 0,8}>--ast-global-color-#VALEUR:[(#VAL{couleur_#VALEUR}|astra_conf|astra_couleur)];</BOUCLE_couleurs>
+#SET{large,#VAL{largeur_conteneur}|astra_conf|astra_largeur{600}}--ast-normal-container-width:#GET{large}px;--wp--custom--ast-container-width:#GET{large}px;--wp--custom--ast-content-width-size:#GET{large}px;
+--ast-narrow-container-width:[(#VAL{largeur_etroite}|astra_conf|astra_largeur{400})]px;}
+[body,button,input,select,textarea,.ast-button,.ast-custom-button{font-family:(#VAL{police_texte}|astra_conf|astra_police);}]
+[h1,h2,h3,h4,h5,h6,.entry-content :where(h1,h2,h3,h4,h5,h6),.site-title,.site-title a{font-family:(#VAL{police_titres}|astra_conf|astra_police);}]
+</style>

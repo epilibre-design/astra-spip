@@ -1,0 +1,24 @@
+[(#REM)
+
+	Un message de forum, au format des commentaires d'Astra (.ast-comment)
+
+	Paramètres : id_forum, profondeur (1 ou 2)
+
+]<BOUCLE_message(FORUMS){id_forum}>
+<article id="forum#ID_FORUM" class="ast-comment">
+	<a id="comment#ID_FORUM"></a>
+	<div class="ast-comment-info">
+		<div class="ast-comment-avatar-wrap"><span class="avatar avatar-50 photo ast-avatar-initiale" aria-hidden="true">[(#NOM|textebrut|trim|sinon{?}|mb_substr{0,1}|mb_strtoupper)]</span></div>
+		<header class="ast-comment-meta ast-row ast-comment-author capitalize"><div class="ast-comment-cite-wrap"><cite><b class="fn">[(#NOM|sinon{<:astra:anonyme:>})]</b></cite></div><div class="ast-comment-time"><span class="timendate"><a href="#forum#ID_FORUM"><time datetime="[(#DATE|date_iso)]">[(#DATE|affdate)][ <:astra:a_heure:> (#DATE|heures_minutes)]</time></a></span></div></header> <!-- .ast-comment-meta -->
+	</div>
+	<section class="ast-comment-content comment entry-content">
+		[(#TEXTE)]
+		[<div class="comment-notes">(#NOTES)</div>]
+		[<p class="hyperlien"><:astra:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out" rel="nofollow ugc">[(#NOM_SITE|sinon{#URL_SITE|couper{80}})]</a></p>]
+		[(#ENV{profondeur}|=={1}|oui)
+		<div class="ast-comment-edit-reply-wrap">
+			<span class="ast-reply-link"><a rel="nofollow" class="comment-reply-link" href="[(#SELF|parametre_url{id_forum,#ID_FORUM}|ancre_url{respond})]"><svg class="ast-reply-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path d="M6.4 3.2V0L0 5.6l6.4 5.6V8c4 0 6.8 1.2 8.6 4.8C14.2 7.6 11.6 4 6.4 3.2z"/></svg><:astra:repondre:></a></span>
+		</div>]
+	</section> <!-- .ast-comment-content -->
+</article><!-- #comment-## -->
+</BOUCLE_message>

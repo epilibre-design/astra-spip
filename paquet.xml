@@ -1,0 +1,20 @@
+<paquet
+	prefix="astra"
+	categorie="squelette"
+	version="1.0.0"
+	etat="test"
+	compatibilite="[4.2.0;5.0.*]"
+	logo="images/astra-xx.svg"
+	documentation="https://github.com/projectestac/wordpress-theme-astra"
+>
+	<nom>Astra</nom>
+	<!-- Portage pour SPIP du thème WordPress Astra -->
+
+	<auteur>Gilles Vincent</auteur>
+	<credit lien="https://wpastra.com/">Thème Astra original © Brainstorm Force (GPL v2+)</credit>
+	<credit lien="https://github.com/projectestac/wordpress-theme-astra">Sources du thème Astra 4.11.0</credit>
+
+	<licence lien="https://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL v2 ou ultérieure</licence>
+
+	<menu nom="configurer_astra" titre="astra:titre_configurer" parent="menu_squelette" icone="images/astra-xx.svg" action="configurer_astra" />
+</paquet>

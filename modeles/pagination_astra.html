@@ -1,0 +1,30 @@
+[(#REM)
+
+	Pagination au format d'Astra (the_posts_pagination + .ast-pagination)
+	Usage : balise PAGINATION avec le paramètre « astra »
+
+]#ENV*{bloc_ancre}
+#SET{bornes,#ENV{page_courante}|bornes_pagination{#ENV{nombre_pages},#ENV{nombre_liens_max,#CONST{_PAGINATION_NOMBRE_LIENS_MAX}}|max{3}}}
+#SET{premiere, #GET{bornes}|reset}
+#SET{derniere, #GET{bornes}|end}
+#SET{pages,#GET{premiere}|range{#GET{derniere}}}
+<B_pages>
+<div class="ast-pagination"><nav class="navigation pagination" aria-label="<:astra:pagination|attribut_html:>">
+	<div class="nav-links">[(#ENV{page_courante}|>{1}|oui)
+		#SET{item, #ENV{page_courante}|moins{2}|mult{#ENV{pas}}}
+		<a class="prev page-numbers" rel="prev nofollow" href="[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}|?{#GET{item}}}|ancre_url{#ENV{ancre}}|attribut_url)]"><span class="ast-left-arrow" aria-hidden="true">&larr;</span> <:astra:precedent:></a>]
+		[(#GET{premiere}|>{1}|oui)<a class="page-numbers" rel="nofollow" href="[(#ENV{url}|parametre_url{#ENV{debut},''}|ancre_url{#ENV{ancre}}|attribut_url)]">1</a>[(#GET{premiere}|>{2}|oui)<span class="page-numbers dots">&hellip;</span>]]
+		<BOUCLE_pages(DATA){source table, #GET{pages}}>#SET{item, #VALEUR|moins{1}|mult{#ENV{pas}}}[
+		(#VALEUR|=={#ENV{page_courante}}|oui)<span aria-current="page" class="page-numbers current">#VALEUR</span>][
+		(#VALEUR|=={#ENV{page_courante}}|non)<a class="page-numbers" rel="nofollow" href="[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}|?{#GET{item}}}|ancre_url{#ENV{ancre}}|attribut_url)]">#VALEUR</a>]
+		</BOUCLE_pages>
+		[(#GET{derniere}|<{#ENV{nombre_pages}}|oui)
+		#SET{item, #ENV{nombre_pages}|moins{1}|mult{#ENV{pas}}}
+		[(#GET{derniere}|<{#ENV{nombre_pages}|moins{1}}|oui)<span class="page-numbers dots">&hellip;</span>]
+		<a class="page-numbers" rel="nofollow" href="[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}}|ancre_url{#ENV{ancre}}|attribut_url)]">#ENV{nombre_pages}</a>]
+		[(#ENV{page_courante}|<{#ENV{nombre_pages}}|oui)
+		#SET{item, #ENV{page_courante}|mult{#ENV{pas}}}
+		<a class="next page-numbers" rel="next nofollow" href="[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}}|ancre_url{#ENV{ancre}}|attribut_url)]"><:astra:suivant:> <span class="ast-right-arrow" aria-hidden="true">&rarr;</span></a>]
+	</div>
+</nav></div>
+</B_pages>

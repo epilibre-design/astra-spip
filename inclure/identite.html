@@ -1,0 +1,16 @@
+[(#REM)
+
+	Identité du site : logo, nom et slogan (élément « title_tagline » d'Astra)
+
+]<div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization" itemscope="itemscope">
+	[<span class="site-logo-img"><a href="#URL_SITE_SPIP/" class="custom-logo-link" rel="home" itemprop="url">(#LOGO_SITE_SPIP|image_reduire{0,60}|inserer_attribut{class,custom-logo}|inserer_attribut{itemprop,logo}|inserer_attribut{alt,#NOM_SITE_SPIP|textebrut})</a></span>]
+	<div class="ast-site-title-wrap">
+		[(#VAL{afficher_titre_site}|astra_conf|=={oui}|oui)
+		<span class="site-title" itemprop="name">
+			<a href="#URL_SITE_SPIP/" rel="home" itemprop="url">[(#NOM_SITE_SPIP|supprimer_numero)]</a>
+		</span>]
+		[(#VAL{afficher_slogan}|astra_conf|=={oui}|oui)
+		[<p class="site-description" itemprop="description">(#SLOGAN_SITE_SPIP|textebrut)</p>]]
+	</div>
+</div>
+<!-- .site-branding -->

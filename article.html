@@ -1,0 +1,70 @@
+[(#REM)
+
+	Article : single post d'Astra (single-layout-1), navigation précédent/suivant,
+	commentaires.
+
+]<BOUCLE_article_principal(ARTICLES){id_article}>
+<!DOCTYPE html>
+<html dir="#LANG_DIR" lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut)] – [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="[(#VAL{article}|astra_body_class{#ID_ARTICLE})]">
+<INCLURE{fond=inclure/header}{type_page=article}{id_rubrique}{id_secteur} />
+<div id="content" class="site-content">
+	<div class="ast-container">
+		<INCLURE{fond=inclure/sidebar}{type_page=article}{position=left-sidebar}{id_rubrique} />
+		<div id="primary" class="content-area primary">
+			<main id="main" class="site-main">
+				<article class="post-#ID_ARTICLE post type-post status-publish format-standard hentry category-#ID_RUBRIQUE ast-article-single" id="post-#ID_ARTICLE" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+					<div class="ast-post-format- [(#LOGO_ARTICLE|?{'',ast-no-thumb})] single-layout-1">
+						<header class="entry-header">
+							[<div class="post-thumb-img-content post-thumb">(#LOGO_ARTICLE|image_reduire{1200}|inserer_attribut{class,attachment-large size-large wp-post-image}|inserer_attribut{alt,''}|inserer_attribut{itemprop,image})</div>]
+							[<p class="ast-surtitre">(#SURTITRE)</p>]
+							<h1 class="entry-title" itemprop="headline">[(#TITRE|supprimer_numero)]</h1>
+							[<p class="ast-soustitre">(#SOUSTITRE)</p>]
+							<div class="entry-meta"><BOUCLE_si_auteurs(CONDITION){si #VAL{afficher_auteurs}|astra_conf|=={oui}}><B_auteurs><:astra:par:> <BOUCLE_auteurs(AUTEURS){id_article}{", "}><span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"><a title="[(#VAL{astra:voir_articles_de}|_T{#ARRAY{nom,#NOM|textebrut}}|attribut_html)]" href="#URL_AUTEUR" rel="author" class="url fn n" itemprop="url"><span class="author-name" itemprop="name">#NOM</span></a></span></BOUCLE_auteurs> / </B_auteurs></BOUCLE_si_auteurs><span class="posted-on"><span class="published" itemprop="datePublished"><time datetime="[(#DATE|date_iso)]">[(#DATE|affdate)]</time></span>[(#DATE_MODIF|affdate|!={#DATE|affdate}|oui)<span class="updated" itemprop="dateModified"><time datetime="[(#DATE_MODIF|date_iso)]">[(#DATE_MODIF|affdate)]</time></span>]</span></div>
+						</header><!-- .entry-header -->
+						<div class="entry-content clear" itemprop="text">
+							[<div class="chapo">(#CHAPO)</div>]
+							#TEXTE
+							[<p class="ast-lien-hypertexte"><:astra:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{#URL_SITE})]</a></p>]
+							[<div class="ps">(#PS)</div>]
+							[<div class="notes"><h2 class="screen-reader-text"><:astra:notes:></h2>(#NOTES)</div>]
+							<B_documents>
+							<div class="ast-documents">
+								<h2><:astra:documents_joints:></h2>
+								<ul class="ast-documents-liste">
+									<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{vu=non}{par num titre, titre}>
+									<li><a href="#URL_DOCUMENT" type="#MIME_TYPE">[(#TITRE|sinon{#FICHIER|basename})]</a> <small>(#TYPE_DOCUMENT[, (#TAILLE|taille_en_octets)])</small>[<div class="ast-document-descriptif">(#DESCRIPTIF)</div>]</li>
+									</BOUCLE_documents>
+								</ul>
+							</div>
+							</B_documents>
+						</div><!-- .entry-content .clear -->
+						<B_mots>
+						<footer class="entry-footer">
+							<span class="tags-links"><:astra:mots_cles:> : <BOUCLE_mots(MOTS){id_article}{par titre}{", "}><a href="#URL_MOT" rel="tag">[(#TITRE|supprimer_numero)]</a></BOUCLE_mots></span>
+						</footer><!-- .entry-footer -->
+						</B_mots>
+					</div>
+				</article><!-- #post-## -->
+
+				<B_navigation>
+				<nav class="navigation post-navigation" aria-label="<:astra:navigation_articles|attribut_html:>">
+					<div class="nav-links"><BOUCLE_navigation(CONDITION){si #ID_RUBRIQUE}><BOUCLE_precedent(ARTICLES){id_rubrique}{date < #DATE}{par date}{inverse}{0,1}><div class="nav-previous"><a title="[(#TITRE|supprimer_numero|attribut_html)]" href="#URL_ARTICLE" rel="prev"><span class="ast-post-nav" aria-hidden="true"><span aria-hidden="true" class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"></path></svg></span> <:astra:precedent:></span> <p>[(#TITRE|supprimer_numero)]</p></a></div></BOUCLE_precedent><BOUCLE_suivant(ARTICLES){id_rubrique}{date > #DATE}{par date}{0,1}><div class="nav-next"><a title="[(#TITRE|supprimer_numero|attribut_html)]" href="#URL_ARTICLE" rel="next"><span class="ast-post-nav" aria-hidden="true"><:astra:suivant:> <span aria-hidden="true" class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z"></path></svg></span></span> <p>[(#TITRE|supprimer_numero)]</p></a></div></BOUCLE_suivant></BOUCLE_navigation></div>
+				</nav>
+				</B_navigation>
+
+				<INCLURE{fond=inclure/commentaires}{id_article}{id_forum} />
+			</main><!-- #main -->
+		</div><!-- #primary -->
+		<INCLURE{fond=inclure/sidebar}{type_page=article}{position=right-sidebar}{id_rubrique} />
+	</div> <!-- ast-container -->
+</div><!-- #content -->
+<INCLURE{fond=inclure/footer} />
+</body>
+</html>
+</BOUCLE_article_principal>

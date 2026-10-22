@@ -1,0 +1,68 @@
+[(#REM)
+
+	Barre latérale (#secondary) : produite uniquement si la disposition
+	du type de page correspond à la position demandée.
+
+	Paramètres :
+	- type_page : sommaire, rubrique, article…
+	- position : left-sidebar | right-sidebar
+	- id_rubrique : rubrique courante (sous-rubriques affichées)
+
+]<BOUCLE_si_barre(CONDITION){si #ENV{type_page}|astra_barre_a{#ENV{position}}}>
+<div class="widget-area secondary" id="secondary" itemtype="https://schema.org/WPSideBar" itemscope="itemscope">
+	<div class="sidebar-main">
+		<aside id="search-1" class="widget widget_search">
+			<h2 class="widget-title"><:astra:rechercher:></h2>
+			#FORMULAIRE_RECHERCHE
+		</aside>
+
+		<B_sous_rubriques>
+		<aside id="rubriques-1" class="widget widget_categories">
+			<h2 class="widget-title"><:astra:sous_rubriques:></h2>
+			<nav aria-label="<:astra:sous_rubriques|attribut_html:>">
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES){id_parent=#ENV{id_rubrique,0}}{par num titre, titre}>
+				<li class="cat-item cat-item-#ID_RUBRIQUE"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+			</nav>
+		</aside>
+		</B_sous_rubriques>
+
+		<B_articles_recents>
+		<aside id="recent-posts-1" class="widget widget_recent_entries">
+			<h2 class="widget-title"><:astra:articles_recents:></h2>
+			<nav aria-label="<:astra:articles_recents|attribut_html:>">
+			<ul>
+				<BOUCLE_articles_recents(ARTICLES){par date}{inverse}{0,5}>
+				<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+				</BOUCLE_articles_recents>
+			</ul>
+			</nav>
+		</aside>
+		</B_articles_recents>
+
+		<B_forums_recents>
+		<aside id="recent-comments-1" class="widget widget_recent_comments">
+			<h2 class="widget-title"><:astra:commentaires_recents:></h2>
+			<nav aria-label="<:astra:commentaires_recents|attribut_html:>">
+			<ul id="recentcomments">
+				<BOUCLE_forums_recents(FORUMS){objet=article}{plat}{par date}{inverse}{0,5}>
+				<li class="recentcomments"><span class="comment-author-link">[(#NOM|sinon{<:astra:anonyme:>})]</span> <:astra:sur:> <BOUCLE_art_forum(ARTICLES){id_article=#ID_OBJET}><a href="#URL_ARTICLE#forum#ID_FORUM">[(#TITRE|supprimer_numero)]</a></BOUCLE_art_forum></li>
+				</BOUCLE_forums_recents>
+			</ul>
+			</nav>
+		</aside>
+		</B_forums_recents>
+
+		<B_mots>
+		<aside id="tag_cloud-1" class="widget widget_tag_cloud">
+			<h2 class="widget-title"><:astra:mots_cles:></h2>
+			<div class="tagcloud">
+				<BOUCLE_mots(MOTS){par titre}{0,40}><BOUCLE_mot_utilise(ARTICLES){id_mot}{0,1}><a href="#_mots:URL_MOT" class="tag-cloud-link tag-link-#_mots:ID_MOT">[(#_mots:TITRE|supprimer_numero)]</a> </BOUCLE_mot_utilise></BOUCLE_mots>
+			</div>
+		</aside>
+		</B_mots>
+	</div>
+</div><!-- #secondary -->
+</BOUCLE_si_barre>

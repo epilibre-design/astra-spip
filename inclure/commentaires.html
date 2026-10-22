@@ -1,0 +1,43 @@
+[(#REM)
+
+	Zone des commentaires (comments.php d'Astra) : fils de discussion sur deux niveaux
+	et formulaire de forum de SPIP.
+
+	Paramètres : id_article
+
+]<BOUCLE_article_forum(ARTICLES){id_article}>
+[(#PARAMETRES_FORUM|?{''})]
+<B_messages>
+<div id="comments" class="comments-area comment-form-position-below">
+	<a id="forum"></a>
+	<h3 class="comments-title">[(#GRAND_TOTAL|>{1}|?{astra:nb_commentaires_sur,astra:un_commentaire_sur}|_T{#ARRAY{nb,#GRAND_TOTAL,titre,#TITRE|supprimer_numero|textebrut}})]</h3>
+	<ol class="ast-comment-list">
+		<BOUCLE_messages(FORUMS){id_article}{par date}>
+		<li class="comment[ (#COMPTEUR_BOUCLE|alterner{even,odd})] thread-[(#COMPTEUR_BOUCLE|alterner{even,odd})] depth-1" id="li-comment-#ID_FORUM">
+			<INCLURE{fond=inclure/commentaire}{id_forum}{profondeur=1} />
+			<B_reponses>
+			<ol class="children">
+				<BOUCLE_reponses(FORUMS){id_thread}{id_forum!=#_messages:ID_FORUM}{par date}>
+				<li class="comment depth-2" id="li-comment-#ID_FORUM">
+					<INCLURE{fond=inclure/commentaire}{id_forum}{profondeur=2} />
+				</li><!-- #comment-## -->
+				</BOUCLE_reponses>
+			</ol>
+			</B_reponses>
+		</li><!-- #comment-## -->
+		</BOUCLE_messages>
+	</ol><!-- .ast-comment-list -->
+	[<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">[(#ENV{id_forum}|?{<:astra:repondre_message:>,<:astra:laisser_commentaire:>})]</h3>
+		(#FORMULAIRE_FORUM)
+	</div><!-- #respond -->]
+</div><!-- #comments -->
+</B_messages>
+[<div id="comments" class="comments-area comment-form-position-below">
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title"><:astra:laisser_commentaire:></h3>
+		(#FORMULAIRE_FORUM)
+	</div><!-- #respond -->
+</div><!-- #comments -->]
+<//B_messages>
+</BOUCLE_article_forum>

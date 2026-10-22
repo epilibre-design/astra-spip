@@ -1,0 +1,15 @@
+[(#REM)
+
+	Fil d'Ariane au format des breadcrumbs d'Astra
+
+	Paramètres : id_rubrique (rubrique de départ), titre (élément final, optionnel)
+
+]<div class="ast-breadcrumbs-wrapper">
+	<div class="ast-breadcrumbs-inner">
+		<nav role="navigation" aria-label="<:astra:fil_ariane|attribut_html:>" class="breadcrumb-trail breadcrumbs"><div class="ast-breadcrumbs"><ul class="trail-items">
+			<li class="trail-item trail-begin"><a href="#URL_SITE_SPIP/" rel="home"><span><:astra:accueil:></span></a></li>
+			<BOUCLE_hierarchie(HIERARCHIE){id_rubrique}><li class="trail-item"><a href="#URL_RUBRIQUE"><span>[(#TITRE|supprimer_numero)]</span></a></li></BOUCLE_hierarchie>
+			[<li class="trail-item trail-end"><span><span>(#ENV*{titre})</span></span></li>]
+		</ul></div></nav>
+	</div>
+</div>

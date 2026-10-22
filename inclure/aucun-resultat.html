@@ -1,0 +1,13 @@
+[(#REM)
+
+	Aucun contenu (template-parts/content-none d'Astra)
+
+	Paramètre : recherche (texte recherché, le cas échéant)
+
+]<section class="no-results not-found">
+	<div class="page-content">
+		[(#ENV{recherche}|non)<header class="page-header"><h1 class="page-title"><:astra:rien_trouve:></h1></header>]
+		<p>[(#ENV{recherche}|?{<:astra:rien_trouve_recherche:>,<:astra:rien_trouve_texte:>})]</p>
+		<div class="widget widget_search">#FORMULAIRE_RECHERCHE</div>
+	</div><!-- .page-content -->
+</section><!-- .no-results -->

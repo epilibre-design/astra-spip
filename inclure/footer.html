@@ -1,0 +1,32 @@
+[(#REM)
+
+	Pied de page (footer builder d'Astra : rangée inférieure avec copyright),
+	bouton de retour en haut et scripts du thème.
+
+]<footer class="site-footer" id="colophon" itemtype="https://schema.org/WPFooter" itemscope="itemscope" itemid="#colophon">
+	<div class="site-below-footer-wrap ast-builder-grid-row-container site-footer-focus-item ast-builder-grid-row-full ast-builder-grid-row-tablet-full ast-builder-grid-row-mobile-full ast-footer-row-stack ast-footer-row-tablet-stack ast-footer-row-mobile-stack" data-section="section-below-footer-builder">
+		<div class="ast-builder-grid-row-container-inner">
+			<div class="ast-builder-footer-grid-columns site-below-footer-inner-wrap ast-builder-grid-row">
+				<div class="site-footer-below-section-1 site-footer-section site-footer-section-1">
+					<div class="ast-builder-layout-element ast-flex site-footer-focus-item ast-footer-copyright" data-section="section-footer-builder">
+						<div class="ast-footer-copyright">
+						[(#NOM_SITE_SPIP|astra_texte_pied)]
+						[(#NOM_SITE_SPIP|astra_texte_pied|non)<p>[(#NOM_SITE_SPIP|astra_copyright)] | <:astra:propulse_par:> <a href="https://www.spip.net/" rel="nofollow noopener">SPIP</a> &amp; <a href="https://wpastra.com/" rel="nofollow noopener" target="_blank"><:astra:theme_astra:></a></p>]
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer><!-- #colophon -->
+</div><!-- #page -->
+[(#VAL{bouton_haut}|astra_conf|=={oui}|oui)
+<div id="ast-scroll-top" tabindex="0" class="ast-scroll-top-icon ast-scroll-to-top-right" data-on-devices="both">
+	<span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span>
+	<span class="screen-reader-text"><:astra:retour_haut:></span>
+</div>]
+<script id="astra-theme-js-js-extra">
+var astra = {"break_point":"921","isRtl":"[(#LANG_DIR|=={rtl}|?{1,''})]","is_scroll_to_id":"1","is_scroll_to_top":"[(#VAL{bouton_haut}|astra_conf|=={oui}|?{1,''})]","is_header_footer_builder_active":"1","responsive_cart_click":"flyout","is_dark_palette":""};
+</script>
+<script id="astra-theme-js-js" src="[(#CHEMIN{js/frontend.min.js}|timestamp)]"></script>
