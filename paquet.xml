@@ -5,14 +5,14 @@
 	etat="test"
 	compatibilite="[4.2.0;5.0.*]"
 	logo="images/astra-xx.svg"
-	documentation="https://github.com/projectestac/wordpress-theme-astra"
+	documentation="https://wordpress.org/themes/astra/"
 >
 	<nom>Astra</nom>
 	<!-- Portage pour SPIP du thème WordPress Astra -->
 
 	<auteur>Gilles Vincent</auteur>
 	<credit lien="https://wpastra.com/">Thème Astra original © Brainstorm Force (GPL v2+)</credit>
-	<credit lien="https://github.com/projectestac/wordpress-theme-astra">Sources du thème Astra 4.11.0</credit>
+	<credit lien="https://downloads.wordpress.org/theme/astra.4.11.0.zip">Sources du thème Astra 4.11.0</credit>
 
 	<licence lien="https://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL v2 ou ultérieure</licence>
 

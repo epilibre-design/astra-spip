@@ -1,6 +1,6 @@
 # Astra pour SPIP
 
-Portage pour SPIP du thème WordPress [Astra](https://github.com/projectestac/wordpress-theme-astra) (version 4.11.0).
+Portage pour SPIP du thème WordPress [Astra](https://wordpress.org/themes/astra/) de Brainstorm Force (version 4.11.0).
 
 Le plugin reproduit le rendu d'Astra avec ses réglages par défaut : même balisage HTML que le
 thème WordPress, mêmes feuilles de style et même JavaScript. Les classes CSS d'Astra
