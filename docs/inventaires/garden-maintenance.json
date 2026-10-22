@@ -1,0 +1,427 @@
+{
+  "date_inventaire": "2026-10-22",
+  "modele": {
+    "id": 189117,
+    "slug": "garden-maintenance-4",
+    "url_reference": "https://websitedemos.net/garden-maintenance-09"
+  },
+  "methode": "Commentaires ouvrants des blocs, attributs JSON valides, blocs imbriqués comptés, pages publiées seulement pour les totaux principaux. Noms sans préfixe normalisés en core/.",
+  "sources": [
+    {
+      "fichier": "site.json",
+      "sha256": "cb739c7fd3a9ce7e468411dfeb9064e6468e8afba1ebbad1c0c4f8b2cc246f33"
+    },
+    {
+      "fichier": "wxr/wxr.xml",
+      "sha256": "60f91b4eacda0664b37a965a8429d38229f894c6f2c5313e16bf08798cee9391"
+    }
+  ],
+  "totaux_pages": {
+    "pages": 6,
+    "blocs": 352,
+    "spectra": 332,
+    "types_spectra": 20,
+    "images_natives": 19,
+    "shortcodes": 1
+  },
+  "familles_spectra": {
+    "conteneurs": {
+      "occurrences": 111,
+      "blocs": {
+        "spectra/container": 111
+      }
+    },
+    "textes": {
+      "occurrences": 105,
+      "blocs": {
+        "spectra/content": 105
+      }
+    },
+    "separateurs": {
+      "occurrences": 16,
+      "blocs": {
+        "spectra/separator": 16
+      }
+    },
+    "boutons": {
+      "occurrences": 20,
+      "blocs": {
+        "spectra/buttons": 10,
+        "spectra/button": 10
+      }
+    },
+    "icones": {
+      "occurrences": 13,
+      "blocs": {
+        "spectra/icons": 5,
+        "spectra/icon": 8
+      }
+    },
+    "listes": {
+      "occurrences": 28,
+      "blocs": {
+        "spectra/list": 4,
+        "spectra/list-child-item": 12,
+        "spectra/list-child-icon": 12
+      }
+    },
+    "accordeon": {
+      "occurrences": 26,
+      "blocs": {
+        "spectra/accordion": 1,
+        "spectra/accordion-child-item": 5,
+        "spectra/accordion-child-header": 5,
+        "spectra/accordion-child-header-content": 5,
+        "spectra/accordion-child-header-icon": 5,
+        "spectra/accordion-child-details": 5
+      }
+    },
+    "compteurs": {
+      "occurrences": 12,
+      "blocs": {
+        "spectra/counter": 4,
+        "spectra/counter-child-wrapper": 4,
+        "spectra/counter-child-number": 4
+      }
+    },
+    "carte": {
+      "occurrences": 1,
+      "blocs": {
+        "spectra/google-map": 1
+      }
+    }
+  },
+  "blocs_pages": {
+    "core/image": 19,
+    "core/shortcode": 1,
+    "spectra/accordion": 1,
+    "spectra/accordion-child-details": 5,
+    "spectra/accordion-child-header": 5,
+    "spectra/accordion-child-header-content": 5,
+    "spectra/accordion-child-header-icon": 5,
+    "spectra/accordion-child-item": 5,
+    "spectra/button": 10,
+    "spectra/buttons": 10,
+    "spectra/container": 111,
+    "spectra/content": 105,
+    "spectra/counter": 4,
+    "spectra/counter-child-number": 4,
+    "spectra/counter-child-wrapper": 4,
+    "spectra/google-map": 1,
+    "spectra/icon": 8,
+    "spectra/icons": 5,
+    "spectra/list": 4,
+    "spectra/list-child-icon": 12,
+    "spectra/list-child-item": 12,
+    "spectra/separator": 16
+  },
+  "pages": [
+    {
+      "wordpress_id": 37,
+      "title": "FAQ",
+      "slug": "faq",
+      "type": "page",
+      "block_count": 36,
+      "blocks": {
+        "spectra/accordion": 1,
+        "spectra/accordion-child-details": 5,
+        "spectra/accordion-child-header": 5,
+        "spectra/accordion-child-header-content": 5,
+        "spectra/accordion-child-header-icon": 5,
+        "spectra/accordion-child-item": 5,
+        "spectra/container": 3,
+        "spectra/content": 7
+      }
+    },
+    {
+      "wordpress_id": 92,
+      "title": "Home",
+      "slug": "home",
+      "type": "page",
+      "block_count": 100,
+      "blocks": {
+        "core/image": 5,
+        "spectra/button": 7,
+        "spectra/buttons": 7,
+        "spectra/container": 34,
+        "spectra/content": 35,
+        "spectra/icon": 4,
+        "spectra/icons": 4,
+        "spectra/separator": 4
+      }
+    },
+    {
+      "wordpress_id": 93,
+      "title": "About",
+      "slug": "about",
+      "type": "page",
+      "block_count": 65,
+      "blocks": {
+        "core/image": 3,
+        "spectra/button": 1,
+        "spectra/buttons": 1,
+        "spectra/container": 26,
+        "spectra/content": 19,
+        "spectra/counter": 4,
+        "spectra/counter-child-number": 4,
+        "spectra/counter-child-wrapper": 4,
+        "spectra/separator": 3
+      }
+    },
+    {
+      "wordpress_id": 1047,
+      "title": "Services",
+      "slug": "services",
+      "type": "page",
+      "block_count": 77,
+      "blocks": {
+        "core/image": 4,
+        "spectra/button": 1,
+        "spectra/buttons": 1,
+        "spectra/container": 21,
+        "spectra/content": 25,
+        "spectra/list": 3,
+        "spectra/list-child-icon": 9,
+        "spectra/list-child-item": 9,
+        "spectra/separator": 4
+      }
+    },
+    {
+      "wordpress_id": 1048,
+      "title": "Projects",
+      "slug": "projects",
+      "type": "page",
+      "block_count": 38,
+      "blocks": {
+        "core/image": 7,
+        "spectra/button": 1,
+        "spectra/buttons": 1,
+        "spectra/container": 18,
+        "spectra/content": 9,
+        "spectra/separator": 2
+      }
+    },
+    {
+      "wordpress_id": 1049,
+      "title": "Contact",
+      "slug": "contact",
+      "type": "page",
+      "block_count": 36,
+      "blocks": {
+        "core/shortcode": 1,
+        "spectra/container": 9,
+        "spectra/content": 10,
+        "spectra/google-map": 1,
+        "spectra/icon": 4,
+        "spectra/icons": 1,
+        "spectra/list": 1,
+        "spectra/list-child-icon": 3,
+        "spectra/list-child-item": 3,
+        "spectra/separator": 3
+      }
+    }
+  ],
+  "autres_contenus_publies_avec_blocs": [
+    {
+      "wordpress_id": 1514,
+      "title": "Simple Contact Form",
+      "slug": "simple-contact-form",
+      "type": "sureforms_form",
+      "block_count": 4,
+      "blocks": {
+        "srfm/email": 1,
+        "srfm/input": 2,
+        "srfm/textarea": 1
+      }
+    },
+    {
+      "wordpress_id": 1515,
+      "title": "Footer Call To Action",
+      "slug": "untitled-reusable-block",
+      "type": "wp_block",
+      "block_count": 8,
+      "blocks": {
+        "core/button": 1,
+        "core/buttons": 1,
+        "core/group": 1,
+        "core/heading": 3,
+        "core/image": 1,
+        "core/separator": 1
+      }
+    }
+  ],
+  "objets_export": [
+    {
+      "type": "attachment",
+      "statut": "inherit",
+      "nombre": 44
+    },
+    {
+      "type": "custom_css",
+      "statut": "publish",
+      "nombre": 2
+    },
+    {
+      "type": "nav_menu_item",
+      "statut": "publish",
+      "nombre": 16
+    },
+    {
+      "type": "page",
+      "statut": "publish",
+      "nombre": 6
+    },
+    {
+      "type": "page",
+      "statut": "trash",
+      "nombre": 1
+    },
+    {
+      "type": "post",
+      "statut": "trash",
+      "nombre": 1
+    },
+    {
+      "type": "sureforms_form",
+      "statut": "publish",
+      "nombre": 1
+    },
+    {
+      "type": "wp_block",
+      "statut": "publish",
+      "nombre": 1
+    },
+    {
+      "type": "wp_global_styles",
+      "statut": "publish",
+      "nombre": 2
+    }
+  ],
+  "widgets": [
+    {
+      "zone": "sidebar-1",
+      "widget_id": "block-2",
+      "blocks": {
+        "core/search": 1
+      }
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "block-3",
+      "blocks": {
+        "core/group": 1,
+        "core/heading": 1,
+        "core/latest-posts": 1
+      }
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "block-4",
+      "blocks": {
+        "core/group": 1,
+        "core/heading": 1,
+        "core/latest-comments": 1
+      }
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "block-5",
+      "blocks": {
+        "core/archives": 1,
+        "core/group": 1,
+        "core/heading": 1
+      }
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "block-6",
+      "blocks": {
+        "core/categories": 1,
+        "core/group": 1,
+        "core/heading": 1
+      }
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "search-1",
+      "blocks": {}
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "recent-posts-1",
+      "blocks": {}
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "recent-comments-1",
+      "blocks": {}
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "archives-1",
+      "blocks": {}
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "categories-1",
+      "blocks": {}
+    },
+    {
+      "zone": "sidebar-1",
+      "widget_id": "meta-1",
+      "blocks": {}
+    },
+    {
+      "zone": "footer-widget-1",
+      "widget_id": "text-1",
+      "blocks": {}
+    },
+    {
+      "zone": "footer-widget-1",
+      "widget_id": "text-2",
+      "blocks": {}
+    },
+    {
+      "zone": "footer-widget-2",
+      "widget_id": "nav_menu-1",
+      "blocks": {}
+    },
+    {
+      "zone": "footer-widget-3",
+      "widget_id": "nav_menu-2",
+      "blocks": {}
+    },
+    {
+      "zone": "footer-widget-4",
+      "widget_id": "block-7",
+      "blocks": {
+        "uagb/image": 1
+      }
+    },
+    {
+      "zone": "footer-widget-4",
+      "widget_id": "text-3",
+      "blocks": {}
+    },
+    {
+      "zone": "footer-widget-4",
+      "widget_id": "media_image-1",
+      "blocks": {}
+    },
+    {
+      "zone": "footer-widget-4",
+      "widget_id": "custom_html-1",
+      "blocks": {}
+    }
+  ],
+  "plugins_declares": [
+    "ultimate-addons-for-gutenberg",
+    "sureforms",
+    "surerank"
+  ],
+  "limites": [
+    "Aucun rendu WordPress exécuté pour cet inventaire.",
+    "Les widgets enregistrés ne prouvent pas leur affichage effectif.",
+    "Les données du modèle, photographies et textes ne sont pas copiés dans cet inventaire."
+  ]
+}
