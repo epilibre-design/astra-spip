@@ -164,4 +164,46 @@ final class HfbRenduTest extends TestCase {
 		$config['menu_mobile'] = 'off-canvas';
 		$this->assertSame(0, $this->compter($this->pied($config), '//*[@id="ast-mobile-popup-wrapper"]'));
 	}
+
+	public function testPiedParDefaut(): void {
+		$p = $this->pied(null);
+		$this->assertSame(1, $this->compter($p, '//footer[@id="colophon"]/*'));
+		$basse = '//footer[@id="colophon"]/' . self::classe('site-below-footer-wrap ast-builder-grid-row-container ast-builder-grid-row-full ast-footer-row-stack');
+		$this->assertSame(1, $this->compter($p, $basse . '/' . self::classe('ast-builder-grid-row-container-inner') . '/' . self::classe('ast-builder-footer-grid-columns site-below-footer-inner-wrap ast-builder-grid-row') . '/' . self::classe('site-footer-below-section-1 site-footer-section site-footer-section-1') . '/' . self::classe('ast-footer-copyright')));
+	}
+
+	public function testPiedR3(): void {
+		$p = $this->pied(astra_configurations_reference()['R3-pied-colonnes']);
+		$f = '//footer[@id="colophon"]';
+		$this->assertSame(['site-above-footer-wrap', 'site-primary-footer-wrap', 'site-below-footer-wrap'], array_map(function ($n) {
+			return explode(' ', $n->getAttribute('class'))[0];
+		}, iterator_to_array($p->query($f . '/div'))));
+		$haute = $f . '/' . self::classe('site-above-footer-wrap ast-builder-grid-row-2-equal ast-builder-grid-row-tablet-2-equal ast-builder-grid-row-mobile-full');
+		$this->assertSame(1, $this->compter($p, $haute . '//' . self::classe('site-footer-above-section-1') . '/' . self::classe('footer-widget-area widget-area site-footer-focus-item ast-footer-html-1') . '//' . self::classe('ast-builder-html-element')));
+		$this->assertSame(1, $this->compter($p, $haute . '//' . self::classe('site-footer-above-section-2') . '//' . self::classe('ast-footer-social-1-wrap ast-footer-social-wrap')));
+		$this->assertSame(3, $this->compter($p, $haute . '//' . self::classe('ast-builder-social-element footer-social-item')));
+		$principale = $f . '/' . self::classe('site-primary-footer-wrap ast-builder-grid-row-4-equal');
+		$this->assertSame(4, $this->compter($p, $principale . '//' . self::classe('site-footer-section') . '/aside[contains(@class, "footer-widget-area-inner")]'));
+		$this->assertStringContainsString('Colonne 4', $p->query($principale . '//' . self::classe('site-footer-primary-section-4') . '//*[contains(@class, "widget-title")]')->item(0)->textContent);
+		$basse = $f . '/' . self::classe('site-below-footer-wrap ast-builder-grid-row-2-equal');
+		$this->assertSame(1, $this->compter($p, $basse . '//' . self::classe('site-footer-below-section-1') . '/' . self::classe('ast-footer-copyright')));
+		$menu = $basse . '//' . self::classe('site-footer-below-section-2') . '//' . self::classe('footer-nav-wrap') . '/ul[@id="astra-footer-menu"][contains(@class, "astra-footer-horizontal-menu")]';
+		$this->assertGreaterThan(0, $this->compter($p, $menu . '/li'));
+		$this->assertSame(0, $this->compter($p, $menu . '//ul[@class="sub-menu"]'), 'Le menu du pied n\'a qu\'un niveau');
+	}
+
+	public function testPiedR4(): void {
+		$p = $this->pied(astra_configurations_reference()['R4-pied-asymetrique']);
+		$f = '//footer[@id="colophon"]';
+		$this->assertSame(0, $this->compter($p, $f . '/' . self::classe('site-above-footer-wrap')));
+		$principale = $f . '/' . self::classe('site-primary-footer-wrap ast-builder-grid-row-3-cwide');
+		$this->assertSame(3, $this->compter($p, $principale . '//' . self::classe('site-footer-section')));
+		$ordre = [];
+		foreach ($p->query($principale . '//' . self::classe('site-footer-primary-section-2') . '/*') as $n) {
+			$ordre[] = preg_match('/ast-footer-html-1|section-fb-social-icons-1/', $n->getAttribute('class') . ' ' . $n->getAttribute('data-section'), $m) ? $m[0] : '?';
+		}
+		$this->assertSame(['ast-footer-html-1', 'section-fb-social-icons-1'], $ordre);
+		$this->assertSame(1, $this->compter($p, $principale . '//ul[@id="astra-footer-menu"][contains(@class, "astra-footer-vertical-menu")]'));
+		$this->assertSame(1, $this->compter($p, $f . '/' . self::classe('site-below-footer-wrap ast-builder-grid-row-2-lheavy') . '//' . self::classe('site-footer-below-section-2') . '/' . self::classe('ast-footer-html-2')));
+	}
 }
