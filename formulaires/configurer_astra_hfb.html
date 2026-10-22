@@ -1,0 +1,172 @@
+[(#REM)
+
+	Configuration du builder d'en-tête et de pied de page (formulaire CVT explicite :
+	formulaires/configurer_astra_hfb.php). Chaque élément reçoit un emplacement et un ordre
+	dans chacun des builders où il est autorisé.
+
+]<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+	[<p class="reponse_formulaire reponse_formulaire_ok" role="status">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur" role="alert">(#ENV*{message_erreur})</p>]
+	<BOUCLE_editable(CONDITION){si #ENV{editable}}>
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE
+		<style>
+			.astra-hfb-table { width: 100%; margin-bottom: 1em; }
+			.astra-hfb-table th[scope=row] { text-align: left; font-weight: normal; }
+			.astra-hfb-table select, .astra-hfb-table input.text { width: 100%; box-sizing: border-box; }
+			.astra-hfb-table .astra-hfb-ordre { max-width: 5em; }
+			.astra-hfb-table tr.erreur th, .astra-hfb-table tr.erreur td { background: #fff0f0; }
+			.astra-hfb-table .erreur_message { display: block; }
+			.astra-hfb-reseaux .choix input.text { margin-left: 1.5em; width: calc(100% - 1.5em); }
+		</style>
+
+		<p class="explication"><:astra:hfb_explication:></p>
+
+		<BOUCLE_builders(DATA){source table, #VAL|astra_hfb_builders}>
+		#SET{builder,#CLE}
+		<fieldset class="astra-hfb-builder astra-hfb-builder-#CLE">
+			<legend>[(#VAL{astra:hfb_builder_}|concat{#CLE}|_T)]</legend>
+			<table class="spip astra-hfb-table">
+				<thead><tr><th scope="col"><:astra:hfb_element:></th><th scope="col"><:astra:hfb_emplacement:></th><th scope="col"><:astra:hfb_ordre:></th></tr></thead>
+				<tbody>
+				<BOUCLE_elements(DATA){source table, #GET{builder}|astra_hfb_elements_saisie}>
+				#SET{champ,#VAL{place_}|concat{#GET{builder},_,#VALEUR}}
+				#SET{actuel,#ENV{place}|table_valeur{#GET{builder}}|table_valeur{#VALEUR}}
+				#SET{erreur,#ENV**{erreurs}|table_valeur{#GET{champ}}}
+				<tr class="[(#GET{erreur}|oui)erreur]">
+					<th scope="row"><label for="#GET{champ}">[(#VALEUR|astra_hfb_libelle_element)]</label></th>
+					<td>
+						[<span class="erreur_message">(#GET{erreur})</span>]
+						<select name="place\[#GET{builder}\]\[#VALEUR\]" id="#GET{champ}">
+							<option value=""><:astra:hfb_non_affiche:></option>
+							<BOUCLE_zones(DATA){source table, #GET{builder}|astra_hfb_zones_saisie}>[(#GET{builder}|astra_hfb_zone_autorisee{#_elements:VALEUR,#VALEUR}|oui)
+							<option value="#VALEUR"[ (#VALEUR|=={#GET{actuel}}|oui)selected="selected"]>[(#VALEUR|astra_hfb_libelle_zone{#GET{builder}})]</option>]</BOUCLE_zones>
+						</select>
+					</td>
+					<td><input type="number" min="0" max="20" class="text astra-hfb-ordre" name="ordre\[#GET{builder}\]\[#VALEUR\]" value="[(#ENV{ordre}|table_valeur{#GET{builder}}|table_valeur{#VALEUR})]" aria-label="[(#VALEUR|astra_hfb_libelle_element|attribut_html)] : <:astra:hfb_ordre|attribut_html:>" /></td>
+				</tr>
+				</BOUCLE_elements>
+				</tbody>
+			</table>
+		</fieldset>
+		</BOUCLE_builders>
+
+		<fieldset>
+			<legend><:astra:hfb_menu_mobile:></legend>
+			<div class="editer-groupe">
+				<div class="editer editer_menu_mobile[ (#ENV**{erreurs}|table_valeur{menu_mobile}|oui)erreur]">
+					<label for="menu_mobile"><:astra:hfb_menu_mobile:></label>
+					[<span class="erreur_message">(#ENV**{erreurs}|table_valeur{menu_mobile})</span>]
+					<select name="menu_mobile" id="menu_mobile">
+						<option value="dropdown"[ (#ENV{menu_mobile}|=={dropdown}|oui)selected="selected"]><:astra:hfb_menu_mobile_dropdown:></option>
+						<option value="off-canvas"[ (#ENV{menu_mobile}|=={off-canvas}|oui)selected="selected"]><:astra:hfb_menu_mobile_off_canvas:></option>
+					</select>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend><:astra:hfb_reglages_entete:></legend>
+			<div class="editer-groupe">
+				<BOUCLE_menus_entete(DATA){liste menu-1,menu-2}>
+				<INCLURE{fond=formulaires/inc-astra-hfb-menu}{groupe=entete}{id=#VALEUR}{elements=#ENV{elements}} />
+				</BOUCLE_menus_entete>
+				<BOUCLE_textes_entete(DATA){liste html-1,html-2}>
+				<div class="editer editer_entete_#VALEUR">
+					<label for="entete_#VALEUR">[(#VALEUR|astra_hfb_libelle_element)]</label>
+					<textarea name="elements\[entete\]\[#VALEUR\]\[texte\]" id="entete_#VALEUR" rows="3">[(#ENV{elements}|table_valeur{entete}|table_valeur{#VALEUR}|table_valeur{texte})]</textarea>
+				</div>
+				</BOUCLE_textes_entete>
+				#SET{bouton,#ENV{elements}|table_valeur{entete}|table_valeur{button-1}}
+				<div class="editer editer_entete_button_libelle">
+					<label for="entete_button_libelle">[(#VAL{button-1}|astra_hfb_libelle_element)] : <:astra:hfb_libelle:></label>
+					<input type="text" class="text" name="elements\[entete\]\[button-1\]\[libelle\]" id="entete_button_libelle" value="[(#GET{bouton}|table_valeur{libelle})]" />
+				</div>
+				<div class="editer editer_entete_button_lien">
+					<label for="entete_button_lien">[(#VAL{button-1}|astra_hfb_libelle_element)] : <:astra:hfb_lien:></label>
+					<input type="text" class="text" name="elements\[entete\]\[button-1\]\[lien\]" id="entete_button_lien" value="[(#GET{bouton}|table_valeur{lien})]" />
+				</div>
+				<div class="editer editer_entete_button_onglet">
+					<div class="choix">
+						<input type="hidden" name="elements\[entete\]\[button-1\]\[nouvel_onglet\]" value="non" />
+						<input type="checkbox" name="elements\[entete\]\[button-1\]\[nouvel_onglet\]" id="entete_button_onglet" value="oui"[ (#GET{bouton}|table_valeur{nouvel_onglet}|=={oui}|oui)checked="checked"] />
+						<label for="entete_button_onglet">[(#VAL{button-1}|astra_hfb_libelle_element)] : <:astra:hfb_nouvel_onglet:></label>
+					</div>
+				</div>
+				<div class="editer editer_entete_button_style">
+					<label for="entete_button_style">[(#VAL{button-1}|astra_hfb_libelle_element)] : <:astra:hfb_style:></label>
+					<select name="elements\[entete\]\[button-1\]\[style\]" id="entete_button_style">
+						<option value="plein"><:astra:hfb_style_plein:></option>
+						<option value="contour"[ (#GET{bouton}|table_valeur{style}|=={contour}|oui)selected="selected"]><:astra:hfb_style_contour:></option>
+					</select>
+				</div>
+				<INCLURE{fond=formulaires/inc-astra-hfb-reseaux}{groupe=entete}{elements=#ENV{elements}} />
+				<BOUCLE_widgets_entete(DATA){liste widget-1,widget-2}>
+				<INCLURE{fond=formulaires/inc-astra-hfb-widget}{groupe=entete}{id=#VALEUR}{elements=#ENV{elements}} />
+				</BOUCLE_widgets_entete>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend><:astra:hfb_reglages_pied:></legend>
+			<div class="editer-groupe">
+				<INCLURE{fond=formulaires/inc-astra-hfb-menu}{groupe=pied}{id=menu}{elements=#ENV{elements}} />
+				<div class="editer editer_pied_menu_disposition">
+					<label for="pied_menu_disposition"><:astra:hfb_disposition:></label>
+					<select name="elements\[pied\]\[menu\]\[disposition\]" id="pied_menu_disposition">
+						<option value="horizontal"><:astra:hfb_disposition_horizontal:></option>
+						<option value="vertical"[ (#ENV{elements}|table_valeur{pied}|table_valeur{menu}|table_valeur{disposition}|=={vertical}|oui)selected="selected"]><:astra:hfb_disposition_vertical:></option>
+					</select>
+				</div>
+				<BOUCLE_textes_pied(DATA){liste html-1,html-2}>
+				<div class="editer editer_pied_#VALEUR">
+					<label for="pied_#VALEUR">[(#VALEUR|astra_hfb_libelle_element)]</label>
+					<textarea name="elements\[pied\]\[#VALEUR\]\[texte\]" id="pied_#VALEUR" rows="3">[(#ENV{elements}|table_valeur{pied}|table_valeur{#VALEUR}|table_valeur{texte})]</textarea>
+				</div>
+				</BOUCLE_textes_pied>
+				<INCLURE{fond=formulaires/inc-astra-hfb-reseaux}{groupe=pied}{elements=#ENV{elements}} />
+				<BOUCLE_widgets_pied(DATA){liste widget-1,widget-2,widget-3,widget-4}>
+				<INCLURE{fond=formulaires/inc-astra-hfb-widget}{groupe=pied}{id=#VALEUR}{elements=#ENV{elements}} />
+				</BOUCLE_widgets_pied>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend><:astra:hfb_reglages_rangees:></legend>
+			<p class="explication"><:astra:hfb_explication_rangees:></p>
+			<table class="spip astra-hfb-table">
+				<thead><tr><th scope="col"><:astra:hfb_rangee:></th><th scope="col"><:astra:hfb_hauteur:></th><th scope="col"><:astra:hfb_fond:></th><th scope="col"><:astra:hfb_bordure:></th><th scope="col"><:astra:hfb_colonnes:></th><th scope="col"><:astra:hfb_repartition:></th></tr></thead>
+				<tbody>
+				<BOUCLE_rangees(DATA){source table, #VAL|astra_hfb_defauts|table_valeur{rangees}}>
+				#SET{cle,#CLE}
+				#SET{r,#ENV{rangees}|table_valeur{#CLE}}
+				#SET{libelle,#VAL{astra:hfb_rangee_}|concat{#CLE}|_T}
+				<tr>
+					<th scope="row">#GET{libelle}<BOUCLE_erreurs_rangee(DATA){liste hauteur,fond,bordure,colonnes,repartition}>[<span class="erreur_message">(#ENV**{erreurs}|table_valeur{#VAL{rangees_}|concat{#GET{cle},_,#VALEUR}})</span>]</BOUCLE_erreurs_rangee></th>
+					<td><input type="number" min="0" max="999" class="text" name="rangees\[#CLE\]\[hauteur\]" value="[(#GET{r}|table_valeur{hauteur})]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_hauteur|attribut_html:>" /></td>
+					<td><input type="text" class="text" pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" placeholder="#eeeeee" name="rangees\[#CLE\]\[fond\]" value="[(#GET{r}|table_valeur{fond})]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_fond|attribut_html:>" /></td>
+					<td>[(#VALEUR|table_valeur{bordure}|strlen|oui)<input type="number" min="0" max="20" class="text" name="rangees\[#CLE\]\[bordure\]" value="[(#GET{r}|table_valeur{bordure})]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_bordure|attribut_html:>" />]</td>
+					<BOUCLE_si_colonnes(CONDITION){si #VALEUR|table_valeur{colonnes}}>
+					<td>
+						<select name="rangees\[#GET{cle}\]\[colonnes\]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_colonnes|attribut_html:>">
+							<BOUCLE_nb(DATA){enum 1,6}><option value="#VALEUR"[ (#VALEUR|=={#GET{r}|table_valeur{colonnes}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_nb>
+						</select>
+					</td>
+					<td>
+						<select name="rangees\[#GET{cle}\]\[repartition\]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_repartition|attribut_html:>">
+							<BOUCLE_nb_rep(DATA){enum 1,6}><BOUCLE_rep(DATA){source table, #VALEUR|astra_hfb_repartitions}><option value="#VALEUR"[ (#VALEUR|=={#GET{r}|table_valeur{repartition}}|oui)selected="selected"]>[(#VAL{astra:hfb_repartition_}|concat{#VALEUR|replace{-,_}}|_T)]</option></BOUCLE_rep></BOUCLE_nb_rep>
+						</select>
+					</td>
+					</BOUCLE_si_colonnes>
+					<td></td><td></td>
+					<//B_si_colonnes>
+				</tr>
+				</BOUCLE_rangees>
+				</tbody>
+			</table>
+		</fieldset>
+
+		<p class="boutons"><input type="submit" class="btn submit" value="<:bouton_enregistrer:>" /></p>
+	</div></form>
+	</BOUCLE_editable>
+</div>

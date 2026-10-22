@@ -1,0 +1,19 @@
+[(#REM)
+
+	Formulaire du builder : icônes sociales d'un groupe (en-tête ou pied de page).
+
+	Paramètres : groupe (entete | pied), elements (valeurs du formulaire)
+
+]#SET{reseaux,#ENV{elements}|table_valeur{#ENV{groupe}}|table_valeur{social-icons-1}|table_valeur{reseaux}}<div class="editer editer_#ENV{groupe}_reseaux astra-hfb-reseaux">
+	<span class="label">[(#VAL{social-icons-1}|astra_hfb_libelle_element)]</span>
+	<p class="explication"><:astra:hfb_explication_reseaux:></p>
+	<BOUCLE_reseaux(DATA){source table, #VAL|astra_hfb_reseaux}>
+	#SET{r,#GET{reseaux}|table_valeur{#CLE}}
+	<div class="choix">
+		<input type="hidden" name="elements\[#ENV{groupe}\]\[social-icons-1\]\[reseaux\]\[#CLE\]\[afficher\]" value="" />
+		<input type="checkbox" name="elements\[#ENV{groupe}\]\[social-icons-1\]\[reseaux\]\[#CLE\]\[afficher\]" id="#ENV{groupe}_reseau_#CLE" value="oui"[ (#GET{r}|table_valeur{afficher}|=={oui}|oui)checked="checked"] />
+		<label for="#ENV{groupe}_reseau_#CLE">[(#VALEUR|table_valeur{0})]</label>
+		<input type="text" class="text" name="elements\[#ENV{groupe}\]\[social-icons-1\]\[reseaux\]\[#CLE\]\[url\]" value="[(#GET{r}|table_valeur{url})]" placeholder="[(#CLE|=={email}|?{adresse@exemple.org,https://})]" aria-label="[(#VALEUR|table_valeur{0}|attribut_html)] : <:astra:hfb_adresse|attribut_html:>" />
+	</div>
+	</BOUCLE_reseaux>
+</div>

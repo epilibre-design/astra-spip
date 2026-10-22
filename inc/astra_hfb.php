@@ -44,7 +44,7 @@ function astra_hfb_defauts(): array {
 			'entete_below' => ['hauteur' => 60, 'fond' => '', 'bordure' => 1],
 			'pied_above' => ['colonnes' => 2, 'repartition' => '2-equal', 'hauteur' => 60, 'fond' => ''],
 			'pied_primary' => ['colonnes' => 3, 'repartition' => '3-equal', 'hauteur' => '', 'fond' => ''],
-			'pied_below' => ['colonnes' => 1, 'repartition' => 'full', 'hauteur' => 80, 'fond' => ''],
+			'pied_below' => ['colonnes' => 1, 'repartition' => 'full', 'hauteur' => 60, 'fond' => ''],
 		],
 		'menu_mobile' => 'dropdown',
 		'elements' => [
@@ -299,4 +299,34 @@ function astra_hfb_calculer_pied(array $items, array $rangees): array {
 		];
 	}
 	return $resultat;
+}
+
+/**
+ * CSS des réglages de rangées qui diffèrent des valeurs par défaut d'Astra
+ * (hauteur minimale, couleur de fond, épaisseur de la bordure basse de l'en-tête).
+ */
+function astra_hfb_css_rangees(array $rangees): string {
+	$defauts = astra_hfb_defauts()['rangees'];
+	$css = [];
+	foreach ($defauts as $cle => $defaut) {
+		$r = array_replace($defaut, $rangees[$cle] ?? []);
+		[$partie, $rangee] = explode('_', $cle, 2);
+		if ($partie === 'entete') {
+			$barre = '.ast-' . $rangee . '-header-bar';
+			$hauteur = '.ast-mobile-header-wrap ' . $barre . ', ' . $barre . ' .site-' . $rangee . '-header-wrap';
+		} else {
+			$barre = '.site-' . $rangee . '-footer-wrap[data-section="section-' . $rangee . '-footer-builder"]';
+			$hauteur = $barre . ', ' . $barre . ' .ast-builder-grid-row';
+		}
+		if ((string) $r['hauteur'] !== (string) $defaut['hauteur'] && preg_match('/^\d{1,4}$/', (string) $r['hauteur'])) {
+			$css[] = $hauteur . '{min-height:' . (int) $r['hauteur'] . 'px;}';
+		}
+		if ($r['fond'] !== $defaut['fond'] && preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', (string) $r['fond'])) {
+			$css[] = $barre . ', .ast-header-break-point ' . $barre . '{background-color:' . $r['fond'] . ';}';
+		}
+		if (isset($defaut['bordure']) && (string) $r['bordure'] !== (string) $defaut['bordure'] && preg_match('/^\d{1,2}$/', (string) $r['bordure'])) {
+			$css[] = $barre . '{border-bottom-width:' . (int) $r['bordure'] . 'px;}';
+		}
+	}
+	return implode("\n", $css);
 }

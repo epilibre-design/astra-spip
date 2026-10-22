@@ -15,6 +15,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 define('_ASTRA_VERSION_THEME', '4.11.0');
 
 include_once __DIR__ . '/inc/astra_hfb.php';
+include_once __DIR__ . '/inc/astra_hfb_saisie.php';
 
 /**
  * Configuration du builder d'en-tête et de pied de page, normalisée.
@@ -86,6 +87,13 @@ function astra_hfb_bouton(string $groupe, string $id): array {
 		'cible' => ($r['nouvel_onglet'] ?? 'non') === 'oui' ? '_blank' : '_self',
 		'contour' => ($r['style'] ?? 'plein') === 'contour',
 	];
+}
+
+/**
+ * CSS des réglages de rangées du builder (vide avec les réglages par défaut).
+ */
+function astra_hfb_css(): string {
+	return astra_hfb_css_rangees(astra_hfb_config()['rangees']);
 }
 
 /**
@@ -321,3 +329,45 @@ function astra_extrait($texte, int $mots = 55): string {
 	}
 	return $texte;
 }
+
+/**
+ * Libellé d'un élément du builder dans le formulaire de configuration.
+ */
+function astra_hfb_libelle_element(string $id): string {
+	return _T('astra:hfb_element_' . str_replace('-', '_', $id));
+}
+
+/**
+ * Libellé d'une zone du builder : « Rangée principale, droite », « Rangée basse, colonne 2 »…
+ */
+function astra_hfb_libelle_zone(string $zone, string $builder = ''): string {
+	if ($zone === 'popup_content') {
+		return _T('astra:hfb_zone_popup');
+	}
+	[$rangee, $position] = explode('_', $zone, 2);
+	$position = ctype_digit($position)
+		? _T('astra:hfb_zone_colonne', ['n' => $position])
+		: _T('astra:hfb_zone_' . $position);
+	return _T('astra:hfb_rangee_' . $rangee) . ', ' . $position;
+}
+
+/**
+ * Sources proposées pour un menu : valeur du champ source_id => libellé.
+ */
+function astra_hfb_sources_menu(): array {
+	include_spip('base/abstract_sql');
+	$sources = ['racine' => _T('astra:hfb_source_racine')];
+	foreach (sql_allfetsel('id_rubrique, titre', 'spip_rubriques', '', '', 'titre') as $r) {
+		$sources['rubrique:' . $r['id_rubrique']] = _T('astra:hfb_source_rubrique', ['titre' => supprimer_numero(typo($r['titre']))]);
+	}
+	if (test_plugin_actif('mots')) {
+		foreach (sql_allfetsel('id_groupe, titre', 'spip_groupes_mots', '', '', 'titre') as $g) {
+			$sources['groupe_mots:' . $g['id_groupe']] = _T('astra:hfb_source_groupe_mots', ['titre' => supprimer_numero(typo($g['titre']))]);
+		}
+	}
+	if (test_plugin_actif('pages')) {
+		$sources['pages'] = _T('astra:hfb_source_pages');
+	}
+	return $sources;
+}
+

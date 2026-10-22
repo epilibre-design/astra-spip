@@ -1,0 +1,24 @@
+[(#REM)
+
+	Formulaire du builder : contenu d'une zone de widgets.
+
+	Paramètres : groupe (entete | pied), id (widget-N), elements (valeurs du formulaire)
+
+]#SET{w,#ENV{elements}|table_valeur{#ENV{groupe}}|table_valeur{#ENV{id}}}#SET{choisis,#GET{w}|table_valeur{blocs}|sinon{#ARRAY}}#SET{libelle,#ENV{id}|astra_hfb_libelle_element}<div class="editer editer_#ENV{groupe}_[(#ENV{id})]_blocs astra-hfb-widget">
+	<span class="label">#GET{libelle} : <:astra:hfb_blocs:></span>
+	<input type="hidden" name="elements\[#ENV{groupe}\]\[#ENV{id}\]\[blocs\]\[\]" value="" />
+	<BOUCLE_blocs(DATA){source table, #VAL|astra_hfb_blocs}>
+	<div class="choix">
+		<input type="checkbox" name="elements\[#ENV{groupe}\]\[#ENV{id}\]\[blocs\]\[\]" id="#ENV{groupe}_#ENV{id}_#VALEUR" value="#VALEUR"[ (#VALEUR|in_array{#GET{choisis}}|oui)checked="checked"] />
+		<label for="#ENV{groupe}_#ENV{id}_#VALEUR">[(#VAL{astra:hfb_bloc_}|concat{#VALEUR}|_T)]</label>
+	</div>
+	</BOUCLE_blocs>
+</div>
+<div class="editer editer_#ENV{groupe}_[(#ENV{id})]_titre">
+	<label for="#ENV{groupe}_#ENV{id}_titre">#GET{libelle} : <:astra:hfb_titre_texte:></label>
+	<input type="text" class="text" name="elements\[#ENV{groupe}\]\[#ENV{id}\]\[titre\]" id="#ENV{groupe}_#ENV{id}_titre" value="[(#GET{w}|table_valeur{titre})]" />
+</div>
+<div class="editer editer_#ENV{groupe}_[(#ENV{id})]_texte">
+	<label for="#ENV{groupe}_#ENV{id}_texte">#GET{libelle} : <:astra:hfb_texte:></label>
+	<textarea name="elements\[#ENV{groupe}\]\[#ENV{id}\]\[texte\]" id="#ENV{groupe}_#ENV{id}_texte" rows="3">[(#GET{w}|table_valeur{texte})]</textarea>
+</div>

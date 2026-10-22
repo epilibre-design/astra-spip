@@ -206,4 +206,22 @@ final class HfbTest extends TestCase {
 		$rangees = astra_hfb_calculer_pied($c['pied'], $c['rangees']);
 		$this->assertStringContainsString('ast-builder-grid-row-full ', $rangees[0]['classes']);
 	}
+
+	// CSS des rangées
+
+	public function testCssDesRangeesVideParDefaut(): void {
+		$this->assertSame('', astra_hfb_css_rangees(astra_hfb_normaliser([])['rangees']));
+	}
+
+	public function testCssDesRangeesModifiees(): void {
+		$c = astra_hfb_normaliser(['rangees' => [
+			'entete_above' => ['hauteur' => 40, 'fond' => '#112233', 'bordure' => 0],
+			'pied_primary' => ['fond' => 'red;}body{display:none'],
+		]]);
+		$css = astra_hfb_css_rangees($c['rangees']);
+		$this->assertStringContainsString('.ast-mobile-header-wrap .ast-above-header-bar, .ast-above-header-bar .site-above-header-wrap{min-height:40px;}', $css);
+		$this->assertStringContainsString('.ast-above-header-bar, .ast-header-break-point .ast-above-header-bar{background-color:#112233;}', $css);
+		$this->assertStringContainsString('.ast-above-header-bar{border-bottom-width:0px;}', $css);
+		$this->assertStringNotContainsString('display:none', $css);
+	}
 }

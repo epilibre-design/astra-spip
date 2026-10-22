@@ -4,13 +4,15 @@
 // menu mobile attendu qui ne s'ouvre pas.
 const fs = require('fs');
 const { chromium } = require('playwright');
+// SPIP sert toujours le cache aux robots, dont HeadlessChrome : se présenter comme un navigateur ordinaire.
+const AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36';
 (async () => {
   const [url, dossier, fichierAttendu] = process.argv.slice(2);
   const attendu = JSON.parse(fs.readFileSync(fichierAttendu, 'utf8'));
   const echecs = [];
   const browser = await chromium.launch({ executablePath: process.env.HOME + '/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome' });
   for (const [nom, largeur] of [['ordinateur', 1280], ['mobile', 390]]) {
-    const page = await browser.newPage({ viewport: { width: largeur, height: 900 } });
+    const page = await browser.newPage({ viewport: { width: largeur, height: 900 }, userAgent: AGENT });
     page.on('pageerror', e => echecs.push(`${nom} : erreur JavaScript : ${e.message}`));
     await page.goto(url, { waitUntil: 'load', timeout: 90000 });
     await page.screenshot({ path: `${dossier}/${nom}.png`, fullPage: true });

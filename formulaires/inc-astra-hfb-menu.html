@@ -1,0 +1,12 @@
+[(#REM)
+
+	Formulaire du builder : choix de la source d'un menu.
+
+	Paramètres : groupe (entete | pied), id (menu-1, menu-2, menu), elements (valeurs du formulaire)
+
+]#SET{actuel,#ENV{elements}|table_valeur{#ENV{groupe}}|table_valeur{#ENV{id}}|table_valeur{source_id}}<div class="editer editer_#ENV{groupe}_#ENV{id}_source">
+	<label for="#ENV{groupe}_#ENV{id}_source">[(#ENV{id}|astra_hfb_libelle_element)] : <:astra:hfb_source:></label>
+	<select name="elements\[#ENV{groupe}\]\[#ENV{id}\]\[source_id\]" id="#ENV{groupe}_#ENV{id}_source">
+		<BOUCLE_sources(DATA){source table, #VAL|astra_hfb_sources_menu}><option value="#CLE"[ (#CLE|=={#GET{actuel}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_sources>
+	</select>
+</div>
