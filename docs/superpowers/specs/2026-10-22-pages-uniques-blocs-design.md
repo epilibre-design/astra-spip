@@ -1,6 +1,6 @@
 # Pages uniques et blocs natifs WordPress — spécification
 
-Date : 2026-10-22. Statut : à relire.
+Date : 2026-10-22. Statut : à relire (révisée après la première relecture de Codex).
 
 ## Objectif
 
@@ -88,10 +88,22 @@ au lieu du gabarit d'article :
   Sur la référence, la page d'exemple a `ast-plain-container ast-no-sidebar` : pas de barre
   latérale par défaut, contrairement aux articles.
 
-**Sélection du gabarit** : pipeline `styliser`. Pour le fond `article` d'un article dont
-`id_rubrique = -1`, le squelette `page_unique.html` du plugin est choisi s'il existe dans le
-chemin. Un squelette de site peut ainsi le surcharger. Le pipeline n'agit que si le plugin Pages
-est actif. Le reste de la page (`head`, en-tête, pied) reprend les inclusions existantes.
+**Sélection du gabarit** : pipeline `styliser` d'Astra SPIP, pour le fond `article` d'un article
+dont `id_rubrique = -1`, seulement si le plugin Pages est actif. Le plugin Pages a lui-même un
+pipeline `styliser` qui choisit `article=<identifiant de la page>.html` quand ce squelette existe.
+Priorité, de la plus forte à la plus faible :
+
+1. variante propre à une page, `article=<page>.html`, choisie par Pages (dans un squelette de site
+   ou un plugin) : Astra SPIP ne remplace jamais ce choix ;
+2. `page_unique.html` du site (dossier `squelettes/` ou plugin placé avant Astra dans le chemin) ;
+3. `page_unique.html` d'Astra SPIP.
+
+En pratique, le pipeline d'Astra SPIP n'agit que si le squelette retenu jusque-là est
+`article.html` (fond `article` résolu sans variante) ; il cherche alors `page_unique.html` avec
+`find_in_path()`, ce qui donne la priorité au site sur le plugin. Il ne dépend pas de l'ordre
+d'exécution des deux pipelines : si celui d'Astra SPIP passe avant celui de Pages, Pages remplace
+de toute façon le résultat par sa variante quand elle existe (à vérifier dans le test de
+coexistence). Le reste de la page (`head`, en-tête, pied) reprend les inclusions existantes.
 
 Alternative écartée : une condition dans `article.html`. Elle mélangerait les deux gabarits dans
 un même fichier, et `[( )]` ne peut pas contenir d'inclusion : il faudrait des boucles
@@ -103,10 +115,14 @@ Astra n'affiche pas les sous-pages dans le contenu d'une page ; WordPress les mo
 menu (sous-menus d'un menu de pages). Le portage fait de même :
 
 - **source de menu `pages`** :
-  - premier niveau : pages uniques publiées qui ne sont l'enfant d'aucune autre (pas de lien
-    `sous_page` entrant), triées par numéro puis titre ;
-  - second niveau (menus à sous-menus de l'en-tête et menu mobile) : leurs enfants, par `rang`
-    du lien `sous_page` ;
+  - premier niveau : pages uniques publiées **sans parente publiée** : aucune page publiée ne
+    leur est liée par un lien `sous_page` entrant. Une page dont la parente est dépubliée,
+    supprimée ou n'est plus une page unique remonte ainsi au premier niveau au lieu de
+    disparaître du menu. Tri par numéro puis titre ;
+  - second niveau (menus à sous-menus de l'en-tête et menu mobile) : leurs enfants publiés, par
+    `rang` du lien `sous_page` ;
+  - une page enfant de plusieurs parentes publiées (liens multiples, possibles dans a2a) apparaît
+    sous chacune d'elles ;
   - état actif : `current-menu-item` sur la page affichée, `current-menu-ancestor` sur sa page
     parente ;
   - au-delà de deux niveaux : non affiché, comme pour les rubriques ;
@@ -141,17 +157,52 @@ Astra permet, page par page, de masquer le titre et de choisir la disposition du
 les pages de Garden Maintenance utilisent « titre masqué » et « pleine largeur ». Le portage
 propose deux réglages par page unique :
 
-- `titre` : `afficher` (défaut) ou `masquer` (titre gardé pour les lecteurs d'écran, avec la classe
-  `screen-reader-text`, comme le fait Astra) ;
-- `disposition` : `defaut` (celle des pages), `normale`, `etroite` ou `pleine` (conteneur pleine
-  largeur, sans barre latérale), avec les classes d'Astra correspondantes (`ast-plain-container`,
-  `ast-narrow-container`, `ast-full-width-layout`…, relevées sur la référence).
+- `titre` : `afficher` (défaut) ou `masquer`. Comme dans Astra (`site-post-title` à `disabled`),
+  le titre **n'est pas produit** : pas de titre caché pour les lecteurs d'écran, qui doublerait le
+  titre de niveau 1 que ces pages placent en général dans leur contenu (c'est le cas des six
+  pages de Garden Maintenance). Le titre du document (`<title>`) reste celui de la page ;
+- `disposition` : `defaut`, `normale`, `etroite` ou `pleine`, définies ci-dessous.
+
+**Dispositions.** Elles reprennent les dispositions de contenu d'Astra (`astra_get_content_layout()`
+et classes du `body` dans `inc/markup-extras.php`) :
+
+| Valeur SPIP | Disposition Astra | Classe du `body` | Largeur du contenu | Barre latérale |
+|---|---|---|---|---|
+| `defaut` | réglage des pages (`single-page-ast-content-layout`) | celle de la disposition retenue | — | — |
+| `normale` | `normal-width-container` → `plain-container` | `ast-plain-container` | `--ast-normal-container-width` | selon le réglage des pages |
+| `etroite` | `narrow-width-container` → `narrow-container` | `ast-narrow-container` | `--ast-narrow-container-width` | aucune (Astra n'en affiche pas en disposition étroite) |
+| `pleine` | `full-width-container` → `page-builder` | `ast-page-builder-template` | toute la largeur, sans marge du conteneur | aucune |
+
+Sur la référence WordPress, la disposition des pages par défaut donne `ast-plain-container
+ast-no-sidebar`. Le HTML et le CSS de chaque disposition sont relevés sur les références P1 et P3,
+pas déduits.
 
 Stockage : méta `astra`, sous-clé `pages/<id_article>` (pas de champ ajouté à `spip_articles`).
-Saisie : petit formulaire CVT `configurer_astra_page` affiché sur la fiche d'une page unique dans
-l'espace privé (pipeline `affiche_milieu`), réservé à qui peut modifier la page. La configuration
-d'une page supprimée est ignorée ; elle est effacée par le pipeline `trig_supprimer_objets_lies`
-s'il est disponible.
+
+Saisie : formulaire CVT **`editer_astra_page`**, appelé avec `id_article`, affiché sur la fiche
+d'une page unique dans l'espace privé (pipeline `affiche_milieu`). Le nom `configurer_*` est écarté :
+SPIP (`ecrire/inc/cvt_configurer.php`) impose à tout formulaire `configurer_*`, même doté de ses
+propres fonctions CVT, l'autorisation `configurer`, réservée aux administrateurs ; un rédacteur
+autorisé à modifier la page en serait exclu. `charger()` et `traiter()` vérifient
+`autoriser('modifier', 'article', $id_article)` et que l'article est une page unique
+(`id_rubrique = -1`) ; sinon le formulaire n'est pas éditable et rien n'est enregistré.
+
+La configuration d'une page supprimée est ignorée à l'affichage ; elle est effacée par le pipeline
+`trig_supprimer_objets_lies` s'il est disponible.
+
+**Contexte transmis aux composants.** Le gabarit de page (et l'accueil statique) transmet aux
+inclusions le contexte déjà utilisé par le builder, complété :
+
+| Paramètre | Valeur |
+|---|---|
+| `type_page` | `page` (`sommaire` pour l'accueil, avec `accueil_page` renseigné) |
+| `id_article` | la page affichée |
+| `id_rubrique`, `id_secteur` | vides (une page unique n'a pas de rubrique) |
+| `titre` | `afficher` ou `masquer` (réglage effectif, défaut résolu) |
+| `disposition` | `normale`, `etroite` ou `pleine` (défaut résolu) |
+
+Une fonction `astra_page_reglages($id_article)` renvoie le réglage effectif (valeurs par défaut
+résolues) ; squelettes et tests s'appuient sur elle plutôt que sur la méta.
 
 L'import de ces réglages depuis les métadonnées WordPress (`site-post-title`,
 `ast-site-content-layout`) relève de wp2spip et n'est pas fait ici (voir « Suites »).
@@ -171,11 +222,30 @@ modification à la main :
 3. règles de `global-styles-inline-css` de la page de démonstration (variables des préréglages,
    dispositions par bloc).
 
-Le générateur ne garde une règle que si **tous ses sélecteurs peuvent correspondre** à du HTML
-importé : chaque classe d'un sélecteur doit commencer par `wp-block-`, ou être une classe
-produite par SPIP et explicitement associée (liste ci-dessous). Les règles ne visant que des
-classes perdues (`has-*`, `is-style-*`, `wp-container-*`…) sont écartées. Les règles déjà présentes
-à l'identique dans `css/astra-dynamic.css` ne sont pas répétées.
+Le générateur décide, **sélecteur par sélecteur**, si un sélecteur peut encore correspondre au
+HTML importé, où ne restent que les classes `wp-block-*` (et les classes produites par SPIP
+associées en B2). Un simple filtrage des noms de classes ne suffit pas :
+`.wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column` reste applicable après
+l'import, puisque la classe niée a disparu et que la négation devient vraie ; c'est cette règle qui
+empile les colonnes sur mobile.
+
+Règles d'évaluation, sur l'arbre du sélecteur (analyseur CSS, pas expressions régulières) :
+
+- une classe positive (`.x`, hors négation) : satisfiable si elle est conservée ; une classe perdue
+  rend le sélecteur composé insatisfiable ;
+- `:not(liste)` : toujours satisfiable si la liste ne vise que des classes perdues (elle est alors
+  toujours vraie) ; si elle vise des classes conservées, elle reste telle quelle ;
+- `:is(liste)` et `:where(liste)` : satisfiables si au moins une branche l'est ; les branches
+  insatisfiables sont retirées, la pseudo-classe gardée avec les autres (la spécificité de
+  `:where()` reste nulle) ;
+- sélecteurs d'attribut sur `style` (`[style*=flex-basis]`) : insatisfiables, wp2spip retire
+  l'attribut `style` ;
+- liste de sélecteurs d'une règle : les branches insatisfiables sont retirées, la règle est gardée
+  avec les autres ; elle n'est écartée que si aucune branche ne reste.
+
+Les règles déjà présentes à l'identique dans `css/astra-dynamic.css` ne sont pas répétées. La
+liste des classes conservées est celle de wp2spip (`wp2spip_balise_nettoyee()` : préfixe
+`wp-block-`), relue dans son code à la version de référence.
 
 La feuille est chargée après `css/astra-dynamic.css`, avant `css/astra-hfb.css`. Elle est
 volumineuse mais statique ; le chargement conditionnel par bloc n'est pas fait (voir « Suites »).
@@ -226,10 +296,19 @@ Même méthode que pour le builder : références WordPress, rendu SPIP, compara
 - **Intégration (PHPUnit)** sur le SPIP 4.4 de test, avec Pages et a2a installés par
   `scripts/install-spip-test.sh` :
   - gabarit choisi par `styliser` pour une page unique, pas pour un article ;
+  - coexistence avec Pages : une variante `article=<page>.html` l'emporte sur `page_unique.html` ;
+    un `page_unique.html` du site l'emporte sur celui d'Astra SPIP ; les deux ordres d'exécution
+    des pipelines donnent le même résultat ;
   - absence des métadonnées et de la navigation ; classes du `body` ;
   - menu de pages à deux niveaux, ordre par `rang`, états courant et ancêtre ; liste à plat sans a2a ;
+  - parente dépubliée : l'enfant publié remonte au premier niveau ; parente republiée : il revient
+    en sous-menu ;
   - accueil statique : rendu, repli si la page est dépubliée, vérification du formulaire ;
-  - réglages par page : titre masqué, disposition, droits du formulaire.
+  - réglages par page : titre absent du HTML quand il est masqué, classes et largeur de chaque
+    disposition, contexte transmis aux inclusions ;
+  - droits du formulaire `editer_astra_page` : un rédacteur auteur de la page (autorisé à la
+    modifier, pas à configurer le site) peut enregistrer ; un rédacteur non auteur ne le peut pas ;
+    un article ordinaire est refusé.
 - **Comparaisons** : `comparer_html.php` et `comparer_captures.sh` étendus à `#content`
   (gabarit de page), en plus de l'en-tête et du pied, pour P1 à P3.
 
@@ -240,14 +319,28 @@ Même méthode que pour le builder : références WordPress, rendu SPIP, compara
   citation et citation en exergue, tableau avec en-tête, boutons groupés, couverture, média et
   texte).
 - **Import réel par wp2spip** dans un SPIP de test dédié (dépôt local `/src/wordpress/wp2spip`,
-  commande `wordpress:importer`), pour mesurer le HTML effectivement produit, pas une
-  approximation. Le texte importé est exporté (`tests/references/sorties/blocs/texte.spip`,
-  non versionné) puis inséré dans un article du SPIP d'intégration.
+  commande `wordpress:importer`), avec Astra SPIP actif, pour mesurer le HTML effectivement
+  produit, pas une approximation. **La comparaison se fait sur ce site importé**, servi par
+  `php -S` : le texte n'est pas recopié dans un autre site, car ses raccourcis `<docN>` et
+  `<imgN>` désignent des documents de sa propre base. Le site importé est recréé par un script
+  (`scripts/install-spip-blocs.sh`), à partir du WordPress de test.
+- **Médias** : la page de démonstration utilise des images créées pour les tests (versionnées, de
+  licence libre consignée). Le test vérifie que chaque couverture et chaque bloc média et texte
+  affiche le document issu de **la même image** que dans WordPress (correspondance par empreinte
+  du fichier original), pas seulement qu'un document est présent.
 - **Comparaison** bloc par bloc : capture de chaque bloc dans WordPress et dans SPIP, ordinateur et
-  mobile. Seuil : 1 % de pixels différents pour les blocs sans classe perdue ; pour les autres,
-  l'écart attendu est consigné dans `tests/references/README.md` et vérifié comme tel.
-- **Générateur** : test unitaire du filtre de sélecteurs (règle gardée, écartée, sélecteur
-  multiple partiellement valide).
+  mobile, seuil de 1 % de pixels différents. Un bloc ne peut dépasser ce seuil que pour une
+  **perte d'import caractérisée**, consignée dans `tests/references/README.md` sous la forme :
+  bloc, classe ou attribut perdu (relevé dans le HTML de WordPress et absent du HTML importé),
+  propriété CSS concernée, effet visible attendu. Le test vérifie alors cette perte précise (par
+  exemple : propriété calculée égale à la valeur par défaut) et le reste du bloc avec le seuil
+  habituel, en masquant uniquement la zone concernée. Un écart sans perte caractérisée est un
+  défaut à corriger, pas une exception.
+- **Générateur** : tests unitaires de l'évaluation des sélecteurs : classe conservée ou perdue,
+  `:not()` sur classe perdue (`.wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column`
+  gardé) et sur classe conservée, `:is()` et `:where()` avec branches mixtes (branches retirées,
+  pseudo-classe gardée), attribut `style`, liste de sélecteurs partiellement valide, règles dans
+  une media query.
 
 ### Non-régression
 
