@@ -6,14 +6,52 @@ Usage : python3 tests/references/extraire_css.py [sorties] > css/astra-hfb.css
 
 Compare le CSS dynamique des configurations R1 à R4 à celui de R0 (disposition par
 défaut, déjà portée dans css/astra-dynamic.css) et ne garde que les règles absentes de R0,
-règle par règle, y compris à l'intérieur des media queries : une règle de R0 n'est jamais
-recopiée, pour ne pas annuler les adaptations de css/astra-dynamic.css.
+règle par règle, y compris à l'intérieur des media queries : une règle de R0 n'est recopiée
+que pour respecter l'ordre de la cascade (voir main). S'y ajoutent les grilles de toutes les
+répartitions de colonnes du pied, et la largeur des rangées du pied suit celle du thème.
 """
 import os
 import re
 import sys
 
 CONFIGURATIONS = ['R1-entete-complet', 'R2-entete-centre', 'R3-pied-colonnes', 'R4-pied-asymetrique']
+
+# Répartitions des colonnes du pied : Astra_Builder_Helper::$grid_size_mapping (Astra 4.11.0).
+# Astra n'émet que les règles des répartitions configurées ; le formulaire SPIP les propose
+# toutes, d'où la table complète, reprise de Astra_Builder_Base_Dynamic_CSS::footer_dynamic_css()
+# (aperçu du personnalisateur) : ordinateur, tablette puis mobile.
+GRILLES = [
+    ('6-equal', 'repeat( 6, 1fr )'), ('5-equal', 'repeat( 5, 1fr )'), ('4-equal', 'repeat( 4, 1fr )'),
+    ('4-lheavy', '2fr 1fr 1fr 1fr'), ('4-rheavy', '1fr 1fr 1fr 2fr'), ('3-equal', 'repeat( 3, 1fr )'),
+    ('3-lheavy', '2fr 1fr 1fr'), ('3-rheavy', '1fr 1fr 2fr'), ('3-cheavy', '1fr 2fr 1fr'),
+    ('3-cwide', '1fr 3fr 1fr'), ('3-firstrow', '1fr 1fr'), ('3-lastrow', '1fr 1fr'),
+    ('2-equal', 'repeat( 2, 1fr )'), ('2-lheavy', '2fr 1fr'), ('2-rheavy', '1fr 2fr'), ('2-full', '2fr'),
+    ('full', '1fr'),
+]
+TABLETTE, MOBILE = '@media (max-width:921px)', '@media (max-width:544px)'
+
+
+def grilles():
+    """Règles grid-template-columns de toutes les répartitions, comme l'aperçu d'Astra."""
+    resultat = []
+    for nom, colonnes in GRILLES:
+        if nom not in ('3-firstrow', '3-lastrow'):
+            resultat.append(('', '.ast-builder-grid-row-%s .ast-builder-grid-row{grid-template-columns:%s;}' % (nom, colonnes)))
+    for contexte, appareil in ((TABLETTE, 'tablet'), (MOBILE, 'mobile')):
+        for nom, colonnes in GRILLES:
+            if nom != '2-full':
+                resultat.append((contexte, '.ast-builder-grid-row-container.ast-builder-grid-row-%s-%s .ast-builder-grid-row{grid-template-columns:%s;}' % (appareil, nom, colonnes)))
+    return resultat
+
+
+def largeur_conteneur(paire):
+    """Rangées du pied « largeur du contenu » : Astra y écrit la largeur du site en pixels
+    (1200px dans les références) ; le portage utilise la variable de largeur du thème, comme
+    pour la rangée basse dans css/astra-dynamic.css."""
+    contexte, regle = paire
+    if '-footer-wrap[data-section=' in regle.split('{', 1)[0]:
+        regle = regle.replace('max-width:1200px', 'max-width:var(--ast-normal-container-width)')
+    return contexte, regle
 
 
 def instructions(css):
@@ -80,6 +118,7 @@ def main():
                     any((p[0], sel) in vus for sel in selecteurs(p[1])) or 'ast-builder-grid-row-mobile-' in p[1]):
                 reprises.append(p)
     nouvelles += reprises
+    nouvelles = [largeur_conteneur(p) for p in nouvelles] + grilles()
 
     print('/*')
     print(' * Astra pour SPIP — CSS du builder d\'en-tête et de pied de page.')

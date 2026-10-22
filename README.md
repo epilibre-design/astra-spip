@@ -104,6 +104,7 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     WP=… PW=… SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8404
     WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8404
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire.cjs
+    RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
 
 - `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
   page à celle de WordPress, pour les cinq configurations de référence : balises, classes et
@@ -113,7 +114,11 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
 - `comparer_captures.sh` compare au pixel près l'en-tête, le pied de page et le menu mobile
   ouvert, sur ordinateur et sur mobile (seuil : 1 % de pixels différents, variable `SEUIL`) ; les
   images et leurs différences sont enregistrées dans `tests/comparaison/sorties/` ;
-- `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout.
+- `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout ;
+- `tests/e2e/repartitions.cjs` vérifie dans Chromium les quatorze répartitions de colonnes du
+  pied (proportions sur ordinateur et tablette, une colonne sur mobile) et la largeur des
+  rangées du pied avec un conteneur de 1600 px. Ces réglages sortent des cinq configurations
+  de référence.
 
 `PW` désigne un dossier où sont installés `playwright`, `pixelmatch` et `pngjs` (npm).
 
