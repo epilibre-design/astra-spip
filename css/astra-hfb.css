@@ -381,3 +381,9 @@ body.admin-bar.ast-primary-sticky-header-active .ast-mobile-popup-drawer,body.ad
 @media (max-width:921px){
 	.ast-builder-grid-row-container.ast-builder-grid-row-tablet-3-cwide .ast-builder-grid-row{grid-template-columns:1fr 3fr 1fr;}
 }
+@media (max-width:544px){
+	.ast-builder-grid-row-container.ast-builder-grid-row-mobile-3-firstrow .ast-builder-grid-row > *:first-child,.ast-builder-grid-row-container.ast-builder-grid-row-mobile-3-lastrow .ast-builder-grid-row > *:last-child{grid-column:1 / -1;}
+	.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full .ast-builder-grid-row{grid-template-columns:1fr;}
+}
+.ast-mobile-popup-drawer.active .ast-mobile-popup-inner{background-color:#ffffff;;}
+.ast-mobile-popup-content > *, .ast-mobile-header-content > *, .ast-desktop-popup-content > *, .ast-desktop-header-content > *{padding-top:0px;padding-bottom:0px;}

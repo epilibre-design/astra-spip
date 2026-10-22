@@ -28,17 +28,39 @@ Le plugin fournit ses propres squelettes et remplace ceux de `squelettes-dist`. 
 | `single.php`                    | `article.html`                               |
 | `search.php`                    | `recherche.html`                             |
 | `404.php`                       | `404.html`                                   |
-| `header.php` (header builder)   | `inclure/header.html`, `identite.html`, `menu.html` |
+| `header.php` (header builder)   | `inclure/header.html`, `inclure/hfb/rangee-*.html`, `zone.html` |
 | `footer.php` (footer builder)   | `inclure/footer.html`                        |
+| éléments du builder             | `inclure/hfb/<élément>.html`                 |
+| widgets                         | `inclure/widgets/<bloc>.html`                |
 | `sidebar.php`                   | `inclure/sidebar.html`                       |
 | `comments.php`                  | `inclure/commentaires.html`, `commentaire.html` (forums SPIP) |
 | `template-parts/content-blog.php` | `inclure/article-resume.html`              |
 | `searchform.php`                | `formulaires/recherche.html`                 |
 | pagination                      | `modeles/pagination_astra.html`              |
 | Customizer                      | `formulaires/configurer_astra.html`          |
+| Customizer, header/footer builder | `formulaires/configurer_astra_hfb.html`    |
 
-Le menu principal est construit à partir des rubriques de premier niveau et de leurs
-sous-rubriques (sous-menus déroulants, menu mobile).
+## En-tête et pied de page (builder)
+
+Comme le Header/Footer Builder d'Astra, l'en-tête et le pied de page se composent de rangées
+(haute, principale, basse), de zones et d'éléments, réglés dans **Configuration › Squelettes ›
+En-tête et pied de page** :
+
+- en-tête sur ordinateur : zones gauche, centre et droite de chaque rangée ;
+- en-tête sur mobile : mêmes rangées, plus le panneau du menu (déroulant ou latéral) ;
+- pied de page : 1 à 6 colonnes par rangée, avec les répartitions d'Astra ;
+- éléments : identité du site, menus (rubriques racines, sous-rubriques d'une rubrique, articles
+  d'un groupe de mots-clés, pages uniques si le plugin Pages est actif), textes libres, bouton,
+  recherche, icônes sociales, zones de widgets, compte, copyright ;
+- réglages des rangées : hauteur minimale, couleur de fond, bordure.
+
+Sans réglage, l'en-tête et le pied de page sont ceux d'Astra par défaut : identité et menu
+principal, copyright centré. Le balisage produit est celui d'Astra ; `css/astra-hfb.css`
+contient le CSS que le builder d'Astra ajoute. Chaque élément peut être surchargé dans
+`squelettes/inclure/hfb/`.
+
+La configuration est enregistrée dans la méta `astra/hfb`, avec la structure des options
+d'Astra (`header-desktop-items`, `header-mobile-items`, `footer-desktop-items`).
 
 ## Feuilles de style et scripts
 
@@ -46,8 +68,10 @@ sous-rubriques (sous-menus déroulants, menu mobile).
 - `css/astra-dynamic.css` : le CSS « dynamique » qu'Astra génère en PHP à partir des réglages du
   Customizer. Il a été extrait d'un rendu WordPress réel (réglages par défaut, toutes les
   dispositions de page), puis rendu paramétrable : palette et largeurs passent par des variables CSS.
+- `css/astra-hfb.css` : CSS ajouté par le builder d'Astra pour les rangées et éléments, extrait
+  des références WordPress par `tests/references/extraire_css.py`.
 - `inclure/head-vars.html` : variables CSS issues de la configuration (`--ast-global-color-0` à `8`,
-  largeurs de conteneur, polices).
+  largeurs de conteneur, polices) et réglages des rangées du builder.
 - `css/astra-spip.css` : adaptations aux contenus produits par SPIP (documents, notes, chapo,
   formulaire de forum, fil d'Ariane…).
 
@@ -71,7 +95,21 @@ spip-cli avec le correctif de la MR !91 pour l'environnement d'intégration.
     SPIP_CLI="php /chemin/spip-cli/bin/spip" composer install-spip-test
     composer tests-integration                            # SPIP 4.4 de test, SQLite
 
-Les références WordPress du builder sont décrites dans `tests/references/README.md`.
+Les références WordPress du builder sont décrites dans `tests/references/README.md`. Avec ces
+références, un WordPress de test et le SPIP de test servi par un serveur web :
+
+    WP=… PW=… SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8404
+    WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8404
+    URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire.cjs
+
+- `comparer_html.php` compare la structure HTML de l'en-tête, du panneau mobile et du pied de
+  page (rangées, zones, éléments) à celle de WordPress, pour les cinq configurations de référence ;
+- `comparer_captures.sh` compare au pixel près l'en-tête, le pied de page et le menu mobile
+  ouvert, sur ordinateur et sur mobile (seuil : 1 % de pixels différents, variable `SEUIL`) ; les
+  images et leurs différences sont enregistrées dans `tests/comparaison/sorties/` ;
+- `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout.
+
+`PW` désigne un dossier où sont installés `playwright`, `pixelmatch` et `pngjs` (npm).
 
 Le builder d'en-tête et de pied de page est vérifié sur SPIP 4.4 uniquement : SPIP 4.2 et 5.0,
 bien que déclarés compatibles, ne sont pas vérifiés pour cette fonction.
@@ -88,3 +126,7 @@ distribué sous GPL v2 ou ultérieure, ce qui permet sa redistribution sous GPL 
 - le balisage HTML des squelettes, qui reproduit celui d'Astra.
 
 Astra intègre des icônes IcoMoon-Free, distribuées sous CC BY 4.0 ou GPL.
+
+Les icônes des réseaux sociaux (`inc/astra_icones.php`), reprises d'Astra, sont celles de
+[Font Awesome Free](https://fontawesome.com) (Fonticons, Inc.), sous licence
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), compatible avec la GPL v3.

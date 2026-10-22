@@ -67,7 +67,9 @@ final class HfbRenduTest extends TestCase {
 	}
 
 	public function testEnTeteR1(): void {
-		$x = $this->entete(self::configR1());
+		$config = self::configR1();
+		$config['elements']['entete']['html-1']['texte'] = 'Ouvert du {{lundi}} au vendredi';
+		$x = $this->entete($config);
 		$d = '//*[@id="ast-desktop-header"]';
 
 		$haute = $d . '//' . self::classe('ast-above-header-wrap') . '//' . self::classe('site-above-header-wrap ast-builder-grid-row-container ast-container');

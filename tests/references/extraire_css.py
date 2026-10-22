@@ -10,6 +10,7 @@ règle par règle, y compris à l'intérieur des media queries : une règle de R
 recopiée, pour ne pas annuler les adaptations de css/astra-dynamic.css.
 """
 import os
+import re
 import sys
 
 CONFIGURATIONS = ['R1-entete-complet', 'R2-entete-centre', 'R3-pied-colonnes', 'R4-pied-asymetrique']
@@ -45,16 +46,40 @@ def paires(css):
     return resultat
 
 
+def selecteurs(regle):
+    """Sélecteurs d'une règle, normalisés (espaces)."""
+    entete = regle.split('{', 1)[0]
+    return {re.sub(r'\s*([>+~])\s*', r' \1 ', re.sub(r'\s+', ' ', sel)).strip() for sel in entete.split(',')}
+
+
 def main():
     sorties = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), 'sorties')
     lire = lambda conf: open(os.path.join(sorties, conf, 'dynamique.css'), encoding='utf-8').read()
-    connues = set(paires(lire('R0-defaut')))
+    r0 = paires(lire('R0-defaut'))
+    connues = set(r0)
     nouvelles = []
     for conf in CONFIGURATIONS:
         for p in paires(lire(conf)):
             if p not in connues:
                 connues.add(p)
                 nouvelles.append(p)
+    # Ordre de la cascade. Une règle de R0 qui suit, dans une configuration, une règle ajoutée sur le
+    # même sélecteur l'emporte dans Astra ; or les règles de R0 sont dans css/astra-dynamic.css,
+    # chargé avant ce fichier. On les répète donc ici, après les règles ajoutées, si elles figurent
+    # telles quelles dans css/astra-dynamic.css (une règle adaptée par le portage n'est pas reprise).
+    # La règle mobile des rangées du pied suit de même les règles tablette de chaque répartition.
+    dynamique = set(paires(open(os.path.join(os.path.dirname(__file__), '..', '..', 'css', 'astra-dynamic.css'), encoding='utf-8').read()))
+    ensemble_r0, ensemble_nouvelles = set(r0), set(nouvelles)
+    reprises = []
+    for conf in CONFIGURATIONS:
+        vus = set()
+        for p in paires(lire(conf)):
+            if p in ensemble_nouvelles:
+                vus |= {(p[0], sel) for sel in selecteurs(p[1])}
+            elif p in ensemble_r0 and p in dynamique and p not in reprises and (
+                    any((p[0], sel) in vus for sel in selecteurs(p[1])) or 'ast-builder-grid-row-mobile-' in p[1]):
+                reprises.append(p)
+    nouvelles += reprises
 
     print('/*')
     print(' * Astra pour SPIP — CSS du builder d\'en-tête et de pied de page.')

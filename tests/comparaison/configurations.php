@@ -1,7 +1,8 @@
 <?php
 /**
  * Configurations du builder transposées des références WordPress (tests/references/wp/Rn-*.php),
- * utilisées par les tests d'intégration et les comparaisons SPIP/WordPress.
+ * utilisées par les tests d'intégration et les comparaisons SPIP/WordPress. Les textes sont ceux
+ * des références, pour que les captures soient comparables.
  */
 
 function astra_configurations_reference(): array {
@@ -20,7 +21,7 @@ function astra_configurations_reference(): array {
 			],
 			'menu_mobile' => 'dropdown',
 			'elements' => ['entete' => [
-				'html-1' => ['texte' => 'Ouvert du {{lundi}} au vendredi'],
+				'html-1' => ['texte' => 'Ouvert du lundi au vendredi'],
 				'button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact'],
 			]],
 		],
@@ -35,8 +36,8 @@ function astra_configurations_reference(): array {
 			],
 			'menu_mobile' => 'off-canvas',
 			'elements' => ['entete' => [
-				'html-2' => ['texte' => 'Livraison gratuite'],
-				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Horaires', 'texte' => 'Lundi–vendredi'],
+				'html-2' => ['texte' => 'Livraison gratuite dès 50 €'],
+				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Horaires', 'texte' => 'Lundi–vendredi, 9 h – 18 h'],
 			]],
 		],
 		'R3-pied-colonnes' => [

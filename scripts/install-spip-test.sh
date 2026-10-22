@@ -44,12 +44,16 @@ $rubrique = function ($titre, $parent) use ($date) {
 $article = function ($titre, $id_rubrique) use ($date) {
 	return sql_insertq("spip_articles", ["titre" => $titre, "texte" => "Texte.", "id_rubrique" => $id_rubrique, "statut" => "publie", "date" => $date, "lang" => "fr"]);
 };
-$jardinage = $rubrique("Jardinage", 0);
+// Mêmes menus que les références WordPress (tests/references/wp/commun.php) : Jardinage > Potager, Actualités.
+$jardinage = $rubrique("10. Jardinage", 0);
 $article("Article de Jardinage", $jardinage);
 $article("Article du potager", $rubrique("Potager", $jardinage));
-$article("Article des actualités", $rubrique("Actualités", 0));
+$article("Article des actualités", $rubrique("20. Actualités", 0));
 calculer_rubriques();
 propager_les_secteurs();
+include_spip("inc/config");
+ecrire_meta("nom_site", "Mon site");
+ecrire_meta("descriptif_site", "");
 echo sql_countsel("spip_rubriques", "statut=\"publie\""), " rubriques publiées\n";
 '
 echo "Environnement d'intégration prêt."
