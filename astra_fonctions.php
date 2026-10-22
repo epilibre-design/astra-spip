@@ -4,7 +4,7 @@
  * Fonctions des squelettes du thème Astra
  *
  * @plugin Astra
- * @license GNU/GPL v2+
+ * @license GNU/GPL v3+
  */
 
 if (!defined('_ECRIRE_INC_VERSION')) {
@@ -13,6 +13,37 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 /** Version du thème Astra d'origine dont le rendu est reproduit */
 define('_ASTRA_VERSION_THEME', '4.11.0');
+
+include_once __DIR__ . '/inc/astra_hfb.php';
+
+/**
+ * Configuration du builder d'en-tête et de pied de page, normalisée.
+ */
+function astra_hfb_config(): array {
+	include_spip('inc/config');
+	return astra_hfb_normaliser(lire_config('astra/hfb', []));
+}
+
+/**
+ * Rangées à afficher pour un contexte du builder : entete_ordinateur, entete_mobile ou pied.
+ */
+function astra_hfb_rangees(string $contexte): array {
+	$config = astra_hfb_config();
+	if ($contexte === 'pied') {
+		return astra_hfb_calculer_pied($config['pied'], $config['rangees']);
+	}
+	if ($contexte === 'entete_ordinateur' || $contexte === 'entete_mobile') {
+		return astra_hfb_calculer_entete($config[$contexte]);
+	}
+	return [];
+}
+
+/**
+ * Éléments du panneau mobile (vide s'il ne doit pas être affiché).
+ */
+function astra_hfb_panneau(): array {
+	return astra_hfb_calculer_panneau(astra_hfb_config()['entete_mobile']);
+}
 
 /**
  * Valeurs par défaut de la configuration, alignées sur celles du Customizer d'Astra

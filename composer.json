@@ -1,0 +1,16 @@
+{
+	"name": "epilibre-design/astra-spip",
+	"description": "Portage pour SPIP du thème WordPress Astra",
+	"type": "spip-plugin",
+	"license": "GPL-3.0-or-later",
+	"require-dev": {
+		"phpunit/phpunit": "^11.5"
+	},
+	"config": {
+		"platform": {"php": "8.2"},
+		"sort-packages": true
+	},
+	"scripts": {
+		"tests-unit": "phpunit --colors --testsuite unit"
+	}
+}
