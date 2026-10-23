@@ -69,8 +69,11 @@
 .entry-content::after { content: ""; display: table; clear: both; }
 .entry-content .spip_cadre, .entry-content .spip_code { font-family: monospace; }
 .entry-content .spip { width: 100%; }
-/* Tableaux SPIP, hors bloc tableau importé de Wordpress (styles de wp-block-table) */
+/* Tableaux SPIP, dans le texte (enfant direct de .entry-content) ou un autre conteneur,
+   hors bloc tableau importé de Wordpress (styles de wp-block-table) */
+.entry-content > table.spip th, .entry-content > table.spip td,
 .entry-content :not(.wp-block-table) > table.spip th, .entry-content :not(.wp-block-table) > table.spip td { padding: .5em .75em; border: 1px solid var(--ast-border-color); }
+.entry-content > table.spip thead th, .entry-content > table.spip .row_first,
 .entry-content :not(.wp-block-table) > table.spip thead th, .entry-content :not(.wp-block-table) > table.spip .row_first { background: var(--ast-global-color-5); }
 .entry-content .spip_out::after { content: none; }
 

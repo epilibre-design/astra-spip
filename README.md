@@ -150,6 +150,7 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8404
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire.cjs
     RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
+    URL=http://127.0.0.1:8404 NODE_PATH=$PW/node_modules node tests/e2e/tableaux.cjs
 
 - `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
   page à celle de WordPress, pour les six configurations de référence du builder (R0–R5) et
@@ -164,6 +165,8 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
   R5 vérifie ainsi la hauteur, le fond et le séparateur des rangées de l'en-tête, qu'un filet
   d'un pixel laisserait sous le seuil des captures ;
 - `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout ;
+- `tests/e2e/tableaux.cjs` vérifie que les tableaux SPIP du texte sont stylés, et pas ceux d'un
+  bloc tableau importé (`figure.wp-block-table`) ;
 - `tests/e2e/repartitions.cjs` vérifie dans Chromium les quatorze répartitions de colonnes du
   pied (proportions sur ordinateur et tablette, une colonne sur mobile) et la largeur des
   rangées du pied avec un conteneur de 1600 px. Ces réglages sortent des cinq configurations

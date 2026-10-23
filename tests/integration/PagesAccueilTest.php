@@ -44,6 +44,28 @@ final class PagesAccueilTest extends TestCase {
 		$this->assertSame(1, $propre->query('//link[@rel="canonical"]')->length, 'URL canonique vers l\'accueil sur l\'adresse de la page');
 	}
 
+	public function testReponseAUnCommentaireSurLAccueilStatique(): void {
+		// Le lien « Répondre » ajoute id_forum à l'adresse de l'accueil : l'inclusion doit le transmettre.
+		$id = PagesGabaritTest::id('notre_jardin');
+		ecrire_config('astra/accueil_type', 'page');
+		ecrire_config('astra/accueil_page', $id);
+		sql_updateq('spip_articles', ['accepter_forum' => 'pos'], 'id_article=' . $id);
+		$id_forum = (int) sql_insertq('spip_forum', [
+			'objet' => 'article', 'id_objet' => $id, 'statut' => 'publie', 'titre' => 'Question',
+			'texte' => 'Un message.', 'auteur' => 'Visiteur', 'date_heure' => date('Y-m-d H:i:s'),
+		]);
+		sql_updateq('spip_forum', ['id_thread' => $id_forum], 'id_forum=' . $id_forum);
+		try {
+			$x = PagesGabaritTest::analyser(recuperer_fond('sommaire', ['id_forum' => $id_forum]));
+			$titre = $x->query('//*[@id="reply-title"]')->item(0);
+			$this->assertNotNull($titre);
+			$this->assertSame(_T('astra:repondre_message'), trim($titre->textContent));
+		} finally {
+			sql_delete('spip_forum', 'id_forum=' . $id_forum);
+			sql_updateq('spip_articles', ['accepter_forum' => 'non'], 'id_article=' . $id);
+		}
+	}
+
 	public function testRepliSiLaPageNEstPlusPubliee(): void {
 		$id = PagesGabaritTest::id('notre_jardin');
 		ecrire_config('astra/accueil_type', 'page');
