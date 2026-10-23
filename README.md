@@ -136,6 +136,9 @@ distribué sous GPL v2 ou ultérieure, ce qui permet sa redistribution sous GPL 
 - `css/astra-dynamic.css` : CSS généré par Astra, adapté ;
 - le balisage HTML des squelettes, qui reproduit celui d'Astra.
 
+`css/astra-blocs.css` reprend des règles de WordPress 7.1.3 (GPL v2 ou ultérieure), générées par
+`tests/references/extraire_css_blocs.py`.
+
 Astra intègre des icônes IcoMoon-Free, distribuées sous CC BY 4.0 ou GPL.
 
 Les icônes des réseaux sociaux (`inc/astra_icones.php`), reprises d'Astra, sont celles de

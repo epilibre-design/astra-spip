@@ -58,9 +58,15 @@ def largeur_conteneur(paire):
 
 def instructions(css):
     """Découpe un CSS en instructions de premier niveau (règles, @media {...}, @import;)."""
-    resultat, profondeur, debut = [], 0, 0
+    resultat, profondeur, debut, guillemet = [], 0, 0, None
     for i, c in enumerate(css):
-        if c == '{':
+        if guillemet:
+            if c == guillemet and css[i - 1] != '\\':
+                guillemet = None
+            continue
+        if c in '"\'':
+            guillemet = c
+        elif c == '{':
             profondeur += 1
         elif c == '}':
             profondeur -= 1
