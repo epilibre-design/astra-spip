@@ -250,11 +250,17 @@ function astra_hfb_verifier_saisie(array $saisie): array {
 		}
 		if (isset($defaut['colonnes'])) {
 			$colonnes = (int) ($r['colonnes'] ?? 0);
-			$repartition = (string) ($r['repartition'] ?? '');
+			$repartition = $r['repartition'] ?? '';
+			$appareils = is_array($repartition) ? ['desktop', 'tablet', 'mobile'] : ['desktop'];
 			if ($colonnes < 1 || $colonnes > ASTRA_HFB_COLONNES_MAX) {
 				$erreurs['rangees_' . $cle . '_colonnes'] = 'colonnes';
-			} elseif (!in_array($repartition, astra_hfb_repartitions($colonnes), true)) {
-				$erreurs['rangees_' . $cle . '_repartition'] = 'repartition';
+			} else {
+				foreach ($appareils as $appareil) {
+					$v = is_array($repartition) ? ($repartition[$appareil] ?? '') : $repartition;
+					if (!in_array($v, astra_hfb_repartitions($colonnes, $appareil), true)) {
+						$erreurs['rangees_' . $cle . '_repartition'] = 'repartition';
+					}
+				}
 			}
 		}
 	}
@@ -266,10 +272,14 @@ function astra_hfb_verifier_saisie(array $saisie): array {
 }
 
 /**
- * Répartitions des colonnes du pied proposées par Astra pour un nombre de colonnes.
+ * Répartitions des colonnes du pied proposées par Astra pour un nombre de colonnes et un appareil
+ * (Astra_Builder_Helper, choix du contrôle ast-row-layout, Astra 4.11.0) : tablette et mobile
+ * ajoutent `full` et, selon le nombre de colonnes, `2-equal`, `3-firstrow`, `3-lastrow`.
+ * La tablette garde en plus les répartitions de l'ordinateur (`4-lheavy`, `4-rheavy`) : une valeur
+ * simple de la version 1.2.0 s'y applique, et le formulaire doit pouvoir la reproposer.
  */
-function astra_hfb_repartitions(int $colonnes): array {
-	$toutes = [
+function astra_hfb_repartitions(int $colonnes, string $appareil = 'desktop'): array {
+	$ordinateur = [
 		1 => ['full'],
 		2 => ['2-equal', '2-lheavy', '2-rheavy'],
 		3 => ['3-equal', '3-cwide', '3-cheavy', '3-lheavy', '3-rheavy'],
@@ -277,7 +287,34 @@ function astra_hfb_repartitions(int $colonnes): array {
 		5 => ['5-equal'],
 		6 => ['6-equal'],
 	];
-	return $toutes[$colonnes] ?? [];
+	$petits = [
+		1 => ['full'],
+		2 => ['2-equal', '2-lheavy', '2-rheavy', 'full'],
+		3 => ['3-equal', '3-cwide', '3-cheavy', '3-lheavy', '3-rheavy', '3-firstrow', '3-lastrow', 'full'],
+		4 => ['4-equal', '2-equal', 'full'],
+		5 => ['5-equal', 'full'],
+		6 => ['6-equal', 'full'],
+	];
+	if (!in_array($appareil, ['desktop', 'tablet', 'mobile'], true)) {
+		return [];
+	}
+	if ($appareil === 'tablet') {
+		return array_values(array_unique(array_merge($petits[$colonnes] ?? [], $ordinateur[$colonnes] ?? [])));
+	}
+	return ($appareil === 'desktop' ? $ordinateur : $petits)[$colonnes] ?? [];
+}
+
+/**
+ * Répartitions proposées pour un appareil, tous nombres de colonnes confondus, sans doublon et
+ * dans l'ordre d'Astra : liste du sélecteur ; la vérification écarte celles qui ne vont pas avec
+ * le nombre de colonnes choisi.
+ */
+function astra_hfb_repartitions_appareil(string $appareil): array {
+	$toutes = [];
+	for ($colonnes = 1; $colonnes <= ASTRA_HFB_COLONNES_MAX; $colonnes++) {
+		$toutes = array_merge($toutes, astra_hfb_repartitions($colonnes, $appareil));
+	}
+	return array_values(array_unique($toutes));
 }
 
 /** Réglages de rangées à enregistrer à partir des champs du formulaire. */
@@ -285,6 +322,16 @@ function astra_hfb_rangees_depuis_saisie(array $saisie): array {
 	$rangees = [];
 	foreach (astra_hfb_defauts()['rangees'] as $cle => $defaut) {
 		foreach ($defaut as $reglage => $valeur) {
+			if ($reglage === 'repartition' && is_array($saisie[$cle][$reglage] ?? null)) {
+				// Une répartition par appareil (structure d'Astra) ; une valeur simple reste simple.
+				$r = $saisie[$cle][$reglage];
+				$rangees[$cle][$reglage] = [
+					'desktop' => trim((string) ($r['desktop'] ?? $valeur)),
+					'tablet' => trim((string) ($r['tablet'] ?? $valeur)),
+					'mobile' => trim((string) ($r['mobile'] ?? 'full')),
+				];
+				continue;
+			}
 			$v = trim((string) ($saisie[$cle][$reglage] ?? $valeur));
 			if (in_array($reglage, ['colonnes', 'bordure'], true) || ($reglage === 'hauteur' && $v !== '')) {
 				$v = (int) $v;

@@ -79,6 +79,36 @@ final class HfbSaisieTest extends TestCase {
 		$this->assertSame([], astra_hfb_verifier_saisie(astra_hfb_saisie_depuis_config(astra_hfb_normaliser([]))));
 	}
 
+	public function testRepartitionsProposeesParAppareil(): void {
+		$this->assertSame(['4-equal', '4-lheavy', '4-rheavy'], astra_hfb_repartitions(4));
+		// Tablette : choix d'Astra, puis les répartitions de l'ordinateur (valeur simple de la 1.2.0).
+		$this->assertSame(['4-equal', '2-equal', 'full', '4-lheavy', '4-rheavy'], astra_hfb_repartitions(4, 'tablet'));
+		$this->assertSame(['3-equal', '3-cwide', '3-cheavy', '3-lheavy', '3-rheavy', '3-firstrow', '3-lastrow', 'full'], astra_hfb_repartitions(3, 'tablet'));
+		$this->assertSame(['4-equal', '2-equal', 'full'], astra_hfb_repartitions(4, 'mobile'));
+		$this->assertContains('3-firstrow', astra_hfb_repartitions(3, 'mobile'));
+		$this->assertNotContains('3-firstrow', astra_hfb_repartitions(3));
+		$this->assertSame([], astra_hfb_repartitions(4, 'montre'));
+		$liste = astra_hfb_repartitions_appareil('tablet');
+		$this->assertSame(array_values(array_unique($liste)), $liste, 'Sélecteur sans doublon');
+		$this->assertContains('2-equal', $liste);
+	}
+
+	public function testVerificationDeLaRepartitionParAppareil(): void {
+		$saisie = astra_hfb_saisie_depuis_config(astra_hfb_normaliser([]));
+		$saisie['rangees']['pied_primary'] = ['colonnes' => '4', 'repartition' => ['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full'], 'hauteur' => '', 'fond' => ''];
+		$this->assertSame([], astra_hfb_verifier_saisie($saisie));
+		$saisie['rangees']['pied_primary']['repartition']['mobile'] = '3-firstrow';
+		$this->assertArrayHasKey('rangees_pied_primary_repartition', astra_hfb_verifier_saisie($saisie), 'Répartition mobile de 3 colonnes pour une rangée de 4');
+		$saisie['rangees']['pied_primary']['repartition'] = ['desktop' => 'full', 'tablet' => 'full', 'mobile' => 'full'];
+		$this->assertArrayHasKey('rangees_pied_primary_repartition', astra_hfb_verifier_saisie($saisie), 'full n\'est pas proposé sur ordinateur pour 4 colonnes');
+	}
+
+	public function testRepartitionParAppareilDepuisSaisie(): void {
+		$r = astra_hfb_rangees_depuis_saisie(['pied_primary' => ['colonnes' => '4', 'repartition' => ['desktop' => '4-equal', 'tablet' => ' full ', 'mobile' => 'full']]]);
+		$this->assertSame(['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full'], $r['pied_primary']['repartition']);
+		$this->assertSame('2-equal', astra_hfb_rangees_depuis_saisie([])['pied_above']['repartition'], 'Valeur simple par défaut conservée');
+	}
+
 	public function testReglagesDElementsAllerRetour(): void {
 		$config = astra_hfb_normaliser(['elements' => [
 			'entete' => ['menu-2' => ['source' => 'rubrique', 'id' => 4], 'social-icons-1' => ['reseaux' => [['reseau' => 'mastodon', 'url' => 'https://m.example/@a']]]],

@@ -68,6 +68,9 @@ return [
 
 	// H
 	'hfb_adresse' => 'Adresse',
+	'hfb_appareil_desktop' => 'Ordinateur',
+	'hfb_appareil_mobile' => 'Mobile',
+	'hfb_appareil_tablet' => 'Tablette',
 	'hfb_bloc_articles_recents' => 'Articles récents',
 	'hfb_bloc_forums_recents' => 'Commentaires récents',
 	'hfb_bloc_mots_cles' => 'Mots-clés',
@@ -144,6 +147,8 @@ return [
 	'hfb_repartition_3_cheavy' => '3 colonnes, centre très large',
 	'hfb_repartition_3_cwide' => '3 colonnes, centre large',
 	'hfb_repartition_3_equal' => '3 colonnes égales',
+	'hfb_repartition_3_firstrow' => '3 colonnes, première en pleine largeur',
+	'hfb_repartition_3_lastrow' => '3 colonnes, dernière en pleine largeur',
 	'hfb_repartition_3_lheavy' => '3 colonnes, gauche large',
 	'hfb_repartition_3_rheavy' => '3 colonnes, droite large',
 	'hfb_repartition_4_equal' => '4 colonnes égales',

@@ -265,6 +265,26 @@ function astra_hfb_calculer_panneau(array $mobile): array {
 }
 
 /**
+ * Répartition d'une rangée du pied par appareil. Valeur simple : ordinateur et tablette, mobile
+ * `full` (comportement de la version 1.0) ; structure d'Astra (`hb-footer-layout`) : une valeur
+ * par appareil, `full` pour un appareil absent ou invalide, comme footer-row.php d'Astra 4.11.0.
+ */
+function astra_hfb_repartition_appareils($valeur): array {
+	$valide = function ($v): string {
+		return is_string($v) && preg_match('/^(full|[2-6]-[a-z]+)$/', $v) ? $v : 'full';
+	};
+	if (!is_array($valeur)) {
+		$v = $valide($valeur);
+		return ['desktop' => $v, 'tablet' => $v, 'mobile' => 'full'];
+	}
+	return [
+		'desktop' => $valide($valeur['desktop'] ?? ''),
+		'tablet' => $valide($valeur['tablet'] ?? ''),
+		'mobile' => $valide($valeur['mobile'] ?? ''),
+	];
+}
+
+/**
  * Rangées non vides d'un pied de page normalisé, avec leurs classes et leurs colonnes.
  */
 function astra_hfb_calculer_pied(array $items, array $rangees): array {
@@ -281,16 +301,16 @@ function astra_hfb_calculer_pied(array $items, array $rangees): array {
 		if (!$occupee) {
 			continue;
 		}
-		$repartition = preg_match('/^(full|[2-6]-[a-z]+)$/', (string) ($reglages['repartition'] ?? '')) ? $reglages['repartition'] : 'full';
+		$repartition = astra_hfb_repartition_appareils($reglages['repartition'] ?? '');
 		$resultat[] = [
 			'rangee' => $r,
 			'classes' => implode(' ', [
 				'site-' . $r . '-footer-wrap',
 				'ast-builder-grid-row-container',
 				'site-footer-focus-item',
-				'ast-builder-grid-row-' . $repartition,
-				'ast-builder-grid-row-tablet-' . $repartition,
-				'ast-builder-grid-row-mobile-full',
+				'ast-builder-grid-row-' . $repartition['desktop'],
+				'ast-builder-grid-row-tablet-' . $repartition['tablet'],
+				'ast-builder-grid-row-mobile-' . $repartition['mobile'],
 				'ast-footer-row-stack',
 				'ast-footer-row-tablet-stack',
 				'ast-footer-row-mobile-stack',

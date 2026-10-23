@@ -207,6 +207,21 @@ final class HfbTest extends TestCase {
 		$this->assertStringContainsString('ast-builder-grid-row-full ', $rangees[0]['classes']);
 	}
 
+	public function testRepartitionParAppareil(): void {
+		$c = astra_hfb_normaliser([
+			'pied' => ['primary' => ['primary_1' => ['widget-1']]],
+			'rangees' => ['pied_primary' => ['colonnes' => 4, 'repartition' => ['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full']]],
+		]);
+		$rangees = astra_hfb_calculer_pied($c['pied'], $c['rangees']);
+		$this->assertStringContainsString('ast-builder-grid-row-4-equal ast-builder-grid-row-tablet-full ast-builder-grid-row-mobile-full', $rangees[0]['classes']);
+	}
+
+	public function testRepartitionParAppareilIncompleteOuInvalide(): void {
+		$this->assertSame(['desktop' => '2-equal', 'tablet' => 'full', 'mobile' => 'full'], astra_hfb_repartition_appareils(['desktop' => '2-equal', 'mobile' => '" x']));
+		$this->assertSame(['desktop' => '3-cwide', 'tablet' => '3-cwide', 'mobile' => 'full'], astra_hfb_repartition_appareils('3-cwide'), 'Valeur simple : rendu de la version 1.0');
+		$this->assertSame(['desktop' => 'full', 'tablet' => 'full', 'mobile' => 'full'], astra_hfb_repartition_appareils(null));
+	}
+
 	// CSS des rangées
 
 	public function testCssDesRangeesVideParDefaut(): void {

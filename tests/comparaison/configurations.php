@@ -16,8 +16,8 @@ function astra_configurations_reference(): array {
 				'below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']],
 			],
 			'rangees' => [
-				'pied_primary' => ['colonnes' => 4, 'repartition' => '4-equal'],
-				'pied_below' => ['colonnes' => 2, 'repartition' => '2-equal'],
+				'pied_primary' => ['colonnes' => 4, 'repartition' => ['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full']],
+				'pied_below' => ['colonnes' => 2, 'repartition' => ['desktop' => '2-equal', 'tablet' => '2-equal', 'mobile' => 'full']],
 			],
 			'elements' => [
 				'entete' => ['button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact']],
@@ -75,6 +75,25 @@ function astra_configurations_reference(): array {
 				'pied_above' => ['colonnes' => 2, 'repartition' => '2-equal'],
 				'pied_primary' => ['colonnes' => 4, 'repartition' => '4-equal'],
 				'pied_below' => ['colonnes' => 2, 'repartition' => '2-equal'],
+			],
+			'elements' => ['pied' => [
+				'html-1' => ['texte' => 'Un site éditorial propulsé par SPIP'],
+				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Colonne 1', 'texte' => 'Texte de la colonne 1'],
+				'widget-2' => ['blocs' => ['texte'], 'titre' => 'Colonne 2', 'texte' => 'Texte de la colonne 2'],
+				'widget-3' => ['blocs' => ['texte'], 'titre' => 'Colonne 3', 'texte' => 'Texte de la colonne 3'],
+				'widget-4' => ['blocs' => ['texte'], 'titre' => 'Colonne 4', 'texte' => 'Texte de la colonne 4'],
+			]],
+		],
+		'R12-pied-appareils' => [
+			'pied' => [
+				'above' => ['above_1' => ['html-1'], 'above_2' => ['social-icons-1']],
+				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['widget-2'], 'primary_3' => ['widget-3'], 'primary_4' => ['widget-4']],
+				'below' => ['below_1' => ['copyright'], 'below_2' => ['menu']],
+			],
+			'rangees' => [
+				'pied_above' => ['colonnes' => 2, 'repartition' => ['desktop' => '2-equal', 'tablet' => '2-equal', 'mobile' => 'full']],
+				'pied_primary' => ['colonnes' => 4, 'repartition' => ['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full']],
+				'pied_below' => ['colonnes' => 2, 'repartition' => ['desktop' => '2-equal', 'tablet' => '2-equal', 'mobile' => 'full']],
 			],
 			'elements' => ['pied' => [
 				'html-1' => ['texte' => 'Un site éditorial propulsé par SPIP'],

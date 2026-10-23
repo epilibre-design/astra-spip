@@ -153,9 +153,16 @@
 						</select>
 					</td>
 					<td>
-						<select name="rangees\[#GET{cle}\]\[repartition\]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_repartition|attribut_html:>">
-							<BOUCLE_nb_rep(DATA){enum 1,6}><BOUCLE_rep(DATA){source table, #VALEUR|astra_hfb_repartitions}><option value="#VALEUR"[ (#VALEUR|=={#GET{r}|table_valeur{repartition}}|oui)selected="selected"]>[(#VAL{astra:hfb_repartition_}|concat{#VALEUR|replace{-,_}}|_T)]</option></BOUCLE_rep></BOUCLE_nb_rep>
+						#SET{rep,#GET{r}|table_valeur{repartition}|astra_hfb_repartition_appareils}
+						<BOUCLE_appareils(DATA){liste desktop,tablet,mobile}>
+						#SET{appareil,#VALEUR}
+						#SET{libelle_appareil,#VAL{astra:hfb_appareil_}|concat{#VALEUR}|_T}
+						<label class="astra-hfb-appareil">#GET{libelle_appareil}
+						<select name="rangees\[#GET{cle}\]\[repartition\]\[#GET{appareil}\]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_repartition|attribut_html:> ([(#GET{libelle_appareil}|attribut_html)])">
+							<BOUCLE_rep(DATA){source table, #GET{appareil}|astra_hfb_repartitions_appareil}><option value="#VALEUR"[ (#VALEUR|=={#GET{rep}|table_valeur{#GET{appareil}}}|oui)selected="selected"]>[(#VAL{astra:hfb_repartition_}|concat{#VALEUR|replace{-,_}}|_T)]</option></BOUCLE_rep>
 						</select>
+						</label>
+						</BOUCLE_appareils>
 					</td>
 					</BOUCLE_si_colonnes>
 					<td></td><td></td>
