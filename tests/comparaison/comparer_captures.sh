@@ -39,7 +39,9 @@ for conf in "${CONFS[@]}"; do
 	if [ -n "$rubrique" ]; then
 		chemin_spip=/$( (cd "$RACINE" && $SPIP_CLI php:eval "include_spip('inc/filtres'); echo generer_objet_url((int) sql_getfetsel('id_rubrique', 'spip_rubriques', 'titre LIKE ' . sql_quote('%$rubrique')), 'rubrique', '', '', true);") | sed -E 's#^https?://[^/]+/?##')
 	fi
+	# Pages uniques (Pn, et toute référence qui affiche une page) : contenu comparé aussi.
 	case $conf in P*) contenu=contenu ;; esac
+	[ -n "$identifiant" ] && contenu=contenu
 	NODE_PATH="$PW/node_modules" node "$ICI/comparer_captures.cjs" "$URL_WP$chemin_wp" "$URL_SPIP$chemin_spip" "$SORTIES/$conf" "$menu" "$contenu" "$ICI/../references/wp/$conf.json" || code=1
 done
 

@@ -112,6 +112,16 @@ function astra_configurations_reference(): array {
 			'astra' => ['police_texte' => "'Raleway', sans-serif", 'police_titres' => "'Poppins', sans-serif"],
 			'meta' => ['slogan_site' => 'Un site propulsé par SPIP'],
 		]),
+		'R16-transparent-page' => [
+			'page' => 'notre_jardin',
+			'pages' => ['notre_jardin' => ['transparent' => 'active']],
+			'styles' => json_decode(file_get_contents(dirname(__DIR__) . '/references/transparent/valeurs/garden.json'), true),
+			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
+		],
+		'R17-transparent-global' => [
+			'rubrique' => 'Jardinage',
+			'styles' => ['transparent-header-enable' => 1] + json_decode(file_get_contents(dirname(__DIR__) . '/references/transparent/valeurs/garden.json'), true),
+		],
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],

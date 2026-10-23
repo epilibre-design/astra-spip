@@ -136,6 +136,7 @@ function ref_pages(): array {
 		$ids[$slug] = wp_insert_post($donnees);
 		delete_post_meta($ids[$slug], 'site-post-title');
 		delete_post_meta($ids[$slug], 'ast-site-content-layout');
+		delete_post_meta($ids[$slug], 'theme-transparent-header-meta');
 	}
 	return $ids;
 }

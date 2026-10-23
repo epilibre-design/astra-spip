@@ -73,6 +73,8 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 | R9-pied-couleurs | Même placement ; couleurs et tailles des quatre widgets et du copyright |
 | R10-sociaux | Même placement ; taille, espacement et couleurs des icônes sociales du pied |
 | R11-combinee | Toutes les options précédentes, police du texte Raleway et des titres Poppins (cascade de plusieurs réglages sur le même bouton et le même menu) |
+| R16-transparent-page | Page « Notre jardin » avec l'en-tête transparent activé par la page (méta `theme-transparent-header-meta` à `enabled`), réglage global désactivé, valeurs de Garden (`transparent/valeurs/garden.json`) ; contenu, classes du `body`, position de l'en-tête et styles calculés comparés |
+| R17-transparent-global | En-tête transparent sur tout le site, page de la catégorie Jardinage : archive exclue par défaut, en-tête normal |
 | P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
 | P2-accueil | Même menu, page « Notre jardin » en page d'accueil statique (`/`) |
 | P3-page-pleine | Page « Plein écran », titre désactivé, conteneur `full-width-container` |
@@ -116,6 +118,24 @@ styles calculés identiques aux trois largeurs, polices chargées des deux côt�
 Non couvert dans cette version (valeurs conservées, aucun CSS) : valeurs tablette et mobile ;
 fonds de type `image` ou `gradient` ; fond, fond au survol et rayon des icônes sociales
 (`*-social-1-bg-color`, `-bg-h-color`, `-radius-fields`), absents des valeurs du modèle.
+
+## En-tête transparent : attendus
+
+`tests/references/transparent/` fixe le CSS qu'Astra 4.11.0 ajoute sur une page à en-tête
+transparent (page « Notre jardin », méta de page `enabled`) :
+
+- `appliquer.php` : état P1, puis les options de `valeurs/<variante>.json` (`VARIANTE=…`) ;
+- `capturer.sh` : `WP=… tests/references/transparent/capturer.sh` compare chaque variante à la
+  même page sans en-tête transparent et écrit `attendus/<variante>.css` (règles ajoutées ou
+  modifiées) et `attendus/<variante>.retirees.css` (règles qu'Astra n'émet plus) ;
+- variantes : `garden` (valeurs du modèle), `ordinateur` et `mobile` (restriction par appareil,
+  séparateur), `couleurs` (toutes les couleurs, valeurs tablette et mobile différentes) ;
+- `attendus/neutralisations.css` : règle qu'Astra SPIP émet en plus pour défaire la marge de
+  60 px de `#primary` que `css/astra-dynamic.css` contient et qu'Astra n'émet pas sur une page à
+  en-tête transparent.
+
+`tests/unit/EnteteTransparentTest.php` vérifie l'égalité des règles et que chaque règle retirée
+est neutralisée.
 
 ## Relevés pour le portage
 
