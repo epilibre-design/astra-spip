@@ -129,18 +129,15 @@ bien que déclarés compatibles, ne sont pas vérifiés pour cette fonction.
 
 GNU GPL v3 ou ultérieure (fichier `LICENSE`).
 
-Le plugin reprend du code du thème Astra (© Brainstorm Force, basé sur Underscores © Automattic),
-distribué sous GPL v2 ou ultérieure, ce qui permet sa redistribution sous GPL v3 :
+Les sources, auteurs, versions, licences et adaptations sont détaillés dans
+[CREDITS.md](CREDITS.md) ; les notices amont et textes de licences sont conservés dans
+[`licenses/`](licenses/).
 
-- `css/main.min.css` et `js/frontend.min.js` : fichiers d'Astra 4.11.0, sans modification ;
-- `css/astra-dynamic.css` : CSS généré par Astra, adapté ;
-- le balisage HTML des squelettes, qui reproduit celui d'Astra.
+Le portage reprend Astra 4.11.0 (Brainstorm Force / WPAstra, basé sur Underscores par
+Automattic, GPL v2 ou ultérieure), des styles de WordPress 7.1.3 (ses contributeurs,
+GPL v2 ou ultérieure) et les styles de normalisation crédités par Astra à Nicolas
+Gallagher et Jonathan Neal (normalize.css, MIT).
 
-`css/astra-blocs.css` reprend des règles de WordPress 7.1.3 (GPL v2 ou ultérieure), générées par
-`tests/references/extraire_css_blocs.py`.
-
-Astra intègre des icônes IcoMoon-Free, distribuées sous CC BY 4.0 ou GPL.
-
-Les icônes des réseaux sociaux (`inc/astra_icones.php`), reprises d'Astra, sont celles de
-[Font Awesome Free](https://fontawesome.com) (Fonticons, Inc.), sous licence
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), compatible avec la GPL v3.
+Les huit SVG identifiés comme issus de Font Awesome Free sont crédités à Fonticons,
+Inc., sous CC BY 4.0. Les autres SVG repris d'Astra et les limites de leur attribution
+sont recensés séparément dans `CREDITS.md`.

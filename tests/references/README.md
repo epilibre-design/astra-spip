@@ -109,12 +109,12 @@ Le balisage complet de chaque élément est à recopier depuis `sorties/Rn/accue
 ### Icônes sociales : source et licence
 
 Astra rend les icônes par `Astra_Builder_UI_Controller::fetch_svg_icon()`, à partir de
-`assets/svg/svgs.json` (1 604 icônes). Les tracés des icônes de marques (facebook, twitter,
-instagram, linkedin, youtube, mastodon, github, rss…) sont ceux de **Font Awesome Free**
-(Fonticons, Inc.), dont les icônes sont sous licence **CC BY 4.0**. Le `readme.txt` d'Astra ne
-le mentionne pas : il ne cite que IcoMoon-Free (CC BY 4.0 ou GPL), Heroicons (MIT) pour les
-captures, et les illustrations CC0.
+`assets/svg/svgs.json` (1 604 icônes). Huit tracés repris dans le portage (facebook,
+twitter, instagram, linkedin, youtube, mastodon, github et rss) correspondent exactement
+à **Font Awesome Free**, par Fonticons, Inc., sous **CC BY 4.0**. Le `readme.txt` d'Astra
+ne mentionne pas Font Awesome : il cite notamment IcoMoon-Free, ainsi que Heroicons
+pour les captures.
 
-CC BY 4.0 est compatible avec la GPL v3 (la licence d'astra-spip), à condition de **créditer**
-Font Awesome. Les icônes reprises dans le portage devront donc être accompagnées d'une mention
-« Icônes de marques : Font Awesome Free par Fonticons, Inc., CC BY 4.0 » (README et `paquet.xml`).
+Les SVG `twitter-x`, `bluesky` et `email` viennent également d'Astra, mais leur attribution
+à Font Awesome n'est pas établie. Le relevé des correspondances, les sources, les crédits
+et les notices conservées figurent dans [CREDITS.md](../../CREDITS.md).
