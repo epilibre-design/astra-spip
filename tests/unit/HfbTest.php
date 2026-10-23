@@ -247,4 +247,29 @@ final class HfbTest extends TestCase {
 		$css = astra_hfb_css_rangees($c['rangees']);
 		$this->assertStringContainsString('.ast-header-break-point .ast-primary-header-bar, .ast-primary-header-bar{border-bottom-width:0px;}', $css);
 	}
+
+	public function testSeparateursDuPied(): void {
+		// Valeurs de Garden : pas de filet au-dessus de la rangée principale, filet de la couleur 4
+		// au-dessus de la rangée basse ; rangée haute : 2 px, couleur par défaut d'Astra (aucune).
+		$c = astra_hfb_normaliser(['rangees' => [
+			'pied_primary' => ['separateur' => 0],
+			'pied_below' => ['couleur_separateur' => 'var(--ast-global-color-4)'],
+			'pied_above' => ['separateur' => 2],
+		]]);
+		$css = astra_hfb_css_rangees($c['rangees']);
+		$this->assertStringContainsString('.site-primary-footer-wrap[data-section="section-primary-footer-builder"]{border-style:none;border-width:medium;border-color:currentcolor;}', $css);
+		$this->assertStringContainsString('.site-below-footer-wrap[data-section="section-below-footer-builder"]{border-style:solid;border-width:0px;border-top-width:1px;border-top-color:var(--ast-global-color-4);}', $css);
+		$this->assertStringContainsString('.site-above-footer-wrap[data-section="section-above-footer-builder"]{border-style:solid;border-width:0px;border-top-width:2px;}', $css);
+	}
+
+	public function testSeparateursParDefautOuInvalidesSansCss(): void {
+		$c = astra_hfb_normaliser(['rangees' => [
+			'pied_primary' => ['separateur' => '', 'couleur_separateur' => ''],
+			'pied_above' => ['separateur' => 0],
+			'pied_below' => ['couleur_separateur' => 'red;}body{display:none'],
+		]]);
+		$this->assertSame('', astra_hfb_css_rangees($c['rangees']), 'Épaisseur vide (défaut d\'Astra), rangée haute sans filet, couleur refusée');
+		$c = astra_hfb_normaliser(['rangees' => ['pied_primary' => ['couleur_separateur' => '#123456']]]);
+		$this->assertStringContainsString('{border-style:solid;border-width:0px;border-top-width:1px;border-top-color:#123456;}', astra_hfb_css_rangees($c['rangees']));
+	}
 }

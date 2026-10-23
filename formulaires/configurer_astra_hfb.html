@@ -135,17 +135,19 @@
 			<legend><:astra:hfb_reglages_rangees:></legend>
 			<p class="explication"><:astra:hfb_explication_rangees:></p>
 			<table class="spip astra-hfb-table">
-				<thead><tr><th scope="col"><:astra:hfb_rangee:></th><th scope="col"><:astra:hfb_hauteur:></th><th scope="col"><:astra:hfb_fond:></th><th scope="col"><:astra:hfb_bordure:></th><th scope="col"><:astra:hfb_colonnes:></th><th scope="col"><:astra:hfb_repartition:></th></tr></thead>
+				<thead><tr><th scope="col"><:astra:hfb_rangee:></th><th scope="col"><:astra:hfb_hauteur:></th><th scope="col"><:astra:hfb_fond:></th><th scope="col"><:astra:hfb_bordure:></th><th scope="col"><:astra:hfb_separateur:></th><th scope="col"><:astra:hfb_couleur_separateur:></th><th scope="col"><:astra:hfb_colonnes:></th><th scope="col"><:astra:hfb_repartition:></th></tr></thead>
 				<tbody>
 				<BOUCLE_rangees(DATA){source table, #VAL|astra_hfb_defauts|table_valeur{rangees}}>
 				#SET{cle,#CLE}
 				#SET{r,#ENV{rangees}|table_valeur{#CLE}}
 				#SET{libelle,#VAL{astra:hfb_rangee_}|concat{#CLE}|_T}
 				<tr>
-					<th scope="row">#GET{libelle}<BOUCLE_erreurs_rangee(DATA){liste hauteur,fond,bordure,colonnes,repartition}>[<span class="erreur_message">(#ENV**{erreurs}|table_valeur{#VAL{rangees_}|concat{#GET{cle},_,#VALEUR}})</span>]</BOUCLE_erreurs_rangee></th>
+					<th scope="row">#GET{libelle}<BOUCLE_erreurs_rangee(DATA){liste hauteur,fond,bordure,separateur,couleur_separateur,colonnes,repartition}>[<span class="erreur_message">(#ENV**{erreurs}|table_valeur{#VAL{rangees_}|concat{#GET{cle},_,#VALEUR}})</span>]</BOUCLE_erreurs_rangee></th>
 					<td><input type="number" min="0" max="999" class="text" name="rangees\[#CLE\]\[hauteur\]" value="[(#GET{r}|table_valeur{hauteur})]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_hauteur|attribut_html:>" /></td>
 					<td><input type="text" class="text" pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" placeholder="#eeeeee" name="rangees\[#CLE\]\[fond\]" value="[(#GET{r}|table_valeur{fond})]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_fond|attribut_html:>" /></td>
 					<td>[(#VALEUR|table_valeur{bordure}|strlen|oui)<input type="number" min="0" max="20" class="text" name="rangees\[#CLE\]\[bordure\]" value="[(#GET{r}|table_valeur{bordure})]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_bordure|attribut_html:>" />]</td>
+					<td>[(#VALEUR|table_valeur{couleur_separateur}|is_string|oui)<input type="number" min="0" max="20" class="text" name="rangees\[#CLE\]\[separateur\]" value="[(#GET{r}|table_valeur{separateur})]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_separateur|attribut_html:>" />]</td>
+					<td>[(#VALEUR|table_valeur{couleur_separateur}|is_string|oui)<input type="text" class="text" placeholder="var(--ast-global-color-4)" name="rangees\[#CLE\]\[couleur_separateur\]" value="[(#GET{r}|table_valeur{couleur_separateur})]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_couleur_separateur|attribut_html:>" />]</td>
 					<BOUCLE_si_colonnes(CONDITION){si #VALEUR|table_valeur{colonnes}}>
 					<td>
 						<select name="rangees\[#GET{cle}\]\[colonnes\]" aria-label="[(#GET{libelle}|attribut_html)] : <:astra:hfb_colonnes|attribut_html:>">

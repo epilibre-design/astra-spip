@@ -2,7 +2,9 @@
 	"ordinateur": [
 		".site-primary-header-wrap .site-branding",
 		".ast-builder-menu-1",
-		".site-below-footer-wrap .ast-footer-copyright"
+		".site-below-footer-wrap .ast-footer-copyright",
+		".site-above-footer-wrap .ast-footer-html-1",
+		".site-primary-footer-wrap .ast-footer-html-2"
 	],
 	"mobile": [
 		".ast-mobile-header-wrap .menu-toggle"
@@ -36,6 +38,30 @@
 			"selecteur": ".site-primary-header-wrap",
 			"proprietes": [
 				"min-height"
+			]
+		},
+		{
+			"selecteur": ".site-above-footer-wrap",
+			"proprietes": [
+				"border-top-width",
+				"border-top-style",
+				"border-top-color"
+			]
+		},
+		{
+			"selecteur": ".site-primary-footer-wrap",
+			"proprietes": [
+				"border-top-width",
+				"border-top-style",
+				"border-top-color"
+			]
+		},
+		{
+			"selecteur": ".site-below-footer-wrap",
+			"proprietes": [
+				"border-top-width",
+				"border-top-style",
+				"border-top-color"
 			]
 		}
 	]

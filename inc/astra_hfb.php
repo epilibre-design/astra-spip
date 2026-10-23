@@ -8,7 +8,12 @@
  * template-parts/header/builder/header-row.php et template-parts/footer/builder/footer-row.php.
  */
 
+require_once __DIR__ . '/astra_styles.php';
+
 const ASTRA_HFB_RANGEES = ['above', 'primary', 'below'];
+
+/** Couleur par défaut des séparateurs du pied (hb-footer-main-sep-color, hbb-footer-top-border-color). */
+const ASTRA_HFB_COULEUR_SEPARATEUR = 'var( --ast-global-color-subtle-background,--ast-global-color-7 )';
 const ASTRA_HFB_ZONES = ['left', 'left_center', 'center', 'right_center', 'right'];
 const ASTRA_HFB_ZONES_MOBILE = ['left', 'center', 'right'];
 const ASTRA_HFB_COLONNES_MAX = 6;
@@ -42,9 +47,11 @@ function astra_hfb_defauts(): array {
 			'entete_above' => ['hauteur' => 50, 'fond' => '', 'bordure' => 1],
 			'entete_primary' => ['hauteur' => 80, 'fond' => '', 'bordure' => 1],
 			'entete_below' => ['hauteur' => 60, 'fond' => '', 'bordure' => 1],
-			'pied_above' => ['colonnes' => 2, 'repartition' => '2-equal', 'hauteur' => 60, 'fond' => ''],
-			'pied_primary' => ['colonnes' => 3, 'repartition' => '3-equal', 'hauteur' => '', 'fond' => ''],
-			'pied_below' => ['colonnes' => 1, 'repartition' => 'full', 'hauteur' => 60, 'fond' => ''],
+			// Séparateurs : défauts d'Astra 4.11.0 (hba-footer-separator absent, hb-footer-main-sep et
+			// hbb-footer-separator à 1) ; couleur vide = couleur par défaut d'Astra.
+			'pied_above' => ['colonnes' => 2, 'repartition' => '2-equal', 'hauteur' => 60, 'fond' => '', 'separateur' => '', 'couleur_separateur' => ''],
+			'pied_primary' => ['colonnes' => 3, 'repartition' => '3-equal', 'hauteur' => '', 'fond' => '', 'separateur' => 1, 'couleur_separateur' => ''],
+			'pied_below' => ['colonnes' => 1, 'repartition' => 'full', 'hauteur' => 60, 'fond' => '', 'separateur' => 1, 'couleur_separateur' => ''],
 		],
 		'menu_mobile' => 'dropdown',
 		'elements' => [
@@ -323,7 +330,8 @@ function astra_hfb_calculer_pied(array $items, array $rangees): array {
 
 /**
  * CSS des réglages de rangées qui diffèrent des valeurs par défaut d'Astra
- * (hauteur minimale, couleur de fond, épaisseur de la bordure basse de l'en-tête).
+ * (hauteur minimale, couleur de fond, épaisseur de la bordure basse de l'en-tête, séparateur
+ * des rangées du pied).
  */
 function astra_hfb_css_rangees(array $rangees): string {
 	$defauts = astra_hfb_defauts()['rangees'];
@@ -349,6 +357,30 @@ function astra_hfb_css_rangees(array $rangees): string {
 			$selecteur = $cle === 'entete_primary' ? '.ast-header-break-point ' . $barre . ', ' . $barre : $barre;
 			$css[] = $selecteur . '{border-bottom-width:' . (int) $r['bordure'] . 'px;}';
 		}
+		if (array_key_exists('separateur', $defaut)) {
+			$css = array_merge($css, astra_hfb_css_separateur($barre, $r, $defaut));
+		}
 	}
 	return implode("\n", $css);
+}
+
+/**
+ * Séparateur d'une rangée du pied (inc/builder/type/footer/*-footer/dynamic-css/dynamic.css.php
+ * d'Astra 4.11.0) : à partir de 1 px, bordure haute de cette épaisseur et de cette couleur. Sans
+ * séparateur alors qu'Astra en pose un par défaut (css/astra-hfb.css, css/astra-dynamic.css), la
+ * bordure est ramenée aux valeurs initiales de CSS : celles d'une rangée sans règle de bordure.
+ */
+function astra_hfb_css_separateur(string $barre, array $r, array $defaut): array {
+	// Champ vide : valeur d'Astra (explication du formulaire des rangées).
+	$epaisseur = (string) $r['separateur'] !== '' ? (string) $r['separateur'] : (string) $defaut['separateur'];
+	$couleur = (string) $r['couleur_separateur'];
+	if (!preg_match('/^\d{0,2}$/', $epaisseur) || !astra_styles_couleur_valide($couleur)
+		|| ($epaisseur === (string) $defaut['separateur'] && $couleur === (string) $defaut['couleur_separateur'])) {
+		return [];
+	}
+	if ((int) $epaisseur >= 1) {
+		$couleur = $couleur !== '' ? $couleur : ((int) $defaut['separateur'] >= 1 ? ASTRA_HFB_COULEUR_SEPARATEUR : '');
+		return [$barre . '{border-style:solid;border-width:0px;border-top-width:' . (int) $epaisseur . 'px;' . ($couleur !== '' ? 'border-top-color:' . $couleur . ';' : '') . '}'];
+	}
+	return (int) $defaut['separateur'] >= 1 ? [$barre . '{border-style:none;border-width:medium;border-color:currentcolor;}'] : [];
 }

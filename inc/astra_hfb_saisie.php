@@ -248,6 +248,15 @@ function astra_hfb_verifier_saisie(array $saisie): array {
 		if (isset($defaut['bordure']) && !preg_match('/^\d{1,2}$/', (string) ($r['bordure'] ?? ''))) {
 			$erreurs['rangees_' . $cle . '_bordure'] = 'nombre';
 		}
+		if (array_key_exists('separateur', $defaut)) {
+			$epaisseur = (string) ($r['separateur'] ?? '');
+			if (!preg_match('/^\d{0,2}$/', $epaisseur) || (int) $epaisseur > 20) {
+				$erreurs['rangees_' . $cle . '_separateur'] = 'nombre';
+			}
+			if (!astra_styles_couleur_valide((string) ($r['couleur_separateur'] ?? ''))) {
+				$erreurs['rangees_' . $cle . '_couleur_separateur'] = 'couleur';
+			}
+		}
 		if (isset($defaut['colonnes'])) {
 			$colonnes = (int) ($r['colonnes'] ?? 0);
 			$repartition = $r['repartition'] ?? '';
@@ -333,7 +342,7 @@ function astra_hfb_rangees_depuis_saisie(array $saisie): array {
 				continue;
 			}
 			$v = trim((string) ($saisie[$cle][$reglage] ?? $valeur));
-			if (in_array($reglage, ['colonnes', 'bordure'], true) || ($reglage === 'hauteur' && $v !== '')) {
+			if (in_array($reglage, ['colonnes', 'bordure'], true) || (in_array($reglage, ['hauteur', 'separateur'], true) && $v !== '')) {
 				$v = (int) $v;
 			}
 			$rangees[$cle][$reglage] = $v;

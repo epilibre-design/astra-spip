@@ -120,7 +120,20 @@ function astra_configurations_reference(): array {
 			]],
 		],
 		'R5-rangees' => [
-			'rangees' => ['entete_primary' => ['hauteur' => 100, 'fond' => '#e8f5e9', 'bordure' => 0]],
+			'pied' => [
+				'above' => ['above_1' => ['html-1']],
+				'primary' => ['primary_1' => ['html-2']],
+			],
+			'rangees' => [
+				'entete_primary' => ['hauteur' => 100, 'fond' => '#e8f5e9', 'bordure' => 0],
+				'pied_above' => ['separateur' => 2, 'couleur_separateur' => '#c0392b'],
+				'pied_primary' => ['separateur' => 0],
+				'pied_below' => ['couleur_separateur' => 'var(--ast-global-color-4)'],
+			],
+			'elements' => ['pied' => [
+				'html-1' => ['texte' => 'Rangée haute'],
+				'html-2' => ['texte' => 'Rangée principale'],
+			]],
 		],
 		'R6-menu' => $styles(['menu'], ['rubrique' => 'Jardinage']),
 		'R7-bouton' => $styles(['bouton']),

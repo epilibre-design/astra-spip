@@ -79,6 +79,21 @@ final class HfbSaisieTest extends TestCase {
 		$this->assertSame([], astra_hfb_verifier_saisie(astra_hfb_saisie_depuis_config(astra_hfb_normaliser([]))));
 	}
 
+	public function testVerificationDesSeparateurs(): void {
+		$saisie = astra_hfb_saisie_depuis_config(astra_hfb_normaliser([]));
+		$saisie['rangees']['pied_primary']['separateur'] = '0';
+		$saisie['rangees']['pied_below']['couleur_separateur'] = 'var(--ast-global-color-4)';
+		$this->assertSame([], astra_hfb_verifier_saisie($saisie));
+		$saisie['rangees']['pied_primary']['separateur'] = '25';
+		$saisie['rangees']['pied_below']['couleur_separateur'] = 'red';
+		$erreurs = astra_hfb_verifier_saisie($saisie);
+		$this->assertArrayHasKey('rangees_pied_primary_separateur', $erreurs);
+		$this->assertArrayHasKey('rangees_pied_below_couleur_separateur', $erreurs);
+		$r = astra_hfb_rangees_depuis_saisie(['pied_primary' => ['separateur' => '0'], 'pied_above' => ['separateur' => '']]);
+		$this->assertSame(0, $r['pied_primary']['separateur']);
+		$this->assertSame('', $r['pied_above']['separateur']);
+	}
+
 	public function testRepartitionsProposeesParAppareil(): void {
 		$this->assertSame(['4-equal', '4-lheavy', '4-rheavy'], astra_hfb_repartitions(4));
 		// Tablette : choix d'Astra, puis les répartitions de l'ordinateur (valeur simple de la 1.2.0).
@@ -134,7 +149,7 @@ final class HfbSaisieTest extends TestCase {
 	public function testRangeesDepuisSaisie(): void {
 		$r = astra_hfb_rangees_depuis_saisie(['entete_above' => ['hauteur' => ' 42 ', 'fond' => '#abc', 'bordure' => '0'], 'pied_primary' => ['colonnes' => '4', 'repartition' => '4-equal', 'hauteur' => '']]);
 		$this->assertSame(['hauteur' => 42, 'fond' => '#abc', 'bordure' => 0], $r['entete_above']);
-		$this->assertSame(['colonnes' => 4, 'repartition' => '4-equal', 'hauteur' => '', 'fond' => ''], $r['pied_primary']);
+		$this->assertSame(['colonnes' => 4, 'repartition' => '4-equal', 'hauteur' => '', 'fond' => '', 'separateur' => 1, 'couleur_separateur' => ''], $r['pied_primary']);
 		$this->assertSame(astra_hfb_defauts()['rangees']['pied_below'], $r['pied_below']);
 	}
 }
