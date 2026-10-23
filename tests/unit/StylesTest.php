@@ -28,7 +28,7 @@ final class StylesTest extends TestCase {
 
 	/** Aller-retour sans perte des structures d'origine d'Astra (valeurs du site.json de Garden). */
 	public function testStructuresDAstraConservees(): void {
-		foreach (['menu', 'bouton', 'bouton-entete', 'identite', 'pied', 'sociaux'] as $groupe) {
+		foreach (['menu', 'bouton', 'bouton-entete', 'identite', 'pied', 'sociaux', 'menu-mobile'] as $groupe) {
 			$v = array_intersect_key(self::valeurs($groupe), astra_styles_registre());
 			$this->assertSame($v, astra_styles_normaliser($v), $groupe);
 		}
@@ -160,5 +160,22 @@ final class StylesTest extends TestCase {
 		$this->assertStringContainsString(',body .entry-content .wp-block-file .wp-block-file__button{text-decoration:underline;}', $css);
 		$css = astra_styles_css(['button-color' => '#123456'], []);
 		$this->assertStringContainsString(',body .entry-content .wp-block-file .wp-block-file__button{text-decoration:none;}', $css);
+	}
+
+	public function testBoutonDuMenuMobileCommeAstra(): void {
+		$sel = '[data-section="section-header-mobile-trigger"] .ast-button-wrap ';
+		// Plein : icône blanche par défaut, fond de la couleur du thème.
+		$css = astra_styles_css(['mobile-header-toggle-btn-style' => 'fill'], []);
+		$this->assertStringContainsString($sel . '.mobile-menu-toggle-icon .ast-mobile-svg{width:20px;height:20px;fill:#ffffff;}', $css);
+		$this->assertStringContainsString($sel . '.ast-mobile-menu-trigger-fill{color:#ffffff;border:none;background:var(--ast-global-color-0);}', $css);
+		// Minimal (défaut) : seule la couleur change.
+		$css = astra_styles_css(['mobile-header-toggle-btn-color' => '#123456'], []);
+		$this->assertStringContainsString($sel . '.ast-mobile-menu-trigger-minimal{color:#123456;border:none;background:transparent;}', $css);
+		// Contour sans épaisseur enregistrée : 1 px, défaut d'Astra ; bordure de la couleur du fond.
+		$css = astra_styles_css(['mobile-header-toggle-btn-style' => 'outline', 'mobile-header-toggle-btn-bg-color' => '#abcdef'], []);
+		$this->assertStringContainsString('.ast-mobile-menu-trigger-outline{background:transparent;color:var(--ast-global-color-0);border-top-width:1px;border-bottom-width:1px;border-right-width:1px;border-left-width:1px;border-style:solid;border-color:#abcdef;}', $css);
+		// Sans bouton de menu placé : rien.
+		$this->assertSame('', astra_styles_css(['mobile-header-toggle-btn-style' => 'fill'], ['entete_mobile' => ['primary' => ['primary_right' => []]]]));
+		$this->assertSame([], astra_styles_normaliser(['mobile-header-toggle-btn-style' => 'plein']));
 	}
 }

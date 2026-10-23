@@ -66,13 +66,17 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 | R2-entete-centre | Menu à gauche, logo centré, compte et recherche à droite ; rangée basse : widget et texte 2 ; mobile : bouton à gauche, logo centré, compte ; panneau latéral avec menu et recherche |
 | R3-pied-colonnes | Pied : rangée haute 2 colonnes (texte, icônes), principale 4 widgets (`4-equal`), basse copyright et menu (`2-equal`) |
 | R4-pied-asymetrique | Pied : rangée principale `3-cwide` (widget ; texte et icônes ; menu vertical), basse `2-lheavy` (copyright, texte 2) |
-| R5-rangees | Disposition par défaut ; rangée principale de l'en-tête : hauteur 100 px, fond `#e8f5e9`, sans séparateur (`hb-header-main-sep` à 0) ; styles calculés comparés (`styles`). Hors des configurations lues par `extraire_css.py` |
+| R5-rangees | Disposition par défaut ; rangée principale de l'en-tête : hauteur 100 px, fond `#e8f5e9`, sans séparateur (`hb-header-main-sep` à 0) ; pied : séparateurs des trois rangées (haute 2 px `#c0392b`, principale sans séparateur, basse couleur de la palette) ; styles calculés comparés (`styles`). Hors des configurations lues par `extraire_css.py` |
 | R6-menu | Styles du Customizer (`tests/references/styles/appliquer.php`, groupe `menu`) : logo, menu et bouton dans l'en-tête, quatre widgets texte, copyright et icônes sociales dans le pied ; couleurs et sous-menus du menu principal, sur la page de la catégorie Jardinage (page courante) |
 | R7-bouton | Même placement ; bouton global (couleurs, survol, rayon, marges, police Poppins 500, taille, casse, espacement) |
 | R8-identite | Même placement ; nom du site et slogan (affiché), tailles et couleurs, largeur du logo |
 | R9-pied-couleurs | Même placement ; couleurs et tailles des quatre widgets et du copyright |
 | R10-sociaux | Même placement ; taille, espacement et couleurs des icônes sociales du pied |
 | R11-combinee | Toutes les options précédentes, police du texte Raleway et des titres Poppins (cascade de plusieurs réglages sur le même bouton et le même menu) |
+| R12-pied-appareils | Répartitions par appareil de Garden Maintenance : rangées haute (texte, icônes) et basse (copyright, menu) en `2-equal` sur ordinateur et tablette, principale (quatre widgets) en `4-equal` sur ordinateur et `full` sur tablette et mobile ; `grid-template-columns` comparé aux trois largeurs |
+| R13-pied-widgets-menus | Pied : widget texte et deux widgets « Menu de navigation » (menus Principal et Pied), comme les widgets 2 et 3 de Garden Maintenance |
+| R14-bouton-mobile | Placement de R6–R11 ; bouton du menu mobile en contour (groupe de styles `menu-mobile`, valeurs de Garden) |
+| R15-sociaux-google | Pied : copyright et icônes sociales Facebook et Google Reviews (couleur de marque `#dc4e41`) |
 | R16-transparent-page | Page « Notre jardin » avec l'en-tête transparent activé par la page (méta `theme-transparent-header-meta` à `enabled`), réglage global désactivé, valeurs de Garden (`transparent/valeurs/garden.json`) ; contenu, classes du `body`, position de l'en-tête et styles calculés comparés |
 | R17-transparent-global | En-tête transparent sur tout le site, page de la catégorie Jardinage : archive exclue par défaut, en-tête normal |
 | P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
@@ -110,6 +114,12 @@ par un mu-plugin écrit par `ref_polices_locales()` (`commun.php`), sans Google 
 les règles attendues et que ses autres règles sont des règles de `base.css` ou des
 neutralisations déclarées. Après une montée de version d'Astra, relancer `capturer.sh` et relire
 le diff des attendus.
+
+Les références R12–R15 ne sont pas lues par `extraire_css.py`. Pour R13, `comparer_html.php`
+signale deux différences de nommage attendues : l'identifiant de la section (`nav_menu-2`,
+numéro d'instance du widget WordPress ; `nav_menu-pied-2` dans SPIP) et la classe de la `nav`
+(`menu-<slug du menu>-container` ; `menu-<source>-container` dans SPIP, qui n'a pas de menus
+nommés).
 
 Relevé du 23 octobre 2026 (`comparer_captures.sh`, R0–R11) : toutes les vues sous le seuil,
 styles calculés identiques aux trois largeurs, polices chargées des deux côtés ; plus grand

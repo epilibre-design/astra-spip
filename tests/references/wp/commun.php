@@ -15,6 +15,7 @@ function ref_etat_initial(): void {
 	update_option('show_on_front', 'posts');
 	update_option('page_on_front', 0);
 	delete_option('widget_text');
+	delete_option('widget_nav_menu');
 	$base = json_decode(file_get_contents(__DIR__ . '/widgets-base.json'), true);
 	foreach ($base['options'] as $option => $valeur) {
 		update_option($option, $valeur);
@@ -106,6 +107,17 @@ function ref_widget_texte(string $zone, string $titre, string $texte): void {
 	update_option('widget_text', $widgets);
 	$zones = get_option('sidebars_widgets', []);
 	$zones[$zone][] = 'text-' . $n;
+	update_option('sidebars_widgets', $zones);
+}
+
+// Widget « Menu de navigation » (nav_menu) affichant un menu créé par ref_menu().
+function ref_widget_menu(string $zone, string $titre, string $menu): void {
+	$widgets = get_option('widget_nav_menu', []);
+	$n = max(array_merge([1], array_filter(array_keys($widgets), 'is_int'))) + 1;
+	$widgets[$n] = ['title' => $titre, 'nav_menu' => wp_get_nav_menu_object($menu)->term_id];
+	update_option('widget_nav_menu', $widgets);
+	$zones = get_option('sidebars_widgets', []);
+	$zones[$zone][] = 'nav_menu-' . $n;
 	update_option('sidebars_widgets', $zones);
 }
 

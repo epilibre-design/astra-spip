@@ -362,6 +362,17 @@ function astra_body_class(string $type, $id = 0, $accueil = ''): string {
 }
 
 /**
+ * Valeur ordinateur normalisée d'une option des styles, sinon son défaut d'Astra.
+ * `#VAL{mobile-header-toggle-btn-style}|astra_style_option`
+ */
+function astra_style_option(string $option) {
+	include_spip('inc/config');
+	$v = astra_styles_normaliser([$option => lire_config('astra/styles/' . $option)])[$option] ?? '';
+	$v = astra_styles_ordi($v);
+	return $v === '' || $v === null ? astra_styles_registre()[$option]['defaut'] : $v;
+}
+
+/**
  * Titre ou slogan imprimé : visible sur au moins un appareil, comme astra_logo() d'Astra.
  * `#VAL{display-site-title-responsive}|astra_identite_visible`
  */

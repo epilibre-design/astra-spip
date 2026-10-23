@@ -120,6 +120,21 @@ leur utilisation dans les inclusions SPIP constituent les adaptations du portage
 La licence OFL des fontes et la licence MIT du code Font Awesome ne sont pas celles
 des SVG : aucune fonte ni bibliothèque JavaScript Font Awesome n'est embarquée ici.
 
+### Font Awesome 4.7.0 : Google Reviews
+
+Le SVG `google_reviews` de `inc/astra_icones.php` est identique à l'entrée du même nom
+dans `assets/svg/svgs.json` d'Astra 4.11.0. Son tracé est le glyphe `google` (U+F1A0)
+de la fonte **Font Awesome 4.7.0**, par **Dave Gandy**, converti par Astra : coordonnées
+de la fonte (1792 unités par cadratin) divisées par 64 et retournées verticalement.
+Chaque point du tracé d'Astra tombe sur le contour du glyphe à 0,0015 unité près
+(relevé du 23 octobre 2026, sur `fontawesome-webfont.svg` de la version 4.7.0).
+
+**Icône : Font Awesome 4.7.0 par Dave Gandy, fonte sous
+[SIL OFL 1.1](https://openfontlicense.org/).** La notice et le texte de la licence
+sont reproduits dans [licenses/OFL-1.1-fontawesome-4.7.0.txt](licenses/OFL-1.1-fontawesome-4.7.0.txt).
+Seul ce tracé est repris, sans la fonte. Le logo représente la marque **Google** de Google LLC ;
+les règles relatives aux marques ne constituent pas une licence libre du dessin.
+
 ### Autres icônes reprises d'Astra
 
 Les SVG `twitter-x`, `bluesky` et `email` de `inc/astra_icones.php` sont eux aussi

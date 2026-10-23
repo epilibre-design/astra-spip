@@ -1,0 +1,36 @@
+{
+	"ordinateur": [
+		".site-above-footer-wrap .ast-footer-html-1",
+		".site-primary-footer-wrap .footer-widget-area",
+		".site-below-footer-wrap .ast-footer-copyright"
+	],
+	"mobile": [
+		".site-below-footer-wrap .ast-footer-copyright"
+	],
+	"presents": [
+		".site-primary-footer-wrap.ast-builder-grid-row-4-equal.ast-builder-grid-row-tablet-full.ast-builder-grid-row-mobile-full",
+		".site-above-footer-wrap.ast-builder-grid-row-tablet-2-equal.ast-builder-grid-row-mobile-full"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": ".site-primary-footer-wrap .ast-builder-grid-row",
+			"proprietes": ["grid-template-columns"]
+		},
+		{
+			"selecteur": ".site-above-footer-wrap .ast-builder-grid-row",
+			"proprietes": ["grid-template-columns"]
+		},
+		{
+			"selecteur": ".site-below-footer-wrap .ast-builder-grid-row",
+			"proprietes": ["grid-template-columns"]
+		},
+		{
+			"selecteur": ".site-primary-footer-wrap .site-footer-section-2",
+			"proprietes": ["display", "margin-bottom"]
+		}
+	]
+}

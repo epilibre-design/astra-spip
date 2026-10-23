@@ -118,6 +118,15 @@ function astra_styles_registre(): array {
 			"$b-social-1-color-type" => ['type' => 'enum', 'valeurs' => ['custom', 'official'], 'defaut' => 'custom'],
 		]);
 	}
+	$ajouter('menu-mobile', 'inc/builder/type/header/mobile-trigger/dynamic-css/dynamic.css.php', [
+		'mobile-header-toggle-btn-style' => ['type' => 'enum', 'valeurs' => ['minimal', 'fill', 'outline'], 'defaut' => 'minimal'],
+		'mobile-header-toggle-btn-color' => $couleur,
+		'mobile-header-toggle-btn-bg-color' => $couleur,
+		'mobile-header-toggle-border-color' => $couleur,
+		'mobile-header-toggle-btn-border-size' => $cotes + ['defaut' => ['top' => 1, 'right' => 1, 'bottom' => 1, 'left' => 1]],
+		'mobile-header-toggle-border-radius-fields' => $cotes_r,
+		'mobile-header-toggle-icon-size' => ['type' => 'nombre', 'defaut' => 20],
+	]);
 	$booleen = ['type' => 'booleen'];
 	$ajouter('entete-transparent', 'inc/addons/transparent-header/classes/dynamic-css/dynamic.css.php', [
 		'transparent-header-enable' => $booleen + ['defaut' => 0],
@@ -457,7 +466,7 @@ function astra_styles_ecrire(array $regles): string {
 }
 
 /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
-const ASTRA_STYLES_MODULES = ['bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux'];
+const ASTRA_STYLES_MODULES = ['bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'menu_mobile'];
 
 /** CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. */
 function astra_styles_css(array $styles, array $hfb): string {

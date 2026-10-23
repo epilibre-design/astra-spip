@@ -1,0 +1,46 @@
+{
+	"ordinateur": [
+		".site-primary-header-wrap .ast-builder-menu-1",
+		".site-primary-header-wrap .ast-header-button-1",
+		".site-primary-footer-wrap .footer-widget-area",
+		".site-below-footer-wrap .ast-footer-copyright",
+		".site-below-footer-wrap .ast-footer-social-wrap"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": "[data-section=\"section-header-mobile-trigger\"] .ast-button-wrap .menu-toggle",
+			"proprietes": [
+				"color",
+				"background-color",
+				"border-top-width",
+				"border-right-width",
+				"border-bottom-width",
+				"border-left-width",
+				"border-top-style",
+				"border-top-color",
+				"border-top-left-radius",
+				"border-bottom-right-radius",
+				"width",
+				"height"
+			]
+		},
+		{
+			"selecteur": "[data-section=\"section-header-mobile-trigger\"] .ast-button-wrap .menu-toggle .ast-mobile-svg",
+			"proprietes": [
+				"width",
+				"height",
+				"fill"
+			]
+		}
+	]
+}

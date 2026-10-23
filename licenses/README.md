@@ -14,6 +14,7 @@ dans [LICENSE](../LICENSE).
 | `GPL-2.0-or-later.txt` | [Texte SPDX GPL-2.0-or-later](https://github.com/spdx/license-list-data/blob/main/text/GPL-2.0-or-later.txt) ; [licence publiée par la FSF](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) |
 | `OFL-1.1-raleway.txt` | `LICENSE` du paquet [`@fontsource/raleway@5.1.0`](https://cdn.jsdelivr.net/npm/@fontsource/raleway@5.1.0/LICENSE), copié sans modification : copyright de Raleway et texte de la SIL OFL 1.1 |
 | `OFL-1.1-poppins.txt` | `LICENSE` du paquet [`@fontsource/poppins@5.1.0`](https://cdn.jsdelivr.net/npm/@fontsource/poppins@5.1.0/LICENSE), copié sans modification : copyright de Poppins et texte de la SIL OFL 1.1 |
+| `OFL-1.1-fontawesome-4.7.0.txt` | Notice de Font Awesome 4.7.0 (en-tête de `font-awesome.css` et métadonnées de `fontawesome-webfont.svg` : « Copyright Dave Gandy 2016 ») suivie du texte de la SIL OFL 1.1, repris de `OFL-1.1-raleway.txt` ; seul le tracé `google_reviews` est concerné, la fonte n'est pas embarquée |
 | `CC-BY-4.0.txt` | [Texte SPDX CC-BY-4.0](https://github.com/spdx/license-list-data/blob/main/text/CC-BY-4.0.txt) ; [texte publié par Creative Commons](https://creativecommons.org/licenses/by/4.0/legalcode) |
 
 Les crédits d'Astra concernant des ressources non embarquées sont conservés dans
