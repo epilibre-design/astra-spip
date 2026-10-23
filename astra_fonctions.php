@@ -16,6 +16,22 @@ define('_ASTRA_VERSION_THEME', '4.11.0');
 
 include_once __DIR__ . '/inc/astra_hfb.php';
 include_once __DIR__ . '/inc/astra_hfb_saisie.php';
+include_once __DIR__ . '/inc/astra_pages.php';
+
+/** Réglages effectifs d'une page unique : `#ID_ARTICLE|astra_page_reglages`. */
+function filtre_astra_page_reglages_dist($id_article): array {
+	return astra_page_reglages((int) $id_article);
+}
+
+/** Contexte des inclusions du gabarit de page : `#ID_ARTICLE|astra_page_contexte{#ENV{accueil}}`. */
+function filtre_astra_page_contexte_dist($id_article, $accueil = ''): array {
+	return astra_page_contexte((int) $id_article, astra_page_reglages((int) $id_article), $accueil === 'oui');
+}
+
+/** Identifiant de la page d'accueil statique, 0 si l'accueil liste les articles. */
+function astra_accueil_page($x = ''): int {
+	return astra_conf('accueil_type') === 'page' ? (int) astra_conf('accueil_page') : 0;
+}
 
 /**
  * Configuration du builder d'en-tête et de pied de page, normalisée.
@@ -158,6 +174,9 @@ function astra_config_defaut(): array {
 		'afficher_auteurs' => 'oui',
 		'bouton_haut' => 'oui',
 		'texte_pied' => '',
+		// articles | page (page unique choisie dans accueil_page)
+		'accueil_type' => 'articles',
+		'accueil_page' => '',
 	];
 }
 
@@ -208,11 +227,15 @@ function astra_barre_a(string $type, string $position): bool {
 /**
  * Classes CSS du <body>, reproduisant celles posées par Astra sur WordPress
  *
- * @param string $type Type de page
+ * @param string $type Type de page ; `page` : page unique
  * @param int|string $id Identifiant de l'objet affiché (article, rubrique…)
+ * @param string $accueil `oui` pour une page unique affichée en accueil statique
  */
-function astra_body_class(string $type, $id = 0): string {
+function astra_body_class(string $type, $id = 0, $accueil = ''): string {
 	$id = (int) $id;
+	if ($type === 'page') {
+		return astra_page_classes_body($id, astra_page_reglages($id), $accueil === 'oui', astra_page_a_sous_pages($id));
+	}
 	$disposition = astra_disposition($type);
 	$etroit = ($type === 'article' && astra_conf('disposition_articles') === 'narrow');
 

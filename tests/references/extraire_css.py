@@ -4,6 +4,7 @@ Extrait le CSS ajouté par le builder d'en-tête et de pied de page d'Astra (con
 builder seulement : les références P* des pages uniques ne sont pas lues).
 
 Usage : python3 tests/references/extraire_css.py [sorties] > css/astra-hfb.css
+        python3 tests/references/extraire_css.py --pages [sorties] > css/astra-pages.css
 
 Compare le CSS dynamique des configurations R1 à R4 à celui de R0 (disposition par
 défaut, déjà portée dans css/astra-dynamic.css) et ne garde que les règles absentes de R0,
@@ -128,8 +129,37 @@ def main():
     print(' * disposition par défaut (css/astra-dynamic.css). Fichier produit par')
     print(' * tests/references/extraire_css.py à partir des références WordPress : ne pas modifier à la main.')
     print(' */')
+    imprimer(nouvelles)
+
+
+PAGES = ['P1-page', 'P3-page-pleine']
+
+
+def main_pages(sorties):
+    """Règles des dispositions de page (références P*) absentes de R0 et de css/astra-dynamic.css :
+    Astra ne les émet que sur les pages qui utilisent la disposition (pleine largeur…)."""
+    lire = lambda conf: open(os.path.join(sorties, conf, 'dynamique.css'), encoding='utf-8').read()
+    connues = set(paires(lire('R0-defaut')))
+    connues |= set(paires(open(os.path.join(os.path.dirname(__file__), '..', '..', 'css', 'astra-dynamic.css'), encoding='utf-8').read()))
+    nouvelles = []
+    for conf in PAGES:
+        for p in paires(lire(conf)):
+            if p not in connues:
+                connues.add(p)
+                nouvelles.append(p)
+    print('/*')
+    print(' * Astra pour SPIP — CSS des dispositions de page.')
+    print(' *')
+    print(' * Règles générées par Astra 4.11.0 pour les pages (pleine largeur…), absentes de la')
+    print(' * disposition par défaut (css/astra-dynamic.css). Fichier produit par')
+    print(' * tests/references/extraire_css.py --pages à partir des références WordPress : ne pas modifier à la main.')
+    print(' */')
+    imprimer(nouvelles)
+
+
+def imprimer(regles):
     contexte_courant = None
-    for contexte, regle in nouvelles:
+    for contexte, regle in regles:
         if contexte != contexte_courant:
             if contexte_courant:
                 print('}')
@@ -142,4 +172,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == '--pages':
+        main_pages(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(__file__), 'sorties'))
+    else:
+        main()

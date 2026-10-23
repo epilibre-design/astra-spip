@@ -1,0 +1,57 @@
+[(#REM)
+
+	Page unique (plugin Pages) : gabarit de page d'Astra (page.php, content-page.php).
+	Choisi par le pipeline styliser (astra_pipelines.php) pour les articles hors rubrique.
+
+	Paramètres : id_article ; accueil = 'oui' sur l'accueil statique (sommaire.html).
+
+]<BOUCLE_page(ARTICLES){id_article}{id_rubrique=-1}>
+#SET{r,#ID_ARTICLE|astra_page_reglages}
+#SET{ctx,#ID_ARTICLE|astra_page_contexte{#ENV{accueil}}}
+<!DOCTYPE html>
+<html dir="#LANG_DIR" lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut)] – [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+[(#ENV{accueil}|!={oui}|et{#ID_ARTICLE|=={#VAL|astra_accueil_page}}|oui)<link rel="canonical" href="#URL_SITE_SPIP/" />]
+<INCLURE{fond=inclure/head} />
+</head>
+<body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="[(#VAL{page}|astra_body_class{#ID_ARTICLE,#ENV{accueil}})]">
+<INCLURE{fond=inclure/header}{type_page=#GET{ctx}|table_valeur{type_page}}{id_article}{titre_page=#GET{ctx}|table_valeur{titre}}{disposition=#GET{ctx}|table_valeur{disposition}} />
+<div id="content" class="site-content">
+	<div class="ast-container">
+		<div id="primary" class="content-area primary">
+			<main id="main" class="site-main">
+				<article class="post-#ID_ARTICLE page type-page status-publish ast-article-single" id="post-#ID_ARTICLE" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+					[(#REM) Titre masqué : Astra garde l'en-tête, vide sans logo (ast-header-without-markup). ]
+					#SET{titre,#GET{r}|table_valeur{titre}|=={afficher}}
+					<header class="entry-header[ (#LOGO_ARTICLE|?{'',ast-no-thumbnail})][(#GET{titre}|non) ast-no-title][(#GET{titre}|non|et{#LOGO_ARTICLE|non}|oui) ast-header-without-markup]">
+						[<div class="post-thumb-img-content post-thumb">(#LOGO_ARTICLE|image_reduire{1200}|inserer_attribut{class,attachment-large size-large wp-post-image}|inserer_attribut{alt,''}|inserer_attribut{itemprop,image})</div>]
+						[(#GET{titre}|oui)<h1 class="entry-title" itemprop="headline">[(#TITRE|supprimer_numero)]</h1>]
+					</header><!-- .entry-header -->
+					<div class="entry-content clear" data-ast-blocks-layout="true" itemprop="text">
+						[<div class="chapo">(#CHAPO)</div>]
+						#TEXTE
+						[<div class="ps">(#PS)</div>]
+						[<div class="notes"><h2 class="screen-reader-text"><:astra:notes:></h2>(#NOTES)</div>]
+						<B_documents>
+						<div class="ast-documents">
+							<h2><:astra:documents_joints:></h2>
+							<ul class="ast-documents-liste">
+								<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{vu=non}{par num titre, titre}>
+								<li><a href="#URL_DOCUMENT" type="#MIME_TYPE">[(#TITRE|sinon{#FICHIER|basename})]</a> <small>(#TYPE_DOCUMENT[, (#TAILLE|taille_en_octets)])</small>[<div class="ast-document-descriptif">(#DESCRIPTIF)</div>]</li>
+								</BOUCLE_documents>
+							</ul>
+						</div>
+						</B_documents>
+					</div><!-- .entry-content .clear -->
+				</article><!-- #post-## -->
+				<INCLURE{fond=inclure/commentaires}{id_article}{id_forum} />
+			</main><!-- #main -->
+		</div><!-- #primary -->
+	</div> <!-- ast-container -->
+</div><!-- #content -->
+<INCLURE{fond=inclure/footer}{type_page=#GET{ctx}|table_valeur{type_page}}{id_article} />
+</body>
+</html>
+</BOUCLE_page>
