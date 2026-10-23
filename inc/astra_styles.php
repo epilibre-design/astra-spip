@@ -413,7 +413,7 @@ function astra_styles_ecrire(array $regles): string {
 }
 
 /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
-const ASTRA_STYLES_MODULES = ['bouton', 'menu'];
+const ASTRA_STYLES_MODULES = ['bouton', 'menu', 'bouton_entete'];
 
 /** CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. */
 function astra_styles_css(array $styles, array $hfb): string {
