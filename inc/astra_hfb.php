@@ -37,7 +37,7 @@ function astra_hfb_defauts(): array {
 	$pied['below']['below_1'] = ['copyright'];
 	// Icônes par défaut d'Astra, sans adresse.
 	$reseaux = [['reseau' => 'facebook', 'url' => ''], ['reseau' => 'twitter', 'url' => ''], ['reseau' => 'instagram', 'url' => '']];
-	$widget = ['blocs' => [], 'titre' => '', 'texte' => ''];
+	$widget = ['blocs' => [], 'titre' => '', 'texte' => '', 'menu' => ['source' => 'racine', 'id' => 0]];
 	return [
 		'entete_ordinateur' => $entete(ASTRA_HFB_ZONES, ['primary_left' => ['logo'], 'primary_right' => ['menu-1']]),
 		'entete_mobile' => ['popup' => ['popup_content' => ['mobile-menu']]]
@@ -83,7 +83,7 @@ function astra_hfb_defauts(): array {
  * Blocs proposés dans les zones de widgets (squelettes inclure/widgets/<bloc>.html).
  */
 function astra_hfb_blocs(): array {
-	return ['recherche', 'sous_rubriques', 'articles_recents', 'forums_recents', 'mots_cles', 'texte'];
+	return ['recherche', 'sous_rubriques', 'articles_recents', 'forums_recents', 'mots_cles', 'texte', 'menu'];
 }
 
 /**

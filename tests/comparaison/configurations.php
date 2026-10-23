@@ -103,6 +103,17 @@ function astra_configurations_reference(): array {
 				'widget-4' => ['blocs' => ['texte'], 'titre' => 'Colonne 4', 'texte' => 'Texte de la colonne 4'],
 			]],
 		],
+		'R13-pied-widgets-menus' => [
+			'pied' => [
+				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['widget-2'], 'primary_3' => ['widget-3']],
+			],
+			'rangees' => ['pied_primary' => ['colonnes' => 3, 'repartition' => '3-equal']],
+			'elements' => ['pied' => [
+				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Colonne 1', 'texte' => 'Texte de la colonne 1'],
+				'widget-2' => ['blocs' => ['menu'], 'titre' => 'Liens rapides', 'menu' => ['source' => 'racine', 'id' => 0]],
+				'widget-3' => ['blocs' => ['menu'], 'titre' => 'Nos services', 'menu' => ['source' => 'racine', 'id' => 0]],
+			]],
+		],
 		'R4-pied-asymetrique' => [
 			'pied' => [
 				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['html-1', 'social-icons-1'], 'primary_3' => ['menu']],

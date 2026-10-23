@@ -73,6 +73,7 @@ return [
 	'hfb_appareil_tablet' => 'Tablet',
 	'hfb_bloc_articles_recents' => 'Recent posts',
 	'hfb_bloc_forums_recents' => 'Recent comments',
+	'hfb_bloc_menu' => 'Menu',
 	'hfb_bloc_mots_cles' => 'Keywords',
 	'hfb_bloc_recherche' => 'Search',
 	'hfb_bloc_sous_rubriques' => 'Sections',
@@ -125,6 +126,7 @@ return [
 	'hfb_menu_mobile' => 'Mobile menu',
 	'hfb_menu_mobile_dropdown' => 'Dropdown below the header',
 	'hfb_menu_mobile_off_canvas' => 'Off-canvas panel',
+	'hfb_menu_widget' => '“Menu” block source',
 	'hfb_non_affiche' => 'Not displayed',
 	'hfb_nouvel_onglet' => 'Open in a new tab',
 	'hfb_ordre' => 'Order',
@@ -180,6 +182,7 @@ return [
 	'laisser_commentaire' => 'Leave a Comment',
 
 	// M
+	'menu' => 'Menu',
 	'menu_principal' => 'Main Menu',
 	'mots_cles' => 'Tags',
 
@@ -209,6 +212,7 @@ return [
 	'pagination' => 'Post pagination',
 	'panneau_fermer' => 'Close menu',
 	'par' => 'By',
+	'permutateur_menu' => 'Menu Toggle',
 	'precedent' => 'Previous',
 	'propulse_par' => 'Powered by',
 

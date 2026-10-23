@@ -22,3 +22,9 @@
 	<label for="#ENV{groupe}_#ENV{id}_texte">#GET{libelle} : <:astra:hfb_texte:></label>
 	<textarea name="elements\[#ENV{groupe}\]\[#ENV{id}\]\[texte\]" id="#ENV{groupe}_#ENV{id}_texte" rows="3">[(#GET{w}|table_valeur{texte})]</textarea>
 </div>
+<div class="editer editer_#ENV{groupe}_[(#ENV{id})]_menu">
+	<label for="#ENV{groupe}_#ENV{id}_menu">#GET{libelle} : <:astra:hfb_menu_widget:></label>
+	<select name="elements\[#ENV{groupe}\]\[#ENV{id}\]\[menu_source_id\]" id="#ENV{groupe}_#ENV{id}_menu">
+		<BOUCLE_sources(DATA){source table, #VAL|astra_hfb_sources_menu}><option value="#CLE"[ (#CLE|=={#GET{w}|table_valeur{menu_source_id}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_sources>
+	</select>
+</div>

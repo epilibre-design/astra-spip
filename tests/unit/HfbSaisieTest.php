@@ -79,6 +79,18 @@ final class HfbSaisieTest extends TestCase {
 		$this->assertSame([], astra_hfb_verifier_saisie(astra_hfb_saisie_depuis_config(astra_hfb_normaliser([]))));
 	}
 
+	public function testSourceDuBlocMenuAllerRetour(): void {
+		$config = astra_hfb_normaliser(['elements' => ['pied' => ['widget-2' => ['blocs' => ['menu'], 'titre' => 'Liens', 'menu' => ['source' => 'rubrique', 'id' => 3]]]]]);
+		$saisie = astra_hfb_saisie_depuis_config($config);
+		$this->assertSame('rubrique:3', $saisie['elements']['pied']['widget-2']['menu_source_id']);
+		$this->assertSame('racine', $saisie['elements']['pied']['widget-1']['menu_source_id'], 'Défaut : rubriques racines');
+		$elements = astra_hfb_elements_depuis_saisie($saisie['elements']);
+		$this->assertSame(['source' => 'rubrique', 'id' => 3], $elements['pied']['widget-2']['menu']);
+		$this->assertSame(['menu'], $elements['pied']['widget-2']['blocs']);
+		$saisie['elements']['pied']['widget-2']['menu_source_id'] = 'sql:1';
+		$this->assertSame(['source' => 'racine', 'id' => 0], astra_hfb_elements_depuis_saisie($saisie['elements'])['pied']['widget-2']['menu']);
+	}
+
 	public function testVerificationDesSeparateurs(): void {
 		$saisie = astra_hfb_saisie_depuis_config(astra_hfb_normaliser([]));
 		$saisie['rangees']['pied_primary']['separateur'] = '0';

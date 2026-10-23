@@ -52,6 +52,11 @@ final class HfbTest extends TestCase {
 		$this->assertSame(['source' => 'racine', 'id' => 3], $c['elements']['entete']['menu-1']);
 	}
 
+	public function testBlocMenuProposeDansLesWidgets(): void {
+		$this->assertContains('menu', astra_hfb_blocs());
+		$this->assertSame(['source' => 'racine', 'id' => 0], astra_hfb_normaliser([])['elements']['pied']['widget-3']['menu']);
+	}
+
 	public function testReglagesParDefautDesElements(): void {
 		$c = astra_hfb_normaliser([]);
 		$this->assertSame(['facebook', 'twitter', 'instagram'], array_column($c['elements']['entete']['social-icons-1']['reseaux'], 'reseau'));

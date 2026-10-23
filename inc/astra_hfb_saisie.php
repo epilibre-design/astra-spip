@@ -126,13 +126,29 @@ function astra_hfb_saisie_depuis_config(array $config): array {
 	return $saisie;
 }
 
+/** Valeur du champ source_id d'un menu (racine, rubrique:<id>, groupe_mots:<id>, pages). */
+function astra_hfb_source_id(array $menu): string {
+	$source = (string) ($menu['source'] ?? 'racine');
+	return in_array($source, ['rubrique', 'groupe_mots'], true) ? $source . ':' . (int) ($menu['id'] ?? 0) : $source;
+}
+
+/** Source d'un menu à partir du champ source_id ; valeur inconnue : racine. */
+function astra_hfb_source_depuis_saisie(string $source_id): array {
+	if (preg_match('/^(rubrique|groupe_mots):(\d+)$/', $source_id, $m)) {
+		return ['source' => $m[1], 'id' => (int) $m[2]];
+	}
+	return ['source' => $source_id === 'pages' ? 'pages' : 'racine', 'id' => 0];
+}
+
 /** Valeurs des champs de réglages d'éléments à partir de la configuration. */
 function astra_hfb_saisie_elements(array $elements): array {
 	foreach ($elements as $groupe => $liste) {
 		foreach ($liste as $id => $r) {
 			if (isset($r['source'])) {
-				$elements[$groupe][$id]['source_id'] = in_array($r['source'], ['rubrique', 'groupe_mots'], true)
-					? $r['source'] . ':' . (int) $r['id'] : $r['source'];
+				$elements[$groupe][$id]['source_id'] = astra_hfb_source_id($r);
+			}
+			if (isset($r['menu']) && is_array($r['menu'])) {
+				$elements[$groupe][$id]['menu_source_id'] = astra_hfb_source_id($r['menu']);
 			}
 			if (isset($r['reseaux'])) {
 				$champs = [];
@@ -170,6 +186,8 @@ function astra_hfb_elements_depuis_saisie(array $saisie): array {
 							$r['reseaux'][] = ['reseau' => $reseau, 'url' => trim((string) ($c['url'] ?? ''))];
 						}
 					}
+				} elseif ($cle === 'menu') {
+					$r['menu'] = astra_hfb_source_depuis_saisie((string) ($champs['menu_source_id'] ?? 'racine'));
 				} elseif ($cle === 'blocs') {
 					$choisis = isset($champs['blocs']) && is_array($champs['blocs']) ? $champs['blocs'] : [];
 					$r['blocs'] = array_values(array_intersect(astra_hfb_blocs(), $choisis));
@@ -178,14 +196,7 @@ function astra_hfb_elements_depuis_saisie(array $saisie): array {
 				}
 			}
 			if (array_key_exists('source', $defaut)) {
-				$source_id = (string) ($champs['source_id'] ?? 'racine');
-				if (preg_match('/^(rubrique|groupe_mots):(\d+)$/', $source_id, $m)) {
-					$r = ['source' => $m[1], 'id' => (int) $m[2]] + $r;
-				} elseif ($source_id === 'pages') {
-					$r = ['source' => 'pages', 'id' => 0] + $r;
-				} else {
-					$r = ['source' => 'racine', 'id' => 0] + $r;
-				}
+				$r = astra_hfb_source_depuis_saisie((string) ($champs['source_id'] ?? 'racine')) + $r;
 			}
 			if (isset($defaut['disposition']) && !in_array($r['disposition'], ['horizontal', 'vertical'], true)) {
 				$r['disposition'] = $defaut['disposition'];
