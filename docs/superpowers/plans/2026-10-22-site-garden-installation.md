@@ -988,7 +988,7 @@ return [
 	'astra_min' => '1.0.0',
 	'pages' => [
 		'accueil' => ['titre' => '10. Accueil', 'texte' => "{{Les Jardins du Val}} entretiennent les jardins des particuliers et des copropriétés : tonte, taille des haies, désherbage et petits aménagements.\n\nUne équipe de quatre jardiniers intervient toute l'année, sur devis gratuit."],
-		'a-propos' => ['titre' => '20. À propos', 'texte' => "L'entreprise est née de l'envie de jardiner autrement : sans produits chimiques, avec des outils sobres et en laissant une place à la faune.\n\nNous travaillons dans un rayon de vingt kilomètres pour limiter nos déplacements."],
+		'a_propos' => ['titre' => '20. À propos', 'texte' => "L'entreprise est née de l'envie de jardiner autrement : sans produits chimiques, avec des outils sobres et en laissant une place à la faune.\n\nNous travaillons dans un rayon de vingt kilomètres pour limiter nos déplacements."],
 		'services' => ['titre' => '30. Services', 'texte' => "-* Tonte et entretien des pelouses\n-* Taille des haies et des arbustes\n-* Désherbage manuel et paillage\n-* Création de massifs et de potagers\n-* Ramassage des feuilles et évacuation des déchets verts"],
 		'realisations' => ['titre' => '40. Réalisations', 'texte' => "Quelques chantiers récents : un jardin de ville transformé en potager partagé, une haie mixte replantée pour les oiseaux, une cour minérale végétalisée.\n\nLes photographies seront ajoutées avec des images libres de droits."],
 		'faq' => ['titre' => '50. Questions fréquentes', 'texte' => "{{{Intervenez-vous toute l'année ?}}}\n\nOui : la tonte cède la place à la taille et au paillage en hiver.\n\n{{{Le devis est-il payant ?}}}\n\nNon, il est gratuit et sans engagement.\n\n{{{Que faites-vous des déchets verts ?}}}\n\nIls sont broyés et, si vous le souhaitez, laissés sur place en paillage."],
@@ -1032,7 +1032,7 @@ return [
 				],
 				'pied' => [
 					'widget-1' => $widget('Nous joindre', "Les Jardins du Val\n\nadresse et téléphone à compléter"),
-					'widget-2' => $widget('Liens rapides', "-* [Accueil->@article:accueil]\n-* [À propos->@article:a-propos]\n-* [Contact->@article:contact]"),
+					'widget-2' => $widget('Liens rapides', "-* [Accueil->@article:accueil]\n-* [À propos->@article:a_propos]\n-* [Contact->@article:contact]"),
 					'widget-3' => $widget('Nos services', "-* [Tonte et taille->@article:services]\n-* [Potagers->@article:services]\n-* [Réalisations->@article:realisations]"),
 					'widget-4' => $widget('Les Jardins du Val', 'Un jardin vivant, entretenu sans produits chimiques.'),
 					'social-icons-1' => ['reseaux' => [['reseau' => 'facebook', 'url' => ''], ['reseau' => 'twitter', 'url' => ''], ['reseau' => 'linkedin', 'url' => '']]],
@@ -1093,7 +1093,7 @@ scenario_lot2() {
 scenario_lot1_vers_lot2() {
 	nouveau_site
 	GARDEN_SEED_OPTIONS="--lot=1" "$SITE/bin/install.sh" >/dev/null
-	spip_eval "sql_updateq('spip_articles', ['texte' => 'Mon texte.'], 'page=' . sql_quote('garden-faq'));"
+	spip_eval "sql_updateq('spip_articles', ['texte' => 'Mon texte.'], 'page=' . sql_quote('garden_faq'));"
 	seed --lot=2 >/dev/null
 	texte=$(texte_page services)
 	verifier "lot 1 → 2 : page intacte enrichie" grep -q '<h1' <<<"$texte"
