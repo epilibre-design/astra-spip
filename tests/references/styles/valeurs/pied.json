@@ -1,0 +1,155 @@
+{
+	"footer-widget-1-title-color": {
+		"desktop": "var(--ast-global-color-4)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-1-color": {
+		"desktop": "var(--ast-global-color-5)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-1-link-color": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-1-link-h-color": {
+		"desktop": "var(--ast-global-color-5)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-1-font-size": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"footer-widget-1-content-font-size": {
+		"desktop": "15",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"footer-widget-2-title-color": {
+		"desktop": "var(--ast-global-color-4)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-2-color": {
+		"desktop": "var(--ast-global-color-5)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-2-link-color": {
+		"desktop": "var(--ast-global-color-5)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-2-link-h-color": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-2-font-size": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"footer-widget-2-content-font-size": {
+		"desktop": "14",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"footer-widget-3-title-color": {
+		"desktop": "var(--ast-global-color-4)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-3-color": {
+		"desktop": "var(--ast-global-color-5)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-3-link-color": {
+		"desktop": "var(--ast-global-color-5)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-3-link-h-color": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-3-font-size": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"footer-widget-3-content-font-size": {
+		"desktop": "14",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"footer-widget-4-title-color": {
+		"desktop": "var(--ast-global-color-4)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-4-color": {
+		"desktop": "var(--ast-global-color-5)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-4-link-color": {
+		"desktop": "var(--ast-global-color-5)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-4-link-h-color": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-widget-4-font-size": {
+		"desktop": "15",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"footer-widget-4-content-font-size": {
+		"desktop": "14",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"footer-copyright-color": "var(--ast-global-color-5)",
+	"font-size-section-footer-copyright": {
+		"desktop": "15",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	}
+}

@@ -1,0 +1,66 @@
+{
+	"header-button1-font-family": "inherit",
+	"header-button1-font-weight": "inherit",
+	"header-button1-font-size": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"header-button1-text-color": {
+		"desktop": "var(--ast-global-color-4)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"header-button1-back-color": {
+		"desktop": "var(--ast-global-color-0)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"header-button1-text-h-color": {
+		"desktop": "rgba(255,255,255,0.75)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"header-button1-back-h-color": {
+		"desktop": "var(--ast-global-color-0)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"header-button1-border-size": {
+		"top": "",
+		"right": "",
+		"bottom": "",
+		"left": ""
+	},
+	"header-button1-border-color": {
+		"desktop": "",
+		"tablet": "",
+		"mobile": ""
+	},
+	"header-button1-border-radius-fields": {
+		"desktop": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	}
+}

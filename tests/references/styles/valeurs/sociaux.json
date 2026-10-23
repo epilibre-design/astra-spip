@@ -1,0 +1,21 @@
+{
+	"footer-social-1-space": {
+		"desktop": "20",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-social-1-size": {
+		"desktop": "16",
+		"tablet": "",
+		"mobile": ""
+	},
+	"footer-social-1-color": {
+		"desktop": "var(--ast-global-color-0)"
+	},
+	"footer-social-1-h-color": {
+		"desktop": "var(--ast-global-color-5)"
+	},
+	"footer-social-1-bg-color": "",
+	"footer-social-1-bg-h-color": "",
+	"footer-social-1-color-type": "custom"
+}
