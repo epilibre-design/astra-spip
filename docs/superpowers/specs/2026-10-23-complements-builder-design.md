@@ -1,6 +1,7 @@
 # Compléments du builder — spécification
 
-Date : 2026-10-23. Statut : direction validée (Gilles, Codex) ; précisions de la relecture intégrées.
+Date : 2026-10-23. Statut : direction validée (Gilles, Codex) ; précisions de la relecture intégrées ;
+décisions de Gilles du 24 octobre reportées (plan `docs/superpowers/plans/2026-10-23-complements-builder.md`).
 
 ## Objectif
 
@@ -36,6 +37,11 @@ toujours `full` (`inc/astra_hfb.php`, `astra_hfb_calculer_pied`).
   (`inc/builder/type/footer/*/class-astra-*-footer*.php` et leurs `dynamic-css`). Valeurs acceptées
   par appareil : les répartitions d'Astra pour le nombre de colonnes de la rangée, plus `full`.
 - Formulaire du builder : un sélecteur de répartition par appareil.
+- La tablette accepte aussi les répartitions de l'ordinateur pour le nombre de colonnes
+  (`4-lheavy`, `4-rheavy` en plus des choix d'Astra) : une valeur simple de la version 1.2.0 s'y
+  applique, et le formulaire doit la reproposer pour qu'un enregistrement ne change rien au rendu.
+- Les configurations SPIP des références des styles R6–R11 passent à la structure par appareil,
+  celle de leur pendant WordPress (`tests/references/styles/appliquer.php`).
 - Preuve : `tests/e2e/repartitions.cjs` étendu (répartitions tablette et mobile), et une référence
   WordPress `R12-pied-appareils` reprenant les valeurs de Garden.
 
@@ -67,13 +73,17 @@ Dans le modèle, les widgets 2 et 3 du pied contiennent un widget « Menu de nav
   `{"source": "racine", "id": 0}`, fusionné par `astra_hfb_normaliser()` comme les autres réglages
   d'élément. `source` accepte les sources des éléments menu (`racine`, `rubrique:<id>`,
   `groupe_mots:<id>`, `pages`, validées par la même liste que pour `menu-1`) ; `id` est un entier.
-  Le bloc n'affiche qu'un niveau. Un widget sans `menu` dans `blocs` ignore ce réglage.
+  Le bloc affiche deux niveaux, comme le widget `nav_menu` de WordPress (mesuré sur R13 : lien
+  parent `aria-expanded`, flèche sans bouton). Un widget sans `menu` dans `blocs` ignore ce réglage.
 - Balisage : celui du widget `nav_menu` de WordPress sous Astra (`<nav class="menu-…-container"
   aria-label="…"><ul class="menu">…</ul></nav>` dans la zone de widget), relevé sur une référence
   WordPress.
 - Squelette `inclure/widgets/menu.html` ; réutilise `inclure/hfb/menu-items.html` pour la liste.
 - Preuve : référence WordPress `R13-pied-widgets-menus` (deux widgets menu dans le pied),
-  comparaison HTML et captures ; test d'intégration de chaque source.
+  comparaison HTML et captures ; test d'intégration de chaque source. Deux différences de nommage
+  attendues, documentées dans `tests/references/README.md` : identifiant de la section
+  (`nav_menu-2` dans WordPress, numéro d'instance du widget ; `nav_menu-pied-2` dans SPIP) et classe
+  de la `nav` (`menu-<slug du menu>-container` ; `menu-<source>-container`).
 
 ## 4. Google Reviews
 
@@ -86,7 +96,11 @@ sélecteur du Customizer). Valeurs du modèle : réseau activé, couleur de marq
   propre à Astra ou icône d'une bibliothèque), et le recenser dans `CREDITS.md` avec les autres
   SVG d'Astra, comme le prévoit la section qui leur est consacrée. Si l'origine ne peut être
   établie, le signaler comme les SVG dont l'attribution est limitée.
-- Preuve : la référence R1 ou R3 gagne l'icône ; comparaison HTML et captures.
+- Provenance établie : glyphe `google` (U+F1A0) de Font Awesome 4.7.0, par Dave Gandy, sous
+  SIL OFL 1.1, converti par Astra (coordonnées divisées par 64) ; recensé dans `CREDITS.md`,
+  notice dans `licenses/OFL-1.1-fontawesome-4.7.0.txt`.
+- Preuve : référence dédiée `R15-sociaux-google` (R1 à R4 alimentent `extraire_css.py`) ;
+  comparaison HTML, captures et styles calculés.
 
 ## 5. Style du bouton du menu mobile
 
@@ -112,12 +126,15 @@ Mêmes critères que la spec des styles : sans réglage, R0–R5 et P1–P3 iden
 conservées, valeurs invalides retirées) et de sécurité. Les références nouvelles n'entrent pas dans
 `extraire_css.py`.
 
-## Questions ouvertes
+## Version
 
-1. Ordre de mise en œuvre : 1, 3 et 4 sont indépendants de la spec des styles ; 2 (séparateurs :
-   type couleur) et 5 (registre, normalisation, formulaire) s'appuient sur elle et viennent après.
-2. Le bloc menu limité à un niveau : le widget `nav_menu` de WordPress affiche les sous-menus ;
-   faut-il les reprendre (Garden n'en a pas) ?
+Ces réglages forment la version 1.3.0 d'Astra SPIP (nouveaux réglages, aucune rupture).
+
+## Questions tranchées
+
+1. Ordre de mise en œuvre : la spec des styles est fusionnée (v1.2.0) ; les cinq points suivent
+   l'ordre du plan.
+2. Bloc menu : deux niveaux, comme WordPress (décision du 24 octobre).
 
 Décidé à la relecture : seul Google Reviews est ajouté aux réseaux sociaux (les autres réseaux du
 sélecteur d'Astra absents d'Astra SPIP restent hors périmètre).
