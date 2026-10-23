@@ -152,14 +152,17 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
 
 - `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
-  page à celle de WordPress, pour les cinq configurations de référence du builder (R0–R4) et
+  page à celle de WordPress, pour les six configurations de référence du builder (R0–R5) et
   les trois de pages (P1–P3, qui comparent aussi le contenu et les classes du `body`) : balises, classes et
   identifiants des rangées, des zones et des éléments, et du premier niveau à l'intérieur de
   chaque élément. Les contenus, les formulaires et les SVG ne sont pas comparés : ce n'est pas
   une identité complète du HTML ;
 - `comparer_captures.sh` compare au pixel près l'en-tête, le pied de page et le menu mobile
   ouvert, sur ordinateur et sur mobile (seuil : 1 % de pixels différents, variable `SEUIL`) ; les
-  images et leurs différences sont enregistrées dans `tests/comparaison/sorties/` ;
+  images et leurs différences sont enregistrées dans `tests/comparaison/sorties/`. Une référence
+  peut aussi lister des styles calculés à comparer (`styles` dans `tests/references/wp/<conf>.json`) :
+  R5 vérifie ainsi la hauteur, le fond et le séparateur des rangées de l'en-tête, qu'un filet
+  d'un pixel laisserait sous le seuil des captures ;
 - `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout ;
 - `tests/e2e/repartitions.cjs` vérifie dans Chromium les quatorze répartitions de colonnes du
   pied (proportions sur ordinateur et tablette, une colonne sur mobile) et la largeur des

@@ -17,7 +17,7 @@ Le dossier `sorties/` n'est pas versionné : il se régénère avec les commande
 ## Capturer
 
     WP=/chemin/wordpress PW=/chemin/playwright tests/references/capturer.sh \
-        R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique
+        R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees
 
 Chaque configuration écrit dans `sorties/Rn/` : `accueil.html`, `article.html`,
 `dynamique.css` (contenu de `<style id="astra-theme-css-inline-css">`), `ordinateur.png`
@@ -66,6 +66,7 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 | R2-entete-centre | Menu à gauche, logo centré, compte et recherche à droite ; rangée basse : widget et texte 2 ; mobile : bouton à gauche, logo centré, compte ; panneau latéral avec menu et recherche |
 | R3-pied-colonnes | Pied : rangée haute 2 colonnes (texte, icônes), principale 4 widgets (`4-equal`), basse copyright et menu (`2-equal`) |
 | R4-pied-asymetrique | Pied : rangée principale `3-cwide` (widget ; texte et icônes ; menu vertical), basse `2-lheavy` (copyright, texte 2) |
+| R5-rangees | Disposition par défaut ; rangée principale de l'en-tête : hauteur 100 px, fond `#e8f5e9`, sans séparateur (`hb-header-main-sep` à 0) ; styles calculés comparés (`styles`). Hors des configurations lues par `extraire_css.py` |
 | P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
 | P2-accueil | Même menu, page « Notre jardin » en page d'accueil statique (`/`) |
 | P3-page-pleine | Page « Plein écran », titre désactivé, conteneur `full-width-container` |

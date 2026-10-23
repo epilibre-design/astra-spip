@@ -325,7 +325,9 @@ function astra_hfb_css_rangees(array $rangees): string {
 			$css[] = $barre . ', .ast-header-break-point ' . $barre . '{background-color:' . $r['fond'] . ';}';
 		}
 		if (isset($defaut['bordure']) && (string) $r['bordure'] !== (string) $defaut['bordure'] && preg_match('/^\d{1,2}$/', (string) $r['bordure'])) {
-			$css[] = $barre . '{border-bottom-width:' . (int) $r['bordure'] . 'px;}';
+			// Astra double le séparateur de la rangée principale pour l'en-tête mobile.
+			$selecteur = $cle === 'entete_primary' ? '.ast-header-break-point ' . $barre . ', ' . $barre : $barre;
+			$css[] = $selecteur . '{border-bottom-width:' . (int) $r['bordure'] . 'px;}';
 		}
 	}
 	return implode("\n", $css);

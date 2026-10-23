@@ -1,14 +1,18 @@
 // Compare au pixel près l'en-tête, le menu mobile ouvert et le pied de page de deux sites.
-// Usage : NODE_PATH=$PW/node_modules node comparer_captures.cjs <URL WordPress> <URL SPIP> <dossier> <menu mobile : dropdown|off-canvas>
+// Usage : NODE_PATH=$PW/node_modules node comparer_captures.cjs <URL WordPress> <URL SPIP> <dossier> <menu mobile : dropdown|off-canvas> [contenu] [référence .json]
 // Pour chaque vue, enregistre wordpress-<vue>.png, spip-<vue>.png et diff-<vue>.png dans <dossier>
 // et affiche la proportion de pixels différents. Code 1 si une vue dépasse SEUIL (défaut 0,01)
 // ou si les dimensions diffèrent de plus de 2 px.
+// Si la référence JSON a une liste « styles » ([{selecteur, proprietes}]), compare aussi, à 1280 et
+// 390 px, les styles calculés du premier élément correspondant : un écart d'un pixel (une bordure)
+// reste sous le seuil des captures.
 const fs = require('fs');
 const { chromium } = require('playwright');
 const { PNG } = require('pngjs');
 const pixelmatch = require('pixelmatch');
 
-const [urlWp, urlSpip, dossier, menuMobile, contenu] = process.argv.slice(2);
+const [urlWp, urlSpip, dossier, menuMobile, contenu, reference] = process.argv.slice(2);
+const STYLES = reference ? (JSON.parse(fs.readFileSync(reference, 'utf8')).styles || []) : [];
 const SEUIL = parseFloat(process.env.SEUIL || '0.01');
 const AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36';
 // Pas d'animation ni de curseur clignotant : captures stables.
@@ -36,6 +40,18 @@ async function capturer(browser, url, vue, fichier) {
   }
   await page.locator(vue.selecteur).first().screenshot({ path: fichier });
   await page.close();
+}
+
+async function styles(browser, url, largeur) {
+  const page = await browser.newPage({ viewport: { width: largeur, height: 900 }, userAgent: AGENT });
+  await page.goto(url, { waitUntil: 'load' });
+  const valeurs = await page.evaluate((liste) => liste.map(({ selecteur, proprietes }) => {
+    const e = document.querySelector(selecteur);
+    const c = e && getComputedStyle(e);
+    return proprietes.map((p) => `${selecteur} { ${p}: ${c ? c.getPropertyValue(p) : '(absent)'} }`);
+  }).flat(), STYLES);
+  await page.close();
+  return valeurs;
 }
 
 (async () => {
@@ -71,6 +87,13 @@ async function capturer(browser, url, vue, fichier) {
     echec = echec || ko;
     console.log(`${ko ? 'ÉCART' : 'ok   '} ${vue.nom} : ${(part * 100).toFixed(2)} % de pixels différents`
       + (tailles ? ` ; dimensions WordPress ${a.width}×${a.height}, SPIP ${b.width}×${b.height}` : ''));
+  }
+  for (const largeur of STYLES.length ? [1280, 390] : []) {
+    const wp = await styles(browser, urlWp, largeur);
+    const spip = await styles(browser, urlSpip, largeur);
+    const ecarts = wp.map((v, i) => (v === spip[i] ? null : `WordPress ${v} ; SPIP ${spip[i]}`)).filter(Boolean);
+    echec = echec || ecarts.length > 0;
+    console.log(`${ecarts.length ? 'ÉCART' : 'ok   '} styles-${largeur} : ${wp.length} valeurs` + (ecarts.length ? '\n      ' + ecarts.join('\n      ') : ''));
   }
   await browser.close();
   process.exit(echec ? 1 : 0);

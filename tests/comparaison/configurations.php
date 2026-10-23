@@ -75,6 +75,9 @@ function astra_configurations_reference(): array {
 				'widget-1' => ['blocs' => ['texte'], 'titre' => 'À propos', 'texte' => 'Quelques mots sur le site.'],
 			]],
 		],
+		'R5-rangees' => [
+			'rangees' => ['entete_primary' => ['hauteur' => 100, 'fond' => '#e8f5e9', 'bordure' => 0]],
+		],
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
