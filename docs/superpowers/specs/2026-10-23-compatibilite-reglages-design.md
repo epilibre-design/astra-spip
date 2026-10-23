@@ -100,10 +100,14 @@ Ce qu'Astra SPIP fait :
   `astra-styles-inline-css`, seulement ce qui diffère du CSS figé :
   - `h1,.entry-content h1,…,.site-title,.site-title a{font-weight:H}` si `H` (graisse des titres)
     diffère de 600 ;
-  - pour chaque niveau : `hn,.entry-content hn{font-weight:G}`, si la graisse `G` d'Astra diffère
-    de 600. Quand Astra n'émet aucune graisse (`G` vaut `inherit`), la règle figée est défaite en
-    reprenant la valeur que la cascade donnerait sans elle, c'est-à-dire `H`, mais seulement si `H`
-    diffère de 600 ;
+  - puis, pour chaque niveau, `hn,.entry-content hn{font-weight:T}`, si `T` diffère de `H`.
+    `T` est la graisse que le niveau doit calculer : `G`, ou `H` quand Astra n'émet aucune graisse
+    pour ce niveau (`G` vaut `inherit`). La comparaison se fait avec `H` et non avec 600, car c'est
+    la valeur que le niveau calcule une fois la règle générale appliquée : le CSS figé donne 600
+    quand `H` vaut 600, et la règle générale émise, placée après les règles figées, donne `H`
+    sinon. Les règles par niveau suivent la règle générale dans le bloc. Exemple :
+    `headings-font-weight` à 700 et `font-weight-h1` à 600 émettent la règle générale à 700, puis
+    `h1,.entry-content h1{font-weight:600}` ; sans cette seconde règle, le h1 calculerait 700 ;
   - sans le drapeau : `hn.widget-title{font-weight:G}` (n = 1 à 3), si `G` diffère de 600 ;
   - avec le drapeau : neutralisation `h1.widget-title,h2.widget-title,h3.widget-title{font-weight:400}`,
     valeur de `.widget-title` dans `css/main.min.css`, qu'Astra laisse s'appliquer en n'émettant pas
@@ -181,8 +185,10 @@ R17 par celui de l'en-tête transparent.
   option de style, avec des titres de widgets h2 ; `font-weight` des titres des widgets et des
   h1 à h6.
 - `R20-titres-graisses` : graisses des titres réglées sans le drapeau, puis avec
-  (`headings-font-weight` à 700, un niveau à `inherit`, un à `normal`, un à `300`) : les règles
-  et les replis des deux branches d'Astra.
+  (`headings-font-weight` à 700, un niveau à `inherit`, un à `normal`, un à `300`, un à `600`
+  explicite) : les règles et les replis des deux branches d'Astra. Le niveau à `600` vérifie,
+  avec et sans le drapeau, qu'une graisse égale au CSS figé n'est pas écrasée par la règle
+  générale.
 - `R21-bouton-entete-marge` : `section-hb-button-1-padding` vide et `theme-button-padding`
   17 × 26 ; puis une valeur explicite.
 - `R22-pied-alignements` : les tableaux complets de Garden (copyright `left` / `left` / `center`,
@@ -193,7 +199,7 @@ R17 par celui de l'en-tête transparent.
 Tests unitaires : registre (types, défauts, refus d'une clé de compatibilité inconnue, refus de
 `inherit` pour `headings-font-weight`), choix du fichier `css/compat/` selon le drapeau,
 neutralisation de la marge, graisses des titres (chaque branche de la règle d'Astra, avec et sans
-le drapeau, avec et sans `astra/styles`), alignements (trois règles émises dès qu'une valeur est
+le drapeau, avec et sans `astra/styles`, un niveau à `600` sous une graisse générale différente), alignements (trois règles émises dès qu'une valeur est
 posée, défaut `center` pour un appareil sans valeur). Attendus capturés sur WordPress pour le
 groupe `titres` et les alignements, comme pour les autres groupes.
 
