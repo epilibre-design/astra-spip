@@ -1,7 +1,6 @@
 # En-tête transparent — spécification
 
-Date : 2026-10-23. Statut : à relire (Gilles, Codex). Rédigée sans séance de conception : les
-choix proposés sont signalés dans « Questions ouvertes ».
+Date : 2026-10-23. Statut : à relire (Gilles, Codex) ; précisions de la première relecture intégrées.
 
 ## Objectif
 
@@ -28,10 +27,20 @@ Reprise de `Astra_Ext_Transparent_Header_Markup::is_transparent_header()` :
    | `transparent-header-disable-index` | (page des articles distincte de l'accueil : sans équivalent SPIP aujourd'hui) |
    | `transparent-header-disable-page` | pages uniques |
    | `transparent-header-disable-posts` | articles |
-3. `transparent-header-on-devices` (`desktop`, `mobile`, `both`) restreint l'effet par appareil.
+Une fonction `astra_entete_transparent(string $type_page, int $id_article, bool $accueil = false): bool`
+porte cette règle : le booléen dit si **la page autorise la transparence** (classe du body, CSS du
+module). Elle est testée cas par cas.
 
-Une fonction `astra_entete_transparent(string $type_page, int $id_article): bool` porte cette
-règle ; elle est testée cas par cas.
+**Restriction par appareil.** `transparent-header-on-devices` (`desktop`, `mobile`, `both`) ne
+change pas ce booléen : comme dans Astra, elle place les règles du module dans les media queries
+de l'appareil concerné (`dynamic.css.php` du module), et c'est le CSS qui limite l'effet.
+
+**Accueil statique.** Quand l'accueil affiche une page unique (`astra/accueil_type` = `page`), le
+contexte reste `sommaire` mais la règle est celle **de la page choisie** : son réglage `transparent`
+de `astra/pages/<id>`, puis la règle globale avec l'exclusion `transparent-header-disable-page`
+(et non `-latest-posts-index`, réservée à l'accueil qui liste les derniers articles). Le gabarit
+transmet donc l'identifiant de la page et `accueil=oui` (déjà fournis par `sommaire.html` à
+`page_unique.html`).
 
 ## Données
 
@@ -66,7 +75,10 @@ règle ; elle est testée cas par cas.
 ## Tests
 
 - Unitaires : `astra_entete_transparent()` pour chaque type de page et chaque combinaison
-  réglage global / réglage de page / exclusions / appareils.
+  réglage global / réglage de page / exclusions, dont l'accueil statique (réglage de la page
+  choisie) et l'accueil des derniers articles.
+- Restriction par appareil : CSS produit dans les media queries attendues pour `desktop`,
+  `mobile` et `both`.
 - Sans réglage : R0–R5 et P1–P3 identiques.
 - Références WordPress : `R15-transparent-page` (page avec `theme-transparent-header-meta` =
   `enabled`, réglage global désactivé, couleurs de Garden) et `R16-transparent-global` (réglage
