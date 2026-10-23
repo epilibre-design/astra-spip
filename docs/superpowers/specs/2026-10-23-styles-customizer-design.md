@@ -134,10 +134,20 @@ avec leur défaut. Familles visées :
 | menu | `header-menu1-{color,h-color,a-color}-responsive`, `-bg-obj-responsive`, `-h-bg-color-responsive`, `-a-bg-color-responsive`, `-submenu-b-color`, `-font-size`, `-font-weight`, `-font-family` ; même famille pour `menu2` | `inc/builder/type/header/menu/dynamic-css/dynamic.css.php` |
 | bouton | `button-color`, `button-h-color`, `button-bg-color`, `button-bg-h-color`, `button-radius-fields`, `button-v-padding`, `button-h-padding`, `font-family-button`, `font-size-button`, `font-weight-button` | `inc/class-astra-dynamic-css.php` |
 | bouton-entete | `header-button1-{text-color,text-h-color,back-color,back-h-color,border-color,border-h-color,border-size,border-radius-fields,font-size,font-family,font-weight}`, marges de la section | `inc/builder/type/base/dynamic-css/button/class-astra-button-component-dynamic-css.php` |
-| identite | `font-size-site-title`, `font-size-site-tagline`, `header-color-site-title`, `header-color-h-site-title`, `header-color-site-tagline` | `inc/class-astra-dynamic-css.php` |
+| identite | `font-size-site-title`, `font-size-site-tagline`, `header-color-site-title`, `header-color-h-site-title`, `header-color-site-tagline`, `display-site-title-responsive`, `display-site-tagline-responsive` (booléens par appareil), `ast-header-responsive-logo-width` (largeur du logo, nombre par appareil) | `inc/class-astra-dynamic-css.php`, `inc/builder/type/header/site-identity/dynamic-css/dynamic.css.php` |
 | widgets-pied | `footer-widget-N-{title-color,color,link-color,link-h-color,font-size,content-font-size}` (N de 1 à 4) | `inc/builder/type/base/dynamic-css/widget/class-astra-widget-component-dynamic-css.php` |
 | copyright | `footer-copyright-color`, `font-size-section-footer-copyright` | `inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php` |
 | sociaux | `{header,footer}-social-1-{color,h-color,bg-color,bg-h-color,size,space,radius-fields}`, `-color-type` (couleurs personnalisées seulement ; les couleurs de marque sont hors périmètre) | `inc/builder/type/base/dynamic-css/social/class-astra-social-component-dynamic-css.php` |
+
+**Défaut corrigé par le groupe identité.** Aujourd'hui, `afficher_slogan` (défaut `oui`) imprime
+le slogan, mais `css/astra-dynamic.css`, extrait d'un WordPress réglé par défaut, contient la règle
+d'Astra `.site-header .site-description{display:none}` : le slogan n'apparaît jamais, quel que soit le
+réglage (constaté sur Garden, dont le modèle affiche le slogan). `display-site-tagline-responsive`
+et `display-site-title-responsive` remplacent `afficher_slogan` et `afficher_titre_site` : le
+balisage et le CSS d'affichage suivent Astra (défaut d'Astra : slogan masqué), et les anciennes
+clés sont reprises une fois à la mise à jour (`oui` → visible sur les trois appareils).
+Le logo est aujourd'hui réduit à 60 px de haut (`inclure/identite.html`) ;
+`ast-header-responsive-logo-width` règle sa largeur comme Astra (modèle Garden : 40 px).
 
 La neuvième couleur (`couleur_8`) reste dans la configuration du thème existante. Sa validation
 accepte en plus `rgba()` et `rgb()`, comme la palette `global-color-palette` d'Astra (Garden :
