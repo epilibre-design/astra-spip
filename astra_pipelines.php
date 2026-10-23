@@ -50,13 +50,35 @@ function astra_affiche_milieu($flux) {
 	return $flux;
 }
 
-/** Réglages d'une page supprimée : effacés avec elle. */
+/**
+ * Réglages d'une page supprimée : effacés avec elle.
+ *
+ * trig_supprimer_objets_lies signale aussi chaque lien retiré par objet_dissocier() (un auteur
+ * dissocié d'une page envoie type = article, id = la page) : seuls les réglages d'un article
+ * qui n'existe plus sont effacés.
+ */
 function astra_trig_supprimer_objets_lies($objets) {
 	include_spip('inc/config');
 	foreach ((array) $objets as $o) {
-		if (($o['type'] ?? '') === 'article' && !empty($o['id'])) {
-			effacer_config('astra/pages/' . (int) $o['id']);
+		$id = (int) ($o['id'] ?? 0);
+		if (($o['type'] ?? '') === 'article' && $id && !sql_countsel('spip_articles', 'id_article=' . $id)) {
+			effacer_config('astra/pages/' . $id);
 		}
 	}
 	return $objets;
+}
+
+/**
+ * Réglages des pages disparues : la tâche optimiser efface les articles à la poubelle par
+ * sql_delete, sans trig_supprimer_objets_lies. Ajoute le nombre de réglages effacés.
+ */
+function astra_optimiser_base_disparus($flux) {
+	include_spip('inc/config');
+	$ids = array_map('intval', array_keys((array) lire_config('astra/pages', [])));
+	$existants = $ids ? array_map('intval', array_column(sql_allfetsel('id_article', 'spip_articles', sql_in('id_article', $ids)), 'id_article')) : [];
+	foreach (array_diff($ids, $existants) as $id) {
+		effacer_config('astra/pages/' . $id);
+		$flux['data']++;
+	}
+	return $flux;
 }

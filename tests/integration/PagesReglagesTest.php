@@ -74,9 +74,45 @@ final class PagesReglagesTest extends TestCase {
 		$this->assertArrayHasKey('disposition', $erreurs);
 	}
 
+	/** Page jetable avec des réglages, pour les tests de suppression. */
+	private function pageJetable(): int {
+		$id = (int) sql_insertq('spip_articles', ['titre' => 'Page jetable', 'id_rubrique' => -1, 'page' => 'page_jetable', 'statut' => 'poubelle', 'lang' => 'fr', 'date' => date('Y-m-d H:i:s')]);
+		ecrire_config('astra/pages/' . $id, ['titre' => 'masquer', 'disposition' => 'pleine']);
+		return $id;
+	}
+
+	public function testRetirerUnAuteurConserveLesReglages(): void {
+		// objet_dissocier() signale chaque lien retiré par trig_supprimer_objets_lies,
+		// avec type = article et id = la page, qui existe toujours.
+		include_spip('action/editer_liens');
+		$reglages = ['titre' => 'masquer', 'disposition' => 'pleine'];
+		ecrire_config('astra/pages/' . self::$page, $reglages);
+		objet_associer(['auteur' => self::$autre], ['article' => self::$page]);
+		objet_dissocier(['auteur' => self::$autre], ['article' => self::$page]);
+		$this->assertSame(0, sql_countsel('spip_auteurs_liens', 'id_auteur=' . self::$autre));
+		$this->assertSame($reglages, lire_config('astra/pages/' . self::$page));
+	}
+
 	public function testSuppressionDeLaPageEffaceSesReglages(): void {
+		$id = $this->pageJetable();
 		ecrire_config('astra/pages/' . self::$page, ['titre' => 'masquer', 'disposition' => 'pleine']);
-		pipeline('trig_supprimer_objets_lies', [['type' => 'article', 'id' => self::$page]]);
-		$this->assertNull(lire_config('astra/pages/' . self::$page));
+		sql_delete('spip_articles', 'id_article=' . $id);
+		pipeline('trig_supprimer_objets_lies', [['type' => 'article', 'id' => $id], ['type' => 'article', 'id' => self::$page]]);
+		$this->assertNull(lire_config('astra/pages/' . $id));
+		$this->assertNotNull(lire_config('astra/pages/' . self::$page), 'Page encore présente : réglages conservés');
+	}
+
+	public function testPoubelleVideeEffaceLesReglages(): void {
+		// La tâche optimiser efface les articles à la poubelle par sql_delete, sans
+		// trig_supprimer_objets_lies : les réglages orphelins sont purgés par optimiser_base_disparus.
+		include_spip('astra_pipelines');
+		$this->assertStringContainsString('<pipeline nom="optimiser_base_disparus"', file_get_contents(dirname(__DIR__, 2) . '/paquet.xml'));
+		$id = $this->pageJetable();
+		ecrire_config('astra/pages/' . self::$page, ['titre' => 'masquer', 'disposition' => 'pleine']);
+		sql_delete('spip_articles', 'id_article=' . $id);
+		$flux = astra_optimiser_base_disparus(['args' => ['attente' => 0, 'date' => date('Y-m-d H:i:s')], 'data' => 3]);
+		$this->assertSame(4, $flux['data']);
+		$this->assertNull(lire_config('astra/pages/' . $id));
+		$this->assertNotNull(lire_config('astra/pages/' . self::$page));
 	}
 }
