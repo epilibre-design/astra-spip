@@ -6,6 +6,31 @@
  */
 
 function astra_configurations_reference(): array {
+	// Références des styles du Customizer (R6–R11) : placement de tests/references/styles/appliquer.php.
+	$styles = function (array $groupes, array $autres = []) {
+		return $autres + [
+			'styles' => astra_configuration_styles($groupes),
+			'entete_ordinateur' => ['primary' => ['primary_left' => ['logo'], 'primary_right' => ['menu-1', 'button-1']]],
+			'pied' => [
+				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['widget-2'], 'primary_3' => ['widget-3'], 'primary_4' => ['widget-4']],
+				'below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']],
+			],
+			'rangees' => [
+				'pied_primary' => ['colonnes' => 4, 'repartition' => '4-equal'],
+				'pied_below' => ['colonnes' => 2, 'repartition' => '2-equal'],
+			],
+			'elements' => [
+				'entete' => ['button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact']],
+				'pied' => [
+					'widget-1' => ['blocs' => ['texte'], 'titre' => 'Colonne 1', 'texte' => 'Texte de la colonne 1'],
+					'widget-2' => ['blocs' => ['texte'], 'titre' => 'Colonne 2', 'texte' => 'Texte de la colonne 2'],
+					'widget-3' => ['blocs' => ['texte'], 'titre' => 'Colonne 3', 'texte' => 'Texte de la colonne 3'],
+					'widget-4' => ['blocs' => ['texte'], 'titre' => 'Colonne 4', 'texte' => 'Texte de la colonne 4'],
+				],
+			],
+		];
+	};
+	$tous = ['menu', 'bouton', 'bouton-entete', 'identite', 'pied', 'sociaux'];
 	return [
 		'R0-defaut' => [],
 		'R1-entete-complet' => [
@@ -78,6 +103,15 @@ function astra_configurations_reference(): array {
 		'R5-rangees' => [
 			'rangees' => ['entete_primary' => ['hauteur' => 100, 'fond' => '#e8f5e9', 'bordure' => 0]],
 		],
+		'R6-menu' => $styles(['menu'], ['rubrique' => 'Jardinage']),
+		'R7-bouton' => $styles(['bouton']),
+		'R8-identite' => $styles(['identite'], ['meta' => ['slogan_site' => 'Un site propulsé par SPIP']]),
+		'R9-pied-couleurs' => $styles(['pied']),
+		'R10-sociaux' => $styles(['sociaux']),
+		'R11-combinee' => $styles($tous, [
+			'astra' => ['police_texte' => "'Raleway', sans-serif", 'police_titres' => "'Poppins', sans-serif"],
+			'meta' => ['slogan_site' => 'Un site propulsé par SPIP'],
+		]),
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
@@ -94,8 +128,17 @@ function astra_configurations_reference(): array {
 	];
 }
 
-/** Partie « builder » d'une configuration : sans les clés propres aux comparaisons de pages. */
+/** Partie « builder » d'une configuration : sans les clés propres aux comparaisons de pages et aux styles. */
 function astra_configuration_hfb(array $c): array {
-	unset($c['page'], $c['astra'], $c['pages']);
+	unset($c['page'], $c['astra'], $c['pages'], $c['styles'], $c['rubrique'], $c['meta']);
 	return $c;
+}
+
+/** Valeurs de groupes de styles (tests/references/styles/valeurs/<groupe>.json), réunies. */
+function astra_configuration_styles(array $groupes): array {
+	$valeurs = [];
+	foreach ($groupes as $groupe) {
+		$valeurs += json_decode(file_get_contents(dirname(__DIR__) . "/references/styles/valeurs/$groupe.json"), true);
+	}
+	return $valeurs;
 }

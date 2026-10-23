@@ -1,0 +1,62 @@
+{
+	"chemin": "/?category_name=jardinage",
+	"ordinateur": [
+		".site-primary-header-wrap .ast-builder-menu-1",
+		".site-primary-header-wrap .ast-header-button-1",
+		".site-primary-footer-wrap .footer-widget-area",
+		".site-below-footer-wrap .ast-footer-copyright",
+		".site-below-footer-wrap .ast-footer-social-wrap"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": ".ast-builder-menu-1 .main-header-menu > .menu-item:last-child > .menu-link",
+			"proprietes": [
+				"color",
+				"font-size",
+				"font-weight",
+				"font-family"
+			]
+		},
+		{
+			"selecteur": ".ast-builder-menu-1 .main-header-menu > .menu-item:last-child > .menu-link",
+			"survol": ".ast-builder-menu-1 .main-header-menu > .menu-item:last-child > .menu-link",
+			"proprietes": [
+				"color",
+				"background-color"
+			]
+		},
+		{
+			"selecteur": ".ast-builder-menu-1 .current-menu-item > .menu-link",
+			"proprietes": [
+				"color",
+				"background-color"
+			]
+		},
+		{
+			"selecteur": ".ast-builder-menu-1 .sub-menu",
+			"survol": ".ast-builder-menu-1 .menu-item-has-children",
+			"proprietes": [
+				"border-top-width",
+				"border-top-color",
+				"border-top-style",
+				"visibility"
+			]
+		},
+		{
+			"selecteur": ".ast-builder-menu-1 .main-header-menu",
+			"proprietes": [
+				"background-color"
+			]
+		}
+	]
+}

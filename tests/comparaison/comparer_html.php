@@ -22,7 +22,11 @@ if ($argc < 3) {
 [$script, $racine, $url] = $argv;
 $ici = __DIR__;
 require_once $ici . '/configurations.php';
-$configurations = array_slice($argv, 3) ?: array_keys(astra_configurations_reference());
+// Par défaut, les configurations du builder et des pages : les références des styles (clé styles)
+// ne changent pas la structure comparée ici, elles sont vérifiées par comparer_captures.sh.
+$configurations = array_slice($argv, 3) ?: array_keys(array_filter(astra_configurations_reference(), function ($c) {
+	return !isset($c['styles']);
+}));
 
 /** Chemin SPIP de la page comparée : page unique de la configuration, sinon l'accueil. */
 function chemin_spip(string $racine, array $conf): string {

@@ -1,8 +1,11 @@
 <?php
 /**
- * Référence des styles du Customizer : état R0, éléments placés comme dans Garden Maintenance,
- * puis les options du groupe (valeurs/<groupe>.json ; groupe « base » : aucune option).
+ * Référence des styles du Customizer : état R0, éléments placés comme dans Garden Maintenance
+ * (logo, menu et bouton dans l'en-tête ; quatre widgets texte, copyright et icônes sociales dans le
+ * pied), puis les options du groupe (valeurs/<groupe>.json ; « base » : aucune option ;
+ * « combinee » : toutes les options, plus les polices du texte et des titres).
  * Usage : GROUPE=<groupe> wp --path=$WP eval-file tests/references/styles/appliquer.php
+ * Les polices locales d'Astra SPIP sont servies par le WordPress (ref_polices_locales()).
  */
 require dirname(__DIR__) . '/wp/commun.php';
 ref_etat_initial();
@@ -26,9 +29,20 @@ $reglages = [
 	],
 	'hb-footer-column' => '4', 'hb-footer-layout' => ['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full'],
 	'hbb-footer-column' => '2', 'hbb-footer-layout' => ['desktop' => '2-equal', 'tablet' => '2-equal', 'mobile' => 'full'],
+	'header-button1-text' => 'Nous contacter',
+	'header-button1-link-option' => ['url' => 'http://127.0.0.1:8401/', 'new_tab' => false, 'link_rel' => ''],
 ];
 $groupe = getenv('GROUPE') ?: 'base';
-if ($groupe !== 'base') {
-	$reglages += json_decode(file_get_contents(__DIR__ . "/valeurs/$groupe.json"), true);
+$groupes = $groupe === 'combinee' ? ['menu', 'bouton', 'bouton-entete', 'identite', 'pied', 'sociaux'] : ($groupe === 'base' ? [] : [$groupe]);
+foreach ($groupes as $g) {
+	$reglages += json_decode(file_get_contents(__DIR__ . "/valeurs/$g.json"), true);
+}
+if ($groupe === 'combinee') {
+	$reglages['body-font-family'] = "'Raleway', sans-serif";
+	$reglages['headings-font-family'] = "'Poppins', sans-serif";
 }
 ref_reglages($reglages);
+foreach ([1, 2, 3, 4] as $i) {
+	ref_widget_texte('footer-widget-' . $i, 'Colonne ' . $i, 'Texte de la colonne ' . $i);
+}
+ref_polices_locales();
