@@ -144,8 +144,18 @@ le slogan, mais `css/astra-dynamic.css`, extrait d'un WordPress réglé par déf
 d'Astra `.site-header .site-description{display:none}` : le slogan n'apparaît jamais, quel que soit le
 réglage (constaté sur Garden, dont le modèle affiche le slogan). `display-site-tagline-responsive`
 et `display-site-title-responsive` remplacent `afficher_slogan` et `afficher_titre_site` : le
-balisage et le CSS d'affichage suivent Astra (défaut d'Astra : slogan masqué), et les anciennes
-clés sont reprises une fois à la mise à jour (`oui` → visible sur les trois appareils).
+balisage et le CSS d'affichage suivent Astra (défaut d'Astra : slogan masqué).
+
+**Migration, sans changement de rendu.** Elle respecte le critère « rien ne change sans
+réglage » ; il n'y a pas d'exception :
+- `afficher_titre_site`, qui fonctionne aujourd'hui : `oui` (ou absent) → titre visible sur les
+  trois appareils, valeur par défaut d'Astra, donc rien n'est écrit ; `non` →
+  `display-site-title-responsive` = `{"desktop": false, "tablet": false, "mobile": false}` ;
+- `afficher_slogan`, sans effet visible aujourd'hui : n'est pas converti en slogan visible (ce
+  serait un changement de rendu non demandé) ; le slogan reste masqué, comme aujourd'hui et comme
+  dans Astra par défaut. Seul `display-site-tagline-responsive`, réglé explicitement, l'affiche.
+- La migration s'exécute une fois (mise à jour de la base du plugin, `astra_upgrade`), puis efface
+  `afficher_slogan` et `afficher_titre_site` ; le formulaire du thème ne les propose plus.
 Le logo est aujourd'hui réduit à 60 px de haut (`inclure/identite.html`) ;
 `ast-header-responsive-logo-width` règle sa largeur comme Astra (modèle Garden : 40 px).
 
@@ -253,6 +263,15 @@ accepte en plus `rgba()` et `rgb()`, comme la palette `global-color-palette` d'A
   déclarations vides retirées, ordre.
 - Sécurité : tentative d'injection CSS refusée pour chaque type (`;}`, `</style>`, `url(`,
   `expression(`).
+
+**Migration.**
+- Test d'intégration : configurations `afficher_slogan` = `oui` avec un slogan,
+  `afficher_slogan` = `non`, `afficher_titre_site` = `non`, et aucune des deux clés ; pour chacune,
+  le HTML et le CSS de l'en-tête rendus avant et après la migration sont identiques, les anciennes
+  clés sont effacées, et seule la configuration `afficher_titre_site` = `non` écrit
+  `display-site-title-responsive`.
+- Puis `display-site-tagline-responsive` = visible sur ordinateur : le slogan s'affiche
+  (référence WordPress R8-identite).
 
 **Intégration et bout en bout.**
 - Police locale choisie → `@font-face` émis et fichier servi ; pile système → aucun
