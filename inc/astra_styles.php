@@ -382,3 +382,49 @@ function astra_styles_fond($valeur): array {
 	}
 	return $type === '' && $couleur !== '' ? ['background-color' => $couleur] : [];
 }
+
+/**
+ * Écrit des règles [media, sélecteur, [propriété => valeur]] comme astra_parse_css() : valeur
+ * vide retirée (0 gardé), règle sans déclaration retirée, media consécutives regroupées ; puis
+ * espaces après les virgules retirés, comme Astra_Enqueue_Scripts::trim_css().
+ */
+function astra_styles_ecrire(array $regles): string {
+	$css = '';
+	$media = null;
+	$bloc = '';
+	foreach ($regles as [$m, $selecteur, $declarations]) {
+		$d = '';
+		foreach ($declarations as $propriete => $valeur) {
+			if ($valeur !== '' && $valeur !== null) {
+				$d .= $propriete . ':' . $valeur . ';';
+			}
+		}
+		if ($d === '') {
+			continue;
+		}
+		if ($m !== $media) {
+			$css .= $media ? '@media ' . $media . '{' . $bloc . '}' : $bloc;
+			[$media, $bloc] = [$m, ''];
+		}
+		$bloc .= $selecteur . '{' . $d . '}';
+	}
+	$css .= $media ? '@media ' . $media . '{' . $bloc . '}' : $bloc;
+	return str_replace(', ', ',', $css);
+}
+
+/** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
+const ASTRA_STYLES_MODULES = [];
+
+/** CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. */
+function astra_styles_css(array $styles, array $hfb): string {
+	$s = astra_styles_normaliser($styles);
+	if (!$s) {
+		return '';
+	}
+	$regles = [];
+	foreach (ASTRA_STYLES_MODULES as $module) {
+		require_once __DIR__ . "/styles/$module.php";
+		$regles = array_merge($regles, ('astra_styles_' . $module)($s, $hfb));
+	}
+	return astra_styles_ecrire($regles);
+}

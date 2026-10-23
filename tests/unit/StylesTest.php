@@ -73,4 +73,41 @@ final class StylesTest extends TestCase {
 		$this->assertSame('', astra_styles_taille_police(['desktop' => '']));
 		$this->assertSame('16px;font-size:1rem', astra_styles_taille_police('', 16));
 	}
+
+	public function testRienSansReglage(): void {
+		$this->assertSame('', astra_styles_css([], []));
+		$this->assertSame('', astra_styles_css(['inconnue' => 'x', 'button-color' => 'red;}'], []));
+	}
+
+	public function testInjectionRefusee(): void {
+		$tentatives = [';}body{display:none', '</style><script>', 'url(javascript:x)', 'expression(alert(1))'];
+		foreach ($tentatives as $t) {
+			$v = [
+				'button-color' => $t,
+				'font-family-button' => $t,
+				'font-size-button' => ['desktop' => $t],
+				'button-radius-fields' => ['desktop' => ['top' => $t]],
+				'header-menu1-bg-obj-responsive' => ['desktop' => ['background-color' => $t, 'background-image' => $t]],
+				'font-extras-button' => ['letter-spacing' => $t, 'text-transform' => $t],
+				'footer-social-1-color-type' => $t,
+			];
+			$css = astra_styles_css($v, []);
+			foreach (['}body', '<', 'url(', 'expression('] as $interdit) {
+				$this->assertStringNotContainsString($interdit, $css, $t);
+			}
+		}
+	}
+
+	public function testEcritureCommeAstraParseCss(): void {
+		$this->assertSame(
+			'a,b{color:red;top:0;}@media (max-width:921px){c{x:1;}d{y:2;}}e{z:3;}',
+			astra_styles_ecrire([
+				['', 'a, b', ['color' => 'red', 'vide' => '', 'top' => '0']],
+				['', 'f', ['vide' => '']],
+				['(max-width:921px)', 'c', ['x' => '1']],
+				['(max-width:921px)', 'd', ['y' => '2']],
+				['', 'e', ['z' => '3']],
+			])
+		);
+	}
 }

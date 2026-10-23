@@ -17,6 +17,7 @@ define('_ASTRA_VERSION_THEME', '4.11.0');
 include_once __DIR__ . '/inc/astra_hfb.php';
 include_once __DIR__ . '/inc/astra_hfb_saisie.php';
 include_once __DIR__ . '/inc/astra_pages.php';
+include_once __DIR__ . '/inc/astra_styles.php';
 
 /** Réglages effectifs d'une page unique : `#ID_ARTICLE|astra_page_reglages`. */
 function filtre_astra_page_reglages_dist($id_article): array {
@@ -120,6 +121,16 @@ function astra_hfb_bouton(string $groupe, string $id): array {
  */
 function astra_hfb_css(): string {
 	return astra_hfb_css_rangees(astra_hfb_config()['rangees']);
+}
+
+/**
+ * CSS des styles du Customizer (méta astra/styles) : vide sans réglage.
+ */
+function astra_styles_inline(): string {
+	include_spip('inc/config');
+	$styles = lire_config('astra/styles');
+	$hfb = lire_config('astra/hfb');
+	return astra_styles_css(is_array($styles) ? $styles : [], is_array($hfb) ? $hfb : []);
 }
 
 /**
