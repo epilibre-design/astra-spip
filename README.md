@@ -21,11 +21,12 @@ Le plugin fournit ses propres squelettes et remplace ceux de `squelettes-dist`. 
 
 | WordPress (Astra)               | SPIP                                         |
 |---------------------------------|----------------------------------------------|
-| `index.php` (blog)              | `sommaire.html` : derniers articles          |
+| `index.php` (blog)              | `sommaire.html` : derniers articles ou page d'accueil statique |
 | `archive.php` (catégorie)       | `rubrique.html`                              |
 | `archive.php` (étiquette)       | `mot.html`                                   |
 | `archive.php` (auteur)          | `auteur.html`                                |
 | `single.php`                    | `article.html`                               |
+| `page.php`                      | `page_unique.html` (pages uniques du plugin Pages) |
 | `search.php`                    | `recherche.html`                             |
 | `404.php`                       | `404.html`                                   |
 | `header.php` (header builder)   | `inclure/header.html`, `inclure/hfb/rangee-*.html`, `zone.html` |
@@ -62,6 +63,44 @@ contient le CSS que le builder d'Astra ajoute. Chaque élément peut être surch
 La configuration est enregistrée dans la méta `astra/hfb`, avec la structure des options
 d'Astra (`header-desktop-items`, `header-mobile-items`, `footer-desktop-items`).
 
+## Pages uniques
+
+Avec le plugin [Pages](https://contrib.spip.net/Pages-uniques) (facultatif), les articles hors
+rubrique s'affichent avec le gabarit de page d'Astra (`page.php`, `content-page.php`) : classes du
+`body` et de l'article, schéma `WebPage`, ni date ni auteur. Le pipeline `styliser` choisit
+`page_unique.html` ; un squelette propre à une page (`article=<identifiant>.html`) reste prioritaire.
+
+- **Sous-pages** : avec le plugin [Liaisons entre articles (a2a)](https://contrib.spip.net/Le-plugin-a2a-pour-lier-des-articles)
+  (facultatif), un lien de type « sous-page » rattache une page à sa parente. Les menus alimentés
+  par les pages uniques affichent alors les sous-pages en sous-menu, dans l'ordre des liens ;
+  une page dont la parente n'est plus publiée remonte au premier niveau. Sans a2a, les pages
+  forment une liste à plat.
+- **Page d'accueil statique** : dans **Configuration › Squelettes › Thème Astra**, l'accueil peut
+  afficher les derniers articles (défaut) ou une page unique publiée, comme le réglage « Page
+  d'accueil » de WordPress. Cette page porte alors la classe `home` et son adresse propre
+  renvoie à l'accueil (lien `canonical`).
+- **Réglages par page** : un bloc de la fiche de chaque page permet de masquer le titre et de
+  choisir la disposition du contenu (celle des pages, normale, étroite ou pleine largeur), comme
+  les réglages de page d'Astra. Ils sont enregistrés dans la méta `astra/pages/<id_article>` et
+  supprimés avec la page.
+
+Pages et a2a sont déclarés en `<utilise>` : le thème fonctionne sans eux.
+
+## Blocs WordPress importés
+
+Un site WordPress importé par [wp2spip](https://github.com/epilibre-design/wordpress-to-spip-migrator) garde le
+balisage de la plupart des blocs natifs de l'éditeur (colonnes, groupes, boutons, citations,
+couverture, média et texte, tableaux…). `css/astra-blocs.css` contient le CSS de ces blocs tel que
+WordPress 7.1.3 l'émet sous Astra (feuilles des blocs et styles globaux), extrait par
+`tests/references/extraire_css_blocs.py`. `css/astra-spip.css` reporte les déclarations de
+WordPress et d'Astra sur les éléments que SPIP produit à leur place (lien du bouton, documents de
+la couverture et du bloc média et texte, classes de mise en page retirées par wp2spip).
+
+Chaque bloc est comparé au pixel à son rendu WordPress. Quatre pertes de l'import restent
+caractérisées (séparateur, assombrissement de la couverture, code, vers) : elles sont décrites,
+avec leur effet et la propriété vérifiée, dans
+[`tests/references/blocs/README.md`](tests/references/blocs/README.md).
+
 ## Feuilles de style et scripts
 
 - `css/main.min.css` et `js/frontend.min.js` : fichiers d'origine d'Astra 4.11.0, sans modification.
@@ -72,11 +111,17 @@ d'Astra (`header-desktop-items`, `header-mobile-items`, `footer-desktop-items`).
   des références WordPress par `tests/references/extraire_css.py`.
 - `inclure/head-vars.html` : variables CSS issues de la configuration (`--ast-global-color-0` à `8`,
   largeurs de conteneur, polices) et réglages des rangées du builder.
+- `css/astra-article.css` et `css/astra-commentaires.css` : règles qu'Astra n'émet que sur les
+  articles et là où des commentaires sont ouverts ou présents ; chargées dans les mêmes cas.
+- `css/astra-pages.css` : règles de la disposition pleine largeur des pages, extraites par
+  `tests/references/extraire_css.py --pages`.
+- `css/astra-blocs.css` : CSS des blocs WordPress importés (voir plus haut).
 - `css/astra-spip.css` : adaptations aux contenus produits par SPIP (documents, notes, chapo,
-  formulaire de forum, fil d'Ariane…).
+  formulaire de forum, fil d'Ariane, blocs importés…).
 
 ## Configuration
 
+- Page d'accueil : derniers articles ou une page unique.
 - Palette globale de neuf couleurs (les mêmes rôles que dans Astra).
 - Largeur du conteneur et du conteneur étroit.
 - Disposition de l'accueil et des listes : barre latérale à droite, à gauche, ou aucune.
@@ -95,8 +140,8 @@ spip-cli avec le correctif de la MR !91 pour l'environnement d'intégration.
     SPIP_CLI="php /chemin/spip-cli/bin/spip" composer install-spip-test
     composer tests-integration                            # SPIP 4.4 de test, SQLite
 
-L'environnement d'intégration comprend le plugin Pages (GPL v3) et une page unique, pour tester
-les menus alimentés par les pages uniques.
+L'environnement d'intégration comprend les plugins Pages et a2a (GPL v3) et des pages uniques
+(dont deux sous-pages), pour tester le gabarit de page, les menus et l'accueil statique.
 
 Les références WordPress du builder sont décrites dans `tests/references/README.md`. Avec ces
 références, un WordPress de test et le SPIP de test servi par un serveur web :
@@ -107,7 +152,8 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
 
 - `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
-  page à celle de WordPress, pour les cinq configurations de référence : balises, classes et
+  page à celle de WordPress, pour les cinq configurations de référence du builder (R0–R4) et
+  les trois de pages (P1–P3, qui comparent aussi le contenu et les classes du `body`) : balises, classes et
   identifiants des rangées, des zones et des éléments, et du premier niveau à l'intérieur de
   chaque élément. Les contenus, les formulaires et les SVG ne sont pas comparés : ce n'est pas
   une identité complète du HTML ;
@@ -119,6 +165,9 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
   pied (proportions sur ordinateur et tablette, une colonne sur mobile) et la largeur des
   rangées du pied avec un conteneur de 1600 px. Ces réglages sortent des cinq configurations
   de référence.
+
+La comparaison des blocs importés (WordPress sur MySQL, import par wp2spip) est décrite dans
+`tests/references/blocs/README.md`.
 
 `PW` désigne un dossier où sont installés `playwright`, `pixelmatch` et `pngjs` (npm).
 
