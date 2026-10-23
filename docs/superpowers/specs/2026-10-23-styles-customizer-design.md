@@ -1,6 +1,6 @@
 # Styles du Customizer — spécification
 
-Date : 2026-10-23. Statut : à relire (Gilles, Codex).
+Date : 2026-10-23. Statut : à relire (Gilles, Codex) ; types structurés précisés après la relecture de Codex.
 
 ## Objectif
 
@@ -64,8 +64,9 @@ Garden et un éventuel import wp2spip l'utiliseront.
 | `option` | nom de l'option d'Astra (la clé elle-même) |
 | `source` | fichier d'Astra 4.11.0 qui lit l'option et émet le CSS |
 | `groupe` | menu, bouton, bouton-entete, identite, widgets-pied, copyright, sociaux |
-| `type` | `couleur`, `taille` (nombre et unité), `quatre-cotes` (haut, droite, bas, gauche et unité), `nombre`, `police`, `graisse` |
-| `responsive` | vrai si Astra stocke `{desktop, tablet, mobile}` |
+| `type` | `couleur`, `taille`, `quatre-cotes`, `nombre`, `police`, `graisse`, `enum`, `fond`, `extras-police` (voir « Types structurés ») |
+| `responsive` | vrai si Astra stocke une valeur par appareil (voir « Types structurés ») |
+| `valeurs` | pour le type `enum` : liste fermée des valeurs acceptées |
 | `unites` | unités acceptées (`px`, `em`, `rem`, `%`…) et bornes |
 | `defaut` | valeur par défaut d'Astra (lue dans `class-astra-theme-options.php` ou `class-astra-builder-options.php`), pour la documentation et les tests : jamais écrite |
 
@@ -74,7 +75,56 @@ Types acceptés :
 - **taille** : nombre borné et unité de la liste ;
 - **police** : clé d'une police locale du registre des polices, ou pile système validée comme
   aujourd'hui par `astra_police()` ;
-- **graisse** : `normal`, `bold` ou 100–900 par centaines, et `inherit`.
+- **graisse** : `normal`, `bold` ou 100–900 par centaines, et `inherit` ;
+- **enum** : une valeur de la liste `valeurs` du registre (par exemple
+  `footer-social-1-color-type` : `custom` ou `official`).
+
+### Types structurés
+
+Les options d'Astra ne sont pas toutes des valeurs simples. Leur structure d'origine est
+conservée telle quelle ; chaque champ connu est validé, un champ inconnu est retiré, un champ
+invalide est retiré seul (il compte comme absent, le reste de la structure est gardé).
+
+**Responsive** (`responsive` vrai). Structure d'Astra :
+`{"desktop": V, "tablet": V, "mobile": V, "desktop-unit": U, "tablet-unit": U, "mobile-unit": U}`,
+où V est une valeur du type de la clé et U une unité de la liste `unites` de la clé. Les champs
+`*-unit` n'existent que pour les tailles ; ils sont conservés même quand seule la valeur
+`desktop` est exploitée. Une unité absente vaut `px`, comme dans Astra. Exemple (Garden) :
+`font-size-site-title` = `{"desktop": "20", "tablet": "18", "mobile": "16", "desktop-unit": "px", "tablet-unit": "px", "mobile-unit": "px"}`.
+
+**quatre-cotes**. Structure d'Astra (`button-radius-fields`, `header-button1-border-radius-fields`) :
+`{"desktop": {"top": N, "right": N, "bottom": N, "left": N}, "tablet": {…}, "mobile": {…}, "desktop-unit": U, "tablet-unit": U, "mobile-unit": U}` ;
+pour `header-button1-border-size`, non responsive : `{"top": N, "right": N, "bottom": N, "left": N}`.
+Chaque côté est un nombre borné ou vide.
+
+**fond** (`header-menu1-bg-obj-responsive` et autres `*-bg-obj-responsive`). Un objet par
+appareil, champs autorisés :
+
+| Champ | Valeurs acceptées | Exploité dans cette version |
+|---|---|---|
+| `background-type` | `color`, `image`, `gradient`, `''` | oui : seuls `color` et `''` produisent du CSS |
+| `background-color` | type couleur | oui |
+| `background-image` | URL d'un document du site (`IMG/…`) ou `''` | non, conservé |
+| `background-media` | entier ou `''` | non, conservé |
+| `background-repeat` | `repeat`, `no-repeat`, `repeat-x`, `repeat-y` | non, conservé |
+| `background-position` | combinaisons de `left`, `center`, `right` × `top`, `center`, `bottom` | non, conservé |
+| `background-size` | `auto`, `cover`, `contain` | non, conservé |
+| `background-attachment` | `scroll`, `fixed`, `inherit` | non, conservé |
+| `overlay-type` | `''`, `none`, `classic`, `gradient` | non, conservé |
+| `overlay-color` | type couleur | non, conservé |
+| `overlay-opacity` | nombre de 0 à 1 ou `''` | non, conservé |
+| `overlay-gradient` | `''` (dégradé libre : refusé dans cette version, aucune chaîne libre en CSS) | non |
+
+Le CSS produit suit `astra_get_responsive_background_obj()` (`inc/core/common-functions.php`
+d'Astra 4.11.0) pour l'appareil `desktop` : type `color` sans image → `background-color` et
+`background-image: none` ; type vide avec une couleur → `background-color` seul ; types `image`
+et `gradient` → rien dans cette version (écart documenté, valeurs conservées).
+
+**extras-police** (`*-font-extras`, par exemple `font-extras-section-footer-copyright`). Champs :
+`line-height` (nombre) et `line-height-unit` (`''`, `px`, `em`), `letter-spacing` (nombre) et
+`letter-spacing-unit` (`px`, `em`), `text-transform` (`''`, `none`, `capitalize`, `uppercase`,
+`lowercase`), `text-decoration` (`''`, `initial`, `none`, `underline`, `overline`,
+`line-through`). Lus comme `astra_get_font_extras()`.
 
 Le plan relève, dans les sources d'Astra 4.11.0, la liste exhaustive des clés de chaque groupe
 avec leur défaut. Familles visées :
@@ -183,6 +233,12 @@ accepte en plus `rgba()` et `rgb()`, comme la palette `global-color-palette` d'A
   c'est une taille.
 - Normalisation : clé inconnue retirée, valeur invalide traitée comme absente, structure
   responsive conservée, `tablet` et `mobile` intacts.
+- Structures d'origine : un jeu de valeurs repris tel quel du `site.json` de Garden
+  (`hb-header-bg-obj-responsive`, `button-radius-fields`, `font-size-site-title`,
+  `footer-social-1-color-type`, `font-extras-section-footer-copyright`, et un
+  `*-bg-obj-responsive` complet) ressort de la normalisation identique (aller-retour sans
+  perte, y compris `*-unit` et champs non exploités) ; le même jeu avec un champ invalide ou
+  inconnu par structure ressort sans ce champ seulement.
 - Génération : conditions d'émission de chaque groupe (élément absent du builder → rien),
   déclarations vides retirées, ordre.
 - Sécurité : tentative d'injection CSS refusée pour chaque type (`;}`, `</style>`, `url(`,
