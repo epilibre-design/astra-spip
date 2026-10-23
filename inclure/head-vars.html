@@ -3,7 +3,9 @@
 	Variables CSS d'Astra pilotées par la configuration du thème
 	(palette globale, largeurs de conteneur, polices)
 
-]<style id="astra-theme-css-inline-css">
+][<style id="astra-polices-inline-css">
+(#VAL|astra_polices_inline)
+</style>]<style id="astra-theme-css-inline-css">
 :root{<BOUCLE_couleurs(DATA){enum 0,8}>--ast-global-color-#VALEUR:[(#VAL{couleur_#VALEUR}|astra_conf|astra_couleur)];</BOUCLE_couleurs>
 #SET{large,#VAL{largeur_conteneur}|astra_conf|astra_largeur{600}}--ast-normal-container-width:#GET{large}px;--wp--custom--ast-container-width:#GET{large}px;--wp--custom--ast-content-width-size:#GET{large}px;
 --ast-narrow-container-width:[(#VAL{largeur_etroite}|astra_conf|astra_largeur{400})]px;}
@@ -12,4 +14,6 @@
 </style>
 [<style id="astra-hfb-inline-css">
 (#VAL|astra_hfb_css)
+</style>][<style id="astra-styles-inline-css">
+(#VAL|astra_styles_inline)
 </style>]

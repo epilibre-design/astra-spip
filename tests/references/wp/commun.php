@@ -21,6 +21,28 @@ function ref_etat_initial(): void {
 	}
 	update_option('sidebars_widgets', $base['sidebars_widgets']);
 	ref_categories();
+	@unlink(WPMU_PLUGIN_DIR . '/astra-polices-locales.php');
+}
+
+// Polices locales d'Astra SPIP servies par le WordPress de test, sans Google Fonts : fichiers
+// copiés dans wp-content/astra-polices, @font-face d'astra_polices_css() ajouté par un mu-plugin.
+function ref_polices_locales(): void {
+	require_once dirname(__DIR__, 3) . '/inc/astra_polices.php';
+	$dest = WP_CONTENT_DIR . '/astra-polices';
+	foreach (astra_polices_locales() as $police) {
+		foreach ($police['fichiers'] as [, , $chemin]) {
+			wp_mkdir_p(dirname("$dest/$chemin"));
+			copy(dirname(__DIR__, 3) . "/$chemin", "$dest/$chemin");
+		}
+	}
+	$css = astra_polices_css(array_column(astra_polices_locales(), 'pile'), function (string $chemin) {
+		return content_url("astra-polices/$chemin");
+	});
+	wp_mkdir_p(WPMU_PLUGIN_DIR);
+	file_put_contents(WPMU_PLUGIN_DIR . '/astra-polices-locales.php', "<?php\n"
+		. "// Écrit par tests/references/wp/commun.php (ref_polices_locales) : polices d'Astra SPIP, sans Google Fonts.\n"
+		. "add_filter('astra_render_fonts', '__return_empty_array');\n"
+		. "add_action('wp_head', function () { echo " . var_export('<style id="astra-polices-references">' . $css . '</style>', true) . "; }, 1);\n");
 }
 
 // Catégories utilisées par les menus : Jardinage (avec la sous-catégorie Potager) et Actualités.

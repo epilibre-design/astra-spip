@@ -1,0 +1,76 @@
+{
+	"button-color": "var(--ast-global-color-4)",
+	"button-h-color": "var(--ast-global-color-2)",
+	"button-bg-color": "var(--ast-global-color-0)",
+	"button-bg-h-color": "var(--ast-global-color-5)",
+	"theme-button-padding": {
+		"desktop": {
+			"top": "17",
+			"right": "26",
+			"bottom": "17",
+			"left": "26"
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"button-radius-fields": {
+		"desktop": {
+			"top": 8,
+			"right": 8,
+			"bottom": 8,
+			"left": 8
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"theme-button-border-group-border-size": {
+		"top": "0",
+		"right": "0",
+		"bottom": "0",
+		"left": "0"
+	},
+	"font-weight-button": "500",
+	"font-family-button": "'Poppins', sans-serif",
+	"font-size-button": {
+		"desktop": "14",
+		"tablet": "",
+		"mobile": "",
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"font-extras-button": {
+		"line-height": "1",
+		"line-height-unit": "em",
+		"letter-spacing": "0.5",
+		"letter-spacing-unit": "px",
+		"text-transform": "capitalize",
+		"text-decoration": ""
+	}
+}

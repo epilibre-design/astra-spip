@@ -15,9 +15,11 @@
 			<p class="explication"><:astra:cfg_palette_explication:></p>
 			<div class="editer-groupe">
 				<BOUCLE_couleurs(DATA){enum 0,8}>
-				<div class="editer editer_couleur_#VALEUR">
+				<div class="editer editer_couleur_#VALEUR[ (#ENV*{erreurs/couleur_#VALEUR}|oui)erreur]">
 					<label for="couleur_#VALEUR">[(#VAL{astra:cfg_couleur_}|concat{#VALEUR}|_T)]</label>
-					<input type="color" class="text" name="couleur_#VALEUR" id="couleur_#VALEUR" value="[(#ENV{couleur_#VALEUR}|sinon{#VAL{couleur_#VALEUR}|astra_conf}|astra_couleur)]" />
+					[(#VALEUR|=={8}|oui)<p class="explication"><:astra:cfg_couleur_8_explication:></p>
+					[<span class="erreur_message">(#ENV*{erreurs/couleur_8})</span>]]
+					<input type="[(#VALEUR|=={8}|?{text,color})]" class="text" name="couleur_#VALEUR" id="couleur_#VALEUR" value="[(#ENV{couleur_#VALEUR}|sinon{#VAL{couleur_#VALEUR}|astra_conf}|astra_couleur)]" />
 				</div>
 				</BOUCLE_couleurs>
 			</div>
@@ -65,11 +67,14 @@
 				<div class="editer editer_police_texte">
 					<label for="police_texte"><:astra:cfg_police_texte:></label>
 					<p class="explication"><:astra:cfg_police_explication:></p>
-					<input type="text" class="text" name="police_texte" id="police_texte" value="[(#ENV{police_texte})]" placeholder="Georgia, serif" />
+					<input type="text" class="text" name="police_texte" id="police_texte" value="[(#ENV{police_texte})]" placeholder="Georgia, serif" list="astra-polices-locales" />
+					<datalist id="astra-polices-locales">
+						<BOUCLE_polices(DATA){source tableau, #VAL|astra_polices_locales}><option value="[(#VALEUR{pile}|attribut_html)]">#VALEUR{nom}</option></BOUCLE_polices>
+					</datalist>
 				</div>
 				<div class="editer editer_police_titres">
 					<label for="police_titres"><:astra:cfg_police_titres:></label>
-					<input type="text" class="text" name="police_titres" id="police_titres" value="[(#ENV{police_titres})]" />
+					<input type="text" class="text" name="police_titres" id="police_titres" value="[(#ENV{police_titres})]" list="astra-polices-locales" />
 				</div>
 			</div>
 		</fieldset>
@@ -104,7 +109,7 @@
 		<fieldset>
 			<legend><:astra:cfg_affichage:></legend>
 			<div class="editer-groupe">
-				<BOUCLE_oui_non(DATA){liste afficher_titre_site, afficher_slogan, menu_accueil, afficher_auteurs, afficher_extrait, bouton_haut}>
+				<BOUCLE_oui_non(DATA){liste menu_accueil, afficher_auteurs, afficher_extrait, bouton_haut}>
 				#SET{valeur,#ENV{#VALEUR}|sinon{#VALEUR|astra_conf}}
 				<div class="editer editer_#VALEUR">
 					<div class="choix">

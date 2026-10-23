@@ -1,0 +1,115 @@
+[(#REM)
+
+	Styles du Customizer d'Astra (formulaire CVT explicite : formulaires/configurer_astra_styles.php).
+	Une section par élément ; champs générés depuis le registre (inc/astra_styles_saisie.php).
+
+]<div class="formulaire_spip formulaire_configurer formulaire_#FORM">
+	[<p class="reponse_formulaire reponse_formulaire_ok" role="status">(#ENV*{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur" role="alert">(#ENV*{message_erreur})</p>]
+	<BOUCLE_editable(CONDITION){si #ENV{editable}}>
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE
+		<style>
+			.astra-styles-cotes input, .astra-styles-unite input { max-width: 6em; }
+		</style>
+		<p class="explication"><:astra:styles_explication:></p>
+		<datalist id="astra-styles-palette">
+			<BOUCLE_palette(DATA){enum 0,8}><option value="var(--ast-global-color-#VALEUR)">[(#VAL{astra:cfg_couleur_}|concat{#VALEUR}|_T)]</option></BOUCLE_palette>
+		</datalist>
+		<datalist id="astra-polices-locales">
+			<BOUCLE_polices(DATA){source tableau, #VAL|astra_polices_locales}><option value="[(#VALEUR{pile}|attribut_html)]">#VALEUR{nom}</option></BOUCLE_polices>
+		</datalist>
+
+		<BOUCLE_sections(DATA){source tableau, #VAL|astra_styles_sections}>
+		<fieldset class="astra-styles-section astra-styles-#CLE">
+			<legend>[(#VAL{astra:styles_section_}|concat{#CLE}|_T)]</legend>
+			<div class="editer-groupe">
+			<BOUCLE_champs(DATA){source tableau, #ENV{s}|astra_styles_champs{#_sections:CLE}}>
+			#SET{c,#VALEUR}
+			#SET{erreur,#ENV*{erreurs}|table_valeur{#VAL{s_}|concat{#GET{c}|table_valeur{option}}}}
+			<div class="editer editer_s_[(#GET{c}|table_valeur{option})][ (#GET{erreur}|oui)erreur]">
+				<label for="s_[(#GET{c}|table_valeur{option})]">[(#GET{c}|table_valeur{libelle}|_T)]</label>
+				[(#GET{c}|table_valeur{responsive}|oui)<p class="explication"><:astra:styles_responsive:></p>]
+				[<span class="erreur_message">(#GET{erreur})</span>]
+				<BOUCLE_couleur(CONDITION){si #GET{c}|table_valeur{type}|=={couleur}}>
+				<input type="text" class="text" id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]" value="[(#GET{c}|table_valeur{valeur})]" list="astra-styles-palette" />
+				</BOUCLE_couleur>
+				<BOUCLE_police(CONDITION){si #GET{c}|table_valeur{type}|=={police}}>
+				<input type="text" class="text" id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]" value="[(#GET{c}|table_valeur{valeur})]" list="astra-polices-locales" />
+				</BOUCLE_police>
+				<BOUCLE_nombre(CONDITION){si #GET{c}|table_valeur{type}|=={nombre}}>
+				<input type="number" min="0" step="any" class="text" id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]" value="[(#GET{c}|table_valeur{valeur})]" />
+				</BOUCLE_nombre>
+				<BOUCLE_taille(CONDITION){si #GET{c}|table_valeur{type}|=={taille}}>
+				<span class="astra-styles-unite">
+					<input type="number" min="0" step="any" class="text" id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]" value="[(#GET{c}|table_valeur{valeur})]" />
+					<select name="[(#GET{c}|table_valeur{nom_unite})]" aria-label="unité">
+						<BOUCLE_unites(DATA){source tableau, #GET{c}|table_valeur{unites}}><option value="#VALEUR"[(#VALEUR|=={#GET{c}|table_valeur{unite}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_unites>
+					</select>
+				</span>
+				</BOUCLE_taille>
+				<BOUCLE_graisse(CONDITION){si #GET{c}|table_valeur{type}|=={graisse}}>
+				<select id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]">
+					<option value=""><:astra:styles_defaut:></option>
+					<BOUCLE_graisses(DATA){liste inherit, normal, bold, 100, 200, 300, 400, 500, 600, 700, 800, 900}><option value="#VALEUR"[(#VALEUR|=={#GET{c}|table_valeur{valeur}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_graisses>
+				</select>
+				</BOUCLE_graisse>
+				<BOUCLE_enum(CONDITION){si #GET{c}|table_valeur{type}|=={enum}}>
+				<select id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]">
+					<option value=""><:astra:styles_defaut:></option>
+					<BOUCLE_valeurs(DATA){source tableau, #GET{c}|table_valeur{valeurs}}><option value="#VALEUR"[(#VALEUR|=={#GET{c}|table_valeur{valeur}}|oui)selected="selected"]>[(#VAL{astra:styles_enum_}|concat{#VALEUR}|_T)]</option></BOUCLE_valeurs>
+				</select>
+				</BOUCLE_enum>
+				<BOUCLE_booleen(CONDITION){si #GET{c}|table_valeur{type}|=={booleen}}>
+				#SET{v,#GET{c}|table_valeur{valeur}|strval}
+				<select id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]">
+					<option value=""><:astra:styles_defaut:></option>
+					<option value="1"[(#GET{v}|=={1}|oui)selected="selected"]><:astra:styles_visible:></option>
+					<option value="0"[(#GET{v}|=={0}|oui)selected="selected"]><:astra:styles_masque:></option>
+				</select>
+				</BOUCLE_booleen>
+				<BOUCLE_cotes(CONDITION){si #GET{c}|table_valeur{type}|=={quatre-cotes}}>
+				<span class="astra-styles-cotes" id="s_[(#GET{c}|table_valeur{option})]">
+					<BOUCLE_cote(DATA){liste top, right, bottom, left}>
+					#SET{etiquette,#ARRAY{top,haut,right,droite,bottom,bas,left,gauche}|table_valeur{#VALEUR}}
+					<input type="number" min="0" step="any" class="text" name="[(#GET{c}|table_valeur{nom}|astra_styles_nom{#VALEUR})]" value="[(#GET{c}|table_valeur{valeur}|table_valeur{#VALEUR})]" aria-label="[(#VAL{astra:styles_}|concat{#GET{etiquette}}|_T)]" placeholder="[(#VAL{astra:styles_}|concat{#GET{etiquette}}|_T)]" />
+					</BOUCLE_cote>
+					<BOUCLE_unite_cotes(CONDITION){si #GET{c}|table_valeur{responsive}}>
+					<select name="[(#GET{c}|table_valeur{nom_unite})]" aria-label="unité">
+						<BOUCLE_unites_cotes(DATA){source tableau, #GET{c}|table_valeur{unites}}><option value="#VALEUR"[(#VALEUR|=={#GET{c}|table_valeur{unite}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_unites_cotes>
+					</select>
+					</BOUCLE_unite_cotes>
+				</span>
+				</BOUCLE_cotes>
+				<BOUCLE_fond(CONDITION){si #GET{c}|table_valeur{type}|=={fond}}>
+				<input type="text" class="text" id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom}|astra_styles_nom{background-color})]" value="[(#GET{c}|table_valeur{valeur}|table_valeur{background-color})]" list="astra-styles-palette" />
+				</BOUCLE_fond>
+				<BOUCLE_extras(CONDITION){si #GET{c}|table_valeur{type}|=={extras-police}}>
+				#SET{v,#GET{c}|table_valeur{valeur}}
+				<span class="astra-styles-unite" id="s_[(#GET{c}|table_valeur{option})]">
+					<label><:astra:styles_interligne:>
+					<input type="number" min="0" step="any" class="text" name="[(#GET{c}|table_valeur{nom}|astra_styles_nom{line-height})]" value="[(#GET{v}|table_valeur{line-height})]" /></label>
+					<select name="[(#GET{c}|table_valeur{nom}|astra_styles_nom{line-height-unit})]" aria-label="unité">
+						<BOUCLE_unites_interligne(DATA){source tableau, #ARRAY{0,"",1,px,2,em}}><option value="#VALEUR"[(#VALEUR|=={#GET{v}|table_valeur{line-height-unit}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_unites_interligne>
+					</select>
+					<label><:astra:styles_espacement:>
+					<input type="number" step="any" class="text" name="[(#GET{c}|table_valeur{nom}|astra_styles_nom{letter-spacing})]" value="[(#GET{v}|table_valeur{letter-spacing})]" /></label>
+					<select name="[(#GET{c}|table_valeur{nom}|astra_styles_nom{letter-spacing-unit})]" aria-label="unité">
+						<BOUCLE_unites_espacement(DATA){source tableau, #ARRAY{0,"",1,px,2,em}}><option value="#VALEUR"[(#VALEUR|=={#GET{v}|table_valeur{letter-spacing-unit}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_unites_espacement>
+					</select>
+					<label><:astra:styles_casse:>
+					<select name="[(#GET{c}|table_valeur{nom}|astra_styles_nom{text-transform})]">
+						<BOUCLE_casses(DATA){source tableau, #ARRAY{0,"",1,none,2,capitalize,3,uppercase,4,lowercase}}><option value="#VALEUR"[(#VALEUR|=={#GET{v}|table_valeur{text-transform}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_casses>
+					</select></label>
+				</span>
+				</BOUCLE_extras>
+			</div>
+			</BOUCLE_champs>
+			</div>
+		</fieldset>
+		</BOUCLE_sections>
+
+		<p class="boutons"><input type="submit" class="submit btn" value="<:bouton_enregistrer:>" /></p>
+	</div></form>
+	</BOUCLE_editable>
+</div>

@@ -1,0 +1,7 @@
+.ast-footer-social-1-wrap .ast-builder-social-element,.ast-footer-social-1-wrap .social-show-label-true .ast-builder-social-element{margin-left:10px;margin-right:10px;}
+.ast-footer-social-1-wrap .ast-builder-social-element svg{width:16px;height:16px;}
+.ast-footer-social-1-wrap .ast-social-color-type-custom svg{fill:var(--ast-global-color-0);}
+.ast-footer-social-1-wrap .ast-social-color-type-custom .ast-builder-social-element:hover{color:var(--ast-global-color-5);}
+.ast-footer-social-1-wrap .ast-social-color-type-custom .ast-builder-social-element:hover svg{fill:var(--ast-global-color-5);}
+.ast-footer-social-1-wrap .ast-social-color-type-custom .social-item-label{color:var(--ast-global-color-0);}
+.ast-footer-social-1-wrap .ast-builder-social-element:hover .social-item-label{color:var(--ast-global-color-5);}

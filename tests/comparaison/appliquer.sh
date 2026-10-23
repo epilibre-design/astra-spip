@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Usage : SPIP_CLI=… tests/comparaison/appliquer.sh <racine du site SPIP> <configuration>
 # Écrit une configuration transposée (configurations.php) dans astra/hfb, avec les réglages
-# d'accueil et de pages (astra/accueil_*, astra/pages), et vide le cache.
+# d'accueil et de pages (astra/accueil_*, astra/pages), les styles (astra/styles), les polices
+# (astra/police_*) et le slogan (méta slogan_site), et vide le cache.
 set -euo pipefail
 ICI=$(cd "$(dirname "$0")" && pwd)
 : "${SPIP_CLI:?SPIP_CLI doit désigner spip-cli}"
@@ -15,9 +16,16 @@ if (!isset(\$c['$2'])) { echo 'configuration-inconnue'; return; }
 \$id = function (\$identifiant) {
 	return (int) sql_getfetsel('id_article', 'spip_articles', ['id_rubrique=-1', 'page=' . sql_quote(\$identifiant)]);
 };
-effacer_config('astra/accueil_type');
-effacer_config('astra/accueil_page');
-effacer_config('astra/pages');
+foreach (['accueil_type', 'accueil_page', 'pages', 'styles', 'police_texte', 'police_titres'] as \$cle) {
+	effacer_config('astra/' . \$cle);
+}
+ecrire_meta('slogan_site', '');
+foreach (\$conf['meta'] ?? [] as \$meta => \$valeur) {
+	ecrire_meta(\$meta, \$valeur);
+}
+if (!empty(\$conf['styles'])) {
+	ecrire_config('astra/styles', \$conf['styles']);
+}
 foreach (\$conf['astra'] ?? [] as \$cle => \$valeur) {
 	ecrire_config('astra/' . \$cle, is_string(\$valeur) && \$valeur[0] === '@' ? \$id(substr(\$valeur, 1)) : \$valeur);
 }

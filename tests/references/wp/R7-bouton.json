@@ -1,0 +1,57 @@
+{
+	"ordinateur": [
+		".site-primary-header-wrap .ast-builder-menu-1",
+		".site-primary-header-wrap .ast-header-button-1",
+		".site-primary-footer-wrap .footer-widget-area",
+		".site-below-footer-wrap .ast-footer-copyright",
+		".site-below-footer-wrap .ast-footer-social-wrap"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": ".ast-header-button-1 .ast-custom-button",
+			"proprietes": [
+				"color",
+				"background-color",
+				"font-family",
+				"font-size",
+				"font-weight",
+				"line-height",
+				"letter-spacing",
+				"text-transform",
+				"padding-top",
+				"padding-left",
+				"border-top-left-radius",
+				"border-top-width"
+			]
+		},
+		{
+			"selecteur": ".ast-header-button-1 .ast-custom-button",
+			"survol": ".ast-header-button-1 .ast-custom-button",
+			"proprietes": [
+				"color",
+				"background-color"
+			]
+		},
+		{
+			"selecteur": ".ast-header-button-1 .ast-custom-button",
+			"focus": ".ast-header-button-1 .ast-custom-button",
+			"proprietes": [
+				"color",
+				"background-color"
+			]
+		}
+	],
+	"polices": [
+		"500 14px Poppins"
+	]
+}

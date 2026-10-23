@@ -1,0 +1,49 @@
+{
+	"ordinateur": [
+		".site-primary-header-wrap .ast-builder-menu-1",
+		".site-primary-header-wrap .ast-header-button-1",
+		".site-primary-footer-wrap .footer-widget-area",
+		".site-below-footer-wrap .ast-footer-copyright",
+		".site-below-footer-wrap .ast-footer-social-wrap"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": ".footer-widget-area[data-section=\"sidebar-widgets-footer-widget-1\"] .widget-title",
+			"proprietes": [
+				"color",
+				"font-size"
+			]
+		},
+		{
+			"selecteur": ".footer-widget-area[data-section=\"sidebar-widgets-footer-widget-1\"].footer-widget-area-inner",
+			"proprietes": [
+				"color",
+				"font-size"
+			]
+		},
+		{
+			"selecteur": ".footer-widget-area[data-section=\"sidebar-widgets-footer-widget-4\"] .widget-title",
+			"proprietes": [
+				"color",
+				"font-size"
+			]
+		},
+		{
+			"selecteur": ".ast-footer-copyright",
+			"proprietes": [
+				"color",
+				"font-size"
+			]
+		}
+	]
+}

@@ -12,6 +12,10 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 
 function formulaires_configurer_astra_verifier_dist() {
 	$erreurs = [];
+	$couleur = _request('couleur_8');
+	if ($couleur !== null && astra_couleur((string) $couleur, '') === '') {
+		$erreurs['couleur_8'] = _T('astra:cfg_couleur_8_erreur');
+	}
 	$type = _request('accueil_type');
 	if ($type !== null && !in_array($type, ['articles', 'page'], true)) {
 		$erreurs['accueil_type'] = _T('astra:cfg_accueil_type_erreur');

@@ -1,0 +1,7 @@
+.ast-site-identity .site-description{color:var(--ast-global-color-3);}
+.site-title{font-size:20px;font-size:1.25rem;display:block;}
+header .custom-logo-link img{max-width:40px;width:40px;}
+.astra-logo-svg{width:40px;}
+.site-header .site-description{font-size:11px;font-size:0.6875rem;display:block;}
+[@media (max-width:921px)] .site-header .site-description{display:block;}
+[@media (max-width:544px)] .site-header .site-description{display:block;}
