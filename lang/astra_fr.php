@@ -36,6 +36,8 @@ return [
 	'cfg_couleur_6' => 'Couleur de contraste',
 	'cfg_couleur_7' => 'Bordures et fonds discrets',
 	'cfg_couleur_8' => 'Couleur complémentaire',
+	'cfg_couleur_8_erreur' => 'Couleur hexadécimale, <code>rgb()</code> ou <code>rgba()</code> attendue.',
+	'cfg_couleur_8_explication' => 'Hexadécimale (<code>#40bf4f</code>) ou <code>rgba(64, 191, 79, 0.15)</code>, comme la palette d’Astra.',
 	'cfg_disposition_articles' => 'Disposition des articles',
 	'cfg_disposition_left_sidebar' => 'Barre latérale à gauche',
 	'cfg_disposition_listes' => 'Disposition de l’accueil et des listes (rubriques, mots-clés, recherche…)',

@@ -36,6 +36,8 @@ return [
 	'cfg_couleur_6' => 'Contrast color',
 	'cfg_couleur_7' => 'Borders and subtle backgrounds',
 	'cfg_couleur_8' => 'Extra color',
+	'cfg_couleur_8_erreur' => 'Expected a hexadecimal, <code>rgb()</code> or <code>rgba()</code> color.',
+	'cfg_couleur_8_explication' => 'Hexadecimal (<code>#40bf4f</code>) or <code>rgba(64, 191, 79, 0.15)</code>, like Astra’s palette.',
 	'cfg_disposition_articles' => 'Article layout',
 	'cfg_disposition_left_sidebar' => 'Left sidebar',
 	'cfg_disposition_listes' => 'Home and archive layout (sections, keywords, search…)',

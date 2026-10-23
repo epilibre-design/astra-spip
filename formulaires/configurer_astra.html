@@ -15,9 +15,11 @@
 			<p class="explication"><:astra:cfg_palette_explication:></p>
 			<div class="editer-groupe">
 				<BOUCLE_couleurs(DATA){enum 0,8}>
-				<div class="editer editer_couleur_#VALEUR">
+				<div class="editer editer_couleur_#VALEUR[ (#ENV*{erreurs/couleur_#VALEUR}|oui)erreur]">
 					<label for="couleur_#VALEUR">[(#VAL{astra:cfg_couleur_}|concat{#VALEUR}|_T)]</label>
-					<input type="color" class="text" name="couleur_#VALEUR" id="couleur_#VALEUR" value="[(#ENV{couleur_#VALEUR}|sinon{#VAL{couleur_#VALEUR}|astra_conf}|astra_couleur)]" />
+					[(#VALEUR|=={8}|oui)<p class="explication"><:astra:cfg_couleur_8_explication:></p>
+					[<span class="erreur_message">(#ENV*{erreurs/couleur_8})</span>]]
+					<input type="[(#VALEUR|=={8}|?{text,color})]" class="text" name="couleur_#VALEUR" id="couleur_#VALEUR" value="[(#ENV{couleur_#VALEUR}|sinon{#VAL{couleur_#VALEUR}|astra_conf}|astra_couleur)]" />
 				</div>
 				</BOUCLE_couleurs>
 			</div>

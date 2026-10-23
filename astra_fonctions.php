@@ -315,12 +315,15 @@ function astra_body_class(string $type, $id = 0, $accueil = ''): string {
 }
 
 /**
- * Normaliser une couleur saisie (#rgb ou #rrggbb), avec repli
+ * Normaliser une couleur saisie (#rgb, #rrggbb, rgb() ou rgba() comme la palette d'Astra), avec repli
  */
 function astra_couleur(string $couleur, string $defaut = '#000000'): string {
 	$couleur = trim($couleur);
 	if (preg_match('/^#([0-9a-f]{3}|[0-9a-f]{6})$/i', $couleur)) {
 		return strtolower($couleur);
+	}
+	if (strpos($couleur, 'rgb') === 0 && astra_styles_couleur_valide($couleur)) {
+		return $couleur;
 	}
 	return $defaut;
 }
