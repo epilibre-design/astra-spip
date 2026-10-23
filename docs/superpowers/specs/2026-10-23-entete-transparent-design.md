@@ -1,6 +1,7 @@
 # En-tête transparent — spécification
 
-Date : 2026-10-23. Statut : à relire (Gilles, Codex) ; précisions de la première relecture intégrées.
+Date : 2026-10-23. Statut : précisions de la première relecture intégrées ; décisions de Gilles du
+24 octobre reportées (plan `docs/superpowers/plans/2026-10-23-entete-transparent.md`).
 
 ## Objectif
 
@@ -27,9 +28,11 @@ Reprise de `Astra_Ext_Transparent_Header_Markup::is_transparent_header()` :
    | `transparent-header-disable-index` | (page des articles distincte de l'accueil : sans équivalent SPIP aujourd'hui) |
    | `transparent-header-disable-page` | pages uniques |
    | `transparent-header-disable-posts` | articles |
-Une fonction `astra_entete_transparent(string $type_page, int $id_article, bool $accueil = false): bool`
-porte cette règle : le booléen dit si **la page autorise la transparence** (classe du body, CSS du
-module). Elle est testée cas par cas.
+Une fonction pure `astra_entete_transparent_actif(array $styles, string $contexte, string $reglage_page): bool`
+porte cette règle (contextes : `page`, `article`, `accueil_articles`, `rubrique`, `mot`, `auteur`,
+`recherche`, `404`) ; elle est testée cas par cas. `astra_entete_transparent(string $type, $id, $accueil)`,
+avec les paramètres d'`astra_body_class()`, lit la configuration et dit si **la page a l'en-tête
+transparent** (classe du body, CSS du module).
 
 **Restriction par appareil.** `transparent-header-on-devices` (`desktop`, `mobile`, `both`) ne
 change pas ce booléen : comme dans Astra, elle place les règles du module dans les media queries
@@ -54,10 +57,20 @@ transmet donc l'identifiant de la page et `accueil=oui` (déjà fournis par `som
   `transparent-submenu-{color,h-color,bg-color}-responsive`,
   `transparent-content-section-{text-color,link-color,link-h-color}-responsive`,
   `transparent-header-main-sep`, `transparent-header-main-sep-color`.
+- Drapeau `transparent-header-default-border` (booléen, vrai par défaut) : fixe le défaut du
+  séparateur, 0 px sur une installation récente, aucun s'il est faux (cas de Garden ;
+  `astra_get_transparent_header_default_value()`). Faux s'entend `false`, `0` ou « 0 », valeur que
+  le formulaire « Couleurs et typographie » enregistre : un enregistrement sans modification garde
+  son effet.
+- Valeurs tablette et mobile des couleurs appliquées, comme Astra le fait pour ce module (media
+  queries de la restriction par appareil, repli des fonds de la tablette sur l'ordinateur et du
+  mobile sur la tablette).
 - Réglage par page : nouvelle clé `transparent` dans `astra/pages/<id>` (réglages par page de la
   version 1.1.0) : `defaut`, `active`, `desactive` ; formulaire `editer_astra_page` complété.
+  Limité aux pages uniques ; les articles suivent le réglage global et ses exclusions.
 - Logo propre à l'en-tête transparent (`different-transparent-logo`, `transparent-header-logo`) :
-  hors périmètre de cette version (Garden ne l'utilise pas) ; les classes de body d'Astra
+  hors périmètre (Garden ne l'utilise pas) ; les règles de largeur de ce logo, qu'Astra émet
+  toujours, sont émises à l'identique ; les classes de body d'Astra
   (`ast-inherit-site-logo-transparent`, déjà produite) restent celles du cas sans logo propre.
 
 ## Balisage et CSS
@@ -71,6 +84,13 @@ transmet donc l'identifiant de la page et `accueil=oui` (déjà fournis par `som
   figurent).
 - Emplacement : bloc `<style id="astra-transparent-inline-css">` après celui des styles, émis
   seulement s'il n'est pas vide.
+- Neutralisation : `css/astra-dynamic.css` donne 60 px de marge à `#primary` au-delà de 1200 px,
+  règle qu'Astra n'émet pas sur une page à en-tête transparent ; le module la défait
+  (`.ast-theme-transparent-header.ast-plain-container.ast-no-sidebar #primary{margin-top:0;margin-bottom:0;}`).
+- Couleurs propres aux éléments de l'en-tête transparent (texte libre, recherche, icônes, bouton,
+  séparateur vertical, compte, couleurs du bouton du menu mobile) : non reprises, vides dans Garden ;
+  seule la règle que cette partie d'Astra émet sans réglage (fond transparent du bouton du menu
+  mobile) l'est. `header-sections-dynamic.css.php` ne concerne que l'en-tête sans builder.
 
 ## Tests
 
@@ -80,16 +100,18 @@ transmet donc l'identifiant de la page et `accueil=oui` (déjà fournis par `som
 - Restriction par appareil : CSS produit dans les media queries attendues pour `desktop`,
   `mobile` et `both`.
 - Sans réglage : R0–R5 et P1–P3 identiques.
-- Références WordPress : `R15-transparent-page` (page avec `theme-transparent-header-meta` =
-  `enabled`, réglage global désactivé, couleurs de Garden) et `R16-transparent-global` (réglage
-  global, page d'archive exclue) ; comparaison HTML (classes du body), captures et styles calculés
+- Attendus WordPress de quatre variantes (`tests/references/transparent/` : Garden, ordinateur
+  seul, mobile seul, toutes les couleurs), comparés règle à règle.
+- Aller-retour du formulaire « Couleurs et typographie » avec les valeurs de Garden : CSS inchangé.
+- Références WordPress : `R16-transparent-page` (page avec `theme-transparent-header-meta` =
+  `enabled`, réglage global désactivé, couleurs de Garden) et `R17-transparent-global` (réglage
+  global, page d'archive exclue) ; `comparer_captures.sh` compare aussi le contenu d'une
+  référence qui affiche une page ; comparaison HTML (classes du body), captures et styles calculés
   à 1280, 768 et 390 px, y compris la position de l'en-tête par rapport au premier bloc du
   contenu.
 
-## Questions ouvertes
+## Questions tranchées (24 octobre)
 
-1. Réglage par page limité aux pages uniques (comme Garden) ou étendu aux articles (Astra le
-   propose sur tous les contenus) ?
-2. Logo propre à l'en-tête transparent : à reprendre plus tard, ou jamais ?
-3. Dépendance : cette spec s'appuie sur le registre et la normalisation de la spec des styles ;
-   elle est à implémenter après elle.
+1. Réglage par page limité aux pages uniques.
+2. Logo propre à l'en-tête transparent : hors périmètre.
+3. Dépendance : la spec des styles est fusionnée (v1.2.0).
