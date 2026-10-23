@@ -36,3 +36,27 @@ function astra_styliser($flux) {
 	}
 	return $flux;
 }
+
+/** Réglages d'affichage sur la fiche d'une page unique dans l'espace privé. */
+function astra_affiche_milieu($flux) {
+	$e = trouver_objet_exec($flux['args']['exec'] ?? '');
+	$id = (int) ($flux['args']['id_article'] ?? 0);
+	if ($e && empty($e['edition']) && ($e['type'] ?? '') === 'article' && $id) {
+		include_spip('inc/astra_pages');
+		if (astra_est_page_unique($id)) {
+			$flux['data'] .= recuperer_fond('prive/squelettes/inclure/astra-page', ['id_article' => $id]);
+		}
+	}
+	return $flux;
+}
+
+/** Réglages d'une page supprimée : effacés avec elle. */
+function astra_trig_supprimer_objets_lies($objets) {
+	include_spip('inc/config');
+	foreach ((array) $objets as $o) {
+		if (($o['type'] ?? '') === 'article' && !empty($o['id'])) {
+			effacer_config('astra/pages/' . (int) $o['id']);
+		}
+	}
+	return $objets;
+}
