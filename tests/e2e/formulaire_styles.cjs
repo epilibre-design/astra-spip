@@ -21,8 +21,10 @@ const verifier = (condition, message) => { if (!condition) echecs.push(message);
   await page.fill('#var_login', process.env.LOGIN || 'admin');
   await page.fill('input[type=password]', process.env.MDP || '');
   await Promise.all([page.waitForNavigation({ waitUntil: 'load' }), page.click('.formulaire_login [type=submit], form [type=submit]')]);
-  if (!page.url().includes('exec=configurer_astra_styles')) {
-    await page.goto(URL + '/ecrire/?exec=configurer_astra_styles', { waitUntil: 'load' });
+  // Au premier passage, la compilation des squelettes peut faire interrompre la navigation
+  // (ERR_ABORTED) : une seconde tentative suffit.
+  for (let essai = 0; essai < 2 && !page.url().includes('exec=configurer_astra_styles'); essai++) {
+    await page.goto(URL + '/ecrire/?exec=configurer_astra_styles', { waitUntil: 'load' }).catch(() => page.waitForLoadState('load'));
   }
   verifier(await page.locator(`${FORM} form`).count() === 1, 'formulaire absent de la page de configuration');
 
