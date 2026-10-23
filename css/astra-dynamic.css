@@ -547,9 +547,6 @@ header.ast-comment-meta {
 .comment-awaiting-moderation {
 					margin-top: 20px;
 				}
-.entry-content ul li, .entry-content ol li {
-					margin-bottom: 10px;
-				}
 .comment-respond {
 					padding-top: 2em;
 					padding-bottom: 2em;
@@ -615,11 +612,7 @@ header.ast-comment-meta {
 				}
 @media (max-width:921px){.ast-comment-avatar-wrap img{max-width:2.5em;}.comments-area{margin-top:1.5em;}.ast-comment-meta{padding:0 1.8888em 1.3333em;}.ast-comment-avatar-wrap{margin-right:0.5em;}}
 :root {--ast-single-post-border: #e1e8ed;}
-.entry-content h1,.entry-content h2,.entry-content h3,.entry-content h4,.entry-content h5,.entry-content h6 {margin-top: 1.5em;margin-bottom: calc(0.3em + 10px);}
-code,kbd,samp {background: var(--ast-code-block-background);padding: 3px 6px;}
 .ast-row.comment-textarea fieldset.comment-form-comment {border: none;padding: unset;margin-bottom: 1.5em;}
-.entry-content > * {margin-bottom: 1.5em;}
-.entry-content .wp-block-image,.entry-content .wp-block-embed {margin-top: 2em;margin-bottom: 3em;}
 :root {--ast-single-post-nav-padding: 3em 0 1em;}
 .single .post-navigation a p {margin-top: 0.5em;margin-bottom: 0;text-transform: initial;line-height: 1.65em;font-weight: normal;}
 .single .post-navigation a .ast-post-nav {font-weight: 600;display: block;text-transform: uppercase;font-size: 0.85em;letter-spacing: 0.05em;}

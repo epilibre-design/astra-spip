@@ -15,6 +15,7 @@
 [<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
 [(#ENV{accueil}|!={oui}|et{#ID_ARTICLE|=={#VAL|astra_accueil_page}}|oui)<link rel="canonical" href="#URL_SITE_SPIP/" />]
 <INCLURE{fond=inclure/head} />
+<BOUCLE_commentaires_css(CONDITION){si #PARAMETRES_FORUM|oui|sinon{#ID_ARTICLE|astra_a_commentaires}}><link rel="stylesheet" id="astra-commentaires-css" href="[(#CHEMIN{css/astra-commentaires.css}|timestamp)]" media="all" /></BOUCLE_commentaires_css>
 </head>
 <body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="[(#VAL{page}|astra_body_class{#ID_ARTICLE,#ENV{accueil}})]">
 <INCLURE{fond=inclure/header}{type_page=#GET{ctx}|table_valeur{type_page}}{id_article}{titre_page=#GET{ctx}|table_valeur{titre}}{disposition=#GET{ctx}|table_valeur{disposition}} />

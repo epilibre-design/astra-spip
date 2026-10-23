@@ -1,0 +1,9 @@
+/*
+ * Astra pour SPIP — CSS des articles d'Astra 4.11.0 (inc/dynamic-css/single-post.php, règles qui
+ * touchent le contenu) : Astra ne l'émet que sur les articles (is_single), pas sur les pages.
+ * Chargé par inclure/head.html juste après css/astra-dynamic.css, pour les articles seulement.
+ */
+.entry-content h1,.entry-content h2,.entry-content h3,.entry-content h4,.entry-content h5,.entry-content h6 {margin-top: 1.5em;margin-bottom: calc(0.3em + 10px);}
+code,kbd,samp {background: var(--ast-code-block-background);padding: 3px 6px;}
+.entry-content > * {margin-bottom: 1.5em;}
+.entry-content .wp-block-image,.entry-content .wp-block-embed {margin-top: 2em;margin-bottom: 3em;}

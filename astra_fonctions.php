@@ -28,6 +28,11 @@ function filtre_astra_page_contexte_dist($id_article, $accueil = ''): array {
 	return astra_page_contexte((int) $id_article, astra_page_reglages((int) $id_article), $accueil === 'oui');
 }
 
+/** Vrai si l'article a au moins un commentaire publié (CSS des commentaires d'Astra). */
+function astra_a_commentaires($id_article): bool {
+	return (bool) sql_countsel('spip_forum', ['id_objet=' . (int) $id_article, "objet='article'", "statut='publie'"]);
+}
+
 /** Arbre des pages pour la source de menu « pages » : `#VAL|astra_pages_arbre`. */
 function filtre_astra_pages_arbre_dist($x = ''): array {
 	return astra_pages_arbre();
