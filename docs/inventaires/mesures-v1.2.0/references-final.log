@@ -1,0 +1,22 @@
+R0-defaut : OK (118230 octets HTML, 69721 octets CSS)
+R1-entete-complet : OK (143710 octets HTML, 81357 octets CSS)
+R2-entete-centre : OK (137306 octets HTML, 79312 octets CSS)
+R3-pied-colonnes : OK (137137 octets HTML, 80445 octets CSS)
+R4-pied-asymetrique : OK (132719 octets HTML, 77685 octets CSS)
+R5-rangees : OK (118185 octets HTML, 69676 octets CSS)
+R6-menu : OK (126316 octets HTML, 76215 octets CSS)
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.screenshot: Protocol error (Page.captureScreenshot): Unable to capture screenshot
+Call log:
+[2m  - taking page screenshot[22m
+[2m  - waiting for fonts to load...[22m
+[2m  - fonts loaded[22m
+
+    at /tmp/astra-main-mesures-20261023/tests/references/capture.cjs:18:16 {
+  name: 'Error'
+}
+
+Node.js v24.11.1

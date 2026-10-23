@@ -1,0 +1,449 @@
+{
+  "main": "7e3dde8b34528658340c68c35aa0ccbb6ea5226f",
+  "rows": [
+    {
+      "width": 1280,
+      "index": 0,
+      "wordpress": "wordpress-1280-0-wp-block-paragraph.png",
+      "spip": "spip-1280-0-p.png",
+      "sizeWp": [
+        1200,
+        27
+      ],
+      "sizeSpip": [
+        1200,
+        27
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 32400,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 1,
+      "wordpress": "wordpress-1280-1-wp-block-heading.png",
+      "spip": "spip-1280-1-h2.png",
+      "sizeWp": [
+        1200,
+        40
+      ],
+      "sizeSpip": [
+        1200,
+        40
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 48000,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 2,
+      "wordpress": "wordpress-1280-2-wp-block-list.png",
+      "spip": "spip-1280-2-ul.png",
+      "sizeWp": [
+        1200,
+        54
+      ],
+      "sizeSpip": [
+        1200,
+        54
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 64800,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 3,
+      "wordpress": "wordpress-1280-3-wp-block-columns.png",
+      "spip": "spip-1280-3-wp-block-columns.png",
+      "sizeWp": [
+        1200,
+        123
+      ],
+      "sizeSpip": [
+        1200,
+        123
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 147600,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 4,
+      "wordpress": "wordpress-1280-4-wp-block-columns.png",
+      "spip": "spip-1280-4-wp-block-columns.png",
+      "sizeWp": [
+        1200,
+        123
+      ],
+      "sizeSpip": [
+        1200,
+        123
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 147600,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 5,
+      "wordpress": "wordpress-1280-5-wp-block-group.png",
+      "spip": "spip-1280-5-wp-block-group.png",
+      "sizeWp": [
+        1200,
+        124
+      ],
+      "sizeSpip": [
+        1200,
+        124
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 148800,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 6,
+      "wordpress": "wordpress-1280-6-wp-block-quote.png",
+      "spip": "spip-1280-6-wp-block-quote.png",
+      "sizeWp": [
+        1200,
+        127
+      ],
+      "sizeSpip": [
+        1200,
+        127
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 152400,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 7,
+      "wordpress": "wordpress-1280-7-wp-block-pullquote.png",
+      "spip": "spip-1280-7-wp-block-pullquote.png",
+      "sizeWp": [
+        1200,
+        456
+      ],
+      "sizeSpip": [
+        1200,
+        456
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 547200,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 8,
+      "wordpress": "wordpress-1280-8-wp-block-table.png",
+      "spip": "spip-1280-8-wp-block-table.png",
+      "sizeWp": [
+        1200,
+        158
+      ],
+      "sizeSpip": [
+        1200,
+        158
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 189600,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 9,
+      "wordpress": "wordpress-1280-9-wp-block-buttons.png",
+      "spip": "spip-1280-9-wp-block-buttons.png",
+      "sizeWp": [
+        1200,
+        47
+      ],
+      "sizeSpip": [
+        1200,
+        47
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 56400,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 11,
+      "wordpress": "wordpress-1280-11-wp-block-cover.png",
+      "spip": "spip-1280-11-wp-block-cover.png",
+      "sizeWp": [
+        1200,
+        431
+      ],
+      "sizeSpip": [
+        1200,
+        431
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 517200,
+      "dy": 0
+    },
+    {
+      "width": 1280,
+      "index": 12,
+      "wordpress": "wordpress-1280-12-wp-block-media-text.png",
+      "spip": "spip-1280-12-wp-block-media-text.png",
+      "sizeWp": [
+        1200,
+        376
+      ],
+      "sizeSpip": [
+        1200,
+        376
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 451200,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 0,
+      "wordpress": "wordpress-390-0-wp-block-paragraph.png",
+      "spip": "spip-390-0-p.png",
+      "sizeWp": [
+        350,
+        25
+      ],
+      "sizeSpip": [
+        350,
+        25
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 8750,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 1,
+      "wordpress": "wordpress-390-1-wp-block-heading.png",
+      "spip": "spip-390-1-h2.png",
+      "sizeWp": [
+        350,
+        30
+      ],
+      "sizeSpip": [
+        350,
+        30
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 10500,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 2,
+      "wordpress": "wordpress-390-2-wp-block-list.png",
+      "spip": "spip-390-2-ul.png",
+      "sizeWp": [
+        350,
+        50
+      ],
+      "sizeSpip": [
+        350,
+        50
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 17500,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 3,
+      "wordpress": "wordpress-390-3-wp-block-columns.png",
+      "spip": "spip-390-3-wp-block-columns.png",
+      "sizeWp": [
+        350,
+        181
+      ],
+      "sizeSpip": [
+        350,
+        181
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 63350,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 4,
+      "wordpress": "wordpress-390-4-wp-block-columns.png",
+      "spip": "spip-390-4-wp-block-columns.png",
+      "sizeWp": [
+        350,
+        249
+      ],
+      "sizeSpip": [
+        350,
+        249
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 87150,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 5,
+      "wordpress": "wordpress-390-5-wp-block-group.png",
+      "spip": "spip-390-5-wp-block-group.png",
+      "sizeWp": [
+        350,
+        112
+      ],
+      "sizeSpip": [
+        350,
+        112
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 39200,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 6,
+      "wordpress": "wordpress-390-6-wp-block-quote.png",
+      "spip": "spip-390-6-wp-block-quote.png",
+      "sizeWp": [
+        350,
+        120
+      ],
+      "sizeSpip": [
+        350,
+        120
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 42000,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 7,
+      "wordpress": "wordpress-390-7-wp-block-pullquote.png",
+      "spip": "spip-390-7-wp-block-pullquote.png",
+      "sizeWp": [
+        350,
+        419
+      ],
+      "sizeSpip": [
+        350,
+        419
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 146650,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 8,
+      "wordpress": "wordpress-390-8-wp-block-table.png",
+      "spip": "spip-390-8-wp-block-table.png",
+      "sizeWp": [
+        350,
+        145
+      ],
+      "sizeSpip": [
+        350,
+        145
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 50750,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 9,
+      "wordpress": "wordpress-390-9-wp-block-buttons.png",
+      "spip": "spip-390-9-wp-block-buttons.png",
+      "sizeWp": [
+        350,
+        40
+      ],
+      "sizeSpip": [
+        350,
+        40
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 14000,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 11,
+      "wordpress": "wordpress-390-11-wp-block-cover.png",
+      "spip": "spip-390-11-wp-block-cover.png",
+      "sizeWp": [
+        350,
+        431
+      ],
+      "sizeSpip": [
+        350,
+        431
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 150850,
+      "dy": 0
+    },
+    {
+      "width": 390,
+      "index": 12,
+      "wordpress": "wordpress-390-12-wp-block-media-text.png",
+      "spip": "spip-390-12-wp-block-media-text.png",
+      "sizeWp": [
+        350,
+        295
+      ],
+      "sizeSpip": [
+        350,
+        295
+      ],
+      "fraction": 0,
+      "differentPixels": 0,
+      "pixels": 103250,
+      "dy": 0
+    }
+  ],
+  "maxima": [
+    {
+      "width": 1280,
+      "count": 12,
+      "maxFraction": 0
+    },
+    {
+      "width": 390,
+      "count": 12,
+      "maxFraction": 0
+    }
+  ]
+}

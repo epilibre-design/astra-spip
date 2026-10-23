@@ -1,0 +1,167 @@
+R0-defaut / entete : identique (30 nœuds)
+R0-defaut / panneau : identique (0 nœuds)
+R0-defaut / pied : identique (8 nœuds)
+R1-entete-complet / entete : identique (67 nœuds)
+R1-entete-complet / panneau : identique (0 nœuds)
+R1-entete-complet / pied : identique (8 nœuds)
+R2-entete-centre / entete : identique (52 nœuds)
+R2-entete-centre / panneau : identique (16 nœuds)
+R2-entete-centre / pied : identique (8 nœuds)
+R3-pied-colonnes / entete : identique (30 nœuds)
+R3-pied-colonnes / panneau : identique (0 nœuds)
+R3-pied-colonnes / pied : identique (46 nœuds)
+R4-pied-asymetrique / entete : identique (30 nœuds)
+R4-pied-asymetrique / panneau : identique (0 nœuds)
+R4-pied-asymetrique / pied : identique (31 nœuds)
+R5-rangees / entete : identique (30 nœuds)
+R5-rangees / panneau : identique (0 nœuds)
+R5-rangees / pied : identique (8 nœuds)
+R6-menu / entete : identique (34 nœuds)
+R6-menu / panneau : identique (0 nœuds)
+R6-menu / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -1,5 +1,5 @@
+ footer.site-footer#colophon
+-  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-full.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
++  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-4-equal.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
+     div.ast-builder-grid-row-container-inner
+       div.ast-builder-footer-grid-columns.ast-builder-grid-row.site-primary-footer-inner-wrap
+         div.site-footer-primary-section-1.site-footer-section.site-footer-section-1
+R7-bouton / entete : identique (34 nœuds)
+R7-bouton / panneau : identique (0 nœuds)
+R7-bouton / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -1,5 +1,5 @@
+ footer.site-footer#colophon
+-  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-full.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
++  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-4-equal.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
+     div.ast-builder-grid-row-container-inner
+       div.ast-builder-footer-grid-columns.ast-builder-grid-row.site-primary-footer-inner-wrap
+         div.site-footer-primary-section-1.site-footer-section.site-footer-section-1
+R8-identite / entete : identique (34 nœuds)
+R8-identite / panneau : identique (0 nœuds)
+R8-identite / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -1,5 +1,5 @@
+ footer.site-footer#colophon
+-  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-full.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
++  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-4-equal.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
+     div.ast-builder-grid-row-container-inner
+       div.ast-builder-footer-grid-columns.ast-builder-grid-row.site-primary-footer-inner-wrap
+         div.site-footer-primary-section-1.site-footer-section.site-footer-section-1
+R9-pied-couleurs / entete : identique (34 nœuds)
+R9-pied-couleurs / panneau : identique (0 nœuds)
+R9-pied-couleurs / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -1,5 +1,5 @@
+ footer.site-footer#colophon
+-  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-full.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
++  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-4-equal.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
+     div.ast-builder-grid-row-container-inner
+       div.ast-builder-footer-grid-columns.ast-builder-grid-row.site-primary-footer-inner-wrap
+         div.site-footer-primary-section-1.site-footer-section.site-footer-section-1
+R10-sociaux / entete : identique (34 nœuds)
+R10-sociaux / panneau : identique (0 nœuds)
+R10-sociaux / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -1,5 +1,5 @@
+ footer.site-footer#colophon
+-  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-full.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
++  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-4-equal.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
+     div.ast-builder-grid-row-container-inner
+       div.ast-builder-footer-grid-columns.ast-builder-grid-row.site-primary-footer-inner-wrap
+         div.site-footer-primary-section-1.site-footer-section.site-footer-section-1
+R11-combinee / entete : identique (34 nœuds)
+R11-combinee / panneau : identique (0 nœuds)
+R11-combinee / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -1,5 +1,5 @@
+ footer.site-footer#colophon
+-  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-full.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
++  div.ast-builder-grid-row-4-equal.ast-builder-grid-row-container.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-4-equal.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-footer-focus-item.site-primary-footer-wrap
+     div.ast-builder-grid-row-container-inner
+       div.ast-builder-footer-grid-columns.ast-builder-grid-row.site-primary-footer-inner-wrap
+         div.site-footer-primary-section-1.site-footer-section.site-footer-section-1
+R11-combinee / contenu : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -3,7 +3,7 @@
+     div.ast-blog-layout-4-grid.ast-grid-3.content-area.primary#primary
+       main.site-main#main
+         div.ast-row
+-          article.ast-article-post.ast-full-width.ast-grid-common-col.category-non-classe.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
++          article.ast-article-post.ast-full-width.ast-grid-common-col.category-3.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
+             div.ast-article-inner.ast-no-thumb.ast-post-format-.blog-layout-4
+               div.ast-grid-common-col.post-content
+                 div.ast-blog-featured-section.ast-blog-single-element.post-thumb
+@@ -13,15 +13,13 @@
+                   a
+                 header.ast-blog-meta-container.ast-blog-single-element.entry-header
+                   div.entry-meta
+-                    span.author.posted-by.vcard
+-                      a.fn.n.url
+-                        span.author-name
+                     span.posted-on
+                       span.published
++                        time
+                 div.ast-blog-single-element.ast-excerpt-container
+                   p
+                 div.clear.entry-content
+-          article.ast-article-post.ast-full-width.ast-grid-common-col.category-non-classe.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
++          article.ast-article-post.ast-full-width.ast-grid-common-col.category-2.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
+             div.ast-article-inner.ast-no-thumb.ast-post-format-.blog-layout-4
+               div.ast-grid-common-col.post-content
+                 div.ast-blog-featured-section.ast-blog-single-element.post-thumb
+@@ -31,15 +29,13 @@
+                   a
+                 header.ast-blog-meta-container.ast-blog-single-element.entry-header
+                   div.entry-meta
+-                    span.author.posted-by.vcard
+-                      a.fn.n.url
+-                        span.author-name
+                     span.posted-on
+                       span.published
++                        time
+                 div.ast-blog-single-element.ast-excerpt-container
+                   p
+                 div.clear.entry-content
+-          article.ast-article-post.ast-full-width.ast-grid-common-col.category-non-classe.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
++          article.ast-article-post.ast-full-width.ast-grid-common-col.category-1.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
+             div.ast-article-inner.ast-no-thumb.ast-post-format-.blog-layout-4
+               div.ast-grid-common-col.post-content
+                 div.ast-blog-featured-section.ast-blog-single-element.post-thumb
+@@ -49,29 +45,9 @@
+                   a
+                 header.ast-blog-meta-container.ast-blog-single-element.entry-header
+                   div.entry-meta
+-                    span.author.posted-by.vcard
+-                      a.fn.n.url
+-                        span.author-name
+-                    span.posted-on
+-                      span.published
+-                div.ast-blog-single-element.ast-excerpt-container
+-                  p
+-                div.clear.entry-content
+-          article.ast-article-post.ast-full-width.ast-grid-common-col.category-non-classe.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
+R11-combinee / body : identique (8 nœuds)
+P1-page / entete : identique (30 nœuds)
+P1-page / panneau : identique (0 nœuds)
+P1-page / pied : identique (8 nœuds)
+P1-page / contenu : identique (8 nœuds)
+P1-page / body : identique (11 nœuds)
+P2-accueil / entete : identique (30 nœuds)
+P2-accueil / panneau : identique (0 nœuds)
+P2-accueil / pied : identique (8 nœuds)
+P2-accueil / contenu : identique (8 nœuds)
+P2-accueil / body : identique (12 nœuds)
+P3-page-pleine / entete : identique (30 nœuds)
+P3-page-pleine / panneau : identique (0 nœuds)
+P3-page-pleine / pied : identique (8 nœuds)
+P3-page-pleine / contenu : identique (7 nœuds)
+P3-page-pleine / body : identique (9 nœuds)

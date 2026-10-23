@@ -1,0 +1,36 @@
+{
+  "commit": "7e3dde8b34528658340c68c35aa0ccbb6ea5226f",
+  "tag": "v1.2.0",
+  "tag_commit": "7e3dde8b34528658340c68c35aa0ccbb6ea5226f",
+  "spip": "4.4.28",
+  "wordpress": "7.1.3",
+  "astra_wordpress": "4.11.0",
+  "mesure_code_sans_modification": true,
+  "sha256": {
+    "tests/comparaison/comparer_captures.cjs": "cf104afad65871c20734cc5d6f52ed60f6668ed01e5244218c15c92ec29b492b",
+    "tests/comparaison/comparer_captures.sh": "1a94874c35cb5720772c512154e51f618ecb1b71cb5042203073c547ff5189aa",
+    "tests/comparaison/comparer_html.php": "7afed12397a2387073a3a44b844463d4df1f9f9b83921d22b7a7a660522b9328",
+    "tests/comparaison/comparer_blocs.cjs": "b10bb3d1ab2b2819ffbfa02c93aea132e717a2bdcbe437935f073ed4d9471444",
+    "tests/comparaison/comparer_medias.php": "9016cca54001b7b2280cd48aa2014a1d6e10d2e62c4fa2d370158a53c429b937",
+    "tests/e2e/cascade_blocs.cjs": "81585c52e6a8d417c0ac5d35351d217168aec1c5c132bf3d3e257b249d6a7d65",
+    "inc/astra_styles.php": "e617f117a77c613215efddd07cbfa25587700fc4618a98a05724271a69e342bb",
+    "css/astra-dynamic.css": "16f3a07cc61712dd45152945a9baa7ce6f58459a24f0dda3658629be101eeede",
+    "css/astra-hfb.css": "1300d9d4948c165372a3277e52d09a5a21f0ca6ec8b7654eb01eac89148c7195",
+    "css/astra-blocs.css": "5c9d51e323230d0ac444ba64a0c419ba308e30fa5099958b3f93765ec23f1d51",
+    "css/astra-spip.css": "40d2550cf4639133c0c7fb177cfdd29f6d1d804b8bd7bb189bae4d04855b1483"
+  },
+  "php": "8.4.27",
+  "node": "24.11.1",
+  "navigateur": "Chrome for Testing 149.0.7827.55",
+  "capture_viewports": [
+    1280,
+    390
+  ],
+  "styles_viewports": [
+    1280,
+    768,
+    390
+  ],
+  "seuil_pixels": 0.01,
+  "tolerance_dimensions_px": 2
+}

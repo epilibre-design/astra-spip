@@ -1,0 +1,647 @@
+{
+  "commit": "7e3dde8b34528658340c68c35aa0ccbb6ea5226f",
+  "configurations": {
+    "R0-defaut": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [],
+      "polices": []
+    },
+    "R1-entete-complet": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [],
+      "polices": []
+    },
+    "R2-entete-centre": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [],
+      "polices": []
+    },
+    "R3-pied-colonnes": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.17,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.04,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [],
+      "polices": []
+    },
+    "R4-pied-asymetrique": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.11,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [],
+      "polices": []
+    },
+    "R5-rangees": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [
+        {
+          "largeur": 1280,
+          "valeurs": 8,
+          "ok": true
+        },
+        {
+          "largeur": 768,
+          "valeurs": 8,
+          "ok": true
+        },
+        {
+          "largeur": 390,
+          "valeurs": 8,
+          "ok": true
+        }
+      ],
+      "polices": []
+    },
+    "R6-menu": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.16,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [
+        {
+          "largeur": 1280,
+          "valeurs": 13,
+          "ok": true
+        },
+        {
+          "largeur": 768,
+          "valeurs": 13,
+          "ok": true
+        },
+        {
+          "largeur": 390,
+          "valeurs": 13,
+          "ok": true
+        }
+      ],
+      "polices": []
+    },
+    "R7-bouton": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.16,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [
+        {
+          "largeur": 1280,
+          "valeurs": 16,
+          "ok": true
+        },
+        {
+          "largeur": 768,
+          "valeurs": 16,
+          "ok": true
+        },
+        {
+          "largeur": 390,
+          "valeurs": 16,
+          "ok": true
+        }
+      ],
+      "polices": [
+        {
+          "site": "WordPress",
+          "attendues": 1,
+          "ok": true
+        },
+        {
+          "site": "SPIP",
+          "attendues": 1,
+          "ok": true
+        }
+      ]
+    },
+    "R8-identite": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.16,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [
+        {
+          "largeur": 1280,
+          "valeurs": 6,
+          "ok": true
+        },
+        {
+          "largeur": 768,
+          "valeurs": 6,
+          "ok": true
+        },
+        {
+          "largeur": 390,
+          "valeurs": 6,
+          "ok": true
+        }
+      ],
+      "polices": []
+    },
+    "R9-pied-couleurs": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.13,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.05,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [
+        {
+          "largeur": 1280,
+          "valeurs": 8,
+          "ok": true
+        },
+        {
+          "largeur": 768,
+          "valeurs": 8,
+          "ok": true
+        },
+        {
+          "largeur": 390,
+          "valeurs": 8,
+          "ok": true
+        }
+      ],
+      "polices": []
+    },
+    "R10-sociaux": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.16,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [
+        {
+          "largeur": 1280,
+          "valeurs": 6,
+          "ok": true
+        },
+        {
+          "largeur": 768,
+          "valeurs": 6,
+          "ok": true
+        },
+        {
+          "largeur": 390,
+          "valeurs": 6,
+          "ok": true
+        }
+      ],
+      "polices": []
+    },
+    "R11-combinee": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.35,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.04,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [
+        {
+          "largeur": 1280,
+          "valeurs": 50,
+          "ok": true
+        },
+        {
+          "largeur": 768,
+          "valeurs": 50,
+          "ok": true
+        },
+        {
+          "largeur": 390,
+          "valeurs": 50,
+          "ok": true
+        }
+      ],
+      "polices": [
+        {
+          "site": "WordPress",
+          "attendues": 2,
+          "ok": true
+        },
+        {
+          "site": "SPIP",
+          "attendues": 2,
+          "ok": true
+        }
+      ]
+    },
+    "P1-page": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "contenu-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "contenu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [],
+      "polices": []
+    },
+    "P2-accueil": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "contenu-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "contenu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [],
+      "polices": []
+    },
+    "P3-page-pleine": {
+      "captures": [
+        {
+          "vue": "entete-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "entete-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "pied-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "menu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "contenu-ordinateur",
+          "pourcentage": 0.0,
+          "ok": true
+        },
+        {
+          "vue": "contenu-mobile",
+          "pourcentage": 0.0,
+          "ok": true
+        }
+      ],
+      "styles": [],
+      "polices": []
+    }
+  },
+  "nombre_captures": 81,
+  "nombre_valeurs_styles": 321,
+  "nombre_groupes_styles": 21,
+  "controles_polices": 4,
+  "ecarts_html_extension": [
+    "R6-menu / pied",
+    "R7-bouton / pied",
+    "R8-identite / pied",
+    "R9-pied-couleurs / pied",
+    "R10-sociaux / pied",
+    "R11-combinee / pied",
+    "R11-combinee / contenu"
+  ]
+}

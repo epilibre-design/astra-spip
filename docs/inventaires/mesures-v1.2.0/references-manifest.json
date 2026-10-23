@@ -1,0 +1,137 @@
+{
+  "P1-page": {
+    "mobile.png": "d8a4717eb8a246c78de1b66adef712a7e67617a79f7647c60297bb33c1c5afd5",
+    "accueil.html": "8f08c0c59e766a7e799563f79ffb975c20836365ddd1c8ee59d977b687eaa9c5",
+    "article.html": "74a242e8dd1846d595adb840aae6baab6f6d6500227a58de405ed3d08255f64b",
+    "ordinateur.png": "03747a024c31738f87be815874275da8a1581ceadd087987cc2a3d7351fdd6be",
+    "options.json": "67386ab4b44fa64f70defddb8e1e166c9a8f86efbcb8f5634b2b72d6ba43fc7f",
+    "mobile-menu.png": "28e7d98f988e805e34e2a804f2a15dc84b583cb3d1192378511e63a7b09c56b9",
+    "dynamique.css": "0d3009bf8775ca6d75606846c798e309f19ca22361561b587450d9a0a77b0188"
+  },
+  "P2-accueil": {
+    "options.json": "67386ab4b44fa64f70defddb8e1e166c9a8f86efbcb8f5634b2b72d6ba43fc7f",
+    "dynamique.css": "0d3009bf8775ca6d75606846c798e309f19ca22361561b587450d9a0a77b0188",
+    "mobile.png": "0ad2e7e6135383f4e62d70b950bcf9ad356c837bf56001470f8bd8cefa88b21f",
+    "accueil.html": "10c77a63a0c36d8e2d5521c39cab801a6644d01483b24b2fedfbe77fc7b5eb6c",
+    "mobile-menu.png": "28e7d98f988e805e34e2a804f2a15dc84b583cb3d1192378511e63a7b09c56b9",
+    "article.html": "3abd1d2f4c0af6a2f5ee500077c18cda2623244460608f43b03ab3c06a2079e2",
+    "ordinateur.png": "03747a024c31738f87be815874275da8a1581ceadd087987cc2a3d7351fdd6be"
+  },
+  "P3-page-pleine": {
+    "ordinateur.png": "3cb19fe73b05b2afcf6c2fd070bec10390b9b447c566357422cf14f6915f9ce6",
+    "options.json": "67386ab4b44fa64f70defddb8e1e166c9a8f86efbcb8f5634b2b72d6ba43fc7f",
+    "mobile-menu.png": "5235fd2ef57787a9469adc49f12ca96448fd4adf167e07efdfb56eba86f9bdc0",
+    "accueil.html": "7c4cb79ba0b5ebc96dac5b02ec8b1393bf32cc265f536f2b8ed8b51acbf98fac",
+    "dynamique.css": "5bca2f7c33d85f73e5dced3d62432c9e2e404394ec82f8fe99062a92c0e54bfd",
+    "mobile.png": "85f91cad20c774402e99d48b01b29253b1e3d6d2cd31384f3605844e9a79f2ed",
+    "article.html": "74a242e8dd1846d595adb840aae6baab6f6d6500227a58de405ed3d08255f64b"
+  },
+  "R0-defaut": {
+    "dynamique.css": "481a5f6e345b349a8a2d076a1ae7552321082995cb82aa6dbf618f79fcb0a0a1",
+    "article.html": "2cd980c1b905a7163abb6ddf9fb2940d699c379047f415eefb9a65f472c41df8",
+    "accueil.html": "64ec8d61eb4e364feca58c07fada23c8bd35b8ff3f6a7d622e05fbbfe824d0c1",
+    "mobile-menu.png": "a82ea6f16f324b6e182284b0517b69a66ee314b6480175924538495e54c98530",
+    "mobile.png": "c4b5d5947fe88efcb9054a7b6616bc8c4281a6a62313c69bb0ebfce44c8de9c1",
+    "options.json": "67386ab4b44fa64f70defddb8e1e166c9a8f86efbcb8f5634b2b72d6ba43fc7f",
+    "ordinateur.png": "132c92fdc11a120b4d9b866579b704314a37da519ceff4a39ed9f3b24bf644b6"
+  },
+  "R1-entete-complet": {
+    "options.json": "6dc65ae5f18b200198c76b3ccf8749e745e8b3fa1ce1925ad070ca0b9e50ad8a",
+    "ordinateur.png": "8f7910e850ffd253b0377638e3c537202105971d11ccf66fe73837e4b463e8cc",
+    "accueil.html": "a7fbeace8ddb01dea8c2196a9396181ef9de9c1af987bd3c7cc6cadeaab1d001",
+    "mobile.png": "25401363f42fe5d39077f294ec7bdae91983631c25c772df6476ac91a0ca4b1e",
+    "mobile-menu.png": "cb30b7104ba770eab97af8221132ab5c925ebff69bb2edbafb8b3648358e042f",
+    "dynamique.css": "8e743ab3c68eb10f92a22ed8d9d27d50e71513e419250f1150855df181960424",
+    "article.html": "402b2edadeac269a37800eb755fc1bc46bca420c8f747987be8465cae9965a0f"
+  },
+  "R10-sociaux": {
+    "article.html": "ef9a719de70379604298a04a6c3ab3159c99a2846ab5efd4c1422a70154ebc31",
+    "dynamique.css": "63cc14bccc497dac27898df3a8cf8b6d4822c7b0f1c585e178923771d28ddff6",
+    "accueil.html": "f96ea81c3bc030a61485fa04dbb49899015707e88a73bf9147337edc7c406240",
+    "options.json": "8748c8ced4748095ab5a0f766c991571afadf97696caf1193c26861713323d26",
+    "mobile-menu.png": "a82ea6f16f324b6e182284b0517b69a66ee314b6480175924538495e54c98530",
+    "mobile.png": "bf24eaa34d3c9c98a6014e84d4f75906eb9f0466ac50c5a08878395a6b250d47",
+    "ordinateur.png": "025e9c8ee81be61a5f9b073c0d3abd979585fa418ab511e4d795b929b810ee3f"
+  },
+  "R11-combinee": {
+    "mobile-menu.png": "fda29023ac61f5dec3b9dd0312181456b6921dccc07becdd06ab347561dbf45a",
+    "options.json": "103a9cf9d28216a35a316b3102aa83f2f9d71224738225df0874063e8c3474b9",
+    "mobile.png": "13204cace72208ea4b9c5967d0d63ecac4a9d64ffb452ef321a253b71c34a43b",
+    "ordinateur.png": "24e07924b538bca8ecedf9ce9881496e7421428121998f31a8db58b9d8f8ec5f",
+    "dynamique.css": "02eb3f5be19b90b7c7fa9bf76326f4089e49b8ba8576b981d929f229b3b0a82e",
+    "accueil.html": "de9b2be00d6dd3627706c8b8ebf9a7f326540e12ce860d559396b0aa4a9f5a8b",
+    "article.html": "336035d848fb59a2569505548243e6e83395ebe5775e418c916cd2f88b2f0583"
+  },
+  "R2-entete-centre": {
+    "article.html": "773107670b6de94a201e941305ab90cad7c0614e45cfe6e9828d0bd467cb291a",
+    "mobile-menu.png": "25eb098b884250b2f4514ea99ff86358388e4b494adfa654f3c49d9e28545ab3",
+    "accueil.html": "4ead58a995eddd85a5794045ff1ef0de89268d283b04ba4bbbec1a010684bbca",
+    "mobile.png": "d22d579e56619306cab5d6e3cedc3420c4d41dbd4d384cd0e39a4ecbd11227fb",
+    "dynamique.css": "519b700fb764b41dcf8c5169aa8a22e323d838cef5be3063c7fec7fd357e4804",
+    "options.json": "9511413741b8c0cc8157e68183f8117f6753de83035b1ed904760b99f6317859",
+    "ordinateur.png": "bdee901b22be3015f8b15fa14e8681313f16cc7db9e448c29701a3ecf3238d90"
+  },
+  "R3-pied-colonnes": {
+    "options.json": "bedf3d9023c37f2ce4d2eeb39d9aa481b37f897e3499aaf31a928d2c108ca8e2",
+    "mobile-menu.png": "a82ea6f16f324b6e182284b0517b69a66ee314b6480175924538495e54c98530",
+    "ordinateur.png": "44382049a60a5265bf812368cd894870f2d1437234c9ed2a956fd92a487aa8d7",
+    "dynamique.css": "7755d9885b74de9f9ca1668296e4a465d59ea99bf8f8e07366d973109276cd53",
+    "article.html": "9699efdaa609adf3cd0e3a6a92353e4da1245ff77e3338adc91c22ddad9f087d",
+    "mobile.png": "474d9941f4c0f4ad166cb7707a367393363ae58f1bf380543ccc701f1d4ba813",
+    "accueil.html": "87655aaf4a5118fb383e1786e0b31573a7b7dabe41158984b360398f1ad713bb"
+  },
+  "R4-pied-asymetrique": {
+    "ordinateur.png": "14c16519dcf18b746eaeca6c15c10915988e5dd876f40fd3bd458d467c6d96ba",
+    "article.html": "50720efcc2d89105812ab884f337340bb33040c0a50062dae3f0c967b1aca9ff",
+    "mobile-menu.png": "a82ea6f16f324b6e182284b0517b69a66ee314b6480175924538495e54c98530",
+    "accueil.html": "6be43a128880003d90bcd0496250f299dad9e67d92463ac5c980c671e540bb78",
+    "dynamique.css": "942551dc7db8d8852ef1859ad87e4ed6a44438e112573fe09eb55771771db03c",
+    "mobile.png": "6b3292ccdd50af4880c49cfba385f55284c7b33592e69a648aaa2a57e4fcc54b",
+    "options.json": "0bea4b6f105e1eb534bbeca9312fccd20c1d6dec0d77daaca9001342e7c2a963"
+  },
+  "R5-rangees": {
+    "mobile.png": "61d18ec613b39587c561ef9ccdd1e5a94794ae91ac2c25cfd47b42c7decd1767",
+    "options.json": "db49e969b70227eae0aabf0ea0720a145442cf3d50932bfbfaf8ebe4e8285f61",
+    "dynamique.css": "be898e5112f45ae0dc0803f6419bc52dcc8242afdc60edff1e7fdc4d3fa6db1e",
+    "article.html": "9cc33b0f545f675e75c8a0bad3209e6cb530eb2def8efd4da8b1ec9482bbd816",
+    "mobile-menu.png": "4639cc1452fa5f17059d9f84ba791ebb0b91b002932b112836d20666973da6f4",
+    "accueil.html": "756b2541431a6bea8f6d4a817987e91de3a179099650f96dea8d3225ed986150",
+    "ordinateur.png": "b96b22a6cfd4ae30be4d66ff225d7b8e5f0311f2279496ca36b022f5fa6ade0a"
+  },
+  "R6-menu": {
+    "options.json": "42745776cfb166e8667ad8f1353e7c98be7a16e5ec9cd916289c338f2672d38c",
+    "ordinateur.png": "deb87deca9d96cbe94cb113bcf733addef3b4fb0bf47acc97444d17f7ef7cd6b",
+    "article.html": "42ec7f28fea1bbf10daeedad0a12c79324d9e423202ba0e9cebbb71ecd9f5b44",
+    "accueil.html": "bea25dc127f21aa0428585ab9cc2fbf4ec7873cdccc7438bebc97a7a956d23f6",
+    "mobile-menu.png": "d2a92867b73a8e4783d923429cfb8f4cd130b22b0c7dd62f7fa2e4b53d55c31d",
+    "mobile.png": "8cc48ece91d0cf65df7921ca94aca1b218ad4b5d9396422e636bfdc201594d44",
+    "dynamique.css": "2ca5e4ee5a76e3ea58177cc797db35b01227b7c342545b53a47d0d265793aa1a"
+  },
+  "R7-bouton": {
+    "ordinateur.png": "4e90d6187303ea341ae8e7c79e8364d26e57cf74cf5b4dcffbae7bc8c550f855",
+    "mobile-menu.png": "ed75534363e880027465a46d98669909c04ca0e0a1355ec2ce1a7b8b4d4bf7d9",
+    "mobile.png": "142f39679e10134507ff588aa34988d8cfece9f5115bb5b2919025554936726e",
+    "options.json": "4c38c86e192652b870524adea3bfbaf1fb6b3b487a5f5091a186a021412a8367",
+    "dynamique.css": "af11110e3f88cba74a1628406d14ef8a625b9a8eeec8db2fe1fa011048f86ce3",
+    "accueil.html": "244f7f063adf9e8d414c8a6205d60a0c5c235384abfe9e5c5997678313d134f8",
+    "article.html": "5fcff5f4bcd8f451215e1ef8956329ac704d4305f0f384ef31953638d5628b79"
+  },
+  "R8-identite": {
+    "article.html": "e08a9e504039ea36ea4c9304a4488748dee1cb7fff8be51542d64163fc2f5083",
+    "dynamique.css": "b81e0158c5cdbde643812026e2a76059fef130f8289415fe286af4f67d6fb000",
+    "mobile.png": "19a81e08e250a0defa973d9b9fab421253df63fea8f4f106f6e6ecc9f8ad3565",
+    "accueil.html": "3e8c0acff28c0f262c18a0e4ddc1faf55f98d321a111d950001858eb72c47e6e",
+    "options.json": "05aec7f5f644fcca4884366873c15cc09f6a8d2ac29f833c984cab127dae6348",
+    "ordinateur.png": "39718bfa9e00a5a7e0f877da81c5c924cfef8df21d3c660d1a1ee9e41df13594",
+    "mobile-menu.png": "4345f0d1c8939dda3f15fba7b4bf6f417cf11fc9ff10bc5354282e4d1e3fd4a6"
+  },
+  "R9-pied-couleurs": {
+    "ordinateur.png": "80053a56cf5230852d451966fb5bd388cd9d0deb57ed5a8f2e2f3cfb0d92484b",
+    "options.json": "65daa33a8fa95b13476dffb9e453f3d859cbb3b6d86f41102b284f384e14a250",
+    "accueil.html": "8f6b448e35b4bbcb66076e2d042502e5eb84149c298fbf827f2bba0a7e2fcaae",
+    "mobile.png": "f98fc411b9e0cf1d6420df685e947b04a5a2a4bbc542d6135cdeab76ff727338",
+    "article.html": "6ba63ac92767c83cf13ec6d6959cee27eae434c70cfef7af590bef43ec3d110a",
+    "dynamique.css": "066d25938387fd0afacbcaaa86c3616206e71a17a9342015e7b34ddd8fce50ba",
+    "mobile-menu.png": "a82ea6f16f324b6e182284b0517b69a66ee314b6480175924538495e54c98530"
+  }
+}
