@@ -48,7 +48,7 @@ return [
 	'cfg_mise_en_page' => 'Layout',
 	'cfg_palette' => 'Global color palette',
 	'cfg_palette_explication' => 'The nine Astra global colors (CSS variables <code>--ast-global-color-0</code> to <code>8</code>).',
-	'cfg_police_explication' => 'CSS font stack, e.g. <code>Georgia, serif</code>. Leave empty to use Astra’s system font.',
+	'cfg_police_explication' => 'CSS font stack, e.g. <code>Georgia, serif</code>, or a font shipped with the theme (Raleway, Poppins), served by the site. Leave empty to use Astra’s system font.',
 	'cfg_police_texte' => 'Body font',
 	'cfg_police_titres' => 'Heading font',
 	'cfg_texte_pied' => 'Footer text',

@@ -48,7 +48,7 @@ return [
 	'cfg_mise_en_page' => 'Mise en page',
 	'cfg_palette' => 'Palette de couleurs globale',
 	'cfg_palette_explication' => 'Les neuf couleurs globales d’Astra (variables CSS <code>--ast-global-color-0</code> à <code>8</code>).',
-	'cfg_police_explication' => 'Pile de polices CSS, par exemple <code>Georgia, serif</code>. Laisser vide pour la police système d’Astra.',
+	'cfg_police_explication' => 'Pile de polices CSS, par exemple <code>Georgia, serif</code>, ou une police fournie avec le thème (Raleway, Poppins), chargée depuis le site. Laisser vide pour la police système d’Astra.',
 	'cfg_police_texte' => 'Police du texte',
 	'cfg_police_titres' => 'Police des titres',
 	'cfg_texte_pied' => 'Texte du pied de page',

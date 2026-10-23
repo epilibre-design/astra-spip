@@ -67,11 +67,14 @@
 				<div class="editer editer_police_texte">
 					<label for="police_texte"><:astra:cfg_police_texte:></label>
 					<p class="explication"><:astra:cfg_police_explication:></p>
-					<input type="text" class="text" name="police_texte" id="police_texte" value="[(#ENV{police_texte})]" placeholder="Georgia, serif" />
+					<input type="text" class="text" name="police_texte" id="police_texte" value="[(#ENV{police_texte})]" placeholder="Georgia, serif" list="astra-polices-locales" />
+					<datalist id="astra-polices-locales">
+						<BOUCLE_polices(DATA){source tableau, #VAL|astra_polices_locales}><option value="[(#VALEUR{pile}|attribut_html)]">#VALEUR{nom}</option></BOUCLE_polices>
+					</datalist>
 				</div>
 				<div class="editer editer_police_titres">
 					<label for="police_titres"><:astra:cfg_police_titres:></label>
-					<input type="text" class="text" name="police_titres" id="police_titres" value="[(#ENV{police_titres})]" />
+					<input type="text" class="text" name="police_titres" id="police_titres" value="[(#ENV{police_titres})]" list="astra-polices-locales" />
 				</div>
 			</div>
 		</fieldset>

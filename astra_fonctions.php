@@ -124,6 +124,23 @@ function astra_hfb_css(): string {
 }
 
 /**
+ * @font-face des polices locales choisies (police du texte, des titres, du bouton, des menus, du
+ * bouton de l'en-tête) : vide pour des piles système.
+ */
+function astra_polices_inline(): string {
+	include_spip('inc/config');
+	$styles = lire_config('astra/styles');
+	$styles = is_array($styles) ? $styles : [];
+	$piles = [astra_conf('police_texte'), astra_conf('police_titres')];
+	foreach (['font-family-button', 'header-menu1-font-family', 'header-menu2-font-family', 'header-button1-font-family'] as $option) {
+		$piles[] = $styles[$option] ?? '';
+	}
+	return astra_polices_css($piles, function (string $chemin) {
+		return url_absolue(timestamp(find_in_path($chemin)));
+	});
+}
+
+/**
  * CSS des styles du Customizer (méta astra/styles) : vide sans réglage.
  */
 function astra_styles_inline(): string {
