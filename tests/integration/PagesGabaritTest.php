@@ -19,9 +19,13 @@ final class PagesGabaritTest extends TestCase {
 
 	/** Page complète analysée telle quelle : HfbRenduTest::xpath() l'envelopperait dans un second body. */
 	public static function page(int $id, array $contexte = []): DOMXPath {
+		return self::analyser(recuperer_fond('article', ['id_article' => $id] + $contexte));
+	}
+
+	public static function analyser(string $html): DOMXPath {
 		$doc = new DOMDocument();
 		libxml_use_internal_errors(true);
-		$doc->loadHTML('<?xml encoding="utf-8"?>' . recuperer_fond('article', ['id_article' => $id] + $contexte));
+		$doc->loadHTML('<?xml encoding="utf-8"?>' . $html);
 		libxml_clear_errors();
 		return new DOMXPath($doc);
 	}

@@ -1,37 +1,7 @@
 [(#REM)
 
-	Page d'accueil : derniers articles du site (index du blog d'Astra)
+	Page d'accueil : page unique choisie dans la configuration du thème (accueil statique),
+	sinon derniers articles. La boucle ne trouve rien si la page n'est plus publiée.
+	Le critère passe par #GET : avec #VAL|…, jugé constant, SPIP figerait la requête de la boucle.
 
-]<!DOCTYPE html>
-<html dir="#LANG_DIR" lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js">
-<head>
-<title>[(#NOM_SITE_SPIP|textebrut)][ – (#SLOGAN_SITE_SPIP|textebrut)]</title>
-[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
-<INCLURE{fond=inclure/head} />
-</head>
-<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="[(#VAL{sommaire}|astra_body_class)]">
-<INCLURE{fond=inclure/header}{type_page=sommaire} />
-<div id="content" class="site-content">
-	<div class="ast-container">
-		<INCLURE{fond=inclure/sidebar}{type_page=sommaire}{position=left-sidebar} />
-		<div id="primary" class="content-area primary ast-grid-3 ast-blog-layout-4-grid">
-			<main id="main" class="site-main">
-				<B_articles>
-				<div class="ast-row">
-					<BOUCLE_articles(ARTICLES){par date}{inverse}{pagination #VAL{articles_par_page}|astra_conf|astra_largeur{1}}>
-					<INCLURE{fond=inclure/article-resume}{id_article} />
-					</BOUCLE_articles>
-				</div>
-			</main><!-- #main -->
-			[(#PAGINATION{astra})]
-				</B_articles>
-				<INCLURE{fond=inclure/aucun-resultat} />
-			</main><!-- #main -->
-				<//B_articles>
-		</div><!-- #primary -->
-		<INCLURE{fond=inclure/sidebar}{type_page=sommaire}{position=right-sidebar} />
-	</div> <!-- ast-container -->
-</div><!-- #content -->
-<INCLURE{fond=inclure/footer}{type_page=sommaire} />
-</body>
-</html>
+]#SET{accueil,#VAL|astra_accueil_page}<BOUCLE_accueil_page(ARTICLES){id_article=#GET{accueil}}{id_rubrique=-1}><INCLURE{fond=page_unique}{id_article}{accueil=oui} /></BOUCLE_accueil_page><INCLURE{fond=inclure/sommaire-articles}{env} /><//B_accueil_page>
