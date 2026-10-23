@@ -1,7 +1,6 @@
 # Compléments du builder — spécification
 
-Date : 2026-10-23. Statut : à relire (Gilles, Codex). Rédigée sans séance de conception : les
-choix proposés sont signalés dans « Questions ouvertes ».
+Date : 2026-10-23. Statut : direction validée (Gilles, Codex) ; précisions de la relecture intégrées.
 
 ## Objectif
 
@@ -48,7 +47,7 @@ Valeurs du modèle : `hb-footer-main-sep` = 0 (rangée principale, couleur `#e6e
 
 - Nouveaux réglages de rangée `astra/hfb/rangees/pied_<rangée>/{separateur, couleur_separateur}` :
   épaisseur en px (entier 0–20, vide = défaut d'Astra) et couleur (type couleur de la spec des
-  styles). Correspondance : `pied_primary` ↔ `hb-footer-main-sep(-color)`, `pied_above` ↔
+  styles, dont ce point dépend). Correspondance : `pied_primary` ↔ `hb-footer-main-sep(-color)`, `pied_above` ↔
   `hba-footer-separator` / `hba-footer-top-border-color`, `pied_below` ↔ `hbb-footer-separator` /
   `hbb-footer-top-border-color`.
 - CSS porté des `dynamic.css.php` des trois rangées du pied d'Astra 4.11.0, émis seulement si la
@@ -62,9 +61,13 @@ Dans le modèle, les widgets 2 et 3 du pied contiennent un widget « Menu de nav
 (`nav_menu`). Astra SPIP propose les blocs `recherche`, `sous_rubriques`, `articles_recents`,
 `forums_recents`, `mots_cles`, `texte` (`astra_hfb_blocs`).
 
-- Nouveau bloc `menu` : réglages `source` et `id`, avec les mêmes sources que les éléments menu
-  (rubriques racines, sous-rubriques d'une rubrique, articles d'un groupe de mots-clés, pages
-  uniques), un seul niveau.
+- Nouveau bloc `menu`, ajouté à `astra_hfb_blocs()`. Stockage : dans les réglages du widget,
+  `astra/hfb/elements/<groupe>/widget-N`, à côté de `blocs`, `titre` et `texte`, une clé
+  `menu` = `{"source": …, "id": …}` ; défaut dans `astra_hfb_defauts()` :
+  `{"source": "racine", "id": 0}`, fusionné par `astra_hfb_normaliser()` comme les autres réglages
+  d'élément. `source` accepte les sources des éléments menu (`racine`, `rubrique:<id>`,
+  `groupe_mots:<id>`, `pages`, validées par la même liste que pour `menu-1`) ; `id` est un entier.
+  Le bloc n'affiche qu'un niveau. Un widget sans `menu` dans `blocs` ignore ce réglage.
 - Balisage : celui du widget `nav_menu` de WordPress sous Astra (`<nav class="menu-…-container"
   aria-label="…"><ul class="menu">…</ul></nav>` dans la zone de widget), relevé sur une référence
   WordPress.
@@ -111,8 +114,10 @@ conservées, valeurs invalides retirées) et de sécurité. Les références nou
 
 ## Questions ouvertes
 
-1. Ordre de mise en œuvre proposé : 1, 2, 3, 4 (indépendants de la spec des styles), puis 5.
+1. Ordre de mise en œuvre : 1, 3 et 4 sont indépendants de la spec des styles ; 2 (séparateurs :
+   type couleur) et 5 (registre, normalisation, formulaire) s'appuient sur elle et viennent après.
 2. Le bloc menu limité à un niveau : le widget `nav_menu` de WordPress affiche les sous-menus ;
    faut-il les reprendre (Garden n'en a pas) ?
-3. Google Reviews : ajouter aussi les autres réseaux du sélecteur d'Astra 4.11.0 absents d'Astra
-   SPIP, ou seulement celui qu'utilise Garden ?
+
+Décidé à la relecture : seul Google Reviews est ajouté aux réseaux sociaux (les autres réseaux du
+sélecteur d'Astra absents d'Astra SPIP restent hors périmètre).
