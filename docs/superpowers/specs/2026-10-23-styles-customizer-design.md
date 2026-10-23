@@ -1,6 +1,6 @@
 # Styles du Customizer — spécification
 
-Date : 2026-10-23. Statut : à relire (Gilles, Codex) ; types structurés précisés après la relecture de Codex.
+Date : 2026-10-23. Statut : validée (Gilles, Codex). Précisions issues de la vérification du plan (options du bouton, icônes sociales, type booléen, polices, test de migration) intégrées.
 
 ## Objectif
 
@@ -63,8 +63,8 @@ Garden et un éventuel import wp2spip l'utiliseront.
 |---|---|
 | `option` | nom de l'option d'Astra (la clé elle-même) |
 | `source` | fichier d'Astra 4.11.0 qui lit l'option et émet le CSS |
-| `groupe` | menu, bouton, bouton-entete, identite, widgets-pied, copyright, sociaux |
-| `type` | `couleur`, `taille`, `quatre-cotes`, `nombre`, `police`, `graisse`, `enum`, `fond`, `extras-police` (voir « Types structurés ») |
+| `groupe` | menu, bouton, bouton-entete, identite, pied (widgets et copyright), sociaux |
+| `type` | `couleur`, `taille`, `quatre-cotes`, `nombre`, `police`, `graisse`, `enum`, `booleen`, `fond`, `extras-police` (voir « Types structurés ») |
 | `responsive` | vrai si Astra stocke une valeur par appareil (voir « Types structurés ») |
 | `valeurs` | pour le type `enum` : liste fermée des valeurs acceptées |
 | `unites` | unités acceptées (`px`, `em`, `rem`, `%`…) et bornes |
@@ -73,11 +73,13 @@ Garden et un éventuel import wp2spip l'utiliseront.
 Types acceptés :
 - **couleur** : `#rgb`, `#rrggbb`, `var(--ast-global-color-N)` avec N de 0 à 8, `rgba(r, g, b, a)` ou `rgb()` (entiers 0–255, alpha de 0 à 1) ;
 - **taille** : nombre borné et unité de la liste ;
-- **police** : clé d'une police locale du registre des polices, ou pile système validée comme
-  aujourd'hui par `astra_police()` ;
+- **police** : pile CSS telle qu'Astra l'enregistre (`'Poppins', sans-serif`), caractères validés
+  comme aujourd'hui par `astra_police()` ; une police locale est reconnue par la première famille
+  de la pile (voir « Polices locales ») ;
 - **graisse** : `normal`, `bold` ou 100–900 par centaines, et `inherit` ;
 - **enum** : une valeur de la liste `valeurs` du registre (par exemple
-  `footer-social-1-color-type` : `custom` ou `official`).
+  `footer-social-1-color-type` : `custom` ou `official`) ;
+- **booleen** : `true`, `false`, `1`, `0` ou vide (affichage du titre et du slogan, par appareil).
 
 ### Types structurés
 
@@ -132,12 +134,12 @@ avec leur défaut. Familles visées :
 | Groupe | Options d'Astra | Source (Astra 4.11.0) |
 |---|---|---|
 | menu | `header-menu1-{color,h-color,a-color}-responsive`, `-bg-obj-responsive`, `-h-bg-color-responsive`, `-a-bg-color-responsive`, `-submenu-b-color`, `-font-size`, `-font-weight`, `-font-family` ; même famille pour `menu2` | `inc/builder/type/header/menu/dynamic-css/dynamic.css.php` |
-| bouton | `button-color`, `button-h-color`, `button-bg-color`, `button-bg-h-color`, `button-radius-fields`, `button-v-padding`, `button-h-padding`, `font-family-button`, `font-size-button`, `font-weight-button` | `inc/class-astra-dynamic-css.php` |
+| bouton | `button-color`, `button-h-color`, `button-bg-color`, `button-bg-h-color`, `button-radius-fields`, `theme-button-padding` (quatre côtés, responsive), `theme-button-border-group-border-size`, `font-family-button`, `font-size-button`, `font-weight-button`, `font-extras-button` ; Astra 4.11.0 lit ces options, et non plus `button-v-padding` et `button-h-padding`, héritées | `inc/class-astra-dynamic-css.php` |
 | bouton-entete | `header-button1-{text-color,text-h-color,back-color,back-h-color,border-color,border-h-color,border-size,border-radius-fields,font-size,font-family,font-weight}`, marges de la section | `inc/builder/type/base/dynamic-css/button/class-astra-button-component-dynamic-css.php` |
 | identite | `font-size-site-title`, `font-size-site-tagline`, `header-color-site-title`, `header-color-h-site-title`, `header-color-site-tagline`, `display-site-title-responsive`, `display-site-tagline-responsive` (booléens par appareil), `ast-header-responsive-logo-width` (largeur du logo, nombre par appareil) | `inc/class-astra-dynamic-css.php`, `inc/builder/type/header/site-identity/dynamic-css/dynamic.css.php` |
-| widgets-pied | `footer-widget-N-{title-color,color,link-color,link-h-color,font-size,content-font-size}` (N de 1 à 4) | `inc/builder/type/base/dynamic-css/widget/class-astra-widget-component-dynamic-css.php` |
-| copyright | `footer-copyright-color`, `font-size-section-footer-copyright` | `inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php` |
-| sociaux | `{header,footer}-social-1-{color,h-color,bg-color,bg-h-color,size,space,radius-fields}`, `-color-type` (couleurs personnalisées seulement ; les couleurs de marque sont hors périmètre) | `inc/builder/type/base/dynamic-css/social/class-astra-social-component-dynamic-css.php` |
+| pied (widgets) | `footer-widget-N-{title-color,color,link-color,link-h-color,font-size,content-font-size}` (N de 1 à 4) | `inc/builder/type/base/dynamic-css/widget/class-astra-widget-component-dynamic-css.php` |
+| pied (copyright) | `footer-copyright-color`, `font-size-section-footer-copyright` | `inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php` |
+| sociaux | `{header,footer}-social-1-{color,h-color,size,space}`, `-color-type` (couleurs personnalisées seulement ; les couleurs de marque sont hors périmètre). `-bg-color`, `-bg-h-color` et `-radius-fields` ne sont pas repris dans cette version : vides dans le modèle Garden, leur CSS n'a pas d'attendu WordPress (écart documenté) | `inc/builder/type/base/dynamic-css/social/class-astra-social-component-dynamic-css.php` |
 
 **Défaut corrigé par le groupe identité.** Aujourd'hui, `afficher_slogan` (défaut `oui`) imprime
 le slogan, mais `css/astra-dynamic.css`, extrait d'un WordPress réglé par défaut, contient la règle
@@ -201,8 +203,10 @@ accepte en plus `rgba()` et `rgb()`, comme la palette `global-color-palette` d'A
   - Chaque police garde ses propres mentions de licence dans `licenses/` et une entrée dans
     `CREDITS.md`.
 - **Chargement** : un `@font-face` (`font-display: swap`, URL du plugin passée par `timestamp`)
-  est émis pour chaque police locale choisie, dans les graisses fournies. Rien n'est émis pour une
-  pile système.
+  est émis pour chaque police locale choisie, dans les graisses fournies, dans un bloc
+  `<style id="astra-polices-inline-css">` placé avant les variables du thème. Une police est
+  choisie quand la première famille d'une pile (texte, titres, bouton, menus, bouton de l'en-tête)
+  est son nom. Rien n'est émis pour une pile système.
 - **Formulaire** : `police_texte`, `police_titres`, `font-family-button` et les polices du menu
   proposent les polices locales, et gardent la saisie d'une pile système.
 - **Aucun service tiers** n'est appelé (pas de Google Fonts).
@@ -213,6 +217,8 @@ accepte en plus `rgba()` et `rgb()`, comme la palette `global-color-palette` d'A
   typographie »), une section par groupe.
 - Chaque champ de couleur propose les neuf couleurs de la palette (enregistrées comme
   `var(--ast-global-color-N)`, ainsi qu'Astra les stocke) ou une couleur libre.
+- Pour un fond (`*-bg-obj-responsive`), seule la couleur est saisie ; les autres champs enregistrés
+  sont conservés.
 - Mention sur chaque champ responsif : « Ordinateur. Les valeurs tablette et mobile sont
   conservées mais pas encore appliquées. »
 - `verifier()` passe par `astra_styles_normaliser()` et signale chaque valeur refusée.
@@ -267,7 +273,10 @@ accepte en plus `rgba()` et `rgb()`, comme la palette `global-color-palette` d'A
 **Migration.**
 - Test d'intégration : configurations `afficher_slogan` = `oui` avec un slogan,
   `afficher_slogan` = `non`, `afficher_titre_site` = `non`, et aucune des deux clés ; pour chacune,
-  le HTML et le CSS de l'en-tête rendus avant et après la migration sont identiques, les anciennes
+  le HTML et le CSS de l'en-tête rendus avant et après la migration sont identiques, à deux
+  exceptions près, invisibles : comme Astra (`astra_logo()`), le slogan masqué sur tous les
+  appareils n'est plus imprimé (il l'était, masqué par `css/astra-dynamic.css`), et l'enveloppe
+  `.ast-site-title-wrap` n'est imprimée que si le titre ou le slogan l'est ; les anciennes
   clés sont effacées, et seule la configuration `afficher_titre_site` = `non` écrit
   `display-site-title-responsive`.
 - Puis `display-site-tagline-responsive` = visible sur ordinateur : le slogan s'affiche
