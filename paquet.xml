@@ -13,7 +13,12 @@
 	<auteur>Gilles Vincent</auteur>
 	<credit lien="https://wpastra.com/">Thème Astra original © Brainstorm Force (GPL v2+)</credit>
 	<credit lien="https://downloads.wordpress.org/theme/astra.4.11.0.zip">Sources du thème Astra 4.11.0</credit>
-	<credit lien="https://fontawesome.com/">Icônes des réseaux sociaux : Font Awesome Free, Fonticons, Inc. (CC BY 4.0)</credit>
+	<credit lien="https://underscores.me/">Socle d'Astra : Underscores © 2012-2020 Automattic, Inc. (GPL v2 ou ultérieure)</credit>
+	<credit lien="https://github.com/necolas/normalize.css">Normalisation CSS : Nicolas Gallagher et Jonathan Neal (MIT)</credit>
+	<credit lien="https://github.com/justintadlock/breadcrumb-trail">Structure du fil d'Ariane d'Astra : Breadcrumb Trail, Justin Tadlock (GPL v2 ou ultérieure)</credit>
+	<credit lien="https://wordpress.org/">CSS des blocs : WordPress 7.1.3 (GPL v2 ou ultérieure)</credit>
+	<credit lien="https://fontawesome.com/">Huit icônes SVG : Font Awesome Free, Fonticons, Inc. (CC BY 4.0)</credit>
+	<credit lien="https://github.com/Keyamoon/IcoMoon-Free">Ascendance des icônes déclarée par Astra : IcoMoon-Free, Keyamoon (CC BY 4.0 ou GPL)</credit>
 
 	<licence lien="https://spdx.org/licenses/GPL-3.0-or-later.html">GPL-3.0-or-later</licence>
 

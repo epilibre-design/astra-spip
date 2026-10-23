@@ -2,9 +2,13 @@
 /**
  * Astra pour SPIP — icônes des réseaux sociaux.
  *
- * Tracés repris de assets/svg/svgs.json d’Astra 4.11.0, eux-mêmes issus de Font Awesome Free
- * (Fonticons, Inc., https://fontawesome.com), icônes sous licence CC BY 4.0
- * (https://creativecommons.org/licenses/by/4.0/).
+ * Tracés repris sans modification de assets/svg/svgs.json d’Astra 4.11.0
+ * (Brainstorm Force / WPAstra, GPL v2 ou ultérieure).
+ * Huit tracés sont identifiés comme Font Awesome Free, par Fonticons, Inc.
+ * (https://fontawesome.com), sous CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+ * Cette attribution n'est pas établie pour twitter-x, bluesky et email.
+ * Sources, correspondances et notices : CREDITS.md et licenses/.
+ * Adaptation SPIP : sélection et regroupement dans un tableau PHP ; relevé du 2026-10-23.
  */
 
 function astra_icones_sociales(): array {
