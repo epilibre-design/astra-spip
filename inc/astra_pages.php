@@ -91,3 +91,32 @@ function astra_page_a_sous_pages(int $id_article): bool {
 		['l.id_article=' . $id_article, "l.type_liaison='sous_page'", "a.statut='publie'", 'a.id_rubrique=-1']
 	);
 }
+
+/**
+ * Arbre des pages uniques publiées pour les menus : racines (pages sans parente publiée,
+ * par numéro puis titre) et leurs enfants publiés (liens a2a sous_page, par rang). Une page
+ * dont la parente n'est plus publiée remonte au premier niveau. Sans a2a : liste à plat.
+ */
+function astra_pages_arbre(): array {
+	$pages = sql_allfetsel('id_article, 0+titre AS num, titre', 'spip_articles', ['id_rubrique=-1', "statut='publie'"], '', 'num, titre');
+	$publiees = array_map('intval', array_column($pages, 'id_article'));
+	$enfants = [];
+	$a_parente = [];
+	include_spip('inc/plugin');
+	if ($publiees && test_plugin_actif('a2a')) {
+		$liens = sql_allfetsel('id_article, id_article_lie', 'spip_articles_lies', [
+			sql_in('id_article', $publiees), sql_in('id_article_lie', $publiees), "type_liaison='sous_page'",
+		], '', 'id_article, rang');
+		foreach ($liens as $l) {
+			$enfants[(int) $l['id_article']][] = (int) $l['id_article_lie'];
+			$a_parente[(int) $l['id_article_lie']] = true;
+		}
+	}
+	$arbre = [];
+	foreach ($publiees as $id) {
+		if (empty($a_parente[$id])) {
+			$arbre[] = ['id' => $id, 'enfants' => $enfants[$id] ?? []];
+		}
+	}
+	return $arbre;
+}

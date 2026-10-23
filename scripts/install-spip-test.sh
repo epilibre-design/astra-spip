@@ -77,11 +77,11 @@ $page = function ($titre, $identifiant) use ($date) {
 	return sql_insertq("spip_articles", ["titre" => $titre, "texte" => "Texte de la page.", "id_rubrique" => -1, "page" => $identifiant, "statut" => "publie", "accepter_forum" => "non", "date" => $date, "lang" => "fr"]);
 };
 $page("Mentions légales", "mentions");
-$jardin = $page("Notre jardin", "notre-jardin");
-foreach ([1 => $page("Potager collectif", "potager-collectif"), 2 => $page("Verger", "verger")] as $rang => $enfant) {
+$jardin = $page("Notre jardin", "notre_jardin");
+foreach ([1 => $page("Potager collectif", "potager_collectif"), 2 => $page("Verger", "verger")] as $rang => $enfant) {
 	sql_insertq("spip_articles_lies", ["id_article" => $jardin, "id_article_lie" => $enfant, "rang" => $rang, "type_liaison" => "sous_page"]);
 }
-$page("Plein écran", "plein-ecran");
+$page("Plein écran", "plein_ecran");
 calculer_rubriques();
 propager_les_secteurs();
 include_spip("inc/config");

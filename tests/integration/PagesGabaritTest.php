@@ -28,13 +28,13 @@ final class PagesGabaritTest extends TestCase {
 
 	public function testStyliserChoisitLeGabaritDePage(): void {
 		$styliser = charger_fonction('styliser', 'public');
-		$this->assertStringEndsWith('page_unique', $styliser('article', ['id_article' => self::id('notre-jardin')])[0] ?? '');
+		$this->assertStringEndsWith('page_unique', $styliser('article', ['id_article' => self::id('notre_jardin')])[0] ?? '');
 		$article = (int) sql_getfetsel('id_article', 'spip_articles', 'id_rubrique>0', '', 'id_article', '0,1');
 		$this->assertStringEndsWith('/article', $styliser('article', ['id_article' => $article])[0] ?? '');
 	}
 
 	public function testBalisageDePage(): void {
-		$id = self::id('notre-jardin');
+		$id = self::id('notre_jardin');
 		$x = self::page($id);
 		$this->assertSame(1, $x->query('//article[@id="post-' . $id . '"][contains(@class, "type-page")][@itemtype="https://schema.org/CreativeWork"]')->length);
 		$this->assertSame('Notre jardin', trim($x->query('//article//header[contains(@class, "entry-header")]/h1[@class="entry-title"]')->item(0)->textContent));
@@ -50,7 +50,7 @@ final class PagesGabaritTest extends TestCase {
 	}
 
 	public function testTitreMasqueEtDisposition(): void {
-		$id = self::id('plein-ecran');
+		$id = self::id('plein_ecran');
 		ecrire_config('astra/pages/' . $id, ['titre' => 'masquer', 'disposition' => 'pleine']);
 		$x = self::page($id);
 		$this->assertSame(0, $x->query('//h1[@class="entry-title"]')->length, 'Titre non produit, comme dans Astra');

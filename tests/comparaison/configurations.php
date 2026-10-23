@@ -76,16 +76,16 @@ function astra_configurations_reference(): array {
 			]],
 		],
 		'P1-page' => [
-			'page' => 'notre-jardin',
+			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
 		],
 		'P2-accueil' => [
-			'astra' => ['accueil_type' => 'page', 'accueil_page' => '@notre-jardin'],
+			'astra' => ['accueil_type' => 'page', 'accueil_page' => '@notre_jardin'],
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
 		],
 		'P3-page-pleine' => [
-			'page' => 'plein-ecran',
-			'pages' => ['plein-ecran' => ['titre' => 'masquer', 'disposition' => 'pleine']],
+			'page' => 'plein_ecran',
+			'pages' => ['plein_ecran' => ['titre' => 'masquer', 'disposition' => 'pleine']],
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
 		],
 	];
