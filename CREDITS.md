@@ -29,6 +29,8 @@ et le texte de la GPL v2 dans [licenses/GPL-2.0-or-later.txt](licenses/GPL-2.0-o
 | `inc/dynamic-css/comments-flex.php` | `css/astra-commentaires.css` | Règle d'espacement des listes ; chargement conditionné aux commentaires dans SPIP |
 | Gabarits `header.php`, `footer.php`, `page.php`, `single.php`, `archive.php`, `search.php`, `404.php`, `searchform.php`, `template-parts/` et composants du builder | Squelettes à la racine, `inclure/`, `inclure/hfb/`, `inclure/widgets/`, `formulaires/recherche.html`, `modeles/pagination_astra.html` | Reproduction et adaptation du balisage, des classes, des attributs et de la structure ; les requêtes et appels WordPress sont remplacés par les boucles, balises et formulaires SPIP |
 | Options, palette et organisation du builder | `astra_fonctions.php`, `inc/astra_hfb.php`, formulaires de configuration | Transposition des valeurs par défaut et des conventions Astra ; interface et stockage adaptés à SPIP |
+| Styles du Customizer : `inc/class-astra-dynamic-css.php` (bouton, identité), `inc/builder/type/header/menu/dynamic-css/dynamic.css.php`, `inc/builder/type/base/dynamic-css/{button,widget,social}/class-astra-*-component-dynamic-css.php`, `inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php` | `inc/astra_styles.php`, `inc/styles/*.php` | Transposition des règles ordinateur : sélecteurs (ceux du bouton global copiés à l'identique), ordre, conditions d'émission et valeurs par défaut ; écriture comme `astra_parse_css()` et `trim_css()` |
+| CSS dynamique rendu par WordPress avec les valeurs du modèle Garden Maintenance | `tests/references/styles/attendus/*.css` | Extraits de la sortie d'Astra 4.11.0 (GPL v2 ou ultérieure), capturés par `tests/references/styles/capturer.sh` pour les tests d'équivalence |
 | Règles Astra appliquées aux contenus | `css/astra-spip.css` | Adaptations aux éléments produits par SPIP ; les reprises de règles WordPress/Astra sont signalées dans les commentaires |
 
 Notices de paternité amont conservées :
@@ -164,8 +166,9 @@ attribuer tous les SVG d'Astra à IcoMoon.
 - `images/astra-xx.svg` est le pictogramme du plugin, distinct de la capture
   promotionnelle `screenshot.jpg` du thème WordPress. Aucune source tierce n'est
   indiquée dans ce fichier ; il n'est pas attribué ici à un jeu d'icônes amont.
-- Les choix de polices sont des piles CSS : aucun fichier de fonte de texte ni
-  chargeur Google Fonts n'est fourni par le thème SPIP dans l'état examiné.
+- Les polices du texte, des titres, du bouton et des menus sont des piles CSS ; deux
+  polices sont fournies en fichiers locaux (section « Polices locales »). Aucun chargeur
+  Google Fonts n'est fourni ni appelé.
 - **SPIP**, **Pages** et **a2a** sont des dépendances ou intégrations, pas du code
   embarqué dans le thème. PHPUnit et les outils de comparaison sont des dépendances
   de développement ; leurs distributions conservent leurs propres licences.
@@ -177,6 +180,32 @@ Ces crédits sont conservés dans la notice amont jointe. Les scripts Flexibilit
 Webfonts Loader, la capture promotionnelle et ces illustrations ne sont pas
 embarqués dans Astra-spip : leur présence dans le thème WordPress ne signifie pas
 qu'ils sont tous redistribués par le portage.
+
+## Polices locales
+
+Fichiers woff2 du sous-ensemble « latin » publiés par [Fontsource](https://fontsource.org/)
+(paquets npm `@fontsource/raleway` et `@fontsource/poppins`, version **5.1.0**, déclarés
+`OFL-1.1`), téléchargés le 23 octobre 2026 depuis `https://cdn.jsdelivr.net/npm/@fontsource/<police>@5.1.0/files/`
+et redistribués sans modification. Le texte de licence de chaque paquet, avec la mention de
+copyright de la police, est conservé dans `licenses/`.
+
+| Fichier | Police, graisse, style | SHA-256 |
+| --- | --- | --- |
+| `fonts/raleway/raleway-latin-400-normal.woff2` | Raleway 400 | `3e44fb721d3be9376c6e5e946109067a04da84ae10b3f27a03ada7a3731e515c` |
+| `fonts/raleway/raleway-latin-400-italic.woff2` | Raleway 400 italique | `29de03aaf7a0844578daef59eabdbd1cfe9257873765938cc51a3c9a3af843b4` |
+| `fonts/raleway/raleway-latin-700-normal.woff2` | Raleway 700 | `109736135dc84f02f379825bd2b48998e17068eaf1f085df5f52e80537a4257d` |
+| `fonts/poppins/poppins-latin-500-normal.woff2` | Poppins 500 | `cd36de204aca2d5fa263a731f7c20009b5e3d754ba1f1e03c33e93a48f3e7446` |
+| `fonts/poppins/poppins-latin-600-normal.woff2` | Poppins 600 | `f4e80d9dfd374d02989b87a27b5ed4cb78fbb177c27f1478e9a8b0afb7513149` |
+
+- **Raleway** : Copyright 2010 The Raleway Project Authors (impallari@gmail.com), avec le
+  nom réservé (*Reserved Font Name*) « Raleway » ; SIL OFL 1.1,
+  [licenses/OFL-1.1-raleway.txt](licenses/OFL-1.1-raleway.txt). L'OFL interdit d'employer un
+  nom réservé pour une version modifiée. Les fichiers sont les sous-ensembles produits par
+  Fontsource et diffusés par lui sous ce nom ; Astra-spip les reprend tels quels. Savoir si un
+  sous-ensemble est une version modifiée au sens de l'OFL est une question signalée ici, non
+  tranchée.
+- **Poppins** : Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins),
+  sans nom réservé ; SIL OFL 1.1, [licenses/OFL-1.1-poppins.txt](licenses/OFL-1.1-poppins.txt).
 
 ## Vérification et entretien
 

@@ -1,7 +1,7 @@
 <paquet
 	prefix="astra"
 	categorie="squelette"
-	version="1.1.0"
+	version="1.2.0"
 	schema="1.0.0"
 	etat="test"
 	compatibilite="[4.2.0;5.0.*]"
@@ -20,6 +20,8 @@
 	<credit lien="https://wordpress.org/">CSS des blocs : WordPress 7.1.3 (GPL v2 ou ultérieure)</credit>
 	<credit lien="https://fontawesome.com/">Huit icônes SVG : Font Awesome Free, Fonticons, Inc. (CC BY 4.0)</credit>
 	<credit lien="https://github.com/Keyamoon/IcoMoon-Free">Ascendance des icônes déclarée par Astra : IcoMoon-Free, Keyamoon (CC BY 4.0 ou GPL)</credit>
+	<credit lien="https://github.com/impallari/Raleway">Police Raleway : The Raleway Project Authors (SIL OFL 1.1, nom réservé « Raleway »), fichiers Fontsource 5.1.0</credit>
+	<credit lien="https://github.com/itfoundry/Poppins">Police Poppins : The Poppins Project Authors (SIL OFL 1.1), fichiers Fontsource 5.1.0</credit>
 
 	<licence lien="https://spdx.org/licenses/GPL-3.0-or-later.html">GPL-3.0-or-later</licence>
 

@@ -126,8 +126,10 @@ avec leur effet et la propriété vérifiée, dans
 - Largeur du conteneur et du conteneur étroit.
 - Disposition de l'accueil et des listes : barre latérale à droite, à gauche, ou aucune.
 - Disposition des articles : conteneur étroit (valeur par défaut d'Astra), barre latérale à droite ou à gauche, pleine largeur.
-- Polices du texte et des titres, nombre d'articles par page.
-- Affichage du nom du site, du slogan, des auteurs, des extraits, du lien « Accueil » et du bouton de retour en haut.
+- Polices du texte et des titres (pile CSS, ou Raleway et Poppins, fournies avec le thème et servies par le site), nombre d'articles par page.
+- Affichage des auteurs, des extraits, du lien « Accueil » et du bouton de retour en haut.
+- Neuvième couleur de la palette : hexadécimale ou `rgba()`, comme dans Astra.
+- **Couleurs et typographie** (Configuration › Squelettes) : réglages de style du Customizer d'Astra, sous leurs noms d'options (`header-menu1-color-responsive`, `button-radius-fields`…) — menus, bouton, bouton de l'en-tête, identité du site (couleurs, tailles, affichage du nom et du slogan, largeur du logo), widgets et copyright du pied, icônes sociales. Les valeurs d'un `site.json` de modèle Astra se reprennent telles quelles ; seule la valeur ordinateur est appliquée, les valeurs tablette et mobile sont conservées. Sans réglage, rien ne change.
 - Texte du pied de page (raccourcis SPIP, marqueurs `[annee]` et `[site]`).
 
 ## Tests
@@ -151,6 +153,7 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire.cjs
     RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
     URL=http://127.0.0.1:8404 NODE_PATH=$PW/node_modules node tests/e2e/tableaux.cjs
+    URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire_styles.cjs
 
 - `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
   page à celle de WordPress, pour les six configurations de référence du builder (R0–R5) et
@@ -163,7 +166,11 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
   images et leurs différences sont enregistrées dans `tests/comparaison/sorties/`. Une référence
   peut aussi lister des styles calculés à comparer (`styles` dans `tests/references/wp/<conf>.json`) :
   R5 vérifie ainsi la hauteur, le fond et le séparateur des rangées de l'en-tête, qu'un filet
-  d'un pixel laisserait sous le seuil des captures ;
+  d'un pixel laisserait sous le seuil des captures. Les références R6–R11 (styles du Customizer,
+  valeurs de Garden Maintenance) comparent aussi les styles calculés au survol et au focus, à
+  1280, 768 et 390 px, et vérifient que les polices locales sont chargées des deux côtés ;
+- `tests/e2e/formulaire_styles.cjs` vérifie le formulaire « Couleurs et typographie » de bout en
+  bout (enregistrement, valeur refusée, site public) ;
 - `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout ;
 - `tests/e2e/tableaux.cjs` vérifie que les tableaux SPIP du texte sont stylés, et pas ceux d'un
   bloc tableau importé (`figure.wp-block-table`) ;

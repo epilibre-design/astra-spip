@@ -67,6 +67,12 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 | R3-pied-colonnes | Pied : rangée haute 2 colonnes (texte, icônes), principale 4 widgets (`4-equal`), basse copyright et menu (`2-equal`) |
 | R4-pied-asymetrique | Pied : rangée principale `3-cwide` (widget ; texte et icônes ; menu vertical), basse `2-lheavy` (copyright, texte 2) |
 | R5-rangees | Disposition par défaut ; rangée principale de l'en-tête : hauteur 100 px, fond `#e8f5e9`, sans séparateur (`hb-header-main-sep` à 0) ; styles calculés comparés (`styles`). Hors des configurations lues par `extraire_css.py` |
+| R6-menu | Styles du Customizer (`tests/references/styles/appliquer.php`, groupe `menu`) : logo, menu et bouton dans l'en-tête, quatre widgets texte, copyright et icônes sociales dans le pied ; couleurs et sous-menus du menu principal, sur la page de la catégorie Jardinage (page courante) |
+| R7-bouton | Même placement ; bouton global (couleurs, survol, rayon, marges, police Poppins 500, taille, casse, espacement) |
+| R8-identite | Même placement ; nom du site et slogan (affiché), tailles et couleurs, largeur du logo |
+| R9-pied-couleurs | Même placement ; couleurs et tailles des quatre widgets et du copyright |
+| R10-sociaux | Même placement ; taille, espacement et couleurs des icônes sociales du pied |
+| R11-combinee | Toutes les options précédentes, police du texte Raleway et des titres Poppins (cascade de plusieurs réglages sur le même bouton et le même menu) |
 | P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
 | P2-accueil | Même menu, page « Notre jardin » en page d'accueil statique (`/`) |
 | P3-page-pleine | Page « Plein écran », titre désactivé, conteneur `full-width-container` |
@@ -77,6 +83,39 @@ SPIP d'intégration (`scripts/install-spip-test.sh`). Classes du `body` relevée
 - P1-page : `wp-singular page-template-default page page-id-21 page-parent wp-theme-astra ast-desktop ast-plain-container ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled`
 - P2-accueil : les mêmes, précédées de `home`
 - P3-page-pleine : `wp-singular page-template-default page page-id-24 wp-theme-astra ast-desktop ast-page-builder-template ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header` (ni `ast-normal-title-enabled`, ni `page-parent`)
+
+Les références R6–R11 reprennent les valeurs du modèle Garden Maintenance
+(`tests/references/styles/valeurs/<groupe>.json`) ; elles ne sont pas lues par
+`extraire_css.py` ni par `comparer_html.php` (structure inchangée), mais par
+`comparer_captures.sh` : captures, styles calculés (dont `survol` et `focus`) à 1280, 768 et
+390 px, polices chargées (`polices`). Le WordPress de test sert alors les polices d'Astra SPIP
+par un mu-plugin écrit par `ref_polices_locales()` (`commun.php`), sans Google Fonts ;
+`ref_etat_initial()` le retire.
+
+## Styles du Customizer : attendus
+
+`tests/references/styles/` fixe le CSS qu'Astra 4.11.0 produit pour chaque groupe de styles :
+
+- `appliquer.php` : état R0, placement de Garden, options du groupe (`GROUPE=<groupe>`) ;
+- `capturer.sh` : `WP=… tests/references/styles/capturer.sh` capture le CSS dynamique sans option
+  (`attendus/base.css`) puis avec les options de chaque groupe, et écrit dans
+  `attendus/<groupe>.css` les règles ajoutées ou modifiées (`regles.py`) ; il remet R0 ensuite ;
+- `attendus/<groupe>.neutralisations.css` : règles qu'Astra SPIP émet en plus pour défaire une
+  règle fixe de ses feuilles qu'Astra n'émet plus avec ce réglage (marges tablette et mobile
+  du bouton ; rayon de 40 px du bouton de l'en-tête quand ses rayons sont enregistrés vides).
+
+`tests/unit/StylesAttendusTest.php` vérifie que la sortie d'`astra_styles_css()` contient toutes
+les règles attendues et que ses autres règles sont des règles de `base.css` ou des
+neutralisations déclarées. Après une montée de version d'Astra, relancer `capturer.sh` et relire
+le diff des attendus.
+
+Relevé du 23 octobre 2026 (`comparer_captures.sh`, R0–R11) : toutes les vues sous le seuil,
+styles calculés identiques aux trois largeurs, polices chargées des deux côtés ; plus grand
+écart : 0,35 % (R11, pied sur ordinateur).
+
+Non couvert dans cette version (valeurs conservées, aucun CSS) : valeurs tablette et mobile ;
+fonds de type `image` ou `gradient` ; fond, fond au survol et rayon des icônes sociales
+(`*-social-1-bg-color`, `-bg-h-color`, `-radius-fields`), absents des valeurs du modèle.
 
 ## Relevés pour le portage
 
