@@ -1,0 +1,25 @@
+{
+	"ordinateur": [
+		".site-below-footer-wrap .ast-footer-social-wrap"
+	],
+	"mobile": [
+		".site-below-footer-wrap .ast-footer-social-wrap"
+	],
+	"presents": [
+		".ast-footer-social-1-wrap .ast-google_reviews svg"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": ".ast-footer-social-1-wrap .ast-google_reviews svg",
+			"proprietes": [
+				"width",
+				"height",
+				"fill"
+			]
+		}
+	]
+}

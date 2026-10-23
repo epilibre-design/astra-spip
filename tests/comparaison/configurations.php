@@ -114,6 +114,14 @@ function astra_configurations_reference(): array {
 				'widget-3' => ['blocs' => ['menu'], 'titre' => 'Nos services', 'menu' => ['source' => 'racine', 'id' => 0]],
 			]],
 		],
+		'R15-sociaux-google' => [
+			'pied' => ['below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']]],
+			'rangees' => ['pied_below' => ['colonnes' => 2, 'repartition' => '2-equal']],
+			'elements' => ['pied' => ['social-icons-1' => ['reseaux' => [
+				['reseau' => 'facebook', 'url' => 'https://example.org/facebook'],
+				['reseau' => 'google_reviews', 'url' => 'https://example.org/avis'],
+			]]]],
+		],
 		'R4-pied-asymetrique' => [
 			'pied' => [
 				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['html-1', 'social-icons-1'], 'primary_3' => ['menu']],

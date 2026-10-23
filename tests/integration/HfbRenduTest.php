@@ -265,6 +265,13 @@ final class HfbRenduTest extends TestCase {
 		}
 	}
 
+	public function testIconeGoogleReviews(): void {
+		// Référence R15-sociaux-google : lien, étiquette, couleur de marque du sélecteur d'Astra et SVG.
+		$x = $this->pied(astra_configurations_reference()['R15-sociaux-google']);
+		$lien = '//' . self::classe('ast-footer-social-1-wrap') . '//a[contains(@class, "ast-google_reviews")]';
+		$this->assertSame(1, $this->compter($x, $lien . '[@href="https://example.org/avis"][@aria-label="Google Reviews"][contains(@style, "--color: #dc4e41")]/span/*[local-name()="svg"]'));
+	}
+
 	public function testMenuDEnTeteGardeSonBalisage(): void {
 		$x = $this->entete(self::configR1());
 		$this->assertGreaterThan(0, $this->compter($x, '//*[@id="ast-desktop-header"]//ul[contains(@class, "main-header-menu")]//li[contains(@class, "menu-item-has-children")]/button[@class="ast-menu-toggle"]'));

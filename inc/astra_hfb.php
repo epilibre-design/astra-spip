@@ -88,7 +88,8 @@ function astra_hfb_blocs(): array {
 
 /**
  * Réseaux sociaux proposés : libellé et couleur (couleurs du sélecteur d'Astra,
- * Mastodon absent d'Astra : couleur de la marque).
+ * Mastodon absent d'Astra : couleur de la marque). google_reviews : identifiant et couleur
+ * d'Astra (classe ast-google_reviews).
  */
 function astra_hfb_reseaux(): array {
 	return [
@@ -103,6 +104,7 @@ function astra_hfb_reseaux(): array {
 		'github' => ['GitHub', '#24292e'],
 		'rss' => ['RSS', '#f09124'],
 		'email' => ['E-mail', '#ea4335'],
+		'google_reviews' => ['Google Reviews', '#dc4e41'],
 	];
 }
 
