@@ -25,8 +25,10 @@ plus bas), animations de survol du menu, mégamenus, boutons et menus de WooComm
 
 ## Principes
 
-1. **Rien ne change sans réglage.** Sans réglage, le HTML et le CSS produits sont identiques
-   octet pour octet à ceux d'aujourd'hui.
+1. **Rien ne change visuellement sans réglage.** Sans réglage, le HTML et le CSS produits
+   restent identiques octet pour octet, sauf les deux suppressions de balisage de l’identité
+   décrites dans « Migration ». Le CSS et le rendu visible restent inchangés à 1280, 768 et
+   390 px ; aucun slogan masqué ne devient visible à la mise à jour.
 2. **Avec un réglage, l'effet est celui d'Astra.** Les règles sont portées des fichiers de CSS
    dynamique d'Astra 4.11.0, avec les mêmes sélecteurs, dans le même ordre et sous les mêmes
    conditions d'émission. L'équivalence est vérifiée sur des références WordPress : captures et
@@ -148,8 +150,10 @@ réglage (constaté sur Garden, dont le modèle affiche le slogan). `display-sit
 et `display-site-title-responsive` remplacent `afficher_slogan` et `afficher_titre_site` : le
 balisage et le CSS d'affichage suivent Astra (défaut d'Astra : slogan masqué).
 
-**Migration, sans changement de rendu.** Elle respecte le critère « rien ne change sans
-réglage » ; il n'y a pas d'exception :
+**Migration, sans changement de rendu visible.** Elle conserve l’affichage existant.
+L’exception au HTML identique est limitée à la suppression du slogan masqué sur tous les
+appareils et de son enveloppe `.ast-site-title-wrap` si elle reste vide. Aucun autre changement
+de balisage ou de CSS n’est accepté au titre de cette exception :
 - `afficher_titre_site`, qui fonctionne aujourd'hui : `oui` (ou absent) → titre visible sur les
   trois appareils, valeur par défaut d'Astra, donc rien n'est écrit ; `non` →
   `display-site-title-responsive` = `{"desktop": false, "tablet": false, "mobile": false}` ;
@@ -229,8 +233,11 @@ accepte en plus `rgba()` et `rgb()`, comme la palette `global-color-palette` d'A
 
 **Critère 1 : rien ne change sans réglage.**
 - Test unitaire : `astra_styles_css([], …)` vaut `''`.
-- `comparer_html.php` et `comparer_captures.sh` restent identiques sur R0–R5 et P1–P3 ; pas de
-  nouveau `<style>` ni de `@font-face`.
+- Sur R0–R5 et P1–P3, `comparer_html.php` ne tolère que les deux suppressions de balisage
+  décrites dans « Migration » ; toutes les autres différences HTML et CSS sont refusées.
+  `comparer_captures.sh` vérifie le rendu inchangé ; pas de nouveau `<style>` ni de `@font-face`
+  sans réglage. Un titre explicitement masqué avant la mise à jour produit une option migrée :
+  ce cas est vérifié séparément par les tests de migration.
 
 **Critère 2 : avec un réglage, équivalence avec WordPress.**
 - **Références.** Une référence par groupe (R6-menu, R7-bouton, R8-identite, R9-pied-couleurs,
@@ -278,7 +285,13 @@ accepte en plus `rgba()` et `rgb()`, comme la palette `global-color-palette` d'A
   appareils n'est plus imprimé (il l'était, masqué par `css/astra-dynamic.css`), et l'enveloppe
   `.ast-site-title-wrap` n'est imprimée que si le titre ou le slogan l'est ; les anciennes
   clés sont effacées, et seule la configuration `afficher_titre_site` = `non` écrit
-  `display-site-title-responsive`.
+  `display-site-title-responsive`. La comparaison HTML n’autorise que ces deux suppressions :
+  elle ne retire aucun autre nœud et ne masque aucune autre différence. Les captures et les
+  styles calculés de l’identité (visibilité, dimensions et position du logo, du titre et des
+  éléments voisins) restent identiques à 1280, 768 et 390 px, y compris lorsque le titre et le
+  slogan sont tous deux masqués.
+- La migration est idempotente et préserve les options `astra/styles` déjà présentes, notamment
+  un réglage explicite d’affichage du titre ou du slogan.
 - Puis `display-site-tagline-responsive` = visible sur ordinateur : le slogan s'affiche
   (référence WordPress R8-identite).
 

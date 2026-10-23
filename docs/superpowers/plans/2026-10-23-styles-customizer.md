@@ -12,7 +12,7 @@
 
 ## Contraintes globales
 
-- Rien ne change sans réglage : sans `astra/styles`, le HTML et le CSS produits sont identiques octet pour octet à ceux de la version 1.1.0 (vérifié aux tâches 3, 11 et 14).
+- Rien ne change visuellement sans réglage : sans `astra/styles`, le HTML et le CSS produits sont identiques octet pour octet à ceux de la version 1.1.0, sauf les deux suppressions de balisage de l’identité décrites à la tâche 11 (slogan masqué et enveloppe vide). Aucun slogan masqué ne devient visible ; les captures et les styles calculés restent identiques à 1280, 768 et 390 px (vérifié aux tâches 3, 11 et 14).
 - Avec un réglage, l'effet est celui d'Astra 4.11.0 : mêmes sélecteurs, même ordre, mêmes conditions d'émission ; fichier et fonction d'Astra cités en commentaire.
 - Aucune chaîne libre dans une feuille de style : toute valeur passe par `astra_styles_normaliser()`.
 - Valeurs responsives d'Astra conservées entières ; seule `desktop` est exploitée.
@@ -2298,6 +2298,16 @@ git commit -m "Palette : neuvième couleur en rgb() ou rgba(), comme global-colo
 (`astra_logo()`), un slogan masqué sur tous les appareils n'est plus imprimé, et l'enveloppe
 du titre n'est imprimée que si le titre ou le slogan l'est.
 
+Ces deux suppressions sont l’unique exception au HTML identique octet pour octet. Pour le
+contrôle de migration, appliquer uniquement ces suppressions au HTML attendu de la version
+1.1.0, puis comparer strictement le résultat au HTML obtenu ; ne pas neutraliser les autres
+nœuds ou les différences d’espacement de toute la page. Compléter la comparaison par des
+captures et les styles calculés à 1280, 768 et 390 px (visibilité, dimensions et position du
+logo, du titre et des éléments voisins), notamment quand le titre et le slogan sont tous deux
+masqués. Une différence de mise en page reste un échec, même si le nœud supprimé était vide.
+Ajouter un cas de migration répétée et un cas où des réglages explicites existent déjà dans
+`astra/styles` : ils sont conservés, sans être écrasés par les anciennes clés.
+
 **Fichiers :**
 - Créer : `astra_administrations.php`, `tests/integration/attendus/identite.php`, `tests/integration/attendus/identite-{slogan_oui,slogan_non,titre_non,aucune}.html`
 - Modifier : `paquet.xml`, `astra_fonctions.php`, `inclure/identite.html`, `formulaires/configurer_astra.html`, `lang/astra_fr.php`, `lang/astra_en.php`
@@ -2384,10 +2394,10 @@ final class IdentiteMigrationTest extends TestCase {
 		return array_map(function ($c) { return [$c]; }, array_combine(array_keys(ASTRA_CAS_IDENTITE), array_keys(ASTRA_CAS_IDENTITE)));
 	}
 
-	private static function visible(string $html): string {
+	private static function attenduApresMigration(string $html): string {
 		$html = preg_replace('~<p class="site-description".*?</p>~s', '', $html);
 		$html = preg_replace('~<div class="ast-site-title-wrap">\s*</div>~', '', $html);
-		return preg_replace('/\s+/', ' ', $html);
+		return $html;
 	}
 
 	#[DataProvider('cas')]
@@ -2395,7 +2405,7 @@ final class IdentiteMigrationTest extends TestCase {
 		astra_cas_identite_appliquer(ASTRA_CAS_IDENTITE[$cas]);
 		astra_migrer_identite();
 		$avant = file_get_contents(__DIR__ . "/attendus/identite-$cas.html");
-		$this->assertSame(self::visible($avant), self::visible(recuperer_fond('inclure/identite', [])));
+		$this->assertSame(self::attenduApresMigration($avant), recuperer_fond('inclure/identite', []));
 		$this->assertStringNotContainsString('site-description', recuperer_fond('inclure/identite', []));
 		$this->assertNull(lire_config('astra/afficher_slogan'));
 		$this->assertNull(lire_config('astra/afficher_titre_site'));
@@ -2411,6 +2421,30 @@ final class IdentiteMigrationTest extends TestCase {
 		} else {
 			$this->assertNull($styles);
 		}
+	}
+
+	public function testMigrationIdempotente(): void {
+		astra_cas_identite_appliquer(ASTRA_CAS_IDENTITE['titre_non']);
+		astra_migrer_identite();
+		$styles = lire_config('astra/styles');
+		$html = recuperer_fond('inclure/identite', []);
+		astra_migrer_identite();
+		$this->assertSame($styles, lire_config('astra/styles'));
+		$this->assertSame($html, recuperer_fond('inclure/identite', []));
+	}
+
+	public function testMigrationPreserveLesReglagesExplicites(): void {
+		astra_cas_identite_appliquer(ASTRA_CAS_IDENTITE['titre_non']);
+		$styles = [
+			'display-site-title-responsive' => ['desktop' => true, 'tablet' => false, 'mobile' => true],
+			'display-site-tagline-responsive' => ['desktop' => true],
+			'button-color' => '#123456',
+		];
+		ecrire_config('astra/styles', $styles);
+		astra_migrer_identite();
+		$this->assertSame($styles, lire_config('astra/styles'));
+		$this->assertNull(lire_config('astra/afficher_slogan'));
+		$this->assertNull(lire_config('astra/afficher_titre_site'));
 	}
 
 	public function testSloganAfficheParLOptionDAstra(): void {
@@ -2546,7 +2580,7 @@ function astra_logo_reduire($img): string {
 - [ ] **Étape 10 : vérifier le succès**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Expected : tout passe, dont `IdentiteMigrationTest` (10 tests).
+Expected : tout passe, dont `IdentiteMigrationTest` (12 tests).
 
 - [ ] **Étape 11 : mise à jour réelle**
 
@@ -2556,7 +2590,7 @@ php -r 'require "tests/bootstrap_integration.php"; ecrire_config("astra/afficher
 ```
 Expected : `1.0.0 {"display-site-title-responsive":{"desktop":false,"tablet":false,"mobile":false}} NULL`
 
-- [ ] **Étape 12 : rendu inchangé sans réglage** — refaire l'étape 8 de la tâche 3. Expected : `IDENTIQUE`.
+- [ ] **Étape 12 : rendu inchangé après migration** — refaire l’étape 8 de la tâche 3, en appliquant au HTML attendu uniquement les deux suppressions de balisage documentées ci-dessus ; toutes les autres différences restent des échecs. Exécuter aussi les comparaisons de migration en captures et styles calculés à 1280, 768 et 390 px pour les quatre configurations de `ASTRA_CAS_IDENTITE`. Expected : aucune autre différence HTML ou CSS, rendu visible inchangé ; migration idempotente et réglages explicites préservés.
 
 - [ ] **Étape 13 : commit**
 
