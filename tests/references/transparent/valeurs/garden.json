@@ -1,0 +1,14 @@
+{
+	"transparent-header-enable": 0,
+	"transparent-header-disable-archive": 1,
+	"transparent-header-disable-latest-posts-index": 1,
+	"transparent-header-on-devices": "both",
+	"transparent-header-main-sep": 0,
+	"transparent-header-main-sep-color": "",
+	"transparent-header-color-site-title-responsive": {
+		"desktop": "var(--ast-global-color-2)",
+		"tablet": "",
+		"mobile": ""
+	},
+	"transparent-header-default-border": false
+}
