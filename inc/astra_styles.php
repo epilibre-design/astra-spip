@@ -264,9 +264,23 @@ function astra_styles_normaliser($valeurs): array {
 	return $r;
 }
 
-/** Valeur ordinateur d'une option (la valeur elle-même si elle n'est pas responsive). */
+/**
+ * Valeur ordinateur d'une option (la valeur elle-même si elle n'est pas responsive). Une valeur
+ * responsive sans clé desktop n'a pas de valeur ordinateur : Astra lit $valeur['desktop'] seul.
+ */
 function astra_styles_ordi($v) {
-	return is_array($v) && array_key_exists('desktop', $v) ? $v['desktop'] : $v;
+	if (!is_array($v)) {
+		return $v;
+	}
+	if (array_key_exists('desktop', $v)) {
+		return $v['desktop'];
+	}
+	foreach (['tablet', 'mobile', 'desktop-unit', 'tablet-unit', 'mobile-unit'] as $cle) {
+		if (array_key_exists($cle, $v)) {
+			return '';
+		}
+	}
+	return $v;
 }
 
 /** Vrai si la valeur contient au moins une donnée non vide. */

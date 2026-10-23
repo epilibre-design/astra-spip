@@ -40,14 +40,16 @@ function astra_styles_bouton_entete(array $s, array $hfb): array {
 			'border-color' => astra_styles_ou($s, "$p-border-h-color"),
 		]],
 	];
-	// Neutralisation : rayons enregistrés vides, Astra n'émet plus les 40 px par défaut que
-	// css/astra-hfb.css contient ; le bouton prend alors le rayon du bouton global (0 sans réglage).
+	// Neutralisation : rayons enregistrés vides, même en partie, Astra n'émet plus les 40 px par
+	// défaut que css/astra-hfb.css contient ; ces coins prennent alors le rayon du bouton global
+	// (0 sans réglage).
+	$vides = $rayon;
 	foreach ($rayon as $cote => $v) {
 		if ($v === '') {
 			$rayon[$cote] = astra_styles_cote($s['button-radius-fields'] ?? '', $cote) ?: '0';
 		}
 	}
-	if (isset($s["$p-border-radius-fields"]) && !astra_styles_renseigne(astra_styles_ordi($rayons))) {
+	if (isset($s["$p-border-radius-fields"]) && in_array('', $vides, true)) {
 		$regles[] = ['', "$sel .ast-custom-button", [
 			'border-top-left-radius' => $rayon['top'], 'border-top-right-radius' => $rayon['right'],
 			'border-bottom-right-radius' => $rayon['bottom'], 'border-bottom-left-radius' => $rayon['left'],

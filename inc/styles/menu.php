@@ -21,9 +21,11 @@ function astra_styles_menu(array $s, array $hfb): array {
 		$survol = astra_styles_ou($s, "$p-h-color-responsive", 'var(--ast-global-color-1)');
 		$actif = astra_styles_ou($s, "$p-a-color-responsive", 'var(--ast-global-color-1)');
 		$bordure = $s["$p-submenu-border"] ?? ['top' => 2, 'bottom' => 0, 'left' => 0, 'right' => 0];
+		// Astra : un côté vide vaut 0 (empty()), le défaut ne joue que si l'option est absente.
 		$cote = function (string $c) use ($bordure): string {
 			return (int) ($bordure[$c] ?? 0) . 'px';
 		};
+		$haut = (int) ($bordure['top'] ?? 0);
 		array_push($regles,
 			['', $sel, [
 				'font-family' => $famille === 'inherit' ? 'inherit' : astra_styles_famille($famille),
@@ -47,6 +49,11 @@ function astra_styles_menu(array $s, array $hfb): array {
 				'border-top-width' => $cote('top'), 'border-bottom-width' => $cote('bottom'),
 				'border-right-width' => $cote('right'), 'border-left-width' => $cote('left'),
 				'border-color' => astra_styles_ou($s, "$p-submenu-b-color", 'var(--ast-global-color-0)'), 'border-style' => 'solid',
+			]],
+			// Sous-menus imbriqués et zone de survol décalés de la bordure haute (décalage haut : 0).
+			['', "$sel .sub-menu .sub-menu", ['top' => (-1 * $haut) . 'px']],
+			['', ".ast-desktop $sel .main-header-menu > .menu-item > .sub-menu:before,.ast-desktop $sel .main-header-menu > .menu-item > .astra-full-megamenu-wrapper:before", [
+				'height' => "calc( 0px + {$haut}px + 5px )",
 			]],
 			['', "$sel .main-header-menu,$sel .main-header-menu .sub-menu", astra_styles_fond($s["$p-bg-obj-responsive"] ?? [])]
 		);

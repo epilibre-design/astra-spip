@@ -14,6 +14,7 @@ const ASTRA_STYLES_SEL_CONTOUR_SURVOL = '.wp-block-button.is-style-outline .wp-b
 const ASTRA_STYLES_SEL_BLOC_LIEN = '.wp-block-button .wp-block-button__link';
 const ASTRA_STYLES_SEL_BLOC_LIEN_SURVOL = '.wp-block-button .wp-block-button__link:hover,.wp-block-button .wp-block-button__link:focus';
 const ASTRA_STYLES_SEL_BLOCS = '.wp-block-button .wp-block-button__link,.wp-block-search .wp-block-search__button,body .wp-block-file .wp-block-file__button';
+const ASTRA_STYLES_SEL_BLOCS_ARTICLE = '.ast-single-post .entry-content .wp-block-button .wp-block-button__link,.ast-single-post .entry-content .wp-block-search .wp-block-search__button,body .entry-content .wp-block-file .wp-block-file__button';
 const ASTRA_STYLES_SEL_BOUTONS = '.menu-toggle,button,.ast-button,.ast-custom-button,.button,input#submit,input[type="button"],input[type="submit"],input[type="reset"],#comments .submit,.search .search-submit,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button,body .wp-block-file .wp-block-file__button,.search .search-submit,.woocommerce-js a.button,.woocommerce button.button,.woocommerce .woocommerce-message a.button,.woocommerce #respond input#submit.alt,.woocommerce input.button.alt,.woocommerce input.button,.woocommerce input.button:disabled,.woocommerce input.button:disabled[disabled],.woocommerce input.button:disabled:hover,.woocommerce input.button:disabled[disabled]:hover,.woocommerce #respond input#submit,.woocommerce button.button.alt.disabled,.wc-block-grid__products .wc-block-grid__product .wp-block-button__link,.wc-block-grid__product-onsale,[CLASS*="wc-block"] button,.woocommerce-js .astra-cart-drawer .astra-cart-drawer-content .woocommerce-mini-cart__buttons .button:not(.checkout):not(.ast-continue-shopping),.woocommerce-js .astra-cart-drawer .astra-cart-drawer-content .woocommerce-mini-cart__buttons a.checkout,.woocommerce button.button.alt.disabled.wc-variation-selection-needed,[CLASS*="wc-block"] .wc-block-components-button';
 const ASTRA_STYLES_SEL_BOUTONS_SURVOL = 'button:focus,.menu-toggle:hover,button:hover,.ast-button:hover,.ast-custom-button:hover .button:hover,.ast-custom-button:hover ,input[type=reset]:hover,input[type=reset]:focus,input#submit:hover,input#submit:focus,input[type="button"]:hover,input[type="button"]:focus,input[type="submit"]:hover,input[type="submit"]:focus,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button:hover,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button:focus,body .wp-block-file .wp-block-file__button:hover,body .wp-block-file .wp-block-file__button:focus,.woocommerce-js a.button:hover,.woocommerce button.button:hover,.woocommerce .woocommerce-message a.button:hover,.woocommerce #respond input#submit:hover,.woocommerce #respond input#submit.alt:hover,.woocommerce input.button.alt:hover,.woocommerce input.button:hover,.woocommerce button.button.alt.disabled:hover,.wc-block-grid__products .wc-block-grid__product .wp-block-button__link:hover,[CLASS*="wc-block"] button:hover,.woocommerce-js .astra-cart-drawer .astra-cart-drawer-content .woocommerce-mini-cart__buttons .button:not(.checkout):not(.ast-continue-shopping):hover,.woocommerce-js .astra-cart-drawer .astra-cart-drawer-content .woocommerce-mini-cart__buttons a.checkout:hover,.woocommerce button.button.alt.disabled.wc-variation-selection-needed:hover,[CLASS*="wc-block"] .wc-block-components-button:hover,[CLASS*="wc-block"] .wc-block-components-button:focus';
 const ASTRA_STYLES_SEL_RECHERCHE = 'form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button.has-icon';
@@ -64,13 +65,19 @@ function astra_styles_bouton(array $s): array {
 		['', ASTRA_STYLES_SEL_BLOCS, ($bordure !== null ? $epaisseurs : []) + [
 			'border-color' => $fond, 'background-color' => $fond, 'color' => $couleur,
 			'font-family' => $famille, 'font-weight' => $graisse, 'line-height' => $interligne,
-			'text-transform' => $extras['text-transform'], 'letter-spacing' => $extras['letter-spacing'], 'font-size' => $taille,
+			'text-transform' => $extras['text-transform'], 'text-decoration' => $extras['text-decoration'],
+			'letter-spacing' => $extras['letter-spacing'], 'font-size' => $taille,
 		] + $rayons + $marges],
+		// Soulignement des liens de contenu : les boutons des blocs gardent le leur (none par défaut).
+		['', ASTRA_STYLES_SEL_BLOCS_ARTICLE, [
+			'text-decoration' => in_array($extras['text-decoration'], ['', 'initial'], true) ? 'none' : $extras['text-decoration'],
+		]],
 		['', ASTRA_STYLES_SEL_BOUTONS, $epaisseurs + [
 			'color' => $couleur, 'border-color' => $fond, 'background-color' => $fond,
 		] + $marges + [
 			'font-family' => $famille, 'font-weight' => $graisse, 'font-size' => $taille, 'line-height' => $interligne,
-			'text-transform' => $extras['text-transform'], 'letter-spacing' => $extras['letter-spacing'],
+			'text-transform' => $extras['text-transform'], 'text-decoration' => $extras['text-decoration'],
+			'letter-spacing' => $extras['letter-spacing'],
 		] + $rayons],
 		['', ASTRA_STYLES_SEL_BOUTONS_SURVOL, $survols],
 		['', ASTRA_STYLES_SEL_RECHERCHE, [

@@ -110,4 +110,55 @@ final class StylesTest extends TestCase {
 			])
 		);
 	}
+
+	private const HFB_MENU_BOUTON = ['entete_ordinateur' => ['primary' => ['primary_right' => ['menu-1', 'button-1']]]];
+
+	public function testValeurSansOrdinateurIgnoree(): void {
+		// Astra lit la clé desktop seule : une valeur tablette ne s'applique pas sur ordinateur.
+		$this->assertSame('', astra_styles_ordi(['tablet' => '18', 'desktop-unit' => 'px']));
+		$this->assertSame('', astra_styles_taille_police(['tablet' => '18']));
+		$this->assertSame(['top' => 1], astra_styles_ordi(['top' => 1]));
+		$s = astra_styles_normaliser([
+			'font-size-button' => ['tablet' => '18'],
+			'font-size-site-title' => ['desktop' => 'invalide', 'tablet' => '18', 'desktop-unit' => 'px'],
+			'button-color' => '#123456',
+		]);
+		$css = astra_styles_css($s, []);
+		$this->assertStringNotContainsString('1px', $css);
+		$this->assertStringContainsString('font-size:16px;font-size:1rem', $css);
+	}
+
+	public function testBordureSousMenuCommeAstra(): void {
+		// Bordure enregistrée : un côté vide vaut 0 (empty() d'Astra), le haut décale les sous-menus imbriqués.
+		$base = ['header-menu1-color-responsive' => ['desktop' => '#111111']];
+		$css = astra_styles_css($base + ['header-menu1-submenu-border' => ['top' => 10, 'bottom' => '', 'left' => '', 'right' => '']], self::HFB_MENU_BOUTON);
+		$this->assertStringContainsString('{border-top-width:10px;border-bottom-width:0px;border-right-width:0px;border-left-width:0px;', $css);
+		$this->assertStringContainsString('.ast-builder-menu-1 .sub-menu .sub-menu{top:-10px;}', $css);
+		$this->assertStringContainsString(':before{height:calc( 0px + 10px + 5px );}', $css);
+		$css = astra_styles_css($base + ['header-menu1-submenu-border' => ['top' => '', 'bottom' => '', 'left' => '', 'right' => '']], self::HFB_MENU_BOUTON);
+		$this->assertStringContainsString('{border-top-width:0px;', $css);
+		$this->assertStringContainsString('.sub-menu .sub-menu{top:0px;}', $css);
+		// Option absente : défaut d'Astra, 2 px en haut.
+		$css = astra_styles_css($base, self::HFB_MENU_BOUTON);
+		$this->assertStringContainsString('{border-top-width:2px;border-bottom-width:0px;', $css);
+		$this->assertStringContainsString('.sub-menu .sub-menu{top:-2px;}', $css);
+	}
+
+	public function testRayonsBoutonEntetePartiels(): void {
+		// Un seul coin réglé : les coins vides prennent le rayon du bouton global, pas les 40 px d'astra-hfb.css.
+		$css = astra_styles_css([
+			'header-button1-border-radius-fields' => ['desktop' => ['top' => 5, 'right' => '', 'bottom' => '', 'left' => ''], 'desktop-unit' => 'px'],
+			'button-radius-fields' => ['desktop' => ['top' => 3, 'right' => 3, 'bottom' => 3, 'left' => 3], 'desktop-unit' => 'px'],
+		], self::HFB_MENU_BOUTON);
+		$this->assertStringContainsString('.ast-header-button-1 .ast-custom-button{border-top-left-radius:5px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;}', $css);
+	}
+
+	public function testSoulignementBouton(): void {
+		$css = astra_styles_css(['font-extras-button' => ['text-decoration' => 'underline']], []);
+		// Blocs, boutons du thème, puis surcharge du soulignement des liens de contenu.
+		$this->assertSame(3, substr_count($css, 'text-decoration:underline;'));
+		$this->assertStringContainsString(',body .entry-content .wp-block-file .wp-block-file__button{text-decoration:underline;}', $css);
+		$css = astra_styles_css(['button-color' => '#123456'], []);
+		$this->assertStringContainsString(',body .entry-content .wp-block-file .wp-block-file__button{text-decoration:none;}', $css);
+	}
 }
