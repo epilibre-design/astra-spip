@@ -8,7 +8,7 @@
 
 **Pile technique :** PHP 7.4+ (plugin), SPIP 4.4, PHPUnit 11.5, WordPress de test avec Astra 4.11.0 et WP-CLI, Playwright (Chromium), Python 3 (`regles.py`).
 
-**Spec :** `docs/superpowers/specs/2026-10-23-entete-transparent-design.md` (statut « à relire », questions ouvertes 1 et 2 tranchées ci-dessous au plus étroit, à confirmer). Écarts listés plus bas.
+**Spec :** `docs/superpowers/specs/2026-10-23-entete-transparent-design.md` (décisions de Gilles du 24 octobre reportées dans la spec par ce même commit).
 
 ## Contraintes globales
 
@@ -24,7 +24,7 @@
 - Commandes : `vendor/bin/phpunit --testsuite unit [--filter …]` ; `vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php [--filter …]` ; comparaisons comme dans `README.md` (SPIP de test servi avec `PHP_CLI_SERVER_WORKERS=4`, ici sur le port 8414 ; WordPress de test sur 8401).
 - Les correctifs s'appliquent depuis la racine du dépôt avec `git apply` (enregistrer le bloc dans un fichier, puis `git apply chemin/du/fichier.patch`), dans l'ordre des tâches. Ce plan est indépendant de celui des compléments du builder (`2026-10-23-complements-builder.md`) : il s'applique sur `origin/main` ; appliqué après lui, seules les lignes voisines de `lang/`, `inc/astra_styles.php`, `inc/astra_styles_saisie.php`, `tests/comparaison/configurations.php` et `tests/references/README.md` sont à fusionner.
 
-## Choix et écarts à la spec (à valider)
+## Décisions (validées par Gilles le 24 octobre)
 
 1. **Question 1 : réglage par page limité aux pages uniques**, comme Garden. Les articles suivent le réglage global et ses exclusions.
 2. **Question 2 : logo propre à l'en-tête transparent non repris.** Les règles de largeur de ce logo, qu'Astra émet toujours (défauts 150, 120 et 100 px), sont émises à l'identique ; elles ne visent aucun élément.
@@ -35,6 +35,7 @@
 7. **Couleurs propres aux éléments** de l'en-tête transparent (texte libre, recherche, icônes sociales, bouton, séparateur vertical, compte, couleurs du bouton du menu mobile) non reprises : absentes de la liste de la spec et vides dans Garden. Seule la règle que cette partie d'Astra émet sans réglage (fond transparent du bouton du menu mobile) est reprise. `header-sections-dynamic.css.php` ne concerne que l'en-tête sans builder : non repris.
 8. **Signature** : la règle est `astra_entete_transparent_actif(array $s, string $contexte, string $reglage_page)` (pure, testée cas par cas) ; `astra_entete_transparent(string $type, $id, $accueil)` dans `astra_fonctions.php` lit la configuration, avec les mêmes paramètres qu'`astra_body_class()`.
 9. **`comparer_captures.sh`** compare aussi le contenu d'une référence qui affiche une page (clé `page`), pour vérifier la superposition de l'en-tête et du titre (R16).
+10. **Aller-retour du formulaire** (correction demandée à la relecture) : le formulaire « Couleurs et typographie » enregistre « 0 » pour un booléen faux ; le défaut du séparateur lit donc `false`, `0` et « 0 » comme faux, et `transparent-header-default-border` à faux garde son effet après un enregistrement sans modification (`StylesFormulaireTest::testAllerRetourDesReglagesDeLEnTeteTransparent`).
 
 ## Vérification préalable du plan
 
@@ -43,8 +44,11 @@ puis découpé en un commit par tâche ; chaque correctif ci-dessous est le diff
 appliqué dans l'ordre sur 7e3dde8 (arbre final identique à celui de l'essai) :
 
 - étape 2 des tâches 1 et 2 : tests appliqués sur l'état précédent, échecs relevés tels qu'indiqués ;
-- tests après la tâche 3 : unitaires 80 tests, 1299 assertions ; intégration 72 tests,
-  245 assertions (avant : 71 et 69) ;
+- tests après la tâche 3 : unitaires 80 tests, 1301 assertions ; intégration 73 tests,
+  250 assertions (avant : 71 et 69) ;
+- correction de la relecture (décision 10) : test d'aller-retour du formulaire ajouté ; elle ne
+  change pas le CSS produit pour les valeurs des références, et les comparaisons ci-dessous
+  datent de l'essai d'avant la correction ;
 - attendus WordPress : les quatre variantes produisent exactement les règles d'Astra, plus la
   neutralisation déclarée ;
 - `capturer.sh` sur R0–R11, R16, R17, P1–P3, puis `comparer_html.php` (défaut, puis R16 et R17) :
@@ -96,10 +100,18 @@ Correctif à appliquer (`git apply`) :
 
 ````diff
 diff --git a/tests/integration/StylesFormulaireTest.php b/tests/integration/StylesFormulaireTest.php
-index 637dda8..9c8b652 100644
+index 637dda8..c050239 100644
 --- a/tests/integration/StylesFormulaireTest.php
 +++ b/tests/integration/StylesFormulaireTest.php
-@@ -44,7 +44,7 @@ final class StylesFormulaireTest extends TestCase {
+@@ -7,6 +7,7 @@ final class StylesFormulaireTest extends TestCase {
+ 
+ 	public static function setUpBeforeClass(): void {
+ 		include_spip('formulaires/configurer_astra_styles');
++		require_once dirname(__DIR__, 2) . '/inc/astra_entete_transparent.php';
+ 	}
+ 
+ 	protected function tearDown(): void {
+@@ -44,11 +45,52 @@ final class StylesFormulaireTest extends TestCase {
  
  	public function testRenduDesChamps(): void {
  		$html = recuperer_fond('formulaires/configurer_astra_styles', ['editable' => true, 's' => ['button-radius-fields' => ['desktop' => ['top' => 8], 'desktop-unit' => 'em']]]);
@@ -108,6 +120,51 @@ index 637dda8..9c8b652 100644
  		$this->assertStringContainsString('name="s[header-menu1-color-responsive][desktop]"', $html);
  		$this->assertStringContainsString('name="s[button-radius-fields][desktop][top]" value="8"', $html);
  		$this->assertMatchesRegularExpression('~name="s\[button-radius-fields\]\[desktop-unit\]".*?<option value="em" selected="selected">~s', $html);
+ 		$this->assertStringContainsString('name="s[header-menu1-bg-obj-responsive][desktop][background-color]"', $html);
+ 		$this->assertStringContainsString('list="astra-styles-palette"', $html);
+ 	}
++
++	/** Champs du formulaire rendu, postés tels quels (sélecteurs : option choisie, sinon la première). */
++	private function saisieDuFormulaire(): array {
++		$doc = new DOMDocument();
++		libxml_use_internal_errors(true);
++		$doc->loadHTML('<?xml encoding="utf-8"?>' . recuperer_fond('formulaires/configurer_astra_styles', ['editable' => true] + formulaires_configurer_astra_styles_charger_dist()));
++		libxml_clear_errors();
++		$x = new DOMXPath($doc);
++		$champs = [];
++		foreach ($x->query('//*[self::input or self::select][starts-with(@name, "s[")]') as $n) {
++			if ($n->nodeName === 'select') {
++				$choisie = $x->query('option[@selected]', $n);
++				$valeur = ($choisie->length ? $choisie->item(0) : $x->query('option', $n)->item(0))->getAttribute('value');
++			} else {
++				$valeur = $n->getAttribute('value');
++			}
++			$champs[] = urlencode($n->getAttribute('name')) . '=' . urlencode($valeur);
++		}
++		parse_str(implode('&', $champs), $r);
++		return $r['s'];
++	}
++
++	public function testAllerRetourDesReglagesDeLEnTeteTransparent(): void {
++		// Valeurs de Garden, dont transparent-header-default-border à faux : un enregistrement sans
++		// modification ne doit rien changer au CSS de l'en-tête transparent.
++		$garden = json_decode(file_get_contents(dirname(__DIR__) . '/references/transparent/valeurs/garden.json'), true);
++		ecrire_config('astra/styles', $garden);
++		$avant = astra_entete_transparent_css($garden, []);
++		$this->assertStringContainsString('{border-bottom-width:0px;border-bottom-style:solid;}', $avant);
++		set_request('s', $this->saisieDuFormulaire());
++		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
++		formulaires_configurer_astra_styles_traiter_dist();
++		$this->assertSame($avant, astra_entete_transparent_css(lire_config('astra/styles'), []));
++		// Séparateur vide : le drapeau à faux supprime le séparateur, avant comme après l'enregistrement.
++		unset($garden['transparent-header-main-sep']);
++		ecrire_config('astra/styles', $garden);
++		$this->assertStringContainsString('{border-bottom-style:none;}', astra_entete_transparent_css($garden, []));
++		set_request('s', $this->saisieDuFormulaire());
++		formulaires_configurer_astra_styles_traiter_dist();
++		$this->assertStringContainsString('{border-bottom-style:none;}', astra_entete_transparent_css(lire_config('astra/styles'), []));
++	}
+ }
 diff --git a/tests/references/transparent/appliquer.php b/tests/references/transparent/appliquer.php
 new file mode 100644
 index 0000000..0d84861
@@ -478,10 +535,10 @@ index 0000000..86a9ed9
 +}
 diff --git a/tests/unit/EnteteTransparentTest.php b/tests/unit/EnteteTransparentTest.php
 new file mode 100644
-index 0000000..10c761a
+index 0000000..70277f7
 --- /dev/null
 +++ b/tests/unit/EnteteTransparentTest.php
-@@ -0,0 +1,88 @@
+@@ -0,0 +1,90 @@
 +<?php
 +
 +use PHPUnit\Framework\Attributes\DataProvider;
@@ -562,6 +619,8 @@ index 0000000..10c761a
 +		// Installation récente : 0 px ; drapeau transparent-header-default-border à faux : aucun.
 +		$this->assertStringContainsString($sel . '{border-bottom-width:0px;border-bottom-style:solid;}', astra_entete_transparent_css([], []));
 +		$this->assertStringContainsString($sel . '{border-bottom-style:none;}', astra_entete_transparent_css(['transparent-header-default-border' => false], []));
++		$this->assertStringContainsString($sel . '{border-bottom-style:none;}', astra_entete_transparent_css(['transparent-header-default-border' => '0'], []));
++		$this->assertStringContainsString($sel . '{border-bottom-width:0px;border-bottom-style:solid;}', astra_entete_transparent_css(['transparent-header-default-border' => '1'], []));
 +	}
 +
 +	public function testDerniereRangeeRemplie(): void {
@@ -577,7 +636,7 @@ index 0000000..10c761a
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php` (lancer les deux, même si le premier échoue)
 Attendu :
 - unitaires : arrêt au chargement (`require_once(…/inc/astra_entete_transparent.php): Failed to open stream`, puis « An error occurred inside PHPUnit ») ;
-- intégration : 1 échec (`StylesFormulaireTest::testRenduDesChamps`, 12 sections au lieu de 13).
+- intégration : arrêt de `StylesFormulaireTest` à son chargement (`Failed opening required '…/inc/astra_entete_transparent.php'`), les autres classes passent.
 
 - [ ] **Étape 3 : implémenter**
 
@@ -586,10 +645,10 @@ Correctif à appliquer (`git apply`) :
 ````diff
 diff --git a/inc/astra_entete_transparent.php b/inc/astra_entete_transparent.php
 new file mode 100644
-index 0000000..1f3a184
+index 0000000..95d452b
 --- /dev/null
 +++ b/inc/astra_entete_transparent.php
-@@ -0,0 +1,252 @@
+@@ -0,0 +1,254 @@
 +<?php
 +/**
 + * Astra pour SPIP — en-tête transparent (inc/addons/transparent-header/ d'Astra 4.11.0).
@@ -809,7 +868,9 @@ index 0000000..1f3a184
 +	// Séparateur sous la dernière rangée remplie de l'en-tête.
 +	// Défaut : 0 sur une installation récente, vide si transparent-header-default-border est faux
 +	// (astra_get_transparent_header_default_value(), inc/core/builder/class-astra-builder-options.php).
-+	$sep = $s['transparent-header-main-sep'] ?? (($s['transparent-header-default-border'] ?? true) === false ? '' : 0);
++	// Faux : false du site.json, ou « 0 » enregistré par le formulaire.
++	$sans_bordure = in_array($s['transparent-header-default-border'] ?? true, [false, 0, '0'], true);
++	$sep = $s['transparent-header-main-sep'] ?? ($sans_bordure ? '' : 0);
 +	$sep_css = $sep !== '' && $sep !== null
 +		? ['border-bottom-width' => $sep . 'px', 'border-bottom-style' => 'solid', 'border-bottom-color' => $s['transparent-header-main-sep-color'] ?? '']
 +		: ['border-bottom-style' => 'none'];
@@ -1037,7 +1098,7 @@ index b61fb3d..33d592b 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (80 tests, 1299 assertions)`, intégration `OK (69 tests, 232 assertions)`
+Attendu : unitaires `OK (80 tests, 1301 assertions)`, intégration `OK (70 tests, 237 assertions)`
 
 - [ ] **Étape 5 : commit**
 
@@ -1566,7 +1627,7 @@ index 9b41e9e..f9b0432 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (80 tests, 1299 assertions)`, intégration `OK (72 tests, 245 assertions)`
+Attendu : unitaires `OK (80 tests, 1301 assertions)`, intégration `OK (73 tests, 250 assertions)`
 
 Rendu sans réglage inchangé : `php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414` (références WordPress capturées par `tests/references/capturer.sh`) : tout identique.
 
