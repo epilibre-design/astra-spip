@@ -159,6 +159,7 @@ function astra_configurations_reference(): array {
 		'R8-identite' => $styles(['identite'], ['meta' => ['slogan_site' => 'Un site propulsé par SPIP']]),
 		'R9-pied-couleurs' => $styles(['pied']),
 		'R10-sociaux' => $styles(['sociaux']),
+		'R14-bouton-mobile' => $styles(['menu-mobile']),
 		'R11-combinee' => $styles($tous, [
 			'astra' => ['police_texte' => "'Raleway', sans-serif", 'police_titres' => "'Poppins', sans-serif"],
 			'meta' => ['slogan_site' => 'Un site propulsé par SPIP'],

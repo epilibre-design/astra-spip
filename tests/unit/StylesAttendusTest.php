@@ -51,7 +51,7 @@ final class StylesAttendusTest extends TestCase {
 	/** Groupes dont le module est écrit (ASTRA_STYLES_MODULES), par nom de fichier de référence. */
 	public static function groupes(): array {
 		$groupes = [];
-		foreach (['menu', 'bouton', 'bouton-entete', 'identite', 'pied', 'sociaux'] as $g) {
+		foreach (['menu', 'bouton', 'bouton-entete', 'identite', 'pied', 'sociaux', 'menu-mobile'] as $g) {
 			if (in_array(str_replace('-', '_', $g), ASTRA_STYLES_MODULES, true)) {
 				$groupes[$g] = [$g];
 			}

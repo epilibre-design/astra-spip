@@ -25,6 +25,7 @@ function astra_styles_sections(): array {
 		'copyright' => '/copyright/',
 		'sociaux_entete' => '/^header-social-1-/',
 		'sociaux_pied' => '/^footer-social-1-/',
+		'menu_mobile' => '/^mobile-header-toggle-/',
 	];
 }
 
