@@ -13,11 +13,12 @@ for conf in "$@"; do
 	mkdir -p "$sortie"
 	wp --path="$WP" eval-file "$ICI/wp/$conf.php"
 	wp --path="$WP" option get astra-settings --format=json > "$sortie/options.json"
-	curl -sf "$URL/" -o "$sortie/accueil.html"
+	chemin=$(php -r '$j = json_decode(file_get_contents($argv[1]), true); echo $j["chemin"] ?? "/";' "$ICI/wp/$conf.json")
+	curl -sf "$URL$chemin" -o "$sortie/accueil.html"
 	curl -sf "$URL/?p=1" -o "$sortie/article.html"
 	php -r '$h = file_get_contents($argv[1]); if (!preg_match("~<style id=\"astra-theme-css-inline-css\">(.*?)</style>~s", $h, $m)) { exit(1); } echo $m[1];' "$sortie/accueil.html" > "$sortie/dynamique.css" \
 		|| { echo "$conf : CSS dynamique introuvable" >&2; exit 1; }
 	[ -s "$sortie/dynamique.css" ] || { echo "$conf : CSS dynamique vide" >&2; exit 1; }
-	NODE_PATH="$PW/node_modules" node "$ICI/capture.cjs" "$URL/" "$sortie" "$ICI/wp/$conf.json"
+	NODE_PATH="$PW/node_modules" node "$ICI/capture.cjs" "$URL$chemin" "$sortie" "$ICI/wp/$conf.json"
 	echo "$conf : OK ($(wc -c < "$sortie/accueil.html") octets HTML, $(wc -c < "$sortie/dynamique.css") octets CSS)"
 done

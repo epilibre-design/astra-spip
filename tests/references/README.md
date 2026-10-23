@@ -22,7 +22,8 @@ Le dossier `sorties/` n'est pas versionné : il se régénère avec les commande
 Chaque configuration écrit dans `sorties/Rn/` : `accueil.html`, `article.html`,
 `dynamique.css` (contenu de `<style id="astra-theme-css-inline-css">`), `ordinateur.png`
 (1280 px), `mobile.png` (390 px), `mobile-menu.png` (menu mobile ouvert) et `options.json`
-(option `astra-settings` appliquée).
+(option `astra-settings` appliquée). `accueil.html` est la page capturée au chemin `chemin` du
+JSON (l'accueil par défaut).
 
 Le script échoue (code 1) si : le CSS dynamique est absent ou vide, une erreur JavaScript se
 produit, un sélecteur du fichier `wp/Rn.json` n'est pas visible (`ordinateur`, `mobile`) ou
@@ -65,6 +66,16 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 | R2-entete-centre | Menu à gauche, logo centré, compte et recherche à droite ; rangée basse : widget et texte 2 ; mobile : bouton à gauche, logo centré, compte ; panneau latéral avec menu et recherche |
 | R3-pied-colonnes | Pied : rangée haute 2 colonnes (texte, icônes), principale 4 widgets (`4-equal`), basse copyright et menu (`2-equal`) |
 | R4-pied-asymetrique | Pied : rangée principale `3-cwide` (widget ; texte et icônes ; menu vertical), basse `2-lheavy` (copyright, texte 2) |
+| P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
+| P2-accueil | Même menu, page « Notre jardin » en page d'accueil statique (`/`) |
+| P3-page-pleine | Page « Plein écran », titre désactivé, conteneur `full-width-container` |
+
+Les pages des configurations P (`ref_pages()`) ont les mêmes titres, textes et sous-pages que le
+SPIP d'intégration (`scripts/install-spip-test.sh`). Classes du `body` relevées :
+
+- P1-page : `wp-singular page-template-default page page-id-21 page-parent wp-theme-astra ast-desktop ast-plain-container ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled`
+- P2-accueil : les mêmes, précédées de `home`
+- P3-page-pleine : `wp-singular page-template-default page page-id-24 wp-theme-astra ast-desktop ast-page-builder-template ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header` (ni `ast-normal-title-enabled`, ni `page-parent`)
 
 ## Relevés pour le portage
 

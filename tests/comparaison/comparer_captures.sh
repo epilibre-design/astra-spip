@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Comparaison visuelle SPIP / WordPress des configurations de référence.
-# Usage : WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh <racine SPIP> <URL SPIP> [Rn …]
+# Usage : WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh <racine SPIP> <URL SPIP> [Rn|Pn …]
+# Les configurations Pn (pages uniques) comparent en plus le contenu (#primary).
 # Le site SPIP doit avoir les contenus du SPIP de test (scripts/install-spip-test.sh) : site « Mon site »,
 # rubriques Jardinage > Potager et Actualités, comme les références WordPress. Pour chaque
 # configuration : application au WordPress de test et au site SPIP, captures et comparaison au pixel.
@@ -26,7 +27,15 @@ for conf in "${CONFS[@]}"; do
 	wp --path="$WP" eval-file "$ICI/../references/wp/$conf.php"
 	"$ICI/appliquer.sh" "$RACINE" "$conf" > /dev/null
 	menu=$(php -r 'require $argv[1]; echo astra_configurations_reference()[$argv[2]]["menu_mobile"] ?? "dropdown";' "$ICI/configurations.php" "$conf")
-	NODE_PATH="$PW/node_modules" node "$ICI/comparer_captures.cjs" "$URL_WP/" "$URL_SPIP/" "$SORTIES/$conf" "$menu" || code=1
+	chemin_wp=$(php -r '$j = json_decode(file_get_contents($argv[1]), true); echo $j["chemin"] ?? "/";' "$ICI/../references/wp/$conf.json")
+	identifiant=$(php -r 'require $argv[1]; echo astra_configurations_reference()[$argv[2]]["page"] ?? "";' "$ICI/configurations.php" "$conf")
+	chemin_spip=/
+	contenu=
+	if [ -n "$identifiant" ]; then
+		chemin_spip=/$( (cd "$RACINE" && $SPIP_CLI php:eval "include_spip('inc/filtres'); echo generer_objet_url((int) sql_getfetsel('id_article', 'spip_articles', ['id_rubrique=-1', 'page=' . sql_quote('$identifiant')]), 'article', '', '', true);") | sed -E 's#^https?://[^/]+/?##')
+	fi
+	case $conf in P*) contenu=contenu ;; esac
+	NODE_PATH="$PW/node_modules" node "$ICI/comparer_captures.cjs" "$URL_WP$chemin_wp" "$URL_SPIP$chemin_spip" "$SORTIES/$conf" "$menu" "$contenu" || code=1
 done
 
 wp --path="$WP" eval-file "$ICI/../references/wp/R0-defaut.php"

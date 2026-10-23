@@ -1,6 +1,6 @@
 <?php
 /**
- * Configurations du builder transposées des références WordPress (tests/references/wp/Rn-*.php),
+ * Configurations du builder transposées des références WordPress (tests/references/wp/Rn-*.php, Pn-*.php),
  * utilisées par les tests d'intégration et les comparaisons SPIP/WordPress. Les textes sont ceux
  * des références, pour que les captures soient comparables.
  */
@@ -75,5 +75,24 @@ function astra_configurations_reference(): array {
 				'widget-1' => ['blocs' => ['texte'], 'titre' => 'À propos', 'texte' => 'Quelques mots sur le site.'],
 			]],
 		],
+		'P1-page' => [
+			'page' => 'notre-jardin',
+			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
+		],
+		'P2-accueil' => [
+			'astra' => ['accueil_type' => 'page', 'accueil_page' => '@notre-jardin'],
+			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
+		],
+		'P3-page-pleine' => [
+			'page' => 'plein-ecran',
+			'pages' => ['plein-ecran' => ['titre' => 'masquer', 'disposition' => 'pleine']],
+			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
+		],
 	];
+}
+
+/** Partie « builder » d'une configuration : sans les clés propres aux comparaisons de pages. */
+function astra_configuration_hfb(array $c): array {
+	unset($c['page'], $c['astra'], $c['pages']);
+	return $c;
 }

@@ -8,7 +8,7 @@ const { chromium } = require('playwright');
 const { PNG } = require('pngjs');
 const pixelmatch = require('pixelmatch');
 
-const [urlWp, urlSpip, dossier, menuMobile] = process.argv.slice(2);
+const [urlWp, urlSpip, dossier, menuMobile, contenu] = process.argv.slice(2);
 const SEUIL = parseFloat(process.env.SEUIL || '0.01');
 const AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36';
 // Pas d'animation ni de curseur clignotant : captures stables.
@@ -21,6 +21,10 @@ const VUES = [
   { nom: 'pied-mobile', largeur: 390, selecteur: '#colophon' },
   { nom: 'menu-mobile', largeur: 390, selecteur: menuMobile === 'off-canvas' ? '#ast-mobile-popup .ast-mobile-popup-inner' : '#masthead', ouvrir: true },
 ];
+if (contenu === 'contenu') {
+  VUES.push({ nom: 'contenu-ordinateur', largeur: 1280, selecteur: '#primary' });
+  VUES.push({ nom: 'contenu-mobile', largeur: 390, selecteur: '#primary' });
+}
 
 async function capturer(browser, url, vue, fichier) {
   const page = await browser.newPage({ viewport: { width: vue.largeur, height: 900 }, userAgent: AGENT });

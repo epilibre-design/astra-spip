@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Extrait le CSS ajouté par le builder d'en-tête et de pied de page d'Astra.
+Extrait le CSS ajouté par le builder d'en-tête et de pied de page d'Astra (configurations du
+builder seulement : les références P* des pages uniques ne sont pas lues).
 
 Usage : python3 tests/references/extraire_css.py [sorties] > css/astra-hfb.css
 
