@@ -31,20 +31,26 @@ $SPIP_CLI plugins:activer astra -y
 $SPIP_CLI php:eval 'include_spip("inc/plugin"); echo test_plugin_actif("astra") ? "astra-actif\n" : "astra-inactif\n";' | grep -q '^astra-actif$' \
 	|| { echo "Le plugin astra n'est pas actif" >&2; exit 1; }
 
-# Plugin Pages (GPL v3), source « pages » des menus. Archive récupérée directement :
-# plugins:svp:telecharger ne trouve pas le plugin sous SQLite (comparaison de préfixe sensible à la casse).
-if [ ! -f plugins/auto/pages/paquet.xml ]; then
-	archive=$(mktemp -d)
-	curl -sfL -o "$archive/pages.zip" https://files.spip.org/spip-zone/spip-contrib-extensions/pages-70f6d-pages-v2.4.1.zip
-	unzip -q "$archive/pages.zip" -d "$archive"
-	mv "$archive/pages-v2.4.1" plugins/auto/pages
-	rm -rf "$archive"
-fi
-$SPIP_CLI plugins:activer pages -y
-# plugins:activer ne lance pas l'installation du plugin (champ spip_articles.page).
+# Plugins Pages (GPL v3) et a2a (GPL v3) : archives récupérées directement sur files.spip.org,
+# plugins:svp:telecharger ne trouvant pas les plugins sous SQLite.
+installer_archive() { # <préfixe> <chemin de l'archive> <dossier dans l'archive>
+	if [ ! -f "plugins/auto/$1/paquet.xml" ]; then
+		archive=$(mktemp -d)
+		curl -sfL -o "$archive/plugin.zip" "https://files.spip.org/spip-zone/$2"
+		unzip -q "$archive/plugin.zip" -d "$archive"
+		mv "$archive/$3" "plugins/auto/$1"
+		rm -rf "$archive"
+	fi
+}
+installer_archive pages spip-contrib-extensions/pages-70f6d-pages-v2.4.1.zip pages-v2.4.1
+installer_archive a2a spip-contrib-extensions/a2a-9baa6-a2a-4.2.1.zip a2a-4.2.1
+$SPIP_CLI plugins:activer pages a2a -y
+# plugins:activer ne lance pas l'installation des plugins (champ spip_articles.page, table spip_articles_lies).
 $SPIP_CLI plugins:maj:bdd
-$SPIP_CLI php:eval 'include_spip("inc/plugin"); echo test_plugin_actif("pages") ? "pages-actif\n" : "pages-inactif\n";' | grep -q '^pages-actif$' \
-	|| { echo "Le plugin pages n'est pas actif" >&2; exit 1; }
+for p in pages a2a; do
+	$SPIP_CLI php:eval "include_spip('inc/plugin'); echo test_plugin_actif('$p') ? 'actif' : 'inactif';" | grep -q '^actif$' \
+		|| { echo "Le plugin $p n'est pas actif" >&2; exit 1; }
+done
 
 # Rubriques et articles de démonstration (menus) : recréés à chaque exécution.
 # Insertions SQL directes : objet_instituer() refuse de publier sans auteur connecté.
@@ -64,8 +70,18 @@ $jardinage = $rubrique("10. Jardinage", 0);
 $article("Article de Jardinage", $jardinage);
 $article("Article du potager", $rubrique("Potager", $jardinage));
 $article("Article des actualités", $rubrique("20. Actualités", 0));
-// Page unique (plugin Pages) : hors rubrique, id_rubrique = -1.
-sql_insertq("spip_articles", ["titre" => "Mentions légales", "texte" => "Texte.", "id_rubrique" => -1, "page" => "mentions", "statut" => "publie", "date" => $date, "lang" => "fr"]);
+// Pages uniques (plugin Pages) : hors rubrique, id_rubrique = -1. Mêmes titres et textes que
+// les références WordPress (tests/references/wp/commun.php, ref_pages()).
+sql_delete("spip_articles_lies");
+$page = function ($titre, $identifiant) use ($date) {
+	return sql_insertq("spip_articles", ["titre" => $titre, "texte" => "Texte de la page.", "id_rubrique" => -1, "page" => $identifiant, "statut" => "publie", "accepter_forum" => "non", "date" => $date, "lang" => "fr"]);
+};
+$page("Mentions légales", "mentions");
+$jardin = $page("Notre jardin", "notre_jardin");
+foreach ([1 => $page("Potager collectif", "potager_collectif"), 2 => $page("Verger", "verger")] as $rang => $enfant) {
+	sql_insertq("spip_articles_lies", ["id_article" => $jardin, "id_article_lie" => $enfant, "rang" => $rang, "type_liaison" => "sous_page"]);
+}
+$page("Plein écran", "plein_ecran");
 calculer_rubriques();
 propager_les_secteurs();
 include_spip("inc/config");

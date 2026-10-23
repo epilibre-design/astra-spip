@@ -12,6 +12,8 @@ function ref_etat_initial(): void {
 		'single-post-ast-content-layout' => 'default',
 	]);
 	remove_theme_mods();
+	update_option('show_on_front', 'posts');
+	update_option('page_on_front', 0);
 	delete_option('widget_text');
 	$base = json_decode(file_get_contents(__DIR__ . '/widgets-base.json'), true);
 	foreach ($base['options'] as $option => $valeur) {
@@ -83,4 +85,60 @@ function ref_widget_texte(string $zone, string $titre, string $texte): void {
 	$zones = get_option('sidebars_widgets', []);
 	$zones[$zone][] = 'text-' . $n;
 	update_option('sidebars_widgets', $zones);
+}
+
+// Pages uniques des références P* : mêmes titres, textes et ordre que le SPIP d'intégration
+// (scripts/install-spip-test.sh). Recréées à l'identique à chaque appel ; la page d'exemple
+// de WordPress est supprimée pour que les menus de pages soient comparables.
+function ref_pages(): array {
+	if ($exemple = get_page_by_path('sample-page')) {
+		wp_delete_post($exemple->ID, true);
+	}
+	$ids = [];
+	foreach ([
+		['mentions', 'Mentions légales', ''],
+		['notre-jardin', 'Notre jardin', ''],
+		['potager-collectif', 'Potager collectif', 'notre-jardin'],
+		['verger', 'Verger', 'notre-jardin'],
+		['plein-ecran', 'Plein écran', ''],
+	] as $ordre => [$slug, $titre, $parent]) {
+		$existante = get_page_by_path($parent ? "$parent/$slug" : $slug);
+		$donnees = [
+			'post_type' => 'page', 'post_status' => 'publish', 'post_name' => $slug, 'post_title' => $titre,
+			'post_content' => 'Texte de la page.', 'comment_status' => 'closed', 'menu_order' => $ordre,
+			'post_parent' => $parent ? $ids[$parent] : 0,
+		];
+		if ($existante) {
+			$donnees['ID'] = $existante->ID;
+		}
+		$ids[$slug] = wp_insert_post($donnees);
+		delete_post_meta($ids[$slug], 'site-post-title');
+		delete_post_meta($ids[$slug], 'ast-site-content-layout');
+	}
+	return $ids;
+}
+
+// Menu de pages à deux niveaux, dans l'ordre du menu SPIP (par titre ; sous-pages par rang).
+function ref_menu_pages(string $emplacement): void {
+	$ids = ref_pages();
+	$menu = wp_get_nav_menu_object('Pages');
+	if (!$menu) {
+		$id = wp_create_nav_menu('Pages');
+		$ajouter = function (string $slug, int $parent = 0) use ($id, $ids) {
+			return wp_update_nav_menu_item($id, 0, [
+				'menu-item-title' => get_the_title($ids[$slug]), 'menu-item-object' => 'page',
+				'menu-item-object-id' => $ids[$slug], 'menu-item-type' => 'post_type',
+				'menu-item-parent-id' => $parent, 'menu-item-status' => 'publish',
+			]);
+		};
+		$ajouter('mentions');
+		$jardin = $ajouter('notre-jardin');
+		$ajouter('potager-collectif', $jardin);
+		$ajouter('verger', $jardin);
+		$ajouter('plein-ecran');
+		$menu = wp_get_nav_menu_object('Pages');
+	}
+	$emplacements = get_theme_mod('nav_menu_locations', []);
+	$emplacements[$emplacement] = $menu->term_id;
+	set_theme_mod('nav_menu_locations', $emplacements);
 }

@@ -1,0 +1,29 @@
+<div class="formulaire_spip formulaire_editer formulaire_editer_astra_page formulaire_editer_astra_page-#ENV{id_article}">
+	[<div class="reponse_formulaire reponse_formulaire_ok" role="status">(#ENV*{message_ok})</div>]
+	[<div class="reponse_formulaire reponse_formulaire_erreur" role="alert">(#ENV*{message_erreur})</div>]
+	[(#ENV{editable}|oui)
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE
+		<div class="editer-groupe">
+			<div class="editer editer_affichage_titre[ (#ENV*{erreurs/affichage_titre}|oui)erreur]">
+				<label for="affichage_titre"><:astra:page_titre:></label>
+				[<span class="erreur_message">(#ENV*{erreurs/affichage_titre})</span>]
+				<select name="affichage_titre" id="affichage_titre">
+					<option value="afficher"[(#ENV{affichage_titre}|=={afficher}|oui)selected="selected"]><:astra:page_titre_afficher:></option>
+					<option value="masquer"[(#ENV{affichage_titre}|=={masquer}|oui)selected="selected"]><:astra:page_titre_masquer:></option>
+				</select>
+			</div>
+			<div class="editer editer_disposition[ (#ENV*{erreurs/disposition}|oui)erreur]">
+				<label for="disposition"><:astra:page_disposition:></label>
+				[<span class="erreur_message">(#ENV*{erreurs/disposition})</span>]
+				<select name="disposition" id="disposition">
+					<BOUCLE_dispositions(DATA){source table, #ENV{dispositions}}>
+					<option value="#VALEUR"[(#VALEUR|=={#ENV{disposition}}|oui)selected="selected"]>[(#VAL{astra:page_disposition_}|concat{#VALEUR}|_T)]</option>
+					</BOUCLE_dispositions>
+				</select>
+			</div>
+		</div>
+		<p class="boutons"><input type="submit" class="btn submit" value="<:bouton_enregistrer:>" /></p>
+	</div></form>
+	]
+</div>

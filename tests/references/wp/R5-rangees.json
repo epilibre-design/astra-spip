@@ -1,0 +1,42 @@
+{
+	"ordinateur": [
+		".site-primary-header-wrap .site-branding",
+		".ast-builder-menu-1",
+		".site-below-footer-wrap .ast-footer-copyright"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": ".ast-primary-header-bar",
+			"proprietes": [
+				"border-bottom-width",
+				"border-bottom-style",
+				"background-color",
+				"min-height"
+			]
+		},
+		{
+			"selecteur": ".ast-mobile-header-wrap .ast-primary-header-bar",
+			"proprietes": [
+				"border-bottom-width",
+				"background-color",
+				"min-height"
+			]
+		},
+		{
+			"selecteur": ".site-primary-header-wrap",
+			"proprietes": [
+				"min-height"
+			]
+		}
+	]
+}

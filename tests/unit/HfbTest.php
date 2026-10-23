@@ -224,4 +224,12 @@ final class HfbTest extends TestCase {
 		$this->assertStringContainsString('.ast-above-header-bar{border-bottom-width:0px;}', $css);
 		$this->assertStringNotContainsString('display:none', $css);
 	}
+
+	public function testBordureDeLaRangeePrincipaleSurMobile(): void {
+		// Astra émet le séparateur de la rangée principale aussi sous .ast-header-break-point
+		// (primary-header/dynamic-css/dynamic.css.php), plus spécifique que astra-dynamic.css.
+		$c = astra_hfb_normaliser(['rangees' => ['entete_primary' => ['bordure' => 0]]]);
+		$css = astra_hfb_css_rangees($c['rangees']);
+		$this->assertStringContainsString('.ast-header-break-point .ast-primary-header-bar, .ast-primary-header-bar{border-bottom-width:0px;}', $css);
+	}
 }

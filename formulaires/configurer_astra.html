@@ -74,6 +74,33 @@
 			</div>
 		</fieldset>
 
+		<BOUCLE_si_pages_cfg(CONDITION){si #VAL{pages}|test_plugin_actif}>
+		<fieldset>
+			<legend><:astra:cfg_accueil:></legend>
+			<div class="editer-groupe">
+				#SET{accueil_type,#ENV{accueil_type}|sinon{#VAL{accueil_type}|astra_conf}}
+				<div class="editer editer_accueil_type[ (#ENV*{erreurs/accueil_type}|oui)erreur]">
+					<label for="accueil_type"><:astra:cfg_accueil_type:></label>
+					[<span class="erreur_message">(#ENV*{erreurs/accueil_type})</span>]
+					<select name="accueil_type" id="accueil_type">
+						<option value="articles"[(#GET{accueil_type}|=={articles}|oui)selected="selected"]><:astra:cfg_accueil_articles:></option>
+						<option value="page"[(#GET{accueil_type}|=={page}|oui)selected="selected"]><:astra:cfg_accueil_page:></option>
+					</select>
+				</div>
+				<div class="editer editer_accueil_page[ (#ENV*{erreurs/accueil_page}|oui)erreur]">
+					<label for="accueil_page"><:astra:cfg_accueil_page_choix:></label>
+					[<span class="erreur_message">(#ENV*{erreurs/accueil_page})</span>]
+					<select name="accueil_page" id="accueil_page">
+						<option value=""></option>
+						<BOUCLE_pages_accueil(ARTICLES){id_rubrique=-1}{par num titre, titre}>
+						<option value="#ID_ARTICLE"[(#ID_ARTICLE|=={#ENV{accueil_page}}|oui)selected="selected"]>[(#TITRE|supprimer_numero)]</option>
+						</BOUCLE_pages_accueil>
+					</select>
+				</div>
+			</div>
+		</fieldset>
+		</BOUCLE_si_pages_cfg>
+
 		<fieldset>
 			<legend><:astra:cfg_affichage:></legend>
 			<div class="editer-groupe">

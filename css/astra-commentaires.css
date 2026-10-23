@@ -1,0 +1,8 @@
+/*
+ * Astra pour SPIP — règle du CSS des commentaires d'Astra 4.11.0 (inc/dynamic-css/comments-flex.php)
+ * qui touche le contenu : Astra ne l'émet que si les commentaires de la page sont ouverts ou qu'elle
+ * en a. Chargée aux mêmes conditions par article.html et page_unique.html.
+ */
+.entry-content ul li, .entry-content ol li {
+	margin-bottom: 10px;
+}

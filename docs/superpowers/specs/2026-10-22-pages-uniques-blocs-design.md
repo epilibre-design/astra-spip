@@ -1,6 +1,6 @@
 # Pages uniques et blocs natifs WordPress — spécification
 
-Date : 2026-10-22. Statut : à relire (révisée après la première relecture de Codex).
+Date : 2026-10-22. Statut : implémentée (version 1.1.0).
 
 ## Objectif
 

@@ -13,6 +13,13 @@ return [
 	'bouton_defaut' => 'Button',
 
 	// C
+	'cfg_accueil' => 'Home page',
+	'cfg_accueil_articles' => 'Latest articles',
+	'cfg_accueil_page' => 'A static page',
+	'cfg_accueil_page_choix' => 'Page displayed as home page',
+	'cfg_accueil_page_erreur' => 'Choose a published static page.',
+	'cfg_accueil_type' => 'The home page displays',
+	'cfg_accueil_type_erreur' => 'Unknown choice.',
 	'cfg_afficher_auteurs' => 'Show article authors',
 	'cfg_afficher_extrait' => 'Show an excerpt in article lists',
 	'cfg_afficher_slogan' => 'Show the site tagline in the header',
@@ -178,8 +185,19 @@ return [
 	'notes' => 'Notes',
 
 	// P
+	'page_disposition' => 'Content layout',
+	'page_disposition_defaut' => 'Same as pages',
+	'page_disposition_etroite' => 'Narrow',
+	'page_disposition_normale' => 'Normal',
+	'page_disposition_pleine' => 'Full width',
+	'page_erreur_choix' => 'Unknown choice.',
+	'page_erreur_droits' => 'You cannot edit this page.',
 	'page_inexistante' => 'This page doesn’t seem to exist.',
 	'page_inexistante_texte' => 'It looks like the link pointing here was faulty. Maybe try searching?',
+	'page_reglages_enregistres' => 'Display settings saved.',
+	'page_titre' => 'Page title',
+	'page_titre_afficher' => 'Show',
+	'page_titre_masquer' => 'Hide',
 	'page_introuvable' => 'Page not found',
 	'pagination' => 'Post pagination',
 	'panneau_fermer' => 'Close menu',

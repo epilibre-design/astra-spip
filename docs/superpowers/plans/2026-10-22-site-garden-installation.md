@@ -4,7 +4,7 @@
 
 **Goal:** un dépôt de site `garden-spip` dont `bin/install.sh` installe depuis zéro, et relance sans dégâts, un SPIP 4.4 configuré comme le modèle Garden Maintenance avec un contenu de substitution.
 
-**Architecture:** organisation de `/src/site-tuto` : la racine du dépôt est la racine SPIP (cœur téléchargé, non versionné), un plugin de site `garden` porte la configuration et le contenu, une commande `garden:seed` les applique. Le moteur du seed sépare une décision pure (testée par PHPUnit) des écritures SPIP ; chaque valeur fournie est suivie par deux empreintes (valeur du seed, valeur relue après écriture), et chaque page porte une clé stable (champ `page` = `garden-<clé>`) qui évite les doublons après une interruption.
+**Architecture:** organisation de `/src/site-tuto` : la racine du dépôt est la racine SPIP (cœur téléchargé, non versionné), un plugin de site `garden` porte la configuration et le contenu, une commande `garden:seed` les applique. Le moteur du seed sépare une décision pure (testée par PHPUnit) des écritures SPIP ; chaque valeur fournie est suivie par deux empreintes (valeur du seed, valeur relue après écriture), et chaque page porte une clé stable (champ `page` = `garden_<clé>` (le plugin Pages n'accepte que [a-z0-9_])) qui évite les doublons après une interruption.
 
 **Tech Stack:** Bash, spip-cli avec la MR 91, SPIP 4.4 (SQLite), PHP 8.1+ pour l'outillage (le plugin `garden` vise PHP 7.4+ comme Astra SPIP), PHPUnit 11.5, plugins Pages, a2a, tiptap_spip, Astra SPIP.
 
@@ -559,9 +559,9 @@ Ajouter à `bin/tester-installation.sh`, avant `scenarios=("$@")` :
 ```bash
 seed() { (cd "$SITE" && $SPIP_CLI garden:seed "$@"); }
 val() { spip_eval "include_spip('inc/config'); \$v = lire_config('$1'); echo is_array(\$v) ? json_encode(\$v) : \$v;"; }
-id_page() { spip_eval "echo (int) sql_getfetsel('id_article', 'spip_articles', 'page=' . sql_quote('garden-$1'));"; }
-texte_page() { spip_eval "echo sql_getfetsel('texte', 'spip_articles', 'page=' . sql_quote('garden-$1'));"; }
-nb_pages() { spip_eval "echo sql_countsel('spip_articles', \"page LIKE 'garden-%'\");"; }
+id_page() { spip_eval "echo (int) sql_getfetsel('id_article', 'spip_articles', 'page=' . sql_quote('garden_$1'));"; }
+texte_page() { spip_eval "echo sql_getfetsel('texte', 'spip_articles', 'page=' . sql_quote('garden_$1'));"; }
+nb_pages() { spip_eval "echo sql_countsel('spip_articles', \"page LIKE 'garden_%'\");"; }
 LOTS=plugins/garden/tests/lots
 
 scenario_lots() {
@@ -574,9 +574,9 @@ scenario_lots() {
 	seed --dossier=$LOTS --lot=1 >/dev/null
 	verifier "relance au même lot : rien ne change" test "$(val garden)" = "$memoire"
 	# Personnalisations : texte de B, couleur 0 ; suppression de C ; A reste intacte.
-	spip_eval "sql_updateq('spip_articles', ['texte' => 'Texte B personnalisé.'], 'page=' . sql_quote('garden-b'));"
+	spip_eval "sql_updateq('spip_articles', ['texte' => 'Texte B personnalisé.'], 'page=' . sql_quote('garden_b'));"
 	spip_eval "include_spip('inc/config'); ecrire_config('astra/couleur_0', '#123456');"
-	spip_eval "sql_delete('spip_articles', 'page=' . sql_quote('garden-c'));"
+	spip_eval "sql_delete('spip_articles', 'page=' . sql_quote('garden_c'));"
 	sortie=$(seed --dossier=$LOTS --lot=2)
 	verifier "lot 2 : page intacte mise à jour" test "$(texte_page a)" = "Texte X, lot 2."
 	verifier "lot 2 : page personnalisée conservée" test "$(texte_page b)" = "Texte B personnalisé."
@@ -601,7 +601,7 @@ scenario_interruption() {
 	nouveau_site
 	GARDEN_SEED_OPTIONS="--dossier=$LOTS --lot=1" "$SITE/bin/install.sh" >/dev/null
 	# Repartir d'un site sans contenu ni mémoire du seed.
-	spip_eval "sql_delete('spip_articles', \"page LIKE 'garden-%'\"); include_spip('inc/config'); effacer_config('garden');"
+	spip_eval "sql_delete('spip_articles', \"page LIKE 'garden_%'\"); include_spip('inc/config'); effacer_config('garden');"
 	verifier "arrêt simulé après la création de la troisième page" sh -c "cd '$SITE' && ! GARDEN_ARRET_APRES=3 $SPIP_CLI garden:seed --dossier=$LOTS --lot=1"
 	verifier "troisième page créée mais non mémorisée" test "$(val garden/seed/objets/page.c)" = ""
 	seed --dossier=$LOTS --lot=1 >/dev/null
@@ -675,9 +675,9 @@ function garden_memoriser(string $chemin, $valeur): void {
 	$valeur === null ? effacer_config('garden/seed/' . $chemin) : ecrire_config('garden/seed/' . $chemin, $valeur);
 }
 
-/** Page portant la clé stable garden-<clé>, 0 sinon. */
+/** Page portant la clé stable garden_<clé>, 0 sinon. */
 function garden_page_par_cle(string $cle): int {
-	return (int) sql_getfetsel('id_article', 'spip_articles', 'page=' . sql_quote('garden-' . $cle));
+	return (int) sql_getfetsel('id_article', 'spip_articles', 'page=' . sql_quote('garden_' . $cle));
 }
 
 /** Remplace @id:, @article:, @url: par les valeurs des pages créées. */
@@ -806,7 +806,7 @@ function garden_seed(array $options, callable $journal): int {
 		$reinit = garden_concernee($objet, $partie);
 		if (!$id && (!$memorise || $reinit)) {
 			$id = (int) sql_insertq('spip_articles', [
-				'titre' => $page['titre'], 'texte' => $page['texte'], 'id_rubrique' => -1, 'page' => 'garden-' . $cle,
+				'titre' => $page['titre'], 'texte' => $page['texte'], 'id_rubrique' => -1, 'page' => 'garden_' . $cle,
 				'statut' => 'publie', 'accepter_forum' => 'non', 'lang' => 'fr', 'date' => date('Y-m-d H:i:s'),
 			]);
 			if (!empty($options['arret_apres']) && ++$creees >= $options['arret_apres']) {
@@ -953,7 +953,7 @@ Ajouter à `bin/tester-installation.sh` (après les fonctions de la tâche 3) :
 scenario_site() {
 	nouveau_site
 	"$SITE/bin/install.sh" >/dev/null
-	verifier "six pages publiées" test "$(spip_eval "echo sql_countsel('spip_articles', \"page LIKE 'garden-%' AND statut='publie' AND id_rubrique=-1\");")" = 6
+	verifier "six pages publiées" test "$(spip_eval "echo sql_countsel('spip_articles', \"page LIKE 'garden_%' AND statut='publie' AND id_rubrique=-1\");")" = 6
 	verifier "palette du modèle" test "$(val astra/couleur_0)" = "#40bf4f"
 	hfb=$(val astra/hfb)
 	verifier "menu de pages dans l'en-tête" grep -q '"source":"pages"' <<<"$hfb"
@@ -988,7 +988,7 @@ return [
 	'astra_min' => '1.0.0',
 	'pages' => [
 		'accueil' => ['titre' => '10. Accueil', 'texte' => "{{Les Jardins du Val}} entretiennent les jardins des particuliers et des copropriétés : tonte, taille des haies, désherbage et petits aménagements.\n\nUne équipe de quatre jardiniers intervient toute l'année, sur devis gratuit."],
-		'a-propos' => ['titre' => '20. À propos', 'texte' => "L'entreprise est née de l'envie de jardiner autrement : sans produits chimiques, avec des outils sobres et en laissant une place à la faune.\n\nNous travaillons dans un rayon de vingt kilomètres pour limiter nos déplacements."],
+		'a_propos' => ['titre' => '20. À propos', 'texte' => "L'entreprise est née de l'envie de jardiner autrement : sans produits chimiques, avec des outils sobres et en laissant une place à la faune.\n\nNous travaillons dans un rayon de vingt kilomètres pour limiter nos déplacements."],
 		'services' => ['titre' => '30. Services', 'texte' => "-* Tonte et entretien des pelouses\n-* Taille des haies et des arbustes\n-* Désherbage manuel et paillage\n-* Création de massifs et de potagers\n-* Ramassage des feuilles et évacuation des déchets verts"],
 		'realisations' => ['titre' => '40. Réalisations', 'texte' => "Quelques chantiers récents : un jardin de ville transformé en potager partagé, une haie mixte replantée pour les oiseaux, une cour minérale végétalisée.\n\nLes photographies seront ajoutées avec des images libres de droits."],
 		'faq' => ['titre' => '50. Questions fréquentes', 'texte' => "{{{Intervenez-vous toute l'année ?}}}\n\nOui : la tonte cède la place à la taille et au paillage en hiver.\n\n{{{Le devis est-il payant ?}}}\n\nNon, il est gratuit et sans engagement.\n\n{{{Que faites-vous des déchets verts ?}}}\n\nIls sont broyés et, si vous le souhaitez, laissés sur place en paillage."],
@@ -1032,7 +1032,7 @@ return [
 				],
 				'pied' => [
 					'widget-1' => $widget('Nous joindre', "Les Jardins du Val\n\nadresse et téléphone à compléter"),
-					'widget-2' => $widget('Liens rapides', "-* [Accueil->@article:accueil]\n-* [À propos->@article:a-propos]\n-* [Contact->@article:contact]"),
+					'widget-2' => $widget('Liens rapides', "-* [Accueil->@article:accueil]\n-* [À propos->@article:a_propos]\n-* [Contact->@article:contact]"),
 					'widget-3' => $widget('Nos services', "-* [Tonte et taille->@article:services]\n-* [Potagers->@article:services]\n-* [Réalisations->@article:realisations]"),
 					'widget-4' => $widget('Les Jardins du Val', 'Un jardin vivant, entretenu sans produits chimiques.'),
 					'social-icons-1' => ['reseaux' => [['reseau' => 'facebook', 'url' => ''], ['reseau' => 'twitter', 'url' => ''], ['reseau' => 'linkedin', 'url' => '']]],
@@ -1093,7 +1093,7 @@ scenario_lot2() {
 scenario_lot1_vers_lot2() {
 	nouveau_site
 	GARDEN_SEED_OPTIONS="--lot=1" "$SITE/bin/install.sh" >/dev/null
-	spip_eval "sql_updateq('spip_articles', ['texte' => 'Mon texte.'], 'page=' . sql_quote('garden-faq'));"
+	spip_eval "sql_updateq('spip_articles', ['texte' => 'Mon texte.'], 'page=' . sql_quote('garden_faq'));"
 	seed --lot=2 >/dev/null
 	texte=$(texte_page services)
 	verifier "lot 1 → 2 : page intacte enrichie" grep -q '<h1' <<<"$texte"

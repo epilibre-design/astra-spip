@@ -1,0 +1,41 @@
+[
+	{
+		"bloc": "wp-block-separator",
+		"perdu": "bloc converti par wp2spip en filet SPIP (----) : classes wp-block-separator et has-alpha-channel-opacity perdues",
+		"selecteur": "hr",
+		"cible": "",
+		"propriete": "height",
+		"attendu": "1px",
+		"masque": ":scope",
+		"effet": "filet SPIP sur toute la largeur du contenu (1 px) au lieu du séparateur court de Wordpress (100 px, bordure de 2 px)"
+	},
+	{
+		"bloc": "wp-block-cover",
+		"perdu": "span.wp-block-cover__background.has-background-dim (assombrissement, réglage dimRatio)",
+		"cible": ".wp-block-cover__background",
+		"propriete": "opacity",
+		"attendu": null,
+		"masque": ".wp-block-cover__background",
+		"effet": "l'image de couverture n'est plus assombrie (Wordpress : noir à 50 %)"
+	},
+	{
+		"bloc": "wp-block-code",
+		"perdu": "bloc converti par wp2spip en <cadre> : pre.wp-block-code devient une zone de texte en lecture seule",
+		"selecteur": "textarea.spip_cadre",
+		"cible": "",
+		"propriete": "resize",
+		"attendu": "both",
+		"masque": ":scope",
+		"effet": "code affiché dans une zone de texte redimensionnable, hauteur fixée par SPIP"
+	},
+	{
+		"bloc": "wp-block-verse",
+		"perdu": "bloc converti par wp2spip en <poesie> : pre.wp-block-verse devient blockquote.spip_poesie",
+		"selecteur": "blockquote.spip_poesie",
+		"cible": "",
+		"propriete": "white-space",
+		"attendu": "normal",
+		"masque": ":scope",
+		"effet": "vers en lignes de bloc SPIP (une div par vers) au lieu d'un texte préformaté"
+	}
+]

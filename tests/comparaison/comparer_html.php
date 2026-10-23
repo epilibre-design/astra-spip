@@ -1,7 +1,9 @@
 <?php
 /**
  * Compare la structure de l'en-tête, du panneau mobile et du pied de page produits par SPIP
- * à celle des références WordPress (tests/references/sorties/Rn/accueil.html).
+ * à celle des références WordPress (tests/references/sorties/<conf>/accueil.html). Pour les
+ * configurations de pages (clé page ou astra), compare aussi #content jusqu'à .entry-content
+ * et les classes du body.
  *
  * Usage : SPIP_CLI=… php tests/comparaison/comparer_html.php <racine SPIP> <URL SPIP> [Rn …]
  * (variable REFERENCES : autre dossier de références que tests/references/sorties)
@@ -22,9 +24,36 @@ $ici = __DIR__;
 require_once $ici . '/configurations.php';
 $configurations = array_slice($argv, 3) ?: array_keys(astra_configurations_reference());
 
-/** Racines d'éléments : on compare leur premier niveau, pas leur contenu. */
+/** Chemin SPIP de la page comparée : page unique de la configuration, sinon l'accueil. */
+function chemin_spip(string $racine, array $conf): string {
+	if (empty($conf['page'])) {
+		return '/';
+	}
+	$php = 'include_spip("inc/filtres"); echo generer_objet_url((int) sql_getfetsel("id_article", "spip_articles", ["id_rubrique=-1", "page=" . sql_quote(' . var_export($conf['page'], true) . ')]), "article", "", "", true);';
+	$url = trim((string) shell_exec('cd ' . escapeshellarg($racine) . ' && ' . getenv('SPIP_CLI') . ' php:eval ' . escapeshellarg($php)));
+	return '/' . ltrim(preg_replace('#^https?://[^/]+#', '', $url), '/');
+}
+
+/** Classes du body comparables : sans celles que WordPress seul produit. */
+function classes_body(DOMXPath $x): array {
+	$b = $x->query('//body')->item(0);
+	$c = $b ? preg_split('/\s+/', trim($b->getAttribute('class'))) : [];
+	$c = array_values(array_filter($c, function ($x) {
+		return $x !== '' && !preg_match('/^(wp-|group-blog$|[a-z]+-template-default$)/', $x);
+	}));
+	$c = preg_replace('/^(page-id|postid)-\d+$/', '$1-N', $c);
+	sort($c);
+	return $c;
+}
+
+/** Racines d'éléments du builder : on compare leur premier niveau, pas leur contenu. */
 function est_element(DOMElement $e): bool {
 	return (bool) preg_match('/(^| )(ast-builder-layout-element|footer-widget-area|header-widget-area)( |$)/', $e->getAttribute('class'));
+}
+
+/** Contenu rédactionnel : la balise elle-même est comparée, pas ses enfants. */
+function est_contenu(DOMElement $e): bool {
+	return (bool) preg_match('/(^| )entry-content( |$)/', $e->getAttribute('class'));
 }
 
 function classes(DOMElement $e): string {
@@ -32,6 +61,8 @@ function classes(DOMElement $e): string {
 	$c = array_filter($c, function ($x) {
 		return $x !== '' && !preg_match('/^(menu-item-\d+|current-menu-\w+)$/', $x);
 	});
+	// Identifiants d'objets : différents entre les deux sites.
+	$c = preg_replace('/^(post|page-id|postid)-\d+$/', '$1-N', $c);
 	sort($c);
 	return implode('.', $c);
 }
@@ -41,8 +72,11 @@ function squelette(DOMElement $e, int $profondeur = 0, int $niveaux = -1): array
 	if (in_array($e->tagName, ['script', 'style', 'svg', 'form'], true)) {
 		return [];
 	}
-	$lignes = [str_repeat('  ', $profondeur) . $e->tagName . ($e->getAttribute('class') !== '' ? '.' . classes($e) : '') . ($e->getAttribute('id') && !preg_match('/^(menu-item|search-field|text-)/', $e->getAttribute('id')) ? '#' . $e->getAttribute('id') : '')];
+	$lignes = [str_repeat('  ', $profondeur) . $e->tagName . ($e->getAttribute('class') !== '' ? '.' . classes($e) : '') . ($e->getAttribute('id') && !preg_match('/^(menu-item|search-field|text-)/', $e->getAttribute('id')) ? '#' . preg_replace('/^post-\d+$/', 'post-N', $e->getAttribute('id')) : '')];
 	if ($niveaux === 0) {
+		return $lignes;
+	}
+	if (est_contenu($e)) {
 		return $lignes;
 	}
 	$suite = $niveaux > 0 ? $niveaux - 1 : (est_element($e) ? 1 : -1);
@@ -54,16 +88,23 @@ function squelette(DOMElement $e, int $profondeur = 0, int $niveaux = -1): array
 	return $lignes;
 }
 
-function parties(string $html): array {
+function parties(string $html, bool $page): array {
 	$doc = new DOMDocument();
 	libxml_use_internal_errors(true);
 	$doc->loadHTML('<?xml encoding="utf-8"?>' . $html);
 	libxml_clear_errors();
 	$x = new DOMXPath($doc);
+	$chemins = ['entete' => '//header[@id="masthead"]', 'panneau' => '//*[@id="ast-mobile-popup-wrapper"]', 'pied' => '//footer[@id="colophon"]'];
+	if ($page) {
+		$chemins['contenu'] = '//*[@id="content"]';
+	}
 	$resultat = [];
-	foreach (['entete' => '//header[@id="masthead"]', 'panneau' => '//*[@id="ast-mobile-popup-wrapper"]', 'pied' => '//footer[@id="colophon"]'] as $nom => $chemin) {
+	foreach ($chemins as $nom => $chemin) {
 		$n = $x->query($chemin)->item(0);
 		$resultat[$nom] = $n ? squelette($n) : [];
+	}
+	if ($page) {
+		$resultat['body'] = classes_body($x);
 	}
 	return $resultat;
 }
@@ -81,8 +122,10 @@ foreach ($configurations as $conf) {
 		$echec = true;
 		continue;
 	}
-	$spip = parties((string) file_get_contents(rtrim($url, '/') . '/'));
-	$wp = parties((string) file_get_contents($reference));
+	$conf_c = astra_configurations_reference()[$conf];
+	$page = isset($conf_c['page']) || isset($conf_c['astra']);
+	$spip = parties((string) file_get_contents(rtrim($url, '/') . chemin_spip($racine, $conf_c)), $page);
+	$wp = parties((string) file_get_contents($reference), $page);
 	foreach ($wp as $partie => $lignes) {
 		if ($lignes === $spip[$partie]) {
 			echo "$conf / $partie : identique (" . count($lignes) . " nœuds)\n";

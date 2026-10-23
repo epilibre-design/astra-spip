@@ -69,8 +69,12 @@
 .entry-content::after { content: ""; display: table; clear: both; }
 .entry-content .spip_cadre, .entry-content .spip_code { font-family: monospace; }
 .entry-content .spip { width: 100%; }
-.entry-content table.spip th, .entry-content table.spip td { padding: .5em .75em; border: 1px solid var(--ast-border-color); }
-.entry-content table.spip thead th, .entry-content table.spip .row_first { background: var(--ast-global-color-5); }
+/* Tableaux SPIP, dans le texte (enfant direct de .entry-content) ou un autre conteneur,
+   hors bloc tableau importé de Wordpress (styles de wp-block-table) */
+.entry-content > table.spip th, .entry-content > table.spip td,
+.entry-content :not(.wp-block-table) > table.spip th, .entry-content :not(.wp-block-table) > table.spip td { padding: .5em .75em; border: 1px solid var(--ast-border-color); }
+.entry-content > table.spip thead th, .entry-content > table.spip .row_first,
+.entry-content :not(.wp-block-table) > table.spip thead th, .entry-content :not(.wp-block-table) > table.spip .row_first { background: var(--ast-global-color-5); }
 .entry-content .spip_out::after { content: none; }
 
 /* Navigation entre articles vide */
@@ -131,4 +135,66 @@
 .ast-hfb-bouton-contour .ast-custom-button-link:hover .ast-custom-button {
 	background-color: var(--ast-global-color-0);
 	color: var(--ast-global-color-5);
+}
+
+/*
+ * Blocs Wordpress importés par wp2spip : éléments produits par SPIP à la place des classes de
+ * Wordpress. Chaque règle reprend les déclarations de la règle de Wordpress 7.1.3 ou d'Astra citée,
+ * le sélecteur d'origine étant transposé (même structure, classe perdue remplacée).
+ */
+
+/* = :root :where(.is-layout-flow) > … (global-styles-inline-css) : wp2spip retire is-layout-flow,
+   que Wordpress pose sur les colonnes, groupes, citations et le conteneur des couvertures. */
+:root :where(.wp-block-column, .wp-block-group, .wp-block-quote, .wp-block-cover__inner-container) > :first-child { margin-block-start: 0; }
+:root :where(.wp-block-column, .wp-block-group, .wp-block-quote, .wp-block-cover__inner-container) > :last-child { margin-block-end: 0; }
+:root :where(.wp-block-column, .wp-block-group, .wp-block-quote, .wp-block-cover__inner-container) > * { margin-block-start: 24px; margin-block-end: 0; }
+
+/* = .is-layout-flex … (global-styles-inline-css) : wp2spip retire is-layout-flex, que Wordpress pose
+   sur les colonnes et les groupes de boutons. */
+:root :where(.wp-block-columns, .wp-block-buttons) { gap: 24px; }
+body .wp-block-columns, body .wp-block-buttons { display: flex; }
+.wp-block-columns, .wp-block-buttons { flex-wrap: wrap; align-items: center; }
+.wp-block-columns > :is(*, div), .wp-block-buttons > :is(*, div) { margin: 0; }
+
+/* Bouton : lien SPIP à la place de a.wp-block-button__link.wp-element-button */
+/* = .wp-block-buttons .wp-block-button__link (blocks/buttons/style.css) */
+.wp-block-buttons .wp-block-button > a { width: 100%; }
+/* = .wp-block-button__link (blocks/button/style.css) */
+.wp-block-button > a { align-content: center; box-sizing: border-box; cursor: pointer; display: inline-block; height: 100%; text-align: center; word-break: break-word; }
+/* = :where(.wp-block-button__link) (blocks/button/style.css) */
+:where(.wp-block-button > a) { border-radius: 9999px; box-shadow: none; padding: calc(.667em + 2px) calc(1.333em + 2px); text-decoration: none; }
+/* = :root :where(.wp-element-button, .wp-block-button__link) (global-styles-inline-css) */
+:root :where(.wp-block-button > a) { background-color: #32373c; border-width: 0; color: #fff; font-family: inherit; font-size: inherit; font-style: inherit; font-weight: inherit; letter-spacing: inherit; line-height: inherit; padding-top: calc(0.667em + 2px); padding-right: calc(1.333em + 2px); padding-bottom: calc(0.667em + 2px); padding-left: calc(1.333em + 2px); text-decoration: none; text-transform: inherit; }
+/* = .wp-block-button .wp-block-button__link (astra-dynamic.css) */
+.wp-block-button > a { border-color: var(--ast-global-color-0); background-color: var(--ast-global-color-0); color: #ffffff; font-family: inherit; font-weight: 500; line-height: 1em; font-size: 16px; font-size: 1rem; padding-top: 15px; padding-right: 30px; padding-bottom: 15px; padding-left: 30px; }
+.wp-block-button > a:hover, .wp-block-button > a:focus { color: #ffffff; background-color: var(--ast-global-color-1); border-color: var(--ast-global-color-1); }
+.ast-single-post .entry-content .wp-block-button > a { text-decoration: none; }
+@media (max-width: 921px) {
+	.wp-block-button > a { padding-top: 14px; padding-right: 28px; padding-bottom: 14px; padding-left: 28px; }
+}
+@media (max-width: 544px) {
+	.wp-block-button > a { padding-top: 12px; padding-right: 24px; padding-bottom: 12px; padding-left: 24px; }
+}
+
+/* Couverture. Règle d'Astra (inc/class-astra-dynamic-css.php), émise quand la page contient un bloc
+   couverture : elle ne vise que ce bloc, elle est donc chargée partout. */
+body .wp-block-cover:not(.has-text-color.has-link-color) p { color: var(--ast-global-color-3); }
+
+/* Couverture : document SPIP à la place de img.wp-block-cover__image-background */
+/* = .wp-block-cover .wp-block-cover__image-background (blocks/cover/style.css) */
+.wp-block-cover > .spip_documents img { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding: 0; width: 100%; height: 100%; max-width: none; max-height: none; -o-object-fit: cover; object-fit: cover; outline: none; border: none; box-shadow: none; }
+/* = body:not(.editor-styles-wrapper) .wp-block-cover:not(…) .wp-block-cover__image-background (blocks/cover/style.css) */
+body:not(.editor-styles-wrapper) .wp-block-cover > .spip_documents img { z-index: 0; }
+
+/* Média et texte : document SPIP dans .wp-block-media-text__media, à la place de l'image seule ; son
+   conteneur n'a pas d'équivalent dans Wordpress (= .wp-block-media-text > .wp-block-media-text__media { margin: 0 }) */
+.entry-content .wp-block-cover > .spip_documents, .entry-content .wp-block-media-text__media > .spip_documents { margin: 0; }
+/* = .wp-block-media-text__media img (blocks/media-text/style.css) */
+.entry-content .wp-block-media-text__media .spip_documents img { height: auto; max-width: unset; width: 100%; vertical-align: middle; }
+/* = .wp-block-media-text.is-stacked-on-mobile … (blocks/media-text/style.css) : wp2spip retire la classe
+   is-stacked-on-mobile ; le réglage par défaut de Wordpress (empilé sur mobile) est appliqué. */
+@media (max-width: 600px) {
+	.wp-block-media-text { grid-template-columns: 100% !important; }
+	.wp-block-media-text > .wp-block-media-text__media { grid-column: 1; grid-row: 1; }
+	.wp-block-media-text > .wp-block-media-text__content { grid-column: 1; grid-row: 2; }
 }

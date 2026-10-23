@@ -1,0 +1,14 @@
+{
+	"chemin": "/?pagename=plein-ecran",
+	"ordinateur": [
+		"article.page .entry-content"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		"body.ast-page-builder-template"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": []
+}

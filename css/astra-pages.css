@@ -1,0 +1,23 @@
+/*
+ * Astra pour SPIP — CSS des dispositions de page.
+ *
+ * Règles générées par Astra 4.11.0 pour les pages (pleine largeur…), absentes de la
+ * disposition par défaut (css/astra-dynamic.css). Fichier produit par
+ * tests/references/extraire_css.py --pages à partir des références WordPress : ne pas modifier à la main.
+ */
+.ast-page-builder-template .hentry {margin: 0;}
+.ast-page-builder-template .site-content > .ast-container {max-width: 100%;padding: 0;}
+.ast-page-builder-template .site .site-content #primary {padding: 0;margin: 0;}
+.ast-page-builder-template .no-results {text-align: center;margin: 4em auto;}
+.ast-page-builder-template .entry-header.ast-no-title.ast-no-thumbnail {margin-top: 0;}
+.ast-page-builder-template .entry-header.ast-header-without-markup {margin-top: 0;margin-bottom: 0;}
+.ast-page-builder-template .entry-header.ast-no-title.ast-no-meta {margin-bottom: 0;}
+.ast-page-builder-template.single .post-navigation {padding-bottom: 2em;}
+.ast-page-builder-template.single-post .site-content > .ast-container {max-width: 100%;}
+.ast-page-builder-template .entry-header {margin-top: 2em;margin-left: auto;margin-right: auto;}
+.ast-page-builder-template .ast-archive-description {margin: 2em auto 0;padding-left: 20px;padding-right: 20px;}
+.ast-page-builder-template .ast-row {margin-left: 0;margin-right: 0;}
+.single.ast-page-builder-template .entry-header + .entry-content,.single.ast-page-builder-template .ast-single-entry-banner + .site-content article .entry-content {margin-bottom: 2em;}
+@media(min-width: 921px){
+	.ast-page-builder-template.archive.ast-right-sidebar .ast-row article,.ast-page-builder-template.archive.ast-left-sidebar .ast-row article {padding-left: 0;padding-right: 0;}
+}

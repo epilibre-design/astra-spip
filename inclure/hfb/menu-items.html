@@ -33,7 +33,19 @@
 </BOUCLE_articles_mot></BOUCLE_mots>
 </BOUCLE_si_mots>
 <BOUCLE_si_pages(CONDITION){si #ENV{source}|=={pages}|et{#VAL{pages}|test_plugin_actif}}>
-<BOUCLE_pages(ARTICLES){id_rubrique=-1}{par num titre, titre}>
-<li class="menu-item menu-item-article-#ID_ARTICLE[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)current-menu-item]"><a href="#URL_ARTICLE" class="menu-link"[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)]</a></li>
+<BOUCLE_pages(DATA){source table, #VAL|astra_pages_arbre}>
+#SET{enfants,#ENV{niveaux}|=={1}|?{#ARRAY,#VALEUR{enfants}}}
+<BOUCLE_page(ARTICLES){id_article=#VALEUR{id}}>
+<li class="menu-item menu-item-article-#ID_ARTICLE[ (#GET{enfants}|oui)menu-item-has-children][ (#ID_ARTICLE|=={#ENV{id_article}}|oui)current-menu-item][ (#GET{enfants}|find{#ENV{id_article}}|oui)current-menu-ancestor]"><a href="#URL_ARTICLE" class="menu-link"[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)][(#GET{enfants}|oui)<span role="presentation" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span></span>]</a>
+	<BOUCLE_si_sous_pages(CONDITION){si #GET{enfants}}>
+	<button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text"><:astra:deplier_menu:></span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span></button>
+	<ul class="sub-menu">
+		<BOUCLE_sous_pages(DATA){source table, #GET{enfants}}><BOUCLE_sous_page(ARTICLES){id_article=#VALEUR}>
+		<li class="menu-item menu-item-article-#ID_ARTICLE[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)current-menu-item]"><a href="#URL_ARTICLE" class="menu-link"[ (#ID_ARTICLE|=={#ENV{id_article}}|oui)aria-current="page"]>[(#TITRE|supprimer_numero)]</a></li>
+		</BOUCLE_sous_page></BOUCLE_sous_pages>
+	</ul>
+	</BOUCLE_si_sous_pages>
+</li>
+</BOUCLE_page>
 </BOUCLE_pages>
 </BOUCLE_si_pages>

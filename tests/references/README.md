@@ -17,12 +17,13 @@ Le dossier `sorties/` n'est pas versionné : il se régénère avec les commande
 ## Capturer
 
     WP=/chemin/wordpress PW=/chemin/playwright tests/references/capturer.sh \
-        R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique
+        R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees
 
 Chaque configuration écrit dans `sorties/Rn/` : `accueil.html`, `article.html`,
 `dynamique.css` (contenu de `<style id="astra-theme-css-inline-css">`), `ordinateur.png`
 (1280 px), `mobile.png` (390 px), `mobile-menu.png` (menu mobile ouvert) et `options.json`
-(option `astra-settings` appliquée).
+(option `astra-settings` appliquée). `accueil.html` est la page capturée au chemin `chemin` du
+JSON (l'accueil par défaut).
 
 Le script échoue (code 1) si : le CSS dynamique est absent ou vide, une erreur JavaScript se
 produit, un sélecteur du fichier `wp/Rn.json` n'est pas visible (`ordinateur`, `mobile`) ou
@@ -65,6 +66,17 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 | R2-entete-centre | Menu à gauche, logo centré, compte et recherche à droite ; rangée basse : widget et texte 2 ; mobile : bouton à gauche, logo centré, compte ; panneau latéral avec menu et recherche |
 | R3-pied-colonnes | Pied : rangée haute 2 colonnes (texte, icônes), principale 4 widgets (`4-equal`), basse copyright et menu (`2-equal`) |
 | R4-pied-asymetrique | Pied : rangée principale `3-cwide` (widget ; texte et icônes ; menu vertical), basse `2-lheavy` (copyright, texte 2) |
+| R5-rangees | Disposition par défaut ; rangée principale de l'en-tête : hauteur 100 px, fond `#e8f5e9`, sans séparateur (`hb-header-main-sep` à 0) ; styles calculés comparés (`styles`). Hors des configurations lues par `extraire_css.py` |
+| P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
+| P2-accueil | Même menu, page « Notre jardin » en page d'accueil statique (`/`) |
+| P3-page-pleine | Page « Plein écran », titre désactivé, conteneur `full-width-container` |
+
+Les pages des configurations P (`ref_pages()`) ont les mêmes titres, textes et sous-pages que le
+SPIP d'intégration (`scripts/install-spip-test.sh`). Classes du `body` relevées :
+
+- P1-page : `wp-singular page-template-default page page-id-21 page-parent wp-theme-astra ast-desktop ast-plain-container ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled`
+- P2-accueil : les mêmes, précédées de `home`
+- P3-page-pleine : `wp-singular page-template-default page page-id-24 wp-theme-astra ast-desktop ast-page-builder-template ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header` (ni `ast-normal-title-enabled`, ni `page-parent`)
 
 ## Relevés pour le portage
 
@@ -98,12 +110,12 @@ Le balisage complet de chaque élément est à recopier depuis `sorties/Rn/accue
 ### Icônes sociales : source et licence
 
 Astra rend les icônes par `Astra_Builder_UI_Controller::fetch_svg_icon()`, à partir de
-`assets/svg/svgs.json` (1 604 icônes). Les tracés des icônes de marques (facebook, twitter,
-instagram, linkedin, youtube, mastodon, github, rss…) sont ceux de **Font Awesome Free**
-(Fonticons, Inc.), dont les icônes sont sous licence **CC BY 4.0**. Le `readme.txt` d'Astra ne
-le mentionne pas : il ne cite que IcoMoon-Free (CC BY 4.0 ou GPL), Heroicons (MIT) pour les
-captures, et les illustrations CC0.
+`assets/svg/svgs.json` (1 604 icônes). Huit tracés repris dans le portage (facebook,
+twitter, instagram, linkedin, youtube, mastodon, github et rss) correspondent exactement
+à **Font Awesome Free**, par Fonticons, Inc., sous **CC BY 4.0**. Le `readme.txt` d'Astra
+ne mentionne pas Font Awesome : il cite notamment IcoMoon-Free, ainsi que Heroicons
+pour les captures.
 
-CC BY 4.0 est compatible avec la GPL v3 (la licence d'astra-spip), à condition de **créditer**
-Font Awesome. Les icônes reprises dans le portage devront donc être accompagnées d'une mention
-« Icônes de marques : Font Awesome Free par Fonticons, Inc., CC BY 4.0 » (README et `paquet.xml`).
+Les SVG `twitter-x`, `bluesky` et `email` viennent également d'Astra, mais leur attribution
+à Font Awesome n'est pas établie. Le relevé des correspondances, les sources, les crédits
+et les notices conservées figurent dans [CREDITS.md](../../CREDITS.md).
