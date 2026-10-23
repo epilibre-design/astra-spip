@@ -22,6 +22,15 @@
 					</BOUCLE_dispositions>
 				</select>
 			</div>
+			<div class="editer editer_transparent[ (#ENV*{erreurs/transparent}|oui)erreur]">
+				<label for="transparent"><:astra:page_transparent:></label>
+				[<span class="erreur_message">(#ENV*{erreurs/transparent})</span>]
+				<select name="transparent" id="transparent">
+					<BOUCLE_transparents(DATA){source table, #ENV{transparents}}>
+					<option value="#VALEUR"[(#VALEUR|=={#ENV{transparent}}|oui)selected="selected"]>[(#VAL{astra:page_transparent_}|concat{#VALEUR}|_T)]</option>
+					</BOUCLE_transparents>
+				</select>
+			</div>
 		</div>
 		<p class="boutons"><input type="submit" class="btn submit" value="<:bouton_enregistrer:>" /></p>
 	</div></form>

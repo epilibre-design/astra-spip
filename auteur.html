@@ -8,7 +8,7 @@
 <head>
 <title>[(#NOM|textebrut)] – [(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#BIO|couper{150}|attribut_html)" />]
-<INCLURE{fond=inclure/head} />
+<INCLURE{fond=inclure/head}{contexte=auteur}{id=#ID_AUTEUR} />
 </head>
 <body itemtype="https://schema.org/ProfilePage" itemscope="itemscope" class="[(#VAL{auteur}|astra_body_class{#ID_AUTEUR})]">
 <INCLURE{fond=inclure/header}{type_page=auteur} />

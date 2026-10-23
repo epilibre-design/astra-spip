@@ -8,7 +8,7 @@
 <head>
 <title>[(#TITRE|supprimer_numero|textebrut)] – [(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF|sinon{#TEXTE}|couper{150}|attribut_html)" />]
-<INCLURE{fond=inclure/head} />
+<INCLURE{fond=inclure/head}{contexte=mot}{id=#ID_MOT} />
 </head>
 <body itemtype="https://schema.org/Blog" itemscope="itemscope" class="[(#VAL{mot}|astra_body_class{#ID_MOT})]">
 <INCLURE{fond=inclure/header}{type_page=mot} />

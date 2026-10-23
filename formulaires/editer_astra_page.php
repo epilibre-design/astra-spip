@@ -1,6 +1,6 @@
 <?php
 /**
- * Astra pour SPIP — réglages d'affichage d'une page unique (titre, disposition).
+ * Astra pour SPIP — réglages d'affichage d'une page unique (titre, disposition, en-tête transparent).
  *
  * Nommé editer_ et non configurer_ : SPIP impose l'autorisation « configurer » à tout
  * formulaire configurer_* (ecrire/inc/cvt_configurer.php). Ici, ce sont les droits de
@@ -26,6 +26,8 @@ function formulaires_editer_astra_page_charger_dist($id_article) {
 		'affichage_titre' => $r['titre'],
 		'disposition' => $r['disposition'],
 		'dispositions' => astra_page_dispositions(),
+		'transparent' => $r['transparent'],
+		'transparents' => astra_page_transparents(),
 		'editable' => autoriser('modifier', 'article', $id_article),
 	];
 }
@@ -37,6 +39,9 @@ function formulaires_editer_astra_page_verifier_dist($id_article) {
 	}
 	if (!in_array(_request('disposition'), astra_page_dispositions(), true)) {
 		$erreurs['disposition'] = _T('astra:page_erreur_choix');
+	}
+	if (!in_array(_request('transparent'), astra_page_transparents(), true)) {
+		$erreurs['transparent'] = _T('astra:page_erreur_choix');
 	}
 	return $erreurs;
 }
@@ -50,6 +55,7 @@ function formulaires_editer_astra_page_traiter_dist($id_article) {
 	ecrire_config('astra/pages/' . $id_article, astra_page_normaliser([
 		'titre' => _request('affichage_titre'),
 		'disposition' => _request('disposition'),
+		'transparent' => _request('transparent'),
 	]));
 	include_spip('inc/invalideur');
 	suivre_invalideur("id='article/$id_article'");
