@@ -86,10 +86,12 @@ function astra_page_a_sous_pages(int $id_article): bool {
 	if (!test_plugin_actif('a2a')) {
 		return false;
 	}
-	return (bool) sql_countsel(
+	// En erreur (table d'a2a absente), sql_countsel renvoie la requête : seul un nombre compte.
+	$n = sql_countsel(
 		'spip_articles_lies AS l INNER JOIN spip_articles AS a ON a.id_article = l.id_article_lie',
 		['l.id_article=' . $id_article, "l.type_liaison='sous_page'", "a.statut='publie'", 'a.id_rubrique=-1']
 	);
+	return is_numeric($n) && $n > 0;
 }
 
 /**
@@ -107,7 +109,7 @@ function astra_pages_arbre(): array {
 		$liens = sql_allfetsel('id_article, id_article_lie', 'spip_articles_lies', [
 			sql_in('id_article', $publiees), sql_in('id_article_lie', $publiees), "type_liaison='sous_page'",
 		], '', 'id_article, rang');
-		foreach ($liens as $l) {
+		foreach (is_array($liens) ? $liens : [] as $l) {
 			$enfants[(int) $l['id_article']][] = (int) $l['id_article_lie'];
 			$a_parente[(int) $l['id_article_lie']] = true;
 		}

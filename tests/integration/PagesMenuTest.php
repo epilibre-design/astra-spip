@@ -58,6 +58,22 @@ final class PagesMenuTest extends TestCase {
 		$this->assertSame(0, $this->menu(0)->query($d . '/li[contains(@class, "menu-item-article-' . $verger . '")]')->length, 'Il revient en sous-menu');
 	}
 
+	public function testTableDesLiensAbsente(): void {
+		// a2a actif sans sa table (installation incomplète) : sql_countsel renvoie alors la requête,
+		// une chaîne non vide, qui ne doit pas faire passer chaque page pour une page parente.
+		$mentions = PagesGabaritTest::id('mentions');
+		$jardin = PagesGabaritTest::id('notre_jardin');
+		sql_query('ALTER TABLE spip_articles_lies RENAME TO spip_articles_lies_cache');
+		try {
+			$this->assertFalse(astra_page_a_sous_pages($mentions));
+			$this->assertFalse(astra_page_a_sous_pages($jardin));
+			$this->assertSame([], array_merge(...array_column(astra_pages_arbre(), 'enfants')));
+		} finally {
+			sql_query('ALTER TABLE spip_articles_lies_cache RENAME TO spip_articles_lies');
+		}
+		$this->assertTrue(astra_page_a_sous_pages($jardin));
+	}
+
 	public function testMenuDuPiedSurUnNiveau(): void {
 		ecrire_config('astra/hfb', [
 			'pied' => ['below' => ['below_1' => ['menu']]],
