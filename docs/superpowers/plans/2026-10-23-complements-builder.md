@@ -8,7 +8,7 @@
 
 **Pile technique :** PHP 7.4+ (plugin), SPIP 4.4, PHPUnit 11.5, WordPress de test avec Astra 4.11.0 et WP-CLI, Playwright (Chromium).
 
-**Spec :** `docs/superpowers/specs/2026-10-23-complements-builder-design.md` (direction validée par Gilles et Codex). Les écarts à la spec sont listés plus bas et sont à valider à la relecture de ce plan.
+**Spec :** `docs/superpowers/specs/2026-10-23-complements-builder-design.md` (direction validée par Gilles et Codex ; décisions du 24 octobre reportées dans la spec par ce même commit).
 
 ## Contraintes globales
 
@@ -25,13 +25,15 @@
 - Commandes : `vendor/bin/phpunit --testsuite unit [--filter …]` ; `vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php [--filter …]`. Comparaisons : `WP=… PW=… SPIP_CLI=… tests/references/capturer.sh <Rn…>` (références WordPress), puis `php tests/comparaison/comparer_html.php <racine SPIP> <URL> [Rn…]` et `tests/comparaison/comparer_captures.sh <racine SPIP> <URL> [Rn…]`. Le SPIP de test doit être servi avec `PHP_CLI_SERVER_WORKERS=4` (SPIP s'appelle lui-même à la première visite).
 - Les correctifs de ce plan s'appliquent depuis la racine du dépôt avec `git apply` (enregistrer le bloc dans un fichier, puis `git apply chemin/du/fichier.patch`), dans l'ordre des tâches.
 
-## Écarts à la spec (à valider)
+## Décisions (validées par Gilles le 24 octobre)
 
 1. **Bloc menu sur deux niveaux** (§ 3 de la spec : « n'affiche qu'un niveau » ; question ouverte 2). Mesuré sur WordPress (R13) : le widget `nav_menu` affiche les sous-menus, avec `aria-expanded` sur le lien parent et une flèche `span.dropdown-menu-toggle` sans bouton. Le plan reprend ce rendu (`niveaux=2`) ; un seul niveau aurait rendu le HTML différent de WordPress.
 2. **Preuve de Google Reviews par une référence dédiée `R15-sociaux-google`** (§ 4 : « la référence R1 ou R3 gagne l'icône »). R1 à R4 alimentent `extraire_css.py` (CSS figé du builder) ; les modifier changerait ce CSS. R15 place Facebook et Google Reviews dans le pied et compare HTML, captures et styles calculés.
 3. **Pied des références des styles R6–R11** : leur configuration SPIP passe à la structure par appareil (`4-equal` / `full` / `full` et `2-equal` / `2-equal` / `full`), celle de `tests/references/styles/appliquer.php` côté WordPress. Avant la tâche 1, SPIP ne pouvait pas l'exprimer : la classe tablette de la rangée principale différait (`tablet-4-equal` contre `tablet-full`), sans effet visible aux largeurs comparées.
 4. **Version 1.3.0** : la spec ne fixe pas de version ; nouveaux réglages, aucune rupture.
 5. **R13, deux différences de nommage attendues** dans `comparer_html.php` : identifiant de la section (`nav_menu-2`, numéro d'instance du widget WordPress ; `nav_menu-pied-2` dans SPIP, unique par zone) et classe de la `nav` (`menu-<slug du menu>-container` ; `menu-<source>-container`, SPIP n'ayant pas de menus nommés). Documentées dans `tests/references/README.md`.
+
+6. **Répartitions de l'ordinateur gardées sur tablette** (`4-lheavy`, `4-rheavy`, demandé à la relecture) : une valeur simple de la version 1.2.0 vaut pour l'ordinateur et la tablette ; Astra ne propose sur tablette, pour quatre colonnes, que `4-equal`, `2-equal` et `full`. La tablette accepte donc aussi les répartitions de l'ordinateur pour le nombre de colonnes, pour que le formulaire repropose la valeur et qu'un enregistrement ne change rien au rendu (`HfbFormulaireTest::testAllerRetourDesRepartitionsLourdesAQuatreColonnes`).
 
 Constats hors périmètre, relevés pendant la vérification : lancé explicitement sur R11, `comparer_html.php` compare son contenu (clé `astra`) et y trouve des différences de la liste des articles (classes de catégorie, auteur, `time`) qui existent déjà sur `main` ; `tests/e2e/formulaire_styles.cjs` suppose un slogan, que `tests/comparaison/appliquer.sh` remet à vide.
 
@@ -43,8 +45,12 @@ appliqué dans l'ordre sur 7e3dde8 (l'arbre final est identique à celui de l'es
 
 - étape 2 de chaque tâche : tests de la tâche appliqués sur l'état de la tâche précédente, échecs
   relevés tels qu'indiqués ;
-- tests après la tâche 6 : unitaires 83 tests, 1134 assertions ; intégration 76 tests,
-  255 assertions (avant : 71 et 69) ;
+- tests après la tâche 6 : unitaires 83 tests, 1135 assertions ; intégration 77 tests,
+  261 assertions (avant : 71 et 69) ;
+- correction de la relecture (décision 6) : test d'aller-retour du formulaire et
+  `repartitions.cjs` (21 répartitions tablette et mobile, dont `4-lheavy` et `4-rheavy` sur
+  tablette) relancés ; les comparaisons ci-dessous datent de l'essai d'avant la correction,
+  qui ne change ni le rendu ni les références ;
 - `php7.4 -l` sur les fichiers PHP modifiés hors `tests/` : aucune erreur ; exécution sous PHP 7.4
   de `astra_hfb_repartition_appareils()`, `astra_hfb_css_separateur()` et du groupe
   `menu-mobile` ;
@@ -78,7 +84,7 @@ appliqué dans l'ordre sur 7e3dde8 (l'arbre final est identique à celui de l'es
 
 ### Tâche 1 : répartition des colonnes du pied par appareil
 
-Spec § 1. `astra/hfb/rangees/pied_<rangée>/repartition` accepte la structure d'Astra `{"desktop", "tablet", "mobile"}` ; une valeur simple reste valide (ordinateur et tablette, mobile `full` : rendu inchangé). Valeurs par appareil : `astra_hfb_repartitions($colonnes, $appareil)` reprend les choix d'Astra (`inc/customizer/configurations/builder/footer/configs/*.php`) : sur tablette et mobile, `full` en plus, et pour trois colonnes `3-firstrow` et `3-lastrow`. Les classes `ast-builder-grid-row-<desktop>`, `-tablet-<tablet>`, `-mobile-<mobile>` sont celles d'Astra ; le CSS des répartitions est déjà dans `css/astra-hfb.css`.
+Spec § 1. `astra/hfb/rangees/pied_<rangée>/repartition` accepte la structure d'Astra `{"desktop", "tablet", "mobile"}` ; une valeur simple reste valide (ordinateur et tablette, mobile `full` : rendu inchangé). Valeurs par appareil : `astra_hfb_repartitions($colonnes, $appareil)` reprend les choix d'Astra (`Astra_Builder_Helper`, contrôle `ast-row-layout`) : sur tablette et mobile, `full` en plus, et pour trois colonnes `3-firstrow` et `3-lastrow` ; la tablette garde en plus les répartitions de l'ordinateur (décision 6). Les classes `ast-builder-grid-row-<desktop>`, `-tablet-<tablet>`, `-mobile-<mobile>` sont celles d'Astra ; le CSS des répartitions est déjà dans `css/astra-hfb.css`.
 
 **Fichiers :**
 - Modifier : `inc/astra_hfb.php`, `inc/astra_hfb_saisie.php`, `formulaires/configurer_astra_hfb.html`, `lang/astra_fr.php`, `lang/astra_en.php`
@@ -137,24 +143,25 @@ index 1c8c53a..2335c1e 100644
  			'pied' => [
  				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['html-1', 'social-icons-1'], 'primary_3' => ['menu']],
 diff --git a/tests/e2e/repartitions.cjs b/tests/e2e/repartitions.cjs
-index fe8b635..d645ed0 100644
+index fe8b635..73e0599 100644
 --- a/tests/e2e/repartitions.cjs
 +++ b/tests/e2e/repartitions.cjs
-@@ -2,8 +2,11 @@
+@@ -2,8 +2,12 @@
  // Usage : RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
  // Pour chaque répartition proposée par le formulaire : configuration de la rangée principale du
  // pied, puis mesure de la grille dans Chromium. Ordinateur et tablette : colonnes dans les
 -// proportions d'Astra ; mobile : une seule colonne. Vérifie aussi qu'avec un conteneur de 1600 px
 -// les trois rangées du pied suivent cette largeur. Modifie la configuration du site : site de test.
 +// proportions d'Astra ; mobile : une seule colonne. Puis, pour chaque répartition tablette et
-+// mobile proposée (structure par appareil), mesure à 800 et 390 px ; `3-firstrow` et `3-lastrow`
++// mobile proposée (structure par appareil), mesure à 800 et 390 px (répartitions de l'ordinateur
++// gardées sur tablette : à 800 px seulement) ; `3-firstrow` et `3-lastrow`
 +// font en plus déborder la première ou la dernière colonne sur toute la largeur. Vérifie aussi
 +// qu'avec un conteneur de 1600 px les trois rangées du pied suivent cette largeur. Modifie la
 +// configuration du site : site de test.
  const { execFileSync } = require('child_process');
  const { chromium } = require('playwright');
  
-@@ -20,12 +23,23 @@ const REPARTITIONS = {
+@@ -20,12 +24,25 @@ const REPARTITIONS = {
    '4-equal': [1, 1, 1, 1], '4-lheavy': [2, 1, 1, 1], '4-rheavy': [1, 1, 1, 2],
    '5-equal': [1, 1, 1, 1, 1], '6-equal': [1, 1, 1, 1, 1, 1],
  };
@@ -166,6 +173,8 @@ index fe8b635..d645ed0 100644
 +  5: ['5-equal', 'full'],
 +  6: ['6-equal', 'full'],
 +};
++// Tablette seulement : répartitions de l'ordinateur gardées pour les valeurs simples de la 1.2.0.
++const TABLETTE = { 4: ['4-lheavy', '4-rheavy'] };
 +const DEBORDE = { '3-firstrow': 'first', '3-lastrow': 'last' };
 +const ORDINATEUR = { 2: '2-equal', 3: '3-equal', 4: '4-equal', 5: '5-equal', 6: '6-equal' };
  const APPAREILS = [
@@ -178,7 +187,7 @@ index fe8b635..d645ed0 100644
  
  function configurer(php) {
    execFileSync(SPIP_CLI[0], [...SPIP_CLI.slice(1), 'php:eval', 'include_spip("inc/config");' + php], { cwd: RACINE });
-@@ -33,20 +47,28 @@ function configurer(php) {
+@@ -33,20 +50,28 @@ function configurer(php) {
  }
  
  function piedPrincipal(repartition, colonnes, autres = {}) {
@@ -211,7 +220,7 @@ index fe8b635..d645ed0 100644
  }
  
  (async () => {
-@@ -55,13 +77,30 @@ async function colonnes(browser, largeur, selecteur) {
+@@ -55,13 +80,41 @@ async function colonnes(browser, largeur, selecteur) {
      for (const [repartition, fr] of Object.entries(REPARTITIONS)) {
        configurer(piedPrincipal(repartition, fr.length));
        for (const appareil of APPAREILS) {
@@ -239,11 +248,22 @@ index fe8b635..d645ed0 100644
 +        petites++;
 +      }
 +    }
++    for (const [nombre, liste] of Object.entries(TABLETTE)) {
++      for (const repartition of liste) {
++        const n = Number(nombre);
++        configurer(piedPrincipal({ desktop: ORDINATEUR[n], tablet: repartition, mobile: 'full' }, n));
++        const { px } = await colonnes(browser, 800, '.site-primary-footer-wrap .ast-builder-grid-row');
++        const attendu = REPARTITIONS[repartition];
++        const proportions = px.length === attendu.length && px.every((w, i) => Math.abs(w / px[0] - attendu[i] / attendu[0]) < 0.02);
++        if (!proportions) echecs.push(`${n} colonnes, ${repartition} / tablette : colonnes ${px.map(Math.round).join(' ')} px, proportions attendues ${attendu.join(':')}`);
++        petites++;
++      }
++    }
 +
      // Largeur des rangées du pied : variable de largeur du conteneur, pas 1200 px.
      configurer('ecrire_config("astra/largeur_conteneur", "1600");' + piedPrincipal('3-equal', 3, { above: { above_1: ['copyright'] }, below: { below_1: ['html-2'] } }));
      const page = await browser.newPage({ viewport: { width: 1800, height: 900 }, userAgent: AGENT });
-@@ -80,5 +119,5 @@ async function colonnes(browser, largeur, selecteur) {
+@@ -80,5 +133,5 @@ async function colonnes(browser, largeur, selecteur) {
      console.error(echecs.join('\n'));
      process.exit(1);
    }
@@ -251,10 +271,10 @@ index fe8b635..d645ed0 100644
 +  console.log(`Répartitions : OK (${Object.keys(REPARTITIONS).length} répartitions × ${APPAREILS.length} appareils, ${petites} répartitions tablette et mobile, largeur des rangées)`);
  })();
 diff --git a/tests/integration/HfbFormulaireTest.php b/tests/integration/HfbFormulaireTest.php
-index 8d55915..5a17457 100644
+index 8d55915..b2a2e1d 100644
 --- a/tests/integration/HfbFormulaireTest.php
 +++ b/tests/integration/HfbFormulaireTest.php
-@@ -77,4 +77,34 @@ final class HfbFormulaireTest extends TestCase {
+@@ -77,4 +77,64 @@ final class HfbFormulaireTest extends TestCase {
  		$this->assertSame('Bonjour', $config['elements']['pied']['html-1']['texte']);
  		$this->assertSame(['source' => 'rubrique', 'id' => 1], $config['elements']['entete']['menu-2']);
  	}
@@ -287,6 +307,36 @@ index 8d55915..5a17457 100644
 +		$x = HfbRenduTest::xpath(recuperer_fond('formulaires/configurer_astra_hfb', ['editable' => true] + formulaires_configurer_astra_hfb_charger_dist()));
 +		$n = $x->query('//select[@name="rangees[pied_above][repartition][mobile]"]/option[@selected]');
 +		$this->assertSame('full', $n->item(0)->getAttribute('value'), 'Valeur simple : mobile en pleine largeur');
++	}
++
++	public function testAllerRetourDesRepartitionsLourdesAQuatreColonnes(): void {
++		// Valeur simple de la version 1.2.0 : elle vaut pour l'ordinateur et la tablette. Le
++		// formulaire doit la reproposer telle quelle, et l'enregistrement ne rien changer au rendu.
++		$classes = function (): string {
++			preg_match('/ast-builder-grid-row-4-[a-z]+ ast-builder-grid-row-tablet-[a-z0-9-]+ ast-builder-grid-row-mobile-[a-z0-9-]+/', recuperer_fond('inclure/footer', ['type_page' => 'sommaire']), $m);
++			return $m[0] ?? '';
++		};
++		foreach (['4-lheavy', '4-rheavy'] as $repartition) {
++			effacer_config('astra/hfb');
++			ecrire_config('astra/hfb', [
++				'pied' => ['primary' => ['primary_1' => ['html-1']]],
++				'rangees' => ['pied_primary' => ['colonnes' => 4, 'repartition' => $repartition]],
++			]);
++			$avant = $classes();
++			$this->assertSame("ast-builder-grid-row-$repartition ast-builder-grid-row-tablet-$repartition ast-builder-grid-row-mobile-full", $avant);
++			$valeurs = formulaires_configurer_astra_hfb_charger_dist();
++			$x = HfbRenduTest::xpath(recuperer_fond('formulaires/configurer_astra_hfb', ['editable' => true] + $valeurs));
++			$postee = [];
++			foreach (['desktop', 'tablet', 'mobile'] as $appareil) {
++				$n = $x->query('//select[@name="rangees[pied_primary][repartition][' . $appareil . ']"]/option[@selected]');
++				$postee[$appareil] = $n->length === 1 ? $n->item(0)->getAttribute('value') : '';
++			}
++			$valeurs['rangees']['pied_primary']['repartition'] = $postee;
++			$this->poster($valeurs);
++			$this->assertSame([], formulaires_configurer_astra_hfb_verifier_dist(), $repartition);
++			formulaires_configurer_astra_hfb_traiter_dist();
++			$this->assertSame($avant, $classes(), $repartition);
++		}
 +	}
  }
 diff --git a/tests/references/wp/R12-pied-appareils.json b/tests/references/wp/R12-pied-appareils.json
@@ -364,16 +414,18 @@ index 0000000..2064cd1
 +	ref_widget_texte('footer-widget-' . $i, 'Colonne ' . $i, 'Texte de la colonne ' . $i);
 +}
 diff --git a/tests/unit/HfbSaisieTest.php b/tests/unit/HfbSaisieTest.php
-index 7b1973c..44b8ef3 100644
+index 7b1973c..8ab492b 100644
 --- a/tests/unit/HfbSaisieTest.php
 +++ b/tests/unit/HfbSaisieTest.php
-@@ -79,6 +79,34 @@ final class HfbSaisieTest extends TestCase {
+@@ -79,6 +79,36 @@ final class HfbSaisieTest extends TestCase {
  		$this->assertSame([], astra_hfb_verifier_saisie(astra_hfb_saisie_depuis_config(astra_hfb_normaliser([]))));
  	}
  
 +	public function testRepartitionsProposeesParAppareil(): void {
 +		$this->assertSame(['4-equal', '4-lheavy', '4-rheavy'], astra_hfb_repartitions(4));
-+		$this->assertSame(['4-equal', '2-equal', 'full'], astra_hfb_repartitions(4, 'tablet'));
++		// Tablette : choix d'Astra, puis les répartitions de l'ordinateur (valeur simple de la 1.2.0).
++		$this->assertSame(['4-equal', '2-equal', 'full', '4-lheavy', '4-rheavy'], astra_hfb_repartitions(4, 'tablet'));
++		$this->assertSame(['3-equal', '3-cwide', '3-cheavy', '3-lheavy', '3-rheavy', '3-firstrow', '3-lastrow', 'full'], astra_hfb_repartitions(3, 'tablet'));
 +		$this->assertSame(['4-equal', '2-equal', 'full'], astra_hfb_repartitions(4, 'mobile'));
 +		$this->assertContains('3-firstrow', astra_hfb_repartitions(3, 'mobile'));
 +		$this->assertNotContains('3-firstrow', astra_hfb_repartitions(3));
@@ -435,7 +487,7 @@ index 6cd085b..a427501 100644
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php` (lancer les deux, même si le premier échoue)
 Attendu :
 - unitaires : 1 erreur (`Call to undefined function astra_hfb_repartition_appareils()`, `HfbTest::testRepartitionParAppareilIncompleteOuInvalide`) et 4 échecs (`HfbSaisieTest::testRepartitionsProposeesParAppareil`, `testVerificationDeLaRepartitionParAppareil`, `testRepartitionParAppareilDepuisSaisie`, `HfbTest::testRepartitionParAppareil`) ;
-- intégration : 2 échecs (`HfbFormulaireTest::testRepartitionParAppareil`, `testRenduDesSelecteursDeRepartition`).
+- intégration : 3 échecs (`HfbFormulaireTest::testRepartitionParAppareil`, `testRenduDesSelecteursDeRepartition`, `testAllerRetourDesRepartitionsLourdesAQuatreColonnes`).
 
 - [ ] **Étape 3 : implémenter**
 
@@ -518,7 +570,7 @@ index 3148bc5..02f8d23 100644
  				'ast-footer-row-tablet-stack',
  				'ast-footer-row-mobile-stack',
 diff --git a/inc/astra_hfb_saisie.php b/inc/astra_hfb_saisie.php
-index de2ff40..860afe0 100644
+index de2ff40..66d7442 100644
 --- a/inc/astra_hfb_saisie.php
 +++ b/inc/astra_hfb_saisie.php
 @@ -250,11 +250,17 @@ function astra_hfb_verifier_saisie(array $saisie): array {
@@ -542,7 +594,7 @@ index de2ff40..860afe0 100644
  			}
  		}
  	}
-@@ -266,10 +272,12 @@ function astra_hfb_verifier_saisie(array $saisie): array {
+@@ -266,10 +272,14 @@ function astra_hfb_verifier_saisie(array $saisie): array {
  }
  
  /**
@@ -550,6 +602,8 @@ index de2ff40..860afe0 100644
 + * Répartitions des colonnes du pied proposées par Astra pour un nombre de colonnes et un appareil
 + * (Astra_Builder_Helper, choix du contrôle ast-row-layout, Astra 4.11.0) : tablette et mobile
 + * ajoutent `full` et, selon le nombre de colonnes, `2-equal`, `3-firstrow`, `3-lastrow`.
++ * La tablette garde en plus les répartitions de l'ordinateur (`4-lheavy`, `4-rheavy`) : une valeur
++ * simple de la version 1.2.0 s'y applique, et le formulaire doit pouvoir la reproposer.
   */
 -function astra_hfb_repartitions(int $colonnes): array {
 -	$toutes = [
@@ -558,7 +612,7 @@ index de2ff40..860afe0 100644
  		1 => ['full'],
  		2 => ['2-equal', '2-lheavy', '2-rheavy'],
  		3 => ['3-equal', '3-cwide', '3-cheavy', '3-lheavy', '3-rheavy'],
-@@ -277,7 +285,31 @@ function astra_hfb_repartitions(int $colonnes): array {
+@@ -277,7 +287,34 @@ function astra_hfb_repartitions(int $colonnes): array {
  		5 => ['5-equal'],
  		6 => ['6-equal'],
  	];
@@ -573,6 +627,9 @@ index de2ff40..860afe0 100644
 +	];
 +	if (!in_array($appareil, ['desktop', 'tablet', 'mobile'], true)) {
 +		return [];
++	}
++	if ($appareil === 'tablet') {
++		return array_values(array_unique(array_merge($petits[$colonnes] ?? [], $ordinateur[$colonnes] ?? [])));
 +	}
 +	return ($appareil === 'desktop' ? $ordinateur : $petits)[$colonnes] ?? [];
 +}
@@ -591,7 +648,7 @@ index de2ff40..860afe0 100644
  }
  
  /** Réglages de rangées à enregistrer à partir des champs du formulaire. */
-@@ -285,6 +317,16 @@ function astra_hfb_rangees_depuis_saisie(array $saisie): array {
+@@ -285,6 +322,16 @@ function astra_hfb_rangees_depuis_saisie(array $saisie): array {
  	$rangees = [];
  	foreach (astra_hfb_defauts()['rangees'] as $cle => $defaut) {
  		foreach ($defaut as $reglage => $valeur) {
@@ -659,7 +716,7 @@ index b61fb3d..b467f00 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (76 tests, 1048 assertions)`, intégration `OK (71 tests, 239 assertions)`
+Attendu : unitaires `OK (76 tests, 1049 assertions)`, intégration `OK (72 tests, 245 assertions)`
 
 Puis, SPIP de test servi (ici sur le port 8414) et WordPress de test sur 8401 :
 
@@ -670,7 +727,7 @@ WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/sp
 RACINE=vendor/spip/spip URL=http://127.0.0.1:8414 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
 ```
 
-Attendu : HTML identique (en-tête, panneau, pied) pour R0, R3, R4 et R12 ; toutes les vues sous le seuil ; R12 : `grid-template-columns` égal aux trois largeurs ; `Répartitions : OK (14 répartitions × 3 appareils, 19 répartitions tablette et mobile, largeur des rangées)`.
+Attendu : HTML identique (en-tête, panneau, pied) pour R0, R3, R4 et R12 ; toutes les vues sous le seuil ; R12 : `grid-template-columns` égal aux trois largeurs ; `Répartitions : OK (14 répartitions × 3 appareils, 21 répartitions tablette et mobile, largeur des rangées)`.
 
 - [ ] **Étape 5 : commit**
 
@@ -797,7 +854,7 @@ index 4691996..effd036 100644
 +	'hbb-footer-top-border-color' => 'var(--ast-global-color-4)',
  ]);
 diff --git a/tests/unit/HfbSaisieTest.php b/tests/unit/HfbSaisieTest.php
-index 44b8ef3..220c463 100644
+index 8ab492b..cd65728 100644
 --- a/tests/unit/HfbSaisieTest.php
 +++ b/tests/unit/HfbSaisieTest.php
 @@ -79,6 +79,21 @@ final class HfbSaisieTest extends TestCase {
@@ -821,8 +878,8 @@ index 44b8ef3..220c463 100644
 +
  	public function testRepartitionsProposeesParAppareil(): void {
  		$this->assertSame(['4-equal', '4-lheavy', '4-rheavy'], astra_hfb_repartitions(4));
- 		$this->assertSame(['4-equal', '2-equal', 'full'], astra_hfb_repartitions(4, 'tablet'));
-@@ -132,7 +147,7 @@ final class HfbSaisieTest extends TestCase {
+ 		// Tablette : choix d'Astra, puis les répartitions de l'ordinateur (valeur simple de la 1.2.0).
+@@ -134,7 +149,7 @@ final class HfbSaisieTest extends TestCase {
  	public function testRangeesDepuisSaisie(): void {
  		$r = astra_hfb_rangees_depuis_saisie(['entete_above' => ['hauteur' => ' 42 ', 'fond' => '#abc', 'bordure' => '0'], 'pied_primary' => ['colonnes' => '4', 'repartition' => '4-equal', 'hauteur' => '']]);
  		$this->assertSame(['hauteur' => 42, 'fond' => '#abc', 'bordure' => 0], $r['entete_above']);
@@ -872,7 +929,7 @@ index a427501..a46ca56 100644
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php` (lancer les deux, même si le premier échoue)
 Attendu :
 - unitaires : 4 échecs (`HfbSaisieTest::testVerificationDesSeparateurs`, `testRangeesDepuisSaisie`, `HfbTest::testSeparateursDuPied`, `testSeparateursParDefautOuInvalidesSansCss`) ;
-- intégration : OK (71 tests, 239 assertions) — aucun test d'intégration nouveau ; R5 vérifie le rendu à l'étape 4.
+- intégration : OK (72 tests, 245 assertions) — aucun test d'intégration nouveau ; R5 vérifie le rendu à l'étape 4.
 
 - [ ] **Étape 3 : implémenter**
 
@@ -979,7 +1036,7 @@ index 02f8d23..e805552 100644
 +	return (int) $defaut['separateur'] >= 1 ? [$barre . '{border-style:none;border-width:medium;border-color:currentcolor;}'] : [];
 +}
 diff --git a/inc/astra_hfb_saisie.php b/inc/astra_hfb_saisie.php
-index 860afe0..73825e6 100644
+index 66d7442..fd23c6b 100644
 --- a/inc/astra_hfb_saisie.php
 +++ b/inc/astra_hfb_saisie.php
 @@ -248,6 +248,15 @@ function astra_hfb_verifier_saisie(array $saisie): array {
@@ -998,7 +1055,7 @@ index 860afe0..73825e6 100644
  		if (isset($defaut['colonnes'])) {
  			$colonnes = (int) ($r['colonnes'] ?? 0);
  			$repartition = $r['repartition'] ?? '';
-@@ -328,7 +337,7 @@ function astra_hfb_rangees_depuis_saisie(array $saisie): array {
+@@ -333,7 +342,7 @@ function astra_hfb_rangees_depuis_saisie(array $saisie): array {
  				continue;
  			}
  			$v = trim((string) ($saisie[$cle][$reglage] ?? $valeur));
@@ -1052,7 +1109,7 @@ index b467f00..e008891 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (79 tests, 1058 assertions)`, intégration `OK (71 tests, 239 assertions)`
+Attendu : unitaires `OK (79 tests, 1059 assertions)`, intégration `OK (72 tests, 245 assertions)`
 
 ```bash
 WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R5-rangees
@@ -1260,7 +1317,7 @@ index e7cda23..6dc2847 100644
  // (scripts/install-spip-test.sh). Recréées à l'identique à chaque appel ; la page d'exemple
  // de WordPress est supprimée pour que les menus de pages soient comparables.
 diff --git a/tests/unit/HfbSaisieTest.php b/tests/unit/HfbSaisieTest.php
-index 220c463..7b9422d 100644
+index cd65728..b20544e 100644
 --- a/tests/unit/HfbSaisieTest.php
 +++ b/tests/unit/HfbSaisieTest.php
 @@ -79,6 +79,18 @@ final class HfbSaisieTest extends TestCase {
@@ -1349,7 +1406,7 @@ index e805552..5678efe 100644
  
  /**
 diff --git a/inc/astra_hfb_saisie.php b/inc/astra_hfb_saisie.php
-index 73825e6..adab934 100644
+index fd23c6b..9fe9b1f 100644
 --- a/inc/astra_hfb_saisie.php
 +++ b/inc/astra_hfb_saisie.php
 @@ -126,13 +126,29 @@ function astra_hfb_saisie_depuis_config(array $config): array {
@@ -1556,7 +1613,7 @@ index e008891..aff56fa 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (81 tests, 1065 assertions)`, intégration `OK (75 tests, 253 assertions)`
+Attendu : unitaires `OK (81 tests, 1066 assertions)`, intégration `OK (76 tests, 259 assertions)`
 
 ```bash
 WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R13-pied-widgets-menus
@@ -1696,7 +1753,7 @@ index 0000000..8b6b275
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php` (lancer les deux, même si le premier échoue)
 Attendu :
-- unitaires : OK (81 tests, 1065 assertions) — `HfbTest::testChaqueReseauAUneIcone` vérifiera la tâche à l'étape 4 ;
+- unitaires : OK (81 tests, 1066 assertions) — `HfbTest::testChaqueReseauAUneIcone` vérifiera la tâche à l'étape 4 ;
 - intégration : 1 échec (`HfbRenduTest::testIconeGoogleReviews`).
 
 - [ ] **Étape 3 : implémenter**
@@ -1810,7 +1867,7 @@ Attendu : `26b625cda9e34c62759a9c7a5ac30588da4de8e311f0db9d58df8818793191b4  lic
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (81 tests, 1065 assertions)`, intégration `OK (76 tests, 254 assertions)`
+Attendu : unitaires `OK (81 tests, 1066 assertions)`, intégration `OK (77 tests, 260 assertions)`
 
 Le SVG doit être identique à l'entrée d'Astra :
 
@@ -2287,7 +2344,7 @@ index aff56fa..d3b306a 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (83 tests, 1134 assertions)`, intégration `OK (76 tests, 255 assertions)`
+Attendu : unitaires `OK (83 tests, 1135 assertions)`, intégration `OK (77 tests, 261 assertions)`
 
 ```bash
 WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R0-defaut R14-bouton-mobile
@@ -2454,7 +2511,7 @@ php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414
 WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8414 R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees R6-menu R7-bouton R8-identite R9-pied-couleurs R10-sociaux R11-combinee R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google P1-page P2-accueil P3-page-pleine
 ```
 
-Attendu : unitaires `OK (83 tests, 1134 assertions)`, intégration `OK (76 tests, 255 assertions)` ; `No syntax errors detected` pour chaque fichier ; `comparer_html.php` (configurations du builder et des pages, sans les références des styles) : tout identique sauf R13 (écart 5) ; `comparer_captures.sh` : toutes les vues sous le seuil (plus grand écart vers 0,7 %, R13, pied sur mobile), styles calculés égaux.
+Attendu : unitaires `OK (83 tests, 1135 assertions)`, intégration `OK (77 tests, 261 assertions)` ; `No syntax errors detected` pour chaque fichier ; `comparer_html.php` (configurations du builder et des pages, sans les références des styles) : tout identique sauf R13 (écart 5) ; `comparer_captures.sh` : toutes les vues sous le seuil (plus grand écart vers 0,7 %, R13, pied sur mobile), styles calculés égaux.
 
 - [ ] **Étape 3 : commit**
 
