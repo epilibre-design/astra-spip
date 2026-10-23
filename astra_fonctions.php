@@ -17,7 +17,7 @@ define('_ASTRA_VERSION_THEME', '4.11.0');
 include_once __DIR__ . '/inc/astra_hfb.php';
 include_once __DIR__ . '/inc/astra_hfb_saisie.php';
 include_once __DIR__ . '/inc/astra_pages.php';
-include_once __DIR__ . '/inc/astra_styles.php';
+include_once __DIR__ . '/inc/astra_styles_saisie.php';
 
 /** Réglages effectifs d'une page unique : `#ID_ARTICLE|astra_page_reglages`. */
 function filtre_astra_page_reglages_dist($id_article): array {

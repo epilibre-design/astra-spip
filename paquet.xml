@@ -33,4 +33,5 @@
 
 	<menu nom="configurer_astra" titre="astra:titre_configurer" parent="menu_squelette" icone="images/astra-xx.svg" action="configurer_astra" />
 	<menu nom="configurer_astra_hfb" titre="astra:hfb_titre" parent="menu_squelette" icone="images/astra-xx.svg" action="configurer_astra_hfb" />
+	<menu nom="configurer_astra_styles" titre="astra:styles_titre" parent="menu_squelette" icone="images/astra-xx.svg" action="configurer_astra_styles" />
 </paquet>
