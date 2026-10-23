@@ -106,7 +106,7 @@
 		<fieldset>
 			<legend><:astra:cfg_affichage:></legend>
 			<div class="editer-groupe">
-				<BOUCLE_oui_non(DATA){liste afficher_titre_site, afficher_slogan, menu_accueil, afficher_auteurs, afficher_extrait, bouton_haut}>
+				<BOUCLE_oui_non(DATA){liste menu_accueil, afficher_auteurs, afficher_extrait, bouton_haut}>
 				#SET{valeur,#ENV{#VALEUR}|sinon{#VALEUR|astra_conf}}
 				<div class="editer editer_#VALEUR">
 					<div class="choix">

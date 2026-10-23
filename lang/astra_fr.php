@@ -22,8 +22,6 @@ return [
 	'cfg_accueil_type_erreur' => 'Choix inconnu.',
 	'cfg_afficher_auteurs' => 'Afficher les auteurs des articles',
 	'cfg_afficher_extrait' => 'Afficher un extrait dans les listes d’articles',
-	'cfg_afficher_slogan' => 'Afficher le slogan du site dans l’en-tête',
-	'cfg_afficher_titre_site' => 'Afficher le nom du site dans l’en-tête',
 	'cfg_affichage' => 'Affichage',
 	'cfg_articles_par_page' => 'Nombre d’articles par page dans les listes',
 	'cfg_bouton_haut' => 'Afficher le bouton de retour en haut de page',

@@ -187,8 +187,6 @@ function astra_config_defaut(): array {
 		'disposition_listes' => 'right-sidebar',
 		// narrow | right-sidebar | left-sidebar | no-sidebar
 		'disposition_articles' => 'narrow',
-		'afficher_slogan' => 'oui',
-		'afficher_titre_site' => 'oui',
 		'menu_accueil' => 'non',
 		'articles_par_page' => '10',
 		'afficher_extrait' => 'oui',
@@ -312,6 +310,33 @@ function astra_body_class(string $type, $id = 0, $accueil = ''): string {
 	}
 
 	return implode(' ', $classes);
+}
+
+/**
+ * Titre ou slogan imprimé : visible sur au moins un appareil, comme astra_logo() d'Astra.
+ * `#VAL{display-site-title-responsive}|astra_identite_visible`
+ */
+function astra_identite_visible(string $option): bool {
+	include_spip('inc/config');
+	$defaut = astra_styles_registre()[$option]['defaut'];
+	$v = astra_styles_normaliser([$option => lire_config('astra/styles/' . $option)])[$option] ?? [];
+	foreach (ASTRA_STYLES_APPAREILS as $appareil) {
+		if (array_key_exists($appareil, $v) && $v[$appareil] !== '' ? $v[$appareil] : $defaut[$appareil]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * Logo du site réduit : à la largeur ordinateur de ast-header-responsive-logo-width si elle est
+ * réglée, sinon à 60 px de haut.
+ */
+function astra_logo_reduire($img): string {
+	include_spip('inc/config');
+	include_spip('inc/filtres_images_mini');
+	$largeur = (int) (lire_config('astra/styles/ast-header-responsive-logo-width/desktop') ?? 0);
+	return $largeur > 0 ? image_reduire($img, $largeur, 0) : image_reduire($img, 0, 60);
 }
 
 /**

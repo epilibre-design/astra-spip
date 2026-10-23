@@ -22,8 +22,6 @@ return [
 	'cfg_accueil_type_erreur' => 'Unknown choice.',
 	'cfg_afficher_auteurs' => 'Show article authors',
 	'cfg_afficher_extrait' => 'Show an excerpt in article lists',
-	'cfg_afficher_slogan' => 'Show the site tagline in the header',
-	'cfg_afficher_titre_site' => 'Show the site title in the header',
 	'cfg_affichage' => 'Display',
 	'cfg_articles_par_page' => 'Articles per page in lists',
 	'cfg_bouton_haut' => 'Show the scroll to top button',
