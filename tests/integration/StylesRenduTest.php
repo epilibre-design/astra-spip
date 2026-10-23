@@ -21,4 +21,16 @@ final class StylesRenduTest extends TestCase {
 		ecrire_config('astra/styles', ['button-color' => 'red;}body{display:none']);
 		$this->assertStringNotContainsString('astra-styles-inline-css', recuperer_fond('inclure/head-vars', []));
 	}
+
+	public function testBlocApresLeBuilder(): void {
+		ecrire_config('astra/hfb', ['rangees' => ['entete_primary' => ['hauteur' => 100]]]);
+		ecrire_config('astra/styles', ['button-color' => '#123456']);
+		$html = recuperer_fond('inclure/head-vars', []);
+		$builder = strpos($html, 'id="astra-hfb-inline-css"');
+		$styles = strpos($html, 'id="astra-styles-inline-css"');
+		$this->assertNotFalse($builder);
+		$this->assertNotFalse($styles);
+		$this->assertGreaterThan($builder, $styles);
+		$this->assertStringContainsString('.wp-block-button .wp-block-button__link{color:#123456;}', $html);
+	}
 }
