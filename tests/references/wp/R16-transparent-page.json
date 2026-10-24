@@ -1,0 +1,39 @@
+{
+	"chemin": "/?pagename=notre-jardin",
+	"ordinateur": [
+		"article.page .entry-title",
+		".ast-builder-menu-1 .current-menu-item"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		"body.ast-theme-transparent-header"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": "#masthead",
+			"proprietes": ["position", "left", "right"]
+		},
+		{
+			"selecteur": ".ast-main-header-wrap .main-header-bar",
+			"proprietes": ["background-color", "border-bottom-width", "border-bottom-style"]
+		},
+		{
+			"selecteur": ".site-title a",
+			"proprietes": ["color"]
+		},
+		{
+			"selecteur": "#primary",
+			"proprietes": ["margin-top", "margin-bottom", "padding-top"]
+		},
+		{
+			"selecteur": "article.page .entry-title",
+			"proprietes": ["margin-top"]
+		}
+	]
+}

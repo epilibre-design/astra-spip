@@ -8,7 +8,12 @@
 
 /** Réglages d'une page sans configuration propre. */
 function astra_page_reglages_defaut(): array {
-	return ['titre' => 'afficher', 'disposition' => 'defaut'];
+	return ['titre' => 'afficher', 'disposition' => 'defaut', 'transparent' => 'defaut'];
+}
+
+/** En-tête transparent d'une page (theme-transparent-header-meta d'Astra : default, enabled, disabled). */
+function astra_page_transparents(): array {
+	return ['defaut', 'active', 'desactive'];
 }
 
 /** Dispositions proposées pour une page. */
@@ -25,6 +30,9 @@ function astra_page_normaliser($reglages): array {
 	}
 	if (in_array($reglages['disposition'] ?? '', astra_page_dispositions(), true)) {
 		$r['disposition'] = $reglages['disposition'];
+	}
+	if (in_array($reglages['transparent'] ?? '', astra_page_transparents(), true)) {
+		$r['transparent'] = $reglages['transparent'];
 	}
 	return $r;
 }
@@ -45,7 +53,7 @@ function astra_page_classes_disposition(string $disposition): array {
  * Les pages n'ont pas de barre latérale par défaut dans Astra ; `page-parent` marque une page
  * qui a des sous-pages.
  */
-function astra_page_classes_body(int $id, array $reglages, bool $accueil, bool $parente = false): string {
+function astra_page_classes_body(int $id, array $reglages, bool $accueil, bool $parente = false, bool $transparent = false): string {
 	$classes = $accueil ? ['home'] : [];
 	array_push($classes, 'page-template-default', 'page', 'page-id-' . $id);
 	if ($parente) {
@@ -53,7 +61,11 @@ function astra_page_classes_body(int $id, array $reglages, bool $accueil, bool $
 	}
 	$classes[] = 'ast-desktop';
 	$classes = array_merge($classes, astra_page_classes_disposition($reglages['disposition']));
-	array_push($classes, 'ast-no-sidebar', 'astra-' . (defined('_ASTRA_VERSION_THEME') ? _ASTRA_VERSION_THEME : '4.11.0'), 'ast-single-post', 'ast-inherit-site-logo-transparent', 'ast-hfb-header');
+	array_push($classes, 'ast-no-sidebar', 'astra-' . (defined('_ASTRA_VERSION_THEME') ? _ASTRA_VERSION_THEME : '4.11.0'), 'ast-single-post', 'ast-inherit-site-logo-transparent');
+	if ($transparent) {
+		$classes[] = 'ast-theme-transparent-header';
+	}
+	$classes[] = 'ast-hfb-header';
 	if ($reglages['titre'] === 'afficher') {
 		$classes[] = 'ast-normal-title-enabled';
 	}

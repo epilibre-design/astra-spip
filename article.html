@@ -9,7 +9,7 @@
 <head>
 <title>[(#TITRE|supprimer_numero|textebrut)] – [(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
-<INCLURE{fond=inclure/head}{type_page=article} />
+<INCLURE{fond=inclure/head}{type_page=article}{contexte=article}{id=#ID_ARTICLE} />
 <BOUCLE_commentaires_css(CONDITION){si #PARAMETRES_FORUM|oui|sinon{#ID_ARTICLE|astra_a_commentaires}}><link rel="stylesheet" id="astra-commentaires-css" href="[(#CHEMIN{css/astra-commentaires.css}|timestamp)]" media="all" /></BOUCLE_commentaires_css>
 </head>
 <body itemtype="https://schema.org/Blog" itemscope="itemscope" class="[(#VAL{article}|astra_body_class{#ID_ARTICLE})]">

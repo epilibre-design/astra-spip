@@ -36,9 +36,10 @@ final class PagesReglagesTest extends TestCase {
 		$GLOBALS['visiteur_session'] = sql_fetsel('*', 'spip_auteurs', 'id_auteur=' . $id_auteur);
 	}
 
-	private function poster(string $titre, string $disposition): void {
+	private function poster(string $titre, string $disposition, string $transparent = 'defaut'): void {
 		set_request('affichage_titre', $titre);
 		set_request('disposition', $disposition);
+		set_request('transparent', $transparent);
 	}
 
 	public function testRedacteurAuteurPeutEnregistrer(): void {
@@ -46,10 +47,10 @@ final class PagesReglagesTest extends TestCase {
 		$this->assertFalse(autoriser('configurer', '_astra'), 'Le rédacteur ne peut pas configurer le site');
 		$valeurs = formulaires_editer_astra_page_charger_dist(self::$page);
 		$this->assertTrue($valeurs['editable']);
-		$this->poster('masquer', 'pleine');
+		$this->poster('masquer', 'pleine', 'active');
 		$this->assertSame([], formulaires_editer_astra_page_verifier_dist(self::$page));
 		$this->assertArrayHasKey('message_ok', formulaires_editer_astra_page_traiter_dist(self::$page));
-		$this->assertSame(['titre' => 'masquer', 'disposition' => 'pleine'], lire_config('astra/pages/' . self::$page));
+		$this->assertSame(['titre' => 'masquer', 'disposition' => 'pleine', 'transparent' => 'active'], lire_config('astra/pages/' . self::$page));
 	}
 
 	public function testRedacteurNonAuteurRefuse(): void {
@@ -68,10 +69,11 @@ final class PagesReglagesTest extends TestCase {
 
 	public function testValeursInvalides(): void {
 		$this->connecter(self::$redacteur);
-		$this->poster('cache', 'immense');
+		$this->poster('cache', 'immense', 'enabled');
 		$erreurs = formulaires_editer_astra_page_verifier_dist(self::$page);
 		$this->assertArrayHasKey('affichage_titre', $erreurs);
 		$this->assertArrayHasKey('disposition', $erreurs);
+		$this->assertArrayHasKey('transparent', $erreurs);
 	}
 
 	/** Page jetable avec des réglages, pour les tests de suppression. */

@@ -1,0 +1,10 @@
+{
+	"transparent-header-on-devices": "desktop",
+	"transparent-header-main-sep": 2,
+	"transparent-header-main-sep-color": "#c0392b",
+	"transparent-menu-color-responsive": {
+		"desktop": "#ffffff",
+		"tablet": "#eeeeee",
+		"mobile": ""
+	}
+}

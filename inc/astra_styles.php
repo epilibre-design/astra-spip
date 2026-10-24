@@ -127,6 +127,36 @@ function astra_styles_registre(): array {
 		'mobile-header-toggle-border-radius-fields' => $cotes_r,
 		'mobile-header-toggle-icon-size' => ['type' => 'nombre', 'defaut' => 20],
 	]);
+	$booleen = ['type' => 'booleen'];
+	$ajouter('entete-transparent', 'inc/addons/transparent-header/classes/dynamic-css/dynamic.css.php', [
+		'transparent-header-enable' => $booleen + ['defaut' => 0],
+		'transparent-header-disable-archive' => $booleen + ['defaut' => 1],
+		'transparent-header-disable-404-page' => $booleen,
+		'transparent-header-disable-search-page' => $booleen,
+		'transparent-header-disable-archive-pages' => $booleen,
+		'transparent-header-disable-index' => $booleen,
+		'transparent-header-disable-latest-posts-index' => $booleen + ['defaut' => 1],
+		'transparent-header-disable-page' => $booleen,
+		'transparent-header-disable-posts' => $booleen,
+		'transparent-header-on-devices' => ['type' => 'enum', 'valeurs' => ['desktop', 'mobile', 'both'], 'defaut' => 'both'],
+		'transparent-header-bg-color-responsive' => $couleur_r,
+		'hba-transparent-header-bg-color-responsive' => $couleur_r,
+		'hbb-transparent-header-bg-color-responsive' => $couleur_r,
+		'transparent-header-color-site-title-responsive' => $couleur_r,
+		'transparent-header-color-h-site-title-responsive' => $couleur_r,
+		'transparent-menu-color-responsive' => $couleur_r,
+		'transparent-menu-h-color-responsive' => $couleur_r,
+		'transparent-menu-bg-color-responsive' => $couleur_r,
+		'transparent-submenu-color-responsive' => $couleur_r,
+		'transparent-submenu-h-color-responsive' => $couleur_r,
+		'transparent-submenu-bg-color-responsive' => $couleur_r,
+		'transparent-content-section-text-color-responsive' => $couleur_r,
+		'transparent-content-section-link-color-responsive' => $couleur_r,
+		'transparent-content-section-link-h-color-responsive' => $couleur_r,
+		'transparent-header-main-sep' => ['type' => 'nombre'],
+		'transparent-header-main-sep-color' => $couleur,
+		'transparent-header-default-border' => $booleen + ['defaut' => true],
+	]);
 	return $r;
 }
 

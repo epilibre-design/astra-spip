@@ -1,0 +1,8 @@
+{
+	"transparent-header-on-devices": "mobile",
+	"transparent-header-bg-color-responsive": {
+		"desktop": "",
+		"tablet": "rgba(0,0,0,0.5)",
+		"mobile": ""
+	}
+}

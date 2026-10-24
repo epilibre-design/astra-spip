@@ -18,6 +18,7 @@ include_once __DIR__ . '/inc/astra_hfb.php';
 include_once __DIR__ . '/inc/astra_hfb_saisie.php';
 include_once __DIR__ . '/inc/astra_pages.php';
 include_once __DIR__ . '/inc/astra_styles_saisie.php';
+include_once __DIR__ . '/inc/astra_entete_transparent.php';
 
 /** Réglages effectifs d'une page unique : `#ID_ARTICLE|astra_page_reglages`. */
 function filtre_astra_page_reglages_dist($id_article): array {
@@ -151,6 +152,34 @@ function astra_styles_inline(): string {
 }
 
 /**
+ * En-tête transparent de la page (astra_entete_transparent_actif()) : $type et $id comme pour
+ * astra_body_class() ; une page unique suit son réglage, même en accueil statique ; l'accueil qui
+ * liste les derniers articles a son exclusion propre.
+ */
+function astra_entete_transparent(string $type, $id = 0, $accueil = ''): bool {
+	include_spip('inc/config');
+	$styles = lire_config('astra/styles');
+	$styles = is_array($styles) ? $styles : [];
+	if ($type === 'page') {
+		return astra_entete_transparent_actif($styles, 'page', astra_page_reglages((int) $id)['transparent']);
+	}
+	return astra_entete_transparent_actif($styles, $type === 'sommaire' ? 'accueil_articles' : $type);
+}
+
+/**
+ * CSS de l'en-tête transparent, vide si la page ne l'a pas :
+ * `#ENV{contexte}|astra_entete_transparent_inline{#ENV{id},#ENV{accueil}}`.
+ */
+function astra_entete_transparent_inline($type, $id = 0, $accueil = ''): string {
+	if (!astra_entete_transparent((string) $type, $id, $accueil)) {
+		return '';
+	}
+	$styles = lire_config('astra/styles');
+	$hfb = lire_config('astra/hfb');
+	return astra_entete_transparent_css(is_array($styles) ? $styles : [], is_array($hfb) ? $hfb : []);
+}
+
+/**
  * Mode du menu mobile : 'dropdown' ou 'off-canvas'.
  */
 function astra_hfb_menu_mobile(): string {
@@ -270,7 +299,7 @@ function astra_barre_a(string $type, string $position): bool {
 function astra_body_class(string $type, $id = 0, $accueil = ''): string {
 	$id = (int) $id;
 	if ($type === 'page') {
-		return astra_page_classes_body($id, astra_page_reglages($id), $accueil === 'oui', astra_page_a_sous_pages($id));
+		return astra_page_classes_body($id, astra_page_reglages($id), $accueil === 'oui', astra_page_a_sous_pages($id), astra_entete_transparent('page', $id, $accueil));
 	}
 	$disposition = astra_disposition($type);
 	$etroit = ($type === 'article' && astra_conf('disposition_articles') === 'narrow');
@@ -321,6 +350,9 @@ function astra_body_class(string $type, $id = 0, $accueil = ''): string {
 		$classes[] = 'ast-single-post';
 	}
 	$classes[] = 'ast-inherit-site-logo-transparent';
+	if (astra_entete_transparent($type, $id)) {
+		$classes[] = 'ast-theme-transparent-header';
+	}
 	$classes[] = 'ast-hfb-header';
 	if ($type === 'article') {
 		$classes[] = 'ast-normal-title-enabled';

@@ -7,9 +7,9 @@ require_once dirname(__DIR__, 2) . '/inc/astra_pages.php';
 final class PagesTest extends TestCase {
 
 	public function testNormaliser(): void {
-		$this->assertSame(['titre' => 'afficher', 'disposition' => 'defaut'], astra_page_normaliser(null));
-		$this->assertSame(['titre' => 'masquer', 'disposition' => 'pleine'], astra_page_normaliser(['titre' => 'masquer', 'disposition' => 'pleine', 'autre' => 1]));
-		$this->assertSame(['titre' => 'afficher', 'disposition' => 'defaut'], astra_page_normaliser(['titre' => 'x', 'disposition' => 'y']));
+		$this->assertSame(['titre' => 'afficher', 'disposition' => 'defaut', 'transparent' => 'defaut'], astra_page_normaliser(null));
+		$this->assertSame(['titre' => 'masquer', 'disposition' => 'pleine', 'transparent' => 'active'], astra_page_normaliser(['titre' => 'masquer', 'disposition' => 'pleine', 'transparent' => 'active', 'autre' => 1]));
+		$this->assertSame(['titre' => 'afficher', 'disposition' => 'defaut', 'transparent' => 'defaut'], astra_page_normaliser(['titre' => 'x', 'disposition' => 'y', 'transparent' => 'enabled']));
 	}
 
 	public function testDispositions(): void {

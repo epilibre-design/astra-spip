@@ -1,7 +1,8 @@
 [(#REM)
 
 	En-tête HTML commun : feuilles de style Astra et variables issues de la configuration.
-	Paramètre : type_page = article pour le CSS propre aux articles (css/astra-article.css).
+	Paramètres : type_page = article pour le CSS propre aux articles (css/astra-article.css) ;
+	contexte, id, accueil : page servie, comme pour astra_body_class (en-tête transparent).
 
 ]<meta charset="#CHARSET" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,6 +15,6 @@
 ]<link rel="stylesheet" id="astra-blocs-css" href="[(#CHEMIN{css/astra-blocs.css}|timestamp)]" media="all" />
 <link rel="stylesheet" id="astra-hfb-css" href="[(#CHEMIN{css/astra-hfb.css}|timestamp)]" media="all" />
 <link rel="stylesheet" id="astra-pages-css" href="[(#CHEMIN{css/astra-pages.css}|timestamp)]" media="all" />
-<INCLURE{fond=inclure/head-vars} />
+<INCLURE{fond=inclure/head-vars}{contexte}{id}{accueil} />
 <link rel="stylesheet" id="astra-spip-css" href="[(#CHEMIN{css/astra-spip.css}|timestamp)]" media="all" />
 #INSERT_HEAD

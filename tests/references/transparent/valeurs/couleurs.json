@@ -1,0 +1,74 @@
+{
+	"transparent-header-bg-color-responsive": {
+		"desktop": "#101010",
+		"tablet": "",
+		"mobile": ""
+	},
+	"hba-transparent-header-bg-color-responsive": {
+		"desktop": "#111111",
+		"tablet": "#121212",
+		"mobile": ""
+	},
+	"hbb-transparent-header-bg-color-responsive": {
+		"desktop": "",
+		"tablet": "#131313",
+		"mobile": "#141414"
+	},
+	"transparent-header-color-site-title-responsive": {
+		"desktop": "#202020",
+		"tablet": "#212121",
+		"mobile": "#222222"
+	},
+	"transparent-header-color-h-site-title-responsive": {
+		"desktop": "#232323",
+		"tablet": "",
+		"mobile": ""
+	},
+	"transparent-menu-color-responsive": {
+		"desktop": "#303030",
+		"tablet": "#313131",
+		"mobile": "#323232"
+	},
+	"transparent-menu-h-color-responsive": {
+		"desktop": "#333333",
+		"tablet": "",
+		"mobile": "#343434"
+	},
+	"transparent-menu-bg-color-responsive": {
+		"desktop": "#353535",
+		"tablet": "",
+		"mobile": ""
+	},
+	"transparent-submenu-color-responsive": {
+		"desktop": "#404040",
+		"tablet": "#414141",
+		"mobile": ""
+	},
+	"transparent-submenu-h-color-responsive": {
+		"desktop": "#424242",
+		"tablet": "",
+		"mobile": ""
+	},
+	"transparent-submenu-bg-color-responsive": {
+		"desktop": "#434343",
+		"tablet": "",
+		"mobile": "#444444"
+	},
+	"transparent-content-section-text-color-responsive": {
+		"desktop": "#505050",
+		"tablet": "#515151",
+		"mobile": "#525252"
+	},
+	"transparent-content-section-link-color-responsive": {
+		"desktop": "#535353",
+		"tablet": "",
+		"mobile": ""
+	},
+	"transparent-content-section-link-h-color-responsive": {
+		"desktop": "#545454",
+		"tablet": "",
+		"mobile": "#555555"
+	},
+	"transparent-header-main-sep": 1,
+	"transparent-header-main-sep-color": "var(--ast-global-color-4)"
+}

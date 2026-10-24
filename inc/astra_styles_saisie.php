@@ -17,7 +17,7 @@ function astra_styles_sections(): array {
 		'menu_2' => '/^header-menu2-/',
 		'bouton' => '/^(button-|theme-button-|font-[a-z]+-button$)/',
 		'bouton_entete' => '/^header-button1-/',
-		'identite' => '/(site-title|site-tagline|logo-width)/',
+		'identite' => '/^(?!(hba-|hbb-)?transparent-).*(site-title|site-tagline|logo-width)/',
 		'widget_1' => '/^footer-widget-1-/',
 		'widget_2' => '/^footer-widget-2-/',
 		'widget_3' => '/^footer-widget-3-/',
@@ -26,6 +26,7 @@ function astra_styles_sections(): array {
 		'sociaux_entete' => '/^header-social-1-/',
 		'sociaux_pied' => '/^footer-social-1-/',
 		'menu_mobile' => '/^mobile-header-toggle-/',
+		'entete_transparent' => '/^(hba-|hbb-)?transparent-/',
 	];
 }
 

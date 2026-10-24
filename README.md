@@ -85,9 +85,9 @@ rubrique s'affichent avec le gabarit de page d'Astra (`page.php`, `content-page.
   afficher les derniers articles (défaut) ou une page unique publiée, comme le réglage « Page
   d'accueil » de WordPress. Cette page porte alors la classe `home` et son adresse propre
   renvoie à l'accueil (lien `canonical`).
-- **Réglages par page** : un bloc de la fiche de chaque page permet de masquer le titre et de
-  choisir la disposition du contenu (celle des pages, normale, étroite ou pleine largeur), comme
-  les réglages de page d'Astra. Ils sont enregistrés dans la méta `astra/pages/<id_article>` et
+- **Réglages par page** : un bloc de la fiche de chaque page permet de masquer le titre, de
+  choisir la disposition du contenu (celle des pages, normale, étroite ou pleine largeur) et
+  d'activer ou désactiver l'en-tête transparent, comme les réglages de page d'Astra. Ils sont enregistrés dans la méta `astra/pages/<id_article>` et
   supprimés avec la page.
 
 Pages et a2a sont déclarés en `<utilise>` : le thème fonctionne sans eux.
@@ -136,6 +136,7 @@ avec leur effet et la propriété vérifiée, dans
 - Affichage des auteurs, des extraits, du lien « Accueil » et du bouton de retour en haut.
 - Neuvième couleur de la palette : hexadécimale ou `rgba()`, comme dans Astra.
 - **Couleurs et typographie** (Configuration › Squelettes) : réglages de style du Customizer d'Astra, sous leurs noms d'options (`header-menu1-color-responsive`, `button-radius-fields`…) — menus, bouton, bouton de l'en-tête, identité du site (couleurs, tailles, affichage du nom et du slogan, largeur du logo), widgets et copyright du pied, icônes sociales, bouton du menu mobile (minimal, plein ou contour). Les valeurs d'un `site.json` de modèle Astra se reprennent telles quelles ; seule la valeur ordinateur est appliquée, les valeurs tablette et mobile sont conservées. Sans réglage, rien ne change.
+- **En-tête transparent** (même formulaire) : l'en-tête se superpose au début du contenu, avec ses propres couleurs, sur tout le site ou page par page, avec les exclusions d'Astra (archives, recherche, 404, accueil des derniers articles, pages, articles) et la restriction par appareil ; règles d'Astra 4.11.0 sur les trois appareils (`inc/astra_entete_transparent.php`). Logo propre à l'en-tête transparent : non repris.
 - Texte du pied de page (raccourcis SPIP, marqueurs `[annee]` et `[site]`).
 
 ## Tests

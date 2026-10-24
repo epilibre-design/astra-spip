@@ -1,7 +1,8 @@
 [(#REM)
 
 	Variables CSS d'Astra pilotées par la configuration du thème
-	(palette globale, largeurs de conteneur, polices)
+	(palette globale, largeurs de conteneur, polices), et CSS de l'en-tête transparent
+	(paramètres contexte, id, accueil).
 
 ][<style id="astra-polices-inline-css">
 (#VAL|astra_polices_inline)
@@ -16,4 +17,6 @@
 (#VAL|astra_hfb_css)
 </style>][<style id="astra-styles-inline-css">
 (#VAL|astra_styles_inline)
+</style>][<style id="astra-transparent-inline-css">
+(#ENV{contexte}|astra_entete_transparent_inline{#ENV{id},#ENV{accueil}})
 </style>]
