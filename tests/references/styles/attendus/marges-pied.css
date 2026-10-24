@@ -1,0 +1,4 @@
+[@media (max-width:921px)] .site-below-footer-wrap[data-section="section-below-footer-builder"]{padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px;}
+.site-primary-footer-wrap[data-section="section-primary-footer-builder"]{padding-top:80px;}
+[@media (max-width:921px)] .site-primary-footer-wrap[data-section="section-primary-footer-builder"]{padding-top:80px;padding-bottom:80px;padding-left:80px;padding-right:80px;}
+[@media (max-width:544px)] .site-primary-footer-wrap[data-section="section-primary-footer-builder"]{padding-top:60px;padding-bottom:30px;padding-left:30px;padding-right:30px;}

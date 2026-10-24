@@ -134,6 +134,22 @@ function astra_styles_registre(): array {
 	$alignement = ['type' => 'alignement', 'responsive' => true, 'defaut' => ['desktop' => 'center', 'tablet' => 'center', 'mobile' => 'center']];
 	$ajouter('alignements', 'inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php', ['footer-copyright-alignment' => $alignement]);
 	$ajouter('alignements', $sociaux, ['footer-social-1-alignment' => $alignement]);
+	// Marges des rangées du builder, de l'en-tête entier et du pied entier : les trois appareils
+	// s'appliquent (appareils), les marges extérieures acceptent les nombres négatifs (signe).
+	// Défaut : Astra_Builder_Helper::$default_responsive_spacing (côtés vides, unités px).
+	$vides = ['top' => '', 'right' => '', 'bottom' => '', 'left' => ''];
+	$marge = $cotes_r + ['appareils' => true, 'defaut' => ['desktop' => $vides, 'tablet' => $vides, 'mobile' => $vides, 'desktop-unit' => 'px', 'tablet-unit' => 'px', 'mobile-unit' => 'px']];
+	$marges = [];
+	foreach (['above-header', 'primary-header', 'below-header', 'above-footer', 'primary-footer', 'below-footer'] as $rangee) {
+		$marges["section-$rangee-builder-padding"] = $marge;
+		$marges["section-$rangee-builder-margin"] = $marge + ['signe' => true];
+	}
+	$marges['section-footer-builder-layout-padding'] = $marge;
+	$marges['section-footer-builder-layout-margin'] = $marge + ['signe' => true];
+	$ajouter('marges-rangees', 'inc/class-astra-extended-base-dynamic-css.php', $marges);
+	$ajouter('marges-rangees', 'inc/builder/type/header/primary-header/dynamic-css/dynamic.css.php', [
+		'section-header-builder-layout-margin' => $marge + ['signe' => true],
+	]);
 	$ajouter('menu-mobile', 'inc/builder/type/header/mobile-trigger/dynamic-css/dynamic.css.php', [
 		'mobile-header-toggle-btn-style' => ['type' => 'enum', 'valeurs' => ['minimal', 'fill', 'outline'], 'defaut' => 'minimal'],
 		'mobile-header-toggle-btn-color' => $couleur,
@@ -246,9 +262,10 @@ function astra_styles_filtrer_objet($v, array $champs): ?array {
 			$regle === 'couleur' ? astra_styles_couleur_valide($x) : (
 			$regle === 'nombre' ? astra_styles_nombre_valide($x) : (
 			$regle === 'nombre-signe' ? ($x === '' || (is_numeric($x) && abs((float) $x) <= 100)) : (
+			$regle === 'nombre-signe-1000' ? ($x === '' || ((is_int($x) || is_float($x) || (is_string($x) && is_numeric($x))) && abs((float) $x) <= 1000)) : (
 			$regle === 'opacite' ? ($x === '' || (is_numeric($x) && (float) $x >= 0 && (float) $x <= 1)) : (
 			$regle === 'entier' ? ($x === '' || (is_numeric($x) && (int) $x == $x)) : (
-			$regle === 'image' ? (is_string($x) && ($x === '' || preg_match('#^IMG/[\w./-]+\.(png|jpe?g|gif|webp|svg)$#i', $x))) : false))))));
+			$regle === 'image' ? (is_string($x) && ($x === '' || preg_match('#^IMG/[\w./-]+\.(png|jpe?g|gif|webp|svg)$#i', $x))) : false)))))));
 		if ($ok) {
 			$r[$champ] = $x;
 		}
@@ -265,7 +282,7 @@ function astra_styles_valider(array $d, $v) {
 		case 'nombre':
 			return astra_styles_nombre_valide($v) ? $v : null;
 		case 'quatre-cotes':
-			return astra_styles_filtrer_objet($v, array_fill_keys(['top', 'right', 'bottom', 'left'], 'nombre'));
+			return astra_styles_filtrer_objet($v, array_fill_keys(['top', 'right', 'bottom', 'left'], empty($d['signe']) ? 'nombre' : 'nombre-signe-1000'));
 		case 'police':
 			return is_string($v) && ($v === '' || isset(astra_polices_locales()[$v]) || preg_match('/^[\w\s,\'"-]+$/u', $v)) ? $v : null;
 		case 'graisse':
@@ -484,7 +501,7 @@ function astra_styles_ecrire(array $regles): string {
 }
 
 /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
-const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'alignements', 'menu_mobile'];
+const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'alignements', 'menu_mobile', 'marges_rangees'];
 
 /**
  * CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. $compatibilite :

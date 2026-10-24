@@ -27,6 +27,7 @@ function astra_styles_sections(): array {
 		'sociaux_entete' => '/^header-social-1-/',
 		'sociaux_pied' => '/^footer-social-1-/',
 		'menu_mobile' => '/^mobile-header-toggle-/',
+		'marges_rangees' => '/^section-((above|primary|below)-(header|footer)-builder|(header|footer)-builder-layout)-(padding|margin)$/',
 		'entete_transparent' => '/^(hba-|hbb-)?transparent-/',
 	];
 }
