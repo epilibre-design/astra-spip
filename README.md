@@ -107,6 +107,15 @@ caractérisées (séparateur, assombrissement de la couverture, code, vers) : el
 avec leur effet et la propriété vérifiée, dans
 [`tests/references/blocs/README.md`](tests/references/blocs/README.md).
 
+### Contenus intégrés (oEmbed)
+
+Le plugin [oEmbed](https://git.spip.net/spip-contrib-extensions/oembed), facultatif et déclaré
+avec `<utilise>` dans `paquet.xml`, permet de transformer une URL isolée en lecteur ou contenu
+intégré lorsque le fournisseur est pris en charge. wp2spip prépare déjà les blocs `embed`
+sous cette forme ; sans oEmbed, le contenu reste un lien. oEmbed fournit le lecteur et son
+conteneur responsive ; la compatibilité de son habillage avec Astra reste à vérifier sur des
+références dédiées. Astra ne l'installe ni ne l'active automatiquement.
+
 ## Feuilles de style et scripts
 
 - `css/main.min.css` et `js/frontend.min.js` : fichiers d'origine d'Astra 4.11.0, sans modification.
