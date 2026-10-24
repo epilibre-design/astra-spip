@@ -77,4 +77,64 @@ final class HfbFormulaireTest extends TestCase {
 		$this->assertSame('Bonjour', $config['elements']['pied']['html-1']['texte']);
 		$this->assertSame(['source' => 'rubrique', 'id' => 1], $config['elements']['entete']['menu-2']);
 	}
+
+	public function testRepartitionParAppareil(): void {
+		$valeurs = formulaires_configurer_astra_hfb_charger_dist();
+		$valeurs['place']['pied']['html-1'] = 'primary_1';
+		$valeurs['rangees']['pied_primary']['colonnes'] = '4';
+		$valeurs['rangees']['pied_primary']['repartition'] = ['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full'];
+		$this->poster($valeurs);
+		$this->assertSame([], formulaires_configurer_astra_hfb_verifier_dist());
+		formulaires_configurer_astra_hfb_traiter_dist();
+		$this->assertSame(['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full'], lire_config('astra/hfb/rangees/pied_primary/repartition'));
+		$pied = recuperer_fond('inclure/footer', ['type_page' => 'sommaire']);
+		$this->assertStringContainsString('ast-builder-grid-row-4-equal ast-builder-grid-row-tablet-full ast-builder-grid-row-mobile-full', $pied);
+	}
+
+	public function testRenduDesSelecteursDeRepartition(): void {
+		ecrire_config('astra/hfb', ['rangees' => ['pied_primary' => ['colonnes' => 4, 'repartition' => ['desktop' => '4-equal', 'tablet' => '2-equal', 'mobile' => 'full']]]]);
+		$html = recuperer_fond('formulaires/configurer_astra_hfb', ['editable' => true] + formulaires_configurer_astra_hfb_charger_dist());
+		$x = HfbRenduTest::xpath($html);
+		$choisi = function (string $appareil) use ($x): string {
+			$n = $x->query('//select[@name="rangees[pied_primary][repartition][' . $appareil . ']"]/option[@selected]');
+			return $n->length === 1 ? $n->item(0)->getAttribute('value') : '';
+		};
+		$this->assertSame('4-equal', $choisi('desktop'));
+		$this->assertSame('2-equal', $choisi('tablet'));
+		$this->assertSame('full', $choisi('mobile'));
+		ecrire_config('astra/hfb', ['rangees' => ['pied_below' => ['colonnes' => 1, 'repartition' => 'full']]]);
+		$x = HfbRenduTest::xpath(recuperer_fond('formulaires/configurer_astra_hfb', ['editable' => true] + formulaires_configurer_astra_hfb_charger_dist()));
+		$n = $x->query('//select[@name="rangees[pied_above][repartition][mobile]"]/option[@selected]');
+		$this->assertSame('full', $n->item(0)->getAttribute('value'), 'Valeur simple : mobile en pleine largeur');
+	}
+
+	public function testAllerRetourDesRepartitionsLourdesAQuatreColonnes(): void {
+		// Valeur simple de la version 1.2.0 : elle vaut pour l'ordinateur et la tablette. Le
+		// formulaire doit la reproposer telle quelle, et l'enregistrement ne rien changer au rendu.
+		$classes = function (): string {
+			preg_match('/ast-builder-grid-row-4-[a-z]+ ast-builder-grid-row-tablet-[a-z0-9-]+ ast-builder-grid-row-mobile-[a-z0-9-]+/', recuperer_fond('inclure/footer', ['type_page' => 'sommaire']), $m);
+			return $m[0] ?? '';
+		};
+		foreach (['4-lheavy', '4-rheavy'] as $repartition) {
+			effacer_config('astra/hfb');
+			ecrire_config('astra/hfb', [
+				'pied' => ['primary' => ['primary_1' => ['html-1']]],
+				'rangees' => ['pied_primary' => ['colonnes' => 4, 'repartition' => $repartition]],
+			]);
+			$avant = $classes();
+			$this->assertSame("ast-builder-grid-row-$repartition ast-builder-grid-row-tablet-$repartition ast-builder-grid-row-mobile-full", $avant);
+			$valeurs = formulaires_configurer_astra_hfb_charger_dist();
+			$x = HfbRenduTest::xpath(recuperer_fond('formulaires/configurer_astra_hfb', ['editable' => true] + $valeurs));
+			$postee = [];
+			foreach (['desktop', 'tablet', 'mobile'] as $appareil) {
+				$n = $x->query('//select[@name="rangees[pied_primary][repartition][' . $appareil . ']"]/option[@selected]');
+				$postee[$appareil] = $n->length === 1 ? $n->item(0)->getAttribute('value') : '';
+			}
+			$valeurs['rangees']['pied_primary']['repartition'] = $postee;
+			$this->poster($valeurs);
+			$this->assertSame([], formulaires_configurer_astra_hfb_verifier_dist(), $repartition);
+			formulaires_configurer_astra_hfb_traiter_dist();
+			$this->assertSame($avant, $classes(), $repartition);
+		}
+	}
 }

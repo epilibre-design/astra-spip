@@ -1,0 +1,35 @@
+{
+	"mobile-header-toggle-btn-style": "outline",
+	"mobile-header-toggle-icon-size": 20,
+	"mobile-header-toggle-btn-border-size": {
+		"top": "2",
+		"right": "2",
+		"bottom": "2",
+		"left": "2"
+	},
+	"mobile-header-toggle-border-radius-fields": {
+		"desktop": {
+			"top": 100,
+			"right": 100,
+			"bottom": 100,
+			"left": 100
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"mobile-header-toggle-btn-color": "var(--ast-global-color-0)",
+	"mobile-header-toggle-border-color": "var(--ast-global-color-0)"
+}

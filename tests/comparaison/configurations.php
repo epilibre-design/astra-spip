@@ -16,8 +16,8 @@ function astra_configurations_reference(): array {
 				'below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']],
 			],
 			'rangees' => [
-				'pied_primary' => ['colonnes' => 4, 'repartition' => '4-equal'],
-				'pied_below' => ['colonnes' => 2, 'repartition' => '2-equal'],
+				'pied_primary' => ['colonnes' => 4, 'repartition' => ['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full']],
+				'pied_below' => ['colonnes' => 2, 'repartition' => ['desktop' => '2-equal', 'tablet' => '2-equal', 'mobile' => 'full']],
 			],
 			'elements' => [
 				'entete' => ['button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact']],
@@ -84,6 +84,44 @@ function astra_configurations_reference(): array {
 				'widget-4' => ['blocs' => ['texte'], 'titre' => 'Colonne 4', 'texte' => 'Texte de la colonne 4'],
 			]],
 		],
+		'R12-pied-appareils' => [
+			'pied' => [
+				'above' => ['above_1' => ['html-1'], 'above_2' => ['social-icons-1']],
+				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['widget-2'], 'primary_3' => ['widget-3'], 'primary_4' => ['widget-4']],
+				'below' => ['below_1' => ['copyright'], 'below_2' => ['menu']],
+			],
+			'rangees' => [
+				'pied_above' => ['colonnes' => 2, 'repartition' => ['desktop' => '2-equal', 'tablet' => '2-equal', 'mobile' => 'full']],
+				'pied_primary' => ['colonnes' => 4, 'repartition' => ['desktop' => '4-equal', 'tablet' => 'full', 'mobile' => 'full']],
+				'pied_below' => ['colonnes' => 2, 'repartition' => ['desktop' => '2-equal', 'tablet' => '2-equal', 'mobile' => 'full']],
+			],
+			'elements' => ['pied' => [
+				'html-1' => ['texte' => 'Un site éditorial propulsé par SPIP'],
+				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Colonne 1', 'texte' => 'Texte de la colonne 1'],
+				'widget-2' => ['blocs' => ['texte'], 'titre' => 'Colonne 2', 'texte' => 'Texte de la colonne 2'],
+				'widget-3' => ['blocs' => ['texte'], 'titre' => 'Colonne 3', 'texte' => 'Texte de la colonne 3'],
+				'widget-4' => ['blocs' => ['texte'], 'titre' => 'Colonne 4', 'texte' => 'Texte de la colonne 4'],
+			]],
+		],
+		'R13-pied-widgets-menus' => [
+			'pied' => [
+				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['widget-2'], 'primary_3' => ['widget-3']],
+			],
+			'rangees' => ['pied_primary' => ['colonnes' => 3, 'repartition' => '3-equal']],
+			'elements' => ['pied' => [
+				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Colonne 1', 'texte' => 'Texte de la colonne 1'],
+				'widget-2' => ['blocs' => ['menu'], 'titre' => 'Liens rapides', 'menu' => ['source' => 'racine', 'id' => 0]],
+				'widget-3' => ['blocs' => ['menu'], 'titre' => 'Nos services', 'menu' => ['source' => 'racine', 'id' => 0]],
+			]],
+		],
+		'R15-sociaux-google' => [
+			'pied' => ['below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']]],
+			'rangees' => ['pied_below' => ['colonnes' => 2, 'repartition' => '2-equal']],
+			'elements' => ['pied' => ['social-icons-1' => ['reseaux' => [
+				['reseau' => 'facebook', 'url' => 'https://example.org/facebook'],
+				['reseau' => 'google_reviews', 'url' => 'https://example.org/avis'],
+			]]]],
+		],
 		'R4-pied-asymetrique' => [
 			'pied' => [
 				'primary' => ['primary_1' => ['widget-1'], 'primary_2' => ['html-1', 'social-icons-1'], 'primary_3' => ['menu']],
@@ -101,13 +139,27 @@ function astra_configurations_reference(): array {
 			]],
 		],
 		'R5-rangees' => [
-			'rangees' => ['entete_primary' => ['hauteur' => 100, 'fond' => '#e8f5e9', 'bordure' => 0]],
+			'pied' => [
+				'above' => ['above_1' => ['html-1']],
+				'primary' => ['primary_1' => ['html-2']],
+			],
+			'rangees' => [
+				'entete_primary' => ['hauteur' => 100, 'fond' => '#e8f5e9', 'bordure' => 0],
+				'pied_above' => ['separateur' => 2, 'couleur_separateur' => '#c0392b'],
+				'pied_primary' => ['separateur' => 0],
+				'pied_below' => ['couleur_separateur' => 'var(--ast-global-color-4)'],
+			],
+			'elements' => ['pied' => [
+				'html-1' => ['texte' => 'Rangée haute'],
+				'html-2' => ['texte' => 'Rangée principale'],
+			]],
 		],
 		'R6-menu' => $styles(['menu'], ['rubrique' => 'Jardinage']),
 		'R7-bouton' => $styles(['bouton']),
 		'R8-identite' => $styles(['identite'], ['meta' => ['slogan_site' => 'Un site propulsé par SPIP']]),
 		'R9-pied-couleurs' => $styles(['pied']),
 		'R10-sociaux' => $styles(['sociaux']),
+		'R14-bouton-mobile' => $styles(['menu-mobile']),
 		'R11-combinee' => $styles($tous, [
 			'astra' => ['police_texte' => "'Raleway', sans-serif", 'police_titres' => "'Poppins', sans-serif"],
 			'meta' => ['slogan_site' => 'Un site propulsé par SPIP'],

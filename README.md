@@ -49,11 +49,17 @@ En-tête et pied de page** :
 
 - en-tête sur ordinateur : zones gauche, centre et droite de chaque rangée ;
 - en-tête sur mobile : mêmes rangées, plus le panneau du menu (déroulant ou latéral) ;
-- pied de page : 1 à 6 colonnes par rangée, avec les répartitions d'Astra ;
+- pied de page : 1 à 6 colonnes par rangée, avec les répartitions d'Astra, choisies séparément
+  pour l'ordinateur, la tablette et le mobile (dont `3-firstrow` et `3-lastrow`). Comme dans
+  Astra 4.11.0, la règle tablette de `3-firstrow` ou `3-lastrow` (`max-width:921px`) vaut aussi sur
+  mobile : la colonne qu'elle étend reste pleine largeur avec une autre répartition mobile
+  (mesuré à 390 px, identique dans WordPress et SPIP) ;
 - éléments : identité du site, menus (rubriques racines, sous-rubriques d'une rubrique, articles
   d'un groupe de mots-clés, pages uniques si le plugin Pages est actif), textes libres, bouton,
-  recherche, icônes sociales, zones de widgets, compte, copyright ;
-- réglages des rangées : hauteur minimale, couleur de fond, bordure.
+  recherche, icônes sociales (dont Google Reviews), zones de widgets (texte et menu de deux
+  niveaux, comme le widget « Menu de navigation » de WordPress), compte, copyright ;
+- réglages des rangées : hauteur minimale, couleur de fond, bordure ; séparateur (épaisseur et
+  couleur) des rangées du pied.
 
 Sans réglage, l'en-tête et le pied de page sont ceux d'Astra par défaut : identité et menu
 principal, copyright centré. Le balisage produit est celui d'Astra ; `css/astra-hfb.css`
@@ -129,7 +135,7 @@ avec leur effet et la propriété vérifiée, dans
 - Polices du texte et des titres (pile CSS, ou Raleway et Poppins, fournies avec le thème et servies par le site), nombre d'articles par page.
 - Affichage des auteurs, des extraits, du lien « Accueil » et du bouton de retour en haut.
 - Neuvième couleur de la palette : hexadécimale ou `rgba()`, comme dans Astra.
-- **Couleurs et typographie** (Configuration › Squelettes) : réglages de style du Customizer d'Astra, sous leurs noms d'options (`header-menu1-color-responsive`, `button-radius-fields`…) — menus, bouton, bouton de l'en-tête, identité du site (couleurs, tailles, affichage du nom et du slogan, largeur du logo), widgets et copyright du pied, icônes sociales. Les valeurs d'un `site.json` de modèle Astra se reprennent telles quelles ; seule la valeur ordinateur est appliquée, les valeurs tablette et mobile sont conservées. Sans réglage, rien ne change.
+- **Couleurs et typographie** (Configuration › Squelettes) : réglages de style du Customizer d'Astra, sous leurs noms d'options (`header-menu1-color-responsive`, `button-radius-fields`…) — menus, bouton, bouton de l'en-tête, identité du site (couleurs, tailles, affichage du nom et du slogan, largeur du logo), widgets et copyright du pied, icônes sociales, bouton du menu mobile (minimal, plein ou contour). Les valeurs d'un `site.json` de modèle Astra se reprennent telles quelles ; seule la valeur ordinateur est appliquée, les valeurs tablette et mobile sont conservées. Sans réglage, rien ne change.
 - Texte du pied de page (raccourcis SPIP, marqueurs `[annee]` et `[site]`).
 
 ## Tests
@@ -156,11 +162,12 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire_styles.cjs
 
 - `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
-  page à celle de WordPress, pour les six configurations de référence du builder (R0–R5) et
+  page à celle de WordPress, pour les configurations de référence du builder (R0–R5, R12, R13 et R15) et
   les trois de pages (P1–P3, qui comparent aussi le contenu et les classes du `body`) : balises, classes et
   identifiants des rangées, des zones et des éléments, et du premier niveau à l'intérieur de
   chaque élément. Les contenus, les formulaires et les SVG ne sont pas comparés : ce n'est pas
-  une identité complète du HTML ;
+  une identité complète du HTML (R13 : deux différences de nommage attendues, voir
+  `tests/references/README.md`) ;
 - `comparer_captures.sh` compare au pixel près l'en-tête, le pied de page et le menu mobile
   ouvert, sur ordinateur et sur mobile (seuil : 1 % de pixels différents, variable `SEUIL`) ; les
   images et leurs différences sont enregistrées dans `tests/comparaison/sorties/`. Une référence
@@ -169,13 +176,16 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
   d'un pixel laisserait sous le seuil des captures. Les références R6–R11 (styles du Customizer,
   valeurs de Garden Maintenance) comparent aussi les styles calculés au survol et au focus, à
   1280, 768 et 390 px, et vérifient que les polices locales sont chargées des deux côtés ;
+  R12–R15 couvrent les répartitions par appareil, les widgets menu, le bouton du menu mobile et
+  l'icône Google Reviews ;
 - `tests/e2e/formulaire_styles.cjs` vérifie le formulaire « Couleurs et typographie » de bout en
   bout (enregistrement, valeur refusée, site public) ;
 - `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout ;
 - `tests/e2e/tableaux.cjs` vérifie que les tableaux SPIP du texte sont stylés, et pas ceux d'un
   bloc tableau importé (`figure.wp-block-table`) ;
 - `tests/e2e/repartitions.cjs` vérifie dans Chromium les quatorze répartitions de colonnes du
-  pied (proportions sur ordinateur et tablette, une colonne sur mobile) et la largeur des
+  pied (proportions sur ordinateur et tablette, une colonne sur mobile), les répartitions
+  tablette et mobile choisies à part (dont `3-firstrow` et `3-lastrow`) et la largeur des
   rangées du pied avec un conteneur de 1600 px. Ces réglages sortent des cinq configurations
   de référence.
 

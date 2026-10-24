@@ -126,13 +126,29 @@ function astra_hfb_saisie_depuis_config(array $config): array {
 	return $saisie;
 }
 
+/** Valeur du champ source_id d'un menu (racine, rubrique:<id>, groupe_mots:<id>, pages). */
+function astra_hfb_source_id(array $menu): string {
+	$source = (string) ($menu['source'] ?? 'racine');
+	return in_array($source, ['rubrique', 'groupe_mots'], true) ? $source . ':' . (int) ($menu['id'] ?? 0) : $source;
+}
+
+/** Source d'un menu à partir du champ source_id ; valeur inconnue : racine. */
+function astra_hfb_source_depuis_saisie(string $source_id): array {
+	if (preg_match('/^(rubrique|groupe_mots):(\d+)$/', $source_id, $m)) {
+		return ['source' => $m[1], 'id' => (int) $m[2]];
+	}
+	return ['source' => $source_id === 'pages' ? 'pages' : 'racine', 'id' => 0];
+}
+
 /** Valeurs des champs de réglages d'éléments à partir de la configuration. */
 function astra_hfb_saisie_elements(array $elements): array {
 	foreach ($elements as $groupe => $liste) {
 		foreach ($liste as $id => $r) {
 			if (isset($r['source'])) {
-				$elements[$groupe][$id]['source_id'] = in_array($r['source'], ['rubrique', 'groupe_mots'], true)
-					? $r['source'] . ':' . (int) $r['id'] : $r['source'];
+				$elements[$groupe][$id]['source_id'] = astra_hfb_source_id($r);
+			}
+			if (isset($r['menu']) && is_array($r['menu'])) {
+				$elements[$groupe][$id]['menu_source_id'] = astra_hfb_source_id($r['menu']);
 			}
 			if (isset($r['reseaux'])) {
 				$champs = [];
@@ -170,6 +186,8 @@ function astra_hfb_elements_depuis_saisie(array $saisie): array {
 							$r['reseaux'][] = ['reseau' => $reseau, 'url' => trim((string) ($c['url'] ?? ''))];
 						}
 					}
+				} elseif ($cle === 'menu') {
+					$r['menu'] = astra_hfb_source_depuis_saisie((string) ($champs['menu_source_id'] ?? 'racine'));
 				} elseif ($cle === 'blocs') {
 					$choisis = isset($champs['blocs']) && is_array($champs['blocs']) ? $champs['blocs'] : [];
 					$r['blocs'] = array_values(array_intersect(astra_hfb_blocs(), $choisis));
@@ -178,14 +196,7 @@ function astra_hfb_elements_depuis_saisie(array $saisie): array {
 				}
 			}
 			if (array_key_exists('source', $defaut)) {
-				$source_id = (string) ($champs['source_id'] ?? 'racine');
-				if (preg_match('/^(rubrique|groupe_mots):(\d+)$/', $source_id, $m)) {
-					$r = ['source' => $m[1], 'id' => (int) $m[2]] + $r;
-				} elseif ($source_id === 'pages') {
-					$r = ['source' => 'pages', 'id' => 0] + $r;
-				} else {
-					$r = ['source' => 'racine', 'id' => 0] + $r;
-				}
+				$r = astra_hfb_source_depuis_saisie((string) ($champs['source_id'] ?? 'racine')) + $r;
 			}
 			if (isset($defaut['disposition']) && !in_array($r['disposition'], ['horizontal', 'vertical'], true)) {
 				$r['disposition'] = $defaut['disposition'];
@@ -248,13 +259,28 @@ function astra_hfb_verifier_saisie(array $saisie): array {
 		if (isset($defaut['bordure']) && !preg_match('/^\d{1,2}$/', (string) ($r['bordure'] ?? ''))) {
 			$erreurs['rangees_' . $cle . '_bordure'] = 'nombre';
 		}
+		if (array_key_exists('separateur', $defaut)) {
+			$epaisseur = (string) ($r['separateur'] ?? '');
+			if (!preg_match('/^\d{0,2}$/', $epaisseur) || (int) $epaisseur > 20) {
+				$erreurs['rangees_' . $cle . '_separateur'] = 'nombre';
+			}
+			if (!astra_styles_couleur_valide((string) ($r['couleur_separateur'] ?? ''))) {
+				$erreurs['rangees_' . $cle . '_couleur_separateur'] = 'couleur';
+			}
+		}
 		if (isset($defaut['colonnes'])) {
 			$colonnes = (int) ($r['colonnes'] ?? 0);
-			$repartition = (string) ($r['repartition'] ?? '');
+			$repartition = $r['repartition'] ?? '';
+			$appareils = is_array($repartition) ? ['desktop', 'tablet', 'mobile'] : ['desktop'];
 			if ($colonnes < 1 || $colonnes > ASTRA_HFB_COLONNES_MAX) {
 				$erreurs['rangees_' . $cle . '_colonnes'] = 'colonnes';
-			} elseif (!in_array($repartition, astra_hfb_repartitions($colonnes), true)) {
-				$erreurs['rangees_' . $cle . '_repartition'] = 'repartition';
+			} else {
+				foreach ($appareils as $appareil) {
+					$v = is_array($repartition) ? ($repartition[$appareil] ?? '') : $repartition;
+					if (!in_array($v, astra_hfb_repartitions($colonnes, $appareil), true)) {
+						$erreurs['rangees_' . $cle . '_repartition'] = 'repartition';
+					}
+				}
 			}
 		}
 	}
@@ -266,10 +292,14 @@ function astra_hfb_verifier_saisie(array $saisie): array {
 }
 
 /**
- * Répartitions des colonnes du pied proposées par Astra pour un nombre de colonnes.
+ * Répartitions des colonnes du pied proposées par Astra pour un nombre de colonnes et un appareil
+ * (Astra_Builder_Helper, choix du contrôle ast-row-layout, Astra 4.11.0) : tablette et mobile
+ * ajoutent `full` et, selon le nombre de colonnes, `2-equal`, `3-firstrow`, `3-lastrow`.
+ * La tablette garde en plus les répartitions de l'ordinateur (`4-lheavy`, `4-rheavy`) : une valeur
+ * simple de la version 1.2.0 s'y applique, et le formulaire doit pouvoir la reproposer.
  */
-function astra_hfb_repartitions(int $colonnes): array {
-	$toutes = [
+function astra_hfb_repartitions(int $colonnes, string $appareil = 'desktop'): array {
+	$ordinateur = [
 		1 => ['full'],
 		2 => ['2-equal', '2-lheavy', '2-rheavy'],
 		3 => ['3-equal', '3-cwide', '3-cheavy', '3-lheavy', '3-rheavy'],
@@ -277,7 +307,34 @@ function astra_hfb_repartitions(int $colonnes): array {
 		5 => ['5-equal'],
 		6 => ['6-equal'],
 	];
-	return $toutes[$colonnes] ?? [];
+	$petits = [
+		1 => ['full'],
+		2 => ['2-equal', '2-lheavy', '2-rheavy', 'full'],
+		3 => ['3-equal', '3-cwide', '3-cheavy', '3-lheavy', '3-rheavy', '3-firstrow', '3-lastrow', 'full'],
+		4 => ['4-equal', '2-equal', 'full'],
+		5 => ['5-equal', 'full'],
+		6 => ['6-equal', 'full'],
+	];
+	if (!in_array($appareil, ['desktop', 'tablet', 'mobile'], true)) {
+		return [];
+	}
+	if ($appareil === 'tablet') {
+		return array_values(array_unique(array_merge($petits[$colonnes] ?? [], $ordinateur[$colonnes] ?? [])));
+	}
+	return ($appareil === 'desktop' ? $ordinateur : $petits)[$colonnes] ?? [];
+}
+
+/**
+ * Répartitions proposées pour un appareil, tous nombres de colonnes confondus, sans doublon et
+ * dans l'ordre d'Astra : liste du sélecteur ; la vérification écarte celles qui ne vont pas avec
+ * le nombre de colonnes choisi.
+ */
+function astra_hfb_repartitions_appareil(string $appareil): array {
+	$toutes = [];
+	for ($colonnes = 1; $colonnes <= ASTRA_HFB_COLONNES_MAX; $colonnes++) {
+		$toutes = array_merge($toutes, astra_hfb_repartitions($colonnes, $appareil));
+	}
+	return array_values(array_unique($toutes));
 }
 
 /** Réglages de rangées à enregistrer à partir des champs du formulaire. */
@@ -285,8 +342,18 @@ function astra_hfb_rangees_depuis_saisie(array $saisie): array {
 	$rangees = [];
 	foreach (astra_hfb_defauts()['rangees'] as $cle => $defaut) {
 		foreach ($defaut as $reglage => $valeur) {
+			if ($reglage === 'repartition' && is_array($saisie[$cle][$reglage] ?? null)) {
+				// Une répartition par appareil (structure d'Astra) ; une valeur simple reste simple.
+				$r = $saisie[$cle][$reglage];
+				$rangees[$cle][$reglage] = [
+					'desktop' => trim((string) ($r['desktop'] ?? $valeur)),
+					'tablet' => trim((string) ($r['tablet'] ?? $valeur)),
+					'mobile' => trim((string) ($r['mobile'] ?? 'full')),
+				];
+				continue;
+			}
 			$v = trim((string) ($saisie[$cle][$reglage] ?? $valeur));
-			if (in_array($reglage, ['colonnes', 'bordure'], true) || ($reglage === 'hauteur' && $v !== '')) {
+			if (in_array($reglage, ['colonnes', 'bordure'], true) || (in_array($reglage, ['hauteur', 'separateur'], true) && $v !== '')) {
 				$v = (int) $v;
 			}
 			$rangees[$cle][$reglage] = $v;

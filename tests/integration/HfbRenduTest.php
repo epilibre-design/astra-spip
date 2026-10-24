@@ -208,4 +208,73 @@ final class HfbRenduTest extends TestCase {
 		$this->assertSame(1, $this->compter($p, $principale . '//ul[@id="astra-footer-menu"][contains(@class, "astra-footer-vertical-menu")]'));
 		$this->assertSame(1, $this->compter($p, $f . '/' . self::classe('site-below-footer-wrap ast-builder-grid-row-2-lheavy') . '//' . self::classe('site-footer-below-section-2') . '/' . self::classe('ast-footer-html-2')));
 	}
+
+	public function testBlocMenuDansLesWidgetsDuPied(): void {
+		// Balisage du widget nav_menu de WordPress sous Astra (référence R13-pied-widgets-menus) :
+		// titre, nav étiquetée par le titre, liste .menu à deux niveaux, lien parent aria-expanded,
+		// flèche sans icône, pas de bouton de dépliage.
+		$x = $this->pied(astra_configurations_reference()['R13-pied-widgets-menus']);
+		$widget = '//' . self::classe('footer-widget-area') . '[@data-section="sidebar-widgets-footer-widget-2"]/section[@class="widget widget_nav_menu"]';
+		$this->assertSame(1, $this->compter($x, $widget . '/h2[@class="widget-title"][.="Liens rapides"]'));
+		$nav = $widget . '/nav[@aria-label="Liens rapides"]/ul[@class="menu"]';
+		$this->assertSame(1, $this->compter($x, $nav), 'nav étiquetée et liste .menu');
+		$parent = $nav . '/li[contains(@class, "menu-item-has-children")]';
+		$this->assertSame(1, $this->compter($x, $parent . '/a[@aria-expanded="false"][@class="menu-link"]/span[@role="application"][@class="dropdown-menu-toggle ast-header-navigation-arrow"][@aria-expanded="false"][not(*)]'));
+		$this->assertGreaterThan(0, $this->compter($x, $parent . '/ul[@class="sub-menu"]/li/a[@class="menu-link"]'));
+		$this->assertSame(0, $this->compter($x, $widget . '//button'), 'Pas de bouton de dépliage dans un widget');
+		$this->assertSame(1, $this->compter($x, '//' . self::classe('footer-widget-area') . '[@data-section="sidebar-widgets-footer-widget-3"]/section[contains(@class, "widget_nav_menu")]'));
+	}
+
+	public function testBlocMenuSansTitreNiSource(): void {
+		$x = $this->pied([
+			'pied' => ['primary' => ['primary_1' => ['widget-1']]],
+			'elements' => ['pied' => ['widget-1' => ['blocs' => ['menu']]]],
+		]);
+		$widget = '//section[contains(@class, "widget_nav_menu")]';
+		$this->assertSame(0, $this->compter($x, $widget . '/h2'), 'Pas de titre vide');
+		$this->assertGreaterThan(1, $this->compter($x, $widget . '/nav[@aria-label="Menu"]/ul[@class="menu"]/li'), 'Rubriques racines par défaut');
+	}
+
+	public function testBlocMenuDeChaqueSource(): void {
+		$liens = function (array $menu): array {
+			$x = $this->pied([
+				'pied' => ['primary' => ['primary_1' => ['widget-1']]],
+				'elements' => ['pied' => ['widget-1' => ['blocs' => ['menu'], 'menu' => $menu]]],
+			]);
+			$textes = [];
+			foreach ($x->query('//section[contains(@class, "widget_nav_menu")]/nav/ul[@class="menu"]/li/a') as $a) {
+				$textes[] = trim($a->textContent);
+			}
+			return $textes;
+		};
+		$this->assertSame(['Jardinage', 'Actualités'], $liens(['source' => 'racine', 'id' => 0]));
+		$jardinage = (int) sql_getfetsel('id_rubrique', 'spip_rubriques', 'titre=' . sql_quote('10. Jardinage'));
+		$this->assertSame(['Potager'], $liens(['source' => 'rubrique', 'id' => $jardinage]));
+		$this->assertContains('Notre jardin', $liens(['source' => 'pages', 'id' => 0]));
+		// Groupe de mots-clés : articles liés à ses mots, créés pour le test.
+		$groupe = sql_insertq('spip_groupes_mots', ['titre' => 'Services', 'tables_liees' => 'articles']);
+		$mot = sql_insertq('spip_mots', ['titre' => 'Entretien', 'id_groupe' => $groupe, 'type' => 'Services']);
+		$article = (int) sql_getfetsel('id_article', 'spip_articles', 'titre=' . sql_quote('Article du potager'));
+		sql_insertq('spip_mots_liens', ['id_mot' => $mot, 'id_objet' => $article, 'objet' => 'article']);
+		try {
+			$this->assertSame(['Article du potager'], $liens(['source' => 'groupe_mots', 'id' => $groupe]));
+		} finally {
+			sql_delete('spip_mots_liens', 'id_mot=' . (int) $mot);
+			sql_delete('spip_mots', 'id_mot=' . (int) $mot);
+			sql_delete('spip_groupes_mots', 'id_groupe=' . (int) $groupe);
+		}
+	}
+
+	public function testIconeGoogleReviews(): void {
+		// Référence R15-sociaux-google : lien, étiquette, couleur de marque du sélecteur d'Astra et SVG.
+		$x = $this->pied(astra_configurations_reference()['R15-sociaux-google']);
+		$lien = '//' . self::classe('ast-footer-social-1-wrap') . '//a[contains(@class, "ast-google_reviews")]';
+		$this->assertSame(1, $this->compter($x, $lien . '[@href="https://example.org/avis"][@aria-label="Google Reviews"][contains(@style, "--color: #dc4e41")]/span/*[local-name()="svg"]'));
+	}
+
+	public function testMenuDEnTeteGardeSonBalisage(): void {
+		$x = $this->entete(self::configR1());
+		$this->assertGreaterThan(0, $this->compter($x, '//*[@id="ast-desktop-header"]//ul[contains(@class, "main-header-menu")]//li[contains(@class, "menu-item-has-children")]/button[@class="ast-menu-toggle"]'));
+		$this->assertSame(0, $this->compter($x, '//*[@id="ast-desktop-header"]//ul[contains(@class, "main-header-menu")]//a[@aria-expanded]'));
+	}
 }
