@@ -1,0 +1,32 @@
+{
+  "archives": {
+    "4.11.0": {
+      "url": "https://downloads.wordpress.org/theme/astra.4.11.0.zip",
+      "sha256": "ae876733703ab5d46251de0f2a6f8d28b164609e06750382813b7756a9c7fdac"
+    },
+    "4.13.8": {
+      "url": "https://downloads.wordpress.org/theme/astra.4.13.8.zip",
+      "sha256": "3cce1a750dcb699429117a88987aa8f10be404374492eef94379d2c4df6a6572"
+    }
+  },
+  "changelog_sha256": "d5cfcbbfb147160fb8cd86322556723044521541d57f649ef36f6b03d238386e",
+  "port_commit": "ff00edac591d10a092908031cb379cea83fd6513",
+  "fichiers_4.11.0": 713,
+  "fichiers_4.13.8": 746,
+  "fichiers_identiques": 362,
+  "delta": {
+    "modification": 267,
+    "ajout": 117,
+    "suppression": 84
+  },
+  "notes_versions": 35,
+  "entrees_notes": 184,
+  "qualifications": {
+    "H": 125,
+    "E": 3,
+    "I": 9,
+    "F": 20,
+    "V": 25,
+    "L": 2
+  }
+}
