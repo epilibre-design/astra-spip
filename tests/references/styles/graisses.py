@@ -14,7 +14,7 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from extraire_css import paires  # noqa: E402
 
-TITRE = re.compile(r'(^|[\s,>.])(h[1-6]|widget-title|site-title)(?![\w-])')
+TITRE = re.compile(r'(^|[\s,>.(])(h[1-6]|widget-title|site-title)(?![\w-])')
 
 for contexte, regle in paires(open(sys.argv[1], encoding='utf-8').read()):
     if contexte or '{' not in regle:

@@ -44,6 +44,34 @@ final class StylesAttendusTest extends TestCase {
 		return $out;
 	}
 
+	/** Virgules de niveau zéro, hors fonctions CSS, attributs, chaînes et échappements. */
+	public static function selecteurs(string $texte): array {
+		$resultat = [];
+		$debut = $parentheses = $crochets = 0;
+		$guillemet = null;
+		$echappe = false;
+		for ($i = 0, $n = strlen($texte); $i < $n; $i++) {
+			$c = $texte[$i];
+			if ($echappe) { $echappe = false; continue; }
+			if ($c === chr(92)) { $echappe = true; continue; }
+			if ($guillemet !== null) {
+				if ($c === $guillemet) { $guillemet = null; }
+				continue;
+			}
+			if ($c === '"' || $c === "'") { $guillemet = $c; }
+			elseif ($c === '(') { $parentheses++; }
+			elseif ($c === ')') { $parentheses--; }
+			elseif ($c === '[') { $crochets++; }
+			elseif ($c === ']') { $crochets--; }
+			elseif ($c === ',' && $parentheses === 0 && $crochets === 0) {
+				$resultat[] = trim(substr($texte, $debut, $i - $debut));
+				$debut = $i + 1;
+			}
+		}
+		$resultat[] = trim(substr($texte, $debut));
+		return array_values(array_filter($resultat, 'strlen'));
+	}
+
 	private static function lignes(string $fichier): array {
 		return is_file($fichier) ? array_values(array_filter(array_map('trim', file($fichier)))) : [];
 	}

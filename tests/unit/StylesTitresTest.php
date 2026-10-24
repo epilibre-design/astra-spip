@@ -22,9 +22,10 @@ final class StylesTitresTest extends TestCase {
 		$e = [];
 		for ($n = 1; $n <= 6; $n++) {
 			$e["h$n"] = ["h$n" => 1];
-			$e[".entry-content h$n"] = ["h$n" => 1, ".entry-content h$n" => 11];
+			$e[".entry-content h$n"] = ["h$n" => 1, ".entry-content h$n" => 11, ".entry-content :where(h$n)" => 10];
 			$e["h$n.widget-title"] = ["h$n" => 1, '.widget-title' => 10, "h$n.widget-title" => 11];
 		}
+		$e['.entry-content h2.wp-block-heading'] = ['h2' => 1, '.entry-content h2' => 11, '.entry-content :where(h2)' => 10, '.wp-block-heading' => 10];
 		$e['.site-title'] = ['.site-title' => 10];
 		$e['.site-title a'] = ['.site-title a' => 11];
 		return $e;
@@ -39,7 +40,7 @@ final class StylesTitresTest extends TestCase {
 				if ($regle[0] === '[' || !preg_match('/font-weight:([^;}]+)/', $regle, $m)) {
 					continue;
 				}
-				foreach (explode(',', explode('{', $regle, 2)[0]) as $sel) {
+				foreach (StylesAttendusTest::selecteurs(explode('{', $regle, 2)[0]) as $sel) {
 					$sel = preg_replace('/\s+/', ' ', trim($sel));
 					if (isset($selecteurs[$sel]) && $selecteurs[$sel] >= $retenue[0]) {
 						$retenue = [$selecteurs[$sel], trim($m[1])];
@@ -50,6 +51,12 @@ final class StylesTitresTest extends TestCase {
 			$r[$element] = $retenue[1] === '' ? 'inherit' : $retenue[1];
 		}
 		return $r;
+	}
+
+	public function testSpecificiteWhereNulle(): void {
+		$css = '.entry-content :where(h2){font-weight:600;}.wp-block-heading{font-weight:400;}';
+		$this->assertSame('400', self::graisses($css)['.entry-content h2.wp-block-heading'] ?? null);
+		$this->assertSame('600', self::graisses('.entry-content h2{font-weight:600;}.wp-block-heading{font-weight:400;}')['.entry-content h2.wp-block-heading'] ?? null);
 	}
 
 	public static function variantes(): array {

@@ -17,6 +17,7 @@ répartitions de colonnes du pied, et la largeur des rangées du pied suit celle
 import os
 import re
 import sys
+from css_selecteurs import decouper_selecteurs
 
 CONFIGURATIONS = ['R1-entete-complet', 'R2-entete-centre', 'R3-pied-colonnes', 'R4-pied-asymetrique']
 
@@ -97,7 +98,7 @@ def paires(css):
 def selecteurs(regle):
     """Sélecteurs d'une règle, normalisés (espaces)."""
     entete = regle.split('{', 1)[0]
-    return {re.sub(r'\s*([>+~])\s*', r' \1 ', re.sub(r'\s+', ' ', sel)).strip() for sel in entete.split(',')}
+    return {re.sub(r'\s*([>+~])\s*', r' \1 ', re.sub(r'\s+', ' ', sel)).strip() for sel in decouper_selecteurs(entete)}
 
 
 def main():
