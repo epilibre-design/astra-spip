@@ -21,18 +21,19 @@
 - Dépôt partagé avec Codex : `git add` fichier par fichier ; ne jamais indexer `.gitignore`, `.ignore`, `tests/references/__pycache__/*.pyc`, `docs/inventaires/2026-10-23-preparation-publication.md`.
 - Messages de commit sans trailer (ni `Co-Authored-By`, ni `Claude-Session`).
 - Tests d'intégration : `vendor/spip/spip/plugins/astra` doit pointer vers l'arbre de travail testé (dans un worktree : `cp -a <dépôt principal>/vendor vendor && ln -sfn "$PWD" vendor/spip/spip/plugins/astra`). Tests d'intégration et comparaisons écrivent dans la même base : ne pas les lancer en même temps.
-- Commandes : `vendor/bin/phpunit --testsuite unit [--filter …]` ; `vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php [--filter …]`. Comparaisons : `WP=… PW=… SPIP_CLI=… tests/references/capturer.sh <Rn…>`, puis `php tests/comparaison/comparer_html.php <racine SPIP> <URL> [Rn…]` et `WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh <racine SPIP> <URL> [Rn…]`. Le SPIP de test est servi avec `PHP_CLI_SERVER_WORKERS=4` (ici sur le port 8414), le WordPress de test sur 8401.
+- Commandes : `vendor/bin/phpunit --testsuite unit [--filter …]` ; `vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php [--filter …]`. Comparaisons : `WP=… PW=… SPIP_CLI=… tests/references/capturer.sh <Rn…>`, puis `SPIP_CLI=… php tests/comparaison/comparer_html.php <racine SPIP> <URL> [Rn…]` (`comparer_html.php` applique chaque configuration par spip-cli) et `WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh <racine SPIP> <URL> [Rn…]`. Le SPIP de test est servi avec `PHP_CLI_SERVER_WORKERS=4` (ici sur le port 8414), le WordPress de test sur 8401.
 - Les correctifs s'appliquent depuis la racine du dépôt avec `git apply` (enregistrer le bloc dans un fichier, puis `git apply chemin/du/fichier.patch`), dans l'ordre des tâches, sur `origin/main` (525bcf4, v1.3.0).
 
 ## Décisions (écarts à la spec, reportés dans la spec par ce commit)
 
 1. **Appareil sans alignement : la cascade d'Astra, pas `center`** (§ 3 : « appareil sans valeur : défaut `center` »). Astra n'émet aucune règle pour un appareil sans valeur ; la règle de l'ordinateur, sans media query, s'applique alors aussi à la tablette, et la règle tablette (921 px) au mobile. Mesuré sur WordPress avec le seul ordinateur à `left` : `left` aux trois largeurs. Astra SPIP émet donc, pour chaque appareil, la valeur que la cascade d'Astra lui donne (référence `R22-pied-alignements-ordinateur`).
 2. **Marge du bouton de l'en-tête : côtés vides selon l'appareil** (§ 2 : « la marge de `theme-button-padding` (15 × 30 px sans réglage) »). Sans marge des boutons réglée, celle-ci vaut 15/30, 14/28 et 12/24 selon l'appareil (`css/astra-dynamic.css`) ; mesuré sur WordPress (marge enregistrée vide : 15/30 à 1280, 14/28 à 768, 12/24 à 390). Un côté réglé s'applique à toutes les largeurs. Références `R21-bouton-entete-marge` (Garden), `-valeur` (en partie réglée) et `-vide`.
-3. **Graisses : équivalence par la cascade.** Astra modifie des règles figées (graisse retirée d'une règle qui porte aussi la taille) : la comparaison règle à règle des autres groupes ne s'applique pas. `tests/references/styles/graisses.py` extrait les règles de graisse des titres du CSS complet de WordPress ; `StylesTitresTest` calcule, des deux côtés, la graisse de chaque titre (spécificité, puis ordre). Variantes `titres`, `titres-drapeau`, `drapeau-polices`.
+3. **Graisses : équivalence par la cascade.** Astra modifie des règles figées (graisse retirée d'une règle qui porte aussi la taille) : la comparaison règle à règle des autres groupes ne s'applique pas. `tests/references/styles/graisses.py` extrait les règles de graisse des titres du CSS complet de WordPress ; `StylesTitresTest` calcule, des deux côtés, la graisse de chaque titre (spécificité, puis ordre). Variantes `titres`, `titres-drapeau`, `drapeau-polices`, et les valeurs vides ou `inherit` (décision 8) : `titres-vide`, `titres-vide-drapeau`, `titres-generale-vide`, `titres-generale-heritee`.
 4. **Noms.** Le module des titres suit ceux des autres groupes : `inc/styles/titres.php`, `astra_styles_titres(array $s, array $hfb, array $c)` et `astra_titres_graisses(array $s, array $c)` (la spec nomme `astra_titres_css(array $styles, array $compatibilite)`). `astra_styles_css(array $styles, array $hfb, array $compatibilite = [])` passe les drapeaux à tous les modules.
-5. **Références** : R20 en deux (`R20-titres-graisses`, `R20-titres-graisses-drapeau`), R21 en trois, R22 en deux. R19, R20 et R23 affichent la page « Notre jardin » avec les six niveaux de titres (`ref_texte_titres()` côté WordPress, clé `textes` côté SPIP, remise à « Texte de la page. » à chaque configuration) : les graisses de h1 à h6 sont mesurées dans le navigateur.
-6. **Alignements** : groupe de registre `alignements` (les autres options du pied et des icônes sociales ne s'émettent pas pour un simple alignement), type `alignement` (`left`, `center`, `right`, vide), sections « Copyright » et « Icônes sociales du pied » du formulaire, trois sélecteurs.
+5. **Références** : R20 en deux (`R20-titres-graisses`, `R20-titres-graisses-drapeau`), R21 en trois, R22 en trois (`-ordinateur`, `-tablette`). R19, R20 et R23 affichent la page « Notre jardin » avec les six niveaux de titres (`ref_texte_titres()` côté WordPress, clé `textes` côté SPIP, remise à « Texte de la page. » à chaque configuration) : les graisses de h1 à h6 sont mesurées dans le navigateur.
+6. **Alignements** : groupe de registre `alignements` (les autres options du pied et des icônes sociales ne s'émettent pas pour un simple alignement), type `alignement` (`left`, `center`, `right`, vide), sections « Copyright » et « Icônes sociales du pied » du formulaire, trois sélecteurs. À la première saisie, l'option est gardée dès qu'un des trois appareils a une valeur (les autres options ne regardent que l'ordinateur). Sans valeur qui s'applique (ni l'appareil, ni ceux dont la cascade le fait hériter), le copyright hérite de l'alignement, mais les icônes sociales restent centrées : `css/astra-hfb.css` contient une règle fixe `[data-section^="section-fb-social-icons-"] .footer-social-inner-wrap{text-align:center}` (référence `R22-pied-alignements-tablette` : tablette seule réglée).
 7. **Version 1.4.0** : nouveaux réglages, aucune rupture.
+8. **Graisses vides ou `inherit`** (§ 1 : « `headings-font-weight` refuse `inherit` »). Une option absente prend le défaut d'Astra ; une valeur vide (importée) reste vide. Astra passe la graisse par `astra_get_css_value( …, 'font' )`, qui rend vide pour `''` et pour `inherit` : la propriété n'est pas émise. Mesuré sur WordPress : `font-weight-h2` vide laisse le h2 à la graisse des titres et n'émet pas `h2.widget-title`, qui garde la graisse 400 de `.widget-title` ; `headings-font-weight` vide ou `inherit` (défaut des installations d'avant Astra 4.0, `inc/core/class-astra-theme-options.php`) n'émet pas la règle générale. Astra SPIP accepte donc `inherit` pour `headings-font-weight` et neutralise le CSS figé par les graisses de `css/main.min.css` (titres hérités, `.site-title` à 400) ; un niveau vide donne `hn.widget-title{font-weight:400}` sans le drapeau.
 
 Constat relevé pendant l'essai : un commentaire contenant une apostrophe en tête de `css/astra-dynamic.css` faisait lire la suite du fichier comme une chaîne par `extraire_css.py` (`instructions()`), qui régénérait alors `astra-hfb.css` et `astra-pages.css` incomplets. Le commentaire ajouté par la tâche 1 n'en contient pas ; `astra-hfb.css` et `astra-pages.css` régénérés sont identiques.
 
@@ -44,23 +45,28 @@ commits, appliqué dans l'ordre sur 525bcf4 (l'arbre final est identique à celu
 
 - étape 2 de chaque tâche : tests de la tâche appliqués sur l'état de la tâche précédente, échecs
   relevés tels qu'indiqués ;
-- tests après la tâche 5 : unitaires 106 tests, 1536 assertions ; intégration 83 tests,
+- tests après la tâche 5 : unitaires 112 tests, 1548 assertions ; intégration 83 tests,
   289 assertions (avant : 93 et 82) ;
 - mutations du module des titres (neutralisation retirée ; niveaux comparés à 600 au lieu de la
-  graisse des titres, le défaut relevé par Codex sur la spec) : `StylesTitresTest` échoue dans les
-  deux cas ;
+  graisse des titres, le défaut relevé par Codex sur la spec ; valeur vide traitée comme
+  `inherit`, le défaut relevé par Codex sur le plan) : `StylesTitresTest` échoue dans chaque cas ;
+  icônes sociales sans valeur alignées au début (`inherit` au lieu de `center`) : `StylesTest`
+  échoue, et `R22-pied-alignements-tablette` signale l'écart à 1280 px (WordPress `center`, SPIP
+  `start`) ; première saisie limitée à l'ordinateur : `StylesSaisieTest` échoue ;
 - comportements d'Astra mesurés sur WordPress avant d'écrire le code : marge du bouton de
   l'en-tête enregistrée vide (15/30, 14/28, 12/24 selon la largeur ; 17/26 partout avec la marge
   des boutons de Garden ; côtés réglés partout), alignements avec l'ordinateur seul (`left` aux
-  trois largeurs) ;
+  trois largeurs) ; graisses vides ou `inherit` (variantes `titres-vide`, `titres-vide-drapeau`,
+  `titres-generale-vide`, `titres-generale-heritee`, capturées sur WordPress) ;
 - `php7.4 -l` sur les fichiers PHP modifiés hors `tests/` : aucune erreur ; CSS produit pour les
-  valeurs de Garden et pour la variante `titres` identique octet pour octet sous PHP 7.4 et 8.4 ;
+  valeurs de Garden, la variante `titres`, les quatre variantes vides ou `inherit` et
+  `alignements-tablette` identique octet pour octet sous PHP 7.4 et 8.4 ;
 - `extraire_css.py --compat` reproduit les deux feuilles de `css/compat/` ; `extraire_css.py` et
   `--pages` reproduisent `css/astra-hfb.css` et `css/astra-pages.css` (constat ci-dessus) ;
   `styles/capturer.sh` complet : aucun attendu existant modifié ;
-- `capturer.sh` sur les 31 références (R0–R23 avec leurs variantes, P1–P3), puis
+- `capturer.sh` sur les 32 références (R0–R23 avec leurs variantes, P1–P3), puis
   `comparer_html.php` (défaut, puis R12–R23) : tout identique sauf les deux nommages de R13 ;
-- `comparer_captures.sh` sur ces 31 références : 241 vues et jeux de styles sous le seuil (plus
+- `comparer_captures.sh` sur ces 32 références : 249 vues et jeux de styles sous le seuil (plus
   grand écart 0,73 %, R13, pied sur mobile), styles calculés égaux aux trois largeurs ; R18 :
   `#masthead` de 113 px à 1280 px (81 px sans le drapeau), des deux côtés ;
 - `tests/e2e/formulaire_styles.cjs` (avec un slogan) : OK.
@@ -504,7 +510,7 @@ WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R0-defaut R1-entete-comp
 for v in fix ancien; do python3 tests/references/extraire_css.py --compat sous-menu-$v | diff - css/compat/sous-menu-$v.css; done
 python3 tests/references/extraire_css.py | diff - css/astra-hfb.css
 python3 tests/references/extraire_css.py --pages | diff - css/astra-pages.css
-php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R0-defaut R18-compat-sous-menu
+SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R0-defaut R18-compat-sous-menu
 WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8414 R0-defaut R18-compat-sous-menu
 ```
 
@@ -519,15 +525,15 @@ git commit -m "Compatibilité : drapeaux d'astra/compatibilite et submenu-below-
 
 ### Tâche 2 : graisses des titres et drapeau des polices
 
-Spec § 1, « Graisses des titres ». Groupe `titres` du registre : `headings-font-weight` (défaut 600, refuse `inherit`), `font-weight-h1` à `h6` (défaut `inherit`). Pour chaque niveau, graisse d'Astra `G` (valeur de repli `inherit`, ou `normal` avec le drapeau : elle prend alors `headings-font-weight`, notée `H`) ; le module émet, après le CSS figé : la règle générale si `H` diffère de 600, puis `hn,.entry-content hn{font-weight:T}` si `T` (`G`, ou `H` quand `G` vaut `inherit`) diffère de `H` ; sans le drapeau, `hn.widget-title{font-weight:G}` (n = 1 à 3) si `G` diffère de 600 ; avec le drapeau, la neutralisation `h1.widget-title,h2.widget-title,h3.widget-title{font-weight:400}` (valeur de `.widget-title` dans `css/main.min.css`). Le bloc `astra-styles-inline-css` est produit dès qu'un drapeau est posé.
+Spec § 1, « Graisses des titres ». Groupe `titres` du registre : `headings-font-weight` (défaut 600), `font-weight-h1` à `h6` (défaut `inherit`) ; option absente : défaut ; valeur vide gardée (décision 8). Pour chaque niveau, graisse d'Astra `G` (valeur de repli `inherit`, ou `normal` avec le drapeau : elle prend alors `headings-font-weight`, notée `H`) ; le module émet, après le CSS figé : la règle générale si `H` diffère de 600 (si `H` est vide ou vaut `inherit`, sa neutralisation : titres à `inherit`, `.site-title` à 400, `.site-title a` à `inherit`), puis `hn,.entry-content hn{font-weight:T}` si `T` (`G`, ou la graisse générale quand `G` vaut `inherit` ou est vide) diffère de la graisse générale (`H`, ou `inherit` quand la règle générale n'a pas de graisse) ; sans le drapeau, `hn.widget-title{font-weight:G}` (n = 1 à 3 ; 400 quand `G` est vide) si cette graisse diffère de 600 ; avec le drapeau, la neutralisation `h1.widget-title,h2.widget-title,h3.widget-title{font-weight:400}` (valeur de `.widget-title` dans `css/main.min.css`). Le bloc `astra-styles-inline-css` est produit dès qu'un drapeau est posé.
 
 **Fichiers :**
-- Créer : `inc/styles/titres.php`, `tests/unit/StylesTitresTest.php`, `tests/references/styles/graisses.py`, `tests/references/styles/valeurs/{titres,titres-drapeau,drapeau-polices}.json`, `tests/references/styles/attendus/{titres,titres-drapeau,drapeau-polices}.css`, `tests/references/wp/R19-compat-polices-widgets.{php,json}`, `tests/references/wp/R20-titres-graisses.{php,json}`, `tests/references/wp/R20-titres-graisses-drapeau.{php,json}`
+- Créer : `inc/styles/titres.php`, `tests/unit/StylesTitresTest.php`, `tests/references/styles/graisses.py`, `tests/references/styles/valeurs/{titres,titres-drapeau,drapeau-polices,titres-vide,titres-vide-drapeau,titres-generale-vide,titres-generale-heritee}.json`, `tests/references/styles/attendus/` (mêmes noms, `.css`), `tests/references/wp/R19-compat-polices-widgets.{php,json}`, `tests/references/wp/R20-titres-graisses.{php,json}`, `tests/references/wp/R20-titres-graisses-drapeau.{php,json}`
 - Modifier : `inc/astra_styles.php`, `inc/astra_styles_saisie.php`, `astra_fonctions.php`, `lang/astra_fr.php`, `lang/astra_en.php`, `tests/integration/StylesFormulaireTest.php`, `tests/references/styles/capturer.sh`, `tests/references/wp/commun.php`, `tests/comparaison/appliquer.sh`, `tests/comparaison/configurations.php`
 
 **Interfaces :**
 - Consomme : `astra_compatibilite_normaliser()`, `astra_compatibilite_polices_anciennes()` (tâche 1).
-- Produit : `astra_titres_graisses(array $s, array $c): array` et `astra_styles_titres(array $s, array $hfb, array $c = []): array` (`inc/styles/titres.php`) ; `astra_styles_css(array $styles, array $hfb, array $compatibilite = []): string` ; `ASTRA_STYLES_MODULES` commence par `titres` ; type `graisse` avec clé `refuses`.
+- Produit : `astra_titres_graisses(array $s, array $c): array` et `astra_styles_titres(array $s, array $hfb, array $c = []): array` (`inc/styles/titres.php`) ; `astra_styles_css(array $styles, array $hfb, array $compatibilite = []): string` ; `ASTRA_STYLES_MODULES` commence par `titres`.
 - Configurations de comparaison : clé `textes` (texte d'une page unique, par identifiant).
 
 - [ ] **Étape 1 : écrire les tests, les références et les attendus**
@@ -620,6 +626,45 @@ index 0000000..604ba5d
 +h2,.entry-content h2{font-weight:700;}
 +h3,.entry-content h3{font-weight:300;}
 +h4,.entry-content h4{font-weight:600;}
+diff --git a/tests/references/styles/attendus/titres-generale-heritee.css b/tests/references/styles/attendus/titres-generale-heritee.css
+new file mode 100644
+index 0000000..5e7a82c
+--- /dev/null
++++ b/tests/references/styles/attendus/titres-generale-heritee.css
+@@ -0,0 +1,3 @@
++h2,.entry-content h2{font-weight:500;}
++h1.widget-title{font-weight:inherit;}
++h2.widget-title{font-weight:500;}
+diff --git a/tests/references/styles/attendus/titres-generale-vide.css b/tests/references/styles/attendus/titres-generale-vide.css
+new file mode 100644
+index 0000000..29c9532
+--- /dev/null
++++ b/tests/references/styles/attendus/titres-generale-vide.css
+@@ -0,0 +1,2 @@
++h2,.entry-content h2{font-weight:500;}
++h2.widget-title{font-weight:500;}
+diff --git a/tests/references/styles/attendus/titres-vide-drapeau.css b/tests/references/styles/attendus/titres-vide-drapeau.css
+new file mode 100644
+index 0000000..e44fdd1
+--- /dev/null
++++ b/tests/references/styles/attendus/titres-vide-drapeau.css
+@@ -0,0 +1,2 @@
++h1,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content h4,h5,.entry-content h5,h6,.entry-content h6,.site-title,.site-title a{font-weight:700;}
++h3,.entry-content h3{font-weight:300;}
+diff --git a/tests/references/styles/attendus/titres-vide.css b/tests/references/styles/attendus/titres-vide.css
+new file mode 100644
+index 0000000..b302a11
+--- /dev/null
++++ b/tests/references/styles/attendus/titres-vide.css
+@@ -0,0 +1,8 @@
++h1,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content h4,h5,.entry-content h5,h6,.entry-content h6,.site-title,.site-title a{font-weight:700;}
++h1,.entry-content h1{font-weight:700;}
++h3,.entry-content h3{font-weight:300;}
++h4,.entry-content h4{font-weight:700;}
++h5,.entry-content h5{font-weight:700;}
++h6,.entry-content h6{font-weight:700;}
++h1.widget-title{font-weight:700;}
++h3.widget-title{font-weight:300;}
 diff --git a/tests/references/styles/attendus/titres.css b/tests/references/styles/attendus/titres.css
 new file mode 100644
 index 0000000..9e130ba
@@ -637,7 +682,7 @@ index 0000000..9e130ba
 +h2.widget-title{font-weight:normal;}
 +h3.widget-title{font-weight:300;}
 diff --git a/tests/references/styles/capturer.sh b/tests/references/styles/capturer.sh
-index 90f45eb..053b135 100755
+index 90f45eb..14dafc2 100755
 --- a/tests/references/styles/capturer.sh
 +++ b/tests/references/styles/capturer.sh
 @@ -2,7 +2,8 @@
@@ -655,7 +700,7 @@ index 90f45eb..053b135 100755
  	echo "$groupe : $(wc -l < "$ICI/attendus/$groupe.css") règles"
  done
 +# Graisses des titres : règles de graisse du CSS complet (graisses.py), comparées par la cascade.
-+for groupe in titres titres-drapeau drapeau-polices; do
++for groupe in titres titres-drapeau drapeau-polices titres-vide titres-vide-drapeau titres-generale-vide titres-generale-heritee; do
 +	GROUPE=$groupe wp --path="$WP" eval-file "$ICI/appliquer.php"
 +	css > "$ICI/attendus/.$groupe.complet.css"
 +	python3 "$ICI/graisses.py" "$ICI/attendus/.$groupe.complet.css" > "$ICI/attendus/$groupe.css"
@@ -716,6 +761,53 @@ index 0000000..560be8e
 +	"font-weight-h3": "300",
 +	"font-weight-h4": "600",
 +	"can-support-widget-and-editor-fonts": false
++}
+diff --git a/tests/references/styles/valeurs/titres-generale-heritee.json b/tests/references/styles/valeurs/titres-generale-heritee.json
+new file mode 100644
+index 0000000..af4b228
+--- /dev/null
++++ b/tests/references/styles/valeurs/titres-generale-heritee.json
+@@ -0,0 +1,5 @@
++{
++	"headings-font-weight": "inherit",
++	"font-weight-h2": "500",
++	"font-weight-h3": ""
++}
+diff --git a/tests/references/styles/valeurs/titres-generale-vide.json b/tests/references/styles/valeurs/titres-generale-vide.json
+new file mode 100644
+index 0000000..762d715
+--- /dev/null
++++ b/tests/references/styles/valeurs/titres-generale-vide.json
+@@ -0,0 +1,5 @@
++{
++	"headings-font-weight": "",
++	"font-weight-h2": "500",
++	"font-weight-h3": ""
++}
+diff --git a/tests/references/styles/valeurs/titres-vide-drapeau.json b/tests/references/styles/valeurs/titres-vide-drapeau.json
+new file mode 100644
+index 0000000..c89d911
+--- /dev/null
++++ b/tests/references/styles/valeurs/titres-vide-drapeau.json
+@@ -0,0 +1,7 @@
++{
++	"headings-font-weight": "700",
++	"font-weight-h1": "inherit",
++	"font-weight-h2": "",
++	"font-weight-h3": "300",
++	"can-support-widget-and-editor-fonts": false
++}
+diff --git a/tests/references/styles/valeurs/titres-vide.json b/tests/references/styles/valeurs/titres-vide.json
+new file mode 100644
+index 0000000..52023d8
+--- /dev/null
++++ b/tests/references/styles/valeurs/titres-vide.json
+@@ -0,0 +1,6 @@
++{
++	"headings-font-weight": "700",
++	"font-weight-h1": "inherit",
++	"font-weight-h2": "",
++	"font-weight-h3": "300"
 +}
 diff --git a/tests/references/styles/valeurs/titres.json b/tests/references/styles/valeurs/titres.json
 new file mode 100644
@@ -1053,10 +1145,10 @@ index 3778896..631a3c9 100644
  	$ids = ref_pages();
 diff --git a/tests/unit/StylesTitresTest.php b/tests/unit/StylesTitresTest.php
 new file mode 100644
-index 0000000..7246cad
+index 0000000..d31ff40
 --- /dev/null
 +++ b/tests/unit/StylesTitresTest.php
-@@ -0,0 +1,100 @@
+@@ -0,0 +1,117 @@
 +<?php
 +
 +use PHPUnit\Framework\Attributes\DataProvider;
@@ -1105,13 +1197,15 @@ index 0000000..7246cad
 +					}
 +				}
 +			}
-+			$r[$element] = $retenue[1];
++			// Aucune règle : la graisse est héritée.
++			$r[$element] = $retenue[1] === '' ? 'inherit' : $retenue[1];
 +		}
 +		return $r;
 +	}
 +
 +	public static function variantes(): array {
-+		return ['titres' => ['titres'], 'titres-drapeau' => ['titres-drapeau'], 'drapeau-polices' => ['drapeau-polices']];
++		$v = ['titres', 'titres-drapeau', 'drapeau-polices', 'titres-vide', 'titres-vide-drapeau', 'titres-generale-vide', 'titres-generale-heritee'];
++		return array_combine($v, array_map(function ($x) { return [$x]; }, $v));
 +	}
 +
 +	#[DataProvider('variantes')]
@@ -1152,9 +1246,24 @@ index 0000000..7246cad
 +		}
 +	}
 +
-+	public function testGraisseDesTitresSansInherit(): void {
-+		$this->assertSame([], astra_styles_normaliser(['headings-font-weight' => 'inherit']));
-+		$this->assertSame(['font-weight-h2' => 'inherit'], astra_styles_normaliser(['font-weight-h2' => 'inherit']));
++	public function testValeurVideDistincteDeLOptionAbsente(): void {
++		// Graisse du h2 vide (importée) : Astra n'émet ni la règle du niveau ni celle du titre de
++		// widget ; le h2 prend la graisse des titres, h2.widget-title celle de .widget-title (400).
++		$css = astra_styles_css(['headings-font-weight' => '700', 'font-weight-h2' => ''], [], []);
++		$this->assertStringContainsString('h2.widget-title{font-weight:400;}', $css);
++		$this->assertStringNotContainsString('h2,.entry-content h2{', $css);
++		// Option absente : défaut d'Astra (inherit), titre de widget à la graisse des titres.
++		$this->assertStringContainsString('h2.widget-title{font-weight:700;}', astra_styles_css(['headings-font-weight' => '700'], [], []));
++	}
++
++	public function testGraisseDesTitresVideOuHeritee(): void {
++		// inherit (défaut d'avant Astra 4.0) et vide sont gardés : Astra n'émet pas la règle générale.
++		$this->assertSame(['headings-font-weight' => 'inherit', 'font-weight-h2' => ''], astra_styles_normaliser(['headings-font-weight' => 'inherit', 'font-weight-h2' => '']));
++		// Neutralisation par les graisses de css/main.min.css.
++		$attendu = 'h1,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content h4,h5,.entry-content h5,h6,.entry-content h6{font-weight:inherit;}'
++			. '.site-title{font-weight:400;}.site-title a{font-weight:inherit;}';
++		$this->assertStringStartsWith($attendu, astra_styles_css(['headings-font-weight' => ''], [], []));
++		$this->assertStringStartsWith($attendu, astra_styles_css(['headings-font-weight' => 'inherit'], [], []));
 +	}
 +}
 ````
@@ -1195,7 +1304,7 @@ index 744292a..2a6e97c 100644
  
  /**
 diff --git a/inc/astra_styles.php b/inc/astra_styles.php
-index 8ffef02..957b418 100644
+index 8ffef02..9816b6e 100644
 --- a/inc/astra_styles.php
 +++ b/inc/astra_styles.php
 @@ -10,6 +10,7 @@
@@ -1206,13 +1315,12 @@ index 8ffef02..957b418 100644
  
  /** Taille du texte d'Astra SPIP (px) : base de la conversion px → rem d'astra_get_font_css_value(). */
  const ASTRA_STYLES_TAILLE_TEXTE = 16;
-@@ -39,6 +40,14 @@ function astra_styles_registre(): array {
+@@ -39,6 +40,13 @@ function astra_styles_registre(): array {
  	$cotes = ['type' => 'quatre-cotes'];
  	$nombre_r = ['type' => 'nombre', 'responsive' => true];
  
-+	// Graisses des titres. headings-font-weight refuse inherit : Astra n'émettrait alors aucune
-+	// graisse pour .site-title, ce que le CSS figé ne sait pas défaire.
-+	$titres = ['headings-font-weight' => ['type' => 'graisse', 'refuses' => ['inherit'], 'defaut' => '600']];
++	// Graisses des titres.
++	$titres = ['headings-font-weight' => ['type' => 'graisse', 'defaut' => '600']];
 +	for ($n = 1; $n <= 6; $n++) {
 +		$titres["font-weight-h$n"] = ['type' => 'graisse', 'defaut' => 'inherit'];
 +	}
@@ -1221,17 +1329,7 @@ index 8ffef02..957b418 100644
  	$menu = 'inc/builder/type/header/menu/dynamic-css/dynamic.css.php';
  	foreach ([1, 2] as $n) {
  		$ajouter('menu', $menu, [
-@@ -253,7 +262,8 @@ function astra_styles_valider(array $d, $v) {
- 		case 'police':
- 			return is_string($v) && ($v === '' || isset(astra_polices_locales()[$v]) || preg_match('/^[\w\s,\'"-]+$/u', $v)) ? $v : null;
- 		case 'graisse':
--			return in_array((string) $v, ['', 'inherit', 'normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'], true) && !is_bool($v) ? $v : null;
-+			return in_array((string) $v, ['', 'inherit', 'normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'], true) && !is_bool($v)
-+				&& !in_array((string) $v, $d['refuses'] ?? [], true) ? $v : null;
- 		case 'enum':
- 			return in_array($v, $d['valeurs'], true) ? $v : null;
- 		case 'booleen':
-@@ -466,18 +476,22 @@ function astra_styles_ecrire(array $regles): string {
+@@ -466,18 +474,22 @@ function astra_styles_ecrire(array $regles): string {
  }
  
  /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
@@ -1273,10 +1371,10 @@ index 2fe1438..f2c270d 100644
  		'bouton' => '/^(button-|theme-button-|font-[a-z]+-button$)/',
 diff --git a/inc/styles/titres.php b/inc/styles/titres.php
 new file mode 100644
-index 0000000..7669e97
+index 0000000..68072b7
 --- /dev/null
 +++ b/inc/styles/titres.php
-@@ -0,0 +1,61 @@
+@@ -0,0 +1,74 @@
 +<?php
 +/**
 + * Astra pour SPIP — graisses des titres (inc/class-astra-dynamic-css.php d'Astra 4.11.0 :
@@ -1293,15 +1391,16 @@ index 0000000..7669e97
 +
 +/**
 + * Graisse que calcule chaque niveau dans Astra. $c : drapeaux de compatibilité normalisés.
-+ * Retourne [graisse des titres, [n => graisse d'Astra pour le niveau n]].
++ * Retourne [graisse des titres, [n => graisse d'Astra pour le niveau n]]. Une option absente prend
++ * le défaut d'Astra ; une valeur vide (importée) reste vide : Astra n'émet alors pas la propriété.
 + */
 +function astra_titres_graisses(array $s, array $c): array {
-+	$h = (string) astra_styles_ou($s, 'headings-font-weight', ASTRA_TITRES_GRAISSE_FIGEE);
++	$h = (string) ($s['headings-font-weight'] ?? ASTRA_TITRES_GRAISSE_FIGEE);
 +	// Valeur de repli : inherit, ou normal avec le drapeau (support_font_css_to_widget_and_in_editor()).
 +	$repli = astra_compatibilite_polices_anciennes($c) ? 'normal' : 'inherit';
 +	$niveaux = [];
 +	for ($n = 1; $n <= 6; $n++) {
-+		$g = (string) astra_styles_ou($s, "font-weight-h$n", 'inherit');
++		$g = (string) ($s["font-weight-h$n"] ?? 'inherit');
 +		$niveaux[$n] = $g === $repli ? $h : $g;
 +	}
 +	return [$h, $niveaux];
@@ -1309,26 +1408,38 @@ index 0000000..7669e97
 +
 +function astra_styles_titres(array $s, array $hfb, array $c = []): array {
 +	[$h, $niveaux] = astra_titres_graisses($s, $c);
++	$titres = [];
++	for ($n = 1; $n <= 6; $n++) {
++		array_push($titres, "h$n", ".entry-content h$n");
++	}
 +	$regles = [];
-+	if ($h !== ASTRA_TITRES_GRAISSE_FIGEE) {
-+		$titres = [];
-+		for ($n = 1; $n <= 6; $n++) {
-+			array_push($titres, "h$n", ".entry-content h$n");
-+		}
++	// Graisse des titres vide ou inherit (défaut des installations d'avant Astra 4.0) : la règle
++	// générale n'a pas de graisse (astra_get_css_value()).
++	$sans_generale = $h === '' || $h === 'inherit';
++	if ($sans_generale) {
++		// Neutralisation par les graisses de css/main.min.css : titres hérités, .site-title à 400.
++		$regles[] = ['', implode(',', $titres), ['font-weight' => 'inherit']];
++		$regles[] = ['', '.site-title', ['font-weight' => '400']];
++		$regles[] = ['', '.site-title a', ['font-weight' => 'inherit']];
++	} elseif ($h !== ASTRA_TITRES_GRAISSE_FIGEE) {
 +		$regles[] = ['', implode(',', $titres) . ',.site-title,.site-title a', ['font-weight' => $h]];
 +	}
-+	// Chaque niveau calcule sa graisse, ou celle des titres quand Astra n'en émet pas (inherit) :
-+	// comparée à la graisse des titres, que le niveau a une fois la règle générale appliquée.
++	// Graisse des titres une fois la règle générale appliquée.
++	$generale = $sans_generale ? 'inherit' : $h;
++	// Chaque niveau calcule sa graisse, ou celle des titres quand Astra n'en émet pas (inherit ou
++	// vide) : comparée à celle que le niveau a après la règle générale.
 +	foreach ($niveaux as $n => $g) {
-+		$t = $g === 'inherit' ? $h : $g;
-+		if ($t !== $h) {
++		$t = $g === 'inherit' || $g === '' ? $generale : $g;
++		if ($t !== $generale) {
 +			$regles[] = ['', "h$n,.entry-content h$n", ['font-weight' => $t]];
 +		}
 +	}
 +	if (!astra_compatibilite_polices_anciennes($c)) {
 +		for ($n = 1; $n <= 3; $n++) {
-+			if ($niveaux[$n] !== ASTRA_TITRES_GRAISSE_FIGEE) {
-+				$regles[] = ['', "h$n.widget-title", ['font-weight' => $niveaux[$n]]];
++			// Graisse vide : Astra n'émet pas la règle, celle de .widget-title (400) s'applique.
++			$w = $niveaux[$n] === '' ? '400' : $niveaux[$n];
++			if ($w !== ASTRA_TITRES_GRAISSE_FIGEE) {
++				$regles[] = ['', "h$n.widget-title", ['font-weight' => $w]];
 +			}
 +		}
 +	} else {
@@ -1407,12 +1518,12 @@ index af7f488..18b973c 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (104 tests, 1500 assertions)`, intégration `OK (82 tests, 283 assertions)`
+Attendu : unitaires `OK (109 tests, 1508 assertions)`, intégration `OK (82 tests, 283 assertions)`
 
 ```bash
 WP=… tests/references/styles/capturer.sh && git status --short tests/references/styles
 WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau
-php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau
+SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau
 WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8414 R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau
 ```
 
@@ -1421,7 +1532,7 @@ Attendu : `capturer.sh` ne modifie aucun attendu ; HTML identique (contenu de la
 - [ ] **Étape 5 : commit**
 
 ```bash
-git add inc/styles/titres.php inc/astra_styles.php inc/astra_styles_saisie.php astra_fonctions.php lang/astra_fr.php lang/astra_en.php tests/unit/StylesTitresTest.php tests/integration/StylesFormulaireTest.php tests/references/styles/graisses.py tests/references/styles/capturer.sh tests/references/styles/valeurs/titres.json tests/references/styles/valeurs/titres-drapeau.json tests/references/styles/valeurs/drapeau-polices.json tests/references/styles/attendus/titres.css tests/references/styles/attendus/titres-drapeau.css tests/references/styles/attendus/drapeau-polices.css tests/references/wp/commun.php tests/references/wp/R19-compat-polices-widgets.php tests/references/wp/R19-compat-polices-widgets.json tests/references/wp/R20-titres-graisses.php tests/references/wp/R20-titres-graisses.json tests/references/wp/R20-titres-graisses-drapeau.php tests/references/wp/R20-titres-graisses-drapeau.json tests/comparaison/appliquer.sh tests/comparaison/configurations.php
+git add inc/styles/titres.php inc/astra_styles.php inc/astra_styles_saisie.php astra_fonctions.php lang/astra_fr.php lang/astra_en.php tests/unit/StylesTitresTest.php tests/integration/StylesFormulaireTest.php tests/references/styles/graisses.py tests/references/styles/capturer.sh tests/references/styles/valeurs/titres.json tests/references/styles/valeurs/titres-drapeau.json tests/references/styles/valeurs/drapeau-polices.json tests/references/styles/attendus/titres.css tests/references/styles/attendus/titres-drapeau.css tests/references/styles/attendus/drapeau-polices.css tests/references/styles/valeurs/titres-vide.json tests/references/styles/valeurs/titres-vide-drapeau.json tests/references/styles/valeurs/titres-generale-vide.json tests/references/styles/valeurs/titres-generale-heritee.json tests/references/styles/attendus/titres-vide.css tests/references/styles/attendus/titres-vide-drapeau.css tests/references/styles/attendus/titres-generale-vide.css tests/references/styles/attendus/titres-generale-heritee.css tests/references/wp/commun.php tests/references/wp/R19-compat-polices-widgets.php tests/references/wp/R19-compat-polices-widgets.json tests/references/wp/R20-titres-graisses.php tests/references/wp/R20-titres-graisses.json tests/references/wp/R20-titres-graisses-drapeau.php tests/references/wp/R20-titres-graisses-drapeau.json tests/comparaison/appliquer.sh tests/comparaison/configurations.php
 git commit -m "Styles : graisses des titres et drapeau can-support-widget-and-editor-fonts"
 ```
 
@@ -1756,10 +1867,10 @@ Correctif à appliquer (`git apply`) :
 
 ````diff
 diff --git a/inc/astra_styles.php b/inc/astra_styles.php
-index 957b418..9315cd9 100644
+index 9816b6e..c2a1db1 100644
 --- a/inc/astra_styles.php
 +++ b/inc/astra_styles.php
-@@ -92,6 +92,9 @@ function astra_styles_registre(): array {
+@@ -91,6 +91,9 @@ function astra_styles_registre(): array {
  		'header-button1-font-weight' => ['type' => 'graisse', 'defaut' => 'inherit'],
  		'header-button1-font-extras' => ['type' => 'extras-police'],
  	]);
@@ -1882,11 +1993,11 @@ index 18b973c..cd4569d 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (105 tests, 1515 assertions)`, intégration `OK (82 tests, 283 assertions)`
+Attendu : unitaires `OK (110 tests, 1523 assertions)`, intégration `OK (82 tests, 283 assertions)`
 
 ```bash
 WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide
-php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide
+SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide
 WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8414 R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide
 ```
 
@@ -1901,11 +2012,11 @@ git commit -m "Styles : marge intérieure du bouton de l'en-tête"
 
 ### Tâche 4 : alignements du copyright et des icônes sociales du pied
 
-Spec § 3 et décisions 1 et 6. `footer-copyright-alignment` et `footer-social-1-alignment` (type `alignement`, groupe `alignements`) : dès que l'option est enregistrée et l'élément placé dans le pied, les trois règles, dans l'ordre et les media queries d'Astra, chaque appareil sans valeur prenant celle que la cascade d'Astra lui donne. Le formulaire propose trois sélecteurs ; la fusion de la saisie garde les trois appareils pour ce type.
+Spec § 3 et décisions 1 et 6. `footer-copyright-alignment` et `footer-social-1-alignment` (type `alignement`, groupe `alignements`) : dès que l'option est enregistrée et l'élément placé dans le pied, les trois règles, dans l'ordre et les media queries d'Astra, chaque appareil sans valeur prenant celle que la cascade d'Astra lui donne, à défaut l'alignement sans règle d'Astra (hérité pour le copyright, centré pour les icônes sociales). Le formulaire propose trois sélecteurs ; la fusion de la saisie garde les trois appareils pour ce type, et une première saisie sur la tablette ou le mobile seuls.
 
 **Fichiers :**
-- Créer : `inc/styles/alignements.php`, `tests/references/styles/valeurs/alignements{,-ordinateur}.json`, `tests/references/wp/R22-pied-alignements{,-ordinateur}.{php,json}`
-- Modifier : `inc/astra_styles.php`, `inc/astra_styles_saisie.php`, `formulaires/configurer_astra_styles.html`, `lang/astra_fr.php`, `lang/astra_en.php`, `tests/unit/StylesTest.php`, `tests/integration/StylesFormulaireTest.php`, `tests/comparaison/configurations.php`
+- Créer : `inc/styles/alignements.php`, `tests/references/styles/valeurs/alignements{,-ordinateur,-tablette}.json`, `tests/references/wp/R22-pied-alignements{,-ordinateur,-tablette}.{php,json}`
+- Modifier : `inc/astra_styles.php`, `inc/astra_styles_saisie.php`, `formulaires/configurer_astra_styles.html`, `lang/astra_fr.php`, `lang/astra_en.php`, `tests/unit/StylesTest.php`, `tests/unit/StylesSaisieTest.php`, `tests/integration/StylesFormulaireTest.php`, `tests/comparaison/configurations.php`
 
 **Interfaces :**
 - Produit : `astra_styles_alignements(array $s, array $hfb): array`, `ASTRA_STYLES_ALIGNEMENTS` (`inc/styles/alignements.php`) ; type `alignement` dans `astra_styles_valider()` ; champ `appareils` d'`astra_styles_champs()`.
@@ -1916,15 +2027,16 @@ Correctif à appliquer (`git apply`) :
 
 ````diff
 diff --git a/tests/comparaison/configurations.php b/tests/comparaison/configurations.php
-index 8b51e46..1a04d28 100644
+index 8b51e46..6f0c9a2 100644
 --- a/tests/comparaison/configurations.php
 +++ b/tests/comparaison/configurations.php
-@@ -190,6 +190,8 @@ function astra_configurations_reference(): array {
+@@ -190,6 +190,9 @@ function astra_configurations_reference(): array {
  		'R21-bouton-entete-marge' => $styles(['bouton-entete-marge']),
  		'R21-bouton-entete-marge-valeur' => $styles(['bouton-entete-marge-valeur']),
  		'R21-bouton-entete-marge-vide' => $styles(['bouton-entete-marge-vide']),
 +		'R22-pied-alignements' => $styles(['alignements']),
 +		'R22-pied-alignements-ordinateur' => $styles(['alignements-ordinateur']),
++		'R22-pied-alignements-tablette' => $styles(['alignements-tablette']),
  		'P1-page' => [
  			'page' => 'notre_jardin',
  			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
@@ -1981,6 +2093,20 @@ index 0000000..b8feac6
 +		"desktop": "right",
 +		"tablet": "",
 +		"mobile": ""
++	}
++}
+diff --git a/tests/references/styles/valeurs/alignements-tablette.json b/tests/references/styles/valeurs/alignements-tablette.json
+new file mode 100644
+index 0000000..01caead
+--- /dev/null
++++ b/tests/references/styles/valeurs/alignements-tablette.json
+@@ -0,0 +1,8 @@
++{
++	"footer-copyright-alignment": {
++		"tablet": "right"
++	},
++	"footer-social-1-alignment": {
++		"tablet": "right"
 +	}
 +}
 diff --git a/tests/references/styles/valeurs/alignements.json b/tests/references/styles/valeurs/alignements.json
@@ -2051,6 +2177,57 @@ index 0000000..a703499
 +// l'ordinateur, comme dans Astra. Valeurs : styles/valeurs/alignements-ordinateur.json.
 +putenv('GROUPE=alignements-ordinateur');
 +require dirname(__DIR__) . '/styles/appliquer.php';
+diff --git a/tests/references/wp/R22-pied-alignements-tablette.json b/tests/references/wp/R22-pied-alignements-tablette.json
+new file mode 100644
+index 0000000..97ec4a6
+--- /dev/null
++++ b/tests/references/wp/R22-pied-alignements-tablette.json
+@@ -0,0 +1,33 @@
++{
++	"ordinateur": [
++		".site-primary-header-wrap .ast-builder-menu-1",
++		".site-primary-header-wrap .ast-header-button-1",
++		".site-primary-footer-wrap .footer-widget-area",
++		".site-below-footer-wrap .ast-footer-copyright",
++		".site-below-footer-wrap .ast-footer-social-wrap"
++	],
++	"mobile": [
++		".ast-mobile-header-wrap .menu-toggle"
++	],
++	"presents": [
++		".ast-builder-menu-1 .sub-menu"
++	],
++	"menuMobile": "dropdown",
++	"menuOuvert": [
++		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
++	],
++	"styles": [
++		{
++			"selecteur": ".ast-footer-copyright",
++			"proprietes": [
++				"text-align"
++			]
++		},
++		{
++			"selecteur": "[data-section=\"section-fb-social-icons-1\"] .footer-social-inner-wrap",
++			"proprietes": [
++				"text-align"
++			]
++		}
++	]
++}
+diff --git a/tests/references/wp/R22-pied-alignements-tablette.php b/tests/references/wp/R22-pied-alignements-tablette.php
+new file mode 100644
+index 0000000..75728b0
+--- /dev/null
++++ b/tests/references/wp/R22-pied-alignements-tablette.php
+@@ -0,0 +1,6 @@
++<?php
++// Alignements réglés pour la tablette seule : sur ordinateur, le copyright hérite et les icônes
++// sociales restent centrées (règle fixe d'Astra) ; le mobile prend la valeur de la tablette.
++// Valeurs : styles/valeurs/alignements-tablette.json.
++putenv('GROUPE=alignements-tablette');
++require dirname(__DIR__) . '/styles/appliquer.php';
 diff --git a/tests/references/wp/R22-pied-alignements.json b/tests/references/wp/R22-pied-alignements.json
 new file mode 100644
 index 0000000..97ec4a6
@@ -2101,11 +2278,29 @@ index 0000000..f9bd715
 +// appareils. Placement des références des styles ; valeurs : styles/valeurs/alignements.json.
 +putenv('GROUPE=alignements');
 +require dirname(__DIR__) . '/styles/appliquer.php';
+diff --git a/tests/unit/StylesSaisieTest.php b/tests/unit/StylesSaisieTest.php
+index fd58a5e..794b7a4 100644
+--- a/tests/unit/StylesSaisieTest.php
++++ b/tests/unit/StylesSaisieTest.php
+@@ -69,6 +69,13 @@ final class StylesSaisieTest extends TestCase {
+ 		$this->assertSame([], astra_styles_saisie_fusionner([], ['button-color' => '', 'header-menu1-color-responsive' => ['desktop' => '']]));
+ 	}
+ 
++	public function testPremiereSaisieDUnAlignementMobileSeul(): void {
++		// Alignement saisi pour le mobile seul : enregistré dès la première saisie.
++		$saisie = ['footer-copyright-alignment' => ['desktop' => '', 'tablet' => '', 'mobile' => 'right']];
++		$this->assertSame($saisie, astra_styles_saisie_fusionner([], $saisie));
++		$this->assertSame([], astra_styles_saisie_fusionner([], ['footer-copyright-alignment' => ['desktop' => '', 'tablet' => '', 'mobile' => '']]));
++	}
++
+ 	public function testValeursRefusees(): void {
+ 		$this->assertSame(
+ 			['button-color', 'font-size-button'],
 diff --git a/tests/unit/StylesTest.php b/tests/unit/StylesTest.php
-index 432ee5c..95f6b55 100644
+index 432ee5c..eb0c7c5 100644
 --- a/tests/unit/StylesTest.php
 +++ b/tests/unit/StylesTest.php
-@@ -170,6 +170,21 @@ final class StylesTest extends TestCase {
+@@ -170,6 +170,26 @@ final class StylesTest extends TestCase {
  		$this->assertSame('', astra_styles_css(self::valeurs('bouton-entete-marge-vide'), ['entete_ordinateur' => ['primary' => ['primary_right' => ['menu-1']]]]));
  	}
  
@@ -2119,6 +2314,11 @@ index 432ee5c..95f6b55 100644
 +		// Ordinateur seul : tablette et mobile prennent sa valeur (aucune règle d'Astra ne les recentre).
 +		$css = astra_styles_css(['footer-copyright-alignment' => ['desktop' => 'left']], $pied);
 +		$this->assertStringContainsString('@media (max-width:544px){.ast-footer-copyright{text-align:left;}}', $css);
++		// Tablette seule : sur ordinateur, le copyright hérite et les icônes sociales restent centrées
++		// (règle fixe de css/astra-hfb.css) ; le mobile prend la valeur de la tablette.
++		$css = astra_styles_css(self::valeurs('alignements-tablette'), $pied);
++		$this->assertStringContainsString('.ast-footer-copyright{text-align:inherit;}@media (max-width:921px){.ast-footer-copyright{text-align:right;}}@media (max-width:544px){.ast-footer-copyright{text-align:right;}}', $css);
++		$this->assertStringContainsString($social . '{text-align:center;}@media (max-width:921px){' . $social . '{text-align:right;}}@media (max-width:544px){' . $social . '{text-align:right;}}', $css);
 +		// Élément absent du pied : rien.
 +		$this->assertSame('', astra_styles_css(self::valeurs('alignements'), ['pied' => ['below' => ['below_1' => ['html-1']]]]));
 +		$this->assertSame([], astra_styles_normaliser(['footer-copyright-alignment' => ['desktop' => 'justify']]));
@@ -2133,7 +2333,7 @@ index 432ee5c..95f6b55 100644
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php` (lancer les deux, même si le premier échoue)
 Attendu :
-- unitaires : 1 échec (`StylesTest::testAlignementsDuPiedSurLesTroisAppareils`) ;
+- unitaires : 2 échecs (`StylesSaisieTest::testPremiereSaisieDUnAlignementMobileSeul`, `StylesTest::testAlignementsDuPiedSurLesTroisAppareils`) ;
 - intégration : 1 échec (`StylesFormulaireTest::testAllerRetourDesReglagesDeCompatibilite`).
 
 - [ ] **Étape 3 : implémenter**
@@ -2172,10 +2372,10 @@ index 7f9dd6b..a36b1cb 100644
  				#SET{v,#GET{c}|table_valeur{valeur}|strval}
  				<select id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]">
 diff --git a/inc/astra_styles.php b/inc/astra_styles.php
-index 9315cd9..435dfd5 100644
+index c2a1db1..3c0837b 100644
 --- a/inc/astra_styles.php
 +++ b/inc/astra_styles.php
-@@ -130,6 +130,11 @@ function astra_styles_registre(): array {
+@@ -129,6 +129,11 @@ function astra_styles_registre(): array {
  			"$b-social-1-color-type" => ['type' => 'enum', 'valeurs' => ['custom', 'official'], 'defaut' => 'custom'],
  		]);
  	}
@@ -2187,8 +2387,8 @@ index 9315cd9..435dfd5 100644
  	$ajouter('menu-mobile', 'inc/builder/type/header/mobile-trigger/dynamic-css/dynamic.css.php', [
  		'mobile-header-toggle-btn-style' => ['type' => 'enum', 'valeurs' => ['minimal', 'fill', 'outline'], 'defaut' => 'minimal'],
  		'mobile-header-toggle-btn-color' => $couleur,
-@@ -269,6 +274,8 @@ function astra_styles_valider(array $d, $v) {
- 				&& !in_array((string) $v, $d['refuses'] ?? [], true) ? $v : null;
+@@ -267,6 +272,8 @@ function astra_styles_valider(array $d, $v) {
+ 			return in_array((string) $v, ['', 'inherit', 'normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'], true) && !is_bool($v) ? $v : null;
  		case 'enum':
  			return in_array($v, $d['valeurs'], true) ? $v : null;
 +		case 'alignement':
@@ -2196,7 +2396,7 @@ index 9315cd9..435dfd5 100644
  		case 'booleen':
  			return is_bool($v) || in_array($v, [0, 1, '0', '1', ''], true) ? $v : null;
  		case 'fond':
-@@ -479,7 +486,7 @@ function astra_styles_ecrire(array $regles): string {
+@@ -477,7 +484,7 @@ function astra_styles_ecrire(array $regles): string {
  }
  
  /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
@@ -2206,7 +2406,7 @@ index 9315cd9..435dfd5 100644
  /**
   * CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. $compatibilite :
 diff --git a/inc/astra_styles_saisie.php b/inc/astra_styles_saisie.php
-index 43918c9..556b100 100644
+index 43918c9..57ff39f 100644
 --- a/inc/astra_styles_saisie.php
 +++ b/inc/astra_styles_saisie.php
 @@ -67,6 +67,10 @@ function astra_styles_champs($styles, string $section): array {
@@ -2239,12 +2439,24 @@ index 43918c9..556b100 100644
  					$x[$cle] = $val;
  				}
  			}
+@@ -104,7 +109,10 @@ function astra_styles_saisie_fusionner(array $existant, array $saisie): array {
+ 		} elseif (is_array($v)) {
+ 			$v = array_merge(is_array($avant) ? $avant : [], $v);
+ 		}
+-		if ($avant === null && !astra_styles_renseigne($d['responsive'] ? astra_styles_ordi($v) : $v)) {
++		// Première saisie : gardée si une valeur saisie est renseignée (l'ordinateur seul est saisi,
++		// sauf pour les alignements, saisis sur les trois appareils).
++		$saisi = $d['responsive'] && $d['type'] !== 'alignement' ? astra_styles_ordi($v) : $v;
++		if ($avant === null && !astra_styles_renseigne($saisi)) {
+ 			continue;
+ 		}
+ 		$r[$o] = $v;
 diff --git a/inc/styles/alignements.php b/inc/styles/alignements.php
 new file mode 100644
-index 0000000..4a40b7c
+index 0000000..71b1c60
 --- /dev/null
 +++ b/inc/styles/alignements.php
-@@ -0,0 +1,34 @@
+@@ -0,0 +1,38 @@
 +<?php
 +/**
 + * Astra pour SPIP — alignements du copyright (inc/builder/type/footer/copyright/dynamic-css/
@@ -2254,15 +2466,19 @@ index 0000000..4a40b7c
 + * @license GPL-3.0-or-later
 + */
 +
-+/** Options d'alignement : option => [élément du pied, sélecteur d'Astra]. */
++/**
++ * Options d'alignement : option => [élément du pied, sélecteur d'Astra, alignement sans règle
++ * d'Astra]. Les icônes sociales restent centrées par une règle fixe de css/astra-hfb.css
++ * ([data-section^="section-fb-social-icons-"] .footer-social-inner-wrap) ; le copyright hérite.
++ */
 +const ASTRA_STYLES_ALIGNEMENTS = [
-+	'footer-copyright-alignment' => ['copyright', '.ast-footer-copyright'],
-+	'footer-social-1-alignment' => ['social-icons-1', '[data-section="section-fb-social-icons-1"] .footer-social-inner-wrap'],
++	'footer-copyright-alignment' => ['copyright', '.ast-footer-copyright', 'inherit'],
++	'footer-social-1-alignment' => ['social-icons-1', '[data-section="section-fb-social-icons-1"] .footer-social-inner-wrap', 'center'],
 +];
 +
 +function astra_styles_alignements(array $s, array $hfb): array {
 +	$regles = [];
-+	foreach (ASTRA_STYLES_ALIGNEMENTS as $option => [$element, $sel]) {
++	foreach (ASTRA_STYLES_ALIGNEMENTS as $option => [$element, $sel, $sans]) {
 +		if (!isset($s[$option]) || !astra_styles_element_place($element, $hfb, 'pied')) {
 +			continue;
 +		}
@@ -2272,10 +2488,10 @@ index 0000000..4a40b7c
 +		// l'ordinateur, puis 921 et 544 px. Neutralisation : css/astra-dynamic.css et
 +		// css/astra-hfb.css centrent sur les trois appareils ; un appareil sans valeur prend celle
 +		// que la cascade d'Astra lui donne (la tablette celle de l'ordinateur, le mobile celle de la
-+		// tablette, sinon de l'ordinateur), à défaut l'alignement hérité.
-+		$regles[] = ['', $sel, ['text-align' => $o ?: 'inherit']];
-+		$regles[] = ['(max-width:921px)', $sel, ['text-align' => $t ?: ($o ?: 'inherit')]];
-+		$regles[] = ['(max-width:544px)', $sel, ['text-align' => $m ?: ($t ?: ($o ?: 'inherit'))]];
++		// tablette, sinon de l'ordinateur), à défaut celle qui s'applique sans règle d'Astra.
++		$regles[] = ['', $sel, ['text-align' => $o ?: $sans]];
++		$regles[] = ['(max-width:921px)', $sel, ['text-align' => $t ?: ($o ?: $sans)]];
++		$regles[] = ['(max-width:544px)', $sel, ['text-align' => $m ?: ($t ?: ($o ?: $sans))]];
 +	}
 +	return $regles;
 +}
@@ -2376,12 +2592,12 @@ index cd4569d..23afe36 100644
 - [ ] **Étape 4 : vérifier**
 
 Run : `vendor/bin/phpunit --testsuite unit && vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php`
-Attendu : unitaires `OK (106 tests, 1536 assertions)`, intégration `OK (83 tests, 289 assertions)`
+Attendu : unitaires `OK (112 tests, 1548 assertions)`, intégration `OK (83 tests, 289 assertions)`
 
 ```bash
-WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R22-pied-alignements R22-pied-alignements-ordinateur
-php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R22-pied-alignements R22-pied-alignements-ordinateur
-WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8414 R22-pied-alignements R22-pied-alignements-ordinateur
+WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette
+SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette
+WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8414 R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette
 URL=http://127.0.0.1:8414 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire_styles.cjs
 ```
 
@@ -2390,7 +2606,7 @@ Attendu : HTML identique ; toutes les vues sous le seuil ; 2 valeurs (`text-alig
 - [ ] **Étape 5 : commit**
 
 ```bash
-git add inc/styles/alignements.php inc/astra_styles.php inc/astra_styles_saisie.php formulaires/configurer_astra_styles.html lang/astra_fr.php lang/astra_en.php tests/unit/StylesTest.php tests/integration/StylesFormulaireTest.php tests/references/styles/valeurs/alignements.json tests/references/styles/valeurs/alignements-ordinateur.json tests/references/wp/R22-pied-alignements.php tests/references/wp/R22-pied-alignements.json tests/references/wp/R22-pied-alignements-ordinateur.php tests/references/wp/R22-pied-alignements-ordinateur.json tests/comparaison/configurations.php
+git add inc/styles/alignements.php inc/astra_styles.php inc/astra_styles_saisie.php formulaires/configurer_astra_styles.html lang/astra_fr.php lang/astra_en.php tests/unit/StylesTest.php tests/unit/StylesSaisieTest.php tests/integration/StylesFormulaireTest.php tests/references/styles/valeurs/alignements.json tests/references/styles/valeurs/alignements-ordinateur.json tests/references/styles/valeurs/alignements-tablette.json tests/references/wp/R22-pied-alignements.php tests/references/wp/R22-pied-alignements.json tests/references/wp/R22-pied-alignements-ordinateur.php tests/references/wp/R22-pied-alignements-ordinateur.json tests/references/wp/R22-pied-alignements-tablette.php tests/references/wp/R22-pied-alignements-tablette.json tests/comparaison/configurations.php
 git commit -m "Styles : alignements du copyright et des icônes sociales du pied, trois appareils"
 ```
 
@@ -2426,7 +2642,7 @@ index 1994dfc..b259224 100644
  | CSS dynamique rendu par WordPress avec les valeurs du modèle Garden Maintenance | `tests/references/styles/attendus/*.css`, `tests/references/transparent/attendus/*.css` | Extraits de la sortie d'Astra 4.11.0 (GPL v2 ou ultérieure), capturés par `tests/references/styles/capturer.sh` et `tests/references/transparent/capturer.sh` pour les tests d'équivalence |
  | Règles Astra appliquées aux contenus | `css/astra-spip.css` | Adaptations aux éléments produits par SPIP ; les reprises de règles WordPress/Astra sont signalées dans les commentaires |
 diff --git a/README.md b/README.md
-index 87dfff8..beb2490 100644
+index 87dfff8..2e3dd64 100644
 --- a/README.md
 +++ b/README.md
 @@ -115,6 +115,9 @@ avec leur effet et la propriété vérifiée, dans
@@ -2457,7 +2673,7 @@ index 87dfff8..beb2490 100644
  références, un WordPress de test et le SPIP de test servi par un serveur web :
  
      WP=… PW=… SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8404
-+    WP=… PW=… SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8404 R14-bouton-mobile R16-transparent-page R17-transparent-global R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R23-garden-compat
++    WP=… PW=… SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8404 R14-bouton-mobile R16-transparent-page R17-transparent-global R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette R23-garden-compat
      WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8404
      URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire.cjs
      RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
@@ -2507,7 +2723,7 @@ index 21dae56..28d61e5 100644
  	etat="test"
  	compatibilite="[4.2.0;5.0.*]"
 diff --git a/tests/comparaison/comparer_captures.sh b/tests/comparaison/comparer_captures.sh
-index 6aec137..cea5a0b 100755
+index 6aec137..d5bd334 100755
 --- a/tests/comparaison/comparer_captures.sh
 +++ b/tests/comparaison/comparer_captures.sh
 @@ -16,7 +16,7 @@ SORTIES=${SORTIES:-$ICI/sorties}
@@ -2515,27 +2731,27 @@ index 6aec137..cea5a0b 100755
  : "${SPIP_CLI:?SPIP_CLI doit désigner spip-cli}"
  CONFS=("$@")
 -[ ${#CONFS[@]} -gt 0 ] || CONFS=(R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees R6-menu R7-bouton R8-identite R9-pied-couleurs R10-sociaux R11-combinee R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google)
-+[ ${#CONFS[@]} -gt 0 ] || CONFS=(R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees R6-menu R7-bouton R8-identite R9-pied-couleurs R10-sociaux R11-combinee R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google R16-transparent-page R17-transparent-global R18-compat-sous-menu R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R23-garden-compat)
++[ ${#CONFS[@]} -gt 0 ] || CONFS=(R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees R6-menu R7-bouton R8-identite R9-pied-couleurs R10-sociaux R11-combinee R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google R16-transparent-page R17-transparent-global R18-compat-sous-menu R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette R23-garden-compat)
  
  # Copyright identique à celui d'Astra dans WordPress.
  (cd "$RACINE" && $SPIP_CLI php:eval 'include_spip("inc/config"); ecrire_config("astra/texte_pied", "Copyright © [annee] [site] | Powered by [Thème WordPress Astra->https://wpastra.com]");' > /dev/null)
 diff --git a/tests/comparaison/configurations.php b/tests/comparaison/configurations.php
-index 1a04d28..5ccc9f0 100644
+index 6f0c9a2..7c2bcb9 100644
 --- a/tests/comparaison/configurations.php
 +++ b/tests/comparaison/configurations.php
-@@ -192,6 +192,7 @@ function astra_configurations_reference(): array {
- 		'R21-bouton-entete-marge-vide' => $styles(['bouton-entete-marge-vide']),
+@@ -193,6 +193,7 @@ function astra_configurations_reference(): array {
  		'R22-pied-alignements' => $styles(['alignements']),
  		'R22-pied-alignements-ordinateur' => $styles(['alignements-ordinateur']),
+ 		'R22-pied-alignements-tablette' => $styles(['alignements-tablette']),
 +		'R23-garden-compat' => $styles(['garden-compat'], $titres + ['compatibilite' => astra_configuration_styles(['garden-compat'])]),
  		'P1-page' => [
  			'page' => 'notre_jardin',
  			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
 diff --git a/tests/references/README.md b/tests/references/README.md
-index f5a9981..df863b5 100644
+index f5a9981..b5c6884 100644
 --- a/tests/references/README.md
 +++ b/tests/references/README.md
-@@ -79,6 +79,16 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
+@@ -79,6 +79,17 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
  | R15-sociaux-google | Pied : copyright et icônes sociales Facebook et Google Reviews (couleur de marque `#dc4e41`) |
  | R16-transparent-page | Page « Notre jardin » avec l'en-tête transparent activé par la page (méta `theme-transparent-header-meta` à `enabled`), réglage global désactivé, valeurs de Garden (`transparent/valeurs/garden.json`) ; contenu, classes du `body`, position de l'en-tête et styles calculés comparés |
  | R17-transparent-global | En-tête transparent sur tout le site, page de la catégorie Jardinage : archive exclue par défaut, en-tête normal |
@@ -2548,11 +2764,12 @@ index f5a9981..df863b5 100644
 +| R21-bouton-entete-marge-vide | Marge du bouton de l'en-tête enregistrée vide, sans marge des boutons : 15/30, 14/28, 12/24 selon l'appareil |
 +| R22-pied-alignements | Alignements de Garden : copyright `left` / `left` / `center`, icônes sociales `right` / `right` / `center` ; `text-align` comparé aux trois largeurs |
 +| R22-pied-alignements-ordinateur | Alignements réglés pour l'ordinateur seul : tablette et mobile prennent sa valeur |
++| R22-pied-alignements-tablette | Alignements réglés pour la tablette seule : sur ordinateur, copyright hérité et icônes sociales centrées |
 +| R23-garden-compat | Valeurs de Garden de R18 à R22 ensemble (deux drapeaux, graisses, marge vide, alignements) |
  | P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
  | P2-accueil | Même menu, page « Notre jardin » en page d'accueil statique (`/`) |
  | P3-page-pleine | Page « Plein écran », titre désactivé, conteneur `full-width-container` |
-@@ -129,6 +139,21 @@ Non couvert dans cette version (valeurs conservées, aucun CSS) : valeurs tablet
+@@ -129,6 +140,21 @@ Non couvert dans cette version (valeurs conservées, aucun CSS) : valeurs tablet
  fonds de type `image` ou `gradient` ; fond, fond au survol et rayon des icônes sociales
  (`*-social-1-bg-color`, `-bg-h-color`, `-radius-fields`), absents des valeurs du modèle.
  
@@ -2806,13 +3023,13 @@ index 0000000..e797452
 vendor/bin/phpunit --testsuite unit
 vendor/bin/phpunit --testsuite integration --bootstrap tests/bootstrap_integration.php
 for f in $(git diff --name-only origin/main -- '*.php' ':!tests'); do php7.4 -l "$f"; done
-WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees R6-menu R7-bouton R8-identite R9-pied-couleurs R10-sociaux R11-combinee R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google R16-transparent-page R17-transparent-global R18-compat-sous-menu R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R23-garden-compat P1-page P2-accueil P3-page-pleine
-php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414
-php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google R16-transparent-page R17-transparent-global R18-compat-sous-menu R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R23-garden-compat
+WP=… PW=… SPIP_CLI=… tests/references/capturer.sh R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees R6-menu R7-bouton R8-identite R9-pied-couleurs R10-sociaux R11-combinee R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google R16-transparent-page R17-transparent-global R18-compat-sous-menu R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette R23-garden-compat P1-page P2-accueil P3-page-pleine
+SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414
+SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8414 R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google R16-transparent-page R17-transparent-global R18-compat-sous-menu R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette R23-garden-compat
 WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8414
 ```
 
-Attendu : unitaires `OK (106 tests, 1536 assertions)`, intégration `OK (83 tests, 289 assertions)` ; `No syntax errors detected` pour chaque fichier ; `comparer_html.php` : tout identique sauf les deux nommages de R13 (`tests/references/README.md`) ; `comparer_captures.sh` (liste par défaut, R0–R23) : toutes les vues sous le seuil (plus grand écart vers 0,7 %, R13, pied sur mobile), styles calculés égaux ; R23 : 24 valeurs égales aux trois largeurs.
+Attendu : unitaires `OK (112 tests, 1548 assertions)`, intégration `OK (83 tests, 289 assertions)` ; `No syntax errors detected` pour chaque fichier ; `comparer_html.php` : tout identique sauf les deux nommages de R13 (`tests/references/README.md`) ; `comparer_captures.sh` (liste par défaut, R0–R23) : toutes les vues sous le seuil (plus grand écart vers 0,7 %, R13, pied sur mobile), styles calculés égaux ; R23 : 24 valeurs égales aux trois largeurs.
 
 - [ ] **Étape 3 : commit**
 

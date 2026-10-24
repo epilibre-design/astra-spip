@@ -4,7 +4,10 @@ Date : 2026-10-23. Statut : relue (Gilles, Codex) ; révisée le 24 octobre apr�
 Codex (alignements responsifs, contrat des graisses des titres, numéros des références), puis
 avec le plan (`docs/superpowers/plans/2026-10-24-compatibilite-reglages.md`) : repli des
 alignements par la cascade d'Astra, marge du bouton de l'en-tête selon l'appareil, noms des
-fonctions, références dédoublées, équivalence des graisses par la cascade.
+fonctions, références dédoublées, équivalence des graisses par la cascade ; puis après la
+relecture du plan (Codex, Greptile) : graisse vide distincte de l'option absente et
+`headings-font-weight` à `inherit` accepté, icônes sociales centrées sans valeur, première saisie
+d'un alignement sur la tablette ou le mobile seuls.
 
 ## Objectif
 
@@ -85,17 +88,21 @@ Comportement d'Astra 4.11.0 (`inc/class-astra-dynamic-css.php`, lignes 155–240
   `headings-font-weight`. La règle `hn,.entry-content hn` reçoit alors cette graisse, sauf si elle
   vaut `inherit` : aucune graisse n'est émise ;
 - sans le drapeau seulement, `h1.widget-title`, `h2.widget-title`, `h3.widget-title` reçoivent
-  la graisse de leur niveau (valeur brute, `inherit` compris).
+  la graisse de leur niveau (valeur brute, `inherit` compris) ;
+- les graisses passent par `astra_get_css_value( …, 'font' )`, qui rend vide pour `''` comme pour
+  `inherit` : la propriété n'est alors pas émise. Une valeur vide (importée) n'est pas la valeur de
+  repli : `font-weight-h2` vide laisse le h2 à la graisse des titres, et `h2.widget-title` n'est
+  pas émis (graisse 400 de `.widget-title`). `headings-font-weight` vide, ou `inherit` (son défaut
+  sur les installations d'avant Astra 4.0, `inc/core/class-astra-theme-options.php`), n'émet pas
+  la règle générale. Mesuré sur WordPress.
 
 Ce qu'Astra SPIP fait :
 
 - **Stockage et validation.** `headings-font-weight` et `font-weight-h1` à `font-weight-h6`
   entrent au registre des styles (méta `astra/styles`, nouveau groupe `titres`, source
   `inc/class-astra-dynamic-css.php`), type `graisse` existant (`''`, `inherit`, `normal`, `bold`,
-  `100` à `900`) ; défauts `600` et `inherit`. `headings-font-weight` refuse `inherit` : avec cette
-  valeur, Astra ne produit pas de graisse pour `.site-title`, cas que le CSS figé ne sait pas
-  défaire, et qu'aucun modèle relevé n'utilise. Une valeur refusée est retirée seule, comme pour
-  les autres styles. Le drapeau reste dans `astra/compatibilite`.
+  `100` à `900`) ; défauts `600` et `inherit`. Une option absente prend son défaut ; une valeur vide
+  reste vide. Le drapeau reste dans `astra/compatibilite`.
 - **CSS figé inchangé.** `css/astra-dynamic.css` garde ses règles (graisse 600 des titres et des
   titres des widgets) : sans réglage, rien ne change.
 - **CSS produit.** Le module `inc/styles/titres.php` (`astra_titres_graisses(array $s, array $c)`,
@@ -104,16 +111,21 @@ Ce qu'Astra SPIP fait :
   graisse d'Astra (règle ci-dessus) et émet, dans le bloc `astra-styles-inline-css`, seulement ce
   qui diffère du CSS figé :
   - `h1,.entry-content h1,…,.site-title,.site-title a{font-weight:H}` si `H` (graisse des titres)
-    diffère de 600 ;
-  - puis, pour chaque niveau, `hn,.entry-content hn{font-weight:T}`, si `T` diffère de `H`.
-    `T` est la graisse que le niveau doit calculer : `G`, ou `H` quand Astra n'émet aucune graisse
-    pour ce niveau (`G` vaut `inherit`). La comparaison se fait avec `H` et non avec 600, car c'est
+    diffère de 600. Si `H` est vide ou vaut `inherit`, la règle générale d'Astra n'a pas de
+    graisse : neutralisation du CSS figé par les graisses de `css/main.min.css` (`h1` à `h6` et
+    `.entry-content hn` à `inherit`, `.site-title` à 400, `.site-title a` à `inherit`). La
+    graisse générale vaut alors `inherit` dans la suite ;
+  - puis, pour chaque niveau, `hn,.entry-content hn{font-weight:T}`, si `T` diffère de la
+    graisse générale (`H`, ou `inherit` ci-dessus). `T` est la graisse que le niveau doit
+    calculer : `G`, ou la graisse générale quand Astra n'émet aucune graisse pour ce niveau (`G`
+    vaut `inherit` ou est vide). La comparaison se fait avec `H` et non avec 600, car c'est
     la valeur que le niveau calcule une fois la règle générale appliquée : le CSS figé donne 600
     quand `H` vaut 600, et la règle générale émise, placée après les règles figées, donne `H`
     sinon. Les règles par niveau suivent la règle générale dans le bloc. Exemple :
     `headings-font-weight` à 700 et `font-weight-h1` à 600 émettent la règle générale à 700, puis
     `h1,.entry-content h1{font-weight:600}` ; sans cette seconde règle, le h1 calculerait 700 ;
-  - sans le drapeau : `hn.widget-title{font-weight:G}` (n = 1 à 3), si `G` diffère de 600 ;
+  - sans le drapeau : `hn.widget-title{font-weight:G}` (n = 1 à 3 ; 400, graisse de
+    `.widget-title`, quand `G` est vide), si cette graisse diffère de 600 ;
   - avec le drapeau : neutralisation `h1.widget-title,h2.widget-title,h3.widget-title{font-weight:400}`,
     valeur de `.widget-title` dans `css/main.min.css`, qu'Astra laisse s'appliquer en n'émettant pas
     ses règles. Elle est déclarée comme les neutralisations de la spec des styles.
@@ -177,10 +189,15 @@ l'option enregistrée, ses valeurs, même vides : un côté vide n'émet rien, e
 - Dès que l'option est enregistrée (élément placé dans le pied), les trois règles sont émises,
   dans l'ordre et les media queries d'Astra. Un appareil sans valeur prend celle que la cascade
   d'Astra lui donne : la tablette celle de l'ordinateur, le mobile celle de la tablette, sinon de
-  l'ordinateur (à défaut de toute valeur, l'alignement hérité). Les trois règles sont nécessaires :
-  `css/astra-dynamic.css` et `css/astra-hfb.css` centrent sur les trois appareils.
-- Formulaire : la saisie de ces deux options propose les trois appareils (trois sélecteurs). Les
-  autres styles restent en saisie ordinateur seule.
+  l'ordinateur. À défaut de toute valeur, l'alignement sans règle d'Astra : hérité pour le
+  copyright ; centré pour les icônes sociales, par la règle fixe
+  `[data-section^="section-fb-social-icons-"] .footer-social-inner-wrap{text-align:center}` de
+  `css/astra-hfb.css` (avec la seule tablette réglée, Astra garde les icônes centrées sur
+  ordinateur). Les trois règles sont nécessaires : `css/astra-dynamic.css` et `css/astra-hfb.css`
+  centrent sur les trois appareils.
+- Formulaire : la saisie de ces deux options propose les trois appareils (trois sélecteurs) ; une
+  première saisie est gardée dès qu'un appareil a une valeur. Les autres styles restent en saisie
+  ordinateur seule.
 
 ## Preuves
 
@@ -209,19 +226,21 @@ R17 par celui de l'en-tête transparent.
   (marges selon l'appareil).
 - `R22-pied-alignements` : les tableaux complets de Garden (copyright `left` / `left` / `center`,
   icônes `right` / `right` / `center`) ; `-ordinateur` : ordinateur seul réglé (repli par la
-  cascade) ; `text-align` comparé aux trois largeurs.
+  cascade) ; `-tablette` : tablette seule réglée (copyright hérité, icônes centrées sur
+  ordinateur) ; `text-align` comparé aux trois largeurs.
 - `R23-garden-compat` : les valeurs de Garden ensemble (deux drapeaux, graisses, marge vide,
   alignements), pour vérifier la cascade.
 
-Tests unitaires : registre (types, défauts, refus d'une clé de compatibilité inconnue, refus de
-`inherit` pour `headings-font-weight`), choix du fichier `css/compat/` selon le drapeau,
+Tests unitaires : registre (types, défauts, refus d'une clé de compatibilité inconnue, valeur vide
+distincte de l'option absente), choix du fichier `css/compat/` selon le drapeau,
 neutralisation de la marge, graisses des titres (chaque branche de la règle d'Astra, avec et sans
 le drapeau, avec et sans `astra/styles`, un niveau à `600` sous une graisse générale différente),
 alignements (trois règles émises dès que l'option est enregistrée, repli par la cascade d'Astra
 pour un appareil sans valeur). Graisses : Astra modifie des règles figées, l'équivalence porte donc
 sur la graisse calculée de chaque titre, par la cascade, entre les règles de graisse capturées sur
 WordPress (`tests/references/styles/graisses.py`, variantes `titres`, `titres-drapeau`,
-`drapeau-polices`) et le CSS de SPIP. Alignements et marge : prouvés par R21 et R22 (styles
+`drapeau-polices`, `titres-vide`, `titres-vide-drapeau`, `titres-generale-vide`,
+`titres-generale-heritee`) et le CSS de SPIP. Alignements et marge : prouvés par R21 et R22 (styles
 calculés aux trois largeurs).
 
 ## Effet attendu sur Garden
