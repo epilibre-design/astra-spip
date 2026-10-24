@@ -6,7 +6,7 @@
 
 **Architecture:** Deux installations SPIP de test distinctes exercent le même contenu importé, l'une sans plugin et l'autre avec oEmbed 3.5.1 épinglé. Un fournisseur HTTP local retourne des données et iframes de test ; les vrais pipelines du plugin exécutent la résolution. WordPress 4.13.8 présente un média de même géométrie pour la comparaison.
 
-**Tech Stack:** SPIP 4.4, plugin oEmbed 3.5.1, wp2spip épinglé, WordPress 7.1.3/Astra4.13.8, PHPUnit intégration, Playwright, serveur de fixtures PHP.
+**Tech Stack:** SPIP 4.4, plugin oEmbed 3.5.1, wp2spip épinglé, WordPress 7.1.3/Astra 4.13.8, PHPUnit intégration, Playwright, serveur de fixtures PHP.
 
 **Spec:** [Compatibilité oEmbed](../specs/2026-10-24-compatibilite-oembed-design.md).
 
@@ -22,7 +22,7 @@
 
 1. Balise optionnelle compilée sans plugin : URL toujours utilisable et aucune erreur (Task 1).
 2. Traitement exécuté deux fois : un seul conteneur responsive (Task 2).
-3. Ratio autre que 16:9 :4:3 mesuré, pas un padding universel (Task 2).
+3. Ratio autre que 16:9 : 4:3 mesuré, pas un padding universel (Task 2).
 4. Fournisseur indisponible ou invalide : URL/texte conservés, pas d'exception Astra (Task 2).
 5. Activation/désactivation réécrivant le texte : aucune mutation éditoriale (Task 2).
 
@@ -35,7 +35,7 @@
 
 **Interfaces:**
 - Consumes: `wp2spip_bloc_embed()` de l'importeur épinglé, qui produit l'URL isolée et la légende ; vrai contenu exporté/importé dans l'environnement ciblé, pas un attendu éditorial inventé.
-- Produces: serveur de fixture sur un port libre proposé 8428 ; `/oembed?url=...` répond en JSON avec type video, width 640/height360 ou width 640/height480, html iframe vers `/player/...`, sans média externe ; endpoint en erreur et JSON invalide identifiables.
+- Produces: serveur de fixture sur un port libre proposé 8428 ; `/oembed?url=...` répond en JSON avec type video, width 640/height 360 ou width 640/height 480, html iframe vers `/player/...`, sans média externe ; endpoint en erreur et JSON invalide identifiables.
 - Produces: CLI `node tests/e2e/oembed.cjs <URL_ARTICLE> <PROFIL> <SORTIES>`, profils `sans-plugin`, `avec-plugin`, `erreurs`, `deja-enveloppe` ; code 0 si assertions/pageerrors absentes, données JSON et captures.
 
 - [ ] **Step 1: Écrire le cas sans plugin**
@@ -77,7 +77,7 @@ Run: profil avec-plugin sur le rendu actuel sous 4.13.8 et profil deja-enveloppe
 
 - [ ] **Step 3: Corriger seulement si nécessaire et vérifier les échecs fournisseur**
 
-Porter une règle d'habillage limitée au contenu Astra et aux classes oEmbed. Préserver le conteneur et les styles de ratio du plugin ; ne pas ajouter `.ast-oembed-container` autour. Tester fournisseur inconnu, erreur HTTP et JSON invalide sur des URL distinctes : repli utile du plugin, URL/texte toujours conservés et aucune exception du thème. Activer puis désactiver le plugin dans le site de test et vider les caches de compilation : texte SQL identique et retour au lien sans réimport.
+Porter une règle d'habillage limitée au contenu Astra et aux classes oEmbed. Préserver le conteneur et les styles de ratio du plugin ; ne pas ajouter `.ast-oembed-container` autour. Tester sur des URL distinctes : (a) fournisseur déclaré, erreur HTTP et JSON invalide, via inc/oembed_recuperer_url.php (curl direct) ; (b) URL de fournisseur inconnu, découverte via recuperer_url_cache puis valider_url_distante() de SPIP 4.4. Pour (b), l'attendu se nomme « refus de sécurité SPIP d'une URL locale sur port non standard » : 127.0.0.1:8428 est refusé avant requête fournisseur. Vérifier l'absence de requête de découverte au journal, le lien/texte conservé et aucune exception Astra. Ne pas assouplir la validation SPIP pour ce cas, ni présenter ce refus comme une panne de fournisseur. Pour (a), vérifier le vrai repli du plugin avec requête attestée au journal. Activer puis désactiver le plugin dans le site de test et vider les caches de compilation : texte SQL identique et retour au lien sans réimport.
 
 - [ ] **Step 4: Validation du lot et commit**
 

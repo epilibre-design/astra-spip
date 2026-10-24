@@ -125,12 +125,20 @@ en-têtes contradictoires. Examiner aussi scrollbars et zoom ; si un défaut
 résiduel existe dans 4.13.8 à une fraction extrême, le signaler comme tel et
 proposer une adaptation explicite, plutôt que promettre une continuité non testée.
 
-**Question ouverte — sans JavaScript.** Le contenu doit rester accessible,
-mais la stratégie de navigation de repli n'est pas encore choisie. Elle doit
-être proposée après comparaison avec la cible 4.13.8, puis validée avant
-l'implémentation du lot responsive. Ce point ne peut pas être marqué conforme
-sur la seule base des tests avec JavaScript. La migration ne doit pas ajouter
-un masquage de tout l'en-tête en attendant le chargement du bundle.
+**Décision de Gilles — sans JavaScript.** Le menu mobile expose ses liens en
+permanence dans une liste simple, rendue uniquement lorsque les scripts du site
+sont désactivés, au moyen de `<noscript>`. Aucun `<details>` n'est ajouté. Les
+menus interactifs et leurs sélecteurs attendus par le bundle 4.13.8 restent
+inchangés ; avec JavaScript, aucun contenu de repli n'est rendu ni stylé.
+Le repli suit les sources et placements des menus mobiles du builder, avec
+leurs liens enfants accessibles sans commande de dépliage. Il est absent du
+rendu visible ordinateur à 1280 px, présent à 768 et 390 px ; un menu vide ne
+produit pas de navigation vide. C'est un écart déclaré à Astra 4.13.8 : R2 ne
+montre aucun lien à 768/390 px sans JavaScript, contrairement aux deux liens
+visibles à 1280 px ([mesure](../../inventaires/astra-4.11.0-4.13.8/sans-javascript-cible.json)).
+Les tests utilisent des contextes `javaScriptEnabled:false` aux trois largeurs ;
+avec JavaScript actif, ils comparent le rendu à WordPress, sans repli visible.
+La migration n'ajoute pas de masquage global de l'en-tête en attendant le bundle.
 La suppression de polyfills abandonnés par l'amont ne signifie pas une nouvelle
 promesse de support des navigateurs anciens.
 
@@ -158,7 +166,7 @@ CSS/JS sont vérifiées contre la source et les cas obligatoires 921/922 px pass
 Une anomalie effectivement reproduite et inexpliquée reste bloquante.
 
 Les sorties anciennes sont conservées pour expliquer les différences ; les
-attendus nouveaux proviennent de WordPress 4.13.8, avec le même cœur7.1.3.
+attendus nouveaux proviennent de WordPress 4.13.8, avec le même cœur 7.1.3.
 Les captures seules sont complétées par styles calculés, ordre des règles et
 HTML normalisé. Les valeurs/tableaux responsives sont vérifiés par aller-retour
 des formulaires et par le seed Garden.

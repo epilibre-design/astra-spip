@@ -39,7 +39,7 @@
 | C | [Icônes et liens](2026-10-24-icones-liens-sociaux-astra.md) | A/B ; tests ciblés du rendu social et des données |
 | D | [CSS et responsive](2026-10-24-css-responsive-astra.md), Tasks 1/2 | A/B ; CSS de groupes et cascade ; ces deux tasks ne dépendent pas du choix sans JS |
 | E | [Navigation](2026-10-24-navigation-accessible-astra.md) | A/B/D ; DOM et parcours clavier de configurations appliquées |
-| D bis | CSS Task 3 : seuil et première peinture | A/B/D ; choix sans JS validé avant implémentation, tests de gabarits et profil responsive |
+| D bis | CSS Task 3 : seuil et première peinture | A/B/D ; repli sans JS décidé : liste sous noscript, tests de gabarits et profil responsive |
 | D ter | CSS Task 4 : blocs et cas rares | A/B/D ; import ciblé isolé et qualifications RTL/layout |
 | F | [oEmbed](2026-10-24-compatibilite-oembed.md) | A/B/D Tasks 1/2 ; tests avec/sans plugin et import ciblé, sans dépendre de E |
 | G | Task 3 ci-dessous : intégration complète | A–F, y compris D bis/D ter ; toutes les références, formulaires, blocs et qualification des points ouverts |
@@ -89,14 +89,14 @@ Les ports sont des valeurs proposées, à vérifier libres avant démarrage. `WP
 ## Task 1: Référence vérifiable et espaces de test isolés
 
 **Files:**
-- Create: `tests/references/cible.json`, `tests/references/environnement.php`, `tests/references/verifier.php`, `scripts/install-wp-reference.sh`, `tests/unit/ReferenceEnvironnementTest.php`.
+- Create: `tests/references/cible.json`, `tests/references/cible-4.11.0.json`, `tests/references/environnement.php`, `tests/references/verifier.php`, `scripts/install-wp-reference.sh`, `tests/unit/ReferenceEnvironnementTest.php`.
 - Modify: `tests/references/capturer.sh`, `tests/references/styles/capturer.sh`, `tests/references/transparent/capturer.sh`, `tests/references/README.md`.
 
 **Interfaces:**
 - Consumes: archive officielle ci-dessus ; sources de WordPress 7.1.3 et du plugin SQLite Database Integration 3.1.1 (drop-in 1.8.0), épinglées par empreinte à la préparation.
 - Produces: `astra_reference_erreurs(array $attendue, array $reelle): array` (liste de messages, vide si conforme).
 - Produces: `php tests/references/verifier.php <WP_ROOT> <ARCHIVE_ZIP> <MANIFEST_JSON>` ; code 0 si conforme, 1 sinon ; manifeste public sans données de connexion.
-- Produces: `scripts/install-wp-reference.sh` utilisant `WP_REFERENCE`, `URL_WP`, `ASTRA_WP`, `ASTRA_REFERENCE_ARCHIVE`, `SQLITE_PLUGIN` (dossier de sources épinglées du plugin), sans démarrer le serveur.
+- Produces: `scripts/install-wp-reference.sh` utilisant `WP_REFERENCE`, `URL_WP`, `ASTRA_WP`, `ASTRA_REFERENCE_ARCHIVE`, `SQLITE_PLUGIN` (dossier de sources épinglées du plugin), sans démarrer le serveur. `CIBLE` désigne le manifeste choisi, 4.13.8 par défaut ; les deux manifestes imposent WordPress 7.1.3 et leurs propres empreintes de thème.
 
 - [ ] **Step 1: Écrire les tests de garde**
 
@@ -124,7 +124,7 @@ Le SPIP de base est déjà installé par la préparation commune, avec résultat
 
 Run: test unitaire précédent, puis installateur sur un dossier vide, relance, garde sur le site cible. Attendu : tous passent, versions 7.1.3/4.13.8 et base dans le dossier privé. Faire aussi le refus sur un dossier contenant un fichier témoin : code non nul, fichier inchangé et aucune table créée. Sur un site témoin 4.11.0, la capture doit être refusée avant modification de `astra-settings` (empreinte de l'option avant/après).
 
-Avant de modifier les fixtures communes, archiver les sorties des 35 références avec un **autre** WordPress 4.11.0 isolé, scripts de `503819e`, mêmes réglages et `SORTIES` privé. La nouvelle garde cible n'est pas contournée pour créer cette archive historique. Conserver provenance et SHA des réglages, HTML normalisé, styles calculés et captures. Comparer aussi le SPIP encore en référence 4.11.0 à ce WordPress historique via les scripts de 503819e, avant Task 2 ; ne pas confondre sorties réutilisées et nouvelles captures.
+Avant de modifier les fixtures communes, archiver les sorties des 35 références avec un **autre** WordPress 4.11.0 isolé, scripts de `503819e`, mêmes réglages et `SORTIES` privé. Créer ce second site avec `CIBLE=tests/references/cible-4.11.0.json`, une archive/thème 4.11.0 et des chemins/port propres, puis appeler verifier.php avec ce manifeste historique. Il n'existe plus d'ancien WordPress réutilisable. L'installateur lit la version et les empreintes depuis CIBLE, pas depuis une constante 4.13.8. Le manifeste historique épingle le ZIP ae876733703ab5d46251de0f2a6f8d28b164609e06750382813b7756a9c7fdac, main.min.css 44622e9d59e3d2c9c4ffb9fc53d368e250f382ab07a3df978410eaa86556cff9 et frontend.min.js e1d8d99d3074de7fc8747888add39735ddbe463a6f8f31b66e16193886f2afb5. Les trois captures de migration appellent explicitement cible.json, sans variable permettant de l'affaiblir ; seuls les scripts historiques de 503819e servent à l'archive. Conserver provenance et SHA des réglages, HTML normalisé, styles calculés et captures. Comparer aussi le SPIP encore en référence 4.11.0 à ce WordPress historique via les scripts de 503819e, avant Task 2 ; ne pas confondre sorties réutilisées et nouvelles captures.
 
 - [ ] **Step 5: Commit**
 
@@ -133,7 +133,7 @@ Indexer les fichiers de cette task un par un ; message : `Fiabiliser la référe
 ## Task 2: Assets 4.13.8 et marqueur réellement porté
 
 **Files:**
-- Modify: `css/main.min.css`, `js/frontend.min.js`, `astra_fonctions.php`, `tests/references/wp/commun.php`, `licenses/astra-4.13.8-readme.txt` (nouveau), `CREDITS.md`.
+- Modify: `css/main.min.css`, `js/frontend.min.js`, `astra_fonctions.php`, `inc/astra_pages.php` (repli de classe ligne 64), `tests/references/wp/commun.php`, `licenses/astra-4.13.8-readme.txt` (nouveau), `CREDITS.md`.
 - Create: `tests/unit/AssetsReferenceTest.php`.
 - Modify: `tests/integration/PluginActifTest.php` (test de classe de version).
 
@@ -151,7 +151,7 @@ Run: `vendor/bin/phpunit --testsuite unit --filter AssetsReferenceTest`, puis `v
 
 - [ ] **Step 3: Copier et actualiser les métadonnées**
 
-Copier les deux fichiers officiels, changer le marqueur du port et la version fraîche dans `ref_etat_initial()`. Préserver les drapeaux anciens explicites des références de compatibilité. Copier la notice amont et mettre à jour la provenance actuelle sans effacer les crédits historiques. Aucune modification manuelle du bundle minifié.
+Copier les deux fichiers officiels, changer le marqueur du port, le repli de classe de inc/astra_pages.php et la version fraîche dans `ref_etat_initial()`. Préserver les drapeaux anciens explicites des références de compatibilité. Copier la notice amont et mettre à jour la provenance actuelle sans effacer les crédits historiques. Aucune modification manuelle du bundle minifié.
 
 - [ ] **Step 4: Vérifier**
 
@@ -169,7 +169,7 @@ Message : `Passer les assets et la version de référence à Astra 4.13.8` ; ajo
 
 **Interfaces:**
 - Consumes: les quatre plans de composants, toutes leurs validations ciblées, les 35 configurations inchangées d'identité et les scénarios ajoutés par profil.
-- Produces: version candidate 1.6.0 ; manifeste du commit testé, traitements des I/L/V et bilan indépendant des différences. Le validateur expose `erreurs_qualification(inventaire: dict, decisions: list, racine: Path) -> list[str]` et une CLI sans argument utilisant les chemins ci-dessus, code1 si la liste d’erreurs est non vide.
+- Produces: version candidate 1.6.0 ; manifeste du commit testé, traitements des I/L/V et bilan indépendant des différences. Le validateur expose `erreurs_qualification(inventaire: dict, decisions: list, racine: Path) -> list[str]` et une CLI sans argument utilisant les chemins ci-dessus, code 1 si la liste d’erreurs est non vide.
 
 - [ ] **Step 1: Écrire le contrôle de complétude**
 
@@ -213,4 +213,4 @@ Attendu : tests verts, aucun nouveau différentiel inexpliqué, seuils existants
 
 Actualiser la référence courante, les crédits et les limites ; paquet à 1.6.0 sans changement de schéma. Préserver les anciennes preuves. Commit : `Qualifier Astra SPIP 1.6.0 sur Astra 4.13.8`. Vérifier le commit installé, puis refaire les comparaisons finales sur ce commit et après fusion selon la procédure de publication. Les nouvelles preuves contiennent le SHA réel ; ne pas les attribuer à un commit antérieur à la dernière modification de code.
 
-Le tag n'est pas posé par le plan. La fusion de la branche commune nécessite une qualification complète, et le repli sans JS doit avoir sa décision et son test avant l'implémentation du lot responsive.
+Le tag n'est pas posé par le plan. La fusion de la branche commune nécessite une qualification complète, et le repli sans JS décidé par Gilles doit avoir ses tests avant l'implémentation du lot responsive.

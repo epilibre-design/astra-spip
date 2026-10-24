@@ -6,7 +6,7 @@
 
 **Architecture:** Les sélecteurs fonctionnels sont préservés par les outils de preuve, puis les sorties indépendantes WordPress alimentent les CSS figés et attendus. Les générateurs transposés sont ajustés à la même source. Un module SPIP dédié centralise le seuil d'en-tête utilisé au début et en pied de page.
 
-**Tech Stack:** Python 3, PHP 7.4/8.4, PHPUnit, Playwright Chromium, WordPress 7.1.3/Astra4.13.8.
+**Tech Stack:** Python 3, PHP 7.4/8.4, PHPUnit, Playwright Chromium, WordPress 7.1.3/Astra 4.13.8.
 
 **Spec:** [CSS et responsive](../specs/2026-10-24-css-responsive-astra-design.md).
 
@@ -16,7 +16,7 @@
 - Les tableaux responsives conservés ne sont pas tous activés ; respecter le sous-ensemble actuel et ses limites annoncées.
 - `astra_header_break_point()` et `astra_get_tablet_breakpoint()` sont des sources distinctes ; valeurs nominales SPIP 921 px, pas de nouveau réglage utilisateur.
 - CSS extrait régénéré, jamais corrigé seulement à la main ; main.min.css officiel intact.
-- Gate Task 3 : choix utilisateur du repli sans JavaScript validé et reporté dans la spec avant toute implémentation de ce lot responsive. La rédaction du plan ne clôt pas ce choix.
+- Décision de Gilles reportée dans la spec : menu mobile en liste simple sous `<noscript>` uniquement ; aucun `<details>`, aucun changement du menu interactif.
 
 ## Review Focus
 
@@ -84,7 +84,7 @@ Le profil replis reprend la sonde versionnée : input[type=date], première vari
 
 - [ ] **Step 2: Régénérer les couches figées**
 
-Le CSS de base n'a pas encore d'extracteur autonome : créer `extraire_css_base.py <R0_DIR> <SUBSTITUTIONS_JSON>` qui lit dynamique.css et écrit le CSS de base. Avant son corps, écrire test_extraire_css_base.py : les déclarations non répertoriées restent identiques ; une substitution désigne un sélecteur/propriété précis, ne remplace pas par valeur globale un même hexadécimal utilisé ailleurs ; les neuf variables de palette sont fournies par head-vars, sans double définition contradictoire. `substitutions.json` liste les adaptations existantes réellement nécessaires (palette, familles de police, largeurs) avec source/propriété et justification. Une capture contrôlée de palette/largeur permet de vérifier les correspondances douteuses avant de les introduire. Run rouge puis vert : `python3 -m unittest discover -s tests/references -p 'test_extraire_css_base.py'`.
+Le CSS de base n'a pas encore d'extracteur autonome : créer `extraire_css_base.py <R0_DIR> <SUBSTITUTIONS_JSON>` qui lit dynamique.css et écrit le CSS de base. Avant son corps, écrire test_extraire_css_base.py : les déclarations non répertoriées restent identiques ; une substitution désigne un sélecteur/propriété précis, ne remplace pas par valeur globale un même hexadécimal utilisé ailleurs ; les neuf variables de palette sont fournies par head-vars, sans double définition contradictoire. `substitutions.json` liste les adaptations existantes réellement nécessaires (palette, familles de police, largeurs) avec source/propriété et justification. Une capture contrôlée de palette/largeur permet de vérifier les correspondances douteuses avant de les introduire. Ajouter le test de non-régression : exécuter l'extracteur sur R0 4.11.0 archivée et substitutions.json, comparer octet pour octet au css/astra-dynamic.css de 503819e (normalisation limitée à l'en-tête de provenance si nécessaire). Toute différence est listée et justifiée, pas acceptée par régénération de l'attendu. Le mapping couvre notamment le retrait des 60 px de #primary documenté dans tests/references/README.md. Run rouge puis vert : `python3 -m unittest discover -s tests/references -p 'test_extraire_css_base.py'`.
 
 `extraire_css.py` lit R0–R4 ; son mode pages utilise P1/P3 et son mode compat R18. Exécuter dans cet ordre, après capture de ces configurations dans `$RUN_DIR/wp-cible` :
 
@@ -114,11 +114,11 @@ Message : `Aligner la cascade et les générateurs CSS sur Astra 4.13.8`.
 
 L'étude sur une copie WordPress 7.1.3/Astra 4.13.8 a exécuté R2 en désactivant les scripts du site : zéro lien de menu visible à 768/390 px, deux à 1280 px. Ce constat est limité au mode off-canvas de R2, sans conclure pour tous les modes. [Mesures](../../inventaires/astra-4.11.0-4.13.8/sans-javascript-cible.json) et [sonde reproductible](../../inventaires/astra-4.11.0-4.13.8/verifier_sans_javascript.cjs). Le contenu de la copie et les captures restent hors dépôt ; aucun site partagé n'a été modifié.
 
-**Gate:** La décision de navigation sans JavaScript est encore ouverte dans la spec fusionnée. Avant cette task, faire valider le repli, l'inscrire dans la spec et compléter cette task avec sa structure HTML et ses assertions exactes. Les Tasks 1/2/4 restent planifiables et vérifiables indépendamment ; cette gate n'est pas une autorisation de décider le repli en codant.
+**Décision validée :** le repli est une liste simple sous `<noscript>`, sans effet lorsque JavaScript est actif ; l'écart à WordPress est déclaré dans la qualification.
 
 **Files:**
-- Create: `inc/astra_responsive.php`, `inclure/body-debut.html`, `tests/unit/ResponsiveTest.php`, `tests/integration/ResponsiveRenduTest.php`.
-- Modify: `astra_fonctions.php`, `inclure/footer.html`, `404.html`, `article.html`, `auteur.html`, `inclure/sommaire-articles.html`, `mot.html`, `page_unique.html`, `recherche.html`, `rubrique.html`, `inc/astra_entete_transparent.php`, `tests/e2e/css_reference.cjs` et les sources d'extraction des règles de visibilité concernées.
+- Create: `inc/astra_responsive.php`, `inclure/body-debut.html`, `inclure/hfb/menu-sans-js.html`, `tests/unit/ResponsiveTest.php`, `tests/integration/ResponsiveRenduTest.php`.
+- Modify: `astra_fonctions.php`, `inclure/header.html`, `inclure/footer.html`, `404.html`, `article.html`, `auteur.html`, `inclure/sommaire-articles.html`, `mot.html`, `page_unique.html`, `recherche.html`, `rubrique.html`, `inc/astra_entete_transparent.php`, `tests/e2e/css_reference.cjs` et les sources d'extraction des règles de visibilité concernées.
 
 **Interfaces:**
 - Produces: `astra_responsive_seuil_entete(): int` renvoie 921 pour le port ; `astra_responsive_script_precoce(int $seuil): string` produit le script amont équivalent avec borne seuil+0.99, sans lecture du seuil tablette.
@@ -136,11 +136,19 @@ Run: filtres ResponsiveTest/ResponsiveRenduTest des suites unit/intégration. At
 
 Inclure le module depuis astra_fonctions.php ; appeler body-debut une fois après chaque ouverture body. Brancher le seuil sur les données JS en pied. Le cache garde un HTML indépendant du terminal ; les classes sont choisies par le navigateur avant l'en-tête. Régénérer les seules règles de visibilité qui changent et adapter les bornes du module transparent d'après sa source.
 
-La navigation sans JS validée reçoit son test avec `javaScriptEnabled:false` et une adaptation déclarée lorsque le WordPress de référence ne donne pas de menu utilisable. Aucun masquage global en attendant le JS.
+Dans inclure/header.html, après les rangées de #ast-mobile-header et avant son panneau dropdown, inclure `inclure/hfb/menu-sans-js`. Ce nouveau fragment contient exactement l'enveloppe suivante, uniquement si les menus mobiles configurés fournissent au moins un lien :
+
+```html
+<noscript><nav class="astra-navigation-sans-js" aria-label="…"><ul class="astra-liens-sans-js"><li><a href="…">…</a><ul><li><a href="…">…</a></li></ul></li></ul></nav></noscript>
+```
+
+Le libellé utilise la chaîne traduite du menu concerné. Répéter nav pour chaque menu 1/2 effectivement placé dans les rangées mobiles ou le panneau (dédupliqué par ID), lire sa source existante racine/rubrique/mots/pages. Utiliser des boucles SPIP de liens simples dans le nouveau fragment : aucun id, `sub-menu`, classe de bundle, bouton, tabindex ou état ARIA de dépliage ; enfants toujours visibles. Les wrappers et noms de classes du menu interactif existant sont inchangés. Le repli vit dans #ast-mobile-header, dont la visibilité le masque sur ordinateur, sans règle CSS globale supplémentaire.
+
+Avec `javaScriptEnabled:false`, R2 donne à 1280 px deux liens de premier niveau visibles dans le menu ordinateur et zéro nav de repli visible ; à 768/390 px, les liens de premier niveau du repli sont exactement Jardinage et Actualités, et son lien enfant Potager est visible et utilisable. Tester aussi la source pages, les deux menus et un panneau vide : liens attendus selon configuration, aucune nav vide. Avec JavaScript actif aux trois largeurs, aucune nav .astra-navigation-sans-js dans le DOM actif ni effet sur géométrie/styles/captures comparés au WordPress cible, et les parcours clavier du menu interactif restent verts. Aucun masquage global en attendant le JS.
 
 - [ ] **Step 4: Vérifier le profil responsive**
 
-Run: profils responsive et tests précédents, fenêtres 921/922 obligatoires avec/sans scrollbar, puis 1280/768/390 ; bundle de pied retardé par interception réseau et trace de première peinture. Naviguer avec waitUntil=commit puis attendre #masthead avant de libérer le bundle ; attendre load ou DOMContentLoaded rendrait ce test trompeur car le script classique retardé peut les bloquer. Le script précoce doit déjà avoir posé les bonnes classes pendant ce blocage. Le cas~921,95 px est complémentaire si reproductible : rapporter mesure réelle ou absence documentée. Tester cache réutilisé successivement par client desktop/mobile ; aucune classe serveur spécifique au premier client.
+Run: profils responsive et tests précédents, fenêtres 921/922 obligatoires avec/sans scrollbar, puis 1280/768/390 ; bundle de pied retardé par interception réseau et trace de première peinture. Naviguer avec waitUntil=commit puis attendre #masthead avant de libérer le bundle ; attendre load ou DOMContentLoaded rendrait ce test trompeur car le script classique retardé peut les bloquer. Le script précoce doit déjà avoir posé les bonnes classes pendant ce blocage. Le cas ~921,95 px est complémentaire si reproductible : rapporter mesure réelle ou absence documentée. Tester cache réutilisé successivement par client desktop/mobile ; aucune classe serveur spécifique au premier client.
 
 - [ ] **Step 5: Commit**
 
@@ -153,7 +161,7 @@ Message : `Synchroniser l'en-tête responsive et son affichage initial avec Astr
 - Modify: profils blocs de `tests/e2e/css_reference.cjs`, documentation/qualification des entrées V du domaine.
 
 **Interfaces:**
-- Consumes: scripts existants `install-wp-blocs.sh`, `install-spip-blocs.sh`, `comparer_blocs.cjs`, `comparer_medias.php`, `cascade_blocs.cjs` ; environnement d'import **distinct**, base MySQL dédiée, Astra cible et mêmes sources wp2spip épinglées.
+- Consumes: scripts existants `install-wp-blocs.sh`, `install-spip-blocs.sh`, `tests/comparaison/comparer_blocs.cjs`, `comparer_medias.php`, `cascade_blocs.cjs` ; environnement d'import **distinct**, base MySQL dédiée, Astra cible et mêmes sources wp2spip épinglées.
 - Produces: comparaison d'un import réel et décisions sourcées sur colonnes, logo sans menu, RTL, espacements et compatibilités de contenu.
 
 - [ ] **Step 1: Caractériser avant modification**

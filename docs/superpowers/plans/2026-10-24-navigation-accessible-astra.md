@@ -14,7 +14,7 @@
 
 - Dépend des lots A/B et de la régénération CSS du plan directeur ; pas du futur code d'oEmbed ou du catalogue social.
 - Deux niveaux de menu ; aucun nouveau réglage de contenu ou mode desktop cible-lien.
-- Tester les branches pages/rubriques et les contextes menu 1/menu2/widget.
+- Tester les branches pages/rubriques et les contextes menu 1/menu 2/widget.
 - Les références restent Astra 4.13.8 ; une adaptation SPIP au focus est nommée, pas attribuée à un correctif amont imaginaire.
 
 ## Review Focus
@@ -73,16 +73,16 @@ Message : `Intégrer la navigation off-canvas accessible d'Astra 4.13.8`.
 - Modify only for verified label changes: `lang/astra_fr.php`, `lang/astra_en.php`.
 
 **Interfaces:**
-- Consumes: pilote de Task 1 ; rendu d'un parent et de sa sous-page/rubrique, en menu 1/menu2 et widget.
+- Consumes: pilote de Task 1 ; rendu d'un parent et de sa sous-page/rubrique, en menu 1/menu 2 et widget.
 - Produces: commandes sémantiques compatibles avec le JS 4.13.8, mêmes paramètres d'inclusion que les squelettes actuels.
 
 - [ ] **Step 1: Modifier d'abord le test qui fige le vieux rôle**
 
-Le contrôle du WordPress cible R13 révèle un défaut résiduel : les sous-menus de widgets sont visibles, mais le lien et le span annoncent aria-expanded=false ; Entrée/Espace ne fournissent pas un vrai repli de cette liste. [Mesures ciblées](../../inventaires/astra-4.11.0-4.13.8/widgets-aria-cible.json). La spec autorise une adaptation minimale pour ne pas figer un défaut amont : ce plan propose de garder le rendu de liste toujours visible et de rendre la flèche décorative, sans ajouter un menu repliable.
+Le contrôle du WordPress cible R13 révèle un défaut résiduel : les sous-menus de widgets sont visibles, mais le lien et le span annoncent aria-expanded=false ; Entrée/Espace ne fournissent pas un vrai repli de cette liste. [Mesures ciblées](../../inventaires/astra-4.11.0-4.13.8/widgets-aria-cible.json). La spec autorise une adaptation minimale pour ne pas figer un défaut amont : la décision de Gilles est de garder le rendu de liste toujours visible et de rendre la flèche décorative, sans ajouter un menu repliable.
 
-Dans `HfbRenduTest::testBlocMenuDansLesWidgetsDuPied`, remplacer l'assertion de `role="application"` par : pas de faux aria-expanded sur le lien parent, flèche non focalisable/décorative, sans la classe JS `dropdown-menu-toggle` ni état ARIA de commande, sous-pages et titre/nav conservés, aucune commande de dépliage factice. Le profil widgets vérifiera la visibilité constante et l'accès aux liens enfants par Tab. C'est un écart sémantique explicite à la sortie WordPress 4.13.8, sans changement visuel voulu, proposé à la relecture du plan.
+Dans `HfbRenduTest::testBlocMenuDansLesWidgetsDuPied`, remplacer l'assertion de `role="application"` par : pas de faux aria-expanded sur le lien parent, flèche non focalisable/décorative, sans la classe JS `dropdown-menu-toggle` ni état ARIA de commande, sous-pages et titre/nav conservés, aucune commande de dépliage factice. Le profil widgets vérifiera la visibilité constante et l'accès aux liens enfants par Tab. C'est un écart sémantique explicite à la sortie WordPress 4.13.8, sans changement visuel voulu, validé par Gilles et déclaré dans la qualification avec la mesure widgets-aria-cible.json.
 
-Les variantes **d'en-tête réellement dépliantes** reçoivent le rôle button, un nom accessible et un état synchronisé dans les deux branches pages/rubriques, conformément au walker4.13.8. La flèche dans un lien reste un span interactif ; aucun button natif n'est imbriqué dans un lien.
+Les variantes **d'en-tête réellement dépliantes** reçoivent le rôle button, un nom accessible et un état synchronisé dans les deux branches pages/rubriques, conformément au walker 4.13.8. La flèche dans un lien reste un span interactif ; aucun button natif n'est imbriqué dans un lien.
 
 - [ ] **Step 2: Constater l'échec**
 

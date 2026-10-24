@@ -148,3 +148,12 @@ reste éphémère ; aucun drapeau de session ou de configuration n'est enregistr
 Les tests du formulaire de builder sans modification restent verts.
 Les entrées V affectées à cette spec dans le document de référence reçoivent
 une décision sourcée ; les cas non portés sont nommés, pas assimilés à des tests réussis.
+
+## Décision de Gilles : widgets toujours visibles (R13)
+
+Les sous-menus des widgets restent des listes statiques visibles. Leur flèche
+est décorative, non focalisable, sans classe `dropdown-menu-toggle` ni faux état
+`aria-expanded` sur le lien parent. Aucun menu repliable n'est ajouté. Cet écart
+sémantique corrige le défaut amont mesuré : liste visible mais annoncée fermée
+([preuve](../../inventaires/astra-4.11.0-4.13.8/widgets-aria-cible.json)). Il est déclaré
+explicitement dans la qualification ; l'apparence et les liens sont conservés.
