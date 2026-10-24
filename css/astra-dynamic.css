@@ -1,5 +1,7 @@
 /* Astra 4.11.0 — CSS dynamique (réglages par défaut du Customizer), extrait du rendu WordPress.
-   Les couleurs globales et largeurs sont définies par le plugin (inclure/head-vars.html). */
+   Les couleurs globales et largeurs sont définies par le plugin (inclure/head-vars.html).
+   Les règles qui dépendent du drapeau de compatibilité submenu-below-header sont dans
+   css/compat/, chargé juste après ce fichier selon astra/compatibilite. */
 :root{--ast-post-nav-space:0;--ast-container-default-xlg-padding:2.5em;--ast-container-default-lg-padding:2.5em;--ast-container-default-slg-padding:2em;--ast-container-default-md-padding:2.5em;--ast-container-default-sm-padding:2.5em;--ast-container-default-xs-padding:2.4em;--ast-container-default-xxs-padding:1.8em;--ast-code-block-background:#ECEFF3;--ast-comment-inputs-background:#F9FAFB;--ast-normal-container-width:1200px;--ast-narrow-container-width:750px;--ast-blog-title-font-weight:600;--ast-blog-meta-weight:600;--ast-global-color-primary:var(--ast-global-color-4);--ast-global-color-secondary:var(--ast-global-color-5);--ast-global-color-alternate-background:var(--ast-global-color-6);--ast-global-color-subtle-background:var(--ast-global-color-7);--ast-bg-style-guide:#F8FAFC;--ast-shadow-style-guide:0px 0px 4px 0 #00000057;--ast-global-dark-bg-style:#fff;--ast-global-dark-lfs:#fbfbfb;--ast-widget-bg-color:#fafafa;--ast-wc-container-head-bg-color:#fbfbfb;--ast-title-layout-bg:#eeeeee;--ast-search-border-color:#e7e7e7;--ast-lifter-hover-bg:#e6e6e6;--ast-gallery-block-color:#000;--srfm-color-input-label:var(--ast-global-color-2);}
 html{font-size:100%;}
 a{color:var(--ast-global-color-0);}
@@ -363,8 +365,6 @@ h1,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content
 .ast-header-break-point .main-header-bar{border-bottom-width:1px;}
 @media (min-width:922px){.main-header-bar{border-bottom-width:1px;}}
 @media (min-width:922px){.ast-left-sidebar #primary,.ast-right-sidebar #primary{width:70%;}#secondary{width:30%;}}
-.main-header-menu .menu-item, #astra-footer-menu .menu-item, .main-header-bar .ast-masthead-custom-menu-items{-js-display:flex;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;}
-.main-header-menu > .menu-item > .menu-link, #astra-footer-menu > .menu-item > .menu-link{height:100%;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-js-display:flex;display:flex;}
 .ast-header-break-point .main-navigation ul .menu-item .menu-link .icon-arrow:first-of-type svg{top:.2em;margin-top:0px;margin-left:0px;width:.65em;transform:translate(0, -2px) rotateZ(270deg);}
 .ast-mobile-popup-content .ast-submenu-expanded > .ast-menu-toggle{transform:rotateX(180deg);overflow-y:auto;}
 @media (min-width:922px){.ast-builder-menu .main-navigation > ul > li:last-child a{margin-right:0;}}

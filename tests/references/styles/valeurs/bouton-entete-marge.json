@@ -1,0 +1,48 @@
+{
+	"section-hb-button-1-padding": {
+		"desktop": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"theme-button-padding": {
+		"desktop": {
+			"top": "17",
+			"right": "26",
+			"bottom": "17",
+			"left": "26"
+		},
+		"tablet": {
+			"top": "17",
+			"right": "26",
+			"bottom": "17",
+			"left": "26"
+		},
+		"mobile": {
+			"top": "17",
+			"right": "26",
+			"bottom": "17",
+			"left": "26"
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	}
+}

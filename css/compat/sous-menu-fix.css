@@ -1,0 +1,10 @@
+/*
+ * Astra pour SPIP — CSS de compatibilité : submenu-below-header absent ou vrai (installation récente).
+ *
+ * Règles d'Astra 4.11.0 (Astra_Dynamic_CSS::astra_submenu_below_header_fix()) qui dépendent du
+ * drapeau, chargées selon astra/compatibilite. Fichier produit par
+ * tests/references/extraire_css.py --compat sous-menu-fix à partir des références WordPress :
+ * ne pas modifier à la main.
+ */
+.main-header-menu .menu-item, #astra-footer-menu .menu-item, .main-header-bar .ast-masthead-custom-menu-items{-js-display:flex;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;}
+.main-header-menu > .menu-item > .menu-link, #astra-footer-menu > .menu-item > .menu-link{height:100%;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-js-display:flex;display:flex;}

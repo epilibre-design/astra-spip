@@ -5,6 +5,8 @@ builder seulement : les références P* des pages uniques ne sont pas lues).
 
 Usage : python3 tests/references/extraire_css.py [sorties] > css/astra-hfb.css
         python3 tests/references/extraire_css.py --pages [sorties] > css/astra-pages.css
+        python3 tests/references/extraire_css.py --compat sous-menu-fix [sorties] > css/compat/sous-menu-fix.css
+        python3 tests/references/extraire_css.py --compat sous-menu-ancien [sorties] > css/compat/sous-menu-ancien.css
 
 Compare le CSS dynamique des configurations R1 à R4 à celui de R0 (disposition par
 défaut, déjà portée dans css/astra-dynamic.css) et ne garde que les règles absentes de R0,
@@ -163,6 +165,32 @@ def main_pages(sorties):
     imprimer(nouvelles)
 
 
+# Variantes des drapeaux de compatibilité : (référence avec le drapeau, sens, description).
+# « fix » : règles de R0 absentes de la référence (émises seulement sans le drapeau) ;
+# « ancien » : règles de la référence absentes de R0 (émises seulement avec le drapeau).
+COMPAT = {
+    'sous-menu-fix': ('R18-compat-sous-menu', 'r0', 'submenu-below-header absent ou vrai (installation récente)'),
+    'sous-menu-ancien': ('R18-compat-sous-menu', 'ref', 'submenu-below-header à faux (site antérieur à Astra 1.5.0, Starter Templates)'),
+}
+
+
+def main_compat(variante, sorties):
+    """Règles qui dépendent d'un drapeau de compatibilité, dans l'ordre d'Astra."""
+    reference, sens, description = COMPAT[variante]
+    lire = lambda conf: open(os.path.join(sorties, conf, 'dynamique.css'), encoding='utf-8').read()
+    r0, ref = paires(lire('R0-defaut')), paires(lire(reference))
+    source, autre = (r0, set(ref)) if sens == 'r0' else (ref, set(r0))
+    print('/*')
+    print(' * Astra pour SPIP — CSS de compatibilité : ' + description + '.')
+    print(' *')
+    print(' * Règles d\'Astra 4.11.0 (Astra_Dynamic_CSS::astra_submenu_below_header_fix()) qui dépendent du')
+    print(' * drapeau, chargées selon astra/compatibilite. Fichier produit par')
+    print(' * tests/references/extraire_css.py --compat ' + variante + ' à partir des références WordPress :')
+    print(' * ne pas modifier à la main.')
+    print(' */')
+    imprimer([p for p in source if p not in autre])
+
+
 def imprimer(regles):
     contexte_courant = None
     for contexte, regle in regles:
@@ -178,7 +206,9 @@ def imprimer(regles):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1 and sys.argv[1] == '--pages':
+    if len(sys.argv) > 2 and sys.argv[1] == '--compat':
+        main_compat(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(__file__), 'sorties'))
+    elif len(sys.argv) > 1 and sys.argv[1] == '--pages':
         main_pages(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(__file__), 'sorties'))
     else:
         main()

@@ -115,6 +115,9 @@ avec leur effet et la propriété vérifiée, dans
   dispositions de page), puis rendu paramétrable : palette et largeurs passent par des variables CSS.
 - `css/astra-hfb.css` : CSS ajouté par le builder d'Astra pour les rangées et éléments, extrait
   des références WordPress par `tests/references/extraire_css.py`.
+- `css/compat/sous-menu-fix.css`, `css/compat/sous-menu-ancien.css` : règles qui dépendent du
+  drapeau de compatibilité `submenu-below-header`, extraites par
+  `tests/references/extraire_css.py --compat` ; une seule est chargée, selon `astra/compatibilite`.
 - `inclure/head-vars.html` : variables CSS issues de la configuration (`--ast-global-color-0` à `8`,
   largeurs de conteneur, polices) et réglages des rangées du builder.
 - `css/astra-article.css` et `css/astra-commentaires.css` : règles qu'Astra n'émet que sur les
@@ -137,6 +140,13 @@ avec leur effet et la propriété vérifiée, dans
 - Neuvième couleur de la palette : hexadécimale ou `rgba()`, comme dans Astra.
 - **Couleurs et typographie** (Configuration › Squelettes) : réglages de style du Customizer d'Astra, sous leurs noms d'options (`header-menu1-color-responsive`, `button-radius-fields`…) — menus, bouton, bouton de l'en-tête, identité du site (couleurs, tailles, affichage du nom et du slogan, largeur du logo), widgets et copyright du pied, icônes sociales, bouton du menu mobile (minimal, plein ou contour). Les valeurs d'un `site.json` de modèle Astra se reprennent telles quelles ; seule la valeur ordinateur est appliquée, les valeurs tablette et mobile sont conservées. Sans réglage, rien ne change.
 - **En-tête transparent** (même formulaire) : l'en-tête se superpose au début du contenu, avec ses propres couleurs, sur tout le site ou page par page, avec les exclusions d'Astra (archives, recherche, 404, accueil des derniers articles, pages, articles) et la restriction par appareil ; règles d'Astra 4.11.0 sur les trois appareils (`inc/astra_entete_transparent.php`). Logo propre à l'en-tête transparent : non repris.
+- Graisses des titres (`headings-font-weight`, `font-weight-h1` à `h6`), marge intérieure du
+  bouton de l'en-tête et alignements du copyright et des icônes sociales du pied (même formulaire ;
+  les alignements s'appliquent sur les trois appareils).
+- **Drapeaux de compatibilité** (méta `astra/compatibilite`, sans formulaire : ils viennent d'un
+  import) : `submenu-below-header` et `can-support-widget-and-editor-fonts`, qu'un `site.json` de
+  Starter Template garde d'un site antérieur et qui changent le CSS d'Astra (hauteur de l'en-tête,
+  graisses des titres et des titres des widgets).
 - Texte du pied de page (raccourcis SPIP, marqueurs `[annee]` et `[site]`).
 
 ## Tests
@@ -156,6 +166,7 @@ Les références WordPress du builder sont décrites dans `tests/references/READ
 références, un WordPress de test et le SPIP de test servi par un serveur web :
 
     WP=… PW=… SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8404
+    WP=… PW=… SPIP_CLI=… php tests/comparaison/comparer_html.php vendor/spip/spip http://127.0.0.1:8404 R14-bouton-mobile R16-transparent-page R17-transparent-global R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette R23-garden-compat
     WP=… PW=… SPIP_CLI=… tests/comparaison/comparer_captures.sh vendor/spip/spip http://127.0.0.1:8404
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire.cjs
     RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
@@ -163,14 +174,16 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire_styles.cjs
 
 - `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
-  page à celle de WordPress, pour les configurations de référence du builder (R0–R5, R12, R13 et R15) et
-  les trois de pages (P1–P3, qui comparent aussi le contenu et les classes du `body`) : balises, classes et
+  page à celle de WordPress : sans argument, pour les configurations de référence du builder
+  (R0–R5, R12, R13, R15 et R18) et les trois de pages (P1–P3, qui comparent aussi le contenu et
+  les classes du `body`) ; les références qui posent des styles (R6–R11, R14, R16, R17, R19–R23)
+  se passent en arguments, comme dans la deuxième commande. Sont comparés : balises, classes et
   identifiants des rangées, des zones et des éléments, et du premier niveau à l'intérieur de
   chaque élément. Les contenus, les formulaires et les SVG ne sont pas comparés : ce n'est pas
   une identité complète du HTML (R13 : deux différences de nommage attendues, voir
   `tests/references/README.md`) ;
-- `comparer_captures.sh` compare au pixel près l'en-tête, le pied de page et le menu mobile
-  ouvert, sur ordinateur et sur mobile (seuil : 1 % de pixels différents, variable `SEUIL`) ; les
+- `comparer_captures.sh` compare au pixel près (sans argument : R0–R23 ; P1–P3 en arguments)
+  l'en-tête, le pied de page et le menu mobile ouvert, sur ordinateur et sur mobile (seuil : 1 % de pixels différents, variable `SEUIL`) ; les
   images et leurs différences sont enregistrées dans `tests/comparaison/sorties/`. Une référence
   peut aussi lister des styles calculés à comparer (`styles` dans `tests/references/wp/<conf>.json`) :
   R5 vérifie ainsi la hauteur, le fond et le séparateur des rangées de l'en-tête, qu'un filet
@@ -178,7 +191,9 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
   valeurs de Garden Maintenance) comparent aussi les styles calculés au survol et au focus, à
   1280, 768 et 390 px, et vérifient que les polices locales sont chargées des deux côtés ;
   R12–R15 couvrent les répartitions par appareil, les widgets menu, le bouton du menu mobile et
-  l'icône Google Reviews ;
+  l'icône Google Reviews ; R16 et R17 l'en-tête transparent ; R18–R23 les drapeaux de
+  compatibilité, les graisses des titres, la marge du bouton de l'en-tête et les alignements du
+  pied ;
 - `tests/e2e/formulaire_styles.cjs` vérifie le formulaire « Couleurs et typographie » de bout en
   bout (enregistrement, valeur refusée, site public) ;
 - `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout ;

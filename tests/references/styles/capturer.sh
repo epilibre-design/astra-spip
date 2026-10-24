@@ -2,7 +2,8 @@
 # Capture le CSS dynamique de WordPress pour chaque groupe de styles et en tire les attendus.
 # Usage : WP=<racine WordPress> [URL=http://127.0.0.1:8401] tests/references/styles/capturer.sh
 # Écrit attendus/base.css (sans option) et attendus/<groupe>.css (règles ajoutées ou modifiées
-# par les options du groupe, par rapport à base.css), puis remet le WordPress en état R0.
+# par les options du groupe, par rapport à base.css ; pour les graisses des titres, règles de
+# graisse du CSS complet), puis remet le WordPress en état R0.
 set -euo pipefail
 ICI=$(cd "$(dirname "$0")" && pwd)
 URL=${URL:-http://127.0.0.1:8401}
@@ -19,5 +20,13 @@ for groupe in menu bouton bouton-entete identite pied sociaux menu-mobile; do
 	python3 "$ICI/regles.py" "$ICI/attendus/base.css" "$ICI/attendus/.$groupe.complet.css" > "$ICI/attendus/$groupe.css"
 	rm "$ICI/attendus/.$groupe.complet.css"
 	echo "$groupe : $(wc -l < "$ICI/attendus/$groupe.css") règles"
+done
+# Graisses des titres : règles de graisse du CSS complet (graisses.py), comparées par la cascade.
+for groupe in titres titres-drapeau drapeau-polices titres-vide titres-vide-drapeau titres-generale-vide titres-generale-heritee; do
+	GROUPE=$groupe wp --path="$WP" eval-file "$ICI/appliquer.php"
+	css > "$ICI/attendus/.$groupe.complet.css"
+	python3 "$ICI/graisses.py" "$ICI/attendus/.$groupe.complet.css" > "$ICI/attendus/$groupe.css"
+	rm "$ICI/attendus/.$groupe.complet.css"
+	echo "$groupe : $(wc -l < "$ICI/attendus/$groupe.css") règles de graisse"
 done
 wp --path="$WP" eval-file "$ICI/../wp/R0-defaut.php"

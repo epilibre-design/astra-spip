@@ -153,6 +153,43 @@ final class StylesTest extends TestCase {
 		$this->assertStringContainsString('.ast-header-button-1 .ast-custom-button{border-top-left-radius:5px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;}', $css);
 	}
 
+	public function testMargeBoutonEnteteCommeAstra(): void {
+		$sel = '.ast-header-button-1[data-section*="section-hb-button-"] .ast-builder-button-wrap .ast-custom-button';
+		// Sans l'option : marge par défaut de css/astra-hfb.css, rien d'émis.
+		$this->assertStringNotContainsString($sel, astra_styles_css(['header-button1-text-color' => ['desktop' => '#111111']], self::HFB_MENU_BOUTON));
+		// Enregistrée vide, marge des boutons à 17 × 26 (Garden) : la marge des boutons, sur tous les appareils.
+		$css = astra_styles_css(self::valeurs('bouton-entete-marge'), self::HFB_MENU_BOUTON);
+		$this->assertStringContainsString($sel . '{padding-top:17px;padding-right:26px;padding-bottom:17px;padding-left:26px;}', $css);
+		$this->assertStringNotContainsString('@media (max-width:921px){' . $sel, $css);
+		// En partie réglée, sans marge des boutons : côtés vides selon l'appareil (15/30, 14/28, 12/24).
+		$css = astra_styles_css(self::valeurs('bouton-entete-marge-valeur'), self::HFB_MENU_BOUTON);
+		$this->assertStringContainsString($sel . '{padding-top:10px;padding-right:20px;}' . $sel . '{padding-bottom:15px;padding-left:30px;}', $css);
+		$this->assertStringContainsString('@media (max-width:921px){' . $sel . '{padding-bottom:14px;padding-left:28px;}}', $css);
+		$this->assertStringContainsString('@media (max-width:544px){' . $sel . '{padding-bottom:12px;padding-left:24px;}}', $css);
+		// Bouton absent de l'en-tête : rien.
+		$this->assertSame('', astra_styles_css(self::valeurs('bouton-entete-marge-vide'), ['entete_ordinateur' => ['primary' => ['primary_right' => ['menu-1']]]]));
+	}
+
+	public function testAlignementsDuPiedSurLesTroisAppareils(): void {
+		$pied = ['pied' => ['below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']]], 'rangees' => ['pied_below' => ['colonnes' => 2]]];
+		$social = '[data-section="section-fb-social-icons-1"] .footer-social-inner-wrap';
+		// Valeurs de Garden : les trois règles, dans l'ordre et les media queries d'Astra.
+		$css = astra_styles_css(self::valeurs('alignements'), $pied);
+		$this->assertStringContainsString('.ast-footer-copyright{text-align:left;}@media (max-width:921px){.ast-footer-copyright{text-align:left;}}@media (max-width:544px){.ast-footer-copyright{text-align:center;}}', $css);
+		$this->assertStringContainsString($social . '{text-align:right;}@media (max-width:921px){' . $social . '{text-align:right;}}@media (max-width:544px){' . $social . '{text-align:center;}}', $css);
+		// Ordinateur seul : tablette et mobile prennent sa valeur (aucune règle d'Astra ne les recentre).
+		$css = astra_styles_css(['footer-copyright-alignment' => ['desktop' => 'left']], $pied);
+		$this->assertStringContainsString('@media (max-width:544px){.ast-footer-copyright{text-align:left;}}', $css);
+		// Tablette seule : sur ordinateur, le copyright hérite et les icônes sociales restent centrées
+		// (règle fixe de css/astra-hfb.css) ; le mobile prend la valeur de la tablette.
+		$css = astra_styles_css(self::valeurs('alignements-tablette'), $pied);
+		$this->assertStringContainsString('.ast-footer-copyright{text-align:inherit;}@media (max-width:921px){.ast-footer-copyright{text-align:right;}}@media (max-width:544px){.ast-footer-copyright{text-align:right;}}', $css);
+		$this->assertStringContainsString($social . '{text-align:center;}@media (max-width:921px){' . $social . '{text-align:right;}}@media (max-width:544px){' . $social . '{text-align:right;}}', $css);
+		// Élément absent du pied : rien.
+		$this->assertSame('', astra_styles_css(self::valeurs('alignements'), ['pied' => ['below' => ['below_1' => ['html-1']]]]));
+		$this->assertSame([], astra_styles_normaliser(['footer-copyright-alignment' => ['desktop' => 'justify']]));
+	}
+
 	public function testSoulignementBouton(): void {
 		$css = astra_styles_css(['font-extras-button' => ['text-decoration' => 'underline']], []);
 		// Blocs, boutons du thème, puis surcharge du soulignement des liens de contenu.

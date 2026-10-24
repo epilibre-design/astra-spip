@@ -10,6 +10,7 @@
  */
 
 require_once __DIR__ . '/astra_polices.php';
+require_once __DIR__ . '/astra_compatibilite.php';
 
 /** Taille du texte d'Astra SPIP (px) : base de la conversion px → rem d'astra_get_font_css_value(). */
 const ASTRA_STYLES_TAILLE_TEXTE = 16;
@@ -38,6 +39,13 @@ function astra_styles_registre(): array {
 	$cotes_r = ['type' => 'quatre-cotes', 'responsive' => true, 'unites' => ['px', 'em', '%']];
 	$cotes = ['type' => 'quatre-cotes'];
 	$nombre_r = ['type' => 'nombre', 'responsive' => true];
+
+	// Graisses des titres.
+	$titres = ['headings-font-weight' => ['type' => 'graisse', 'defaut' => '600']];
+	for ($n = 1; $n <= 6; $n++) {
+		$titres["font-weight-h$n"] = ['type' => 'graisse', 'defaut' => 'inherit'];
+	}
+	$ajouter('titres', 'inc/class-astra-dynamic-css.php', $titres);
 
 	$menu = 'inc/builder/type/header/menu/dynamic-css/dynamic.css.php';
 	foreach ([1, 2] as $n) {
@@ -83,6 +91,9 @@ function astra_styles_registre(): array {
 		'header-button1-font-weight' => ['type' => 'graisse', 'defaut' => 'inherit'],
 		'header-button1-font-extras' => ['type' => 'extras-police'],
 	]);
+	$ajouter('bouton-entete', 'inc/class-astra-extended-base-dynamic-css.php', [
+		'section-hb-button-1-padding' => $cotes_r + ['defaut' => ['desktop' => ['top' => 15, 'right' => 30, 'bottom' => 15, 'left' => 30]]],
+	]);
 	$ajouter('identite', 'inc/class-astra-dynamic-css.php', [
 		'font-size-site-title' => $taille_r + ['defaut' => ['desktop' => 26, 'desktop-unit' => 'px']],
 		'font-size-site-tagline' => $taille_r + ['defaut' => ['desktop' => 15, 'desktop-unit' => 'px']],
@@ -118,6 +129,11 @@ function astra_styles_registre(): array {
 			"$b-social-1-color-type" => ['type' => 'enum', 'valeurs' => ['custom', 'official'], 'defaut' => 'custom'],
 		]);
 	}
+	// Alignements du pied : les trois appareils s'appliquent (type alignement), contrairement aux
+	// autres styles.
+	$alignement = ['type' => 'alignement', 'responsive' => true, 'defaut' => ['desktop' => 'center', 'tablet' => 'center', 'mobile' => 'center']];
+	$ajouter('alignements', 'inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php', ['footer-copyright-alignment' => $alignement]);
+	$ajouter('alignements', $sociaux, ['footer-social-1-alignment' => $alignement]);
 	$ajouter('menu-mobile', 'inc/builder/type/header/mobile-trigger/dynamic-css/dynamic.css.php', [
 		'mobile-header-toggle-btn-style' => ['type' => 'enum', 'valeurs' => ['minimal', 'fill', 'outline'], 'defaut' => 'minimal'],
 		'mobile-header-toggle-btn-color' => $couleur,
@@ -256,6 +272,8 @@ function astra_styles_valider(array $d, $v) {
 			return in_array((string) $v, ['', 'inherit', 'normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'], true) && !is_bool($v) ? $v : null;
 		case 'enum':
 			return in_array($v, $d['valeurs'], true) ? $v : null;
+		case 'alignement':
+			return in_array($v, ['', 'left', 'center', 'right'], true) ? $v : null;
 		case 'booleen':
 			return is_bool($v) || in_array($v, [0, 1, '0', '1', ''], true) ? $v : null;
 		case 'fond':
@@ -466,18 +484,22 @@ function astra_styles_ecrire(array $regles): string {
 }
 
 /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
-const ASTRA_STYLES_MODULES = ['bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'menu_mobile'];
+const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'alignements', 'menu_mobile'];
 
-/** CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. */
-function astra_styles_css(array $styles, array $hfb): string {
+/**
+ * CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. $compatibilite :
+ * drapeaux d'astra/compatibilite, qui changent le CSS même sans option de style.
+ */
+function astra_styles_css(array $styles, array $hfb, array $compatibilite = []): string {
 	$s = astra_styles_normaliser($styles);
-	if (!$s) {
+	$c = astra_compatibilite_normaliser($compatibilite);
+	if (!$s && !$c) {
 		return '';
 	}
 	$regles = [];
 	foreach (ASTRA_STYLES_MODULES as $module) {
 		require_once __DIR__ . "/styles/$module.php";
-		$regles = array_merge($regles, ('astra_styles_' . $module)($s, $hfb));
+		$regles = array_merge($regles, ('astra_styles_' . $module)($s, $hfb, $c));
 	}
 	return astra_styles_ecrire($regles);
 }

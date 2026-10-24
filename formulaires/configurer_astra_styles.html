@@ -29,7 +29,7 @@
 			#SET{erreur,#ENV*{erreurs}|table_valeur{#VAL{s_}|concat{#GET{c}|table_valeur{option}}}}
 			<div class="editer editer_s_[(#GET{c}|table_valeur{option})][ (#GET{erreur}|oui)erreur]">
 				<label for="s_[(#GET{c}|table_valeur{option})]">[(#GET{c}|table_valeur{libelle}|_T)]</label>
-				[(#GET{c}|table_valeur{responsive}|oui)<p class="explication"><:astra:styles_responsive:></p>]
+				[(#GET{c}|table_valeur{responsive}|et{#GET{c}|table_valeur{appareils}|non}|oui)<p class="explication"><:astra:styles_responsive:></p>]
 				[<span class="erreur_message">(#GET{erreur})</span>]
 				<BOUCLE_couleur(CONDITION){si #GET{c}|table_valeur{type}|=={couleur}}>
 				<input type="text" class="text" id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]" value="[(#GET{c}|table_valeur{valeur})]" list="astra-styles-palette" />
@@ -60,6 +60,16 @@
 					<BOUCLE_valeurs(DATA){source tableau, #GET{c}|table_valeur{valeurs}}><option value="#VALEUR"[(#VALEUR|=={#GET{c}|table_valeur{valeur}}|oui)selected="selected"]>[(#VAL{astra:styles_enum_}|concat{#VALEUR}|_T)]</option></BOUCLE_valeurs>
 				</select>
 				</BOUCLE_enum>
+				<BOUCLE_alignement(CONDITION){si #GET{c}|table_valeur{type}|=={alignement}}>
+				<span class="astra-styles-appareils" id="s_[(#GET{c}|table_valeur{option})]">
+					<BOUCLE_appareils(DATA){source tableau, #GET{c}|table_valeur{appareils}}>
+					<select name="#VALEUR{nom}" aria-label="[(#VAL{astra:styles_appareil_}|concat{#VALEUR{appareil}}|_T)]">
+						<option value="">[(#VAL{astra:styles_appareil_}|concat{#VALEUR{appareil}}|_T)] : <:astra:styles_defaut:></option>
+						<BOUCLE_alignements(DATA){liste left, center, right}><option value="#VALEUR"[(#VALEUR|=={#_appareils:VALEUR{valeur}}|oui)selected="selected"]>[(#VAL{astra:styles_appareil_}|concat{#_appareils:VALEUR{appareil}}|_T)] : [(#VAL{astra:styles_enum_}|concat{#VALEUR}|_T)]</option></BOUCLE_alignements>
+					</select>
+					</BOUCLE_appareils>
+				</span>
+				</BOUCLE_alignement>
 				<BOUCLE_booleen(CONDITION){si #GET{c}|table_valeur{type}|=={booleen}}>
 				#SET{v,#GET{c}|table_valeur{valeur}|strval}
 				<select id="s_[(#GET{c}|table_valeur{option})]" name="[(#GET{c}|table_valeur{nom})]">

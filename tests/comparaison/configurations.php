@@ -31,6 +31,13 @@ function astra_configurations_reference(): array {
 		];
 	};
 	$tous = ['menu', 'bouton', 'bouton-entete', 'identite', 'pied', 'sociaux'];
+	// Graisses des titres (R19, R20) : page « Notre jardin » avec les six niveaux de titres,
+	// comme ref_texte_titres() côté WordPress.
+	$texte = '';
+	for ($n = 1; $n <= 6; $n++) {
+		$texte .= "<h$n>Titre de niveau $n</h$n>\n";
+	}
+	$titres = ['page' => 'notre_jardin', 'textes' => ['notre_jardin' => $texte . '<p>Texte de la page.</p>']];
 	return [
 		'R0-defaut' => [],
 		'R1-entete-complet' => [
@@ -174,6 +181,19 @@ function astra_configurations_reference(): array {
 			'rubrique' => 'Jardinage',
 			'styles' => ['transparent-header-enable' => 1] + json_decode(file_get_contents(dirname(__DIR__) . '/references/transparent/valeurs/garden.json'), true),
 		],
+		'R18-compat-sous-menu' => [
+			'compatibilite' => ['submenu-below-header' => false],
+		],
+		'R19-compat-polices-widgets' => $styles([], $titres + ['compatibilite' => ['can-support-widget-and-editor-fonts' => false]]),
+		'R20-titres-graisses' => $styles(['titres'], $titres),
+		'R20-titres-graisses-drapeau' => $styles(['titres'], $titres + ['compatibilite' => ['can-support-widget-and-editor-fonts' => false]]),
+		'R21-bouton-entete-marge' => $styles(['bouton-entete-marge']),
+		'R21-bouton-entete-marge-valeur' => $styles(['bouton-entete-marge-valeur']),
+		'R21-bouton-entete-marge-vide' => $styles(['bouton-entete-marge-vide']),
+		'R22-pied-alignements' => $styles(['alignements']),
+		'R22-pied-alignements-ordinateur' => $styles(['alignements-ordinateur']),
+		'R22-pied-alignements-tablette' => $styles(['alignements-tablette']),
+		'R23-garden-compat' => $styles(['garden-compat'], $titres + ['compatibilite' => astra_configuration_styles(['garden-compat'])]),
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
