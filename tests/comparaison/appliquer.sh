@@ -2,8 +2,8 @@
 # Usage : SPIP_CLI=… tests/comparaison/appliquer.sh <racine du site SPIP> <configuration>
 # Écrit une configuration transposée (configurations.php) dans astra/hfb, avec les réglages
 # d'accueil et de pages (astra/accueil_*, astra/pages), les styles (astra/styles), les polices
-# (astra/police_*), les drapeaux de compatibilité (astra/compatibilite) et le slogan (méta
-# slogan_site), et vide le cache.
+# (astra/police_*), les drapeaux de compatibilité (astra/compatibilite), les textes des pages
+# uniques et le slogan (méta slogan_site), et vide le cache.
 set -euo pipefail
 ICI=$(cd "$(dirname "$0")" && pwd)
 : "${SPIP_CLI:?SPIP_CLI doit désigner spip-cli}"
@@ -32,6 +32,11 @@ if (!empty(\$conf['compatibilite'])) {
 }
 foreach (\$conf['astra'] ?? [] as \$cle => \$valeur) {
 	ecrire_config('astra/' . \$cle, is_string(\$valeur) && \$valeur[0] === '@' ? \$id(substr(\$valeur, 1)) : \$valeur);
+}
+// Textes des pages uniques : celui de scripts/install-spip-test.sh, sauf ceux de la configuration.
+sql_updateq('spip_articles', ['texte' => 'Texte de la page.'], 'id_rubrique=-1');
+foreach (\$conf['textes'] ?? [] as \$identifiant => \$texte) {
+	sql_updateq('spip_articles', ['texte' => \$texte], 'id_article=' . \$id(\$identifiant));
 }
 foreach (\$conf['pages'] ?? [] as \$identifiant => \$reglages) {
 	ecrire_config('astra/pages/' . \$id(\$identifiant), \$reglages);

@@ -1,0 +1,80 @@
+{
+	"chemin": "/?pagename=notre-jardin",
+	"ordinateur": [
+		".site-primary-header-wrap .site-branding",
+		".site-primary-footer-wrap .footer-widget-area",
+		"article.page .entry-content"
+	],
+	"mobile": [
+		".ast-mobile-header-wrap .menu-toggle"
+	],
+	"presents": [
+		".ast-builder-menu-1 .sub-menu"
+	],
+	"menuMobile": "dropdown",
+	"menuOuvert": [
+		".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+	],
+	"styles": [
+		{
+			"selecteur": ".entry-content h1",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": ".entry-content h2",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": ".entry-content h3",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": ".entry-content h4",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": ".entry-content h5",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": ".entry-content h6",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": ".footer-widget-area h2.widget-title",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": ".site-title",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": ".site-title a",
+			"proprietes": [
+				"font-weight"
+			]
+		},
+		{
+			"selecteur": "article.page .entry-title",
+			"proprietes": [
+				"font-weight"
+			]
+		}
+	]
+}

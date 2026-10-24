@@ -31,6 +31,13 @@ function astra_configurations_reference(): array {
 		];
 	};
 	$tous = ['menu', 'bouton', 'bouton-entete', 'identite', 'pied', 'sociaux'];
+	// Graisses des titres (R19, R20) : page « Notre jardin » avec les six niveaux de titres,
+	// comme ref_texte_titres() côté WordPress.
+	$texte = '';
+	for ($n = 1; $n <= 6; $n++) {
+		$texte .= "<h$n>Titre de niveau $n</h$n>\n";
+	}
+	$titres = ['page' => 'notre_jardin', 'textes' => ['notre_jardin' => $texte . '<p>Texte de la page.</p>']];
 	return [
 		'R0-defaut' => [],
 		'R1-entete-complet' => [
@@ -177,6 +184,9 @@ function astra_configurations_reference(): array {
 		'R18-compat-sous-menu' => [
 			'compatibilite' => ['submenu-below-header' => false],
 		],
+		'R19-compat-polices-widgets' => $styles([], $titres + ['compatibilite' => ['can-support-widget-and-editor-fonts' => false]]),
+		'R20-titres-graisses' => $styles(['titres'], $titres),
+		'R20-titres-graisses-drapeau' => $styles(['titres'], $titres + ['compatibilite' => ['can-support-widget-and-editor-fonts' => false]]),
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],

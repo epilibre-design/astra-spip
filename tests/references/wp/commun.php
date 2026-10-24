@@ -153,6 +153,16 @@ function ref_pages(): array {
 	return $ids;
 }
 
+// Texte de page avec les six niveaux de titres (graisses des titres, R19 et R20) ; même texte
+// côté SPIP (clé textes de tests/comparaison/configurations.php).
+function ref_texte_titres(): string {
+	$texte = '';
+	for ($n = 1; $n <= 6; $n++) {
+		$texte .= "<h$n>Titre de niveau $n</h$n>\n";
+	}
+	return $texte . '<p>Texte de la page.</p>';
+}
+
 // Menu de pages à deux niveaux, dans l'ordre du menu SPIP (par titre ; sous-pages par rang).
 function ref_menu_pages(string $emplacement): void {
 	$ids = ref_pages();

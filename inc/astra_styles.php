@@ -10,6 +10,7 @@
  */
 
 require_once __DIR__ . '/astra_polices.php';
+require_once __DIR__ . '/astra_compatibilite.php';
 
 /** Taille du texte d'Astra SPIP (px) : base de la conversion px → rem d'astra_get_font_css_value(). */
 const ASTRA_STYLES_TAILLE_TEXTE = 16;
@@ -38,6 +39,13 @@ function astra_styles_registre(): array {
 	$cotes_r = ['type' => 'quatre-cotes', 'responsive' => true, 'unites' => ['px', 'em', '%']];
 	$cotes = ['type' => 'quatre-cotes'];
 	$nombre_r = ['type' => 'nombre', 'responsive' => true];
+
+	// Graisses des titres.
+	$titres = ['headings-font-weight' => ['type' => 'graisse', 'defaut' => '600']];
+	for ($n = 1; $n <= 6; $n++) {
+		$titres["font-weight-h$n"] = ['type' => 'graisse', 'defaut' => 'inherit'];
+	}
+	$ajouter('titres', 'inc/class-astra-dynamic-css.php', $titres);
 
 	$menu = 'inc/builder/type/header/menu/dynamic-css/dynamic.css.php';
 	foreach ([1, 2] as $n) {
@@ -466,18 +474,22 @@ function astra_styles_ecrire(array $regles): string {
 }
 
 /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
-const ASTRA_STYLES_MODULES = ['bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'menu_mobile'];
+const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'menu_mobile'];
 
-/** CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. */
-function astra_styles_css(array $styles, array $hfb): string {
+/**
+ * CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. $compatibilite :
+ * drapeaux d'astra/compatibilite, qui changent le CSS même sans option de style.
+ */
+function astra_styles_css(array $styles, array $hfb, array $compatibilite = []): string {
 	$s = astra_styles_normaliser($styles);
-	if (!$s) {
+	$c = astra_compatibilite_normaliser($compatibilite);
+	if (!$s && !$c) {
 		return '';
 	}
 	$regles = [];
 	foreach (ASTRA_STYLES_MODULES as $module) {
 		require_once __DIR__ . "/styles/$module.php";
-		$regles = array_merge($regles, ('astra_styles_' . $module)($s, $hfb));
+		$regles = array_merge($regles, ('astra_styles_' . $module)($s, $hfb, $c));
 	}
 	return astra_styles_ecrire($regles);
 }

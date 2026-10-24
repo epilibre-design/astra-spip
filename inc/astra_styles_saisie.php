@@ -13,6 +13,7 @@ require_once __DIR__ . '/astra_styles.php';
 /** Sections du formulaire : clé de langue (astra:styles_section_<clé>) => motif des options. */
 function astra_styles_sections(): array {
 	return [
+		'titres' => '/^(headings-font-weight|font-weight-h[1-6])$/',
 		'menu_1' => '/^header-menu1-/',
 		'menu_2' => '/^header-menu2-/',
 		'bouton' => '/^(button-|theme-button-|font-[a-z]+-button$)/',

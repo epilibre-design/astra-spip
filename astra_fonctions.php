@@ -154,13 +154,14 @@ function astra_compatibilite_sous_menu($x = ''): string {
 }
 
 /**
- * CSS des styles du Customizer (méta astra/styles) : vide sans réglage.
+ * CSS des styles du Customizer (méta astra/styles) et des drapeaux de compatibilité qui changent
+ * le CSS (astra/compatibilite) : vide sans réglage.
  */
 function astra_styles_inline(): string {
 	include_spip('inc/config');
 	$styles = lire_config('astra/styles');
 	$hfb = lire_config('astra/hfb');
-	return astra_styles_css(is_array($styles) ? $styles : [], is_array($hfb) ? $hfb : []);
+	return astra_styles_css(is_array($styles) ? $styles : [], is_array($hfb) ? $hfb : [], astra_compatibilite());
 }
 
 /**
