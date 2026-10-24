@@ -1,0 +1,12 @@
+{
+	"footer-copyright-alignment": {
+		"desktop": "left",
+		"tablet": "left",
+		"mobile": "center"
+	},
+	"footer-social-1-alignment": {
+		"desktop": "right",
+		"tablet": "right",
+		"mobile": "center"
+	}
+}

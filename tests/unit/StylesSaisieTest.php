@@ -69,6 +69,13 @@ final class StylesSaisieTest extends TestCase {
 		$this->assertSame([], astra_styles_saisie_fusionner([], ['button-color' => '', 'header-menu1-color-responsive' => ['desktop' => '']]));
 	}
 
+	public function testPremiereSaisieDUnAlignementMobileSeul(): void {
+		// Alignement saisi pour le mobile seul : enregistré dès la première saisie.
+		$saisie = ['footer-copyright-alignment' => ['desktop' => '', 'tablet' => '', 'mobile' => 'right']];
+		$this->assertSame($saisie, astra_styles_saisie_fusionner([], $saisie));
+		$this->assertSame([], astra_styles_saisie_fusionner([], ['footer-copyright-alignment' => ['desktop' => '', 'tablet' => '', 'mobile' => '']]));
+	}
+
 	public function testValeursRefusees(): void {
 		$this->assertSame(
 			['button-color', 'font-size-button'],

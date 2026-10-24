@@ -67,6 +67,10 @@ function astra_styles_champs($styles, string $section): array {
 			'unite' => is_array($v) ? ($v['desktop-unit'] ?? 'px') : 'px',
 			'unites' => $d['unites'] ?? [],
 			'valeurs' => $d['valeurs'] ?? [],
+			// Alignements : une valeur par appareil, toutes appliquées.
+			'appareils' => $d['type'] === 'alignement' ? array_map(function ($a) use ($option, $v) {
+				return ['appareil' => $a, 'nom' => "s[$option][$a]", 'valeur' => is_array($v) ? ($v[$a] ?? '') : ''];
+			}, ASTRA_STYLES_APPAREILS) : [],
 		];
 	}
 	return $champs;
@@ -79,7 +83,8 @@ function astra_styles_nom(string $nom, string $cle): string {
 
 /**
  * Fusionne la saisie dans les réglages enregistrés : pour une option responsive, seules la valeur
- * `desktop` et son unité changent, `tablet` et `mobile` sont gardés ; les champs d'une structure
+ * `desktop` et son unité changent, `tablet` et `mobile` sont gardés (sauf les alignements, saisis
+ * pour les trois appareils) ; les champs d'une structure
  * (côtés, fond, extras de police) absents de la saisie sont gardés. Une option jamais réglée et
  * laissée vide n'est pas enregistrée.
  */
@@ -96,7 +101,7 @@ function astra_styles_saisie_fusionner(array $existant, array $saisie): array {
 			foreach (is_array($v) ? $v : [] as $cle => $val) {
 				if ($cle === 'desktop' && is_array($val)) {
 					$x[$cle] = array_merge(is_array($x[$cle] ?? null) ? $x[$cle] : [], $val);
-				} elseif ($cle === 'desktop' || $cle === 'desktop-unit') {
+				} elseif ($cle === 'desktop' || $cle === 'desktop-unit' || ($d['type'] === 'alignement' && in_array($cle, ASTRA_STYLES_APPAREILS, true))) {
 					$x[$cle] = $val;
 				}
 			}
@@ -104,7 +109,10 @@ function astra_styles_saisie_fusionner(array $existant, array $saisie): array {
 		} elseif (is_array($v)) {
 			$v = array_merge(is_array($avant) ? $avant : [], $v);
 		}
-		if ($avant === null && !astra_styles_renseigne($d['responsive'] ? astra_styles_ordi($v) : $v)) {
+		// Première saisie : gardée si une valeur saisie est renseignée (l'ordinateur seul est saisi,
+		// sauf pour les alignements, saisis sur les trois appareils).
+		$saisi = $d['responsive'] && $d['type'] !== 'alignement' ? astra_styles_ordi($v) : $v;
+		if ($avant === null && !astra_styles_renseigne($saisi)) {
 			continue;
 		}
 		$r[$o] = $v;

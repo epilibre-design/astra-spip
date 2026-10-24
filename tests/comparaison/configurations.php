@@ -190,6 +190,9 @@ function astra_configurations_reference(): array {
 		'R21-bouton-entete-marge' => $styles(['bouton-entete-marge']),
 		'R21-bouton-entete-marge-valeur' => $styles(['bouton-entete-marge-valeur']),
 		'R21-bouton-entete-marge-vide' => $styles(['bouton-entete-marge-vide']),
+		'R22-pied-alignements' => $styles(['alignements']),
+		'R22-pied-alignements-ordinateur' => $styles(['alignements-ordinateur']),
+		'R22-pied-alignements-tablette' => $styles(['alignements-tablette']),
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],

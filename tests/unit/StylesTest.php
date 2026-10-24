@@ -170,6 +170,26 @@ final class StylesTest extends TestCase {
 		$this->assertSame('', astra_styles_css(self::valeurs('bouton-entete-marge-vide'), ['entete_ordinateur' => ['primary' => ['primary_right' => ['menu-1']]]]));
 	}
 
+	public function testAlignementsDuPiedSurLesTroisAppareils(): void {
+		$pied = ['pied' => ['below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']]], 'rangees' => ['pied_below' => ['colonnes' => 2]]];
+		$social = '[data-section="section-fb-social-icons-1"] .footer-social-inner-wrap';
+		// Valeurs de Garden : les trois règles, dans l'ordre et les media queries d'Astra.
+		$css = astra_styles_css(self::valeurs('alignements'), $pied);
+		$this->assertStringContainsString('.ast-footer-copyright{text-align:left;}@media (max-width:921px){.ast-footer-copyright{text-align:left;}}@media (max-width:544px){.ast-footer-copyright{text-align:center;}}', $css);
+		$this->assertStringContainsString($social . '{text-align:right;}@media (max-width:921px){' . $social . '{text-align:right;}}@media (max-width:544px){' . $social . '{text-align:center;}}', $css);
+		// Ordinateur seul : tablette et mobile prennent sa valeur (aucune règle d'Astra ne les recentre).
+		$css = astra_styles_css(['footer-copyright-alignment' => ['desktop' => 'left']], $pied);
+		$this->assertStringContainsString('@media (max-width:544px){.ast-footer-copyright{text-align:left;}}', $css);
+		// Tablette seule : sur ordinateur, le copyright hérite et les icônes sociales restent centrées
+		// (règle fixe de css/astra-hfb.css) ; le mobile prend la valeur de la tablette.
+		$css = astra_styles_css(self::valeurs('alignements-tablette'), $pied);
+		$this->assertStringContainsString('.ast-footer-copyright{text-align:inherit;}@media (max-width:921px){.ast-footer-copyright{text-align:right;}}@media (max-width:544px){.ast-footer-copyright{text-align:right;}}', $css);
+		$this->assertStringContainsString($social . '{text-align:center;}@media (max-width:921px){' . $social . '{text-align:right;}}@media (max-width:544px){' . $social . '{text-align:right;}}', $css);
+		// Élément absent du pied : rien.
+		$this->assertSame('', astra_styles_css(self::valeurs('alignements'), ['pied' => ['below' => ['below_1' => ['html-1']]]]));
+		$this->assertSame([], astra_styles_normaliser(['footer-copyright-alignment' => ['desktop' => 'justify']]));
+	}
+
 	public function testSoulignementBouton(): void {
 		$css = astra_styles_css(['font-extras-button' => ['text-decoration' => 'underline']], []);
 		// Blocs, boutons du thème, puis surcharge du soulignement des liens de contenu.

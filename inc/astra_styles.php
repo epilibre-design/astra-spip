@@ -129,6 +129,11 @@ function astra_styles_registre(): array {
 			"$b-social-1-color-type" => ['type' => 'enum', 'valeurs' => ['custom', 'official'], 'defaut' => 'custom'],
 		]);
 	}
+	// Alignements du pied : les trois appareils s'appliquent (type alignement), contrairement aux
+	// autres styles.
+	$alignement = ['type' => 'alignement', 'responsive' => true, 'defaut' => ['desktop' => 'center', 'tablet' => 'center', 'mobile' => 'center']];
+	$ajouter('alignements', 'inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php', ['footer-copyright-alignment' => $alignement]);
+	$ajouter('alignements', $sociaux, ['footer-social-1-alignment' => $alignement]);
 	$ajouter('menu-mobile', 'inc/builder/type/header/mobile-trigger/dynamic-css/dynamic.css.php', [
 		'mobile-header-toggle-btn-style' => ['type' => 'enum', 'valeurs' => ['minimal', 'fill', 'outline'], 'defaut' => 'minimal'],
 		'mobile-header-toggle-btn-color' => $couleur,
@@ -267,6 +272,8 @@ function astra_styles_valider(array $d, $v) {
 			return in_array((string) $v, ['', 'inherit', 'normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'], true) && !is_bool($v) ? $v : null;
 		case 'enum':
 			return in_array($v, $d['valeurs'], true) ? $v : null;
+		case 'alignement':
+			return in_array($v, ['', 'left', 'center', 'right'], true) ? $v : null;
 		case 'booleen':
 			return is_bool($v) || in_array($v, [0, 1, '0', '1', ''], true) ? $v : null;
 		case 'fond':
@@ -477,7 +484,7 @@ function astra_styles_ecrire(array $regles): string {
 }
 
 /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
-const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'menu_mobile'];
+const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'alignements', 'menu_mobile'];
 
 /**
  * CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. $compatibilite :

@@ -68,6 +68,34 @@ final class StylesFormulaireTest extends TestCase {
 		$this->assertFalse(astra_entete_transparent_actif(lire_config('astra/styles'), 'rubrique'));
 	}
 
+	public function testAllerRetourDesReglagesDeCompatibilite(): void {
+		// Valeurs de Garden : graisses des titres, marge du bouton de l'en-tête enregistrée vide,
+		// alignements des trois appareils. Un enregistrement sans modification ne change pas le CSS.
+		$dir = dirname(__DIR__) . '/references/styles/valeurs';
+		$garden = ['headings-font-weight' => '600'];
+		for ($n = 1; $n <= 6; $n++) {
+			$garden["font-weight-h$n"] = 'inherit';
+		}
+		$garden += json_decode(file_get_contents("$dir/bouton-entete-marge.json"), true) + json_decode(file_get_contents("$dir/alignements.json"), true);
+		$hfb = ['pied' => ['below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']]], 'rangees' => ['pied_below' => ['colonnes' => 2]]];
+		$c = ['can-support-widget-and-editor-fonts' => true];
+		ecrire_config('astra/styles', $garden);
+		$avant = astra_styles_css($garden, $hfb, $c);
+		$this->assertStringContainsString('@media (max-width:544px){.ast-footer-copyright{text-align:center;}', $avant);
+		$this->assertStringContainsString('.footer-social-inner-wrap{text-align:right;}', $avant);
+		$saisie = $this->saisieDuFormulaire();
+		$this->assertSame(['desktop' => 'left', 'tablet' => 'left', 'mobile' => 'center'], $saisie['footer-copyright-alignment']);
+		set_request('s', $saisie);
+		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertSame($avant, astra_styles_css(lire_config('astra/styles'), $hfb, $c));
+		// Alignement mobile changé par le formulaire : enregistré.
+		$saisie['footer-copyright-alignment']['mobile'] = 'right';
+		set_request('s', $saisie);
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertSame('right', lire_config('astra/styles')['footer-copyright-alignment']['mobile']);
+	}
+
 	/** Champs du formulaire rendu, postés tels quels (sélecteurs : option choisie, sinon la première). */
 	private function saisieDuFormulaire(): array {
 		$doc = new DOMDocument();

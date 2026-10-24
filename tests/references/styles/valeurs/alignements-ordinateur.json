@@ -1,0 +1,10 @@
+{
+	"footer-copyright-alignment": {
+		"desktop": "left"
+	},
+	"footer-social-1-alignment": {
+		"desktop": "right",
+		"tablet": "",
+		"mobile": ""
+	}
+}
