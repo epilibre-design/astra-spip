@@ -50,7 +50,10 @@ En-tête et pied de page** :
 - en-tête sur ordinateur : zones gauche, centre et droite de chaque rangée ;
 - en-tête sur mobile : mêmes rangées, plus le panneau du menu (déroulant ou latéral) ;
 - pied de page : 1 à 6 colonnes par rangée, avec les répartitions d'Astra, choisies séparément
-  pour l'ordinateur, la tablette et le mobile (dont `3-firstrow` et `3-lastrow`) ;
+  pour l'ordinateur, la tablette et le mobile (dont `3-firstrow` et `3-lastrow`). Comme dans
+  Astra 4.11.0, la règle tablette de `3-firstrow` ou `3-lastrow` (`max-width:921px`) vaut aussi sur
+  mobile : la colonne qu'elle étend reste pleine largeur avec une autre répartition mobile
+  (mesuré à 390 px, identique dans WordPress et SPIP) ;
 - éléments : identité du site, menus (rubriques racines, sous-rubriques d'une rubrique, articles
   d'un groupe de mots-clés, pages uniques si le plugin Pages est actif), textes libres, bouton,
   recherche, icônes sociales (dont Google Reviews), zones de widgets (texte et menu de deux
