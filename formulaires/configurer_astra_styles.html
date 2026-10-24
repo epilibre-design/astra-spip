@@ -11,6 +11,10 @@
 		#ACTION_FORMULAIRE
 		<style>
 			.astra-styles-cotes input, .astra-styles-unite input { max-width: 6em; }
+			.astra-styles-appareils > .astra-styles-cotes { display: block; white-space: nowrap; }
+			.astra-styles-appareils > .astra-styles-cotes > span { display: inline-block; min-width: 5.5em; }
+			.astra-styles-appareils > .astra-styles-cotes input { max-width: 4.5em; }
+			.astra-styles-appareils > .astra-styles-cotes select { width: auto; display: inline-block; }
 		</style>
 		<p class="explication"><:astra:styles_explication:></p>
 		<datalist id="astra-styles-palette">
@@ -78,7 +82,24 @@
 					<option value="0"[(#GET{v}|=={0}|oui)selected="selected"]><:astra:styles_masque:></option>
 				</select>
 				</BOUCLE_booleen>
-				<BOUCLE_cotes(CONDITION){si #GET{c}|table_valeur{type}|=={quatre-cotes}}>
+				<BOUCLE_cotes_appareils(CONDITION){si #GET{c}|table_valeur{type}|=={quatre-cotes}|et{#GET{c}|table_valeur{appareils}}}>
+				<span class="astra-styles-appareils" id="s_[(#GET{c}|table_valeur{option})]">
+					<BOUCLE_appareils_cotes(DATA){source tableau, #GET{c}|table_valeur{appareils}}>
+					#SET{a,#VALEUR}
+					<span class="astra-styles-cotes">
+						<span>[(#VAL{astra:styles_appareil_}|concat{#GET{a}|table_valeur{appareil}}|_T)]</span>
+						<BOUCLE_cote_appareil(DATA){liste top, right, bottom, left}>
+						#SET{etiquette,#ARRAY{top,haut,right,droite,bottom,bas,left,gauche}|table_valeur{#VALEUR}}
+						<input type="number"[(#GET{c}|table_valeur{signe}|non) min="0"] step="any" class="text" name="[(#GET{a}|table_valeur{nom}|astra_styles_nom{#VALEUR})]" value="[(#GET{a}|table_valeur{valeur}|table_valeur{#VALEUR})]" aria-label="[(#VAL{astra:styles_appareil_}|concat{#GET{a}|table_valeur{appareil}}|_T)] : [(#VAL{astra:styles_}|concat{#GET{etiquette}}|_T)]" placeholder="[(#VAL{astra:styles_}|concat{#GET{etiquette}}|_T)]" />
+						</BOUCLE_cote_appareil>
+						<select name="[(#GET{a}|table_valeur{nom_unite})]" aria-label="[(#VAL{astra:styles_appareil_}|concat{#GET{a}|table_valeur{appareil}}|_T)] : unité">
+							<BOUCLE_unites_appareil(DATA){source tableau, #GET{c}|table_valeur{unites}}><option value="#VALEUR"[(#VALEUR|=={#GET{a}|table_valeur{unite}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_unites_appareil>
+						</select>
+					</span>
+					</BOUCLE_appareils_cotes>
+				</span>
+				</BOUCLE_cotes_appareils>
+				<BOUCLE_cotes(CONDITION){si #GET{c}|table_valeur{type}|=={quatre-cotes}|et{#GET{c}|table_valeur{appareils}|non}}>
 				<span class="astra-styles-cotes" id="s_[(#GET{c}|table_valeur{option})]">
 					<BOUCLE_cote(DATA){liste top, right, bottom, left}>
 					#SET{etiquette,#ARRAY{top,haut,right,droite,bottom,bas,left,gauche}|table_valeur{#VALEUR}}

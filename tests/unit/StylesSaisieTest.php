@@ -76,6 +76,36 @@ final class StylesSaisieTest extends TestCase {
 		$this->assertSame([], astra_styles_saisie_fusionner([], ['footer-copyright-alignment' => ['desktop' => '', 'tablet' => '', 'mobile' => '']]));
 	}
 
+	public function testMargesDesRangeesSaisiesSurLesTroisAppareils(): void {
+		// Marges des rangées : côtés et unités des trois appareils saisis ; côtés absents de la
+		// saisie gardés.
+		$existant = ['section-primary-footer-builder-padding' => ['desktop' => ['top' => '80', 'right' => ''], 'tablet' => ['top' => '80'], 'desktop-unit' => 'px', 'tablet-unit' => 'px']];
+		$saisie = ['section-primary-footer-builder-padding' => [
+			'desktop' => ['top' => '70'], 'desktop-unit' => 'px',
+			'tablet' => ['right' => '2'], 'tablet-unit' => 'em',
+			'mobile' => ['top' => '60', 'right' => '30', 'bottom' => '30', 'left' => '30'], 'mobile-unit' => '%',
+		]];
+		$this->assertSame(['section-primary-footer-builder-padding' => [
+			'desktop' => ['top' => '70', 'right' => ''], 'tablet' => ['top' => '80', 'right' => '2'], 'desktop-unit' => 'px', 'tablet-unit' => 'em',
+			'mobile' => ['top' => '60', 'right' => '30', 'bottom' => '30', 'left' => '30'], 'mobile-unit' => '%',
+		]], astra_styles_saisie_fusionner($existant, $saisie));
+		// Première saisie : gardée dès qu'un côté d'un appareil est renseigné ; des unités seules ne
+		// sont pas une valeur.
+		$mobile = ['section-below-footer-builder-margin' => ['desktop' => ['top' => ''], 'desktop-unit' => 'px', 'mobile' => ['top' => '-5'], 'mobile-unit' => 'px']];
+		$this->assertSame($mobile, astra_styles_saisie_fusionner([], $mobile));
+		$this->assertSame([], astra_styles_saisie_fusionner([], ['section-below-footer-builder-margin' => ['desktop' => ['top' => ''], 'desktop-unit' => 'px', 'tablet-unit' => 'em']]));
+	}
+
+	public function testChampsDesMargesParAppareil(): void {
+		$champs = astra_styles_champs(['section-header-builder-layout-margin' => ['mobile' => ['bottom' => '-4'], 'mobile-unit' => 'em']], 'marges_rangees');
+		$this->assertCount(15, $champs);
+		$marge = array_column($champs, null, 'option')['section-header-builder-layout-margin'];
+		$this->assertTrue($marge['signe']);
+		$this->assertSame(['desktop', 'tablet', 'mobile'], array_column($marge['appareils'], 'appareil'));
+		$this->assertSame(['appareil' => 'mobile', 'nom' => 's[section-header-builder-layout-margin][mobile]', 'valeur' => ['bottom' => '-4'], 'nom_unite' => 's[section-header-builder-layout-margin][mobile-unit]', 'unite' => 'em'], $marge['appareils'][2]);
+		$this->assertFalse(array_column($champs, null, 'option')['section-primary-footer-builder-padding']['signe']);
+	}
+
 	public function testValeursRefusees(): void {
 		$this->assertSame(
 			['button-color', 'font-size-button'],

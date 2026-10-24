@@ -96,6 +96,30 @@ final class StylesFormulaireTest extends TestCase {
 		$this->assertSame('right', lire_config('astra/styles')['footer-copyright-alignment']['mobile']);
 	}
 
+	public function testAllerRetourDesMargesDesRangees(): void {
+		// Valeurs de la référence R24-marges-toutes (trois appareils, unités mêlées, marges négatives) :
+		// un enregistrement sans modification ne change pas le CSS ; les options jamais réglées ne
+		// sont pas enregistrées.
+		$valeurs = json_decode(file_get_contents(dirname(__DIR__) . '/references/styles/valeurs/marges-toutes.json'), true);
+		unset($valeurs['section-above-footer-builder-margin']);
+		$hfb = ['entete_mobile' => ['above' => ['above_center' => ['html-1']]], 'pied' => ['above' => ['above_1' => ['html-1']], 'below' => ['below_1' => ['copyright']]]];
+		ecrire_config('astra/styles', $valeurs);
+		$avant = astra_styles_css($valeurs, $hfb);
+		$this->assertStringContainsString('margin-top:-5px;', $avant);
+		$saisie = $this->saisieDuFormulaire();
+		$this->assertSame(['top' => '60', 'right' => '30', 'bottom' => '30', 'left' => '30'], $saisie['section-primary-footer-builder-padding']['mobile']);
+		set_request('s', $saisie);
+		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertSame($avant, astra_styles_css(lire_config('astra/styles'), $hfb));
+		$this->assertArrayNotHasKey('section-above-footer-builder-margin', lire_config('astra/styles'));
+		// Marge tablette changée par le formulaire : enregistrée et émise.
+		$saisie['section-above-footer-builder-padding']['tablet']['top'] = '25';
+		set_request('s', $saisie);
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertStringContainsString('@media (max-width:921px){.site-above-footer-wrap[data-section="section-above-footer-builder"]{padding-top:25px;', astra_styles_css(lire_config('astra/styles'), $hfb));
+	}
+
 	/** Champs du formulaire rendu, postés tels quels (sélecteurs : option choisie, sinon la première). */
 	private function saisieDuFormulaire(): array {
 		$doc = new DOMDocument();

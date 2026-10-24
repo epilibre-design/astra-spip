@@ -32,6 +32,14 @@ function astra_styles_sections(): array {
 	];
 }
 
+/**
+ * Vrai si les trois appareils d'une option sont saisis et appliqués (alignements du pied, marges
+ * des rangées), au lieu de la seule valeur ordinateur.
+ */
+function astra_styles_trois_appareils(array $d): bool {
+	return $d['type'] === 'alignement' || !empty($d['appareils']);
+}
+
 /** Clé de langue du libellé d'une option : les options d'éléments semblables la partagent. */
 function astra_styles_libelle(string $option): string {
 	$o = preg_replace(
@@ -68,9 +76,14 @@ function astra_styles_champs($styles, string $section): array {
 			'unite' => is_array($v) ? ($v['desktop-unit'] ?? 'px') : 'px',
 			'unites' => $d['unites'] ?? [],
 			'valeurs' => $d['valeurs'] ?? [],
-			// Alignements : une valeur par appareil, toutes appliquées.
-			'appareils' => $d['type'] === 'alignement' ? array_map(function ($a) use ($option, $v) {
-				return ['appareil' => $a, 'nom' => "s[$option][$a]", 'valeur' => is_array($v) ? ($v[$a] ?? '') : ''];
+			// Marges extérieures : nombres négatifs acceptés.
+			'signe' => !empty($d['signe']),
+			// Alignements, marges des rangées : une valeur (et une unité) par appareil, toutes appliquées.
+			'appareils' => astra_styles_trois_appareils($d) ? array_map(function ($a) use ($option, $v) {
+				return [
+					'appareil' => $a, 'nom' => "s[$option][$a]", 'valeur' => is_array($v) ? ($v[$a] ?? '') : '',
+					'nom_unite' => "s[$option][$a-unit]", 'unite' => is_array($v) ? ($v["$a-unit"] ?? 'px') : 'px',
+				];
 			}, ASTRA_STYLES_APPAREILS) : [],
 		];
 	}
@@ -84,8 +97,8 @@ function astra_styles_nom(string $nom, string $cle): string {
 
 /**
  * Fusionne la saisie dans les réglages enregistrés : pour une option responsive, seules la valeur
- * `desktop` et son unité changent, `tablet` et `mobile` sont gardés (sauf les alignements, saisis
- * pour les trois appareils) ; les champs d'une structure
+ * `desktop` et son unité changent, `tablet` et `mobile` sont gardés (sauf les alignements et les
+ * marges des rangées, saisis pour les trois appareils) ; les champs d'une structure
  * (côtés, fond, extras de police) absents de la saisie sont gardés. Une option jamais réglée et
  * laissée vide n'est pas enregistrée.
  */
@@ -99,10 +112,11 @@ function astra_styles_saisie_fusionner(array $existant, array $saisie): array {
 		$avant = $existant[$o] ?? null;
 		if ($d['responsive']) {
 			$x = is_array($avant) ? $avant : [];
+			$appareils = astra_styles_trois_appareils($d) ? ASTRA_STYLES_APPAREILS : ['desktop'];
 			foreach (is_array($v) ? $v : [] as $cle => $val) {
-				if ($cle === 'desktop' && is_array($val)) {
+				if (in_array($cle, $appareils, true) && is_array($val)) {
 					$x[$cle] = array_merge(is_array($x[$cle] ?? null) ? $x[$cle] : [], $val);
-				} elseif ($cle === 'desktop' || $cle === 'desktop-unit' || ($d['type'] === 'alignement' && in_array($cle, ASTRA_STYLES_APPAREILS, true))) {
+				} elseif (in_array($cle, $appareils, true) || in_array(preg_replace('/-unit$/', '', (string) $cle), $appareils, true)) {
 					$x[$cle] = $val;
 				}
 			}
@@ -111,8 +125,9 @@ function astra_styles_saisie_fusionner(array $existant, array $saisie): array {
 			$v = array_merge(is_array($avant) ? $avant : [], $v);
 		}
 		// Première saisie : gardée si une valeur saisie est renseignée (l'ordinateur seul est saisi,
-		// sauf pour les alignements, saisis sur les trois appareils).
-		$saisi = $d['responsive'] && $d['type'] !== 'alignement' ? astra_styles_ordi($v) : $v;
+		// sauf pour les alignements et les marges des rangées, saisis sur les trois appareils ; une
+		// unité seule n'est pas une valeur).
+		$saisi = !$d['responsive'] ? $v : (astra_styles_trois_appareils($d) ? array_intersect_key($v, array_flip(ASTRA_STYLES_APPAREILS)) : astra_styles_ordi($v));
 		if ($avant === null && !astra_styles_renseigne($saisi)) {
 			continue;
 		}
