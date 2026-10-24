@@ -1,0 +1,347 @@
+{
+	"section-above-header-builder-padding": {
+		"desktop": {
+			"top": "5",
+			"right": "20",
+			"bottom": "5",
+			"left": "20"
+		},
+		"tablet": {
+			"top": "0.5",
+			"right": "1",
+			"bottom": "0.5",
+			"left": "1"
+		},
+		"mobile": {
+			"top": "4",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "em",
+		"mobile-unit": "px"
+	},
+	"section-above-header-builder-margin": {
+		"desktop": {
+			"top": "0",
+			"right": "",
+			"bottom": "0",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-primary-header-builder-padding": {
+		"desktop": {
+			"top": "10",
+			"right": "",
+			"bottom": "10",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "5",
+			"bottom": "",
+			"left": "5"
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "%"
+	},
+	"section-primary-header-builder-margin": {
+		"desktop": {
+			"top": "-5",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "3",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-below-header-builder-padding": {
+		"desktop": {
+			"top": "12",
+			"right": "30",
+			"bottom": "12",
+			"left": "30"
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "6",
+			"right": "10",
+			"bottom": "6",
+			"left": "10"
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-below-header-builder-margin": {
+		"desktop": {
+			"top": "10",
+			"right": "",
+			"bottom": "-10",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-header-builder-layout-margin": {
+		"desktop": {
+			"top": "",
+			"right": "",
+			"bottom": "20",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "0",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-above-footer-builder-padding": {
+		"desktop": {
+			"top": "30",
+			"right": "",
+			"bottom": "30",
+			"left": ""
+		},
+		"tablet": {
+			"top": "20",
+			"right": "20",
+			"bottom": "20",
+			"left": "20"
+		},
+		"mobile": {
+			"top": "10",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-above-footer-builder-margin": {
+		"desktop": {
+			"top": "15",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-primary-footer-builder-padding": {
+		"desktop": {
+			"top": "80",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "80",
+			"right": "80",
+			"bottom": "80",
+			"left": "80"
+		},
+		"mobile": {
+			"top": "60",
+			"right": "30",
+			"bottom": "30",
+			"left": "30"
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-primary-footer-builder-margin": {
+		"desktop": {
+			"top": "",
+			"right": "",
+			"bottom": "-20",
+			"left": ""
+		},
+		"tablet": {
+			"top": "2",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "em",
+		"mobile-unit": "px"
+	},
+	"section-below-footer-builder-padding": {
+		"desktop": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "20",
+			"right": "20",
+			"bottom": "20",
+			"left": "20"
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-below-footer-builder-margin": {
+		"desktop": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "5",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-footer-builder-layout-padding": {
+		"desktop": {
+			"top": "40",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	},
+	"section-footer-builder-layout-margin": {
+		"desktop": {
+			"top": "30",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "2",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "em",
+		"mobile-unit": "px"
+	}
+}

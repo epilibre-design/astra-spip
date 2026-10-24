@@ -45,7 +45,7 @@ final class StylesFormulaireTest extends TestCase {
 
 	public function testRenduDesChamps(): void {
 		$html = recuperer_fond('formulaires/configurer_astra_styles', ['editable' => true, 's' => ['button-radius-fields' => ['desktop' => ['top' => 8], 'desktop-unit' => 'em']]]);
-		$this->assertSame(15, substr_count($html, '<fieldset'));
+		$this->assertSame(16, substr_count($html, '<fieldset'));
 		$this->assertMatchesRegularExpression('~name="s\[mobile-header-toggle-btn-style\]".*?<option value="outline">Contour</option>~s', $html);
 		$this->assertStringContainsString('name="s[header-menu1-color-responsive][desktop]"', $html);
 		$this->assertStringContainsString('name="s[button-radius-fields][desktop][top]" value="8"', $html);
@@ -94,6 +94,53 @@ final class StylesFormulaireTest extends TestCase {
 		set_request('s', $saisie);
 		formulaires_configurer_astra_styles_traiter_dist();
 		$this->assertSame('right', lire_config('astra/styles')['footer-copyright-alignment']['mobile']);
+	}
+
+	public function testAllerRetourDesMargesDesRangees(): void {
+		// Valeurs de la référence R24-marges-toutes (trois appareils, unités mêlées, marges négatives) :
+		// un enregistrement sans modification ne change pas le CSS ; les options jamais réglées ne
+		// sont pas enregistrées.
+		$valeurs = json_decode(file_get_contents(dirname(__DIR__) . '/references/styles/valeurs/marges-toutes.json'), true);
+		unset($valeurs['section-above-footer-builder-margin']);
+		$hfb = ['entete_mobile' => ['above' => ['above_center' => ['html-1']]], 'pied' => ['above' => ['above_1' => ['html-1']], 'below' => ['below_1' => ['copyright']]]];
+		ecrire_config('astra/styles', $valeurs);
+		$avant = astra_styles_css($valeurs, $hfb);
+		$this->assertStringContainsString('margin-top:-5px;', $avant);
+		$saisie = $this->saisieDuFormulaire();
+		$this->assertSame(['top' => '60', 'right' => '30', 'bottom' => '30', 'left' => '30'], $saisie['section-primary-footer-builder-padding']['mobile']);
+		set_request('s', $saisie);
+		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertSame($avant, astra_styles_css(lire_config('astra/styles'), $hfb));
+		$this->assertArrayNotHasKey('section-above-footer-builder-margin', lire_config('astra/styles'));
+		// Marge tablette changée par le formulaire : enregistrée et émise.
+		$saisie['section-above-footer-builder-padding']['tablet']['top'] = '25';
+		set_request('s', $saisie);
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertStringContainsString('@media (max-width:921px){.site-above-footer-wrap[data-section="section-above-footer-builder"]{padding-top:25px;', astra_styles_css(lire_config('astra/styles'), $hfb));
+	}
+
+	public function testAllerRetourDesMargesSansUnite(): void {
+		$valeurs = json_decode(file_get_contents(dirname(__DIR__) . '/references/styles/valeurs/marges-rangees-vides.json'), true);
+		$option = 'section-primary-header-builder-padding';
+		$hfb = ['entete_ordinateur' => ['primary' => ['primary_left' => ['logo']]]];
+		ecrire_config('astra/styles', $valeurs);
+		$avant = astra_styles_css($valeurs, $hfb);
+		$saisie = $this->saisieDuFormulaire();
+		set_request('s', $saisie);
+		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertSame($avant, astra_styles_css(lire_config('astra/styles'), $hfb));
+		$this->assertArrayNotHasKey('tablet-unit', lire_config('astra/styles')[$option]);
+		$this->assertSame($valeurs[$option]['tablet'], lire_config('astra/styles')[$option]['tablet']);
+		// Choisir explicitement une unité active les valeurs importées.
+		$saisie[$option]['tablet-unit'] = 'px';
+		set_request('s', $saisie);
+		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
+		formulaires_configurer_astra_styles_traiter_dist();
+		$apres = astra_styles_css(lire_config('astra/styles'), $hfb);
+		$this->assertNotSame($avant, $apres);
+		$this->assertStringContainsString('padding-top:7px;padding-bottom:7px;padding-left:7px;padding-right:7px;', $apres);
 	}
 
 	/** Champs du formulaire rendu, postés tels quels (sélecteurs : option choisie, sinon la première). */

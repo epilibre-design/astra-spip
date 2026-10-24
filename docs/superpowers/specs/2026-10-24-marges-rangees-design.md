@@ -115,8 +115,11 @@ Unités : celle que la valeur enregistre pour chaque appareil (`desktop-unit`, `
 `mobile-unit`), parmi celles du type existant (`px`, `em`, `%`) ; une autre unité est refusée par
 la normalisation (et signalée par le seed de Garden). Le défaut d'Astra
 (`Astra_Builder_Helper::$default_responsive_spacing`) a les trois unités à `px`. Un appareil sans
-unité enregistrée n'émet rien, comme dans Astra ; le formulaire propose toujours une unité (`px`
-par défaut), qu'une valeur importée sans unité reçoit au premier enregistrement. Bornes : marges
+unité enregistrée n'émet rien, comme dans Astra. Le formulaire conserve cette absence pour les
+valeurs importées, avec le choix « Ne pas appliquer » : un enregistrement sans modification ne
+change pas le CSS. Choisir explicitement une unité active les côtés enregistrés. Pour un appareil
+sans valeur enregistrée, l'unité proposée reste `px`. Un test d'aller-retour du formulaire avec
+`marges-rangees-vides.json` vérifie ces deux comportements. Bornes : marges
 intérieures de 0 à 1000, marges extérieures de -1000 à 1000.
 
 Hors périmètre : les marges des éléments (`section-footer-copyright-margin`,

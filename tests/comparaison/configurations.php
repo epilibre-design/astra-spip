@@ -194,6 +194,27 @@ function astra_configurations_reference(): array {
 		'R22-pied-alignements-ordinateur' => $styles(['alignements-ordinateur']),
 		'R22-pied-alignements-tablette' => $styles(['alignements-tablette']),
 		'R23-garden-compat' => $styles(['garden-compat'], $titres + ['compatibilite' => astra_configuration_styles(['garden-compat'])]),
+		'R24-pied-marges' => $styles(['marges-pied']),
+		// Rangées haute et basse de l'en-tête remplies comme dans R1, rangée haute du pied d'un texte.
+		'R24-marges-toutes' => array_replace_recursive($styles(['marges-toutes']), [
+			'entete_ordinateur' => ['above' => ['above_left' => ['html-1'], 'above_right' => ['social-icons-1']], 'below' => ['below_center' => ['menu-2']]],
+			'entete_mobile' => ['above' => ['above_center' => ['html-1']]],
+			'pied' => ['above' => ['above_1' => ['html-1']]],
+			'rangees' => ['pied_above' => ['colonnes' => 1, 'repartition' => 'full']],
+			'elements' => ['entete' => ['html-1' => ['texte' => 'Ouvert du lundi au vendredi']], 'pied' => ['html-1' => ['texte' => 'Un site éditorial propulsé par SPIP']]],
+		]),
+		// Rangée haute de l'en-tête remplie sur mobile seulement, rangée principale du pied remplie en
+		// zone 6 seulement.
+		'R24-marges-rangees-vides' => array_replace_recursive($styles(['marges-rangees-vides'], [
+			'pied' => [
+				'primary' => ['primary_6' => ['widget-1']],
+				'below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']],
+			],
+		]), [
+			'entete_mobile' => ['above' => ['above_center' => ['html-1']]],
+			'rangees' => ['pied_primary' => ['colonnes' => 6, 'repartition' => ['desktop' => '6-equal', 'tablet' => 'full', 'mobile' => 'full']]],
+			'elements' => ['entete' => ['html-1' => ['texte' => 'Ouvert du lundi au vendredi']]],
+		]),
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],

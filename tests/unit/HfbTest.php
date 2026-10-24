@@ -198,12 +198,24 @@ final class HfbTest extends TestCase {
 
 	public function testSixiemeColonneRendue(): void {
 		$c = astra_hfb_normaliser([
-			'pied' => ['primary' => ['primary_6' => ['widget-2']]],
+			'pied' => ['primary' => ['primary_1' => ['widget-1'], 'primary_6' => ['widget-2']]],
 			'rangees' => ['pied_primary' => ['colonnes' => 6, 'repartition' => '6-equal']],
 		]);
 		$rangees = astra_hfb_calculer_pied($c['pied'], $c['rangees']);
 		$this->assertSame('primary', $rangees[0]['rangee']);
 		$this->assertSame(['widget-2'], self::ids($rangees[0]['colonnes'][6]));
+	}
+
+	public function testRangeeRemplieSeulementEnSixiemeColonneMasquee(): void {
+		// Astra n'affiche une rangée du pied que si une de ses zones 1 à 5 est remplie
+		// (template-parts/footer/builder/footer-row.php, is_footer_row_empty()).
+		$c = astra_hfb_normaliser([
+			'pied' => ['primary' => ['primary_6' => ['widget-2']]],
+			'rangees' => ['pied_primary' => ['colonnes' => 6, 'repartition' => '6-equal']],
+		]);
+		$this->assertSame(['below'], array_column(astra_hfb_calculer_pied($c['pied'], $c['rangees']), 'rangee'));
+		$this->assertFalse(astra_hfb_pied_rangee_remplie($c['pied'], 'primary'));
+		$this->assertTrue(astra_hfb_pied_rangee_remplie($c['pied'], 'below'));
 	}
 
 	public function testRepartitionInvalideRemplaceeParFull(): void {
