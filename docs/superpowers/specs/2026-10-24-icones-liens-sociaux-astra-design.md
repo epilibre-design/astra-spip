@@ -11,12 +11,12 @@ des attributs SVG. Le choix et l'ordre des réseaux, les couleurs et les tailles
 configurables existants ne changent pas de format.
 
 Origine : SOC-01/SOC-02 de l'[inventaire](../../inventaires/2026-10-24-astra-4.11.0-4.13.8.md),
-notes 4.11.11,4.13.5 et 4.13.7. Sources4.13.8 : `assets/svg/svgs.json`,
+notes 4.11.11, 4.13.5 et 4.13.7. Sources 4.13.8 : `assets/svg/svgs.json`,
 `inc/builder/controllers/class-astra-builder-ui-controller.php` et le CSS principal.
 
 ## Approches et choix proposé
 
-Conserver les SVG4.11.0 garderait les identifiants dupliqués. Permettre tous les
+Conserver les SVG 4.11.0 garderait les identifiants dupliqués. Permettre tous les
 SVG utilisateurs ajouterait une fonction et une politique d'assainissement qui
 ne sont pas nécessaires à cette correction. Le choix proposé actualise le
 catalogue fermé des réseaux déjà proposés, avec comparaison entrée par entrée,
@@ -31,9 +31,14 @@ actualisées en fonction des tracés réellement incorporés.
 
 ### Identifiants et nom accessible
 
-Le SVG e-mail ne produit plus un `title id="email"` fixe ; même exigence pour
-`google_reviews`. La4.13.8 supprime ces ID dans son catalogue. Aucune commande
-ou référence ARIA du port ne doit rester attachée à un identifiant supprimé.
+Le catalogue 4.11.0 contient trois titres à ID fixe : `email`, `google_reviews`
+et `trip_advisor`. Le catalogue 4.13.8 retire ces trois ID. Le port ne propose
+pas TripAdvisor : la comparaison entrée par entrée le mentionne comme réseau
+absent, sans l'ajouter au registre ni créer un correctif de rendu fictif.
+
+Pour les deux réseaux présents, le SVG e-mail ne produit plus de `title id="email"`
+fixe ; même exigence pour `google_reviews`. Aucune commande ou référence ARIA
+du port ne doit rester attachée à un identifiant supprimé.
 
 Les liens gardent un nom accessible traduit, correspondant au réseau choisi,
 indépendant du nombre d'occurrences. Si une référence interne SVG exige un ID,
@@ -59,7 +64,7 @@ Les attributs restent échappés après transformation.
 
 ### SVG, couleurs et labels
 
-Le CSS4.13.8 respecte les SVG qui portent un attribut fill explicite. Comparer
+Le CSS 4.13.8 respecte les SVG qui portent un attribut fill explicite. Comparer
 ce changement avec les glyphes réellement sélectionnés et les modes de couleur
 actuels ; conserver les remplissages du catalogue, les couleurs normales/survol,
 les styles de marque et les options personnalisées supportées.
@@ -76,7 +81,7 @@ de collisions d'ID n'est pas qualifiée de XSS et n'implique pas un checkout Str
 sur SPIP. Les protections du rendu de liens sont maintenues.
 
 La vérification plus générale des protocoles d'URL et des droits des formulaires
-est affectée à la qualification de sécurité4.12.5 dans la spec de référence.
+est affectée à la qualification de sécurité 4.12.5 dans la spec de référence.
 Elle ne peut pas être déclarée résolue par le seul échappement d'attribut,
 ni être présentée comme une vulnérabilité exploitable sans démonstration du
 chemin concerné. Un défaut établi dans le périmètre existant est traité et testé
@@ -93,7 +98,7 @@ avant la sortie de la migration ; pas d'élargissement opportuniste aux hooks WP
 4. Même catalogue fermé et même ordre avant/après enregistrement du formulaire ;
    relance du seed Garden sans personnalisation artificiellement détectée.
 5. Comparaison avec WordPress 4.13.8 des réseaux supportés, modes de couleur,
-   taille et survol à 1280/768/390px. Une vérification DOM complète les captures.
+   taille et survol à 1280/768/390 px. Une vérification DOM complète les captures.
 6. Source, tracé, licence et notices vérifiés pour chaque entrée modifiée.
 
 Les ajustements de R10/R15 et du cas combiné ne suffisent pas à prouver l'unicité

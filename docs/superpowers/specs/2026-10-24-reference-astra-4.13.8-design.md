@@ -148,6 +148,13 @@ specs centrales sont obligatoires, pas des étapes publiées indépendamment.
 La compatibilité oEmbed est validée avec et sans le plugin avant de recommander
 le jalon complet ; elle n'oblige pas à activer le plugin dans les tests généraux.
 
+Le plan ordonne les lots par dépendances et donne à chacun une validation
+intermédiaire exécutable isolément sur la branche commune, même avant l'intégration
+finale. Il distingue ces validations ciblées du rejeu complet obligatoire avant
+fusion vers main ; un lot ne peut pas dépendre de code futur non déclaré pour
+que ses propres tests soient exécutables. La question ouverte du repli sans
+JavaScript est tranchée avant l'implémentation du lot responsive.
+
 La matrice PHP/SPIP reste celle annoncée par le paquet : syntaxe PHP 7.4 pour le
 code compatible, équivalence des sorties pertinentes sous PHP 7.4/8.4, suites
 unitaires et intégration sur l'installation SPIP de référence. L'intégration

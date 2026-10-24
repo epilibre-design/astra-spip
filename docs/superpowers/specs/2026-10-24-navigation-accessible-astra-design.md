@@ -19,7 +19,7 @@ code réellement présent dans 4.13.8, pas seulement les annonces intermédiaire
 
 Modifier seulement le JS laisserait le panneau fermé accessible et des rôles
 ARIA incohérents. Réécrire toute la navigation remplacerait inutilement le
-comportement du thème. Le choix proposé associe le bundle officiel4.13.8 aux
+comportement du thème. Le choix proposé associe le bundle officiel 4.13.8 aux
 adaptations nécessaires du balisage SPIP et du CSS extrait. Les sélecteurs et
 états utilisés par ce bundle restent reconnaissables.
 
@@ -56,13 +56,13 @@ Le redimensionnement, l'ouverture répétée et un panneau vide ne multiplient p
 les écouteurs. Un builder sans déclencheur ou sans panneau ne produit aucune
 erreur JavaScript. Les boutons de fermeture ont une taille utilisable et ne
 rétrécissent pas sous l'effet du padding ou d'une barre de défilement, conformément
-au composant4.13.8. La recherche placée dans le panneau reste cliquable et utilisable
+au composant 4.13.8. La recherche placée dans le panneau reste cliquable et utilisable
 au clavier, sur mobile et tablette.
 
 ## Sous-menus et widgets
 
 Une flèche interactive est une commande nommée avec un rôle approprié, un état
-`aria-expanded` et l'information de sous-menu attendue par4.13.8. Les anciens
+`aria-expanded` et l'information de sous-menu attendue par 4.13.8. Les anciens
 rôles `presentation` focalisable et `application` ne sont plus employés pour
 ces commandes. Lorsque la balise native diffère de l'amont, vérifier la sémantique
 et le comportement avec les sélecteurs JS ; ne pas cumuler activation native et
@@ -72,16 +72,26 @@ Entrée et Espace activent la commande une seule fois ; Espace ne fait pas défi
 la page à sa place. Lien parent et commande d'ouverture gardent leurs fonctions.
 Le changement de focus vers une autre branche ou la suite du contenu ferme le
 sous-menu quitté et actualise ses classes/attributs. Échap suit le comportement
-utile de4.13.8 avec une cible de focus visible.
+utile de 4.13.8 avec une cible de focus visible.
 
 Les deux branches de génération pages/rubriques, les menus d'en-tête et les
 menus de widgets sont traités. Un correctif limité à `nav.site-navigation`
 ne couvre pas les widgets. Les ID des menus déjà différenciés par appareil et
 la déduplication des placements restent conservés.
 
+Le test existant
+`tests/integration/HfbRenduTest.php::testBlocMenuDansLesWidgetsDuPied`
+(ligne 222 sur la base 1.5.0) exige encore `role="application"`. Son assertion
+doit être remplacée explicitement par le contrat de commande corrigé de cette
+spec, en conservant les vérifications de structure et d'état pertinentes. Les
+assertions liées à la balise sont adaptées si nécessaire au balisage retenu.
+Ce changement d'attendu est intentionnel dans la migration : l'ancien rôle ne
+doit pas être conservé pour garder ce test vert. Le test modifié échoue sur
+le rendu ancien avant d'être satisfait par la correction du gabarit.
+
 ## Évitement, repères et libellés
 
-Comparer aux sorties4.13.8 le lien d'évitement, sa visibilité au focus et sa
+Comparer aux sorties 4.13.8 le lien d'évitement, sa visibilité au focus et sa
 cible de contenu, les repères des zones de widgets, les libellés des commandes
 et les textes redondants pour lecteur d'écran. Les équivalents HTML natifs
 SPIP peuvent rester lorsqu'ils offrent la sémantique attendue ; ajouter un rôle
@@ -97,7 +107,7 @@ choisir la règle de focus, avec source 4.13.8 et test de contraste/visibilité 
 ## Limites conservées
 
 Menu desktop en mode « cible lien », sticky header, mégamenu et arbre de plus
-de deux niveaux ne sont pas ajoutés. La règle tactile44px dont le sélecteur
+de deux niveaux ne sont pas ajoutés. La règle tactile 44 px dont le sélecteur
 vise un parent au troisième niveau est embarquée avec l'asset officiel ; elle
 n'est pas présentée comme une correction active du menu standard à deux niveaux.
 
@@ -127,8 +137,8 @@ accessibles des éléments ; une capture seule ne suffit pas. Un contrôle manue
 avec lecteur d'écran est consigné lorsqu'il est possible ; il n'est jamais
 annoncé comme réalisé à partir du seul test ARIA automatisé.
 
-Tester à 1280/768/390px et aux limites définies par la spec responsive. Les références
-existantes de menus, widgets et recherche sont rejouées avec les actifs4.13.8.
+Tester à 1280/768/390 px et aux limites définies par la spec responsive. Les références
+existantes de menus, widgets et recherche sont rejouées avec les actifs 4.13.8.
 Tout changement de HTML normalisé attendu doit renvoyer à l'un de ces contrats.
 
 ## Sortie et données

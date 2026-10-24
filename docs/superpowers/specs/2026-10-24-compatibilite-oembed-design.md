@@ -54,7 +54,7 @@ autour d'un conteneur qui remplit déjà ce rôle.
 La largeur ne dépasse pas le conteneur de contenu disponible. Les proportions
 proviennent des données du média ; pas de 16:9 imposé à tout fournisseur. La
 lecture ne déforme pas la page et ne crée pas de débordement horizontal à 1280,
-768 et 390px. Légendes et marges restent cohérentes avec le gabarit et le plugin.
+768 et 390 px. Légendes et marges restent cohérentes avec le gabarit et le plugin.
 Les styles ne ciblent pas toutes les iframes du site pour corriger un seul lecteur.
 
 Si le CSS actuel suffit, aucun nouveau CSS n'est ajouté. Une adaptation nécessaire
@@ -83,7 +83,6 @@ Sous SPIP 5, le cas sans oEmbed doit rester fonctionnel. Aucun forçage d'activa
 ni test d'un plugin dont le manifeste l'exclut n'est demandé. La validation sur
 cette version se limite à un environnement SPIP 5 disponible et au chemin sans
 plugin ; si cet environnement n'est pas disponible, le statut est indiqué.
-La récupération d'informations Gravatar et son fallback sont un autre travail.
 
 ## Preuves attendues
 
@@ -97,7 +96,7 @@ intégration. Les fixtures n'incorporent aucun média tiers non autorisé.
 | --- | --- |
 | Bloc embed importé, plugin absent | URL utilisable, légende conservée, aucune erreur de compilation/rendu |
 | Même contenu, plugin présent | Contenu produit par oEmbed, traitement effectué une fois |
-| Vidéos16:9 puis4:3 | Proportions mesurées sur le conteneur/iframe, largeur bornée aux trois tailles |
+| Vidéos 16:9 puis 4:3 | Proportions mesurées sur le conteneur/iframe, largeur bornée aux trois tailles |
 | HTML déjà enveloppé | Pas de second wrapper ni multiplication du ratio/padding |
 | Fournisseur inconnu ou en erreur | Repli utile, contenu conservé, pas d'exception du thème |
 | Activation puis désactivation | Texte enregistré identique, retour au lien sans réimport |
