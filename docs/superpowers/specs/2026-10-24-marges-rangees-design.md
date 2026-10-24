@@ -1,8 +1,10 @@
 # Marges des rangées du builder — spécification
 
-Date : 2026-10-24. Statut : à relire (Gilles, Codex) ; révisée le 24 octobre après la relecture de
-Codex et de Greptile (conditions d'émission selon les rangées remplies, marges extérieures
-négatives, unité tablette par défaut).
+Date : 2026-10-24. Statut : relue (Codex, Greptile ; PR #15) ; révisée le 24 octobre après ces
+relectures (conditions d'émission selon les rangées remplies, marges extérieures négatives, unité
+tablette par défaut), puis complétée par les décisions du plan
+(`docs/superpowers/plans/2026-10-24-marges-rangees.md`) : quinzième option, rendu des rangées du
+pied, appareil sans unité, preuve par les attendus, formulaire.
 
 ## Objectif
 
@@ -32,14 +34,18 @@ dans le CSS ; valeurs d'un `site.json` reprises telles quelles.
 
 ## Comportement d'Astra 4.11.0
 
-Chaque rangée du builder a deux options, `<section>-padding` et `<section>-margin`, de structure
+Chaque rangée du builder a deux options, `<section>-padding` et `<section>-margin` (l'en-tête
+entier n'a que `section-header-builder-layout-margin`, émise à la suite de la rangée principale par
+`astra_primary_header_breakpoint_style()`), de structure
 « côtés responsifs » (`desktop`, `tablet`, `mobile` × `top`, `right`, `bottom`, `left`, plus
 `desktop-unit`, `tablet-unit`, `mobile-unit`), défaut `Astra_Builder_Helper::$default_responsive_spacing`
 (tous les côtés vides). `Astra_Extended_Base_Dynamic_CSS::prepare_advanced_margin_padding_css()`
 (`inc/class-astra-extended-base-dynamic-css.php`) émet, pour le sélecteur de la rangée, les
 `padding-*` puis les `margin-*` de chaque appareil : ordinateur sans media, tablette sous
 `@media (max-width:921px)`, mobile sous `@media (max-width:544px)` ; `astra_responsive_spacing()`
-rend un côté vide par une chaîne vide, et `astra_parse_css()` omet la propriété. Un côté vide
+rend un côté vide par une chaîne vide, et `astra_parse_css()` omet la propriété ; elle rend aussi
+vide tout côté d'un appareil dont l'unité (`<appareil>-unit`) n'est pas enregistrée : rien n'est
+émis pour cet appareil. Un côté vide
 laisse donc s'appliquer la règle précédente : la valeur de l'appareil plus large (cascade des
 media), ou le CSS fixe du builder (`padding-top:45px;padding-bottom:45px` de la rangée principale
 du pied, dans `css/astra-hfb.css`).
@@ -53,6 +59,7 @@ du pied, dans `css/astra-hfb.css`).
 | `section-primary-footer-builder` | `.site-primary-footer-wrap[data-section="section-primary-footer-builder"]` (`footer/primary-footer`) |
 | `section-below-footer-builder` | `.site-below-footer-wrap[data-section="section-below-footer-builder"]` (`footer/below-footer`) |
 | `section-footer-builder-layout` | `.ast-hfb-header .site-footer` (`footer/primary-footer`) |
+| `section-header-builder-layout` (marge extérieure seulement) | `.ast-hfb-header .site-header` (`header/primary-header`) |
 
 La position de ces règles dans la feuille d'Astra (après le fond, la bordure et le séparateur de la
 rangée, avant la visibilité) est relevée dans le rendu WordPress, comme pour les groupes existants.
@@ -74,17 +81,24 @@ Les règles de marge d'une rangée font partie du CSS de cette rangée, qu'Astra
   aussi vrai quand la rangée est remplie, et ne regarde pas la zone 6).
 - **Pied entier** (`section-footer-builder-layout`) : règles émises au début de
   `astra_fb_primary_footer_dynamic_css()`, avant le test de la rangée principale, donc toujours.
+- **En-tête entier** (`section-header-builder-layout-margin`) : règles émises après celles de la
+  rangée principale de l'en-tête, donc seulement si elle est remplie sur ordinateur ou sur mobile.
 
 Une marge réglée pour une rangée vide n'émet donc rien, comme dans Astra. Astra SPIP applique ces
 conditions d'après la configuration du builder (`astra/hfb`, normalisée), avec les zones exactes
-d'Astra (zone 6 du pied ignorée), même si ses propres fonctions de rangées non vides en diffèrent.
+d'Astra (zone 6 du pied ignorée). Astra n'affiche d'ailleurs une rangée du pied qu'à la même
+condition (`template-parts/footer/builder/footer-row.php`) : une rangée remplie seulement en
+zone 6 n'apparaît pas. Astra SPIP l'affichait ; son rendu des rangées du pied suit désormais la
+même condition (`astra_hfb_pied_rangee_remplie()`), partagée avec les marges.
 
 ## Périmètre
 
-Les 14 options ci-dessus (7 sections × marge intérieure et marge extérieure), dans le registre des
-styles (`astra_styles_registre()`, nouveau groupe `marges-rangees`), type « côtés responsifs »
-déjà utilisé par `section-hb-button-1-padding` ; formulaire « Couleurs et typographie » généré
-depuis le registre ; saisie et normalisation communes (`astra_styles_normaliser()`).
+Les 15 options ci-dessus (7 sections × marge intérieure et marge extérieure, plus la marge
+extérieure de l'en-tête entier), dans le registre des styles (`astra_styles_registre()`, nouveau
+groupe `marges-rangees`), type « côtés responsifs » déjà utilisé par `section-hb-button-1-padding` ;
+formulaire « Couleurs et typographie » généré depuis le registre (section « Marges des rangées » :
+pour chaque option, trois lignes, ordinateur, tablette et mobile, de quatre côtés et une unité) ;
+saisie et normalisation communes (`astra_styles_normaliser()`).
 
 Signe des valeurs : les marges extérieures (`<section>-margin`) acceptent les nombres négatifs,
 comme Astra (une marge de `-10` y donne `margin-top:-10px`, vérifié) ; le type « côtés responsifs »
@@ -100,7 +114,10 @@ trois appareils, comme Astra les émet (même choix que les alignements de la sp
 Unités : celle que la valeur enregistre pour chaque appareil (`desktop-unit`, `tablet-unit`,
 `mobile-unit`), parmi celles du type existant (`px`, `em`, `%`) ; une autre unité est refusée par
 la normalisation (et signalée par le seed de Garden). Le défaut d'Astra
-(`Astra_Builder_Helper::$default_responsive_spacing`) a les trois unités à `px`.
+(`Astra_Builder_Helper::$default_responsive_spacing`) a les trois unités à `px`. Un appareil sans
+unité enregistrée n'émet rien, comme dans Astra ; le formulaire propose toujours une unité (`px`
+par défaut), qu'une valeur importée sans unité reçoit au premier enregistrement. Bornes : marges
+intérieures de 0 à 1000, marges extérieures de -1000 à 1000.
 
 Hors périmètre : les marges des éléments (`section-footer-copyright-margin`,
 `title_tagline-margin`, etc.) et les marges propres au panneau du menu mobile ; elles ne sont pas
@@ -130,11 +147,15 @@ sortie ⊇ attendus et différence ⊆ CSS de base ∪ neutralisations).
   appareils, une rangée du pied vide et une rangée du pied remplie seulement en zone 6 : aucune
   règle pour les rangées vides (zone 6 comprise), règles pour la rangée remplie sur mobile et pour
   le pied entier.
-- Attendus CSS capturés dans WordPress (`tests/references/styles`) et test d'équivalence ; tests
+- Attendus CSS capturés dans WordPress (`tests/references/styles`) : règles de marges du CSS
+  complet des trois références (`marges.py`), que le CSS d'Astra SPIP doit reproduire exactement,
+  dans l'ordre ; une règle émise pour une rangée vide ne se voyant pas dans les captures, c'est la
+  preuve des conditions d'émission. Tests
   unitaires des conditions d'émission (rangées vides, remplies sur un seul appareil, zone 6 du
   pied) et de normalisation (structure, unités, côtés vides, marge extérieure négative conservée,
   marge intérieure négative refusée) ; aller-retour du formulaire.
-- Rendu sans réglage identique à la version précédente (références R0–R23, P1–P3).
+- Rendu sans réglage identique à la version précédente (références R0–R23, P1–P3), hors rangée du
+  pied remplie seulement en zone 6.
 
 ## Suite
 
