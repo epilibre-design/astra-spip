@@ -96,6 +96,19 @@ final class StylesSaisieTest extends TestCase {
 		$this->assertSame([], astra_styles_saisie_fusionner([], ['section-below-footer-builder-margin' => ['desktop' => ['top' => ''], 'desktop-unit' => 'px', 'tablet-unit' => 'em']]));
 	}
 
+	public function testChampsDesMargesGardentLesUnitesAbsentes(): void {
+		$option = 'section-primary-header-builder-padding';
+		foreach (ASTRA_STYLES_APPAREILS as $appareil) {
+			$champs = array_column(astra_styles_champs([$option => [$appareil => ['top' => '7']]], 'marges_rangees'), null, 'option');
+			$unites = array_column($champs[$option]['appareils'], 'unite', 'appareil');
+			$this->assertSame('', $unites[$appareil]);
+		}
+		$champs = array_column(astra_styles_champs([], 'marges_rangees'), null, 'option');
+		$this->assertSame(['px', 'px', 'px'], array_column($champs[$option]['appareils'], 'unite'));
+		$champs = array_column(astra_styles_champs([$option => ['tablet-unit' => 'em']], 'marges_rangees'), null, 'option');
+		$this->assertSame('em', $champs[$option]['appareils'][1]['unite']);
+	}
+
 	public function testChampsDesMargesParAppareil(): void {
 		$champs = astra_styles_champs(['section-header-builder-layout-margin' => ['mobile' => ['bottom' => '-4'], 'mobile-unit' => 'em']], 'marges_rangees');
 		$this->assertCount(15, $champs);

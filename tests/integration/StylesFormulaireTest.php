@@ -120,6 +120,29 @@ final class StylesFormulaireTest extends TestCase {
 		$this->assertStringContainsString('@media (max-width:921px){.site-above-footer-wrap[data-section="section-above-footer-builder"]{padding-top:25px;', astra_styles_css(lire_config('astra/styles'), $hfb));
 	}
 
+	public function testAllerRetourDesMargesSansUnite(): void {
+		$valeurs = json_decode(file_get_contents(dirname(__DIR__) . '/references/styles/valeurs/marges-rangees-vides.json'), true);
+		$option = 'section-primary-header-builder-padding';
+		$hfb = ['entete_ordinateur' => ['primary' => ['primary_left' => ['logo']]]];
+		ecrire_config('astra/styles', $valeurs);
+		$avant = astra_styles_css($valeurs, $hfb);
+		$saisie = $this->saisieDuFormulaire();
+		set_request('s', $saisie);
+		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertSame($avant, astra_styles_css(lire_config('astra/styles'), $hfb));
+		$this->assertArrayNotHasKey('tablet-unit', lire_config('astra/styles')[$option]);
+		$this->assertSame($valeurs[$option]['tablet'], lire_config('astra/styles')[$option]['tablet']);
+		// Choisir explicitement une unité active les valeurs importées.
+		$saisie[$option]['tablet-unit'] = 'px';
+		set_request('s', $saisie);
+		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
+		formulaires_configurer_astra_styles_traiter_dist();
+		$apres = astra_styles_css(lire_config('astra/styles'), $hfb);
+		$this->assertNotSame($avant, $apres);
+		$this->assertStringContainsString('padding-top:7px;padding-bottom:7px;padding-left:7px;padding-right:7px;', $apres);
+	}
+
 	/** Champs du formulaire rendu, postés tels quels (sélecteurs : option choisie, sinon la première). */
 	private function saisieDuFormulaire(): array {
 		$doc = new DOMDocument();

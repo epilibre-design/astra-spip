@@ -394,6 +394,7 @@ return [
 	'styles_section_widget_3' => 'Widget 3 du pied de page',
 	'styles_section_widget_4' => 'Widget 4 du pied de page',
 	'styles_titre' => 'Couleurs et typographie',
+	'styles_unite_absente' => 'Ne pas appliquer',
 	'styles_valeur_refusee' => 'Valeur refusée.',
 	'styles_visible' => 'Visible',
 	'suivant' => 'Suivant',

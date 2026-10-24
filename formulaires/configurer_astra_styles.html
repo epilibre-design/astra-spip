@@ -93,6 +93,7 @@
 						<input type="number"[(#GET{c}|table_valeur{signe}|non) min="0"] step="any" class="text" name="[(#GET{a}|table_valeur{nom}|astra_styles_nom{#VALEUR})]" value="[(#GET{a}|table_valeur{valeur}|table_valeur{#VALEUR})]" aria-label="[(#VAL{astra:styles_appareil_}|concat{#GET{a}|table_valeur{appareil}}|_T)] : [(#VAL{astra:styles_}|concat{#GET{etiquette}}|_T)]" placeholder="[(#VAL{astra:styles_}|concat{#GET{etiquette}}|_T)]" />
 						</BOUCLE_cote_appareil>
 						<select name="[(#GET{a}|table_valeur{nom_unite})]" aria-label="[(#VAL{astra:styles_appareil_}|concat{#GET{a}|table_valeur{appareil}}|_T)] : unité">
+							<option value=""[(#GET{a}|table_valeur{unite}|=={''}|oui)selected="selected"]><:astra:styles_unite_absente:></option>
 							<BOUCLE_unites_appareil(DATA){source tableau, #GET{c}|table_valeur{unites}}><option value="#VALEUR"[(#VALEUR|=={#GET{a}|table_valeur{unite}}|oui)selected="selected"]>#VALEUR</option></BOUCLE_unites_appareil>
 						</select>
 					</span>

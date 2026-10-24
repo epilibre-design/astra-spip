@@ -394,6 +394,7 @@ return [
 	'styles_section_widget_3' => 'Footer widget 3',
 	'styles_section_widget_4' => 'Footer widget 4',
 	'styles_titre' => 'Colors and typography',
+	'styles_unite_absente' => 'Do not apply',
 	'styles_valeur_refusee' => 'Value refused.',
 	'styles_visible' => 'Visible',
 	'suivant' => 'Next',

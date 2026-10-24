@@ -82,7 +82,9 @@ function astra_styles_champs($styles, string $section): array {
 			'appareils' => astra_styles_trois_appareils($d) ? array_map(function ($a) use ($option, $v) {
 				return [
 					'appareil' => $a, 'nom' => "s[$option][$a]", 'valeur' => is_array($v) ? ($v[$a] ?? '') : '',
-					'nom_unite' => "s[$option][$a-unit]", 'unite' => is_array($v) ? ($v["$a-unit"] ?? 'px') : 'px',
+					// Une valeur importée sans unité reste inactive après enregistrement.
+					'nom_unite' => "s[$option][$a-unit]",
+					'unite' => is_array($v) ? ($v["$a-unit"] ?? (array_key_exists($a, $v) ? '' : 'px')) : 'px',
 				];
 			}, ASTRA_STYLES_APPAREILS) : [],
 		];
