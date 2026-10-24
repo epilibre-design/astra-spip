@@ -54,6 +54,20 @@ final class StylesFormulaireTest extends TestCase {
 		$this->assertStringContainsString('list="astra-styles-palette"', $html);
 	}
 
+	public function testExclusionRemiseAuReglageDAstra(): void {
+		// Exclusion des archives levée puis remise au « Réglage d'Astra » : l'option enregistrée
+		// devient vide, le défaut d'Astra (archives exclues) s'applique de nouveau.
+		ecrire_config('astra/styles', ['transparent-header-enable' => '1', 'transparent-header-disable-archive' => '0']);
+		$this->assertTrue(astra_entete_transparent_actif(lire_config('astra/styles'), 'rubrique'));
+		$saisie = $this->saisieDuFormulaire();
+		$this->assertSame('0', $saisie['transparent-header-disable-archive']);
+		$saisie['transparent-header-disable-archive'] = '';
+		set_request('s', $saisie);
+		$this->assertSame([], formulaires_configurer_astra_styles_verifier_dist());
+		formulaires_configurer_astra_styles_traiter_dist();
+		$this->assertFalse(astra_entete_transparent_actif(lire_config('astra/styles'), 'rubrique'));
+	}
+
 	/** Champs du formulaire rendu, postés tels quels (sélecteurs : option choisie, sinon la première). */
 	private function saisieDuFormulaire(): array {
 		$doc = new DOMDocument();

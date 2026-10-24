@@ -24,8 +24,10 @@ const ASTRA_TRANSPARENT_MOBILE = 544;
  */
 function astra_entete_transparent_actif(array $s, string $contexte, string $reglage_page = 'defaut'): bool {
 	$s = astra_styles_normaliser($s);
+	// Valeur vide (option remise au « Réglage d'Astra » par le formulaire) : défaut d'Astra.
 	$vrai = function (string $option, $defaut = 0) use ($s): bool {
-		return (string) ($s[$option] ?? $defaut) === '1' || ($s[$option] ?? null) === true;
+		$x = isset($s[$option]) && $s[$option] !== '' ? $s[$option] : $defaut;
+		return $x === true || (string) $x === '1';
 	};
 	// Anciennes options : 404, recherche et archives retombent sur transparent-header-disable-archive.
 	$exclue = function (string $option) use ($s, $vrai): bool {
@@ -112,6 +114,20 @@ function astra_entete_transparent_css(array $styles, array $hfb): string {
 	$fonds = ['' => $fond('transparent-header-bg-color-responsive'), 'hba' => $fond('hba-transparent-header-bg-color-responsive'), 'hbb' => $fond('hbb-transparent-header-bg-color-responsive')];
 	$appareils = $s['transparent-header-on-devices'] ?? 'both';
 	$regles = [];
+
+	// Bouton du menu mobile (inc/class-astra-dynamic-css.php, émis avant le CSS du module, d'où
+	// sa place en tête), couleurs propres non reprises.
+	if (astra_styles_element_place('mobile-trigger', $hfb, 'entete')) {
+		$style = $s['mobile-header-toggle-btn-style'] ?? 'minimal';
+		$bouton = '.ast-theme-transparent-header [data-section="section-header-mobile-trigger"] .ast-button-wrap';
+		if ($style === 'fill') {
+			$regles[] = ['', "$bouton .ast-mobile-menu-trigger-fill, $bouton .ast-mobile-menu-trigger-minimal", ['border' => 'none']];
+		} elseif ($style === 'outline') {
+			$regles[] = ['', "$bouton .ast-mobile-menu-trigger-outline", ['background' => 'transparent']];
+		} else {
+			$regles[] = ['', "$bouton .ast-mobile-menu-trigger-minimal", ['background' => 'transparent']];
+		}
+	}
 
 	// Largeur du logo propre à l'en-tête transparent : défauts d'Astra (logo propre hors périmètre).
 	foreach (['' => 150, $max_t => 120, '(max-width:543px)' => 100] as $media => $largeur) {
@@ -231,19 +247,6 @@ function astra_entete_transparent_css(array $styles, array $hfb): string {
 		$regles[] = [$max_t, $mobile, $sep_css];
 	} else {
 		$regles[] = [$min, $ordi, $sep_css];
-	}
-
-	// Bouton du menu mobile (inc/class-astra-dynamic-css.php), couleurs propres non reprises.
-	if (astra_styles_element_place('mobile-trigger', $hfb, 'entete')) {
-		$style = $s['mobile-header-toggle-btn-style'] ?? 'minimal';
-		$bouton = '.ast-theme-transparent-header [data-section="section-header-mobile-trigger"] .ast-button-wrap';
-		if ($style === 'fill') {
-			$regles[] = ['', "$bouton .ast-mobile-menu-trigger-fill, $bouton .ast-mobile-menu-trigger-minimal", ['border' => 'none']];
-		} elseif ($style === 'outline') {
-			$regles[] = ['', "$bouton .ast-mobile-menu-trigger-outline", ['background' => 'transparent']];
-		} else {
-			$regles[] = ['', "$bouton .ast-mobile-menu-trigger-minimal", ['background' => 'transparent']];
-		}
 	}
 
 	// Neutralisation : css/astra-dynamic.css donne 60 px à #primary au-delà de 1200 px, règle

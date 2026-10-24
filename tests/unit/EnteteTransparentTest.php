@@ -49,6 +49,16 @@ final class EnteteTransparentTest extends TestCase {
 		$this->assertFalse(astra_entete_transparent_actif(['transparent-header-enable' => 'oui'], 'page'));
 	}
 
+	public function testValeurVideCommeDefautDAstra(): void {
+		// Le formulaire enregistre '' quand une option déjà réglée revient au « Réglage d'Astra » :
+		// le défaut d'Astra s'applique, archives et accueil des derniers articles restent exclus.
+		$reinitialise = ['transparent-header-enable' => 1, 'transparent-header-disable-archive' => '', 'transparent-header-disable-latest-posts-index' => ''];
+		foreach (['accueil_articles', 'rubrique', 'mot', 'auteur', 'recherche', '404'] as $contexte) {
+			$this->assertFalse(astra_entete_transparent_actif($reinitialise, $contexte), $contexte);
+		}
+		$this->assertFalse(astra_entete_transparent_actif(['transparent-header-enable' => ''], 'page'));
+	}
+
 	public static function variantes(): array {
 		return ['garden' => ['garden'], 'ordinateur' => ['ordinateur'], 'mobile' => ['mobile'], 'couleurs' => ['couleurs']];
 	}
@@ -64,6 +74,9 @@ final class EnteteTransparentTest extends TestCase {
 		$neutralisations = $lignes('neutralisations.css');
 		$this->assertSame([], array_values(array_diff($attendues, $nous)), 'règles d\'Astra manquantes');
 		$this->assertSame([], array_values(array_diff($nous, $attendues, $neutralisations)), 'règles ni attendues ni neutralisations');
+		// Ordre d'Astra : les règles des media queries tablette puis mobile se recouvrent, la cascade
+		// dépend de leur ordre.
+		$this->assertSame($attendues, array_values(array_intersect($nous, $attendues)), 'ordre des règles d\'Astra');
 		// Chaque règle qu'Astra n'émet plus sur une page transparente est une règle fixe de
 		// css/astra-dynamic.css, défaite par une neutralisation.
 		$fixes = StylesAttendusTest::regles(file_get_contents(dirname(__DIR__, 2) . '/css/astra-dynamic.css'));
