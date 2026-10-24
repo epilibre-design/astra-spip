@@ -16,7 +16,7 @@ SORTIES=${SORTIES:-$ICI/sorties}
 : "${PW:?PW doit indiquer le dossier contenant node_modules/playwright et pixelmatch}"
 : "${SPIP_CLI:?SPIP_CLI doit désigner spip-cli}"
 CONFS=("$@")
-[ ${#CONFS[@]} -gt 0 ] || CONFS=(R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees R6-menu R7-bouton R8-identite R9-pied-couleurs R10-sociaux R11-combinee R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google)
+[ ${#CONFS[@]} -gt 0 ] || CONFS=(R0-defaut R1-entete-complet R2-entete-centre R3-pied-colonnes R4-pied-asymetrique R5-rangees R6-menu R7-bouton R8-identite R9-pied-couleurs R10-sociaux R11-combinee R12-pied-appareils R13-pied-widgets-menus R14-bouton-mobile R15-sociaux-google R16-transparent-page R17-transparent-global R18-compat-sous-menu R19-compat-polices-widgets R20-titres-graisses R20-titres-graisses-drapeau R21-bouton-entete-marge R21-bouton-entete-marge-valeur R21-bouton-entete-marge-vide R22-pied-alignements R22-pied-alignements-ordinateur R22-pied-alignements-tablette R23-garden-compat)
 
 # Copyright identique à celui d'Astra dans WordPress.
 (cd "$RACINE" && $SPIP_CLI php:eval 'include_spip("inc/config"); ecrire_config("astra/texte_pied", "Copyright © [annee] [site] | Powered by [Thème WordPress Astra->https://wpastra.com]");' > /dev/null)

@@ -193,6 +193,7 @@ function astra_configurations_reference(): array {
 		'R22-pied-alignements' => $styles(['alignements']),
 		'R22-pied-alignements-ordinateur' => $styles(['alignements-ordinateur']),
 		'R22-pied-alignements-tablette' => $styles(['alignements-tablette']),
+		'R23-garden-compat' => $styles(['garden-compat'], $titres + ['compatibilite' => astra_configuration_styles(['garden-compat'])]),
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],

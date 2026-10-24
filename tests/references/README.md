@@ -79,6 +79,17 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 | R15-sociaux-google | Pied : copyright et icônes sociales Facebook et Google Reviews (couleur de marque `#dc4e41`) |
 | R16-transparent-page | Page « Notre jardin » avec l'en-tête transparent activé par la page (méta `theme-transparent-header-meta` à `enabled`), réglage global désactivé, valeurs de Garden (`transparent/valeurs/garden.json`) ; contenu, classes du `body`, position de l'en-tête et styles calculés comparés |
 | R17-transparent-global | En-tête transparent sur tout le site, page de la catégorie Jardinage : archive exclue par défaut, en-tête normal |
+| R18-compat-sous-menu | Drapeau de compatibilité `submenu-below-header` à `false` (règles de `css/compat/sous-menu-ancien.css`) ; hauteur de l'en-tête, marges de la rangée principale et de l'identité, affichage des éléments du menu comparés |
+| R19-compat-polices-widgets | Drapeau `can-support-widget-and-editor-fonts` posé, sans autre option de style ; placement de R6–R11 (titres des widgets du pied en h2), page « Notre jardin » avec les six niveaux de titres ; graisses comparées |
+| R20-titres-graisses | Graisses des titres réglées (`styles/valeurs/titres.json` : titres à 700, h1 `inherit`, h2 `normal`, h3 `300`, h4 `600` explicite), sans le drapeau ; même page |
+| R20-titres-graisses-drapeau | Mêmes graisses, avec le drapeau `can-support-widget-and-editor-fonts` |
+| R21-bouton-entete-marge | Marge du bouton de l'en-tête enregistrée vide, marge des boutons à 17 × 26 (Garden) |
+| R21-bouton-entete-marge-valeur | Marge du bouton de l'en-tête en partie réglée (haut 10, droite 20) : côtés vides selon l'appareil |
+| R21-bouton-entete-marge-vide | Marge du bouton de l'en-tête enregistrée vide, sans marge des boutons : 15/30, 14/28, 12/24 selon l'appareil |
+| R22-pied-alignements | Alignements de Garden : copyright `left` / `left` / `center`, icônes sociales `right` / `right` / `center` ; `text-align` comparé aux trois largeurs |
+| R22-pied-alignements-ordinateur | Alignements réglés pour l'ordinateur seul : tablette et mobile prennent sa valeur |
+| R22-pied-alignements-tablette | Alignements réglés pour la tablette seule : sur ordinateur, copyright hérité et icônes sociales centrées |
+| R23-garden-compat | Valeurs de Garden de R18 à R22 ensemble (deux drapeaux, graisses, marge vide, alignements) |
 | P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
 | P2-accueil | Même menu, page « Notre jardin » en page d'accueil statique (`/`) |
 | P3-page-pleine | Page « Plein écran », titre désactivé, conteneur `full-width-container` |
@@ -128,6 +139,21 @@ styles calculés identiques aux trois largeurs, polices chargées des deux côt�
 Non couvert dans cette version (valeurs conservées, aucun CSS) : valeurs tablette et mobile ;
 fonds de type `image` ou `gradient` ; fond, fond au survol et rayon des icônes sociales
 (`*-social-1-bg-color`, `-bg-h-color`, `-radius-fields`), absents des valeurs du modèle.
+
+## Graisses des titres : attendus
+
+Astra modifie des règles figées de `css/astra-dynamic.css` (graisse retirée d'une règle qui porte
+aussi la taille) : les graisses ne se comparent pas règle à règle. `capturer.sh` écrit, pour les
+variantes `titres`, `titres-drapeau` et `drapeau-polices`, les règles de graisse des titres du CSS
+complet (`graisses.py`) dans `attendus/<variante>.css`. `tests/unit/StylesTitresTest.php` calcule
+par la cascade (spécificité, puis ordre) la graisse de chaque titre (h1 à h6, dans le contenu,
+titres des widgets h1 à h6, nom du site) : `css/main.min.css` puis ces règles côté WordPress,
+`css/main.min.css`, `css/astra-dynamic.css` et le CSS produit côté SPIP ; les deux doivent être
+égales.
+
+Les références R18 à R23 passent par les clés `compatibilite` (méta `astra/compatibilite`) et
+`textes` (texte d'une page unique, remis à celui de l'installation à chaque configuration) de
+`tests/comparaison/configurations.php`.
 
 ## En-tête transparent : attendus
 
