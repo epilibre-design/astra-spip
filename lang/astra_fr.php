@@ -246,6 +246,7 @@ return [
 	'style_bouton_entete_font_family' => 'Police',
 	'style_bouton_entete_font_size' => 'Taille du texte',
 	'style_bouton_entete_font_weight' => 'Graisse',
+	'style_bouton_entete_padding' => 'Marge intérieure',
 	'style_bouton_entete_text_color' => 'Couleur du texte',
 	'style_bouton_entete_text_h_color' => 'Couleur du texte au survol',
 	'style_button_bg_color' => 'Couleur de fond',

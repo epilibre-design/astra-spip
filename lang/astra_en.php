@@ -246,6 +246,7 @@ return [
 	'style_bouton_entete_font_family' => 'Font',
 	'style_bouton_entete_font_size' => 'Font size',
 	'style_bouton_entete_font_weight' => 'Font weight',
+	'style_bouton_entete_padding' => 'Padding',
 	'style_bouton_entete_text_color' => 'Text color',
 	'style_bouton_entete_text_h_color' => 'Text color on hover',
 	'style_button_bg_color' => 'Background color',

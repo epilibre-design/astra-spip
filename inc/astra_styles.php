@@ -91,6 +91,9 @@ function astra_styles_registre(): array {
 		'header-button1-font-weight' => ['type' => 'graisse', 'defaut' => 'inherit'],
 		'header-button1-font-extras' => ['type' => 'extras-police'],
 	]);
+	$ajouter('bouton-entete', 'inc/class-astra-extended-base-dynamic-css.php', [
+		'section-hb-button-1-padding' => $cotes_r + ['defaut' => ['desktop' => ['top' => 15, 'right' => 30, 'bottom' => 15, 'left' => 30]]],
+	]);
 	$ajouter('identite', 'inc/class-astra-dynamic-css.php', [
 		'font-size-site-title' => $taille_r + ['defaut' => ['desktop' => 26, 'desktop-unit' => 'px']],
 		'font-size-site-tagline' => $taille_r + ['defaut' => ['desktop' => 15, 'desktop-unit' => 'px']],

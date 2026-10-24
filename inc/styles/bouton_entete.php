@@ -8,8 +8,12 @@
 
 function astra_styles_bouton_entete(array $s, array $hfb): array {
 	$p = 'header-button1';
-	if (!astra_styles_pose($s, 'bouton-entete') || !astra_styles_element_place('button-1', $hfb, 'entete')) {
+	if (!astra_styles_element_place('button-1', $hfb, 'entete')) {
 		return [];
+	}
+	// Marge intérieure (section-hb-button-1-padding) : émise même enregistrée vide.
+	if (!astra_styles_pose($s, 'bouton-entete', "$p-")) {
+		return astra_styles_bouton_entete_marge($s);
 	}
 	$sel = '.ast-header-button-1';
 	$extras = astra_styles_extras($s["$p-font-extras"] ?? []);
@@ -54,6 +58,43 @@ function astra_styles_bouton_entete(array $s, array $hfb): array {
 			'border-top-left-radius' => $rayon['top'], 'border-top-right-radius' => $rayon['right'],
 			'border-bottom-right-radius' => $rayon['bottom'], 'border-bottom-left-radius' => $rayon['left'],
 		]];
+	}
+	return array_merge($regles, astra_styles_bouton_entete_marge($s));
+}
+
+/**
+ * Marge intérieure du bouton de l'en-tête (prepare_advanced_margin_padding_css() de
+ * inc/class-astra-extended-base-dynamic-css.php, valeur ordinateur). Sans l'option, la marge par
+ * défaut d'Astra (15 × 30 px) est celle de css/astra-hfb.css.
+ */
+function astra_styles_bouton_entete_marge(array $s): array {
+	$marge = $s['section-hb-button-1-padding'] ?? null;
+	if ($marge === null) {
+		return [];
+	}
+	$sel = '.ast-header-button-1[data-section*="section-hb-button-"] .ast-builder-button-wrap .ast-custom-button';
+	$cotes = ['top' => [15, 14, 12], 'right' => [30, 28, 24], 'bottom' => [15, 14, 12], 'left' => [30, 28, 24]];
+	$valeurs = $neutres = [];
+	foreach (array_keys($cotes) as $cote) {
+		$valeurs["padding-$cote"] = astra_styles_cote($marge, $cote);
+	}
+	$regles = [['', $sel, $valeurs]];
+	// Neutralisation : une fois l'option enregistrée, Astra n'émet pas ses côtés vides ; ils prennent
+	// la marge des boutons (theme-button-padding), que css/astra-hfb.css masquerait. Sans marge des
+	// boutons réglée, celle-ci dépend de l'appareil (css/astra-dynamic.css : 15/30, 14/28, 12/24).
+	$boutons = $s['theme-button-padding'] ?? '';
+	$reglee = astra_styles_renseigne(astra_styles_ordi($boutons));
+	$medias = ['' => 0, '(max-width:921px)' => 1, '(max-width:544px)' => 2];
+	foreach ($medias as $media => $i) {
+		$d = [];
+		foreach ($cotes as $cote => $defauts) {
+			if ($valeurs["padding-$cote"] === '') {
+				$d["padding-$cote"] = $reglee ? astra_styles_cote($boutons, $cote, $defauts[0]) : $defauts[$i] . 'px';
+			}
+		}
+		if ($d && ($media === '' || !$reglee)) {
+			$regles[] = [$media, $sel, $d];
+		}
 	}
 	return $regles;
 }

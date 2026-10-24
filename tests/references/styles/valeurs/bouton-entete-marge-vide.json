@@ -1,0 +1,25 @@
+{
+	"section-hb-button-1-padding": {
+		"desktop": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"tablet": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"mobile": {
+			"top": "",
+			"right": "",
+			"bottom": "",
+			"left": ""
+		},
+		"desktop-unit": "px",
+		"tablet-unit": "px",
+		"mobile-unit": "px"
+	}
+}

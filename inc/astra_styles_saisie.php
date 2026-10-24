@@ -17,7 +17,7 @@ function astra_styles_sections(): array {
 		'menu_1' => '/^header-menu1-/',
 		'menu_2' => '/^header-menu2-/',
 		'bouton' => '/^(button-|theme-button-|font-[a-z]+-button$)/',
-		'bouton_entete' => '/^header-button1-/',
+		'bouton_entete' => '/^(header-button1-|section-hb-button-1-)/',
 		'identite' => '/^(?!(hba-|hbb-)?transparent-).*(site-title|site-tagline|logo-width)/',
 		'widget_1' => '/^footer-widget-1-/',
 		'widget_2' => '/^footer-widget-2-/',
@@ -34,7 +34,7 @@ function astra_styles_sections(): array {
 /** Clé de langue du libellé d'une option : les options d'éléments semblables la partagent. */
 function astra_styles_libelle(string $option): string {
 	$o = preg_replace(
-		['/^header-menu\d-/', '/^footer-widget-\d-/', '/^header-button1-/', '/^(header|footer)-social-1-/'],
+		['/^header-menu\d-/', '/^footer-widget-\d-/', '/^(header-button1|section-hb-button-1)-/', '/^(header|footer)-social-1-/'],
 		['menu-', 'widget-', 'bouton-entete-', 'social-'],
 		$option
 	);

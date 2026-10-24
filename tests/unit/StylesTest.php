@@ -153,6 +153,23 @@ final class StylesTest extends TestCase {
 		$this->assertStringContainsString('.ast-header-button-1 .ast-custom-button{border-top-left-radius:5px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;}', $css);
 	}
 
+	public function testMargeBoutonEnteteCommeAstra(): void {
+		$sel = '.ast-header-button-1[data-section*="section-hb-button-"] .ast-builder-button-wrap .ast-custom-button';
+		// Sans l'option : marge par défaut de css/astra-hfb.css, rien d'émis.
+		$this->assertStringNotContainsString($sel, astra_styles_css(['header-button1-text-color' => ['desktop' => '#111111']], self::HFB_MENU_BOUTON));
+		// Enregistrée vide, marge des boutons à 17 × 26 (Garden) : la marge des boutons, sur tous les appareils.
+		$css = astra_styles_css(self::valeurs('bouton-entete-marge'), self::HFB_MENU_BOUTON);
+		$this->assertStringContainsString($sel . '{padding-top:17px;padding-right:26px;padding-bottom:17px;padding-left:26px;}', $css);
+		$this->assertStringNotContainsString('@media (max-width:921px){' . $sel, $css);
+		// En partie réglée, sans marge des boutons : côtés vides selon l'appareil (15/30, 14/28, 12/24).
+		$css = astra_styles_css(self::valeurs('bouton-entete-marge-valeur'), self::HFB_MENU_BOUTON);
+		$this->assertStringContainsString($sel . '{padding-top:10px;padding-right:20px;}' . $sel . '{padding-bottom:15px;padding-left:30px;}', $css);
+		$this->assertStringContainsString('@media (max-width:921px){' . $sel . '{padding-bottom:14px;padding-left:28px;}}', $css);
+		$this->assertStringContainsString('@media (max-width:544px){' . $sel . '{padding-bottom:12px;padding-left:24px;}}', $css);
+		// Bouton absent de l'en-tête : rien.
+		$this->assertSame('', astra_styles_css(self::valeurs('bouton-entete-marge-vide'), ['entete_ordinateur' => ['primary' => ['primary_right' => ['menu-1']]]]));
+	}
+
 	public function testSoulignementBouton(): void {
 		$css = astra_styles_css(['font-extras-button' => ['text-decoration' => 'underline']], []);
 		// Blocs, boutons du thème, puis surcharge du soulignement des liens de contenu.
