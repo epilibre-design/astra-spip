@@ -1,0 +1,27 @@
+{
+  "wordpress": "7.1.3",
+  "astra": "4.13.8",
+  "configuration": "R13-pied-widgets-menus, theme-auto-version=4.13.8",
+  "largeur": 1280,
+  "avant": {
+    "role": "button",
+    "expandedCommande": "false",
+    "expandedLien": "false",
+    "displaySousMenu": "block",
+    "visibiliteSousMenu": "visible"
+  },
+  "apresEntree": {
+    "role": "button",
+    "expandedCommande": "false",
+    "expandedLien": "false",
+    "displaySousMenu": "block",
+    "visibiliteSousMenu": "visible"
+  },
+  "apresEspace": {
+    "role": "button",
+    "expandedCommande": "false",
+    "expandedLien": "true",
+    "displaySousMenu": "block",
+    "visibiliteSousMenu": "visible"
+  }
+}

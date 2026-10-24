@@ -1,0 +1,31 @@
+{
+  "wordpress": "7.1.3",
+  "astra": "4.13.8",
+  "archive_sha256": "3cce1a750dcb699429117a88987aa8f10be404374492eef94379d2c4df6a6572",
+  "configuration": "R2-entete-centre, theme-auto-version=4.13.8",
+  "javascript_site": false,
+  "moteur": "Chromium Playwright",
+  "mesures": {
+    "390": {
+      "body": "home blog wp-embed-responsive wp-theme-astra ast-desktop ast-separate-container ast-right-sidebar astra-4.13.8 group-blog ast-inherit-site-logo-transparent ast-hfb-header",
+      "desktop": "none",
+      "mobile": "block",
+      "liensMenuVisibles": 0,
+      "panneau": "hidden"
+    },
+    "768": {
+      "body": "home blog wp-embed-responsive wp-theme-astra ast-desktop ast-separate-container ast-right-sidebar astra-4.13.8 group-blog ast-inherit-site-logo-transparent ast-hfb-header",
+      "desktop": "none",
+      "mobile": "block",
+      "liensMenuVisibles": 0,
+      "panneau": "hidden"
+    },
+    "1280": {
+      "body": "home blog wp-embed-responsive wp-theme-astra ast-desktop ast-separate-container ast-right-sidebar astra-4.13.8 group-blog ast-inherit-site-logo-transparent ast-hfb-header",
+      "desktop": "block",
+      "mobile": "none",
+      "liensMenuVisibles": 2,
+      "panneau": "hidden"
+    }
+  }
+}
