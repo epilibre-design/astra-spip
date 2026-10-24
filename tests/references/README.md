@@ -90,6 +90,9 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 | R22-pied-alignements-ordinateur | Alignements réglés pour l'ordinateur seul : tablette et mobile prennent sa valeur |
 | R22-pied-alignements-tablette | Alignements réglés pour la tablette seule : sur ordinateur, copyright hérité et icônes sociales centrées |
 | R23-garden-compat | Valeurs de Garden de R18 à R22 ensemble (deux drapeaux, graisses, marge vide, alignements) |
+| R24-pied-marges | Marges intérieures des rangées principale et basse du pied de Garden (`styles/valeurs/marges-pied.json`) ; marges et largeur des colonnes comparées aux trois largeurs |
+| R24-marges-toutes | Les quinze options de marges (valeurs distinctes par appareil, unités mêlées, côtés en partie vides, marges extérieures négatives) ; rangées haute et basse de l'en-tête remplies comme dans R1, rangée haute du pied d'un texte |
+| R24-marges-rangees-vides | Mêmes marges, tablette sans unité pour la rangée principale de l'en-tête ; rangée haute de l'en-tête remplie sur mobile seulement, rangée basse vide, rangée haute du pied vide, rangée principale du pied remplie en zone 6 seulement (non affichée, comme dans Astra) |
 | P1-page | Page « Notre jardin » (`/?pagename=notre-jardin`), menu de pages à deux niveaux (`ref_menu_pages()`) |
 | P2-accueil | Même menu, page « Notre jardin » en page d'accueil statique (`/`) |
 | P3-page-pleine | Page « Plein écran », titre désactivé, conteneur `full-width-container` |
@@ -150,6 +153,17 @@ par la cascade (spécificité, puis ordre) la graisse de chaque titre (h1 à h6,
 titres des widgets h1 à h6, nom du site) : `css/main.min.css` puis ces règles côté WordPress,
 `css/main.min.css`, `css/astra-dynamic.css` et le CSS produit côté SPIP ; les deux doivent être
 égales.
+
+## Marges des rangées : attendus
+
+`capturer.sh` applique les références R24 (placement propre à chacune) et écrit, pour les valeurs
+`marges-pied`, `marges-toutes` et `marges-rangees-vides`, les règles de marges du CSS complet
+(`marges.py` : règles des sélecteurs des rangées, du pied entier et de l'en-tête entier qui ne
+déclarent que des marges) dans `attendus/<valeurs>.css`. `tests/unit/StylesMargesTest.php` exige
+que le CSS produit côté SPIP, avec le même placement, donne exactement ces règles, dans l'ordre
+(l'espace après la virgule des sélecteurs, qu'Astra ne retire pas ici, mise à part) : c'est la
+preuve des conditions d'émission, car une règle émise pour une rangée vide ne se voit pas dans les
+captures.
 
 Les références R18 à R23 passent par les clés `compatibilite` (méta `astra/compatibilite`) et
 `textes` (texte d'une page unique, remis à celui de l'installation à chaque configuration) de
