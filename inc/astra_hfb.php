@@ -294,6 +294,20 @@ function astra_hfb_repartition_appareils($valeur): array {
 }
 
 /**
+ * Vrai si une des zones 1 à 5 d'une rangée du pied normalisé a un élément : condition d'affichage
+ * de la rangée et d'émission de son CSS dans Astra (Astra_Builder_Helper::is_footer_row_empty(),
+ * template-parts/footer/builder/footer-row.php), qui ne regarde pas la zone 6.
+ */
+function astra_hfb_pied_rangee_remplie(array $pied, string $rangee): bool {
+	for ($i = 1; $i <= 5; $i++) {
+		if (!empty($pied[$rangee][$rangee . '_' . $i])) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
  * Rangées non vides d'un pied de page normalisé, avec leurs classes et leurs colonnes.
  */
 function astra_hfb_calculer_pied(array $items, array $rangees): array {
@@ -301,14 +315,12 @@ function astra_hfb_calculer_pied(array $items, array $rangees): array {
 	foreach (ASTRA_HFB_RANGEES as $r) {
 		$reglages = $rangees['pied_' . $r] ?? [];
 		$nombre = astra_hfb_nombre_colonnes($reglages);
+		if (!astra_hfb_pied_rangee_remplie($items, $r)) {
+			continue;
+		}
 		$colonnes = [];
-		$occupee = false;
 		for ($i = 1; $i <= $nombre; $i++) {
 			$colonnes[$i] = astra_hfb_decrire($items[$r][$r . '_' . $i] ?? [], 'pied');
-			$occupee = $occupee || $colonnes[$i];
-		}
-		if (!$occupee) {
-			continue;
 		}
 		$repartition = astra_hfb_repartition_appareils($reglages['repartition'] ?? '');
 		$resultat[] = [
