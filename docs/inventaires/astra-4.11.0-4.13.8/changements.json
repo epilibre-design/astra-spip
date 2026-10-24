@@ -1,0 +1,2214 @@
+{
+  "port_commit": "ff00edac591d10a092908031cb379cea83fd6513",
+  "versions": [
+    {
+      "version": "4.11.1",
+      "date_amont": "2025-05-20",
+      "entrees": 6
+    },
+    {
+      "version": "4.11.2",
+      "date_amont": "2025-06-05",
+      "entrees": 5
+    },
+    {
+      "version": "4.11.3",
+      "date_amont": "2025-06-17",
+      "entrees": 6
+    },
+    {
+      "version": "4.11.4",
+      "date_amont": "2025-07-01",
+      "entrees": 6
+    },
+    {
+      "version": "4.11.5",
+      "date_amont": "2025-07-01",
+      "entrees": 1
+    },
+    {
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "entrees": 8
+    },
+    {
+      "version": "4.11.7",
+      "date_amont": "2025-07-17",
+      "entrees": 1
+    },
+    {
+      "version": "4.11.8",
+      "date_amont": "2025-07-30",
+      "entrees": 6
+    },
+    {
+      "version": "4.11.9",
+      "date_amont": "2025-08-11",
+      "entrees": 4
+    },
+    {
+      "version": "4.11.10",
+      "date_amont": "2025-08-20",
+      "entrees": 6
+    },
+    {
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "entrees": 12
+    },
+    {
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "entrees": 8
+    },
+    {
+      "version": "4.11.13",
+      "date_amont": "2025-10-07",
+      "entrees": 6
+    },
+    {
+      "version": "4.11.14",
+      "date_amont": "2025-11-04",
+      "entrees": 6
+    },
+    {
+      "version": "4.11.15",
+      "date_amont": "2025-11-11",
+      "entrees": 1
+    },
+    {
+      "version": "4.11.16",
+      "date_amont": "2025-12-02",
+      "entrees": 1
+    },
+    {
+      "version": "4.11.17",
+      "date_amont": "2025-12-08",
+      "entrees": 7
+    },
+    {
+      "version": "4.11.18",
+      "date_amont": "2025-12-16",
+      "entrees": 7
+    },
+    {
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "entrees": 10
+    },
+    {
+      "version": "4.12.1",
+      "date_amont": "2026-01-21",
+      "entrees": 6
+    },
+    {
+      "version": "4.12.2",
+      "date_amont": "2026-02-05",
+      "entrees": 2
+    },
+    {
+      "version": "4.12.3",
+      "date_amont": "2026-02-06",
+      "entrees": 1
+    },
+    {
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "entrees": 9
+    },
+    {
+      "version": "4.12.5",
+      "date_amont": "2026-03-16",
+      "entrees": 2
+    },
+    {
+      "version": "4.12.6",
+      "date_amont": "2026-03-24",
+      "entrees": 4
+    },
+    {
+      "version": "4.12.7",
+      "date_amont": "2026-04-08",
+      "entrees": 4
+    },
+    {
+      "version": "4.13.0",
+      "date_amont": "2026-04-16",
+      "entrees": 3
+    },
+    {
+      "version": "4.13.1",
+      "date_amont": "2026-04-27",
+      "entrees": 5
+    },
+    {
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "entrees": 8
+    },
+    {
+      "version": "4.13.3",
+      "date_amont": "2026-05-20",
+      "entrees": 5
+    },
+    {
+      "version": "4.13.4",
+      "date_amont": "2026-06-02",
+      "entrees": 7
+    },
+    {
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "entrees": 11
+    },
+    {
+      "version": "4.13.6",
+      "date_amont": "2026-07-06",
+      "entrees": 2
+    },
+    {
+      "version": "4.13.7",
+      "date_amont": "2026-06-28",
+      "entrees": 7
+    },
+    {
+      "version": "4.13.8",
+      "date_amont": "2026-07-28",
+      "entrees": 1
+    }
+  ],
+  "statuts": {
+    "I": "Défaut hérité identifié",
+    "L": "Défaut hérité latent",
+    "E": "Équivalent déjà présent",
+    "H": "WordPress ou intégration absente",
+    "F": "Fonction non portée",
+    "V": "Qualification complémentaire"
+  },
+  "changements": [
+    {
+      "id": "4.11.1-01",
+      "version": "4.11.1",
+      "date_amont": "2025-05-20",
+      "nature_amont": "Improvement",
+      "resume": "Cohérence de l'icône de panier dans les contrôles de prévisualisation",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 250
+    },
+    {
+      "id": "4.11.1-02",
+      "version": "4.11.1",
+      "date_amont": "2025-05-20",
+      "nature_amont": "Improvement",
+      "resume": "Visibilité du texte pendant le chargement des polices",
+      "statut": "E",
+      "qualification": "Équivalent déjà présent",
+      "fiche": "FONT-01",
+      "source_ligne": 251
+    },
+    {
+      "id": "4.11.1-03",
+      "version": "4.11.1",
+      "date_amont": "2025-05-20",
+      "nature_amont": "Improvement",
+      "resume": "Chargement différé de données non critiques dans le Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 252
+    },
+    {
+      "id": "4.11.1-04",
+      "version": "4.11.1",
+      "date_amont": "2025-05-20",
+      "nature_amont": "Fix",
+      "resume": "Chargement du Customizer avec Astra Pro et Gravity Forms",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 253
+    },
+    {
+      "id": "4.11.1-05",
+      "version": "4.11.1",
+      "date_amont": "2025-05-20",
+      "nature_amont": "Fix",
+      "resume": "Taille relative des éléments inline code, kbd, tt et var",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "CSS-02",
+      "source_ligne": 254
+    },
+    {
+      "id": "4.11.1-06",
+      "version": "4.11.1",
+      "date_amont": "2025-05-20",
+      "nature_amont": "Fix",
+      "resume": "Changement d'onglet dans le Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 255
+    },
+    {
+      "id": "4.11.2-01",
+      "version": "4.11.2",
+      "date_amont": "2025-06-05",
+      "nature_amont": "New",
+      "resume": "Refonte du tableau de bord avec Force UI",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 243
+    },
+    {
+      "id": "4.11.2-02",
+      "version": "4.11.2",
+      "date_amont": "2025-06-05",
+      "nature_amont": "Improvement",
+      "resume": "Cohérence clavier des commandes du panneau off-canvas",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "NAV-01",
+      "source_ligne": 244
+    },
+    {
+      "id": "4.11.2-03",
+      "version": "4.11.2",
+      "date_amont": "2025-06-05",
+      "nature_amont": "Fix",
+      "resume": "Séparateurs de sous-menus responsives dans le panneau off-canvas",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 245
+    },
+    {
+      "id": "4.11.2-04",
+      "version": "4.11.2",
+      "date_amont": "2025-06-05",
+      "nature_amont": "Fix",
+      "resume": "Alignement RTL du texte du pied",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 246
+    },
+    {
+      "id": "4.11.2-05",
+      "version": "4.11.2",
+      "date_amont": "2025-06-05",
+      "nature_amont": "Fix",
+      "resume": "Onglets Spectra dans les mégamenus : fermeture du panneau évitée",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 247
+    },
+    {
+      "id": "4.11.3-01",
+      "version": "4.11.3",
+      "date_amont": "2025-06-17",
+      "nature_amont": "New",
+      "resume": "Métadonnées Astra dans l'éditeur Elementor",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 235
+    },
+    {
+      "id": "4.11.3-02",
+      "version": "4.11.3",
+      "date_amont": "2025-06-17",
+      "nature_amont": "Fix",
+      "resume": "Alignement des icônes de partage et fond transparent",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 236
+    },
+    {
+      "id": "4.11.3-03",
+      "version": "4.11.3",
+      "date_amont": "2025-06-17",
+      "nature_amont": "Fix",
+      "resume": "Fermeture du menu avec animations du sticky header",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 237
+    },
+    {
+      "id": "4.11.3-04",
+      "version": "4.11.3",
+      "date_amont": "2025-06-17",
+      "nature_amont": "Fix",
+      "resume": "Enregistrement de disposition du pied dans les brouillons du Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 238
+    },
+    {
+      "id": "4.11.3-05",
+      "version": "4.11.3",
+      "date_amont": "2025-06-17",
+      "nature_amont": "Fix",
+      "resume": "Enregistrement d'une sous-section dans le contrôle multisélection",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 239
+    },
+    {
+      "id": "4.11.3-06",
+      "version": "4.11.3",
+      "date_amont": "2025-06-17",
+      "nature_amont": "Fix",
+      "resume": "Marges des blocs Stack et Group dans l'éditeur",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 240
+    },
+    {
+      "id": "4.11.4-01",
+      "version": "4.11.4",
+      "date_amont": "2025-07-01",
+      "nature_amont": "Improvement",
+      "resume": "Navigation vers une ancre avec en-tête sticky",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 227
+    },
+    {
+      "id": "4.11.4-02",
+      "version": "4.11.4",
+      "date_amont": "2025-07-01",
+      "nature_amont": "Improvement",
+      "resume": "Accessibilité clavier du panier et de la galerie produit WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 228
+    },
+    {
+      "id": "4.11.4-03",
+      "version": "4.11.4",
+      "date_amont": "2025-07-01",
+      "nature_amont": "Improvement",
+      "resume": "Focus visible des images et liens de catégories, étiquettes et filtres",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 229
+    },
+    {
+      "id": "4.11.4-04",
+      "version": "4.11.4",
+      "date_amont": "2025-07-01",
+      "nature_amont": "Fix",
+      "resume": "Garde sur les règles de réécriture du fil d'Ariane",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 230
+    },
+    {
+      "id": "4.11.4-05",
+      "version": "4.11.4",
+      "date_amont": "2025-07-01",
+      "nature_amont": "Fix",
+      "resume": "Position d'une infobulle dans le Customizer WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 231
+    },
+    {
+      "id": "4.11.4-06",
+      "version": "4.11.4",
+      "date_amont": "2025-07-01",
+      "nature_amont": "Fix",
+      "resume": "Actualisation du bouton de disposition des rangées du pied dans le Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 232
+    },
+    {
+      "id": "4.11.5-01",
+      "version": "4.11.5",
+      "date_amont": "2025-07-01",
+      "nature_amont": "Autre",
+      "resume": "Ajustement du paquet pour les liens UTM de WordPress.org",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 224
+    },
+    {
+      "id": "4.11.6-01",
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "nature_amont": "Improvement",
+      "resume": "Fond de recherche instantanée basé sur une variable globale",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 214
+    },
+    {
+      "id": "4.11.6-02",
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "nature_amont": "Improvement",
+      "resume": "Rôles de repères des zones de widgets d'en-tête et de pied",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 215
+    },
+    {
+      "id": "4.11.6-03",
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "nature_amont": "Improvement",
+      "resume": "Filtre d'exclusion de types de contenus des métadonnées Astra",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 216
+    },
+    {
+      "id": "4.11.6-04",
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "nature_amont": "Improvement",
+      "resume": "Suppression du CSS WooCommerce généré lorsque WooCommerce est absent",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 217
+    },
+    {
+      "id": "4.11.6-05",
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "nature_amont": "Improvement",
+      "resume": "Cohérence des boutons entre l'éditeur et le frontend sur installation neuve",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 218
+    },
+    {
+      "id": "4.11.6-06",
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "nature_amont": "Fix",
+      "resume": "Bouton de quantité et Beaver Themer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 219
+    },
+    {
+      "id": "4.11.6-07",
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "nature_amont": "Fix",
+      "resume": "Mode sombre de WPForms avec génération de fichiers CSS",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 220
+    },
+    {
+      "id": "4.11.6-08",
+      "version": "4.11.6",
+      "date_amont": "2025-07-16",
+      "nature_amont": "Fix",
+      "resume": "Conflit de panier WooPack et d'en-tête Beaver Themer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 221
+    },
+    {
+      "id": "4.11.7-01",
+      "version": "4.11.7",
+      "date_amont": "2025-07-17",
+      "nature_amont": "Autre",
+      "resume": "Mise à jour de la bibliothèque d'enquête NPS",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 211
+    },
+    {
+      "id": "4.11.8-01",
+      "version": "4.11.8",
+      "date_amont": "2025-07-30",
+      "nature_amont": "New",
+      "resume": "SVG personnalisés dans les icônes sociales",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 203
+    },
+    {
+      "id": "4.11.8-02",
+      "version": "4.11.8",
+      "date_amont": "2025-07-30",
+      "nature_amont": "Improvement",
+      "resume": "Gestion du focus et de la touche Échap dans le panneau off-canvas",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "NAV-01",
+      "source_ligne": 204
+    },
+    {
+      "id": "4.11.8-03",
+      "version": "4.11.8",
+      "date_amont": "2025-07-30",
+      "nature_amont": "Fix",
+      "resume": "Alignement du compteur du mini-panier WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 205
+    },
+    {
+      "id": "4.11.8-04",
+      "version": "4.11.8",
+      "date_amont": "2025-07-30",
+      "nature_amont": "Fix",
+      "resume": "Affichage de l'icône de suppression des taxonomies dans le Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 206
+    },
+    {
+      "id": "4.11.8-05",
+      "version": "4.11.8",
+      "date_amont": "2025-07-30",
+      "nature_amont": "Fix",
+      "resume": "Maintien du panneau au clic sur un parent en mode cible lien",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 207
+    },
+    {
+      "id": "4.11.8-06",
+      "version": "4.11.8",
+      "date_amont": "2025-07-30",
+      "nature_amont": "Fix",
+      "resume": "Balisage de panier affiché dans le Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 208
+    },
+    {
+      "id": "4.11.9-01",
+      "version": "4.11.9",
+      "date_amont": "2025-08-11",
+      "nature_amont": "Improvement",
+      "resume": "Compatibilité Spectra v3",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 197
+    },
+    {
+      "id": "4.11.9-02",
+      "version": "4.11.9",
+      "date_amont": "2025-08-11",
+      "nature_amont": "Improvement",
+      "resume": "Accessibilité des éléments et commandes du Header Builder",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 198
+    },
+    {
+      "id": "4.11.9-03",
+      "version": "4.11.9",
+      "date_amont": "2025-08-11",
+      "nature_amont": "Improvement",
+      "resume": "Priorité des styles des blocs GenerateBlocks",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 199
+    },
+    {
+      "id": "4.11.9-04",
+      "version": "4.11.9",
+      "date_amont": "2025-08-11",
+      "nature_amont": "Fix",
+      "resume": "Synchronisation des métadonnées entre WordPress et Elementor",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 200
+    },
+    {
+      "id": "4.11.10-01",
+      "version": "4.11.10",
+      "date_amont": "2025-08-20",
+      "nature_amont": "Improvement",
+      "resume": "Identifiants uniques des menus desktop et mobile",
+      "statut": "E",
+      "qualification": "Équivalent déjà présent",
+      "fiche": "ID-01",
+      "source_ligne": 189
+    },
+    {
+      "id": "4.11.10-02",
+      "version": "4.11.10",
+      "date_amont": "2025-08-20",
+      "nature_amont": "Improvement",
+      "resume": "Panneau fermé retiré de l'arbre d'accessibilité",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "NAV-01",
+      "source_ligne": 190
+    },
+    {
+      "id": "4.11.10-03",
+      "version": "4.11.10",
+      "date_amont": "2025-08-20",
+      "nature_amont": "Fix",
+      "resume": "Dépendance sprintf du tableau de bord avec Gutenberg",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 191
+    },
+    {
+      "id": "4.11.10-04",
+      "version": "4.11.10",
+      "date_amont": "2025-08-20",
+      "nature_amont": "Fix",
+      "resume": "Présentation des contrôles du Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 192
+    },
+    {
+      "id": "4.11.10-05",
+      "version": "4.11.10",
+      "date_amont": "2025-08-20",
+      "nature_amont": "Fix",
+      "resume": "Synchronisation du titre masqué dans Elementor",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 193
+    },
+    {
+      "id": "4.11.10-06",
+      "version": "4.11.10",
+      "date_amont": "2025-08-20",
+      "nature_amont": "Fix",
+      "resume": "Défilement dans Beaver Builder avec navigation off-canvas",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 194
+    },
+    {
+      "id": "4.11.11-01",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Improvement",
+      "resume": "Chargement des boutons de quantité WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 175
+    },
+    {
+      "id": "4.11.11-02",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Improvement",
+      "resume": "Inversion gauche/droite des mises en page pour RTL",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 176
+    },
+    {
+      "id": "4.11.11-03",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Improvement",
+      "resume": "Interface d'identité du site dans le guide de styles",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 177
+    },
+    {
+      "id": "4.11.11-04",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Improvement",
+      "resume": "Filtre d'application des réglages Elementor aux publications vides",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 178
+    },
+    {
+      "id": "4.11.11-05",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Improvement",
+      "resume": "Détection des palettes sombres personnalisées",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 179
+    },
+    {
+      "id": "4.11.11-06",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Improvement",
+      "resume": "Respect des attributs SVG explicites",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 180
+    },
+    {
+      "id": "4.11.11-07",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Improvement",
+      "resume": "Filtre HTML autorisé dans les widgets HTML du builder",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 181
+    },
+    {
+      "id": "4.11.11-08",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Fix",
+      "resume": "Spécificité du sélecteur de marge du copyright sur les trois appareils",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "ABS-01",
+      "source_ligne": 182
+    },
+    {
+      "id": "4.11.11-09",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Fix",
+      "resume": "Conservation des éléments select et option dans les widgets HTML",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 183
+    },
+    {
+      "id": "4.11.11-10",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Fix",
+      "resume": "Tailles responsives du titre d'archive",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 184
+    },
+    {
+      "id": "4.11.11-11",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Fix",
+      "resume": "CSS dynamique du titre de recherche",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 185
+    },
+    {
+      "id": "4.11.11-12",
+      "version": "4.11.11",
+      "date_amont": "2025-09-09",
+      "nature_amont": "Fix",
+      "resume": "Cache CSS Elementor après modification du réglage de titre",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 186
+    },
+    {
+      "id": "4.11.12-01",
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "nature_amont": "New",
+      "resume": "Parcours initial de configuration Astra et Starter Templates",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 165
+    },
+    {
+      "id": "4.11.12-02",
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "nature_amont": "Improvement",
+      "resume": "Compatibilité du catalogue LifterLMS",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 166
+    },
+    {
+      "id": "4.11.12-03",
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "nature_amont": "Improvement",
+      "resume": "Initialisation du menu mobile annoncée au DOMContentLoaded",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "NAV-04",
+      "source_ligne": 167
+    },
+    {
+      "id": "4.11.12-04",
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "nature_amont": "Improvement",
+      "resume": "Styles du bouton du mini-panier vide WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 168
+    },
+    {
+      "id": "4.11.12-05",
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "nature_amont": "Fix",
+      "resume": "Visibilité du logo lorsque le menu principal est vide",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 169
+    },
+    {
+      "id": "4.11.12-06",
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "nature_amont": "Fix",
+      "resume": "Actualisation d'aria-expanded du bouton dans les panneaux flyout et plein écran",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "NAV-01",
+      "source_ligne": 170
+    },
+    {
+      "id": "4.11.12-07",
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "nature_amont": "Fix",
+      "resume": "Prise en compte des espacements des pages uniques et archives",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 171
+    },
+    {
+      "id": "4.11.12-08",
+      "version": "4.11.12",
+      "date_amont": "2025-09-16",
+      "nature_amont": "Fix",
+      "resume": "Position du sélecteur de couleur des articles apparentés",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 172
+    },
+    {
+      "id": "4.11.13-01",
+      "version": "4.11.13",
+      "date_amont": "2025-10-07",
+      "nature_amont": "Improvement",
+      "resume": "Chargement différé des polices Google dans le Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 157
+    },
+    {
+      "id": "4.11.13-02",
+      "version": "4.11.13",
+      "date_amont": "2025-10-07",
+      "nature_amont": "Improvement",
+      "resume": "Compatibilité du catalogue LifterLMS",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 158
+    },
+    {
+      "id": "4.11.13-03",
+      "version": "4.11.13",
+      "date_amont": "2025-10-07",
+      "nature_amont": "Improvement",
+      "resume": "Espacements du contrôle de couleur des filtres d'articles",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 159
+    },
+    {
+      "id": "4.11.13-04",
+      "version": "4.11.13",
+      "date_amont": "2025-10-07",
+      "nature_amont": "Fix",
+      "resume": "Proportions des contenus Vimeo et YouTube intégrés",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "EMBED-01",
+      "source_ligne": 160
+    },
+    {
+      "id": "4.11.13-05",
+      "version": "4.11.13",
+      "date_amont": "2025-10-07",
+      "nature_amont": "Fix",
+      "resume": "Variable JavaScript WooCommerce manquante avec le panier EDD",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 161
+    },
+    {
+      "id": "4.11.13-06",
+      "version": "4.11.13",
+      "date_amont": "2025-10-07",
+      "nature_amont": "Fix",
+      "resume": "Interaction du menu off-canvas avec le sticky header",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 162
+    },
+    {
+      "id": "4.11.14-01",
+      "version": "4.11.14",
+      "date_amont": "2025-11-04",
+      "nature_amont": "Improvement",
+      "resume": "Accessibilité du lien d'évitement vers le contenu",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 149
+    },
+    {
+      "id": "4.11.14-02",
+      "version": "4.11.14",
+      "date_amont": "2025-11-04",
+      "nature_amont": "Fix",
+      "resume": "Affichage du titre du forum BuddyBoss",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 150
+    },
+    {
+      "id": "4.11.14-03",
+      "version": "4.11.14",
+      "date_amont": "2025-11-04",
+      "nature_amont": "Fix",
+      "resume": "Désactivation des quantités pour les produits vendus à l'unité",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 151
+    },
+    {
+      "id": "4.11.14-04",
+      "version": "4.11.14",
+      "date_amont": "2025-11-04",
+      "nature_amont": "Fix",
+      "resume": "Liste des graisses des polices Google dans le Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 152
+    },
+    {
+      "id": "4.11.14-05",
+      "version": "4.11.14",
+      "date_amont": "2025-11-04",
+      "nature_amont": "Fix",
+      "resume": "Largeur des blocs de colonnes dans certains cas",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "BLOC-01",
+      "source_ligne": 153
+    },
+    {
+      "id": "4.11.14-06",
+      "version": "4.11.14",
+      "date_amont": "2025-11-04",
+      "nature_amont": "Fix",
+      "resume": "Interface du sélecteur de couleur des archives",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 154
+    },
+    {
+      "id": "4.11.15-01",
+      "version": "4.11.15",
+      "date_amont": "2025-11-11",
+      "nature_amont": "Fix",
+      "resume": "Avertissement ReactDOM du Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 146
+    },
+    {
+      "id": "4.11.16-01",
+      "version": "4.11.16",
+      "date_amont": "2025-12-02",
+      "nature_amont": "Improvement",
+      "resume": "Compatibilité WordPress 6.9",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 143
+    },
+    {
+      "id": "4.11.17-01",
+      "version": "4.11.17",
+      "date_amont": "2025-12-08",
+      "nature_amont": "New",
+      "resume": "Option de désactivation des articles apparentés par publication",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 134
+    },
+    {
+      "id": "4.11.17-02",
+      "version": "4.11.17",
+      "date_amont": "2025-12-08",
+      "nature_amont": "Improvement",
+      "resume": "Pleine largeur des catégories et étiquettes produits WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 135
+    },
+    {
+      "id": "4.11.17-03",
+      "version": "4.11.17",
+      "date_amont": "2025-12-08",
+      "nature_amont": "Improvement",
+      "resume": "Traduction des libellés ARIA et retrait de textes redondants pour lecteurs d'écran",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 136
+    },
+    {
+      "id": "4.11.17-04",
+      "version": "4.11.17",
+      "date_amont": "2025-12-08",
+      "nature_amont": "Improvement",
+      "resume": "Compatibilité du Customizer avec Email Customizer Pro",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 137
+    },
+    {
+      "id": "4.11.17-05",
+      "version": "4.11.17",
+      "date_amont": "2025-12-08",
+      "nature_amont": "Improvement",
+      "resume": "Position des fenêtres de configuration des widgets dans le builder",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 138
+    },
+    {
+      "id": "4.11.17-06",
+      "version": "4.11.17",
+      "date_amont": "2025-12-08",
+      "nature_amont": "Improvement",
+      "resume": "Alignement du produit SureCart",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 139
+    },
+    {
+      "id": "4.11.17-07",
+      "version": "4.11.17",
+      "date_amont": "2025-12-08",
+      "nature_amont": "Fix",
+      "resume": "Boutons de quantité pour les stocks limités à une unité",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 140
+    },
+    {
+      "id": "4.11.18-01",
+      "version": "4.11.18",
+      "date_amont": "2025-12-16",
+      "nature_amont": "Improvement",
+      "resume": "Compatibilité BuddyPress",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 125
+    },
+    {
+      "id": "4.11.18-02",
+      "version": "4.11.18",
+      "date_amont": "2025-12-16",
+      "nature_amont": "Improvement",
+      "resume": "Identifiants de recherche uniques avec duplication du sticky header",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 126
+    },
+    {
+      "id": "4.11.18-03",
+      "version": "4.11.18",
+      "date_amont": "2025-12-16",
+      "nature_amont": "Improvement",
+      "resume": "Sélecteurs WooCommerce restreints pour éviter les pages non commerciales",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 127
+    },
+    {
+      "id": "4.11.18-04",
+      "version": "4.11.18",
+      "date_amont": "2025-12-16",
+      "nature_amont": "Improvement",
+      "resume": "Proportions des contenus intégrés dans l'éditeur classique",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "EMBED-01",
+      "source_ligne": 128
+    },
+    {
+      "id": "4.11.18-05",
+      "version": "4.11.18",
+      "date_amont": "2025-12-16",
+      "nature_amont": "Improvement",
+      "resume": "Palettes sombres dans le guide de styles",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 129
+    },
+    {
+      "id": "4.11.18-06",
+      "version": "4.11.18",
+      "date_amont": "2025-12-16",
+      "nature_amont": "Fix",
+      "resume": "HTML de l'icône de fermeture du panier fournie par filtre",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 130
+    },
+    {
+      "id": "4.11.18-07",
+      "version": "4.11.18",
+      "date_amont": "2025-12-16",
+      "nature_amont": "Fix",
+      "resume": "Absence d'étoiles vides pour les produits sans avis",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 131
+    },
+    {
+      "id": "4.12.0-01",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "New",
+      "resume": "Panneaux du Customizer accessibles dans la palette de commandes WordPress",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 113
+    },
+    {
+      "id": "4.12.0-02",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "New",
+      "resume": "Onglet d'apprentissage dans le tableau de bord",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 114
+    },
+    {
+      "id": "4.12.0-03",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "Improvement",
+      "resume": "Dégradé de superposition du fond des archives en mode couverture",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 115
+    },
+    {
+      "id": "4.12.0-04",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "Improvement",
+      "resume": "Filtre de produits WooCommerce dans le panneau latéral",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 116
+    },
+    {
+      "id": "4.12.0-05",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "Improvement",
+      "resume": "Centrage de la page WooCommerce de maintenance",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 117
+    },
+    {
+      "id": "4.12.0-06",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "Improvement",
+      "resume": "Traduction des préfixes d'archives de types de contenus du fil d'Ariane",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 118
+    },
+    {
+      "id": "4.12.0-07",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "Fix",
+      "resume": "Accès aux métadonnées Astra depuis Elementor",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 119
+    },
+    {
+      "id": "4.12.0-08",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "Fix",
+      "resume": "Garde de chargement du polyfill flexibility avec les plugins d'optimisation",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 120
+    },
+    {
+      "id": "4.12.0-09",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "Fix",
+      "resume": "Affichage de l'unité rem dans les contrôles typographiques",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 121
+    },
+    {
+      "id": "4.12.0-10",
+      "version": "4.12.0",
+      "date_amont": "2026-01-06",
+      "nature_amont": "Fix",
+      "resume": "Contour du focus des boutons dans les réglages d'accessibilité",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 122
+    },
+    {
+      "id": "4.12.1-01",
+      "version": "4.12.1",
+      "date_amont": "2026-01-21",
+      "nature_amont": "Improvement",
+      "resume": "Filtre d'icône de flèche des sous-menus mobiles",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 105
+    },
+    {
+      "id": "4.12.1-02",
+      "version": "4.12.1",
+      "date_amont": "2026-01-21",
+      "nature_amont": "Improvement",
+      "resume": "Couleur des labels et légendes basée sur une variable globale",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "CSS-04",
+      "source_ligne": 106
+    },
+    {
+      "id": "4.12.1-03",
+      "version": "4.12.1",
+      "date_amont": "2026-01-21",
+      "nature_amont": "Improvement",
+      "resume": "Padding du bloc WooCommerce Product Collection",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 107
+    },
+    {
+      "id": "4.12.1-04",
+      "version": "4.12.1",
+      "date_amont": "2026-01-21",
+      "nature_amont": "Fix",
+      "resume": "Survol du bouton d'inscription à une formation",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 108
+    },
+    {
+      "id": "4.12.1-05",
+      "version": "4.12.1",
+      "date_amont": "2026-01-21",
+      "nature_amont": "Fix",
+      "resume": "Padding du menu avec Cambria via Adobe Fonts",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 109
+    },
+    {
+      "id": "4.12.1-06",
+      "version": "4.12.1",
+      "date_amont": "2026-01-21",
+      "nature_amont": "Fix",
+      "resume": "Affichage RTL du bouton de remise à zéro du Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 110
+    },
+    {
+      "id": "4.12.2-01",
+      "version": "4.12.2",
+      "date_amont": "2026-02-05",
+      "nature_amont": "Improvement",
+      "resume": "Rôles ARIA compatibles avec aria-expanded pour les commandes de sous-menu",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "NAV-02",
+      "source_ligne": 101
+    },
+    {
+      "id": "4.12.2-02",
+      "version": "4.12.2",
+      "date_amont": "2026-02-05",
+      "nature_amont": "Fix",
+      "resume": "Clic de la recherche dans le panneau off-canvas sur mobile et tablette",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "NAV-05",
+      "source_ligne": 102
+    },
+    {
+      "id": "4.12.3-01",
+      "version": "4.12.3",
+      "date_amont": "2026-02-06",
+      "nature_amont": "Fix",
+      "resume": "Styles de recherche de la barre d'administration WordPress",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 98
+    },
+    {
+      "id": "4.12.4-01",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "New",
+      "resume": "Option pour masquer l'onglet d'apprentissage dans le tableau de bord",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 87
+    },
+    {
+      "id": "4.12.4-02",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "Improvement",
+      "resume": "Présentation WooCommerce dans le tableau de bord",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 88
+    },
+    {
+      "id": "4.12.4-03",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "Improvement",
+      "resume": "Fermeture du sous-menu précédent lorsque le focus passe à un autre",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "NAV-03",
+      "source_ligne": 89
+    },
+    {
+      "id": "4.12.4-04",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "Improvement",
+      "resume": "Filtre de désactivation des métadonnées Astra dans Elementor",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 90
+    },
+    {
+      "id": "4.12.4-05",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "Improvement",
+      "resume": "Préfixe de mode sombre SureCart dans les styles générés",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 91
+    },
+    {
+      "id": "4.12.4-06",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "Fix",
+      "resume": "Sélecteurs de quantité WooCommerce limités pour éviter les conflits avec d'autres formulaires",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 92
+    },
+    {
+      "id": "4.12.4-07",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "Fix",
+      "resume": "Enregistrement des clés de métadonnées des types exclus dans REST",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 93
+    },
+    {
+      "id": "4.12.4-08",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "Fix",
+      "resume": "Espacements indésirables du panneau off-canvas dans certains cas",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 94
+    },
+    {
+      "id": "4.12.4-09",
+      "version": "4.12.4",
+      "date_amont": "2026-03-10",
+      "nature_amont": "Security",
+      "resume": "Correction XSS stockée des métadonnées d'arrière-plan de publication",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "SEC-01",
+      "source_ligne": 95
+    },
+    {
+      "id": "4.12.5-01",
+      "version": "4.12.5",
+      "date_amont": "2026-03-16",
+      "nature_amont": "Fix",
+      "resume": "Nonce de soumission des avis LifterLMS",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 83
+    },
+    {
+      "id": "4.12.5-02",
+      "version": "4.12.5",
+      "date_amont": "2026-03-16",
+      "nature_amont": "Security",
+      "resume": "Durcissement de sécurité annoncé sans détail exhaustif dans la note",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "SEC-01",
+      "source_ligne": 84
+    },
+    {
+      "id": "4.12.6-01",
+      "version": "4.12.6",
+      "date_amont": "2026-03-24",
+      "nature_amont": "Improvement",
+      "resume": "Suppression de polyfills anciens et optimisation des ressources frontend",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 77
+    },
+    {
+      "id": "4.12.6-02",
+      "version": "4.12.6",
+      "date_amont": "2026-03-24",
+      "nature_amont": "Improvement",
+      "resume": "Activation au clavier des commandes de sous-menu",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "NAV-02",
+      "source_ligne": 78
+    },
+    {
+      "id": "4.12.6-03",
+      "version": "4.12.6",
+      "date_amont": "2026-03-24",
+      "nature_amont": "Fix",
+      "resume": "Hauteur du menu compatible avec la réduction et le masquage du sticky header",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 79
+    },
+    {
+      "id": "4.12.6-04",
+      "version": "4.12.6",
+      "date_amont": "2026-03-24",
+      "nature_amont": "Fix",
+      "resume": "Suppression d'un bouton EDD panier dupliqué dans les archives",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 80
+    },
+    {
+      "id": "4.12.7-01",
+      "version": "4.12.7",
+      "date_amont": "2026-04-08",
+      "nature_amont": "Fix",
+      "resume": "Styles des boutons Infobox Spectra v2 dans l'éditeur",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 71
+    },
+    {
+      "id": "4.12.7-02",
+      "version": "4.12.7",
+      "date_amont": "2026-04-08",
+      "nature_amont": "Fix",
+      "resume": "Séparation des comportements panier du catalogue et du produit WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 72
+    },
+    {
+      "id": "4.12.7-03",
+      "version": "4.12.7",
+      "date_amont": "2026-04-08",
+      "nature_amont": "Fix",
+      "resume": "Garde PHP 8 du fil d'Ariane face à des taxonomies invalides",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 73
+    },
+    {
+      "id": "4.12.7-04",
+      "version": "4.12.7",
+      "date_amont": "2026-04-08",
+      "nature_amont": "Fix",
+      "resume": "Correction des variables de repli CSS qui n'étaient pas enveloppées dans var()",
+      "statut": "L",
+      "qualification": "Défaut hérité latent",
+      "fiche": "CSS-01",
+      "source_ligne": 74
+    },
+    {
+      "id": "4.13.0-01",
+      "version": "4.13.0",
+      "date_amont": "2026-04-16",
+      "nature_amont": "New",
+      "resume": "Nouveaux réglages MCP et API Abilities pour la gestion du thème",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 66
+    },
+    {
+      "id": "4.13.0-02",
+      "version": "4.13.0",
+      "date_amont": "2026-04-16",
+      "nature_amont": "Improvement",
+      "resume": "Réorganisation du chargement et des prévisualisations du Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 67
+    },
+    {
+      "id": "4.13.0-03",
+      "version": "4.13.0",
+      "date_amont": "2026-04-16",
+      "nature_amont": "Improvement",
+      "resume": "Masquage de la palette de commandes Astra lorsque WordPress 7 en fournit une",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 68
+    },
+    {
+      "id": "4.13.1-01",
+      "version": "4.13.1",
+      "date_amont": "2026-04-27",
+      "nature_amont": "Fix",
+      "resume": "Actualisation du mini-panier après ajout depuis des blocs WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 59
+    },
+    {
+      "id": "4.13.1-02",
+      "version": "4.13.1",
+      "date_amont": "2026-04-27",
+      "nature_amont": "Fix",
+      "resume": "Langue du frontend conservée pour les chaînes du Customizer avec WPML",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 60
+    },
+    {
+      "id": "4.13.1-03",
+      "version": "4.13.1",
+      "date_amont": "2026-04-27",
+      "nature_amont": "Fix",
+      "resume": "Priorité des couleurs du bouton de menu sur le CSS Elementor",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 61
+    },
+    {
+      "id": "4.13.1-04",
+      "version": "4.13.1",
+      "date_amont": "2026-04-27",
+      "nature_amont": "Fix",
+      "resume": "Survol des sous-menus : suppression de la propagation aux liens parents imbriqués",
+      "statut": "L",
+      "qualification": "Défaut hérité latent",
+      "fiche": "CSS-03",
+      "source_ligne": 62
+    },
+    {
+      "id": "4.13.1-05",
+      "version": "4.13.1",
+      "date_amont": "2026-04-27",
+      "nature_amont": "Fix",
+      "resume": "Prévention du clignotement mobile de l'en-tête avec logo, titre et slogan en ligne",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "RESP-02",
+      "source_ligne": 63
+    },
+    {
+      "id": "4.13.2-01",
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "nature_amont": "New",
+      "resume": "Unités rem pour interligne et espacement des lettres",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 49
+    },
+    {
+      "id": "4.13.2-02",
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "nature_amont": "New",
+      "resume": "Commandes WP-CLI pour les capacités de l'API Abilities",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 50
+    },
+    {
+      "id": "4.13.2-03",
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "nature_amont": "Improvement",
+      "resume": "Taille stable de l'icône de fermeture off-canvas en présence de défilement ou de padding",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "",
+      "source_ligne": 51
+    },
+    {
+      "id": "4.13.2-04",
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "nature_amont": "Fix",
+      "resume": "Synchronisation du bouton sticky après disparition de l'en-tête fixe",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 52
+    },
+    {
+      "id": "4.13.2-05",
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "nature_amont": "Fix",
+      "resume": "Libellés longs et entités HTML dans les contrôles de types de contenus",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 53
+    },
+    {
+      "id": "4.13.2-06",
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "nature_amont": "Fix",
+      "resume": "Dépendance inutile de wp-block-editor retirée du Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 54
+    },
+    {
+      "id": "4.13.2-07",
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "nature_amont": "Fix",
+      "resume": "Espacements de listes et citations dans l'éditeur avec conteneurs séparés",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 55
+    },
+    {
+      "id": "4.13.2-08",
+      "version": "4.13.2",
+      "date_amont": "2026-05-12",
+      "nature_amont": "Fix",
+      "resume": "Suppression d'un H1 dupliqué lorsque le filtre de titre du site est employé",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 56
+    },
+    {
+      "id": "4.13.3-01",
+      "version": "4.13.3",
+      "date_amont": "2026-05-20",
+      "nature_amont": "New",
+      "resume": "Widget d'assistance IA dans le tableau de bord",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 42
+    },
+    {
+      "id": "4.13.3-02",
+      "version": "4.13.3",
+      "date_amont": "2026-05-20",
+      "nature_amont": "Improvement",
+      "resume": "Compatibilité WordPress 7",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 43
+    },
+    {
+      "id": "4.13.3-03",
+      "version": "4.13.3",
+      "date_amont": "2026-05-20",
+      "nature_amont": "Improvement",
+      "resume": "Filtres d'activation du schéma sémantique du menu du builder",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 44
+    },
+    {
+      "id": "4.13.3-04",
+      "version": "4.13.3",
+      "date_amont": "2026-05-20",
+      "nature_amont": "Fix",
+      "resume": "Traductions des shortcodes WPML après mise à jour 4.13.1",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 45
+    },
+    {
+      "id": "4.13.3-05",
+      "version": "4.13.3",
+      "date_amont": "2026-05-20",
+      "nature_amont": "Fix",
+      "resume": "Affichage complet des étoiles du widget WooCommerce historique",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 46
+    },
+    {
+      "id": "4.13.4-01",
+      "version": "4.13.4",
+      "date_amont": "2026-06-02",
+      "nature_amont": "New",
+      "resume": "Option pour afficher l'assistant IA dans le tableau de bord",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 33
+    },
+    {
+      "id": "4.13.4-02",
+      "version": "4.13.4",
+      "date_amont": "2026-06-02",
+      "nature_amont": "Fix",
+      "resume": "Visibilité des deux en-têtes et du bouton à la limite mobile/desktop",
+      "statut": "V",
+      "qualification": "Qualification complémentaire",
+      "fiche": "RESP-01",
+      "source_ligne": 34
+    },
+    {
+      "id": "4.13.4-03",
+      "version": "4.13.4",
+      "date_amont": "2026-06-02",
+      "nature_amont": "Fix",
+      "resume": "Prise en compte du drapeau de contour de focus importé",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 35
+    },
+    {
+      "id": "4.13.4-04",
+      "version": "4.13.4",
+      "date_amont": "2026-06-02",
+      "nature_amont": "Fix",
+      "resume": "Priorité du survol des boutons Elementor sur la couleur des liens visités",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 36
+    },
+    {
+      "id": "4.13.4-05",
+      "version": "4.13.4",
+      "date_amont": "2026-06-02",
+      "nature_amont": "Fix",
+      "resume": "Suppression de la surcharge globale de window.open dans l'administration",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 37
+    },
+    {
+      "id": "4.13.4-06",
+      "version": "4.13.4",
+      "date_amont": "2026-06-02",
+      "nature_amont": "Fix",
+      "resume": "Évitement d'erreurs PHP des accès au système de fichiers via FTP sans identifiants",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 38
+    },
+    {
+      "id": "4.13.4-07",
+      "version": "4.13.4",
+      "date_amont": "2026-06-02",
+      "nature_amont": "Fix",
+      "resume": "Attente du chargement des icônes SVG dans les contrôles du Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 39
+    },
+    {
+      "id": "4.13.5-01",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Improvement",
+      "resume": "Agrandissement de la cible tactile des flèches de sous-menus imbriqués",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 20
+    },
+    {
+      "id": "4.13.5-02",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Shortcodes dans les href : correction de l'ordre de filtrage, régression depuis 4.11.11",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 21
+    },
+    {
+      "id": "4.13.5-03",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Masquage du support et de l'assistant IA en marque blanche",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 22
+    },
+    {
+      "id": "4.13.5-04",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Chargement des styles dans les iframes de l'éditeur WordPress 7",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 23
+    },
+    {
+      "id": "4.13.5-05",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Protection des accès JavaScript aux iframes d'éditeur cross-origin",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 24
+    },
+    {
+      "id": "4.13.5-06",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Fermeture du panier sans retour du défilement au haut de page",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 25
+    },
+    {
+      "id": "4.13.5-07",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Type entier du nombre de produits apparentés WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 26
+    },
+    {
+      "id": "4.13.5-08",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Types du schéma MCP de mise à jour de palette",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 27
+    },
+    {
+      "id": "4.13.5-09",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Icône du plugin de récupération de panier dans le tableau de bord",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 28
+    },
+    {
+      "id": "4.13.5-10",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Sélecteur de couleur conservé ouvert pendant le défilement du Customizer",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 29
+    },
+    {
+      "id": "4.13.5-11",
+      "version": "4.13.5",
+      "date_amont": "2026-06-30",
+      "nature_amont": "Fix",
+      "resume": "Libellés des réseaux dans le sélecteur d'icônes SVG",
+      "statut": "E",
+      "qualification": "Équivalent déjà présent",
+      "fiche": "",
+      "source_ligne": 30
+    },
+    {
+      "id": "4.13.6-01",
+      "version": "4.13.6",
+      "date_amont": "2026-07-06",
+      "nature_amont": "Fix",
+      "resume": "Annulation du filtrage excessif des sorties de shortcodes introduit en 4.13.5",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 16
+    },
+    {
+      "id": "4.13.6-02",
+      "version": "4.13.6",
+      "date_amont": "2026-07-06",
+      "nature_amont": "Fix",
+      "resume": "Taille du texte du corps : zéro entier ignoré correctement sous PHP 8",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "ABS-02",
+      "source_ligne": 17
+    },
+    {
+      "id": "4.13.7-01",
+      "version": "4.13.7",
+      "date_amont": "2026-06-28",
+      "nature_amont": "Improvement",
+      "resume": "Espacement quantité et prix des abonnements au checkout WooCommerce",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 7
+    },
+    {
+      "id": "4.13.7-02",
+      "version": "4.13.7",
+      "date_amont": "2026-06-28",
+      "nature_amont": "Improvement",
+      "resume": "Protection des préfixes téléphone, e-mail et WhatsApp déjà fournis",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "SOC-02",
+      "source_ligne": 8
+    },
+    {
+      "id": "4.13.7-03",
+      "version": "4.13.7",
+      "date_amont": "2026-06-28",
+      "nature_amont": "Fix",
+      "resume": "Conservation des shortcodes du builder, notamment dans href",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 9
+    },
+    {
+      "id": "4.13.7-04",
+      "version": "4.13.7",
+      "date_amont": "2026-06-28",
+      "nature_amont": "Fix",
+      "resume": "URL des polices locales rendues relatives à la racine pour les installations multilingues multi-domaines",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 10
+    },
+    {
+      "id": "4.13.7-05",
+      "version": "4.13.7",
+      "date_amont": "2026-06-28",
+      "nature_amont": "Fix",
+      "resume": "Suppression de l'identifiant SVG email qui entrait en collision avec un champ de checkout",
+      "statut": "I",
+      "qualification": "Défaut hérité identifié",
+      "fiche": "SOC-01",
+      "source_ligne": 11
+    },
+    {
+      "id": "4.13.7-06",
+      "version": "4.13.7",
+      "date_amont": "2026-06-28",
+      "nature_amont": "Fix",
+      "resume": "Maintien du menu desktop ouvert au clic sur un parent en mode cible lien",
+      "statut": "F",
+      "qualification": "Fonction non portée",
+      "fiche": "",
+      "source_ligne": 12
+    },
+    {
+      "id": "4.13.7-07",
+      "version": "4.13.7",
+      "date_amont": "2026-06-28",
+      "nature_amont": "Fix",
+      "resume": "Gestion de WP_Error sur la route REST des styles globaux Elementor",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 13
+    },
+    {
+      "id": "4.13.8-01",
+      "version": "4.13.8",
+      "date_amont": "2026-07-28",
+      "nature_amont": "Fix",
+      "resume": "Régression de palette Elementor introduite en 4.13.7",
+      "statut": "H",
+      "qualification": "WordPress ou intégration absente",
+      "fiche": "",
+      "source_ligne": 4
+    }
+  ]
+}
