@@ -174,6 +174,9 @@ function astra_configurations_reference(): array {
 			'rubrique' => 'Jardinage',
 			'styles' => ['transparent-header-enable' => 1] + json_decode(file_get_contents(dirname(__DIR__) . '/references/transparent/valeurs/garden.json'), true),
 		],
+		'R18-compat-sous-menu' => [
+			'compatibilite' => ['submenu-below-header' => false],
+		],
 		'P1-page' => [
 			'page' => 'notre_jardin',
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],

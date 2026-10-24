@@ -19,6 +19,7 @@ include_once __DIR__ . '/inc/astra_hfb_saisie.php';
 include_once __DIR__ . '/inc/astra_pages.php';
 include_once __DIR__ . '/inc/astra_styles_saisie.php';
 include_once __DIR__ . '/inc/astra_entete_transparent.php';
+include_once __DIR__ . '/inc/astra_compatibilite.php';
 
 /** Réglages effectifs d'une page unique : `#ID_ARTICLE|astra_page_reglages`. */
 function filtre_astra_page_reglages_dist($id_article): array {
@@ -139,6 +140,17 @@ function astra_polices_inline(): string {
 	return astra_polices_css($piles, function (string $chemin) {
 		return url_absolue(timestamp(find_in_path($chemin)));
 	});
+}
+
+/** Drapeaux de compatibilité (méta astra/compatibilite), normalisés. */
+function astra_compatibilite(): array {
+	include_spip('inc/config');
+	return astra_compatibilite_normaliser(lire_config('astra/compatibilite'));
+}
+
+/** Feuille des règles de submenu-below-header : `#VAL|astra_compatibilite_sous_menu|find_in_path`. */
+function astra_compatibilite_sous_menu($x = ''): string {
+	return astra_compatibilite_feuille_sous_menu(astra_compatibilite());
 }
 
 /**
