@@ -286,3 +286,19 @@ Le bouton n'est pas ignoré dans la qualification : `tests/e2e/retour_haut.cjs`
 compare séparément son apparition après défilement, ses dimensions et son action
 avec WordPress à 1280, 768 et 390 px. Le bilan historique brut reste conservé ;
 les reprises 4.11.0 et 4.13.8 indiquent explicitement la méthode normalisée.
+
+Le profil `responsive` de `tests/e2e/css_reference.cjs` retarde le bundle de pied
+pour mesurer les classes avant son exécution, aux largeurs 921, 922, 1280, 768 et
+390 px. Les captures de cet état utilisent CDP : attendre `load` ou les polices
+prêtes débloquerait artificiellement le script que ce test doit retarder.
+Les deux moteurs sont comparés avec leur media query réelle, y compris l'arrondi
+de Chromium qui rend `(max-width:921.99px)` vrai à 922 px. Les modes de barre
+`overflow-y:hidden` et `scroll` sont enregistrés ; les barres sont superposées dans
+le Chromium de test. La largeur CSS fractionnaire ~921,95 n'a pas été reproduite.
+
+Les rendus supplémentaires sans JavaScript sont produits, configuration restaurée,
+par `tests/fixtures/responsive/rendus.php` via `spip php:eval`. Leur JSON privé est
+passé dans `ASTRA_RESPONSIVE_RENDUS`. Le profil vérifie R2, les pages, deux menus et
+un panneau vide. Avec JavaScript actif, aucune nav de repli n'est créée. Le
+comparateur HTML retire uniquement le `<noscript>` de cette adaptation déclarée ;
+les autres `<noscript>` et toute nav de repli active restent comparés.

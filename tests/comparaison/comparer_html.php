@@ -22,6 +22,7 @@ if ($argc < 3) {
 [$script, $racine, $url] = $argv;
 $ici = __DIR__;
 require_once $ici . '/configurations.php';
+require_once $ici . '/normalisations.php';
 // Par défaut, les configurations du builder et des pages : les références des styles (clé styles)
 // ne changent pas la structure comparée ici, elles sont vérifiées par comparer_captures.sh.
 $configurations = array_slice($argv, 3) ?: array_keys(array_filter(astra_configurations_reference(), function ($c) {
@@ -98,6 +99,7 @@ function parties(string $html, bool $page): array {
 	$doc->loadHTML('<?xml encoding="utf-8"?>' . $html);
 	libxml_clear_errors();
 	$x = new DOMXPath($doc);
+	astra_normaliser_navigation_sans_js($x);
 	$chemins = ['entete' => '//header[@id="masthead"]', 'panneau' => '//*[@id="ast-mobile-popup-wrapper"]', 'pied' => '//footer[@id="colophon"]'];
 	if ($page) {
 		$chemins['contenu'] = '//*[@id="content"]';

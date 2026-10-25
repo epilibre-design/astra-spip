@@ -13,6 +13,7 @@
 <BOUCLE_commentaires_css(CONDITION){si #PARAMETRES_FORUM|oui|sinon{#ID_ARTICLE|astra_a_commentaires}}><link rel="stylesheet" id="astra-commentaires-css" href="[(#CHEMIN{css/astra-commentaires.css}|timestamp)]" media="all" /></BOUCLE_commentaires_css>
 </head>
 <body itemtype="https://schema.org/Blog" itemscope="itemscope" class="[(#VAL{article}|astra_body_class{#ID_ARTICLE})]">
+<INCLURE{fond=inclure/body-debut} />
 <INCLURE{fond=inclure/header}{type_page=article}{id_rubrique}{id_secteur}{id_article} />
 <div id="content" class="site-content">
 	<div class="ast-container">

@@ -267,3 +267,10 @@ les tracés restent identiques, avec leurs attributions et licences ci-dessus.
 L'amont retire aussi `trip_advisor`, absent du registre du port ; ce réseau n'est
 pas ajouté. La préparation de l'URL e-mail est une adaptation SPIP au rendu,
 suivant la protection de préfixe d'Astra, sans modification des données enregistrées.
+
+`inc/astra_responsive.php` transpose `Astra_Enqueue_Scripts::set_header_break_point_early()`
+(`inc/core/class-astra-enqueue-scripts.php`, 4.13.8) : même media query fondée sur
+`astra_header_break_point()` et même ordre des classes. Le seuil du port est fixe
+à 921 px. Les fragments `inclure/hfb/menu*-sans-js.html` sont une adaptation SPIP :
+la liste simple sous `<noscript>` est un écart déclaré au thème, décidé pour garder
+les destinations des menus accessibles sans JavaScript.

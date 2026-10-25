@@ -11,6 +11,7 @@ const AGENT='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gec
   const browser=await chromium.launch({executablePath:process.env.HOME+'/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome'});
   const resultats={};
   try{
+    if(profil==='responsive'){await require('./lib/responsive.cjs')(browser,url,sorties,process.env.URL_WP);return;}
     for(const[nom,adresse] of [['spip',url],...(process.env.URL_WP?[['wordpress',process.env.URL_WP]]:[])]){
       resultats[nom]=[];
       for(const largeur of [1280,768,390]){

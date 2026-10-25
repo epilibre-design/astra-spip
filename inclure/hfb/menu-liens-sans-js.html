@@ -1,0 +1,18 @@
+[(#REM) Même source que le menu interactif ; aucun de ses contrôles ou sélecteurs. ]
+[(#VAL{menu_accueil}|astra_conf|=={oui}|et{#ENV{accueil}|=={oui}}|oui)<li><a href="#URL_SITE_SPIP/"><:astra:accueil:></a></li>]
+<BOUCLE_si_rubriques(CONDITION){si #ENV{source}|in_array{#LISTE{racine,rubrique}}}>
+<BOUCLE_rubriques(RUBRIQUES){id_parent=#ENV{source}|=={rubrique}|?{#ENV{id_source},0}}{par num titre, titre}>
+<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+<B_enfants><ul><BOUCLE_enfants(RUBRIQUES){id_parent=#ID_RUBRIQUE}{par num titre, titre}><li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li></BOUCLE_enfants></ul></B_enfants>
+</li>
+</BOUCLE_rubriques></BOUCLE_si_rubriques>
+<BOUCLE_si_mots(CONDITION){si #ENV{source}|=={groupe_mots}}>
+<BOUCLE_mots(MOTS){id_groupe=#ENV{id_source}}{par num titre, titre}><BOUCLE_articles(ARTICLES){id_mot}{doublons}{par num titre, titre}>
+<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_articles></BOUCLE_mots></BOUCLE_si_mots>
+<BOUCLE_si_pages(CONDITION){si #ENV{source}|=={pages}|et{#VAL{pages}|test_plugin_actif}}>
+<BOUCLE_pages(DATA){source table, #VAL|astra_pages_arbre}>
+#SET{enfants,#VALEUR{enfants}}
+<BOUCLE_page(ARTICLES){id_article=#VALEUR{id}}><li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+<B_sous_pages><ul><BOUCLE_sous_pages(DATA){source table, #GET{enfants}}><BOUCLE_sous_page(ARTICLES){id_article=#VALEUR}><li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li></BOUCLE_sous_page></BOUCLE_sous_pages></ul></B_sous_pages>
+</li></BOUCLE_page></BOUCLE_pages></BOUCLE_si_pages>
