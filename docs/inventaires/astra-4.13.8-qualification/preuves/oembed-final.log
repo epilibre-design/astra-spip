@@ -5,7 +5,7 @@ Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
 
 .SS                                                                 3 / 3 (100%)
 
-Time: 00:00.842, Memory: 20.00 MB
+Time: 00:01.649, Memory: 20.00 MB
 
 OK, but some tests were skipped!
 Tests: 3, Assertions: 29, Skipped: 2.
@@ -16,7 +16,7 @@ Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
 
 S..                                                                 3 / 3 (100%)
 
-Time: 00:00.901, Memory: 22.00 MB
+Time: 00:00.484, Memory: 22.00 MB
 
 OK, but some tests were skipped!
 Tests: 3, Assertions: 33, Skipped: 1.
@@ -49,7 +49,7 @@ Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
 
 .SS                                                                 3 / 3 (100%)
 
-Time: 00:00.822, Memory: 24.00 MB
+Time: 00:00.201, Memory: 24.00 MB
 
 OK, but some tests were skipped!
 Tests: 3, Assertions: 29, Skipped: 2.

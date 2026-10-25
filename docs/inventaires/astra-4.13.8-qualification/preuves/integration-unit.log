@@ -7,6 +7,6 @@ Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
 ............................................................... 126 / 140 ( 90%)
 ..............                                                  140 / 140 (100%)
 
-Time: 00:00.564, Memory: 12.00 MB
+Time: 00:00.440, Memory: 12.00 MB
 
 OK (140 tests, 1780 assertions)

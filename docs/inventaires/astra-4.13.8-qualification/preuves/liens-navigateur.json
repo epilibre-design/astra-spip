@@ -1,0 +1,516 @@
+{
+  "rendus": 34,
+  "protocoles_actifs": 0,
+  "mesures": [
+    {
+      "url": "javascript:alert(1)",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "",
+          "url": "http://example.test/",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "",
+          "url": "http://example.test/",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "javascript:alert(1)",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "",
+          "url": "http://example.test/",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "jav&amp;#x61;script:alert(1)",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "",
+          "url": "http://example.test/",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "",
+          "url": "http://example.test/",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "jav&amp;#x61;script:alert(1)",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "",
+          "url": "http://example.test/",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "<!-- / -->javascript:alert(1)",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "<!-- / -->javascript:alert(1)",
+          "url": "http://example.test/%3C!--%20/%20--%3Ejavascript:alert(1)",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "<!-- / -->javascript:alert(1)",
+          "url": "http://example.test/%3C!--%20/%20--%3Ejavascript:alert(1)",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "<!-- / -->javascript:alert(1)",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "<!-- / -->javascript:alert(1)",
+          "url": "http://example.test/%3C!--%20/%20--%3Ejavascript:alert(1)",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "<b title=\"/\">javascript:alert(1)</b>",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "<b title=\"/\">javascript:alert(1)</b>",
+          "url": "http://example.test/%3Cb%20title=%22/%22%3Ejavascript:alert(1)%3C/b%3E",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "<b title=\"/\">javascript:alert(1)</b>",
+          "url": "http://example.test/%3Cb%20title=%22/%22%3Ejavascript:alert(1)%3C/b%3E",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "<b title=\"/\">javascript:alert(1)</b>",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "<b title=\"/\">javascript:alert(1)</b>",
+          "url": "http://example.test/%3Cb%20title=%22/%22%3Ejavascript:alert(1)%3C/b%3E",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "<i title=\"?\">javascript:alert(1)</i>",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "<i title=\"?\">javascript:alert(1)</i>",
+          "url": "http://example.test/%3Ci%20title=%22?%22%3Ejavascript:alert(1)%3C/i%3E",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "<i title=\"?\">javascript:alert(1)</i>",
+          "url": "http://example.test/%3Ci%20title=%22?%22%3Ejavascript:alert(1)%3C/i%3E",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "<i title=\"?\">javascript:alert(1)</i>",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "<i title=\"?\">javascript:alert(1)</i>",
+          "url": "http://example.test/%3Ci%20title=%22?%22%3Ejavascript:alert(1)%3C/i%3E",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "<i title=\"#\">javascript:alert(1)</i>",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "<i title=\"#\">javascript:alert(1)</i>",
+          "url": "http://example.test/%3Ci%20title=%22#%22%3Ejavascript:alert(1)%3C/i%3E",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "<i title=\"#\">javascript:alert(1)</i>",
+          "url": "http://example.test/%3Ci%20title=%22#%22%3Ejavascript:alert(1)%3C/i%3E",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "<i title=\"#\">javascript:alert(1)</i>",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "<i title=\"#\">javascript:alert(1)</i>",
+          "url": "http://example.test/%3Ci%20title=%22#%22%3Ejavascript:alert(1)%3C/i%3E",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "https://example.test/a?x=1&y=2",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "https://example.test/a?x=1&y=2",
+          "url": "https://example.test/a?x=1&y=2",
+          "protocole": "https:",
+          "onclick": null
+        },
+        {
+          "href": "https://example.test/a?x=1&y=2",
+          "url": "https://example.test/a?x=1&y=2",
+          "protocole": "https:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "https://example.test/a?x=1&y=2",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "https://example.test/a?x=1&y=2",
+          "url": "https://example.test/a?x=1&y=2",
+          "protocole": "https:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "https://example.test/a?x=1&amp;y=2#fin",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "https://example.test/a?x=1&y=2#fin",
+          "url": "https://example.test/a?x=1&y=2#fin",
+          "protocole": "https:",
+          "onclick": null
+        },
+        {
+          "href": "https://example.test/a?x=1&y=2#fin",
+          "url": "https://example.test/a?x=1&y=2#fin",
+          "protocole": "https:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "https://example.test/a?x=1&amp;y=2#fin",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "https://example.test/a?x=1&y=2#fin",
+          "url": "https://example.test/a?x=1&y=2#fin",
+          "protocole": "https:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "https://example.test/a?message=<b>bonjour</b>&x=1",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "https://example.test/a?message=<b>bonjour</b>&x=1",
+          "url": "https://example.test/a?message=%3Cb%3Ebonjour%3C/b%3E&x=1",
+          "protocole": "https:",
+          "onclick": null
+        },
+        {
+          "href": "https://example.test/a?message=<b>bonjour</b>&x=1",
+          "url": "https://example.test/a?message=%3Cb%3Ebonjour%3C/b%3E&x=1",
+          "protocole": "https:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "https://example.test/a?message=<b>bonjour</b>&x=1",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "https://example.test/a?message=<b>bonjour</b>&x=1",
+          "url": "https://example.test/a?message=%3Cb%3Ebonjour%3C/b%3E&x=1",
+          "protocole": "https:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "https://example.test/café?texte=été&x=1#été",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "https://example.test/café?texte=été&x=1#été",
+          "url": "https://example.test/caf%C3%A9?texte=%C3%A9t%C3%A9&x=1#%C3%A9t%C3%A9",
+          "protocole": "https:",
+          "onclick": null
+        },
+        {
+          "href": "https://example.test/café?texte=été&x=1#été",
+          "url": "https://example.test/caf%C3%A9?texte=%C3%A9t%C3%A9&x=1#%C3%A9t%C3%A9",
+          "protocole": "https:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "https://example.test/café?texte=été&x=1#été",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "https://example.test/café?texte=été&x=1#été",
+          "url": "https://example.test/caf%C3%A9?texte=%C3%A9t%C3%A9&x=1#%C3%A9t%C3%A9",
+          "protocole": "https:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "MAILTO:nom@example.test",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "MAILTO:nom@example.test",
+          "url": "mailto:nom@example.test",
+          "protocole": "mailto:",
+          "onclick": null
+        },
+        {
+          "href": "MAILTO:nom@example.test",
+          "url": "mailto:nom@example.test",
+          "protocole": "mailto:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "MAILTO:nom@example.test",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "MAILTO:nom@example.test",
+          "url": "mailto:nom@example.test",
+          "protocole": "mailto:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "tel:+33123456789",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "tel:+33123456789",
+          "url": "tel:+33123456789",
+          "protocole": "tel:",
+          "onclick": null
+        },
+        {
+          "href": "tel:+33123456789",
+          "url": "tel:+33123456789",
+          "protocole": "tel:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "tel:+33123456789",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "tel:+33123456789",
+          "url": "tel:+33123456789",
+          "protocole": "tel:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "#contact",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "#contact",
+          "url": "http://example.test/#contact",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "#contact",
+          "url": "http://example.test/#contact",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "#contact",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "#contact",
+          "url": "http://example.test/#contact",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "/contact",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "/contact",
+          "url": "http://example.test/contact",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "/contact",
+          "url": "http://example.test/contact",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "/contact",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "/contact",
+          "url": "http://example.test/contact",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "?page=contact",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "?page=contact",
+          "url": "http://example.test/?page=contact",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "?page=contact",
+          "url": "http://example.test/?page=contact",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "?page=contact",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "?page=contact",
+          "url": "http://example.test/?page=contact",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "contact.html",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "contact.html",
+          "url": "http://example.test/contact.html",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "contact.html",
+          "url": "http://example.test/contact.html",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "contact.html",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "contact.html",
+          "url": "http://example.test/contact.html",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "//example.test/contact",
+      "fond": "button",
+      "liens": [
+        {
+          "href": "//example.test/contact",
+          "url": "http://example.test/contact",
+          "protocole": "http:",
+          "onclick": null
+        },
+        {
+          "href": "//example.test/contact",
+          "url": "http://example.test/contact",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    },
+    {
+      "url": "//example.test/contact",
+      "fond": "social-icons",
+      "liens": [
+        {
+          "href": "//example.test/contact",
+          "url": "http://example.test/contact",
+          "protocole": "http:",
+          "onclick": null
+        }
+      ]
+    }
+  ]
+}

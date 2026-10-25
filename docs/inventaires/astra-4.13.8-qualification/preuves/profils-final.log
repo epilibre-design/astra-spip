@@ -181,7 +181,7 @@ Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
 ............................................................... 126 / 140 ( 90%)
 ..............                                                  140 / 140 (100%)
 
-Time: 00:00.553, Memory: 12.00 MB
+Time: 00:00.456, Memory: 12.00 MB
 
 OK (140 tests, 1780 assertions)
 PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
@@ -189,13 +189,13 @@ PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
 Runtime:       PHP 8.4.27
 Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
 
-..........................................SSS.................... 65 / 98 ( 66%)
-.................................                                 98 / 98 (100%)
+...........................................SSS................... 65 / 99 ( 65%)
+..................................                                99 / 99 (100%)
 
-Time: 00:06.820, Memory: 36.00 MB
+Time: 00:07.853, Memory: 36.00 MB
 
 OK, but some tests were skipped!
-Tests: 98, Assertions: 533, Skipped: 3.
+Tests: 99, Assertions: 623, Skipped: 3.
 .........
 ----------------------------------------------------------------------
 Ran 9 tests in 0.001s
@@ -209,3 +209,14 @@ Cascade des blocs : OK
 Formulaire des styles : OK
 Formulaire : OK
 Répartitions : OK (14 répartitions × 3 appareils, 21 répartitions tablette et mobile, largeur des rangées)
+34 rendus réels : aucun protocole actif, valeurs interprétées par Chromium vérifiées.
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+...                                                                 3 / 3 (100%)
+
+Time: 00:00.630, Memory: 22.00 MB
+
+OK (3 tests, 134 assertions)

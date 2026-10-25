@@ -1,0 +1,6 @@
+const [entree,sortie]=process.argv.slice(2);
+if(!entree||!sortie)throw Error('Usage: node liens-navigateur.cjs <rendus.json> <mesures.json>');
+const fs=require('fs'),assert=require('assert/strict'),{chromium}=require('playwright');
+(async()=>{const b=await chromium.launch({executablePath:process.env.HOME+'/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome'}),p=await b.newPage(),mesures=[];
+try {for(const cas of JSON.parse(fs.readFileSync(entree,'utf8'))){await p.setContent('<base href="http://example.test/">'+cas.html);const liens=await p.locator('a').evaluateAll(as=>as.map(a=>({href:a.getAttribute('href'),url:a.href,protocole:a.protocol,onclick:a.getAttribute('onclick')})));assert.equal(liens.length,cas.fond==='button'?2:1);for(const a of liens){assert(['http:','https:','mailto:','tel:'].includes(a.protocole),JSON.stringify({cas,a}));assert.equal(a.onclick,null);assert.equal(a.url,new URL(a.href,'http://example.test/').href);}mesures.push({url:cas.url,fond:cas.fond,liens});}
+fs.writeFileSync(sortie,JSON.stringify({rendus:mesures.length,protocoles_actifs:0,mesures},null,2)+'\n');console.log(mesures.length+' rendus réels : aucun protocole actif, valeurs interprétées par Chromium vérifiées.');}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1)});
