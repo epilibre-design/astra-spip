@@ -210,4 +210,17 @@ final class StylesFormulaireTest extends TestCase {
 		$this->assertSame(false,lire_config('astra/styles/display-site-title-responsive/tablet'));
 	}
 
+
+ public function testAllerRetourAlignementsWidgets(): void {
+  $v=['button-color'=>'#123456'];for($n=1;$n<=4;$n++)$v["footer-widget-alignment-$n"]=['desktop'=>'left','tablet'=>'center','mobile'=>'right'];
+  ecrire_config('astra/styles',$v);
+  $html=recuperer_fond('formulaires/configurer_astra_styles',['editable'=>true,'s'=>$v]);
+  $this->assertSame(12,substr_count($html,'Sans réglage</option>'));
+  $post=$this->saisieDuFormulaire();set_request('s',$post);
+  $this->assertSame([],formulaires_configurer_astra_styles_verifier_dist());formulaires_configurer_astra_styles_traiter_dist();
+  $this->assertSame($v,lire_config('astra/styles'));
+  $post['footer-widget-alignment-1']['mobile']='';set_request('s',$post);formulaires_configurer_astra_styles_traiter_dist();
+  $this->assertSame('center',lire_config('astra/styles/footer-widget-alignment-1/tablet'));
+  foreach(['diagonal','center;}body{display:none'] as $bad){$post['footer-widget-alignment-1']['mobile']=$bad;set_request('s',$post);$this->assertArrayHasKey('s_footer-widget-alignment-1',formulaires_configurer_astra_styles_verifier_dist());}
+ }
 }

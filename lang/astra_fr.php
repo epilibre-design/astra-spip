@@ -3,6 +3,8 @@
 // Fichier de langue du thème Astra pour SPIP
 
 return [
+	'styles_sans_reglage' => 'Sans réglage',
+	'styles_sans_reglage_explication' => 'Sans réglage : la cascade s’applique.',
 	'style_widget_alignment' => 'Alignement du contenu',
 
 	// A

@@ -71,11 +71,12 @@
 				<span class="astra-styles-appareils" id="s_[(#GET{c}|table_valeur{option})]">
 					<BOUCLE_appareils(DATA){source tableau, #GET{c}|table_valeur{appareils}}>
 					<select name="#VALEUR{nom}" aria-label="[(#VAL{astra:styles_appareil_}|concat{#VALEUR{appareil}}|_T)]">
-						<option value="">[(#VAL{astra:styles_appareil_}|concat{#VALEUR{appareil}}|_T)] : <:astra:styles_defaut:></option>
+						<option value="">[(#VAL{astra:styles_appareil_}|concat{#VALEUR{appareil}}|_T)] : [(#GET{c}|table_valeur{sans_reglage}|?{<:astra:styles_sans_reglage:>,<:astra:styles_defaut:>})]</option>
 						<BOUCLE_alignements(DATA){liste left, center, right}><option value="#VALEUR"[(#VALEUR|=={#_appareils:VALEUR{valeur}}|oui)selected="selected"]>[(#VAL{astra:styles_appareil_}|concat{#_appareils:VALEUR{appareil}}|_T)] : [(#VAL{astra:styles_enum_}|concat{#VALEUR}|_T)]</option></BOUCLE_alignements>
 					</select>
 					</BOUCLE_appareils>
 				</span>
+				[(#GET{c}|table_valeur{sans_reglage}|oui)<p class="explication"><:astra:styles_sans_reglage_explication:></p>]
 				</BOUCLE_alignement>
 				<BOUCLE_booleen(CONDITION){si #GET{c}|table_valeur{type}|=={booleen}|et{#GET{c}|table_valeur{appareils}|non}}>
 				#SET{v,#GET{c}|table_valeur{valeur}|strval}

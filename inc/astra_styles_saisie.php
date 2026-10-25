@@ -79,6 +79,7 @@ function astra_styles_champs($styles, string $section): array {
 			'valeurs' => $d['valeurs'] ?? [],
 			// Marges extérieures : nombres négatifs acceptés.
 			'signe' => !empty($d['signe']),
+			'sans_reglage' => $d['groupe'] === 'alignements-widgets',
 			// Alignements, marges des rangées : une valeur (et une unité) par appareil, toutes appliquées.
 			'appareils' => astra_styles_trois_appareils($d) ? array_map(function ($a) use ($option, $v, $d) {
 				$ligne = [

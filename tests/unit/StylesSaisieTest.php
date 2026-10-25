@@ -165,4 +165,23 @@ final class StylesSaisieTest extends TestCase {
 		$this->assertSame($avant,astra_styles_saisie_fusionner($avant,$post));
 	}
 
+
+ public function testQuatreAlignementsDansLeursSections(): void {
+  for($n=1;$n<=4;$n++){
+   $ch=array_column(astra_styles_champs([],"widget_$n"),null,'option');$o="footer-widget-alignment-$n";
+   $this->assertSame('astra:style_widget_alignment',$ch[$o]['libelle']);
+   $this->assertSame(["s[$o][desktop]","s[$o][tablet]","s[$o][mobile]"],array_column($ch[$o]['appareils'],'nom'));
+  }
+ }
+ public function testSansReglageReserveAuxWidgets(): void {
+  for($n=1;$n<=4;$n++){
+   $ch=array_column(astra_styles_champs([],"widget_$n"),null,'option');
+   $this->assertTrue($ch["footer-widget-alignment-$n"]['sans_reglage'] ?? false);
+  }
+  foreach(['copyright','sociaux_pied'] as $section)foreach(astra_styles_champs([],$section) as $c)$this->assertFalse($c['sans_reglage']??false);
+ }
+ public function testPremiereSaisieAlignementWidgetTabletteSeule(): void {
+  $v=['footer-widget-alignment-3'=>['desktop'=>'','tablet'=>'center','mobile'=>'']];
+  $this->assertSame($v,astra_styles_saisie_fusionner([],$v));
+ }
 }
