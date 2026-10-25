@@ -240,3 +240,22 @@ auteurs, licences et adaptations dans ce fichier, conserver les notices amont et
 documenter les nouvelles reprises au plus près du code concerné. Les attributions
 non établies ci-dessus restent à compléter ; ce relevé ne les transforme pas en
 attributions certaines.
+
+## Migration vers Astra 4.13.8 (25 octobre 2026)
+
+La nouvelle référence est l'[archive officielle Astra 4.13.8](https://downloads.wordpress.org/theme/astra.4.13.8.zip),
+Brainstorm Force / WPAstra, sous GPL v2 ou ultérieure. Sa notice originale est
+conservée dans [licenses/astra-4.13.8-readme.txt](licenses/astra-4.13.8-readme.txt).
+SHA-256 du ZIP : `3cce1a750dcb699429117a88987aa8f10be404374492eef94379d2c4df6a6572`.
+
+Les copies directes suivantes remplacent les assets 4.11.0, sans modification :
+
+| Source Astra 4.13.8 | Destination | SHA-256 |
+| --- | --- | --- |
+| assets/css/minified/main.min.css | css/main.min.css | 84aad614f8b95ebd3a4ac6f7633e77323066d31da87afe3dafc8c14cd3d0f8fc |
+| assets/js/minified/frontend.min.js | js/frontend.min.js | 3b3a9a24246253beec04f3d2619082970c3aa861ca4ee34280662e3d4a509d20 |
+
+Le relevé 4.11.0 ci-dessus et sa notice restent conservés pour la provenance
+historique. Les couches transposées sont migrées et qualifiées séparément selon
+les plans du 24 octobre ; la copie des deux assets ne vaut pas preuve de parité
+pour le portage complet.

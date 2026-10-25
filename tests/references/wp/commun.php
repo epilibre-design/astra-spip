@@ -6,7 +6,7 @@
 
 function ref_etat_initial(): void {
 	update_option('astra-settings', [
-		'theme-auto-version' => '4.11.0',
+		'theme-auto-version' => '4.13.8',
 		'site-sidebar-layout' => 'right-sidebar',
 		'single-post-sidebar-layout' => 'default',
 		'single-post-ast-content-layout' => 'default',

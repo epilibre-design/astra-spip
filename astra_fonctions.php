@@ -12,7 +12,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 }
 
 /** Version du thème Astra d'origine dont le rendu est reproduit */
-define('_ASTRA_VERSION_THEME', '4.11.0');
+define('_ASTRA_VERSION_THEME', '4.13.8');
 
 include_once __DIR__ . '/inc/astra_hfb.php';
 include_once __DIR__ . '/inc/astra_hfb_saisie.php';
