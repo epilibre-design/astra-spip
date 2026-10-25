@@ -41,6 +41,8 @@ foreach (\$conf['textes'] ?? [] as \$identifiant => \$texte) {
 foreach (\$conf['pages'] ?? [] as \$identifiant => \$reglages) {
 	ecrire_config('astra/pages/' . \$id(\$identifiant), \$reglages);
 }
+require_once '$ICI/../references/responsive/logos.php';
+astra_reference_logo_spip(\$conf['logo'] ?? null);
 \$hfb = astra_configuration_hfb(\$conf);
 \$hfb ? ecrire_config('astra/hfb', \$hfb) : effacer_config('astra/hfb');
 echo 'configuration-appliquee';

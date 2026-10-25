@@ -1,0 +1,11 @@
+.site-title{font-size:26px;font-size:1.625rem;display:block;}
+.site-header .site-description{font-size:15px;font-size:0.9375rem;display:none;}
+[@media (max-width:921px)] .site-title{display:block;}
+[@media (max-width:921px)] .site-header .site-description{display:none;}
+[@media (max-width:921px)] .astra-logo-svg{width:96px;}
+[@media (max-width:921px)] header .custom-logo-link img,.ast-header-break-point .site-logo-img .custom-mobile-logo-link img{max-width:96px;width:96px;}
+[@media (max-width:544px)] .site-title{display:block;}
+[@media (max-width:544px)] .site-header .site-description{display:none;}
+[@media (max-width:544px)] header .custom-logo-link img,.ast-header-break-point .site-branding img,.ast-header-break-point .custom-logo-link img{max-width:48px;width:48px;}
+[@media (max-width:544px)] .astra-logo-svg{width:48px;}
+[@media (max-width:544px)] .ast-header-break-point .site-logo-img .custom-mobile-logo-link img{max-width:48px;}

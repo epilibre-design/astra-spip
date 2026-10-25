@@ -1,0 +1,13 @@
+.site-title{font-size:20px;font-size:1.25rem;display:block;}
+header .custom-logo-link img{max-width:40px;width:40px;}
+.astra-logo-svg{width:40px;}
+.site-header .site-description{font-size:11px;font-size:0.6875rem;display:block;}
+[@media (max-width:921px)] .site-title{font-size:18px;font-size:1.125rem;display:block;}
+[@media (max-width:921px)] .site-header .site-description{font-size:12px;font-size:0.75rem;display:block;}
+[@media (max-width:921px)] .astra-logo-svg{width:40px;}
+[@media (max-width:921px)] header .custom-logo-link img,.ast-header-break-point .site-logo-img .custom-mobile-logo-link img{max-width:40px;width:40px;}
+[@media (max-width:544px)] .site-title{font-size:16px;font-size:1rem;display:block;}
+[@media (max-width:544px)] .site-header .site-description{font-size:11px;font-size:0.6875rem;display:block;}
+[@media (max-width:544px)] header .custom-logo-link img,.ast-header-break-point .site-branding img,.ast-header-break-point .custom-logo-link img{max-width:32px;width:32px;}
+[@media (max-width:544px)] .astra-logo-svg{width:32px;}
+[@media (max-width:544px)] .ast-header-break-point .site-logo-img .custom-mobile-logo-link img{max-width:32px;}
