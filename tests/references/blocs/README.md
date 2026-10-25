@@ -124,3 +124,7 @@ résoudre ses assets. Un ancien `http://localhost` désignerait un autre serveur
 et le contrôle « image servie » doit alors échouer. Les fixtures historiques
 d'identité conservent leur comparaison HTML stricte en adaptant seulement leur
 URL d'accueil au domaine configuré du site de test.
+
+### R28 — import des blocs embed
+
+La [procédure oEmbed](../../fixtures/oembed/README.md) utilise le même importeur épinglé et deux copies du véritable SPIP importé, avec/sans oEmbed 3.5.1. Les figures `core/embed` WordPress deviennent URL isolée et légende : leur enveloppe n’est pas conservée. Le test de retraitement porte sur le résultat réel du plugin, pas sur une enveloppe Astra inventée. Les lecteurs 16:9 et 4:3 sont comparés en géométrie à WordPress aux trois largeurs ; les captures ne servent pas à comparer les pixels d’un service tiers. La découverte du fournisseur inconnu est caractérisée séparément du validateur d’URL : le plugin examiné ne passe pas celui-ci au client HTTP.

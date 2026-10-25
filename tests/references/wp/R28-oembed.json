@@ -1,0 +1,13 @@
+{
+  "nom": "R28-oembed",
+  "mode": "import-dedie",
+  "preparation": "tests/fixtures/oembed/README.md",
+  "wordpress": "7.1.3",
+  "astra": "4.13.8",
+  "wp2spip": "e3c262720b518bc7007e5f37779a9d6ca84f17f1",
+  "oembed": "e90f6a6db27f763ad78ad36c0398b39aeff4cf8c",
+  "largeurs": [1280, 768, 390],
+  "cas": ["large", "classique", "erreur", "invalide", "inconnu", "temoin"],
+  "mesure": ["conteneur_video", "iframe_apres_lecture", "lien_repli", "legende", "texte_sql_inchange"],
+  "tolérance_geometrique_px": 1
+}

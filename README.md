@@ -113,8 +113,13 @@ Le plugin [oEmbed](https://git.spip.net/spip-contrib-extensions/oembed), faculta
 avec `<utilise>` dans `paquet.xml`, permet de transformer une URL isolée en lecteur ou contenu
 intégré lorsque le fournisseur est pris en charge. wp2spip prépare déjà les blocs `embed`
 sous cette forme ; sans oEmbed, le contenu reste un lien. oEmbed fournit le lecteur et son
-conteneur responsive ; la compatibilité de son habillage avec Astra reste à vérifier sur des
-références dédiées. Astra ne l'installe ni ne l'active automatiquement.
+conteneur responsive. La référence [R28](tests/fixtures/oembed/README.md) vérifie oEmbed
+3.5.1 sous SPIP 4.4, les proportions 16:9 et 4:3 aux trois largeurs, les replis et l’absence
+de réécriture éditoriale. Une adaptation ciblée retire son cadre de 6 px autour du lecteur,
+sans changer son ratio ni ajouter d’enveloppe. Astra ne l’installe ni ne l’active automatiquement.
+Le contrôle de découverte ne vaut pas validation de sécurité du plugin : cette version
+n’emploie pas le validateur d’URL optionnel du client HTTP de SPIP. Le plugin déclare
+SPIP 4.x ; son activation n’est pas forcée sous SPIP 5.
 
 ## Feuilles de style et scripts
 

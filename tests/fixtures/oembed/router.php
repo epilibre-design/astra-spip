@@ -17,6 +17,10 @@ if (preg_match('~^/player/(large|classique)$~', $chemin)) {
 }
 if ($chemin === '/inconnu') {
 	header('Content-Type: text/html; charset=utf-8');
+	echo '<!doctype html><html><head><title>Fournisseur inconnu</title></head><body>Aucun endpoint oEmbed déclaré.</body></html>';return;
+}
+if ($chemin === '/decouverte') {
+	header('Content-Type: text/html; charset=utf-8');
 	$endpoint = htmlspecialchars($origine . '/oembed?url=' . rawurlencode($origine . '/video/large?essai=' . $essai), ENT_QUOTES);
 	echo '<!doctype html><html><head><link rel="alternate" type="application/json+oembed" href="' . $endpoint . '"></head><body>Page de découverte locale</body></html>';return;
 }
