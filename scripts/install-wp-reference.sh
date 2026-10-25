@@ -48,6 +48,8 @@ if [[ ! -f "$WP_REFERENCE/wp-config.php" ]]; then
 	wp --path="$WP_REFERENCE" config set WP_SITEURL "$URL_WP"
 	wp --path="$WP_REFERENCE" config set WP_ENVIRONMENT_TYPE local
 	wp --path="$WP_REFERENCE" config set WP_DEBUG false --raw
+	wp --path="$WP_REFERENCE" config set AUTOMATIC_UPDATER_DISABLED true --raw
+	wp --path="$WP_REFERENCE" config set DISABLE_WP_CRON true --raw
 	unzip -q "$ASTRA_REFERENCE_ARCHIVE" -d "$WP_REFERENCE/wp-content/themes"
 fi
 # Vérifier le DB_PATH réel avant de charger WordPress (donc avant toute ouverture SQLite).

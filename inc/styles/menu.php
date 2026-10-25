@@ -1,7 +1,7 @@
 <?php
 /**
  * Astra pour SPIP — menus de l'en-tête (inc/builder/type/header/menu/dynamic-css/dynamic.css.php
- * d'Astra 4.11.0, règles ordinateur) : couleurs normale, au survol et de la page courante, fonds,
+ * d'Astra 4.13.8, règles ordinateur) : couleurs normale, au survol et de la page courante, fonds,
  * sous-menus, police.
  *
  * @license GPL-3.0-or-later
@@ -37,10 +37,10 @@ function astra_styles_menu(array $s, array $hfb): array {
 				'color' => $couleur, 'text-decoration' => $extras['text-decoration'], 'letter-spacing' => $extras['letter-spacing'],
 			]],
 			['', "$sel .menu-item > .ast-menu-toggle", ['color' => $couleur]],
-			['', "$sel .menu-item:hover > .menu-link,$sel .inline-on-mobile .menu-item:hover > .ast-menu-toggle", [
+			['', "$sel .menu-link:hover,$sel .main-header-menu > .menu-item:hover > .menu-link,$sel .inline-on-mobile .ast-menu-toggle:hover,$sel .inline-on-mobile .main-header-menu > .menu-item:hover > .ast-menu-toggle", [
 				'color' => $survol, 'background' => astra_styles_ou($s, "$p-h-bg-color-responsive"),
 			]],
-			['', "$sel .menu-item:hover > .ast-menu-toggle", ['color' => $survol]],
+			['', "$sel .ast-menu-toggle:hover,$sel .main-header-menu > .menu-item:hover > .ast-menu-toggle", ['color' => $survol]],
 			['', "$sel .menu-item.current-menu-item > .menu-link,$sel .inline-on-mobile .menu-item.current-menu-item > .ast-menu-toggle,$sel .current-menu-ancestor > .menu-link", [
 				'color' => $actif, 'background' => astra_styles_ou($s, "$p-a-bg-color-responsive"),
 			]],

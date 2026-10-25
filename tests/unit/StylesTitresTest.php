@@ -22,10 +22,10 @@ final class StylesTitresTest extends TestCase {
 		$e = [];
 		for ($n = 1; $n <= 6; $n++) {
 			$e["h$n"] = ["h$n" => 1];
-			$e[".entry-content h$n"] = ["h$n" => 1, ".entry-content h$n" => 11, ".entry-content :where(h$n)" => 10];
+			$e[".entry-content h$n"] = ["h$n" => 1, ".entry-content h$n" => 11, ".entry-content :where(h$n)" => 10, '.entry-content :where(h1,h2,h3,h4,h5,h6)' => 10];
 			$e["h$n.widget-title"] = ["h$n" => 1, '.widget-title' => 10, "h$n.widget-title" => 11];
 		}
-		$e['.entry-content h2.wp-block-heading'] = ['h2' => 1, '.entry-content h2' => 11, '.entry-content :where(h2)' => 10, '.wp-block-heading' => 10];
+		$e['.entry-content h2.wp-block-heading'] = ['h2' => 1, '.entry-content h2' => 11, '.entry-content :where(h2)' => 10, '.entry-content :where(h1,h2,h3,h4,h5,h6)' => 10, '.wp-block-heading' => 10];
 		$e['.site-title'] = ['.site-title' => 10];
 		$e['.site-title a'] = ['.site-title a' => 11];
 		return $e;
@@ -57,6 +57,11 @@ final class StylesTitresTest extends TestCase {
 		$css = '.entry-content :where(h2){font-weight:600;}.wp-block-heading{font-weight:400;}';
 		$this->assertSame('400', self::graisses($css)['.entry-content h2.wp-block-heading'] ?? null);
 		$this->assertSame('600', self::graisses('.entry-content h2{font-weight:600;}.wp-block-heading{font-weight:400;}')['.entry-content h2.wp-block-heading'] ?? null);
+	}
+
+	public function testUnBlocPeutSurchargerLaGraisseDuTitre(): void {
+		$css = astra_styles_css(['font-weight-h2' => '700'], [], []);
+		$this->assertSame('400', self::graisses($css . '.wp-block-heading{font-weight:400;}')['.entry-content h2.wp-block-heading']);
 	}
 
 	public static function variantes(): array {
@@ -98,7 +103,7 @@ final class StylesTitresTest extends TestCase {
 			$css = astra_styles_css(['headings-font-weight' => '700', 'font-weight-h1' => '600'], [], $c);
 			$generale = strpos($css, '.site-title a{font-weight:700;}');
 			$this->assertNotFalse($generale);
-			$this->assertGreaterThan($generale, strpos($css, 'h1,.entry-content h1{font-weight:600;}'));
+			$this->assertGreaterThan($generale, strpos($css, 'h1,.entry-content :where(h1){font-weight:600;}'));
 		}
 	}
 
@@ -107,7 +112,7 @@ final class StylesTitresTest extends TestCase {
 		// widget ; le h2 prend la graisse des titres, h2.widget-title celle de .widget-title (400).
 		$css = astra_styles_css(['headings-font-weight' => '700', 'font-weight-h2' => ''], [], []);
 		$this->assertStringContainsString('h2.widget-title{font-weight:400;}', $css);
-		$this->assertStringNotContainsString('h2,.entry-content h2{', $css);
+		$this->assertStringNotContainsString('h2,.entry-content :where(h2){', $css);
 		// Option absente : défaut d'Astra (inherit), titre de widget à la graisse des titres.
 		$this->assertStringContainsString('h2.widget-title{font-weight:700;}', astra_styles_css(['headings-font-weight' => '700'], [], []));
 	}
@@ -116,7 +121,7 @@ final class StylesTitresTest extends TestCase {
 		// inherit (défaut d'avant Astra 4.0) et vide sont gardés : Astra n'émet pas la règle générale.
 		$this->assertSame(['headings-font-weight' => 'inherit', 'font-weight-h2' => ''], astra_styles_normaliser(['headings-font-weight' => 'inherit', 'font-weight-h2' => '']));
 		// Neutralisation par les graisses de css/main.min.css.
-		$attendu = 'h1,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content h4,h5,.entry-content h5,h6,.entry-content h6{font-weight:inherit;}'
+		$attendu = 'h1,h2,h3,h4,h5,h6,.entry-content :where(h1,h2,h3,h4,h5,h6){font-weight:inherit;}'
 			. '.site-title{font-weight:400;}.site-title a{font-weight:inherit;}';
 		$this->assertStringStartsWith($attendu, astra_styles_css(['headings-font-weight' => ''], [], []));
 		$this->assertStringStartsWith($attendu, astra_styles_css(['headings-font-weight' => 'inherit'], [], []));

@@ -1,10 +1,17 @@
 /*
  * Astra pour SPIP — CSS des dispositions de page.
  *
- * Règles générées par Astra 4.11.0 pour les pages (pleine largeur…), absentes de la
+ * Règles générées par Astra 4.13.8 pour les pages (pleine largeur…), absentes de la
  * disposition par défaut (css/astra-dynamic.css). Fichier produit par
  * tests/references/extraire_css.py --pages à partir des références WordPress : ne pas modifier à la main.
  */
+header.entry-header{text-align:left;}
+@media (max-width:921px){
+	header.entry-header{text-align:left;}
+}
+@media (max-width:544px){
+	header.entry-header{text-align:left;}
+}
 .ast-page-builder-template .hentry {margin: 0;}
 .ast-page-builder-template .site-content > .ast-container {max-width: 100%;padding: 0;}
 .ast-page-builder-template .site .site-content #primary {padding: 0;margin: 0;}

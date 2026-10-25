@@ -253,3 +253,36 @@ Pour reconstruire l'archive historique, créer **un second dossier** et choisir
 Vérifier ce site avec le manifeste historique explicite, puis utiliser les scripts
 extraits du commit 503819e ; ne pas détourner la garde des captures de migration.
 Les réglages et preuves historiques restent distincts des nouvelles références.
+
+### Extraction de base et portée des captures de composants (4.13.8)
+
+`base/capturer.sh <dossier-R0>` capture les sept contextes nécessaires (accueil,
+article, page, page étroite, recherche vide, archive, 404), avec la garde 4.13.8.
+`extraire_css_base.py <dossier-R0> base/substitutions.json` produit le CSS de base.
+Le registre recense six adaptations (largeurs et portée de la colonne principale),
+quatre exclusions/déplacements et 131 compléments conditionnels ; leurs déclarations
+viennent des captures, leur ordre et leur provenance sont explicites. Les familles
+de police par défaut restent celles de WordPress ; les polices du site sont définies
+par head-vars. La palette de neuf couleurs appartient à head-vars également.
+
+La régression réelle s'exécute avec `ASTRA_LEGACY_R0=<R0-4.11.0>` et
+`ASTRA_LEGACY_CSS=<css/astra-dynamic.css-de-503819e>` :
+`python3 -m unittest discover -s tests/references -p test_extraire_css_base.py`.
+Elle reproduit exactement les 614 règles historiques dans leur ordre, y compris
+les 60 px de #primary ; seul l'en-tête et le groupement de blocs media diffèrent.
+Sans archive locale, ce cas est indiqué comme non exécuté ; les tests synthétiques
+restent autonomes.
+
+La capture de `#colophon` exclut désormais le bouton `#ast-scroll-top`, fixé à la
+fenêtre et extérieur au builder. Sa présence dans une image du pied dépendait de
+la hauteur des articles précédents : cela créait des différences de contenu de
+fenêtre dans une mesure de composant. Le comparateur conserve la géométrie du pied,
+les couleurs et les seuils ; aucun masque n'est appliqué aux autres éléments.
+Son origine verticale est alignée au pixel physique le plus proche avant la
+capture, sans changer ses dimensions ni ses positions internes. Cela évite de
+confondre un arrondi du contenu précédent avec une différence de composant.
+`tests/e2e/comparaison_composants.cjs` vérifie cette portée sur deux hauteurs de page.
+Le bouton n'est pas ignoré dans la qualification : `tests/e2e/retour_haut.cjs`
+compare séparément son apparition après défilement, ses dimensions et son action
+avec WordPress à 1280, 768 et 390 px. Le bilan historique brut reste conservé ;
+les reprises 4.11.0 et 4.13.8 indiquent explicitement la méthode normalisée.

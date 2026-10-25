@@ -21,7 +21,7 @@ from css_selecteurs import decouper_selecteurs
 
 CONFIGURATIONS = ['R1-entete-complet', 'R2-entete-centre', 'R3-pied-colonnes', 'R4-pied-asymetrique']
 
-# Répartitions des colonnes du pied : Astra_Builder_Helper::$grid_size_mapping (Astra 4.11.0).
+# Répartitions des colonnes du pied : Astra_Builder_Helper::$grid_size_mapping (Astra 4.13.8).
 # Astra n'émet que les règles des répartitions configurées ; le formulaire SPIP les propose
 # toutes, d'où la table complète, reprise de Astra_Builder_Base_Dynamic_CSS::footer_dynamic_css()
 # (aperçu du personnalisateur) : ordinateur, tablette puis mobile.
@@ -134,7 +134,7 @@ def main():
     print('/*')
     print(' * Astra pour SPIP — CSS du builder d\'en-tête et de pied de page.')
     print(' *')
-    print(' * Règles générées par Astra 4.11.0 pour les rangées et éléments du builder, absentes de la')
+    print(' * Règles générées par Astra 4.13.8 pour les rangées et éléments du builder, absentes de la')
     print(' * disposition par défaut (css/astra-dynamic.css). Fichier produit par')
     print(' * tests/references/extraire_css.py à partir des références WordPress : ne pas modifier à la main.')
     print(' */')
@@ -159,7 +159,7 @@ def main_pages(sorties):
     print('/*')
     print(' * Astra pour SPIP — CSS des dispositions de page.')
     print(' *')
-    print(' * Règles générées par Astra 4.11.0 pour les pages (pleine largeur…), absentes de la')
+    print(' * Règles générées par Astra 4.13.8 pour les pages (pleine largeur…), absentes de la')
     print(' * disposition par défaut (css/astra-dynamic.css). Fichier produit par')
     print(' * tests/references/extraire_css.py --pages à partir des références WordPress : ne pas modifier à la main.')
     print(' */')
@@ -184,7 +184,7 @@ def main_compat(variante, sorties):
     print('/*')
     print(' * Astra pour SPIP — CSS de compatibilité : ' + description + '.')
     print(' *')
-    print(' * Règles d\'Astra 4.11.0 (Astra_Dynamic_CSS::astra_submenu_below_header_fix()) qui dépendent du')
+    print(' * Règles d\'Astra 4.13.8 (Astra_Dynamic_CSS::astra_submenu_below_header_fix()) qui dépendent du')
     print(' * drapeau, chargées selon astra/compatibilite. Fichier produit par')
     print(' * tests/references/extraire_css.py --compat ' + variante + ' à partir des références WordPress :')
     print(' * ne pas modifier à la main.')

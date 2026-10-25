@@ -40,6 +40,12 @@ function astra_configurations_reference(): array {
 	$titres = ['page' => 'notre_jardin', 'textes' => ['notre_jardin' => $texte . '<p>Texte de la page.</p>']];
 	return [
 		'R0-defaut' => [],
+		'R26-css-cascade' => [
+			'page' => 'notre_jardin',
+			'styles' => ['font-weight-h2' => '700', 'header-menu1-color-responsive' => ['desktop' => '#111111'], 'header-menu1-h-color-responsive' => ['desktop' => '#00ff00'], 'header-menu1-h-bg-color-responsive' => ['desktop' => '#112233']],
+			'elements' => ['entete' => ['menu-1' => ['source' => 'pages']]],
+			'textes' => ['notre_jardin' => preg_replace('~<!--\s*/?wp:.*?-->~s', '', file_get_contents(__DIR__ . '/../references/base/contenu-cascade.html'))],
+		],
 		'R27-sociaux-ids' => [
 			'entete_ordinateur' => ['above' => ['above_right' => ['social-icons-1']]],
 			'entete_mobile' => ['above' => ['above_center' => ['social-icons-1']]],

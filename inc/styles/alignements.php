@@ -2,7 +2,7 @@
 /**
  * Astra pour SPIP — alignements du copyright (inc/builder/type/footer/copyright/dynamic-css/
  * dynamic.css.php) et des icônes sociales du pied (inc/builder/type/base/dynamic-css/social/
- * class-astra-social-component-dynamic-css.php) d'Astra 4.11.0, sur les trois appareils.
+ * class-astra-social-component-dynamic-css.php) d'Astra 4.13.8, sur les trois appareils.
  *
  * @license GPL-3.0-or-later
  */

@@ -22,7 +22,8 @@ const POLICES = REFERENCE.polices || [];
 const SEUIL = parseFloat(process.env.SEUIL || '0.01');
 const AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36';
 // Pas d'animation ni de curseur clignotant : captures stables.
-const CSS_STABLE = '*,*::before,*::after{transition:none!important;animation:none!important;caret-color:transparent!important}';
+const { cssStabilisation, stabiliserComposant } = require('./stabilisation.cjs');
+const CSS_STABLE = cssStabilisation('');
 
 const VUES = [
   { nom: 'entete-ordinateur', largeur: 1280, selecteur: '#masthead' },
@@ -39,7 +40,7 @@ if (contenu === 'contenu') {
 async function capturer(browser, url, vue, fichier) {
   const page = await browser.newPage({ viewport: { width: vue.largeur, height: 900 }, userAgent: AGENT });
   await page.goto(url, { waitUntil: 'load' });
-  await page.addStyleTag({ content: CSS_STABLE });
+  await stabiliserComposant(page, vue.selecteur);
   await page.evaluate(() => document.fonts.ready);
   if (vue.ouvrir) {
     await page.locator('.ast-mobile-header-wrap .menu-toggle').first().click();

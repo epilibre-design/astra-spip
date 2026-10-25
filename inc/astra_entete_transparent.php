@@ -1,6 +1,6 @@
 <?php
 /**
- * Astra pour SPIP — en-tête transparent (inc/addons/transparent-header/ d'Astra 4.11.0).
+ * Astra pour SPIP — en-tête transparent (inc/addons/transparent-header/ d'Astra 4.13.8).
  *
  * Fonctions pures : règle d'activation (Astra_Ext_Transparent_Header_Markup::is_transparent_header())
  * et CSS du module (classes/dynamic-css/dynamic.css.php, et la partie « Transparent Header -
@@ -98,6 +98,8 @@ function astra_entete_transparent_css(array $styles, array $hfb): string {
 	$t = ASTRA_TRANSPARENT_TABLETTE;
 	$m = ASTRA_TRANSPARENT_MOBILE;
 	$min = "(min-width:{$t}px)";
+	// 4.13.8 : astra_get_tablet_breakpoint('', 1) pour la base et le séparateur desktop.
+	$min_base = '(min-width:' . ($t + 1) . 'px)';
 	$max_t = "(max-width:{$t}px)";
 	$max_m = "(max-width:{$m}px)";
 	$v = function (string $option, string $appareil) use ($s): string {
@@ -211,8 +213,8 @@ function astra_entete_transparent_css(array $styles, array $hfb): string {
 	};
 
 	if ($appareils === 'both' || $appareils === 'desktop') {
-		$ajouter($min, $base);
-		$ajouter($appareils === 'both' ? '' : '(min-width:' . ($t + 1) . 'px)', $couleurs('desktop'));
+		$ajouter($min_base, $base);
+		$ajouter($appareils === 'both' ? '' : $min_base, $couleurs('desktop'));
 	}
 	if ($appareils === 'mobile') {
 		$regles[] = [$min, '.transparent-custom-logo', ['display' => 'none']];
@@ -246,7 +248,7 @@ function astra_entete_transparent_css(array $styles, array $hfb): string {
 	} elseif ($appareils === 'mobile') {
 		$regles[] = [$max_t, $mobile, $sep_css];
 	} else {
-		$regles[] = [$min, $ordi, $sep_css];
+		$regles[] = [$min_base, $ordi, $sep_css];
 	}
 
 	// Neutralisation : css/astra-dynamic.css donne 60 px à #primary au-delà de 1200 px, règle
