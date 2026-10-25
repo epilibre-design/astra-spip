@@ -79,13 +79,21 @@ function astra_styles_champs($styles, string $section): array {
 			// Marges extérieures : nombres négatifs acceptés.
 			'signe' => !empty($d['signe']),
 			// Alignements, marges des rangées : une valeur (et une unité) par appareil, toutes appliquées.
-			'appareils' => astra_styles_trois_appareils($d) ? array_map(function ($a) use ($option, $v) {
-				return [
+			'appareils' => astra_styles_trois_appareils($d) ? array_map(function ($a) use ($option, $v, $d) {
+				$ligne = [
 					'appareil' => $a, 'nom' => "s[$option][$a]", 'valeur' => is_array($v) ? ($v[$a] ?? '') : '',
 					// Une valeur importée sans unité reste inactive après enregistrement.
 					'nom_unite' => "s[$option][$a-unit]",
 					'unite' => is_array($v) ? ($v["$a-unit"] ?? (array_key_exists($a, $v) ? '' : 'px')) : 'px',
 				];
+				if ($d['groupe'] === 'identite') {
+					$ligne['id'] = 's_' . $option . ($a === 'desktop' ? '' : '_' . $a);
+					if (is_bool($ligne['valeur'])) {
+						$ligne['valeur'] = $ligne['valeur'] ? '1' : '0';
+					}
+					$ligne['unite'] = is_array($v) ? ($v[$a . '-unit'] ?? '') : '';
+				}
+				return $ligne;
 			}, ASTRA_STYLES_APPAREILS) : [],
 		];
 	}
@@ -116,6 +124,24 @@ function astra_styles_saisie_fusionner(array $existant, array $saisie): array {
 			$x = is_array($avant) ? $avant : [];
 			$appareils = astra_styles_trois_appareils($d) ? ASTRA_STYLES_APPAREILS : ['desktop'];
 			foreach (is_array($v) ? $v : [] as $cle => $val) {
+				if ($d['groupe'] === 'identite' && astra_styles_trois_appareils($d)) {
+					if ($d['type'] === 'taille' && substr((string) $cle, -5) === '-unit' && $val === '') {
+						unset($x[$cle]);
+						continue;
+					}
+					if (in_array($cle, $appareils, true)) {
+						if ($val === '' && !array_key_exists($cle, $x)) {
+							continue;
+						}
+						// Garder le type d'une feuille importée si le POST ne la change pas.
+						$ancien = $x[$cle] ?? null;
+						if (is_bool($ancien) && in_array($val, ['0', '1'], true) && $ancien === (bool) (int) $val) {
+							$val = $ancien;
+						} elseif ((is_int($ancien) || is_float($ancien)) && is_numeric($val) && (float) $ancien === (float) $val) {
+							$val = $ancien;
+						}
+					}
+				}
 				if (in_array($cle, $appareils, true) && is_array($val)) {
 					$x[$cle] = array_merge(is_array($x[$cle] ?? null) ? $x[$cle] : [], $val);
 				} elseif (in_array($cle, $appareils, true) || in_array(preg_replace('/-unit$/', '', (string) $cle), $appareils, true)) {

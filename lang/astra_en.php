@@ -414,4 +414,7 @@ return [
 	// W
 	'widgets_entete' => 'Header Widget',
 	'widgets_pied' => 'Footer Widget',
+	'styles_identite_appareils' => "An empty size follows the cascade. Empty visibility uses the device default: title visible, tagline hidden.",
+	'styles_unite_implicite' => "Implicit px",
+	'styles_unite_appareil' => "Unit",
 ];

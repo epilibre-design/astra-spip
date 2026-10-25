@@ -97,14 +97,14 @@ function astra_styles_registre(): array {
 		'section-hb-button-1-padding' => $cotes_r + ['defaut' => ['desktop' => ['top' => 15, 'right' => 30, 'bottom' => 15, 'left' => 30]]],
 	]);
 	$ajouter('identite', 'inc/class-astra-dynamic-css.php', [
-		'font-size-site-title' => ['unites' => ['px', 'em', 'rem', 'vw', '%']] + $taille_r + ['defaut' => ['desktop' => 26, 'desktop-unit' => 'px']],
-		'font-size-site-tagline' => ['unites' => ['px', 'em', 'rem', 'vw', '%']] + $taille_r + ['defaut' => ['desktop' => 15, 'desktop-unit' => 'px']],
+		'font-size-site-title' => ['appareils' => true, 'unites' => ['px', 'em', 'rem', 'vw', '%']] + $taille_r + ['defaut' => ['desktop' => 26, 'desktop-unit' => 'px']],
+		'font-size-site-tagline' => ['appareils' => true, 'unites' => ['px', 'em', 'rem', 'vw', '%']] + $taille_r + ['defaut' => ['desktop' => 15, 'desktop-unit' => 'px']],
 		'header-color-site-title' => $couleur + ['defaut' => 'var(--ast-global-color-2)'],
 		'header-color-h-site-title' => $couleur,
 		'header-color-site-tagline' => $couleur,
-		'display-site-title-responsive' => ['type' => 'booleen', 'responsive' => true, 'defaut' => ['desktop' => 1, 'tablet' => 1, 'mobile' => 1]],
-		'display-site-tagline-responsive' => ['type' => 'booleen', 'responsive' => true, 'defaut' => ['desktop' => 0, 'tablet' => 0, 'mobile' => 0]],
-		'ast-header-responsive-logo-width' => $nombre_r,
+		'display-site-title-responsive' => ['appareils' => true, 'type' => 'booleen', 'responsive' => true, 'defaut' => ['desktop' => 1, 'tablet' => 1, 'mobile' => 1]],
+		'display-site-tagline-responsive' => ['appareils' => true, 'type' => 'booleen', 'responsive' => true, 'defaut' => ['desktop' => 0, 'tablet' => 0, 'mobile' => 0]],
+		'ast-header-responsive-logo-width' => ['appareils' => true] + $nombre_r,
 	]);
 	$widgets = 'inc/builder/type/base/dynamic-css/widget/class-astra-widget-component-dynamic-css.php';
 	for ($n = 1; $n <= 4; $n++) {

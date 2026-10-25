@@ -414,4 +414,7 @@ return [
 	// W
 	'widgets_entete' => 'Widgets d’en-tête',
 	'widgets_pied' => 'Widgets du pied de page',
+	'styles_identite_appareils' => "Une taille vide laisse agir la cascade. Une visibilité vide prend le défaut de cet appareil : titre visible, slogan masqué.",
+	'styles_unite_implicite' => "px implicites",
+	'styles_unite_appareil' => "Unité",
 ];

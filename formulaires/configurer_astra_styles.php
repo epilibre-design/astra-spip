@@ -2,8 +2,8 @@
 /**
  * Astra pour SPIP — formulaire des styles du Customizer (méta astra/styles).
  *
- * Seule la valeur ordinateur des options responsives est saisie ; les valeurs tablette et mobile
- * enregistrées (seed, import) sont gardées.
+ * Les options identifiées par le registre sont saisies sur les trois appareils ; les autres
+ * gardent leur valeur ordinateur et les appareils importés non exposés.
  *
  * @license GPL-3.0-or-later
  */
@@ -16,7 +16,23 @@ include_spip('inc/astra_styles_saisie');
 
 function formulaires_configurer_astra_styles_charger_dist() {
 	$styles = lire_config('astra/styles');
-	return ['s' => is_array($styles) ? $styles : []];
+	$styles = is_array($styles) ? $styles : [];
+	// protege_champ() du CVT transforme false en ''. Les choix booléens doivent
+	// donc être préparés en '0'/'1', sans réécrire les valeurs stockées.
+	foreach (astra_styles_registre() as $option => $definition) {
+		if ($definition['type'] !== 'booleen' || !array_key_exists($option, $styles)) {
+			continue;
+		}
+		if ($definition['responsive'] && is_array($styles[$option])) {
+			foreach ($styles[$option] as &$valeur) {
+				if (is_bool($valeur)) { $valeur = $valeur ? '1' : '0'; }
+			}
+			unset($valeur);
+		} elseif (is_bool($styles[$option])) {
+			$styles[$option] = $styles[$option] ? '1' : '0';
+		}
+	}
+	return ['s' => $styles];
 }
 
 function formulaires_configurer_astra_styles_verifier_dist() {
