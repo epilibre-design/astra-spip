@@ -22,6 +22,7 @@ include_once __DIR__ . '/inc/astra_entete_transparent.php';
 include_once __DIR__ . '/inc/astra_compatibilite.php';
 include_once __DIR__ . '/inc/astra_responsive.php';
 include_once __DIR__ . '/inc/astra_liens.php';
+include_once __DIR__ . '/inc/astra_gravatar.php';
 
 /** Réglages effectifs d'une page unique : `#ID_ARTICLE|astra_page_reglages`. */
 function filtre_astra_page_reglages_dist($id_article): array {
