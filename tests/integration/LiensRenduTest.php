@@ -5,7 +5,7 @@ final class LiensRenduTest extends TestCase {
 	public function testProtocolesActifsRefusesSansModifierLeStockage(): void {
 		$avant = lire_config('astra/hfb', null);
 		try {
-			foreach (['javascript:alert(1)', "java\tscript:alert(1)", 'jav&#x61;script:alert(1)', 'data:text/html,test', 'vbscript:msgbox(1)'] as $url) {
+			foreach (['javascript:alert(1)', "java\tscript:alert(1)", 'jav&#x61;script:alert(1)', 'jav&amp;#x61;script:alert(1)', 'data:text/html,test', 'vbscript:msgbox(1)'] as $url) {
 				$config = ['elements' => ['entete' => ['button-1' => ['libelle' => 'Test', 'lien' => $url],
 					'social-icons-1' => ['reseaux' => [['reseau' => 'facebook', 'url' => $url]]]]]];
 				ecrire_config('astra/hfb', $config);

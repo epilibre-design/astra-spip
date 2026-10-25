@@ -9,7 +9,12 @@
 function astra_url_lien(string $url): string {
 	$url = trim($url);
 	// Reconnaître aussi un schéma masqué par des entités ou caractères de contrôle.
-	$verification = preg_replace('/[\x00-\x20\x7f]+/', '', html_entity_decode($url, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+	$verification = $url;
+	do {
+		$precedente = $verification;
+		$verification = html_entity_decode($verification, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+	} while ($verification !== $precedente);
+	$verification = preg_replace('/[\x00-\x20\x7f]+/', '', $verification);
 	if (preg_match('~^([^/?#]*):~', $verification, $m)) {
 		$protocoles = ['http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'irc6', 'ircs', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'sms', 'svn', 'tel', 'fax', 'xmpp', 'webcal', 'urn'];
 		if (!in_array(strtolower($m[1]), $protocoles, true)) {
