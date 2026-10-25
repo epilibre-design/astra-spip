@@ -212,10 +212,7 @@ function astra_hfb_icones(string $groupe, string $id): array {
 		if (!isset($reseaux[$reseau])) {
 			continue;
 		}
-		$url = (string) ($item['url'] ?? '');
-		if ($reseau === 'email' && $url !== '' && strpos($url, 'mailto:') !== 0) {
-			$url = 'mailto:' . $url;
-		}
+		$url = astra_lien_social($reseau, (string) ($item['url'] ?? ''));
 		$icones[] = ['reseau' => $reseau, 'url' => $url, 'libelle' => $reseaux[$reseau][0], 'couleur' => $reseaux[$reseau][1], 'svg' => $svg[$reseau]];
 	}
 	return $icones;

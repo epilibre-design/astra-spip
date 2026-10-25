@@ -259,3 +259,11 @@ Le relevé 4.11.0 ci-dessus et sa notice restent conservés pour la provenance
 historique. Les couches transposées sont migrées et qualifiées séparément selon
 les plans du 24 octobre ; la copie des deux assets ne vaut pas preuve de parité
 pour le portage complet.
+
+Le catalogue fermé de `inc/astra_icones.php` est comparé entrée par entrée à
+`assets/svg/svgs.json` de 4.13.8 : les douze réseaux restent les mêmes. Les seuls
+changements sont le retrait des ID fixes des titres `email` et `google_reviews` ;
+les tracés restent identiques, avec leurs attributions et licences ci-dessus.
+L'amont retire aussi `trip_advisor`, absent du registre du port ; ce réseau n'est
+pas ajouté. La préparation de l'URL e-mail est une adaptation SPIP au rendu,
+suivant la protection de préfixe d'Astra, sans modification des données enregistrées.
