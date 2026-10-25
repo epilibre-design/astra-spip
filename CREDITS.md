@@ -274,3 +274,11 @@ suivant la protection de préfixe d'Astra, sans modification des données enregi
 à 921 px. Les fragments `inclure/hfb/menu*-sans-js.html` sont une adaptation SPIP :
 la liste simple sous `<noscript>` est un écart déclaré au thème, décidé pour garder
 les destinations des menus accessibles sans JavaScript.
+
+`js/astra-navigation.js` est une adaptation SPIP distincte du bundle officiel :
+le déclencheur utilisé est mémorisé, le focus revient à une cible visible de
+l'en-tête et le piège de focus reste disponible après réouverture. Ces différences
+corrigent des défauts encore observés dans le `frontend.js` de 4.13.8 (retour au
+premier `.menu-toggle` et retrait du piège à la fermeture). Elles ne sont pas
+attribuées à des correctifs amont ; les rapports de parcours conservent le
+comportement WordPress avant adaptation.

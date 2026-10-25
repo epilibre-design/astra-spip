@@ -88,6 +88,25 @@ function astra_configurations_reference(): array {
 				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Horaires', 'texte' => 'Lundi–vendredi, 9 h – 18 h'],
 			]],
 		],
+		'R25-nav-offcanvas' => [
+			'entete_ordinateur' => [
+				'primary' => ['primary_left' => ['menu-1'], 'primary_center' => ['logo'], 'primary_right' => ['account', 'search']],
+				'below' => ['below_left' => ['widget-1'], 'below_right' => ['html-2']],
+			],
+			'entete_mobile' => [
+				'popup' => ['popup_content' => ['mobile-menu', 'search']],
+				'primary' => ['primary_left' => ['mobile-trigger'], 'primary_center' => ['logo'], 'primary_right' => ['account']],
+			],
+			'menu_mobile' => 'off-canvas',
+			'elements' => ['entete' => [
+				'html-2' => ['texte' => 'Livraison gratuite dès 50 €'],
+				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Horaires', 'texte' => 'Lundi–vendredi, 9 h – 18 h'],
+			]],
+		],
+		'R25-nav-vide' => [
+			'menu_mobile' => 'off-canvas',
+			'entete_mobile' => ['primary' => ['primary_left' => [], 'primary_center' => [], 'primary_right' => []], 'popup' => ['popup_content' => []]],
+		],
 		'R3-pied-colonnes' => [
 			'pied' => [
 				'above' => ['above_1' => ['html-1'], 'above_2' => ['social-icons-1']],

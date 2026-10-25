@@ -302,3 +302,19 @@ passé dans `ASTRA_RESPONSIVE_RENDUS`. Le profil vérifie R2, les pages, deux me
 un panneau vide. Avec JavaScript actif, aucune nav de repli n'est créée. Le
 comparateur HTML retire uniquement le `<noscript>` de cette adaptation déclarée ;
 les autres `<noscript>` et toute nav de repli active restent comparés.
+
+`tests/e2e/navigation.cjs URL offcanvas SORTIES` exerce R2/R25 et enregistre
+séparément les défauts observés dans WordPress. Dans la cible 4.13.8, le piège de
+focus est retiré à la fermeture et manque aux ouvertures suivantes. Son retour
+au premier bouton échoue si ce bouton est masqué ; au passage ordinateur, le
+focus peut revenir au body. `js/astra-navigation.js` corrige ces cas sans modifier
+le bundle, les classes d'ouverture ni les réglages.
+
+R25 reprend R2 et ajoute dans le pilote un padding technique de 24 px aux deux
+panneaux ; ce n'est pas une nouvelle option de configuration SPIP. Les variables
+`ASTRA_NAV_COMMANDE_MASQUEE=1` et `ASTRA_NAV_SANS_LIEN=1` ajoutent les cas techniques
+avant l'initialisation du bundle : bouton masqué avant le vrai bouton et en-tête
+sans lien de logo/titre. Le repli sur `#masthead` pose temporairement tabindex=-1
+et le retire au blur. R25-nav-vide vérifie l'absence de panneau/déclencheur et
+d'erreurs. Ces parcours Chromium ne constituent pas une certification avec un
+lecteur d'écran.
