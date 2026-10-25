@@ -3,7 +3,8 @@
  * Schémas autorisés dans les liens du builder, sans mutation de la configuration.
  * Référence : WordPress 7.1.3, wp-includes/functions.php::wp_allowed_protocols(),
  * liste utilisée par esc_url() dans les composants Astra 4.13.8.
- * Adaptation SPIP : filtrage avant attribut_html(), qui échappe mais ne valide pas un protocole.
+ * Adaptation SPIP : filtrage avant attribut_html{0}, qui échappe sans appliquer
+ * textebrut() : retirer des balises/commentaires après validation pourrait révéler un protocole actif.
  * @license GNU/GPL v3+
  */
 function astra_url_lien(string $url): string {
