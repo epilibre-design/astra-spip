@@ -3,6 +3,7 @@
 // Fichier de langue du thème Astra pour SPIP
 
 return [
+	'style_widget_alignment' => 'Alignement du contenu',
 
 	// A
 	'a_heure' => 'à',

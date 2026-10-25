@@ -117,6 +117,13 @@ function astra_styles_registre(): array {
 			"footer-widget-$n-content-font-size" => $taille_r,
 		]);
 	}
+	// Installation récente : LTR left, RTL right ; anciens profils : center sur tablette/mobile.
+	// Ces défauts documentent l'amont et ne sont jamais enregistrés à la place d'une absence.
+	for ($n = 1; $n <= 4; $n++) {
+		$ajouter('alignements-widgets', 'inc/builder/type/footer/widget/dynamic-css/dynamic.css.php', [
+			"footer-widget-alignment-$n" => ['type'=>'alignement', 'responsive'=>true, 'defaut'=>['desktop'=>'left','tablet'=>'','mobile'=>'']],
+		]);
+	}
 	$ajouter('pied', 'inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php', [
 		'footer-copyright-color' => $couleur + ['defaut' => 'var(--ast-global-color-3)'],
 		'font-size-section-footer-copyright' => $taille_r + ['defaut' => ['desktop' => 16, 'desktop-unit' => 'px']],
@@ -512,7 +519,7 @@ function astra_styles_ecrire(array $regles): string {
 }
 
 /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
-const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'alignements', 'menu_mobile', 'marges_rangees'];
+const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'alignements_widgets', 'pied', 'sociaux', 'alignements', 'menu_mobile', 'marges_rangees'];
 
 /**
  * CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. $compatibilite :

@@ -19,10 +19,10 @@ function astra_styles_sections(): array {
 		'bouton' => '/^(button-|theme-button-|font-[a-z]+-button$)/',
 		'bouton_entete' => '/^(header-button1-|section-hb-button-1-)/',
 		'identite' => '/^(?!(hba-|hbb-)?transparent-).*(site-title|site-tagline|logo-width)/',
-		'widget_1' => '/^footer-widget-1-/',
-		'widget_2' => '/^footer-widget-2-/',
-		'widget_3' => '/^footer-widget-3-/',
-		'widget_4' => '/^footer-widget-4-/',
+		'widget_1' => '/^footer-widget-1-|^footer-widget-alignment-1$/',
+		'widget_2' => '/^footer-widget-2-|^footer-widget-alignment-2$/',
+		'widget_3' => '/^footer-widget-3-|^footer-widget-alignment-3$/',
+		'widget_4' => '/^footer-widget-4-|^footer-widget-alignment-4$/',
 		'copyright' => '/copyright/',
 		'sociaux_entete' => '/^header-social-1-/',
 		'sociaux_pied' => '/^footer-social-1-/',
@@ -42,6 +42,7 @@ function astra_styles_trois_appareils(array $d): bool {
 
 /** Clé de langue du libellé d'une option : les options d'éléments semblables la partagent. */
 function astra_styles_libelle(string $option): string {
+	if (preg_match('/^footer-widget-alignment-[1-4]$/', $option)) { return 'astra:style_widget_alignment'; }
 	$o = preg_replace(
 		['/^header-menu\d-/', '/^footer-widget-\d-/', '/^(header-button1|section-hb-button-1)-/', '/^(header|footer)-social-1-/'],
 		['menu-', 'widget-', 'bouton-entete-', 'social-'],
