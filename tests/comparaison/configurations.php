@@ -40,6 +40,16 @@ function astra_configurations_reference(): array {
 	$titres = ['page' => 'notre_jardin', 'textes' => ['notre_jardin' => $texte . '<p>Texte de la page.</p>']];
 	return [
 		'R0-defaut' => [],
+		'R27-sociaux-ids' => [
+			'entete_ordinateur' => ['above' => ['above_right' => ['social-icons-1']]],
+			'entete_mobile' => ['above' => ['above_center' => ['social-icons-1']]],
+			'pied' => ['below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']]],
+			'rangees' => ['pied_below' => ['colonnes' => 2, 'repartition' => '2-equal']],
+			'elements' => array_fill_keys(['entete', 'pied'], ['social-icons-1' => ['reseaux' => [
+				['reseau' => 'email', 'url' => 'MAILTO:nom@example.test'],
+				['reseau' => 'google_reviews', 'url' => 'https://example.test/avis'],
+			]]]),
+		],
 		'R1-entete-complet' => [
 			'entete_ordinateur' => [
 				'above' => ['above_left' => ['html-1'], 'above_right' => ['social-icons-1']],
