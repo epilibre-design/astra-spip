@@ -1,6 +1,6 @@
 <?php
 /**
- * Astra pour SPIP — drapeaux de compatibilité d'Astra 4.11.0 (méta astra/compatibilite,
+ * Astra pour SPIP — drapeaux de compatibilité d'Astra 4.13.8 (méta astra/compatibilite,
  * docs/superpowers/specs/2026-10-23-compatibilite-reglages-design.md).
  *
  * Un site installé avec une ancienne version d'Astra garde des drapeaux dans astra-settings ; les

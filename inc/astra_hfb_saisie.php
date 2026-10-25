@@ -293,7 +293,7 @@ function astra_hfb_verifier_saisie(array $saisie): array {
 
 /**
  * Répartitions des colonnes du pied proposées par Astra pour un nombre de colonnes et un appareil
- * (Astra_Builder_Helper, choix du contrôle ast-row-layout, Astra 4.11.0) : tablette et mobile
+ * (Astra_Builder_Helper, choix du contrôle ast-row-layout, Astra 4.13.8) : tablette et mobile
  * ajoutent `full` et, selon le nombre de colonnes, `2-equal`, `3-firstrow`, `3-lastrow`.
  * La tablette garde en plus les répartitions de l'ordinateur (`4-lheavy`, `4-rheavy`) : une valeur
  * simple de la version 1.2.0 s'y applique, et le formulaire doit pouvoir la reproposer.

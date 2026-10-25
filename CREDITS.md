@@ -306,3 +306,25 @@ L'outillage de preuve utilise [SPIP-Cli](https://git.spip.net/spip-contrib-outil
 La [procédure SQLite](docs/inventaires/astra-4.13.8-qualification/outillage/spip-cli-prefixe-sqlite.md)
 identifie le commit et l'empreinte du fichier de la copie locale utilisée, ainsi
 que la correction d'expression nécessaire à la préparation privée.
+
+Les sorties courantes `tests/references/styles/attendus/` et
+`tests/references/transparent/attendus/`, ainsi que les feuilles dynamiques,
+builder, pages et compatibilité, sont régénérées depuis ce WordPress sous Astra
+4.13.8. Le tableau 4.11.0 en début de fichier décrit leur origine historique ;
+les anciennes révisions et preuves restent disponibles. `css/astra-blocs.css`
+reste issu de WordPress 7.1.3, et n’est pas réattribué à Astra.
+
+`inc/astra_liens.php` adapte au rendu SPIP la liste native
+[`wp_allowed_protocols()`](https://core.trac.wordpress.org/browser/tags/7.1.3/src/wp-includes/functions.php)
+de WordPress 7.1.3 (contributeurs WordPress, GPL v2 ou ultérieure), utilisée par
+`esc_url()` dans les composants Astra. L’échappement SPIP reste distinct ; les
+valeurs enregistrées ne sont pas réécrites.
+
+La règle `.entry-content .oembed_video .oe-video` de `css/astra-spip.css` est une
+adaptation originale d’habillage : elle retire le cadre du plugin
+[oEmbed](https://git.spip.net/spip-contrib-extensions/oembed), version 3.5.1,
+commit `e90f6a6db27f763ad78ad36c0398b39aeff4cf8c`, `css/oembed.css`, auteur b_b,
+GPL 3. Le plugin, ses modèles, son lecteur et ses crédits ne sont pas embarqués
+ni remplacés. La fixture locale et ses réponses sont rédigées pour ces tests,
+sans contenu de fournisseur tiers ; sa vignette reprend le PNG de test CC0 déjà
+crédité dans `tests/references/blocs/images/`.

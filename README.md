@@ -1,6 +1,6 @@
 # Astra pour SPIP
 
-Portage pour SPIP du thème WordPress [Astra](https://wordpress.org/themes/astra/) de Brainstorm Force (version 4.11.0).
+Portage pour SPIP du thème WordPress [Astra](https://wordpress.org/themes/astra/) de Brainstorm Force (version 4.13.8).
 
 Le plugin reproduit le rendu d'Astra avec ses réglages par défaut : même balisage HTML que le
 thème WordPress, mêmes feuilles de style et même JavaScript. Les classes CSS d'Astra
@@ -51,7 +51,7 @@ En-tête et pied de page** :
 - en-tête sur mobile : mêmes rangées, plus le panneau du menu (déroulant ou latéral) ;
 - pied de page : 1 à 6 colonnes par rangée, avec les répartitions d'Astra, choisies séparément
   pour l'ordinateur, la tablette et le mobile (dont `3-firstrow` et `3-lastrow`). Comme dans
-  Astra 4.11.0, la règle tablette de `3-firstrow` ou `3-lastrow` (`max-width:921px`) vaut aussi sur
+  Astra 4.13.8, la règle tablette de `3-firstrow` ou `3-lastrow` (`max-width:921px`) vaut aussi sur
   mobile : la colonne qu'elle étend reste pleine largeur avec une autre répartition mobile
   (mesuré à 390 px, identique dans WordPress et SPIP) ;
 - éléments : identité du site, menus (rubriques racines, sous-rubriques d'une rubrique, articles
@@ -121,9 +121,11 @@ Le contrôle de découverte ne vaut pas validation de sécurité du plugin : cet
 n’emploie pas le validateur d’URL optionnel du client HTTP de SPIP. Le plugin déclare
 SPIP 4.x ; son activation n’est pas forcée sous SPIP 5.
 
+La migration depuis Astra 4.11.0 est qualifiée dans le [bilan 1.6.0](docs/inventaires/astra-4.13.8-qualification/bilan.md) : assets officiels, CSS régénéré, clavier et comportements adaptatifs. Les anciennes preuves sont conservées. Le menu mobile sans JavaScript reste une liste simple ; les widgets menu restent des listes statiques, selon les décisions documentées. Les tailles responsives d’identité et les autres fonctions non portées ne deviennent pas disponibles par le seul changement de référence.
+
 ## Feuilles de style et scripts
 
-- `css/main.min.css` et `js/frontend.min.js` : fichiers d'origine d'Astra 4.11.0, sans modification.
+- `css/main.min.css` et `js/frontend.min.js` : fichiers d'origine d'Astra 4.13.8, sans modification.
 - `css/astra-dynamic.css` : le CSS « dynamique » qu'Astra génère en PHP à partir des réglages du
   Customizer. Il a été extrait d'un rendu WordPress réel (réglages par défaut, toutes les
   dispositions de page), puis rendu paramétrable : palette et largeurs passent par des variables CSS.
@@ -153,7 +155,7 @@ SPIP 4.x ; son activation n’est pas forcée sous SPIP 5.
 - Affichage des auteurs, des extraits, du lien « Accueil » et du bouton de retour en haut.
 - Neuvième couleur de la palette : hexadécimale ou `rgba()`, comme dans Astra.
 - **Couleurs et typographie** (Configuration › Squelettes) : réglages de style du Customizer d'Astra, sous leurs noms d'options (`header-menu1-color-responsive`, `button-radius-fields`…) — menus, bouton, bouton de l'en-tête, identité du site (couleurs, tailles, affichage du nom et du slogan, largeur du logo), widgets et copyright du pied, icônes sociales, bouton du menu mobile (minimal, plein ou contour). Les valeurs d'un `site.json` de modèle Astra se reprennent telles quelles ; seule la valeur ordinateur est appliquée, les valeurs tablette et mobile sont conservées. Sans réglage, rien ne change.
-- **En-tête transparent** (même formulaire) : l'en-tête se superpose au début du contenu, avec ses propres couleurs, sur tout le site ou page par page, avec les exclusions d'Astra (archives, recherche, 404, accueil des derniers articles, pages, articles) et la restriction par appareil ; règles d'Astra 4.11.0 sur les trois appareils (`inc/astra_entete_transparent.php`). Logo propre à l'en-tête transparent : non repris.
+- **En-tête transparent** (même formulaire) : l'en-tête se superpose au début du contenu, avec ses propres couleurs, sur tout le site ou page par page, avec les exclusions d'Astra (archives, recherche, 404, accueil des derniers articles, pages, articles) et la restriction par appareil ; règles d'Astra 4.13.8 sur les trois appareils (`inc/astra_entete_transparent.php`). Logo propre à l'en-tête transparent : non repris.
 - Graisses des titres (`headings-font-weight`, `font-weight-h1` à `h6`), marge intérieure du
   bouton de l'en-tête et alignements du copyright et des icônes sociales du pied (même formulaire ;
   les alignements s'appliquent sur les trois appareils).
@@ -240,7 +242,7 @@ Les sources, auteurs, versions, licences et adaptations sont détaillés dans
 [CREDITS.md](CREDITS.md) ; les notices amont et textes de licences sont conservés dans
 [`licenses/`](licenses/).
 
-Le portage reprend Astra 4.11.0 (Brainstorm Force / WPAstra, basé sur Underscores par
+Le portage reprend Astra 4.13.8 (Brainstorm Force / WPAstra, basé sur Underscores par
 Automattic, GPL v2 ou ultérieure), des styles de WordPress 7.1.3 (ses contributeurs,
 GPL v2 ou ultérieure) et les styles de normalisation crédités par Astra à Nicolas
 Gallagher et Jonathan Neal (normalize.css, MIT).

@@ -1,7 +1,7 @@
 <paquet
 	prefix="astra"
 	categorie="squelette"
-	version="1.5.0"
+	version="1.6.0"
 	schema="1.0.0"
 	etat="test"
 	compatibilite="[4.2.0;5.0.*]"
@@ -13,7 +13,7 @@
 
 	<auteur>Gilles Vincent</auteur>
 	<credit lien="https://wpastra.com/">Thème Astra original © Brainstorm Force (GPL v2+)</credit>
-	<credit lien="https://downloads.wordpress.org/theme/astra.4.11.0.zip">Sources du thème Astra 4.11.0</credit>
+	<credit lien="https://downloads.wordpress.org/theme/astra.4.13.8.zip">Sources du thème Astra 4.13.8</credit>
 	<credit lien="https://underscores.me/">Socle d'Astra : Underscores © 2012-2020 Automattic, Inc. (GPL v2 ou ultérieure)</credit>
 	<credit lien="https://github.com/necolas/normalize.css">Normalisation CSS : Nicolas Gallagher et Jonathan Neal (MIT)</credit>
 	<credit lien="https://github.com/justintadlock/breadcrumb-trail">Structure du fil d'Ariane d'Astra : Breadcrumb Trail, Justin Tadlock (GPL v2 ou ultérieure)</credit>

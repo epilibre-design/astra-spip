@@ -1,6 +1,6 @@
 <?php
 /**
- * Astra pour SPIP — styles du Customizer d'Astra 4.11.0 : registre des options, normalisation
+ * Astra pour SPIP — styles du Customizer d'Astra 4.13.8 : registre des options, normalisation
  * commune, écriture du CSS (docs/superpowers/specs/2026-10-23-styles-customizer-design.md).
  *
  * Les options portent les noms d'Astra ; leurs structures (valeur par appareil, unités, côtés,
@@ -19,7 +19,7 @@ const ASTRA_STYLES_TAILLE_TEXTE = 16;
 const ASTRA_STYLES_APPAREILS = ['desktop', 'tablet', 'mobile'];
 
 /**
- * Registre des options : groupe, fichier source d'Astra 4.11.0, type, structure responsive,
+ * Registre des options : groupe, fichier source d'Astra 4.13.8, type, structure responsive,
  * unités ou valeurs acceptées, défaut d'Astra (documentation et tests : jamais écrit).
  */
 function astra_styles_registre(): array {

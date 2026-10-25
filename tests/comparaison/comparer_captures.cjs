@@ -95,6 +95,22 @@ async function polices(browser, url) {
   const browser = await chromium.launch({ executablePath: process.env.HOME + '/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome' });
   let echec = false;
   for (const vue of VUES) {
+    if (REFERENCE.entete_mobile_absente === true && ['entete-mobile','menu-mobile'].includes(vue.nom)) {
+      const absences = {};
+      for (const [nom,url] of [['wordpress',urlWp],['spip',urlSpip]]) {
+        const page = await browser.newPage({viewport:{width:vue.largeur,height:900},userAgent:AGENT});
+        try {
+          await page.goto(url,{waitUntil:'load'});
+          const visible = await page.locator('#masthead').isVisible();
+          const commandes = await page.locator('.main-header-menu-toggle,#ast-mobile-popup').count();
+          if (visible || commandes !== 0) throw new Error(nom+' : en-tête ou commande mobile présent dans la référence explicitement vide');
+          absences[nom] = {enteteVisible:visible,commandes};
+        } finally { await page.close(); }
+      }
+      fs.writeFileSync(`${dossier}/${vue.nom}-absence.json`,JSON.stringify(absences,null,2)+'\n');
+      console.log(`ok    ${vue.nom} : absence vérifiée WordPress/SPIP`);
+      continue;
+    }
     const fWp = `${dossier}/wordpress-${vue.nom}.png`;
     const fSpip = `${dossier}/spip-${vue.nom}.png`;
     await capturer(browser, urlWp, vue, fWp);

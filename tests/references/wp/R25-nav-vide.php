@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/R2-entete-centre.php';
+require __DIR__ . '/R0-defaut.php';
 ref_reglages(['header-mobile-items' => [
 	'popup' => ['popup_content' => []],
 	'above' => ['above_left' => [], 'above_center' => [], 'above_right' => []],

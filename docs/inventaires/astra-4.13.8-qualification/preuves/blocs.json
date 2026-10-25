@@ -1,0 +1,468 @@
+{
+  "spip": [
+    {
+      "largeur": 1280,
+      "rayon": "4px",
+      "ombre": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "taille": "16px",
+      "haut": "15px",
+      "gauche": "30px",
+      "colonnes": [
+        {
+          "colonnes": 2,
+          "display": "flex",
+          "gap": "24px",
+          "width": 1200,
+          "enfants": [
+            {
+              "width": 540,
+              "display": "block"
+            },
+            {
+              "width": 540,
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "colonnes": 3,
+          "display": "flex",
+          "gap": "24px",
+          "width": 1200,
+          "enfants": [
+            {
+              "width": 352,
+              "display": "block"
+            },
+            {
+              "width": 352,
+              "display": "block"
+            },
+            {
+              "width": 352,
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "sondes": {
+        "origine": "sondes CSS natives après mesure de l’import, sans écriture éditoriale",
+        "colonnes": [
+          {
+            "alignement": "normal",
+            "width": 1200,
+            "marginLeft": "0px",
+            "marginRight": "0px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "wide",
+            "width": 1200,
+            "marginLeft": "0px",
+            "marginRight": "0px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "full",
+            "width": 1280,
+            "marginLeft": "-40px",
+            "marginRight": "-40px",
+            "gap": "24px"
+          }
+        ],
+        "titre": {
+          "poids": "400",
+          "taille": "30px",
+          "code": "30px"
+        }
+      }
+    },
+    {
+      "largeur": 768,
+      "rayon": "4px",
+      "ombre": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "taille": "14.592px",
+      "haut": "14px",
+      "gauche": "28px",
+      "colonnes": [
+        {
+          "colonnes": 2,
+          "display": "flex",
+          "gap": "24px",
+          "width": 728,
+          "enfants": [
+            {
+              "width": 669.65625,
+              "display": "block"
+            },
+            {
+              "width": 669.65625,
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "colonnes": 3,
+          "display": "flex",
+          "gap": "24px",
+          "width": 728,
+          "enfants": [
+            {
+              "width": 669.65625,
+              "display": "block"
+            },
+            {
+              "width": 669.65625,
+              "display": "block"
+            },
+            {
+              "width": 669.65625,
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "sondes": {
+        "origine": "sondes CSS natives après mesure de l’import, sans écriture éditoriale",
+        "colonnes": [
+          {
+            "alignement": "normal",
+            "width": 728,
+            "marginLeft": "0px",
+            "marginRight": "0px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "wide",
+            "width": 768,
+            "marginLeft": "-20px",
+            "marginRight": "-20px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "full",
+            "width": 768,
+            "marginLeft": "-20px",
+            "marginRight": "-20px",
+            "gap": "24px"
+          }
+        ],
+        "titre": {
+          "poids": "400",
+          "taille": "22.8px",
+          "code": "22.8px"
+        }
+      }
+    },
+    {
+      "largeur": 390,
+      "rayon": "4px",
+      "ombre": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "taille": "14.592px",
+      "haut": "12px",
+      "gauche": "24px",
+      "colonnes": [
+        {
+          "colonnes": 2,
+          "display": "flex",
+          "gap": "24px",
+          "width": 350,
+          "enfants": [
+            {
+              "width": 306.25,
+              "display": "block"
+            },
+            {
+              "width": 306.25,
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "colonnes": 3,
+          "display": "flex",
+          "gap": "24px",
+          "width": 350,
+          "enfants": [
+            {
+              "width": 306.25,
+              "display": "block"
+            },
+            {
+              "width": 306.25,
+              "display": "block"
+            },
+            {
+              "width": 306.25,
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "sondes": {
+        "origine": "sondes CSS natives après mesure de l’import, sans écriture éditoriale",
+        "colonnes": [
+          {
+            "alignement": "normal",
+            "width": 350,
+            "marginLeft": "0px",
+            "marginRight": "0px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "wide",
+            "width": 390,
+            "marginLeft": "-20px",
+            "marginRight": "-20px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "full",
+            "width": 390,
+            "marginLeft": "-20px",
+            "marginRight": "-20px",
+            "gap": "24px"
+          }
+        ],
+        "titre": {
+          "poids": "400",
+          "taille": "22.8px",
+          "code": "22.8px"
+        }
+      }
+    }
+  ],
+  "wordpress": [
+    {
+      "largeur": 1280,
+      "rayon": "4px",
+      "ombre": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "taille": "16px",
+      "haut": "15px",
+      "gauche": "30px",
+      "colonnes": [
+        {
+          "colonnes": 2,
+          "display": "flex",
+          "gap": "24px",
+          "width": 1200,
+          "enfants": [
+            {
+              "width": 540,
+              "display": "block"
+            },
+            {
+              "width": 540,
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "colonnes": 3,
+          "display": "flex",
+          "gap": "24px",
+          "width": 1200,
+          "enfants": [
+            {
+              "width": 352,
+              "display": "block"
+            },
+            {
+              "width": 352,
+              "display": "block"
+            },
+            {
+              "width": 352,
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "sondes": {
+        "origine": "sondes CSS natives après mesure de l’import, sans écriture éditoriale",
+        "colonnes": [
+          {
+            "alignement": "normal",
+            "width": 1200,
+            "marginLeft": "0px",
+            "marginRight": "0px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "wide",
+            "width": 1200,
+            "marginLeft": "0px",
+            "marginRight": "0px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "full",
+            "width": 1280,
+            "marginLeft": "-40px",
+            "marginRight": "-40px",
+            "gap": "24px"
+          }
+        ],
+        "titre": {
+          "poids": "400",
+          "taille": "30px",
+          "code": "30px"
+        }
+      }
+    },
+    {
+      "largeur": 768,
+      "rayon": "4px",
+      "ombre": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "taille": "14.592px",
+      "haut": "14px",
+      "gauche": "28px",
+      "colonnes": [
+        {
+          "colonnes": 2,
+          "display": "flex",
+          "gap": "24px",
+          "width": 728,
+          "enfants": [
+            {
+              "width": 669.65625,
+              "display": "block"
+            },
+            {
+              "width": 669.65625,
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "colonnes": 3,
+          "display": "flex",
+          "gap": "24px",
+          "width": 728,
+          "enfants": [
+            {
+              "width": 669.65625,
+              "display": "block"
+            },
+            {
+              "width": 669.65625,
+              "display": "block"
+            },
+            {
+              "width": 669.65625,
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "sondes": {
+        "origine": "sondes CSS natives après mesure de l’import, sans écriture éditoriale",
+        "colonnes": [
+          {
+            "alignement": "normal",
+            "width": 728,
+            "marginLeft": "0px",
+            "marginRight": "0px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "wide",
+            "width": 768,
+            "marginLeft": "-20px",
+            "marginRight": "-20px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "full",
+            "width": 768,
+            "marginLeft": "-20px",
+            "marginRight": "-20px",
+            "gap": "24px"
+          }
+        ],
+        "titre": {
+          "poids": "400",
+          "taille": "22.8px",
+          "code": "22.8px"
+        }
+      }
+    },
+    {
+      "largeur": 390,
+      "rayon": "4px",
+      "ombre": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "taille": "14.592px",
+      "haut": "12px",
+      "gauche": "24px",
+      "colonnes": [
+        {
+          "colonnes": 2,
+          "display": "flex",
+          "gap": "24px",
+          "width": 350,
+          "enfants": [
+            {
+              "width": 306.25,
+              "display": "block"
+            },
+            {
+              "width": 306.25,
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "colonnes": 3,
+          "display": "flex",
+          "gap": "24px",
+          "width": 350,
+          "enfants": [
+            {
+              "width": 306.25,
+              "display": "block"
+            },
+            {
+              "width": 306.25,
+              "display": "block"
+            },
+            {
+              "width": 306.25,
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "sondes": {
+        "origine": "sondes CSS natives après mesure de l’import, sans écriture éditoriale",
+        "colonnes": [
+          {
+            "alignement": "normal",
+            "width": 350,
+            "marginLeft": "0px",
+            "marginRight": "0px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "wide",
+            "width": 390,
+            "marginLeft": "-20px",
+            "marginRight": "-20px",
+            "gap": "24px"
+          },
+          {
+            "alignement": "full",
+            "width": 390,
+            "marginLeft": "-20px",
+            "marginRight": "-20px",
+            "gap": "24px"
+          }
+        ],
+        "titre": {
+          "poids": "400",
+          "taille": "22.8px",
+          "code": "22.8px"
+        }
+      }
+    }
+  ]
+}

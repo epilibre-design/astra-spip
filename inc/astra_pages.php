@@ -42,7 +42,7 @@ function astra_page_disposition_effective(string $disposition): string {
 	return $disposition === 'defaut' ? 'normale' : $disposition;
 }
 
-/** Classes du body d'Astra pour une disposition (inc/markup-extras.php d'Astra 4.11.0). */
+/** Classes du body d'Astra pour une disposition (inc/markup-extras.php d'Astra 4.13.8). */
 function astra_page_classes_disposition(string $disposition): array {
 	$classes = ['normale' => 'ast-plain-container', 'etroite' => 'ast-narrow-container', 'pleine' => 'ast-page-builder-template'];
 	return [$classes[astra_page_disposition_effective($disposition)] ?? 'ast-plain-container'];

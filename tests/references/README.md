@@ -1,6 +1,6 @@
 # Références WordPress du builder d'en-tête et de pied de page
 
-Ces références servent de modèle au portage du Header/Footer Builder d'Astra 4.11.0 : pour
+Ces références servent de modèle au portage du Header/Footer Builder d'Astra 4.13.8 : pour
 chaque configuration, le WordPress de test produit le HTML, le CSS dynamique et des captures
 que le rendu SPIP doit reproduire.
 
@@ -8,7 +8,7 @@ Le dossier `sorties/` n'est pas versionné : il se régénère avec les commande
 
 ## Prérequis
 
-- Un WordPress de test avec le thème Astra officiel 4.11.0 actif, servi sur
+- Un WordPress de test avec le thème Astra officiel 4.13.8 actif, servi sur
   `http://127.0.0.1:8401` (variable `URL` pour une autre adresse) ; sa racine dans `WP`.
 - wp-cli (`wp`), PHP, curl.
 - Playwright installé dans un dossier `PW` (contenant `node_modules/playwright`) et Chromium dans
@@ -100,9 +100,9 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 Les pages des configurations P (`ref_pages()`) ont les mêmes titres, textes et sous-pages que le
 SPIP d'intégration (`scripts/install-spip-test.sh`). Classes du `body` relevées :
 
-- P1-page : `wp-singular page-template-default page page-id-21 page-parent wp-theme-astra ast-desktop ast-plain-container ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled`
+- P1-page : `wp-singular page-template-default page page-id-21 page-parent wp-theme-astra ast-desktop ast-plain-container ast-no-sidebar astra-4.13.8 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled`
 - P2-accueil : les mêmes, précédées de `home`
-- P3-page-pleine : `wp-singular page-template-default page page-id-24 wp-theme-astra ast-desktop ast-page-builder-template ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header` (ni `ast-normal-title-enabled`, ni `page-parent`)
+- P3-page-pleine : `wp-singular page-template-default page page-id-24 wp-theme-astra ast-desktop ast-page-builder-template ast-no-sidebar astra-4.13.8 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header` (ni `ast-normal-title-enabled`, ni `page-parent`)
 
 Les références R6–R11 reprennent les valeurs du modèle Garden Maintenance
 (`tests/references/styles/valeurs/<groupe>.json`) ; elles ne sont pas lues par
@@ -114,7 +114,7 @@ par un mu-plugin écrit par `ref_polices_locales()` (`commun.php`), sans Google 
 
 ## Styles du Customizer : attendus
 
-`tests/references/styles/` fixe le CSS qu'Astra 4.11.0 produit pour chaque groupe de styles :
+`tests/references/styles/` fixe le CSS qu'Astra 4.13.8 produit pour chaque groupe de styles :
 
 - `appliquer.php` : état R0, placement de Garden, options du groupe (`GROUPE=<groupe>`) ;
 - `capturer.sh` : `WP=… tests/references/styles/capturer.sh` capture le CSS dynamique sans option
@@ -171,7 +171,7 @@ Les références R18 à R23 passent par les clés `compatibilite` (méta `astra/
 
 ## En-tête transparent : attendus
 
-`tests/references/transparent/` fixe le CSS qu'Astra 4.11.0 ajoute sur une page à en-tête
+`tests/references/transparent/` fixe le CSS qu'Astra 4.13.8 ajoute sur une page à en-tête
 transparent (page « Notre jardin », méta de page `enabled`) :
 
 - `appliquer.php` : état P1, puis les options de `valeurs/<variante>.json` (`VARIANTE=…`) ;
@@ -231,8 +231,9 @@ et les notices conservées figurent dans [CREDITS.md](../../CREDITS.md).
 
 ## Migration vers 4.13.8 : sites isolés et garde de capture
 
-La migration utilise `cible.json` (WordPress 7.1.3, Astra 4.13.8) ; les commandes
-historiques ci-dessus décrivent encore 4.11.0 jusqu'à qualification complète.
+La référence courante utilise `cible.json` (WordPress 7.1.3, Astra 4.13.8).
+Les preuves 4.11.0 sont archivées séparément ; elles ne sont pas renommées comme des mesures 4.13.8.
+Le [bilan intégré](../../docs/inventaires/astra-4.13.8-qualification/bilan.md) précise les différences, limites et décisions par entrée.
 Créer le site neuf avec `scripts/install-wp-reference.sh` en fournissant
 `WP_REFERENCE`, `URL_WP`, `ASTRA_REFERENCE_ARCHIVE` et `SQLITE_PLUGIN` (sources
 SQLite Database Integration 3.1.1). L'archive du cœur est épinglée et extraite par

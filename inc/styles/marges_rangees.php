@@ -3,7 +3,7 @@
  * Astra pour SPIP — marges des rangées du builder, de l'en-tête entier et du pied entier
  * (Astra_Extended_Base_Dynamic_CSS::prepare_advanced_margin_padding_css() de
  * inc/class-astra-extended-base-dynamic-css.php, et section-header-builder-layout-margin de
- * inc/builder/type/header/primary-header/dynamic-css/dynamic.css.php d'Astra 4.11.0), sur les
+ * inc/builder/type/header/primary-header/dynamic-css/dynamic.css.php d'Astra 4.13.8), sur les
  * trois appareils.
  *
  * @license GPL-3.0-or-later

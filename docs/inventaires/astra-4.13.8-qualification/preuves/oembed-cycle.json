@@ -1,0 +1,7 @@
+{
+  "textes_identiques": true,
+  "articles": 6,
+  "sha256": "f04322673bf810ffc22db4f26ee82dc6785e29c9593150a68147f84b9cd5c60e",
+  "requete_decouverte_attestee": true,
+  "protection_ssrf_validee": false
+}

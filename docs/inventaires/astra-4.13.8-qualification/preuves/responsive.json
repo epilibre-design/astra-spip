@@ -1,0 +1,617 @@
+{
+  "spip": {
+    "premierePeinture": [
+      {
+        "largeur": 921,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 921,
+          "clientWidth": 921,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 921,
+          "clientWidth": 921,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 921,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 921,
+          "clientWidth": 921,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 921,
+          "clientWidth": 921,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 922,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 922,
+          "clientWidth": 922,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 922,
+          "clientWidth": 922,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 922,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 922,
+          "clientWidth": 922,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 922,
+          "clientWidth": 922,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 1280,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 1280,
+          "clientWidth": 1280,
+          "mobile": false,
+          "desktop": true,
+          "entetes": [
+            "ast-desktop-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 1280,
+          "clientWidth": 1280,
+          "mobile": false,
+          "desktop": true,
+          "entetes": [
+            "ast-desktop-header"
+          ]
+        }
+      },
+      {
+        "largeur": 1280,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 1280,
+          "clientWidth": 1280,
+          "mobile": false,
+          "desktop": true,
+          "entetes": [
+            "ast-desktop-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 1280,
+          "clientWidth": 1280,
+          "mobile": false,
+          "desktop": true,
+          "entetes": [
+            "ast-desktop-header"
+          ]
+        }
+      },
+      {
+        "largeur": 768,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 768,
+          "clientWidth": 768,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 768,
+          "clientWidth": 768,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 768,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 768,
+          "clientWidth": 768,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 768,
+          "clientWidth": 768,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 390,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 390,
+          "clientWidth": 390,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 390,
+          "clientWidth": 390,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 390,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 390,
+          "clientWidth": 390,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 390,
+          "clientWidth": 390,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      }
+    ],
+    "sansJavascript": [
+      {
+        "largeur": 1280,
+        "replis": [],
+        "interactifs": [
+          "Jardinage",
+          "Actualités"
+        ]
+      },
+      {
+        "largeur": 768,
+        "replis": [
+          "Jardinage",
+          "Actualités"
+        ],
+        "interactifs": []
+      },
+      {
+        "largeur": 390,
+        "replis": [
+          "Jardinage",
+          "Actualités"
+        ],
+        "interactifs": []
+      }
+    ],
+    "avecJavascript": [
+      {
+        "largeur": 1280,
+        "width": 1280,
+        "height": 191.390625
+      },
+      {
+        "largeur": 768,
+        "width": 768,
+        "height": 80
+      },
+      {
+        "largeur": 390,
+        "width": 390,
+        "height": 80
+      }
+    ]
+  },
+  "wordpress": {
+    "premierePeinture": [
+      {
+        "largeur": 921,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 921,
+          "clientWidth": 921,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 921,
+          "clientWidth": 921,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 921,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 921,
+          "clientWidth": 921,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 921,
+          "clientWidth": 921,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 922,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 922,
+          "clientWidth": 922,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 922,
+          "clientWidth": 922,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 922,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 922,
+          "clientWidth": 922,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 922,
+          "clientWidth": 922,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 1280,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 1280,
+          "clientWidth": 1280,
+          "mobile": false,
+          "desktop": true,
+          "entetes": [
+            "ast-desktop-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 1280,
+          "clientWidth": 1280,
+          "mobile": false,
+          "desktop": true,
+          "entetes": [
+            "ast-desktop-header"
+          ]
+        }
+      },
+      {
+        "largeur": 1280,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 1280,
+          "clientWidth": 1280,
+          "mobile": false,
+          "desktop": true,
+          "entetes": [
+            "ast-desktop-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 1280,
+          "clientWidth": 1280,
+          "mobile": false,
+          "desktop": true,
+          "entetes": [
+            "ast-desktop-header"
+          ]
+        }
+      },
+      {
+        "largeur": 768,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 768,
+          "clientWidth": 768,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 768,
+          "clientWidth": 768,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 768,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 768,
+          "clientWidth": 768,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 768,
+          "clientWidth": 768,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 390,
+        "scrollbar": false,
+        "avant": {
+          "innerWidth": 390,
+          "clientWidth": 390,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 390,
+          "clientWidth": 390,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      },
+      {
+        "largeur": 390,
+        "scrollbar": true,
+        "avant": {
+          "innerWidth": 390,
+          "clientWidth": 390,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        },
+        "apres": {
+          "innerWidth": 390,
+          "clientWidth": 390,
+          "mobile": true,
+          "desktop": false,
+          "entetes": [
+            "ast-mobile-header"
+          ]
+        }
+      }
+    ],
+    "sansJavascript": [
+      {
+        "largeur": 1280,
+        "replis": [],
+        "interactifs": [
+          "Jardinage",
+          "Actualités"
+        ]
+      },
+      {
+        "largeur": 768,
+        "replis": [],
+        "interactifs": []
+      },
+      {
+        "largeur": 390,
+        "replis": [],
+        "interactifs": []
+      }
+    ],
+    "avecJavascript": [
+      {
+        "largeur": 1280,
+        "width": 1280,
+        "height": 191.390625
+      },
+      {
+        "largeur": 768,
+        "width": 768,
+        "height": 80
+      },
+      {
+        "largeur": 390,
+        "width": 390,
+        "height": 80
+      }
+    ]
+  },
+  "fixtures": [
+    {
+      "nom": "pages",
+      "largeur": 1280,
+      "compte": 0,
+      "liens": []
+    },
+    {
+      "nom": "pages",
+      "largeur": 768,
+      "compte": 1,
+      "liens": [
+        "Mentions légales",
+        "Notre jardin",
+        "Potager collectif",
+        "Verger",
+        "Plein écran"
+      ]
+    },
+    {
+      "nom": "pages",
+      "largeur": 390,
+      "compte": 1,
+      "liens": [
+        "Mentions légales",
+        "Notre jardin",
+        "Potager collectif",
+        "Verger",
+        "Plein écran"
+      ]
+    },
+    {
+      "nom": "deux",
+      "largeur": 1280,
+      "compte": 0,
+      "liens": []
+    },
+    {
+      "nom": "deux",
+      "largeur": 768,
+      "compte": 2,
+      "liens": [
+        "Mentions légales",
+        "Notre jardin",
+        "Potager collectif",
+        "Verger",
+        "Plein écran",
+        "Jardinage",
+        "Potager",
+        "Actualités"
+      ]
+    },
+    {
+      "nom": "deux",
+      "largeur": 390,
+      "compte": 2,
+      "liens": [
+        "Mentions légales",
+        "Notre jardin",
+        "Potager collectif",
+        "Verger",
+        "Plein écran",
+        "Jardinage",
+        "Potager",
+        "Actualités"
+      ]
+    },
+    {
+      "nom": "vide",
+      "largeur": 1280,
+      "compte": 0,
+      "liens": []
+    },
+    {
+      "nom": "vide",
+      "largeur": 768,
+      "compte": 0,
+      "liens": []
+    },
+    {
+      "nom": "vide",
+      "largeur": 390,
+      "compte": 0,
+      "liens": []
+    }
+  ],
+  "fractionnaire": "Non reproduit : viewport CSS entier ; cas 921,95 px complémentaire."
+}
