@@ -73,6 +73,41 @@ function astra_configurations_reference(): array {
 				'button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact'],
 			]],
 		],
+		'R25-nav-sousmenus' => [
+			'entete_ordinateur' => [
+				'above' => ['above_left' => ['html-1'], 'above_right' => ['social-icons-1']],
+				'primary' => ['primary_left' => ['logo'], 'primary_right' => ['menu-1', 'search', 'button-1']],
+				'below' => ['below_center' => ['menu-2']],
+			],
+			'entete_mobile' => [
+				'popup' => ['popup_content' => ['mobile-menu']],
+				'above' => ['above_center' => ['menu-2']],
+				'primary' => ['primary_left' => ['logo'], 'primary_right' => ['search', 'mobile-trigger']],
+			],
+			'menu_mobile' => 'dropdown',
+			'elements' => ['entete' => [
+				'html-1' => ['texte' => 'Ouvert du lundi au vendredi'],
+				'button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact'],
+			]],
+		],
+		'R25-nav-sousmenus-pages' => [
+			'entete_ordinateur' => [
+				'above' => ['above_left' => ['html-1'], 'above_right' => ['social-icons-1']],
+				'primary' => ['primary_left' => ['logo'], 'primary_right' => ['menu-1', 'search', 'button-1']],
+				'below' => ['below_center' => ['menu-2']],
+			],
+			'entete_mobile' => [
+				'popup' => ['popup_content' => ['mobile-menu']],
+				'above' => ['above_center' => ['menu-2']],
+				'primary' => ['primary_left' => ['logo'], 'primary_right' => ['search', 'mobile-trigger']],
+			],
+			'menu_mobile' => 'dropdown',
+			'elements' => ['entete' => [
+				'menu-1' => ['source' => 'pages', 'id' => 0], 'menu-2' => ['source' => 'pages', 'id' => 0],
+				'html-1' => ['texte' => 'Ouvert du lundi au vendredi'],
+				'button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact'],
+			]],
+		],
 		'R2-entete-centre' => [
 			'entete_ordinateur' => [
 				'primary' => ['primary_left' => ['menu-1'], 'primary_center' => ['logo'], 'primary_right' => ['account', 'search']],

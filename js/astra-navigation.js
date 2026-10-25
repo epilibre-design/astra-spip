@@ -63,3 +63,54 @@
   }
  });
 })();
+
+// Listes statiques des widgets : Entrée suit le lien, sans lui inventer un état replié.
+// Le gestionnaire global amont pose sinon aria-expanded sur ce parent non dépliant.
+(function () {
+ 'use strict';
+ document.addEventListener('keydown', event => {
+  if (event.key !== 'Enter') return;
+  const lien = event.target.closest('.widget_nav_menu li.menu-item-has-children > a.menu-link');
+  if (lien && event.target === lien) event.stopPropagation();
+  // Pas de preventDefault : l'activation native du lien garde sa destination.
+ }, true);
+})();
+
+// Boutons natifs des sous-menus : la classe portée par le bundle fait foi.
+(function () {
+ 'use strict';
+ function initialiser() {
+  // navigation_accessibility() prend le premier bouton de l'en-tête pour son
+  // déclencheur global. Un sous-menu placé avant ce déclencheur n'en est pas un.
+  for (const id of ['ast-desktop-header', 'ast-mobile-header']) {
+   const entete = document.getElementById(id);
+   if (!entete || !entete.querySelector('.navigation-accessibility')) continue;
+   const premier = entete.getElementsByTagName('button')[0];
+   if (premier && premier.classList.contains('ast-menu-toggle')) premier.onclick = null;
+  }
+  const observation = new MutationObserver(records => {
+   for (const record of records) synchroniser(record.target);
+  });
+  function synchroniser(parent) {
+   const bouton = parent.querySelector(':scope > button.ast-menu-toggle');
+   if (!bouton) return;
+   bouton.setAttribute('aria-expanded', String(parent.classList.contains('ast-submenu-expanded')));
+   // AstraToggleSubMenu utilise event.target, qui peut être le SVG lors d'un clic.
+   for (const enfant of bouton.querySelectorAll('[aria-expanded]')) enfant.removeAttribute('aria-expanded');
+  }
+  for (const parent of document.querySelectorAll('#masthead li.menu-item-has-children, #ast-mobile-popup li.menu-item-has-children')) {
+   if (!parent.querySelector(':scope > button.ast-menu-toggle')) continue;
+   synchroniser(parent);
+   observation.observe(parent, {attributes: true, attributeFilter: ['class']});
+  }
+ }
+ if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialiser, {once: true});
+ else initialiser();
+ document.addEventListener('focusout', event => {
+  const parent = event.target.closest('li.ast-submenu-expanded');
+  if (!parent || !parent.closest('#masthead, #ast-mobile-popup') || parent.contains(event.relatedTarget)) return;
+  parent.classList.remove('ast-submenu-expanded');
+  const sousmenu = parent.querySelector(':scope > .sub-menu');
+  if (sousmenu) sousmenu.style.display = 'none';
+ });
+})();

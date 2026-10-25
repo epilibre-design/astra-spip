@@ -1,0 +1,17 @@
+{
+  "ordinateur": [
+    "#ast-desktop-header .ast-builder-menu-1",
+    "#ast-desktop-header .ast-builder-menu-2"
+  ],
+  "mobile": [
+    "#ast-mobile-header .ast-builder-menu-2",
+    "#ast-mobile-header .main-header-menu-toggle"
+  ],
+  "presents": [
+    "#ast-mobile-header"
+  ],
+  "menuMobile": "dropdown",
+  "menuOuvert": [
+    ".ast-mobile-header-content .ast-builder-menu-mobile .sub-menu"
+  ]
+}

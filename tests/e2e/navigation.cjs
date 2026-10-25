@@ -64,7 +64,7 @@ async function offcanvas(page,largeur,check){
      if(profil==='offcanvas')resultat=await offcanvas(p,largeur,check);
      else if(profil==='vide'){
       check(await p.locator('#ast-mobile-popup,.main-header-menu-toggle').count()===0,'aucun panneau ni déclencheur');resultat={focus:await focusVisible(p)};
-     }else throw new Error('Profil '+profil+' à compléter dans la tâche sous-menus.');
+     }else resultat=await require('./lib/navigation-semantique.cjs')[profil](p,largeur,check);
      assert.deepEqual(erreurs,[],nom+' pageerror');mesures[nom].push({largeur,...resultat,defauts});
      await p.screenshot({path:`${sorties}/${nom}-${largeur}.png`,fullPage:true});
     }finally{await p.close()}

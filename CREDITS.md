@@ -282,3 +282,15 @@ corrigent des défauts encore observés dans le `frontend.js` de 4.13.8 (retour 
 premier `.menu-toggle` et retrait du piège à la fermeture). Elles ne sont pas
 attribuées à des correctifs amont ; les rapports de parcours conservent le
 comportement WordPress avant adaptation.
+
+Les commandes de `inclure/hfb/menu-items.html` reprennent le rôle `button` et les
+informations de sous-menu des contrôles de 4.13.8 (`inc/extras.php` et
+`inc/core/class-astra-walker-page.php`), avec les libellés traduits de SPIP.
+Les widgets restent des listes statiques : leur flèche vide est décorative,
+sans classe de commande JS ni faux état fermé. L'adaptation séparée empêche le
+gestionnaire global d'ajouter cet état lors de l'activation du lien.
+Pour les boutons natifs mobiles, elle corrige aussi la confusion du premier
+bouton avec le déclencheur global (`navigation_accessibility()`), synchronise
+l'état avec la classe effective et ferme la branche quittée au clavier.
+Ces écarts au runtime de référence sont mesurés séparément ; les boutons natifs
+gardent leur activation Entrée/Espace, sans seconde simulation JavaScript.

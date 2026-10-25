@@ -318,3 +318,13 @@ sans lien de logo/titre. Le repli sur `#masthead` pose temporairement tabindex=-
 et le retire au blur. R25-nav-vide vérifie l'absence de panneau/déclencheur et
 d'erreurs. Ces parcours Chromium ne constituent pas une certification avec un
 lecteur d'écran.
+
+Les variantes R25-nav-sousmenus et R25-nav-sousmenus-pages couvrent les menus 1/2
+et les branches rubriques/pages. Le profil sousmenus distingue le span de commande
+sur ordinateur du bouton natif mobile ; il compte les bascules de classe pour
+Entrée/Espace, vérifie l'ARIA, le clic sur l'icône et la fermeture au départ du
+focus. Le profil widgets vérifie la liste statique et la navigation réelle du
+lien parent. Les faux états encore produits par WordPress sont conservés dans
+ses rapports, sans alléger les assertions SPIP. La normalisation HTML de la cible
+retire seulement la classe JS de la flèche vide des widgets ; une flèche active
+dans le port ou une différence d'icône n'est pas effacée du comparatif.
