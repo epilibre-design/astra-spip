@@ -1,0 +1,32 @@
+{
+  "wordpress": {
+    "largeur": 922,
+    "entetes": [
+      {
+        "id": "ast-desktop-header",
+        "display": "none",
+        "hauteur": 0
+      },
+      {
+        "id": "ast-mobile-header",
+        "display": "none",
+        "hauteur": 0
+      }
+    ]
+  },
+  "spip": {
+    "largeur": 922,
+    "entetes": [
+      {
+        "id": "ast-desktop-header",
+        "display": "none",
+        "hauteur": 0
+      },
+      {
+        "id": "ast-mobile-header",
+        "display": "none",
+        "hauteur": 0
+      }
+    ]
+  }
+}

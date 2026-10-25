@@ -342,3 +342,18 @@ Les polices utilisent la conversion amont basée sur 16 px, même lorsque la rac
 calculée devient 14.592 px sous 921. Nombre zéro et chaîne zéro restent distincts.
 Voir le bilan versionné pour les valeurs partielles, la définition des logos et la limite
 préexistante sans JS à 922 px.
+
+## R30 : alignements des quatre widgets du pied
+
+`responsive/widgets.json` déclare treize variantes. `capturer-widgets.sh` relève les règles
+text-align des quatre sélecteurs flex exacts, puis remet WordPress à R0 et retire son propre
+mu-plugin RTL. Les tableaux partiels ne sont pas complétés ; les options entièrement vides
+sont omises selon le contrat du port. Le pilote `tests/e2e/widgets_alignements.cjs` mesure
+les quatre zones, copyright/icônes témoins, paragraphe aligné et direction réelle.
+Les cas absent, en-tête seul et zone 6 seule passent par ce pilote ; ils sont exclus des captures
+générales de zones absentes. Les deux noms de menu différents de R30-blocs sont consignés
+comme ceux de R13, sans modifier le comparateur HTML.
+
+`responsive/verifier_mutations.py`, avec `ASTRA_PREUVES` défini, introduit neuf erreurs
+sur une copie temporaire et exige leur détection, puis un témoin restauré vert.
+Les transformations ne touchent ni le code servi ni les bases de test.

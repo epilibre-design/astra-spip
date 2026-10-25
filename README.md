@@ -165,6 +165,11 @@ La migration depuis Astra 4.11.0 est qualifiée dans le [bilan 1.6.0](docs/inven
 - Graisses des titres (`headings-font-weight`, `font-weight-h1` à `h6`), marge intérieure du
   bouton de l'en-tête et alignements du copyright et des icônes sociales du pied (même formulaire ;
   les alignements s'appliquent sur les trois appareils).
+- **Alignements des widgets du pied** : `footer-widget-alignment-1` à `-4`, sur les trois
+  appareils, dans leurs quatre sections du formulaire. « Sans réglage » laisse agir la cascade ;
+  tablette/mobile vides gardent la valeur du plus grand écran. Left/right restent physiques en
+  RTL. Les couleurs ne sont pas requises ; seuls les widgets placés au pied sont concernés,
+  dans le profil flex actuel d’Astra (les anciens profils non flex ne sont pas ajoutés).
 - **Marges des rangées** (même formulaire) : marges intérieures et extérieures des rangées haute,
   principale et basse de l'en-tête et du pied, du pied entier et marge extérieure de l'en-tête
   entier (`section-*-builder-padding`, `-margin`), saisies et appliquées sur les trois appareils,
@@ -259,3 +264,7 @@ sont recensés séparément dans `CREDITS.md`.
 
 Les [preuves de l’identité responsive](docs/inventaires/identite-responsive/bilan.md) identifient
 le commit testé, les oracles WordPress, les comparaisons et les limites conservées.
+
+Les [preuves des alignements des widgets](docs/inventaires/widgets-alignements/bilan.md)
+partagent la qualification historique du lot identité ; les douze mesures Garden ne sont
+mises à jour qu’après publication et un lot consommateur Garden.

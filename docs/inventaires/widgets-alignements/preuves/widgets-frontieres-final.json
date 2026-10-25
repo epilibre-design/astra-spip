@@ -1,0 +1,2227 @@
+{
+  "cas": {
+    "R30-widgets-alignements": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-distincts": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "right",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "right",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-ordinateur": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-tablette": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "start",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "start",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-mobile": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "start",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "start",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "start",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "start",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "start",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "start",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-trous": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-vides": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-absent": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-entete": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-deplace": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": null,
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": null,
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": null,
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": null,
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": null,
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": null,
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": null,
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": null,
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-zone6": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": null,
+          "widget-3": null,
+          "widget-4": null,
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": null,
+          "widget-3": null,
+          "widget-4": null,
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": null,
+          "widget-3": null,
+          "widget-4": null,
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": null,
+          "widget-3": null,
+          "widget-4": null,
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": null,
+          "widget-3": null,
+          "widget-4": null,
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": null,
+          "widget-3": null,
+          "widget-4": null,
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": null,
+          "widget-3": null,
+          "widget-4": null,
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": null,
+          "widget-2": null,
+          "widget-3": null,
+          "widget-4": null,
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    },
+    "R30-widgets-alignements-blocs": {
+      "wordpress": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": "right"
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": "right"
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": "right"
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": "right"
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": "right"
+        },
+        "545": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": "right"
+        },
+        "921": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": "right"
+        },
+        "922": {
+          "direction": "ltr",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": "right"
+        }
+      }
+    },
+    "R30-widgets-alignements-rtl": {
+      "wordpress": {
+        "544": {
+          "direction": "rtl",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "rtl",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "rtl",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "rtl",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "right",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      },
+      "spip": {
+        "544": {
+          "direction": "rtl",
+          "widget-1": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "left",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "545": {
+          "direction": "rtl",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "921": {
+          "direction": "rtl",
+          "widget-1": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "center",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        },
+        "922": {
+          "direction": "rtl",
+          "widget-1": {
+            "alignement": "left",
+            "visible": true
+          },
+          "widget-2": {
+            "alignement": "right",
+            "visible": true
+          },
+          "widget-3": {
+            "alignement": "center",
+            "visible": true
+          },
+          "widget-4": {
+            "alignement": "right",
+            "visible": true
+          },
+          "copyright": "center",
+          "sociaux": "center",
+          "bloc": null
+        }
+      }
+    }
+  },
+  "erreurs": []
+}

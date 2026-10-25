@@ -343,3 +343,12 @@ Les quatre PNG de test sont des snapshots privés de [Placehold](https://placeho
 aux seules dimensions nécessaires aux essais (200×100, 120×60, 40×20, 80×116).
 Leurs URLs et empreintes sont dans `tests/references/responsive/images-identite.json`.
 Les images ne sont pas distribuées ; aucune licence CC0 ne leur est attribuée.
+
+### Alignements des widgets du pied (Astra 4.13.8)
+
+`inc/styles/alignements_widgets.php` porte `astra_fb_widget_dynamic_css()` de
+`inc/builder/type/footer/widget/dynamic-css/dynamic.css.php` (Brainstorm Force,
+GPL v2 ou ultérieure). Les oracles de `tests/references/responsive/attendus-widgets/`
+sont extraits de ce WordPress, dans le profil flex actuel. La neutralisation conditionnelle
+`inherit` est une adaptation originale au CSS figé du port, GPL-3.0-or-later ;
+elle est distinguée des règles amont dans les preuves et les commentaires.

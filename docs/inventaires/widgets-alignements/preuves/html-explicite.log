@@ -1,0 +1,315 @@
+R0-defaut / entete : identique (30 nœuds)
+R0-defaut / panneau : identique (0 nœuds)
+R0-defaut / pied : identique (8 nœuds)
+R26-css-cascade / entete : identique (30 nœuds)
+R26-css-cascade / panneau : identique (0 nœuds)
+R26-css-cascade / pied : identique (8 nœuds)
+R26-css-cascade / contenu : identique (8 nœuds)
+R26-css-cascade / body : identique (11 nœuds)
+R27-sociaux-ids / entete : identique (46 nœuds)
+R27-sociaux-ids / panneau : identique (0 nœuds)
+R27-sociaux-ids / pied : identique (12 nœuds)
+R1-entete-complet / entete : identique (67 nœuds)
+R1-entete-complet / panneau : identique (0 nœuds)
+R1-entete-complet / pied : identique (8 nœuds)
+R25-nav-sousmenus / entete : identique (67 nœuds)
+R25-nav-sousmenus / panneau : identique (0 nœuds)
+R25-nav-sousmenus / pied : identique (8 nœuds)
+R25-nav-sousmenus-pages / entete : identique (67 nœuds)
+R25-nav-sousmenus-pages / panneau : identique (0 nœuds)
+R25-nav-sousmenus-pages / pied : identique (8 nœuds)
+R2-entete-centre / entete : identique (52 nœuds)
+R2-entete-centre / panneau : identique (16 nœuds)
+R2-entete-centre / pied : identique (8 nœuds)
+R25-nav-offcanvas / entete : identique (52 nœuds)
+R25-nav-offcanvas / panneau : identique (16 nœuds)
+R25-nav-offcanvas / pied : identique (8 nœuds)
+R25-nav-vide / entete : identique (15 nœuds)
+R25-nav-vide / panneau : identique (0 nœuds)
+R25-nav-vide / pied : identique (8 nœuds)
+R3-pied-colonnes / entete : identique (30 nœuds)
+R3-pied-colonnes / panneau : identique (0 nœuds)
+R3-pied-colonnes / pied : identique (46 nœuds)
+R12-pied-appareils / entete : identique (30 nœuds)
+R12-pied-appareils / panneau : identique (0 nœuds)
+R12-pied-appareils / pied : identique (46 nœuds)
+R13-pied-widgets-menus / entete : identique (30 nœuds)
+R13-pied-widgets-menus / panneau : identique (0 nœuds)
+R13-pied-widgets-menus / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -9,14 +9,14 @@
+               div.textwidget
+         div.site-footer-primary-section-2.site-footer-section.site-footer-section-2
+           aside.footer-widget-area.footer-widget-area-inner.site-footer-focus-item.widget-area
+-            section.widget.widget_nav_menu#nav_menu-2
++            section.widget.widget_nav_menu#nav_menu-pied-2
+               h2.widget-title
+-              nav.menu-principal-container
++              nav.menu-racine-container
+         div.site-footer-primary-section-3.site-footer-section.site-footer-section-3
+           aside.footer-widget-area.footer-widget-area-inner.site-footer-focus-item.widget-area
+-            section.widget.widget_nav_menu#nav_menu-3
++            section.widget.widget_nav_menu#nav_menu-pied-3
+               h2.widget-title
+-              nav.menu-pied-container
++              nav.menu-racine-container
+   div.ast-builder-grid-row-container.ast-builder-grid-row-full.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-full.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-below-footer-wrap.site-footer-focus-item
+     div.ast-builder-grid-row-container-inner
+       div.ast-builder-footer-grid-columns.ast-builder-grid-row.site-below-footer-inner-wrap
+R15-sociaux-google / entete : identique (30 nœuds)
+R15-sociaux-google / panneau : identique (0 nœuds)
+R15-sociaux-google / pied : identique (12 nœuds)
+R4-pied-asymetrique / entete : identique (30 nœuds)
+R4-pied-asymetrique / panneau : identique (0 nœuds)
+R4-pied-asymetrique / pied : identique (31 nœuds)
+R5-rangees / entete : identique (30 nœuds)
+R5-rangees / panneau : identique (0 nœuds)
+R5-rangees / pied : identique (25 nœuds)
+R6-menu / entete : identique (34 nœuds)
+R6-menu / panneau : identique (0 nœuds)
+R6-menu / pied : identique (35 nœuds)
+R7-bouton / entete : identique (34 nœuds)
+R7-bouton / panneau : identique (0 nœuds)
+R7-bouton / pied : identique (35 nœuds)
+R8-identite / entete : identique (34 nœuds)
+R8-identite / panneau : identique (0 nœuds)
+R8-identite / pied : identique (35 nœuds)
+R9-pied-couleurs / entete : identique (34 nœuds)
+R9-pied-couleurs / panneau : identique (0 nœuds)
+R9-pied-couleurs / pied : identique (35 nœuds)
+R10-sociaux / entete : identique (34 nœuds)
+R10-sociaux / panneau : identique (0 nœuds)
+R10-sociaux / pied : identique (35 nœuds)
+R14-bouton-mobile / entete : identique (34 nœuds)
+R14-bouton-mobile / panneau : identique (0 nœuds)
+R14-bouton-mobile / pied : identique (35 nœuds)
+R11-combinee / entete : identique (34 nœuds)
+R11-combinee / panneau : identique (0 nœuds)
+R11-combinee / pied : identique (35 nœuds)
+R11-combinee / contenu : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -3,7 +3,7 @@
+     div.ast-blog-layout-4-grid.ast-grid-3.content-area.primary#primary
+       main.site-main#main
+         div.ast-row
+-          article.ast-article-post.ast-full-width.ast-grid-common-col.category-uncategorized.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
++          article.ast-article-post.ast-full-width.ast-grid-common-col.category-3.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
+             div.ast-article-inner.ast-no-thumb.ast-post-format-.blog-layout-4
+               div.ast-grid-common-col.post-content
+                 div.ast-blog-featured-section.ast-blog-single-element.post-thumb
+@@ -13,15 +13,13 @@
+                   a
+                 header.ast-blog-meta-container.ast-blog-single-element.entry-header
+                   div.entry-meta
+-                    span.author.posted-by.vcard
+-                      a.fn.n.url
+-                        span.author-name
+                     span.posted-on
+                       span.published
++                        time
+                 div.ast-blog-single-element.ast-excerpt-container
+                   p
+                 div.clear.entry-content
+-          article.ast-article-post.ast-full-width.ast-grid-common-col.category-uncategorized.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
++          article.ast-article-post.ast-full-width.ast-grid-common-col.category-2.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
+             div.ast-article-inner.ast-no-thumb.ast-post-format-.blog-layout-4
+               div.ast-grid-common-col.post-content
+                 div.ast-blog-featured-section.ast-blog-single-element.post-thumb
+@@ -31,15 +29,13 @@
+                   a
+                 header.ast-blog-meta-container.ast-blog-single-element.entry-header
+                   div.entry-meta
+-                    span.author.posted-by.vcard
+-                      a.fn.n.url
+-                        span.author-name
+                     span.posted-on
+                       span.published
++                        time
+                 div.ast-blog-single-element.ast-excerpt-container
+                   p
+                 div.clear.entry-content
+-          article.ast-article-post.ast-full-width.ast-grid-common-col.category-uncategorized.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
++          article.ast-article-post.ast-full-width.ast-grid-common-col.category-1.format-standard.hentry.post.post-N.remove-featured-img-padding.status-publish.type-post#post-N
+             div.ast-article-inner.ast-no-thumb.ast-post-format-.blog-layout-4
+               div.ast-grid-common-col.post-content
+                 div.ast-blog-featured-section.ast-blog-single-element.post-thumb
+@@ -49,159 +45,28 @@
+                   a
+                 header.ast-blog-meta-container.ast-blog-single-element.entry-header
+                   div.entry-meta
+-                    span.author.posted-by.vcard
+-                      a.fn.n.url
+-                        span.author-name
+                     span.posted-on
+                       span.published
++                        time
+                 div.ast-blog-single-element.ast-excerpt-container
+                   p
+                 div.clear.entry-content
+R11-combinee / body : identique (8 nœuds)
+R16-transparent-page / entete : identique (30 nœuds)
+R16-transparent-page / panneau : identique (0 nœuds)
+R16-transparent-page / pied : identique (8 nœuds)
+R16-transparent-page / contenu : identique (8 nœuds)
+R16-transparent-page / body : identique (12 nœuds)
+R17-transparent-global / entete : identique (30 nœuds)
+R17-transparent-global / panneau : identique (0 nœuds)
+R17-transparent-global / pied : identique (8 nœuds)
+R18-compat-sous-menu / entete : identique (30 nœuds)
+R18-compat-sous-menu / panneau : identique (0 nœuds)
+R18-compat-sous-menu / pied : identique (8 nœuds)
+R19-compat-polices-widgets / entete : identique (34 nœuds)
+R19-compat-polices-widgets / panneau : identique (0 nœuds)
+R19-compat-polices-widgets / pied : identique (35 nœuds)
+R19-compat-polices-widgets / contenu : identique (8 nœuds)
+R19-compat-polices-widgets / body : identique (11 nœuds)
+R20-titres-graisses / entete : identique (34 nœuds)
+R20-titres-graisses / panneau : identique (0 nœuds)
+R20-titres-graisses / pied : identique (35 nœuds)
+R20-titres-graisses / contenu : identique (8 nœuds)
+R20-titres-graisses / body : identique (11 nœuds)
+R20-titres-graisses-drapeau / entete : identique (34 nœuds)
+R20-titres-graisses-drapeau / panneau : identique (0 nœuds)
+R20-titres-graisses-drapeau / pied : identique (35 nœuds)
+R20-titres-graisses-drapeau / contenu : identique (8 nœuds)
+R20-titres-graisses-drapeau / body : identique (11 nœuds)
+R21-bouton-entete-marge / entete : identique (34 nœuds)
+R21-bouton-entete-marge / panneau : identique (0 nœuds)
+R21-bouton-entete-marge / pied : identique (35 nœuds)
+R21-bouton-entete-marge-valeur / entete : identique (34 nœuds)
+R21-bouton-entete-marge-valeur / panneau : identique (0 nœuds)
+R21-bouton-entete-marge-valeur / pied : identique (35 nœuds)
+R21-bouton-entete-marge-vide / entete : identique (34 nœuds)
+R21-bouton-entete-marge-vide / panneau : identique (0 nœuds)
+R21-bouton-entete-marge-vide / pied : identique (35 nœuds)
+R22-pied-alignements / entete : identique (34 nœuds)
+R22-pied-alignements / panneau : identique (0 nœuds)
+R22-pied-alignements / pied : identique (35 nœuds)
+R22-pied-alignements-ordinateur / entete : identique (34 nœuds)
+R22-pied-alignements-ordinateur / panneau : identique (0 nœuds)
+R22-pied-alignements-ordinateur / pied : identique (35 nœuds)
+R22-pied-alignements-tablette / entete : identique (34 nœuds)
+R22-pied-alignements-tablette / panneau : identique (0 nœuds)
+R22-pied-alignements-tablette / pied : identique (35 nœuds)
+R23-garden-compat / entete : identique (34 nœuds)
+R23-garden-compat / panneau : identique (0 nœuds)
+R23-garden-compat / pied : identique (35 nœuds)
+R23-garden-compat / contenu : identique (8 nœuds)
+R23-garden-compat / body : identique (11 nœuds)
+R24-pied-marges / entete : identique (34 nœuds)
+R24-pied-marges / panneau : identique (0 nœuds)
+R24-pied-marges / pied : identique (35 nœuds)
+R24-marges-toutes / entete : identique (61 nœuds)
+R24-marges-toutes / panneau : identique (0 nœuds)
+R24-marges-toutes / pied : identique (42 nœuds)
+R24-marges-rangees-vides / entete : identique (41 nœuds)
+R24-marges-rangees-vides / panneau : identique (0 nœuds)
+R24-marges-rangees-vides / pied : identique (12 nœuds)
+P1-page / entete : identique (30 nœuds)
+P1-page / panneau : identique (0 nœuds)
+P1-page / pied : identique (8 nœuds)
+P1-page / contenu : identique (8 nœuds)
+P1-page / body : identique (11 nœuds)
+P2-accueil / entete : identique (30 nœuds)
+P2-accueil / panneau : identique (0 nœuds)
+P2-accueil / pied : identique (8 nœuds)
+P2-accueil / contenu : identique (8 nœuds)
+P2-accueil / body : identique (12 nœuds)
+P3-page-pleine / entete : identique (30 nœuds)
+P3-page-pleine / panneau : identique (0 nœuds)
+P3-page-pleine / pied : identique (8 nœuds)
+P3-page-pleine / contenu : identique (7 nœuds)
+P3-page-pleine / body : identique (9 nœuds)
+R29-identite-responsive / entete : identique (36 nœuds)
+R29-identite-responsive / panneau : identique (0 nœuds)
+R29-identite-responsive / pied : identique (35 nœuds)
+R29-identite-responsive-ordinateur / entete : identique (36 nœuds)
+R29-identite-responsive-ordinateur / panneau : identique (0 nœuds)
+R29-identite-responsive-ordinateur / pied : identique (35 nœuds)
+R29-identite-responsive-tablette / entete : identique (36 nœuds)
+R29-identite-responsive-tablette / panneau : identique (0 nœuds)
+R29-identite-responsive-tablette / pied : identique (35 nœuds)
+R29-identite-responsive-mobile / entete : identique (36 nœuds)
+R29-identite-responsive-mobile / panneau : identique (0 nœuds)
+R29-identite-responsive-mobile / pied : identique (35 nœuds)
+R29-identite-responsive-trous / entete : identique (36 nœuds)
+R29-identite-responsive-trous / panneau : identique (0 nœuds)
+R29-identite-responsive-trous / pied : identique (35 nœuds)
+R29-identite-responsive-vides / entete : identique (36 nœuds)
+R29-identite-responsive-vides / panneau : identique (0 nœuds)
+R29-identite-responsive-vides / pied : identique (35 nœuds)
+R29-identite-responsive-zero-nombre / entete : identique (36 nœuds)
+R29-identite-responsive-zero-nombre / panneau : identique (0 nœuds)
+R29-identite-responsive-zero-nombre / pied : identique (35 nœuds)
+R29-identite-responsive-zero-chaine / entete : identique (36 nœuds)
+R29-identite-responsive-zero-chaine / panneau : identique (0 nœuds)
+R29-identite-responsive-zero-chaine / pied : identique (35 nœuds)
+R29-identite-responsive-unites / entete : identique (36 nœuds)
+R29-identite-responsive-unites / panneau : identique (0 nœuds)
+R29-identite-responsive-unites / pied : identique (35 nœuds)
+R29-identite-responsive-visibilites / entete : identique (36 nœuds)
+R29-identite-responsive-visibilites / panneau : identique (0 nœuds)
+R29-identite-responsive-visibilites / pied : identique (35 nœuds)
+R29-identite-responsive-logo-large / entete : identique (36 nœuds)
+R29-identite-responsive-logo-large / panneau : identique (0 nœuds)
+R29-identite-responsive-logo-large / pied : identique (35 nœuds)
+R29-identite-responsive-logo-sans-bureau / entete : identique (36 nœuds)
+R29-identite-responsive-logo-sans-bureau / panneau : identique (0 nœuds)
+R29-identite-responsive-logo-sans-bureau / pied : identique (35 nœuds)
+R29-identite-responsive-logo-petit / entete : identique (36 nœuds)
+R29-identite-responsive-logo-petit / panneau : identique (0 nœuds)
+R29-identite-responsive-logo-petit / pied : identique (35 nœuds)
+R29-identite-responsive-logo-ratio / entete : identique (36 nœuds)
+R29-identite-responsive-logo-ratio / panneau : identique (0 nœuds)
+R29-identite-responsive-logo-ratio / pied : identique (35 nœuds)
+R29-identite-responsive-transparent / entete : identique (36 nœuds)
+R29-identite-responsive-transparent / panneau : identique (0 nœuds)
+R29-identite-responsive-transparent / pied : identique (35 nœuds)
+R29-identite-responsive-transparent / contenu : identique (8 nœuds)
+R29-identite-responsive-transparent / body : identique (12 nœuds)
+R30-widgets-alignements / entete : identique (34 nœuds)
+R30-widgets-alignements / panneau : identique (0 nœuds)
+R30-widgets-alignements / pied : identique (35 nœuds)
+R30-widgets-alignements-distincts / entete : identique (34 nœuds)
+R30-widgets-alignements-distincts / panneau : identique (0 nœuds)
+R30-widgets-alignements-distincts / pied : identique (35 nœuds)
+R30-widgets-alignements-ordinateur / entete : identique (34 nœuds)
+R30-widgets-alignements-ordinateur / panneau : identique (0 nœuds)
+R30-widgets-alignements-ordinateur / pied : identique (35 nœuds)
+R30-widgets-alignements-tablette / entete : identique (34 nœuds)
+R30-widgets-alignements-tablette / panneau : identique (0 nœuds)
+R30-widgets-alignements-tablette / pied : identique (35 nœuds)
+R30-widgets-alignements-mobile / entete : identique (34 nœuds)
+R30-widgets-alignements-mobile / panneau : identique (0 nœuds)
+R30-widgets-alignements-mobile / pied : identique (35 nœuds)
+R30-widgets-alignements-trous / entete : identique (34 nœuds)
+R30-widgets-alignements-trous / panneau : identique (0 nœuds)
+R30-widgets-alignements-trous / pied : identique (35 nœuds)
+R30-widgets-alignements-vides / entete : identique (34 nœuds)
+R30-widgets-alignements-vides / panneau : identique (0 nœuds)
+R30-widgets-alignements-vides / pied : identique (35 nœuds)
+R30-widgets-alignements-deplace / entete : identique (34 nœuds)
+R30-widgets-alignements-deplace / panneau : identique (0 nœuds)
+R30-widgets-alignements-deplace / pied : identique (32 nœuds)
+R30-widgets-alignements-blocs / entete : identique (34 nœuds)
+R30-widgets-alignements-blocs / panneau : identique (0 nœuds)
+R30-widgets-alignements-blocs / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -9,9 +9,9 @@
+               div.textwidget
+         div.site-footer-primary-section-2.site-footer-section.site-footer-section-2
+           aside.footer-widget-area.footer-widget-area-inner.site-footer-focus-item.widget-area
+-            section.widget.widget_nav_menu#nav_menu-2
++            section.widget.widget_nav_menu#nav_menu-pied-2
+               h2.widget-title
+-              nav.menu-principal-container
++              nav.menu-racine-container
+         div.site-footer-primary-section-3.site-footer-section.site-footer-section-3
+           aside.footer-widget-area.footer-widget-area-inner.site-footer-focus-item.widget-area
+             section.widget.widget_text
+R30-widgets-alignements-rtl / entete : identique (34 nœuds)
+R30-widgets-alignements-rtl / panneau : identique (0 nœuds)
+R30-widgets-alignements-rtl / pied : identique (35 nœuds)

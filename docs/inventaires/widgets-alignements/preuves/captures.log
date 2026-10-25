@@ -1,0 +1,596 @@
+{
+    "wordpress": "7.1.3",
+    "astra": "4.13.8",
+    "theme": "astra",
+    "archive_sha256": "3cce1a750dcb699429117a88987aa8f10be404374492eef94379d2c4df6a6572",
+    "integrite_sources": true,
+    "assets": {
+        "assets/css/minified/main.min.css": "84aad614f8b95ebd3a4ac6f7633e77323066d31da87afe3dafc8c14cd3d0f8fc",
+        "assets/js/minified/frontend.min.js": "3b3a9a24246253beec04f3d2619082970c3aa861ca4ee34280662e3d4a509d20"
+    }
+}
+== R0-defaut
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R26-css-cascade
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 2 valeurs
+ok    styles-768 : 2 valeurs
+ok    styles-390 : 2 valeurs
+== R27-sociaux-ids
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 3 valeurs
+ok    styles-768 : 3 valeurs
+ok    styles-390 : 3 valeurs
+== R1-entete-complet
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R25-nav-sousmenus
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R25-nav-sousmenus-pages
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R2-entete-centre
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R25-nav-offcanvas
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R25-nav-vide
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : absence vérifiée WordPress/SPIP
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : absence vérifiée WordPress/SPIP
+== R3-pied-colonnes
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R12-pied-appareils
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R13-pied-widgets-menus
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R15-sociaux-google
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 3 valeurs
+ok    styles-768 : 3 valeurs
+ok    styles-390 : 3 valeurs
+== R4-pied-asymetrique
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+== R5-rangees
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 17 valeurs
+ok    styles-768 : 17 valeurs
+ok    styles-390 : 17 valeurs
+== R6-menu
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 13 valeurs
+ok    styles-768 : 13 valeurs
+ok    styles-390 : 13 valeurs
+== R7-bouton
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    polices WordPress : 1 attendues
+ok    polices SPIP : 1 attendues
+ok    styles-1280 : 16 valeurs
+ok    styles-768 : 16 valeurs
+ok    styles-390 : 16 valeurs
+== R8-identite
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R9-pied-couleurs
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 8 valeurs
+ok    styles-768 : 8 valeurs
+ok    styles-390 : 8 valeurs
+== R10-sociaux
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R14-bouton-mobile
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 15 valeurs
+ok    styles-768 : 15 valeurs
+ok    styles-390 : 15 valeurs
+== R11-combinee
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    polices WordPress : 2 attendues
+ok    polices SPIP : 2 attendues
+ok    styles-1280 : 50 valeurs
+ok    styles-768 : 50 valeurs
+ok    styles-390 : 50 valeurs
+== R16-transparent-page
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 11 valeurs
+ok    styles-768 : 11 valeurs
+ok    styles-390 : 11 valeurs
+== R17-transparent-global
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 3 valeurs
+ok    styles-768 : 3 valeurs
+ok    styles-390 : 3 valeurs
+== R18-compat-sous-menu
+ok    entete-ordinateur : 0.21 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 8 valeurs
+ok    styles-768 : 8 valeurs
+ok    styles-390 : 8 valeurs
+== R19-compat-polices-widgets
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 10 valeurs
+ok    styles-768 : 10 valeurs
+ok    styles-390 : 10 valeurs
+== R20-titres-graisses
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 10 valeurs
+ok    styles-768 : 10 valeurs
+ok    styles-390 : 10 valeurs
+== R20-titres-graisses-drapeau
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 10 valeurs
+ok    styles-768 : 10 valeurs
+ok    styles-390 : 10 valeurs
+== R21-bouton-entete-marge
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 4 valeurs
+ok    styles-768 : 4 valeurs
+ok    styles-390 : 4 valeurs
+== R21-bouton-entete-marge-valeur
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 4 valeurs
+ok    styles-768 : 4 valeurs
+ok    styles-390 : 4 valeurs
+== R21-bouton-entete-marge-vide
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 4 valeurs
+ok    styles-768 : 4 valeurs
+ok    styles-390 : 4 valeurs
+== R22-pied-alignements
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 3 valeurs
+ok    styles-768 : 3 valeurs
+ok    styles-390 : 3 valeurs
+== R22-pied-alignements-ordinateur
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 3 valeurs
+ok    styles-768 : 3 valeurs
+ok    styles-390 : 3 valeurs
+== R22-pied-alignements-tablette
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 3 valeurs
+ok    styles-768 : 3 valeurs
+ok    styles-390 : 3 valeurs
+== R23-garden-compat
+ok    entete-ordinateur : 0.23 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 25 valeurs
+ok    styles-768 : 25 valeurs
+ok    styles-390 : 25 valeurs
+== R24-pied-marges
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 10 valeurs
+ok    styles-768 : 10 valeurs
+ok    styles-390 : 10 valeurs
+== R24-marges-toutes
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 76 valeurs
+ok    styles-768 : 76 valeurs
+ok    styles-390 : 76 valeurs
+== R24-marges-rangees-vides
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 76 valeurs
+ok    styles-768 : 76 valeurs
+ok    styles-390 : 76 valeurs
+== P1-page
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+== P2-accueil
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+== P3-page-pleine
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+== R29-identite-responsive
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 8 valeurs
+ok    styles-768 : 8 valeurs
+ok    styles-390 : 8 valeurs
+== R29-identite-responsive-ordinateur
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-tablette
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-mobile
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 8 valeurs
+ok    styles-768 : 8 valeurs
+ok    styles-390 : 8 valeurs
+== R29-identite-responsive-trous
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-vides
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-zero-nombre
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-zero-chaine
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-unites
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 8 valeurs
+ok    styles-768 : 8 valeurs
+ok    styles-390 : 8 valeurs
+== R29-identite-responsive-visibilites
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 8 valeurs
+ok    styles-768 : 8 valeurs
+ok    styles-390 : 8 valeurs
+== R29-identite-responsive-logo-large
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-logo-sans-bureau
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-logo-petit
+ÉCART entete-ordinateur : 7.97 % de pixels différents
+ÉCART pied-ordinateur : 1.99 % de pixels différents ; dimensions WordPress 1280×101, SPIP 1280×302
+ÉCART entete-mobile : 3.53 % de pixels différents
+ÉCART pied-mobile : 2.89 % de pixels différents ; dimensions WordPress 390×101, SPIP 390×664
+ÉCART menu-mobile : 3.53 % de pixels différents
+ÉCART styles-1280 : 5 valeurs
+      WordPress header .custom-logo-link img { width: (absent) } ; SPIP header .custom-logo-link img { width: 32px }
+      WordPress header .custom-logo-link img { height: (absent) } ; SPIP header .custom-logo-link img { height: 16px }
+ÉCART styles-768 : 5 valeurs
+      WordPress header .custom-logo-link img { width: (absent) } ; SPIP header .custom-logo-link img { width: 96px }
+      WordPress header .custom-logo-link img { height: (absent) } ; SPIP header .custom-logo-link img { height: auto }
+ÉCART styles-390 : 5 valeurs
+      WordPress header .custom-logo-link img { width: (absent) } ; SPIP header .custom-logo-link img { width: 48px }
+      WordPress header .custom-logo-link img { height: (absent) } ; SPIP header .custom-logo-link img { height: auto }
+== R29-identite-responsive-logo-ratio
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 5 valeurs
+ok    styles-768 : 5 valeurs
+ok    styles-390 : 5 valeurs
+== R29-identite-responsive-transparent
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    contenu-ordinateur : 0.00 % de pixels différents
+ok    contenu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 8 valeurs
+ok    styles-768 : 8 valeurs
+ok    styles-390 : 8 valeurs
+== R30-widgets-alignements
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-distincts
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-ordinateur
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-tablette
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-mobile
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-trous
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-vides
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-deplace
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-blocs
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.00 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs
+== R30-widgets-alignements-rtl
+ok    entete-ordinateur : 0.00 % de pixels différents
+ok    pied-ordinateur : 0.00 % de pixels différents
+ok    entete-mobile : 0.00 % de pixels différents
+ok    pied-mobile : 0.15 % de pixels différents
+ok    menu-mobile : 0.00 % de pixels différents
+ok    styles-1280 : 6 valeurs
+ok    styles-768 : 6 valeurs
+ok    styles-390 : 6 valeurs

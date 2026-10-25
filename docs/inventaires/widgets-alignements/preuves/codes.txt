@@ -1,0 +1,12 @@
+unit 0
+integration 0
+python 0
+captures-reference 0
+html-defaut 1
+html-explicite 1
+captures 1
+identite 0
+identite-frontieres 0
+widgets 0
+widgets-frontieres 0
+captures-reprise-logo-petit 0
