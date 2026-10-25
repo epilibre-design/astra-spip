@@ -29,7 +29,7 @@ function astra_commentaire_gravatar($email): string {
  // Le helper x2 produit des dimensions intrinsèques et parfois un style inline.
  // Le thème applique 50 px, puis 2.5 em sous 921 px : laisser sa cascade agir.
  foreach (['style'=>null, 'width'=>'50', 'height'=>'50', 'alt'=>'', 'aria-hidden'=>'true'] as $attribut=>$valeur) {
-  $html = inserer_attribut($html, $attribut, $valeur);
+  $html = inserer_attribut($html, $attribut, $valeur, true, $attribut === 'style');
  }
  return $html;
 }

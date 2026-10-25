@@ -4,9 +4,9 @@ $cas=$argv[1];$appels=[];
 function test_plugin_actif($nom){global $cas;return $cas!=='inactif';}
 function include_spip($f){global $appels;if($f==='gravatar_fonctions')$appels[]=['include',$f];}
 function email_valide($v){return filter_var($v,FILTER_VALIDATE_EMAIL);}
-function inserer_attribut($html,$attribut,$valeur){
+function inserer_attribut($html,$attribut,$valeur,$proteger=true,$vider=false){
  $html=preg_replace('/\s+'.preg_quote($attribut,'/').'="[^"]*"/','',$html);
- return preg_replace('/\s*\/?>$/',($valeur===null?'':' '.$attribut.'="'.htmlspecialchars((string)$valeur,ENT_QUOTES).'"').' />',$html);
+ return preg_replace('/\s*\/?>$/',($vider&&($valeur===null||$valeur==='')?'':' '.$attribut.'="'.htmlspecialchars((string)$valeur,ENT_QUOTES).'"').' />',$html);
 }
 if($cas!=='sans-api'){
  function gravatar($email,$defaut){global$appels,$cas;$appels[]=['gravatar',$email,$defaut];return $cas==='sans-image'?'':'local/cache-gravatar/opaque.jpg';}

@@ -3,7 +3,7 @@
  * (raccourcis typographiques, documents, forums, éléments propres au portage).
  */
 
-/* Avatar des commentaires (SPIP ne fournit pas de gravatar) */
+/* Initiale des commentaires : repli sans image du plugin Gravatar facultatif. */
 .ast-avatar-initiale {
 	display: inline-flex;
 	align-items: center;
