@@ -7,6 +7,9 @@ URL=${URL:-http://127.0.0.1:8401}
 SORTIES=${SORTIES:-$ICI/sorties}
 : "${WP:?WP doit indiquer la racine du WordPress de test}"
 : "${PW:?PW doit indiquer le dossier contenant node_modules/playwright}"
+: "${ASTRA_REFERENCE_ARCHIVE:?Archive officielle Astra cible requise}"
+php "$ICI/verifier.php" "$WP" "$ASTRA_REFERENCE_ARCHIVE" "$ICI/cible.json"
+
 for conf in "$@"; do
 	sortie="$SORTIES/$conf"
 	rm -rf "$sortie"

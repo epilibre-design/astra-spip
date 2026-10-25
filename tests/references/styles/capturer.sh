@@ -9,6 +9,9 @@ set -euo pipefail
 ICI=$(cd "$(dirname "$0")" && pwd)
 URL=${URL:-http://127.0.0.1:8401}
 : "${WP:?WP doit indiquer la racine du WordPress de test}"
+: "${ASTRA_REFERENCE_ARCHIVE:?Archive officielle Astra cible requise}"
+php "$ICI/../verifier.php" "$WP" "$ASTRA_REFERENCE_ARCHIVE" "$ICI/../cible.json"
+
 css() {
 	curl -sf "$URL/" | php -r '$h = stream_get_contents(STDIN); if (!preg_match("~<style id=\"astra-theme-css-inline-css\">(.*?)</style>~s", $h, $m)) { exit(1); } echo $m[1];'
 }

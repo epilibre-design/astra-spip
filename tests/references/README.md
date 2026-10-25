@@ -228,3 +228,28 @@ pour les captures.
 Les SVG `twitter-x`, `bluesky` et `email` viennent également d'Astra, mais leur attribution
 à Font Awesome n'est pas établie. Le relevé des correspondances, les sources, les crédits
 et les notices conservées figurent dans [CREDITS.md](../../CREDITS.md).
+
+## Migration vers 4.13.8 : sites isolés et garde de capture
+
+La migration utilise `cible.json` (WordPress 7.1.3, Astra 4.13.8) ; les commandes
+historiques ci-dessus décrivent encore 4.11.0 jusqu'à qualification complète.
+Créer le site neuf avec `scripts/install-wp-reference.sh` en fournissant
+`WP_REFERENCE`, `URL_WP`, `ASTRA_REFERENCE_ARCHIVE` et `SQLITE_PLUGIN` (sources
+SQLite Database Integration 3.1.1). L'archive du cœur est épinglée et extraite par
+tar, puis contrôlée par `wp core verify-checksums`. Le dossier possède son propre
+wp-config.php, son plugin SQLite copié et sa base `wp-content/database/reference.sqlite`.
+Un dossier non vide sans marqueur est refusé ; la relance ne remet pas les options à zéro.
+Le premier passage installe les traductions fr_FR et ajoute les 12 articles de
+`wp/preparer-site.php`, pour exercer la pagination et obtenir un défilement réel
+lors des captures du pied (bouton retour en haut). Ces contenus sont propres aux tests.
+
+`php tests/references/verifier.php <WP_ROOT> <ZIP> <MANIFEST>` vérifie la version
+réelle du cœur, le thème actif et chaque fichier du thème contre le ZIP officiel.
+Les scripts de capture exigent `ASTRA_REFERENCE_ARCHIVE` et utilisent explicitement
+`cible.json` avant leur premier changement de configuration, sans charger les hooks du thème.
+
+Pour reconstruire l'archive historique, créer **un second dossier** et choisir
+`CIBLE=tests/references/cible-4.11.0.json` dans l'installateur, avec le ZIP 4.11.0.
+Vérifier ce site avec le manifeste historique explicite, puis utiliser les scripts
+extraits du commit 503819e ; ne pas détourner la garde des captures de migration.
+Les réglages et preuves historiques restent distincts des nouvelles références.
