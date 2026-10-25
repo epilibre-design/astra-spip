@@ -18,6 +18,8 @@ const ASTRA_STYLES_TAILLE_TEXTE = 16;
 /** Appareils des options responsives d'Astra. */
 const ASTRA_STYLES_APPAREILS = ['desktop', 'tablet', 'mobile'];
 
+require_once __DIR__ . '/astra_identite_responsive.php';
+
 /**
  * Registre des options : groupe, fichier source d'Astra 4.13.8, type, structure responsive,
  * unités ou valeurs acceptées, défaut d'Astra (documentation et tests : jamais écrit).
@@ -95,8 +97,8 @@ function astra_styles_registre(): array {
 		'section-hb-button-1-padding' => $cotes_r + ['defaut' => ['desktop' => ['top' => 15, 'right' => 30, 'bottom' => 15, 'left' => 30]]],
 	]);
 	$ajouter('identite', 'inc/class-astra-dynamic-css.php', [
-		'font-size-site-title' => $taille_r + ['defaut' => ['desktop' => 26, 'desktop-unit' => 'px']],
-		'font-size-site-tagline' => $taille_r + ['defaut' => ['desktop' => 15, 'desktop-unit' => 'px']],
+		'font-size-site-title' => ['unites' => ['px', 'em', 'rem', 'vw', '%']] + $taille_r + ['defaut' => ['desktop' => 26, 'desktop-unit' => 'px']],
+		'font-size-site-tagline' => ['unites' => ['px', 'em', 'rem', 'vw', '%']] + $taille_r + ['defaut' => ['desktop' => 15, 'desktop-unit' => 'px']],
 		'header-color-site-title' => $couleur + ['defaut' => 'var(--ast-global-color-2)'],
 		'header-color-h-site-title' => $couleur,
 		'header-color-site-tagline' => $couleur,
@@ -318,6 +320,15 @@ function astra_styles_normaliser_option(array $d, $v) {
 			}
 		} elseif (isset($d['unites']) && preg_match('/^(desktop|tablet|mobile)-unit$/', (string) $cle) && in_array($x, $d['unites'], true)) {
 			$r[$cle] = $x;
+		}
+	}
+	// Unité des deux tailles d'identité : absente/vide = px implicites ; une unité
+	// inconnue retire aussi sa valeur, pour ne jamais réactiver en px une valeur refusée.
+	if ($d['groupe'] === 'identite' && $d['type'] === 'taille') {
+		foreach (ASTRA_STYLES_APPAREILS as $a) {
+			if (array_key_exists($a . '-unit', $v) && $v[$a . '-unit'] !== '' && !in_array($v[$a . '-unit'], $d['unites'], true)) {
+				unset($r[$a], $r[$a . '-unit']);
+			}
 		}
 	}
 	return $r ?: null;
