@@ -1,0 +1,40 @@
+{
+  "profil": "sans-plugin",
+  "sites": {
+    "spip": [
+      {
+        "largeur": 1280,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 640,
+          "debordement": false,
+          "iframe": null,
+          "conteneur": null
+        },
+        "erreurs": []
+      },
+      {
+        "largeur": 768,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 728,
+          "debordement": false,
+          "iframe": null,
+          "conteneur": null
+        },
+        "erreurs": []
+      },
+      {
+        "largeur": 390,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 350,
+          "debordement": false,
+          "iframe": null,
+          "conteneur": null
+        },
+        "erreurs": []
+      }
+    ]
+  }
+}

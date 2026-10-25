@@ -1,0 +1,246 @@
+{
+  "wordpress": [
+    {
+      "largeur": 1280,
+      "commandes": [
+        {
+          "commande": 0,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        },
+        {
+          "commande": 1,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        }
+      ],
+      "defauts": [
+        "ID uniques"
+      ]
+    },
+    {
+      "largeur": 768,
+      "commandes": [
+        {
+          "commande": 0,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        },
+        {
+          "commande": 1,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        }
+      ],
+      "defauts": [
+        "sous-menu annoncé 0",
+        "aria synchronisée Enter commande 0",
+        "aria synchronisée Space commande 0",
+        "clic icône aria 0",
+        "clic icône aria 0",
+        "fermeture au départ du focus 0",
+        "sous-menu annoncé 1",
+        "fermeture au départ du focus 1",
+        "aria au départ du focus 1",
+        "ID uniques"
+      ]
+    },
+    {
+      "largeur": 390,
+      "commandes": [
+        {
+          "commande": 0,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        },
+        {
+          "commande": 1,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        }
+      ],
+      "defauts": [
+        "sous-menu annoncé 0",
+        "aria synchronisée Enter commande 0",
+        "aria synchronisée Space commande 0",
+        "clic icône aria 0",
+        "clic icône aria 0",
+        "fermeture au départ du focus 0",
+        "sous-menu annoncé 1",
+        "fermeture au départ du focus 1",
+        "aria au départ du focus 1",
+        "ID uniques"
+      ]
+    }
+  ],
+  "spip": [
+    {
+      "largeur": 1280,
+      "commandes": [
+        {
+          "commande": 0,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        },
+        {
+          "commande": 1,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        }
+      ],
+      "defauts": []
+    },
+    {
+      "largeur": 768,
+      "commandes": [
+        {
+          "commande": 0,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        },
+        {
+          "commande": 1,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        }
+      ],
+      "defauts": []
+    },
+    {
+      "largeur": 390,
+      "commandes": [
+        {
+          "commande": 0,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        },
+        {
+          "commande": 1,
+          "etats": [
+            {
+              "touche": "Enter",
+              "ouvert": true,
+              "bascules": 1
+            },
+            {
+              "touche": "Space",
+              "ouvert": false,
+              "bascules": 1
+            }
+          ]
+        }
+      ],
+      "defauts": []
+    }
+  ]
+}

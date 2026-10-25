@@ -35,6 +35,14 @@ cmp /tmp/astra-css-74.txt /tmp/astra-css-84.txt
 
 `CONFS` contient les 41 clés de `astra_configurations_reference()` : les 35 configurations historiques, les quatre variantes R25, R26 et R27. R28 est un import réel oEmbed, vérifié par son profil dédié. La suite Python de non-régression historique emploie `ASTRA_LEGACY_R0` et `ASTRA_LEGACY_CSS` pointant sur une capture 4.11.0 et la feuille précédant la migration. Les profils détaillés de navigation, CSS, formulaires, répartitions, médias, blocs et oEmbed sont décrits dans leurs plans et les README de fixtures.
 
+## Résultats sur le commit candidat
+
+Le commit `563545be18e29f8403b549c1a002db774d3db026` donne 311 vérifications réussies sur les 41 configurations, avec 0,23 % d’écart visuel maximal (seuil inchangé de 1 %). Les deux comparaisons HTML ont seulement les huit lignes de nommage historiques R13 ; leurs sorties brutes restent à 1 et sont accompagnées du bilan explicite.
+
+Les suites donnent 140 tests unitaires / 1780 assertions et 98 tests d’intégration / 533 assertions. Trois cas d’intégration oEmbed sont ignorés dans le site ordinaire : leurs branches avec et sans plugin sont exécutées séparément sur les deux sites dédiés, puis après désactivation et réactivation. Les 28 tests Python passent, dont la reproduction de l’ancienne feuille depuis R0 sous Astra 4.11.0. Les 21 fichiers PHP concernés passent le lint PHP 7.4 et les générateurs produisent les mêmes 201344 octets sous PHP 7.4 et 8.4.
+
+Les rapports de profils dans le manifeste complètent ces chiffres : clavier, première peinture, absence de JavaScript, formulaires, répartitions, styles calculés, médias, blocs importés et oEmbed. Les résultats initiaux rouges et les limites ne sont pas effacés par le bilan final.
+
 ## Différences caractérisées
 
 - **HTML R13** : les seuls écarts admis sont les identifiants de widgets `nav_menu-2/3` contre `nav_menu-pied-2/3` et les noms de conteneurs de menus contre `menu-racine-container`. Les lignes sont comparées à l’archive 4.11.0 ; le code brut 1 du comparateur est conservé. Aucun échec nouveau n’est rendu vert par une normalisation générale.

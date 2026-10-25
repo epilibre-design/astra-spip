@@ -1,0 +1,60 @@
+{
+  "source": "503819ea932a73a3981769480d6234213b32ad22",
+  "wordpress": "7.1.3",
+  "astra": "4.11.0",
+  "locale": "fr_FR",
+  "configurations": 35,
+  "verifications": 273,
+  "ecarts": [
+    {
+      "configuration": "R4-pied-asymetrique",
+      "mesure": "ÉCART pied-ordinateur : 1.13 % de pixels différents"
+    },
+    {
+      "configuration": "R7-bouton",
+      "mesure": "ÉCART pied-ordinateur : 1.16 % de pixels différents"
+    },
+    {
+      "configuration": "R8-identite",
+      "mesure": "ÉCART pied-ordinateur : 1.16 % de pixels différents"
+    },
+    {
+      "configuration": "R10-sociaux",
+      "mesure": "ÉCART pied-ordinateur : 1.16 % de pixels différents"
+    },
+    {
+      "configuration": "R14-bouton-mobile",
+      "mesure": "ÉCART pied-ordinateur : 1.16 % de pixels différents"
+    },
+    {
+      "configuration": "R21-bouton-entete-marge",
+      "mesure": "ÉCART pied-ordinateur : 1.16 % de pixels différents"
+    },
+    {
+      "configuration": "R21-bouton-entete-marge-valeur",
+      "mesure": "ÉCART pied-ordinateur : 1.16 % de pixels différents"
+    },
+    {
+      "configuration": "R21-bouton-entete-marge-vide",
+      "mesure": "ÉCART pied-ordinateur : 1.16 % de pixels différents"
+    },
+    {
+      "configuration": "R22-pied-alignements",
+      "mesure": "ÉCART pied-ordinateur : 1.15 % de pixels différents"
+    },
+    {
+      "configuration": "R22-pied-alignements-ordinateur",
+      "mesure": "ÉCART pied-ordinateur : 1.15 % de pixels différents"
+    },
+    {
+      "configuration": "R22-pied-alignements-tablette",
+      "mesure": "ÉCART pied-ordinateur : 1.16 % de pixels différents"
+    },
+    {
+      "configuration": "R24-pied-marges",
+      "mesure": "ÉCART pied-ordinateur : 1.04 % de pixels différents"
+    }
+  ],
+  "seuil_inchange": 0.01,
+  "observation": "Douze captures du pied ordinateur diffèrent avec le retour en haut fixé à la fenêtre, visible dans un site et pas l’autre selon la hauteur du contenu ; ce bilan ne prétend pas que ces captures passent."
+}

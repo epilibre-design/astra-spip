@@ -1,0 +1,72 @@
+{
+  "wordpress": [
+    {
+      "largeur": 1280,
+      "focus": {
+        "balise": "BODY",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "(function(){if(window.matchMedia('(max-width:921.99px)').matches){document.body.classList."
+      },
+      "defauts": []
+    },
+    {
+      "largeur": 768,
+      "focus": {
+        "balise": "BODY",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "(function(){if(window.matchMedia('(max-width:921.99px)').matches){document.body.classList."
+      },
+      "defauts": []
+    },
+    {
+      "largeur": 390,
+      "focus": {
+        "balise": "BODY",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "(function(){if(window.matchMedia('(max-width:921.99px)').matches){document.body.classList."
+      },
+      "defauts": []
+    }
+  ],
+  "spip": [
+    {
+      "largeur": 1280,
+      "focus": {
+        "balise": "BODY",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "(function(){if(window.matchMedia('(max-width:921.99px)').matches){document.body.classList."
+      },
+      "defauts": []
+    },
+    {
+      "largeur": 768,
+      "focus": {
+        "balise": "BODY",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "(function(){if(window.matchMedia('(max-width:921.99px)').matches){document.body.classList."
+      },
+      "defauts": []
+    },
+    {
+      "largeur": 390,
+      "focus": {
+        "balise": "BODY",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "(function(){if(window.matchMedia('(max-width:921.99px)').matches){document.body.classList."
+      },
+      "defauts": []
+    }
+  ]
+}
