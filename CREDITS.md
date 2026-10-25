@@ -328,3 +328,18 @@ GPL 3. Le plugin, ses modèles, son lecteur et ses crédits ne sont pas embarqu�
 ni remplacés. La fixture locale et ses réponses sont rédigées pour ces tests,
 sans contenu de fournisseur tiers ; sa vignette reprend le PNG de test CC0 déjà
 crédité dans `tests/references/blocs/images/`.
+
+### Identité responsive (Astra 4.13.8)
+
+`inc/astra_identite_responsive.php` et `inc/styles/identite.php` portent les conditions,
+les sélecteurs et conversions de `inc/class-astra-dynamic-css.php`,
+`Astra_Dynamic_CSS::return_output()`, et les helpers `astra_responsive_font()` /
+`astra_get_font_css_value()` de `inc/core/common-functions.php` (Brainstorm Force,
+GPL v2 ou ultérieure, archive officielle 4.13.8 créditée ci-dessus).
+La sélection d’une définition de logo suffisante et l’interface SPIP sont des adaptations
+originales du port, GPL-3.0-or-later.
+
+Les quatre PNG de test sont des snapshots privés de [Placehold](https://placehold.co/),
+aux seules dimensions nécessaires aux essais (200×100, 120×60, 40×20, 80×116).
+Leurs URLs et empreintes sont dans `tests/references/responsive/images-identite.json`.
+Les images ne sont pas distribuées ; aucune licence CC0 ne leur est attribuée.

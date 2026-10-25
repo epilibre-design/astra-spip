@@ -1,0 +1,1739 @@
+{
+  "cas": {
+    "R29-identite-responsive": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "14.592px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "11px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "81px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "14.592px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "11px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "81px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-ordinateur": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-tablette": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "16px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "16px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-mobile": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "14.592px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "16px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "14.592px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "16px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-trous": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "10.944px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "21.888px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "10.944px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "21.888px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-vides": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-zero-nombre": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-zero-chaine": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "0px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "0px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "0px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "0px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-unites": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "15.6px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "24px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "12.8px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "15.6px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "18.24px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "24px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "12.8px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-visibilites": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "none"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "118.375px",
+            "height": "59.1875px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "89.3438px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "none"
+          },
+          "slogan": {
+            "font-size": "15px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "none"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "118.375px",
+            "height": "59.1875px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "89.3438px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "none"
+          },
+          "slogan": {
+            "font-size": "15px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-masques": {
+      "wordpress": {
+        "390": {
+          "titre": null,
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": null,
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": null,
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": null,
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "768": {
+          "titre": null,
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "1280": {
+          "titre": null,
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-logo-large": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "48px",
+            "height": "24px",
+            "naturalWidth": 200,
+            "naturalHeight": 100
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "96px",
+            "height": "48px",
+            "naturalWidth": 200,
+            "naturalHeight": 100
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 200,
+            "naturalHeight": 100
+          },
+          "entete": {
+            "height": "81px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "48px",
+            "height": "24px",
+            "naturalWidth": 96,
+            "naturalHeight": 48
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "96px",
+            "height": "48px",
+            "naturalWidth": 96,
+            "naturalHeight": 48
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 96,
+            "naturalHeight": 48
+          },
+          "entete": {
+            "height": "81px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-logo-sans-bureau": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "48px",
+            "height": "24px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "96px",
+            "height": "48px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "48px",
+            "height": "24px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "96px",
+            "height": "48px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-logo-petit": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "48px",
+            "height": "24px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "96px",
+            "height": "48px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "81px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "48px",
+            "height": "24px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "96px",
+            "height": "48px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "81px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-logo-ratio": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "48px",
+            "height": "69.5938px",
+            "naturalWidth": 80,
+            "naturalHeight": 116
+          },
+          "entete": {
+            "height": "99.75px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "96px",
+            "height": "139.188px",
+            "naturalWidth": 80,
+            "naturalHeight": 116
+          },
+          "entete": {
+            "height": "169.344px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "32px",
+            "height": "46.3906px",
+            "naturalWidth": 80,
+            "naturalHeight": 116
+          },
+          "entete": {
+            "height": "81px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "48px",
+            "height": "69.5938px",
+            "naturalWidth": 80,
+            "naturalHeight": 116
+          },
+          "entete": {
+            "height": "99.75px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "96px",
+            "height": "139.188px",
+            "naturalWidth": 80,
+            "naturalHeight": 116
+          },
+          "entete": {
+            "height": "169.344px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "26px",
+            "display": "block"
+          },
+          "slogan": null,
+          "logo": {
+            "width": "32px",
+            "height": "46.3906px",
+            "naturalWidth": 80,
+            "naturalHeight": 116
+          },
+          "entete": {
+            "height": "81px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-transparent": {
+      "wordpress": {
+        "390": {
+          "titre": {
+            "font-size": "14.592px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "11px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        }
+      },
+      "spip": {
+        "390": {
+          "titre": {
+            "font-size": "14.592px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "768": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "1280": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "11px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        }
+      }
+    }
+  },
+  "erreurs": []
+}

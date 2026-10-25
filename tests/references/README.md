@@ -329,3 +329,16 @@ lien parent. Les faux états encore produits par WordPress sont conservés dans
 ses rapports, sans alléger les assertions SPIP. La normalisation HTML de la cible
 retire seulement la classe JS de la flèche vide des widgets ; une flèche active
 dans le port ou une différence d'icône n'est pas effacée du comparatif.
+
+## R29 : identité responsive
+
+`responsive/identite.json` déclare les 16 variantes ; `capturer-identite.sh` capture les
+oracles indépendants de la production SPIP, en vérifiant la cible officielle. Définir
+`WP`, `URL`, `ASTRA_REFERENCE_ARCHIVE`, `ASTRA_IMAGES` (snapshots locaux conformes au
+manifeste), et `PW` pour les sondes. Le pilote `tests/e2e/identite_responsive.cjs` compare
+1280/768/390, avec/sans JS ; `ASTRA_LARGEURS` exerce les frontières. Le cas sans textes
+visibles est traité par ce pilote et exclu des captures de zones générales.
+Les polices utilisent la conversion amont basée sur 16 px, même lorsque la racine
+calculée devient 14.592 px sous 921. Nombre zéro et chaîne zéro restent distincts.
+Voir le bilan versionné pour les valeurs partielles, la définition des logos et la limite
+préexistante sans JS à 922 px.
