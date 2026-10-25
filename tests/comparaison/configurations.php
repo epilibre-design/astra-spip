@@ -326,6 +326,7 @@ function astra_configurations_identite_responsive(): array {
    'pied' => ['primary' => ['primary_1'=>['widget-1'],'primary_2'=>['widget-2'],'primary_3'=>['widget-3'],'primary_4'=>['widget-4']], 'below'=>['below_1'=>['copyright'],'below_2'=>['social-icons-1']]],
    'rangees' => ['pied_primary'=>['colonnes'=>4,'repartition'=>['desktop'=>'4-equal','tablet'=>'full','mobile'=>'full']], 'pied_below'=>['colonnes'=>2,'repartition'=>['desktop'=>'2-equal','tablet'=>'2-equal','mobile'=>'full']]],
    'elements'=>['entete'=>['button-1'=>['libelle'=>'Nous contacter','lien'=>'https://example.org/contact']], 'pied'=>[]]];
+  if ($cas['transparent']) { $r[$nom]['page']='notre_jardin'; $r[$nom]['pages']=['notre_jardin'=>['transparent'=>'active']]; }
   for ($n=1;$n<=4;$n++) { $r[$nom]['elements']['pied']['widget-'.$n]=['blocs'=>['texte'],'titre'=>'Colonne '.$n,'texte'=>'Texte de la colonne '.$n]; }
  }
  return $r;

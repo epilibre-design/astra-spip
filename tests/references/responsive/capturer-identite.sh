@@ -12,10 +12,11 @@ SORTIES=${SORTIES:-${TMPDIR:-/tmp}/astra-oracles-identite}
 mkdir -p "$SORTIES"
 for cas in "${CAS[@]}"; do
   wp --path="$WP" eval-file "$ICI/../wp/$cas.php" > /dev/null
-  curl -fsS "$URL/" > "$SORTIES/$cas.html"
+  chemin=$(php -r '$j=json_decode(file_get_contents($argv[1]),true); echo $j["chemin"] ?? "/";' "$ICI/../wp/$cas.json")
+  curl -fsS "$URL$chemin" > "$SORTIES/$cas.html"
   php -r '$h=file_get_contents($argv[1]); if (!preg_match("~<style id=\"astra-theme-css-inline-css\">(.*?)</style>~s",$h,$m)) exit(1); echo $m[1];' "$SORTIES/$cas.html" > "$SORTIES/$cas.css"
   python3 "$ICI/identite.py" "$SORTIES/$cas.css" > "$ICI/attendus-identite/$cas.css"
-  if [[ -n "${PW:-}" ]]; then NODE_PATH="$PW/node_modules" node "$ICI/sonder-identite.cjs" "$URL/" "$SORTIES/$cas.styles.json"; fi
+  if [[ -n "${PW:-}" ]]; then NODE_PATH="$PW/node_modules" node "$ICI/sonder-identite.cjs" "$URL$chemin" "$SORTIES/$cas.styles.json"; fi
   echo "$cas : capturé"
 done
 python3 - "$ICI" <<'PY'

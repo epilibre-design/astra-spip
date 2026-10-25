@@ -33,3 +33,15 @@ function astra_identite_taille_appareil(array $valeurs, string $appareil): strin
 	}
 	return (int) $v . 'px;font-size:' . ((int) $v / ASTRA_STYLES_TAILLE_TEXTE) . 'rem';
 }
+
+/** Définition nécessaire du fichier, indépendante du cadre d'affichage du bureau. */
+function astra_identite_largeur_source(array $largeurs, int $largeur_affichee): int {
+	$maximum = $largeur_affichee;
+	foreach (ASTRA_STYLES_APPAREILS as $a) {
+		$v = $largeurs[$a] ?? '';
+		if ($v !== '' && is_numeric($v) && (float) $v > 0) {
+			$maximum = max($maximum, (int) ceil((float) $v));
+		}
+	}
+	return $maximum;
+}

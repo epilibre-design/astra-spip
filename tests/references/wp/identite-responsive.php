@@ -28,6 +28,10 @@ function ref_identite_responsive(string $variante): void {
 		'below' => ['below_left' => [], 'below_center' => [], 'below_right' => []],
 	];
 	ref_reglages($styles);
+	if ($cas['transparent']) {
+		$ids = ref_pages();
+		update_post_meta($ids['notre-jardin'], 'theme-transparent-header-meta', 'enabled');
+	}
 	update_option('blogdescription', $cas['meta']['slogan_site']);
 	$images = getenv('ASTRA_IMAGES');
 	if (!$images) { throw new RuntimeException('ASTRA_IMAGES requis pour les logos locaux.'); }
