@@ -1,0 +1,161 @@
+{
+  "wordpress": [
+    {
+      "largeur": 1280,
+      "widgets": [
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Liens rapides"
+          ]
+        },
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Nos services"
+          ]
+        }
+      ],
+      "defauts": [
+        "flèche décorative 0",
+        "aucun faux état fermé 0",
+        "enfant accessible par Tab 0",
+        "pas de faux état ajouté par le JS amont 0",
+        "flèche décorative 1",
+        "aucun faux état fermé 1",
+        "enfant accessible par Tab 1",
+        "pas de faux état ajouté par le JS amont 1"
+      ]
+    },
+    {
+      "largeur": 768,
+      "widgets": [
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Liens rapides"
+          ]
+        },
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Nos services"
+          ]
+        }
+      ],
+      "defauts": [
+        "flèche décorative 0",
+        "aucun faux état fermé 0",
+        "pas de faux état ajouté par le JS amont 0",
+        "flèche décorative 1",
+        "aucun faux état fermé 1",
+        "pas de faux état ajouté par le JS amont 1"
+      ]
+    },
+    {
+      "largeur": 390,
+      "widgets": [
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Liens rapides"
+          ]
+        },
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Nos services"
+          ]
+        }
+      ],
+      "defauts": [
+        "flèche décorative 0",
+        "aucun faux état fermé 0",
+        "pas de faux état ajouté par le JS amont 0",
+        "flèche décorative 1",
+        "aucun faux état fermé 1",
+        "pas de faux état ajouté par le JS amont 1"
+      ]
+    }
+  ],
+  "spip": [
+    {
+      "largeur": 1280,
+      "widgets": [
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Liens rapides"
+          ]
+        },
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Nos services"
+          ]
+        }
+      ],
+      "defauts": []
+    },
+    {
+      "largeur": 768,
+      "widgets": [
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Liens rapides"
+          ]
+        },
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Nos services"
+          ]
+        }
+      ],
+      "defauts": []
+    },
+    {
+      "largeur": 390,
+      "widgets": [
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Liens rapides"
+          ]
+        },
+        {
+          "enfants": [
+            "Potager"
+          ],
+          "titre": [
+            "Nos services"
+          ]
+        }
+      ],
+      "defauts": []
+    }
+  ]
+}

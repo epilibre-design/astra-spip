@@ -1,0 +1,111 @@
+{
+  "profil": "deja-enveloppe",
+  "sites": {
+    "spip": [
+      {
+        "largeur": 1280,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 640,
+          "debordement": false,
+          "iframe": {
+            "largeur": 640,
+            "hauteur": 480
+          },
+          "conteneur": {
+            "largeur": 640,
+            "hauteur": 480
+          }
+        },
+        "erreurs": []
+      },
+      {
+        "largeur": 768,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 728,
+          "debordement": false,
+          "iframe": {
+            "largeur": 640,
+            "hauteur": 480
+          },
+          "conteneur": {
+            "largeur": 640,
+            "hauteur": 480
+          }
+        },
+        "erreurs": []
+      },
+      {
+        "largeur": 390,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 350,
+          "debordement": false,
+          "iframe": {
+            "largeur": 350,
+            "hauteur": 262.5
+          },
+          "conteneur": {
+            "largeur": 350,
+            "hauteur": 262.5
+          }
+        },
+        "erreurs": []
+      }
+    ],
+    "wordpress": [
+      {
+        "largeur": 1280,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 640,
+          "debordement": false,
+          "iframe": {
+            "largeur": 640,
+            "hauteur": 480
+          },
+          "conteneur": {
+            "largeur": 640,
+            "hauteur": 480
+          }
+        },
+        "erreurs": []
+      },
+      {
+        "largeur": 768,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 728,
+          "debordement": false,
+          "iframe": {
+            "largeur": 640,
+            "hauteur": 480
+          },
+          "conteneur": {
+            "largeur": 640,
+            "hauteur": 480
+          }
+        },
+        "erreurs": []
+      },
+      {
+        "largeur": 390,
+        "temoin": false,
+        "geometrie": {
+          "disponible": 350,
+          "debordement": false,
+          "iframe": {
+            "largeur": 350,
+            "hauteur": 262.5
+          },
+          "conteneur": {
+            "largeur": 350,
+            "hauteur": 262.5
+          }
+        },
+        "erreurs": []
+      }
+    ]
+  }
+}

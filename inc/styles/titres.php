@@ -1,6 +1,6 @@
 <?php
 /**
- * Astra pour SPIP — graisses des titres (inc/class-astra-dynamic-css.php d'Astra 4.11.0 :
+ * Astra pour SPIP — graisses des titres (inc/class-astra-dynamic-css.php d'Astra 4.13.8 :
  * typographie des titres et compatibilité can-support-widget-and-editor-fonts).
  *
  * css/astra-dynamic.css fige la graisse 600 des titres, de chaque niveau et des titres des widgets
@@ -33,8 +33,9 @@ function astra_styles_titres(array $s, array $hfb, array $c = []): array {
 	[$h, $niveaux] = astra_titres_graisses($s, $c);
 	$titres = [];
 	for ($n = 1; $n <= 6; $n++) {
-		array_push($titres, "h$n", ".entry-content h$n");
+		array_push($titres, "h$n");
 	}
+	$titres[] = ".entry-content :where(h1,h2,h3,h4,h5,h6)";
 	$regles = [];
 	// Graisse des titres vide ou inherit (défaut des installations d'avant Astra 4.0) : la règle
 	// générale n'a pas de graisse (astra_get_css_value()).
@@ -54,7 +55,7 @@ function astra_styles_titres(array $s, array $hfb, array $c = []): array {
 	foreach ($niveaux as $n => $g) {
 		$t = $g === 'inherit' || $g === '' ? $generale : $g;
 		if ($t !== $generale) {
-			$regles[] = ['', "h$n,.entry-content h$n", ['font-weight' => $t]];
+			$regles[] = ['', "h$n,.entry-content :where(h$n)", ['font-weight' => $t]];
 		}
 	}
 	if (!astra_compatibilite_polices_anciennes($c)) {

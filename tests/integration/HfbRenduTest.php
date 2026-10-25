@@ -211,18 +211,43 @@ final class HfbRenduTest extends TestCase {
 
 	public function testBlocMenuDansLesWidgetsDuPied(): void {
 		// Balisage du widget nav_menu de WordPress sous Astra (référence R13-pied-widgets-menus) :
-		// titre, nav étiquetée par le titre, liste .menu à deux niveaux, lien parent aria-expanded,
-		// flèche sans icône, pas de bouton de dépliage.
+		// Écart validé à 4.13.8 : liste statique, flèche décorative, sans faux état fermé.
+		// Titre, nav étiquetée et sous-pages conservés.
 		$x = $this->pied(astra_configurations_reference()['R13-pied-widgets-menus']);
 		$widget = '//' . self::classe('footer-widget-area') . '[@data-section="sidebar-widgets-footer-widget-2"]/section[@class="widget widget_nav_menu"]';
 		$this->assertSame(1, $this->compter($x, $widget . '/h2[@class="widget-title"][.="Liens rapides"]'));
 		$nav = $widget . '/nav[@aria-label="Liens rapides"]/ul[@class="menu"]';
 		$this->assertSame(1, $this->compter($x, $nav), 'nav étiquetée et liste .menu');
 		$parent = $nav . '/li[contains(@class, "menu-item-has-children")]';
-		$this->assertSame(1, $this->compter($x, $parent . '/a[@aria-expanded="false"][@class="menu-link"]/span[@role="application"][@class="dropdown-menu-toggle ast-header-navigation-arrow"][@aria-expanded="false"][not(*)]'));
+		$this->assertSame(1, $this->compter($x, $parent . '/a[not(@aria-expanded)][@class="menu-link"]/span[@aria-hidden="true"][@class="ast-header-navigation-arrow"][not(@role)][not(@tabindex)][not(@aria-expanded)][not(*)]'));
+		$this->assertSame(0, $this->compter($x, $widget . '//*[@aria-expanded or @role="application" or @tabindex or contains(@class, "dropdown-menu-toggle")]'));
 		$this->assertGreaterThan(0, $this->compter($x, $parent . '/ul[@class="sub-menu"]/li/a[@class="menu-link"]'));
 		$this->assertSame(0, $this->compter($x, $widget . '//button'), 'Pas de bouton de dépliage dans un widget');
 		$this->assertSame(1, $this->compter($x, '//' . self::classe('footer-widget-area') . '[@data-section="sidebar-widgets-footer-widget-3"]/section[contains(@class, "widget_nav_menu")]'));
+	}
+
+	public function testCommandesDeSousMenusNommeesPourPagesEtRubriques(): void {
+		foreach (['racine', 'pages'] as $source) {
+			$c = self::configR1();
+			foreach ([1,2] as $n) { $c['elements']['entete']['menu-' . $n] = ['source' => $source, 'id' => 0]; }
+			$x = $this->entete($c);
+			foreach ([1,2] as $n) {
+				$selecteur = '//*[@id="ast-desktop-header"]//' . self::classe('ast-builder-menu-' . $n) . '//a/span[contains(@class,"dropdown-menu-toggle")]';
+				$this->assertGreaterThan(0, $x->query($selecteur)->length, $source . ' menu ' . $n);
+				foreach ($x->query($selecteur) as $commande) {
+					$this->assertSame('button', $commande->getAttribute('role'));
+					$this->assertSame('0', $commande->getAttribute('tabindex'));
+					$this->assertSame('false', $commande->getAttribute('aria-expanded'));
+					$this->assertSame('true', $commande->getAttribute('aria-haspopup'));
+					$this->assertSame(_T('astra:deplier_menu'), $commande->getAttribute('aria-label'));
+				}
+			}
+			foreach ($x->query('//button[contains(@class,"ast-menu-toggle")]') as $bouton) {
+				$this->assertSame('true', $bouton->getAttribute('aria-haspopup'));
+				$this->assertSame(_T('astra:deplier_menu'), $bouton->getAttribute('aria-label'));
+			}
+			$this->assertSame(0, $x->query('//a//button')->length, 'Aucun bouton natif dans un lien');
+		}
 	}
 
 	public function testBlocMenuSansTitreNiSource(): void {

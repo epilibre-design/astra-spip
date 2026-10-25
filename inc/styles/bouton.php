@@ -1,6 +1,6 @@
 <?php
 /**
- * Astra pour SPIP — styles du bouton global (inc/class-astra-dynamic-css.php d'Astra 4.11.0,
+ * Astra pour SPIP — styles du bouton global (inc/class-astra-dynamic-css.php d'Astra 4.13.8,
  * « Button Styling ») : couleurs, survol, bordure, rayon, marges, police.
  *
  * Astra émet toujours ces règles ; css/astra-dynamic.css en contient la version par défaut. Ici,
@@ -15,8 +15,8 @@ const ASTRA_STYLES_SEL_BLOC_LIEN = '.wp-block-button .wp-block-button__link';
 const ASTRA_STYLES_SEL_BLOC_LIEN_SURVOL = '.wp-block-button .wp-block-button__link:hover,.wp-block-button .wp-block-button__link:focus';
 const ASTRA_STYLES_SEL_BLOCS = '.wp-block-button .wp-block-button__link,.wp-block-search .wp-block-search__button,body .wp-block-file .wp-block-file__button';
 const ASTRA_STYLES_SEL_BLOCS_ARTICLE = '.ast-single-post .entry-content .wp-block-button .wp-block-button__link,.ast-single-post .entry-content .wp-block-search .wp-block-search__button,body .entry-content .wp-block-file .wp-block-file__button';
-const ASTRA_STYLES_SEL_BOUTONS = '.menu-toggle,button,.ast-button,.ast-custom-button,.button,input#submit,input[type="button"],input[type="submit"],input[type="reset"],#comments .submit,.search .search-submit,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button,body .wp-block-file .wp-block-file__button,.search .search-submit,.woocommerce-js a.button,.woocommerce button.button,.woocommerce .woocommerce-message a.button,.woocommerce #respond input#submit.alt,.woocommerce input.button.alt,.woocommerce input.button,.woocommerce input.button:disabled,.woocommerce input.button:disabled[disabled],.woocommerce input.button:disabled:hover,.woocommerce input.button:disabled[disabled]:hover,.woocommerce #respond input#submit,.woocommerce button.button.alt.disabled,.wc-block-grid__products .wc-block-grid__product .wp-block-button__link,.wc-block-grid__product-onsale,[CLASS*="wc-block"] button,.woocommerce-js .astra-cart-drawer .astra-cart-drawer-content .woocommerce-mini-cart__buttons .button:not(.checkout):not(.ast-continue-shopping),.woocommerce-js .astra-cart-drawer .astra-cart-drawer-content .woocommerce-mini-cart__buttons a.checkout,.woocommerce button.button.alt.disabled.wc-variation-selection-needed,[CLASS*="wc-block"] .wc-block-components-button';
-const ASTRA_STYLES_SEL_BOUTONS_SURVOL = 'button:focus,.menu-toggle:hover,button:hover,.ast-button:hover,.ast-custom-button:hover .button:hover,.ast-custom-button:hover ,input[type=reset]:hover,input[type=reset]:focus,input#submit:hover,input#submit:focus,input[type="button"]:hover,input[type="button"]:focus,input[type="submit"]:hover,input[type="submit"]:focus,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button:hover,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button:focus,body .wp-block-file .wp-block-file__button:hover,body .wp-block-file .wp-block-file__button:focus,.woocommerce-js a.button:hover,.woocommerce button.button:hover,.woocommerce .woocommerce-message a.button:hover,.woocommerce #respond input#submit:hover,.woocommerce #respond input#submit.alt:hover,.woocommerce input.button.alt:hover,.woocommerce input.button:hover,.woocommerce button.button.alt.disabled:hover,.wc-block-grid__products .wc-block-grid__product .wp-block-button__link:hover,[CLASS*="wc-block"] button:hover,.woocommerce-js .astra-cart-drawer .astra-cart-drawer-content .woocommerce-mini-cart__buttons .button:not(.checkout):not(.ast-continue-shopping):hover,.woocommerce-js .astra-cart-drawer .astra-cart-drawer-content .woocommerce-mini-cart__buttons a.checkout:hover,.woocommerce button.button.alt.disabled.wc-variation-selection-needed:hover,[CLASS*="wc-block"] .wc-block-components-button:hover,[CLASS*="wc-block"] .wc-block-components-button:focus';
+const ASTRA_STYLES_SEL_BOUTONS = '.menu-toggle,button,.ast-button,.ast-custom-button,.button,input#submit,input[type="button"],input[type="submit"],input[type="reset"],#comments .submit,.search .search-submit,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button,body .wp-block-file .wp-block-file__button,.search .search-submit';
+const ASTRA_STYLES_SEL_BOUTONS_SURVOL = 'button:focus,.menu-toggle:hover,button:hover,.ast-button:hover,.ast-custom-button:hover .button:hover,.ast-custom-button:hover ,input[type=reset]:hover,input[type=reset]:focus,input#submit:hover,input#submit:focus,input[type="button"]:hover,input[type="button"]:focus,input[type="submit"]:hover,input[type="submit"]:focus,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button:hover,form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button:focus,body .wp-block-file .wp-block-file__button:hover,body .wp-block-file .wp-block-file__button:focus';
 const ASTRA_STYLES_SEL_RECHERCHE = 'form[CLASS*="wp-block-search__"].wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button.has-icon';
 
 function astra_styles_bouton(array $s): array {
@@ -97,5 +97,32 @@ function astra_styles_bouton(array $s): array {
 			}
 		}
 	}
-	return $regles;
+	// Sans marge ordinateur personnalisée, Astra conserve ses défauts plus étroits.
+	// Les réémettre après les propriétés ordinateur évite de les écraser en changeant le rayon seul.
+	if (!astra_styles_renseigne(astra_styles_ordi($padding))) {
+		foreach (['(max-width:921px)' => [14,28], '(max-width:544px)' => [12,24]] as $media => $defauts) {
+			$espaces = ['padding-top'=>$defauts[0].'px', 'padding-right'=>$defauts[1].'px',
+				'padding-bottom'=>$defauts[0].'px', 'padding-left'=>$defauts[1].'px'];
+			$regles[] = [$media, ASTRA_STYLES_SEL_BLOCS, $espaces];
+			$regles[] = [$media, ASTRA_STYLES_SEL_BOUTONS, $espaces];
+		}
+	}
+
+	// wp2spip retire les classes du lien, tout en gardant le conteneur natif.
+	// Reprises séparées : sélecteurs/ordre amont restent vérifiables tels quels.
+	// :is() conserve la spécificité de .wp-block-button__link (0,1,0).
+	$reprises = [
+		ASTRA_STYLES_SEL_BLOC_LIEN => '.wp-block-button :is(a,.wp-block-button__link)',
+		ASTRA_STYLES_SEL_BLOC_LIEN_SURVOL => '.wp-block-button :is(a,.wp-block-button__link):hover,.wp-block-button :is(a,.wp-block-button__link):focus',
+		ASTRA_STYLES_SEL_BLOCS => '.wp-block-button :is(a,.wp-block-button__link)',
+		ASTRA_STYLES_SEL_BLOCS_ARTICLE => '.ast-single-post .entry-content .wp-block-button :is(a,.wp-block-button__link)',
+	];
+	$adaptees = [];
+	foreach ($regles as $regle) {
+		$adaptees[] = $regle;
+		if (isset($reprises[$regle[1]])) {
+			$adaptees[] = [$regle[0], $reprises[$regle[1]], $regle[2]];
+		}
+	}
+	return $adaptees;
 }

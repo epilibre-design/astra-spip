@@ -1,0 +1,10 @@
+{
+  "ordinateur": [
+    "#ast-desktop-header .site-branding"
+  ],
+  "mobile": [],
+  "presents": [
+    "#masthead"
+  ],
+  "entete_mobile_absente": true
+}

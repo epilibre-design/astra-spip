@@ -1,0 +1,54 @@
+{
+  "spip": [
+    {
+      "largeur": 1280,
+      "width": 31.5,
+      "height": 31.5,
+      "background": "rgb(4, 107, 210)",
+      "tabindex": 0,
+      "retour": 1
+    },
+    {
+      "largeur": 768,
+      "width": 31.5,
+      "height": 31.5,
+      "background": "rgb(4, 107, 210)",
+      "tabindex": 0,
+      "retour": 1
+    },
+    {
+      "largeur": 390,
+      "width": 31.5,
+      "height": 31.5,
+      "background": "rgb(4, 107, 210)",
+      "tabindex": 0,
+      "retour": 1
+    }
+  ],
+  "wordpress": [
+    {
+      "largeur": 1280,
+      "width": 31.5,
+      "height": 31.5,
+      "background": "rgb(4, 107, 210)",
+      "tabindex": 0,
+      "retour": 1
+    },
+    {
+      "largeur": 768,
+      "width": 31.5,
+      "height": 31.5,
+      "background": "rgb(4, 107, 210)",
+      "tabindex": 0,
+      "retour": 1
+    },
+    {
+      "largeur": 390,
+      "width": 31.5,
+      "height": 31.5,
+      "background": "rgb(4, 107, 210)",
+      "tabindex": 0,
+      "retour": 1
+    }
+  ]
+}

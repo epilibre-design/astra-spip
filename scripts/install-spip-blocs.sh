@@ -8,16 +8,18 @@ set -euo pipefail
 : "${SPIP_BLOCS:?}" "${WP_BLOCS:?}" "${SPIP_CLI:?}"
 ICI=$(cd "$(dirname "$0")/.." && pwd)
 WP2SPIP=${WP2SPIP:-/src/wordpress/wp2spip}
+URL_SPIP_BLOCS=${URL_SPIP_BLOCS:-http://127.0.0.1:8406}
 # preparer_spip.sh attend un exécutable : par défaut, dernier mot de SPIP_CLI (« php …/bin/spip » → …/bin/spip).
 SPIP_ADMIN_PASS=adminadmin "$WP2SPIP/outils/preparer_spip.sh" --spip "$SPIP_BLOCS" --wordpress "$WP_BLOCS" \
-	--wp2spip lien --spip-cli "${SPIP_CLI_SVP:-${SPIP_CLI##* }}" --adresse http://127.0.0.1:8406 ${DEPOT:+--depot "$DEPOT"} --importer
+	--wp2spip lien --spip-cli "${SPIP_CLI_SVP:-${SPIP_CLI##* }}" --adresse "$URL_SPIP_BLOCS" ${DEPOT:+--depot "$DEPOT"} --importer
 cd "$SPIP_BLOCS"
 # wordpress:importer remplace adresse_site par l'adresse du WordPress (preparer_spip.sh ne lui
 # transmet pas l'option qui la conserve) : on rétablit celle du SPIP importé.
-$SPIP_CLI php:eval 'include_spip("inc/meta"); ecrire_meta("adresse_site", "http://127.0.0.1:8406");'
+export URL_SPIP_BLOCS
+$SPIP_CLI php:eval 'include_spip("inc/meta"); ecrire_meta("adresse_site", getenv("URL_SPIP_BLOCS"));'
 [ -e plugins/astra ] || ln -s "$ICI" plugins/astra
 $SPIP_CLI plugins:activer astra -y
 $SPIP_CLI plugins:maj:bdd
 $SPIP_CLI php:eval 'include_spip("inc/plugin"); echo test_plugin_actif("astra") ? "actif" : "inactif";' | grep -q '^actif$'
 $SPIP_CLI cache:vider
-echo "SPIP importé prêt : php -S 127.0.0.1:8406 -t $SPIP_BLOCS"
+echo "SPIP importé prêt : $URL_SPIP_BLOCS ($SPIP_BLOCS)"

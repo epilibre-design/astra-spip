@@ -1,0 +1,88 @@
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+.SS                                                                 3 / 3 (100%)
+
+Time: 00:01.649, Memory: 20.00 MB
+
+OK, but some tests were skipped!
+Tests: 3, Assertions: 29, Skipped: 2.
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+S..                                                                 3 / 3 (100%)
+
+Time: 00:00.484, Memory: 22.00 MB
+
+OK, but some tests were skipped!
+Tests: 3, Assertions: 33, Skipped: 1.
+oEmbed avec-plugin : trois largeurs conformes.
+oEmbed deja-enveloppe : trois largeurs conformes.
+oEmbed avec-plugin : trois largeurs conformes.
+oEmbed deja-enveloppe : trois largeurs conformes.
+oEmbed erreurs : trois largeurs conformes.
+oEmbed erreurs : trois largeurs conformes.
+oEmbed erreurs : trois largeurs conformes.
+oEmbed sans-plugin : trois largeurs conformes.
+
+Désactiver des plugins
+======================
+
+ ! 25 plugins actifs
+ Liste des plugins à desactiver :
+ * oembed
+
+ Résultat :
+ - oembed 3.5.1 plugins/oembed
+ ! 24 plugins actifs
+
+ [INFO] Cache entièrement vidé (sauf vignettes)
+
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+.SS                                                                 3 / 3 (100%)
+
+Time: 00:00.201, Memory: 24.00 MB
+
+OK, but some tests were skipped!
+Tests: 3, Assertions: 29, Skipped: 2.
+oEmbed sans-plugin : trois largeurs conformes.
+
+Activer des plugins
+===================
+
+ ! 24 plugins actifs
+ Liste des plugins à activer :
+ * oembed
+
+ Résultat :
+ + oembed 3.5.1 plugins/oembed
+ ! 25 plugins actifs
+
+Mettre à jour la base de données et configurations de SPIP.
+===========================================================
+
+ Mise à jour site : http://127.0.0.1:8430
+ Aucune mise à jour
+
+ [INFO] Cache entièrement vidé (sauf vignettes)
+
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+S..                                                                 3 / 3 (100%)
+
+Time: 00:00.281, Memory: 24.00 MB
+
+OK, but some tests were skipped!
+Tests: 3, Assertions: 33, Skipped: 1.
+Cycle activation/désactivation : six textes SQL identiques ; témoin identique ; requêtes réelles attestées.

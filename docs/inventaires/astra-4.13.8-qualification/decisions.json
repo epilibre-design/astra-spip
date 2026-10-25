@@ -1,0 +1,290 @@
+[
+  {
+    "id": "4.11.1-05",
+    "statut": "corrige",
+    "domaine": "css",
+    "source": "Astra 4.13.8 : assets/css/minified/main.min.css",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/cascade.json",
+    "portee": "code/kbd/tt/var : 24px hors titres ; héritage dans les titres."
+  },
+  {
+    "id": "4.11.2-02",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/navigation.json",
+    "portee": "Activation, piège de Tab et réouverture, adaptation SPIP séparée."
+  },
+  {
+    "id": "4.11.2-04",
+    "statut": "equivalent",
+    "domaine": "rtl",
+    "source": "Astra 4.13.8 : inc/builder/type/footer/",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/dispositions.json",
+    "portee": "Pied RTL : géométrie et alignements des colonnes aux trois largeurs."
+  },
+  {
+    "id": "4.11.4-03",
+    "statut": "equivalent",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/css/minified/main.min.css",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/perimetre.md",
+    "portee": "Liens natifs focusables et outline du CSS officiel ; filtres interactifs de publications absents."
+  },
+  {
+    "id": "4.11.6-02",
+    "statut": "equivalent",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : template-parts/header/builder/components.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/perimetre.md",
+    "portee": "Zones de widgets aside nommées, sémantique complémentaire native."
+  },
+  {
+    "id": "4.11.8-02",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/navigation.json",
+    "portee": "Focus initial, trois fermetures, retour au déclencheur réellement visible."
+  },
+  {
+    "id": "4.11.9-01",
+    "statut": "absent",
+    "domaine": "integration",
+    "source": "Astra 4.13.8 : inc/compatibility/",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/perimetre.md",
+    "portee": "Aucun moteur Spectra v3 ni Mega Menu Spectra porté dans Astra SPIP."
+  },
+  {
+    "id": "4.11.9-02",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : inc/extras.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/sousmenus.json",
+    "portee": "Commandes de menu des deux sources, ARIA et activation native."
+  },
+  {
+    "id": "4.11.9-03",
+    "statut": "absent",
+    "domaine": "integration",
+    "source": "Astra 4.13.8 : inc/compatibility/",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/perimetre.md",
+    "portee": "GenerateBlocks non porté ; la cascade des blocs natifs importés est qualifiée séparément."
+  },
+  {
+    "id": "4.11.10-02",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/navigation.json",
+    "portee": "Panneau fermé hors accessibilité et focus visible hors panneau."
+  },
+  {
+    "id": "4.11.11-02",
+    "statut": "absent",
+    "domaine": "rtl",
+    "source": "Astra 4.13.8 : inc/core/common-functions.php::astra_flip_rtl_alignment",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/perimetre.md",
+    "portee": "Réglages des bannières posts-structures non exposés ; ne vaut pas certification globale RTL."
+  },
+  {
+    "id": "4.11.11-06",
+    "statut": "equivalent",
+    "domaine": "sociaux",
+    "source": "Astra 4.13.8 : assets/svg/svgs.json",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/sociaux.json",
+    "portee": "Catalogue fermé comparé et attributs SVG explicites conservés."
+  },
+  {
+    "id": "4.11.12-03",
+    "statut": "corrige",
+    "domaine": "responsive",
+    "source": "Astra 4.13.8 : inc/core/class-astra-enqueue-scripts.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/responsive.json",
+    "portee": "Classe précoce puis initialisation du bundle à DOMContentLoaded."
+  },
+  {
+    "id": "4.11.12-05",
+    "statut": "equivalent",
+    "domaine": "css",
+    "source": "Astra 4.13.8 : assets/css/minified/main.min.css",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/dispositions.json",
+    "portee": "Logo réel visible sans menu, taille harmonisée pour isoler la visibilité."
+  },
+  {
+    "id": "4.11.12-06",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/navigation.json",
+    "portee": "Etat aria-expanded synchronisé, même après réouverture et resize."
+  },
+  {
+    "id": "4.11.12-07",
+    "statut": "equivalent",
+    "domaine": "css",
+    "source": "Astra 4.13.8 : inc/dynamic-css/content-background.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/dispositions.json",
+    "portee": "Espacements page unique et archive mesurés contre WordPress."
+  },
+  {
+    "id": "4.11.13-04",
+    "statut": "corrige",
+    "domaine": "oembed",
+    "source": "Astra 4.13.8 : inc/class-astra-after-setup-theme.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/oembed-large.json",
+    "portee": "Vrai import et plugin 3.5.1, cadre retiré, ratio 16:9 aux trois largeurs."
+  },
+  {
+    "id": "4.11.14-01",
+    "statut": "equivalent",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/perimetre.md",
+    "portee": "Lien évitement natif testé dans le profil navigation evitement ; cible content unique."
+  },
+  {
+    "id": "4.11.14-05",
+    "statut": "equivalent",
+    "domaine": "blocs",
+    "source": "Astra 4.13.8 : inc/class-astra-dynamic-css.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/blocs.json",
+    "portee": "Blocs réels importés, colonnes et dimensions ; pas de support implicite de tous les blocs tiers."
+  },
+  {
+    "id": "4.11.17-03",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : inc/extras.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/sousmenus.json",
+    "portee": "Libellés traduits SPIP, flèches décoratives sans faux état fermé ; rendu social FR/EN."
+  },
+  {
+    "id": "4.11.18-04",
+    "statut": "corrige",
+    "domaine": "oembed",
+    "source": "Astra 4.13.8 : inc/class-astra-after-setup-theme.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/oembed-classique.json",
+    "portee": "Ratio 4:3, retraitement sans seconde enveloppe ; chemin classique arbitraire non revendiqué."
+  },
+  {
+    "id": "4.12.1-02",
+    "statut": "corrige",
+    "domaine": "css",
+    "source": "Astra 4.13.8 : inc/class-astra-dynamic-css.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/replis.json",
+    "portee": "label et legend utilisent la couleur globale et son repli."
+  },
+  {
+    "id": "4.12.2-01",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : inc/extras.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/sousmenus.json",
+    "portee": "Rôle bouton sur commande non native ; bouton natif mobile nommé et haspopup."
+  },
+  {
+    "id": "4.12.2-02",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/navigation.json",
+    "portee": "Recherche cliquable dans le panneau aux trois largeurs."
+  },
+  {
+    "id": "4.12.4-03",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/sousmenus.json",
+    "portee": "Départ du focus ferme la branche, y compris mobile."
+  },
+  {
+    "id": "4.12.4-08",
+    "statut": "equivalent",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/css/minified/main.min.css",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/navigation.json",
+    "portee": "Dimensions et absence de débordement du panneau ; aucune option nouvelle de padding."
+  },
+  {
+    "id": "4.12.5-02",
+    "statut": "corrige",
+    "domaine": "securite",
+    "source": "Astra 4.13.8 : changelog.txt (note générique) ; inc/core/common-functions.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/securite.md",
+    "portee": "Chemins portés examinés ; filtre de protocoles corrigé, pas de CVE ni de garantie sur des moteurs absents."
+  },
+  {
+    "id": "4.12.6-01",
+    "statut": "corrige",
+    "domaine": "assets",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "tests/unit/AssetsReferenceTest.php",
+    "portee": "Bundle officiel remplacé sans modification, polyfills anciens retirés par cette reprise."
+  },
+  {
+    "id": "4.12.6-02",
+    "statut": "corrige",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/js/minified/frontend.min.js",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/sousmenus.json",
+    "portee": "Entrée/Espace : une seule bascule et aucun défilement parasite."
+  },
+  {
+    "id": "4.12.7-04",
+    "statut": "corrige",
+    "domaine": "css",
+    "source": "Astra 4.13.8 : inc/class-astra-dynamic-css.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/replis.json",
+    "portee": "Repli var() testé avec variable primaire absente et palette personnalisée."
+  },
+  {
+    "id": "4.13.1-04",
+    "statut": "corrige",
+    "domaine": "css",
+    "source": "Astra 4.13.8 : inc/builder/type/header/menu/dynamic-css/dynamic.css.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/cascade.json",
+    "portee": "Survol trois niveaux sans propagation indue au parent intermédiaire."
+  },
+  {
+    "id": "4.13.1-05",
+    "statut": "corrige",
+    "domaine": "responsive",
+    "source": "Astra 4.13.8 : inc/core/class-astra-enqueue-scripts.php::set_header_break_point_early",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/responsive.json",
+    "portee": "Avant le bundle, logo/titre/slogan et nombre d’en-têtes visibles conformes ; aucune variante de cache par terminal."
+  },
+  {
+    "id": "4.13.2-03",
+    "statut": "equivalent",
+    "domaine": "navigation",
+    "source": "Astra 4.13.8 : assets/css/minified/main.min.css",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/navigation.json",
+    "portee": "Bouton fermeture mesuré après défilement ; minimum tactile testé."
+  },
+  {
+    "id": "4.13.4-02",
+    "statut": "corrige",
+    "domaine": "responsive",
+    "source": "Astra 4.13.8 : inc/core/class-astra-enqueue-scripts.php",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/responsive.json",
+    "portee": "921/922 et scrollbars testés ; le cas fractionnaire 921,95 n’a pas été reproduit."
+  },
+  {
+    "id": "4.13.7-02",
+    "statut": "corrige",
+    "domaine": "sociaux",
+    "source": "Astra 4.13.8 : inc/builder/type/base/",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/sociaux.json",
+    "portee": "Préfixe mailto déjà présent conservé sans double ajout ; téléphone/WhatsApp absents du registre."
+  },
+  {
+    "id": "4.13.7-05",
+    "statut": "corrige",
+    "domaine": "sociaux",
+    "source": "Astra 4.13.8 : assets/svg/svgs.json",
+    "preuve": "docs/inventaires/astra-4.13.8-qualification/preuves/sociaux.json",
+    "portee": "ID fixes email/Google Reviews supprimés, TripAdvisor absent, IDs de page uniques."
+  }
+]

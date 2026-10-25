@@ -22,7 +22,8 @@ const POLICES = REFERENCE.polices || [];
 const SEUIL = parseFloat(process.env.SEUIL || '0.01');
 const AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36';
 // Pas d'animation ni de curseur clignotant : captures stables.
-const CSS_STABLE = '*,*::before,*::after{transition:none!important;animation:none!important;caret-color:transparent!important}';
+const { cssStabilisation, stabiliserComposant } = require('./stabilisation.cjs');
+const CSS_STABLE = cssStabilisation('');
 
 const VUES = [
   { nom: 'entete-ordinateur', largeur: 1280, selecteur: '#masthead' },
@@ -39,7 +40,7 @@ if (contenu === 'contenu') {
 async function capturer(browser, url, vue, fichier) {
   const page = await browser.newPage({ viewport: { width: vue.largeur, height: 900 }, userAgent: AGENT });
   await page.goto(url, { waitUntil: 'load' });
-  await page.addStyleTag({ content: CSS_STABLE });
+  await stabiliserComposant(page, vue.selecteur);
   await page.evaluate(() => document.fonts.ready);
   if (vue.ouvrir) {
     await page.locator('.ast-mobile-header-wrap .menu-toggle').first().click();
@@ -94,6 +95,22 @@ async function polices(browser, url) {
   const browser = await chromium.launch({ executablePath: process.env.HOME + '/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome' });
   let echec = false;
   for (const vue of VUES) {
+    if (REFERENCE.entete_mobile_absente === true && ['entete-mobile','menu-mobile'].includes(vue.nom)) {
+      const absences = {};
+      for (const [nom,url] of [['wordpress',urlWp],['spip',urlSpip]]) {
+        const page = await browser.newPage({viewport:{width:vue.largeur,height:900},userAgent:AGENT});
+        try {
+          await page.goto(url,{waitUntil:'load'});
+          const visible = await page.locator('#masthead').isVisible();
+          const commandes = await page.locator('.main-header-menu-toggle,#ast-mobile-popup').count();
+          if (visible || commandes !== 0) throw new Error(nom+' : en-tête ou commande mobile présent dans la référence explicitement vide');
+          absences[nom] = {enteteVisible:visible,commandes};
+        } finally { await page.close(); }
+      }
+      fs.writeFileSync(`${dossier}/${vue.nom}-absence.json`,JSON.stringify(absences,null,2)+'\n');
+      console.log(`ok    ${vue.nom} : absence vérifiée WordPress/SPIP`);
+      continue;
+    }
     const fWp = `${dossier}/wordpress-${vue.nom}.png`;
     const fSpip = `${dossier}/spip-${vue.nom}.png`;
     await capturer(browser, urlWp, vue, fWp);

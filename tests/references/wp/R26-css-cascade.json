@@ -1,0 +1,10 @@
+{
+  "chemin": "/?pagename=notre-jardin",
+  "ordinateur": [".astra-preuve-code code", ".astra-preuve-titre"],
+  "mobile": [".astra-preuve-code code", ".astra-preuve-titre"],
+  "menuMobile": "dropdown",
+  "styles": [
+    {"selecteur": ".astra-preuve-code code", "proprietes": ["font-size"]},
+    {"selecteur": ".astra-preuve-titre", "proprietes": ["font-weight"]}
+  ]
+}

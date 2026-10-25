@@ -1,2 +1,2 @@
-h2,.entry-content h2{font-weight:500;}
+h2,.entry-content :where(h2){font-weight:500;}
 h2.widget-title{font-weight:500;}

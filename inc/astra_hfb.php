@@ -4,7 +4,7 @@
  *
  * Fonctions pures (sans dépendance à SPIP, PHP 7.4) : valeurs par défaut, registre des
  * éléments, normalisation de la configuration et calcul des rangées à afficher, selon la
- * logique d'Astra_Builder_Helper (Astra 4.11.0) et des gabarits
+ * logique d'Astra_Builder_Helper (Astra 4.13.8) et des gabarits
  * template-parts/header/builder/header-row.php et template-parts/footer/builder/footer-row.php.
  */
 
@@ -47,7 +47,7 @@ function astra_hfb_defauts(): array {
 			'entete_above' => ['hauteur' => 50, 'fond' => '', 'bordure' => 1],
 			'entete_primary' => ['hauteur' => 80, 'fond' => '', 'bordure' => 1],
 			'entete_below' => ['hauteur' => 60, 'fond' => '', 'bordure' => 1],
-			// Séparateurs : défauts d'Astra 4.11.0 (hba-footer-separator absent, hb-footer-main-sep et
+			// Séparateurs : défauts d'Astra 4.13.8 (hba-footer-separator absent, hb-footer-main-sep et
 			// hbb-footer-separator à 1) ; couleur vide = couleur par défaut d'Astra.
 			'pied_above' => ['colonnes' => 2, 'repartition' => '2-equal', 'hauteur' => 60, 'fond' => '', 'separateur' => '', 'couleur_separateur' => ''],
 			'pied_primary' => ['colonnes' => 3, 'repartition' => '3-equal', 'hauteur' => '', 'fond' => '', 'separateur' => 1, 'couleur_separateur' => ''],
@@ -276,7 +276,7 @@ function astra_hfb_calculer_panneau(array $mobile): array {
 /**
  * Répartition d'une rangée du pied par appareil. Valeur simple : ordinateur et tablette, mobile
  * `full` (comportement de la version 1.0) ; structure d'Astra (`hb-footer-layout`) : une valeur
- * par appareil, `full` pour un appareil absent ou invalide, comme footer-row.php d'Astra 4.11.0.
+ * par appareil, `full` pour un appareil absent ou invalide, comme footer-row.php d'Astra 4.13.8.
  */
 function astra_hfb_repartition_appareils($valeur): array {
 	$valide = function ($v): string {
@@ -380,7 +380,7 @@ function astra_hfb_css_rangees(array $rangees): string {
 
 /**
  * Séparateur d'une rangée du pied (inc/builder/type/footer/*-footer/dynamic-css/dynamic.css.php
- * d'Astra 4.11.0) : à partir de 1 px, bordure haute de cette épaisseur et de cette couleur. Sans
+ * d'Astra 4.13.8) : à partir de 1 px, bordure haute de cette épaisseur et de cette couleur. Sans
  * séparateur alors qu'Astra en pose un par défaut (css/astra-hfb.css, css/astra-dynamic.css), la
  * bordure est ramenée aux valeurs initiales de CSS : celles d'une rangée sans règle de bordure.
  */

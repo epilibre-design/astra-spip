@@ -1,0 +1,81 @@
+R0-defaut / entete : identique (30 nœuds)
+R0-defaut / panneau : identique (0 nœuds)
+R0-defaut / pied : identique (8 nœuds)
+R27-sociaux-ids / entete : identique (46 nœuds)
+R27-sociaux-ids / panneau : identique (0 nœuds)
+R27-sociaux-ids / pied : identique (12 nœuds)
+R1-entete-complet / entete : identique (67 nœuds)
+R1-entete-complet / panneau : identique (0 nœuds)
+R1-entete-complet / pied : identique (8 nœuds)
+R25-nav-sousmenus / entete : identique (67 nœuds)
+R25-nav-sousmenus / panneau : identique (0 nœuds)
+R25-nav-sousmenus / pied : identique (8 nœuds)
+R25-nav-sousmenus-pages / entete : identique (67 nœuds)
+R25-nav-sousmenus-pages / panneau : identique (0 nœuds)
+R25-nav-sousmenus-pages / pied : identique (8 nœuds)
+R2-entete-centre / entete : identique (52 nœuds)
+R2-entete-centre / panneau : identique (16 nœuds)
+R2-entete-centre / pied : identique (8 nœuds)
+R25-nav-offcanvas / entete : identique (52 nœuds)
+R25-nav-offcanvas / panneau : identique (16 nœuds)
+R25-nav-offcanvas / pied : identique (8 nœuds)
+R25-nav-vide / entete : identique (15 nœuds)
+R25-nav-vide / panneau : identique (0 nœuds)
+R25-nav-vide / pied : identique (8 nœuds)
+R3-pied-colonnes / entete : identique (30 nœuds)
+R3-pied-colonnes / panneau : identique (0 nœuds)
+R3-pied-colonnes / pied : identique (46 nœuds)
+R12-pied-appareils / entete : identique (30 nœuds)
+R12-pied-appareils / panneau : identique (0 nœuds)
+R12-pied-appareils / pied : identique (46 nœuds)
+R13-pied-widgets-menus / entete : identique (30 nœuds)
+R13-pied-widgets-menus / panneau : identique (0 nœuds)
+R13-pied-widgets-menus / pied : DIFFÉRENT (- WordPress, + SPIP)
+--- wordpress
++++ spip
+@@ -9,14 +9,14 @@
+               div.textwidget
+         div.site-footer-primary-section-2.site-footer-section.site-footer-section-2
+           aside.footer-widget-area.footer-widget-area-inner.site-footer-focus-item.widget-area
+-            section.widget.widget_nav_menu#nav_menu-2
++            section.widget.widget_nav_menu#nav_menu-pied-2
+               h2.widget-title
+-              nav.menu-principal-container
++              nav.menu-racine-container
+         div.site-footer-primary-section-3.site-footer-section.site-footer-section-3
+           aside.footer-widget-area.footer-widget-area-inner.site-footer-focus-item.widget-area
+-            section.widget.widget_nav_menu#nav_menu-3
++            section.widget.widget_nav_menu#nav_menu-pied-3
+               h2.widget-title
+-              nav.menu-pied-container
++              nav.menu-racine-container
+   div.ast-builder-grid-row-container.ast-builder-grid-row-full.ast-builder-grid-row-mobile-full.ast-builder-grid-row-tablet-full.ast-footer-row-mobile-stack.ast-footer-row-stack.ast-footer-row-tablet-stack.site-below-footer-wrap.site-footer-focus-item
+     div.ast-builder-grid-row-container-inner
+       div.ast-builder-footer-grid-columns.ast-builder-grid-row.site-below-footer-inner-wrap
+R15-sociaux-google / entete : identique (30 nœuds)
+R15-sociaux-google / panneau : identique (0 nœuds)
+R15-sociaux-google / pied : identique (12 nœuds)
+R4-pied-asymetrique / entete : identique (30 nœuds)
+R4-pied-asymetrique / panneau : identique (0 nœuds)
+R4-pied-asymetrique / pied : identique (31 nœuds)
+R5-rangees / entete : identique (30 nœuds)
+R5-rangees / panneau : identique (0 nœuds)
+R5-rangees / pied : identique (25 nœuds)
+R18-compat-sous-menu / entete : identique (30 nœuds)
+R18-compat-sous-menu / panneau : identique (0 nœuds)
+R18-compat-sous-menu / pied : identique (8 nœuds)
+P1-page / entete : identique (30 nœuds)
+P1-page / panneau : identique (0 nœuds)
+P1-page / pied : identique (8 nœuds)
+P1-page / contenu : identique (8 nœuds)
+P1-page / body : identique (11 nœuds)
+P2-accueil / entete : identique (30 nœuds)
+P2-accueil / panneau : identique (0 nœuds)
+P2-accueil / pied : identique (8 nœuds)
+P2-accueil / contenu : identique (8 nœuds)
+P2-accueil / body : identique (12 nœuds)
+P3-page-pleine / entete : identique (30 nœuds)
+P3-page-pleine / panneau : identique (0 nœuds)
+P3-page-pleine / pied : identique (8 nœuds)
+P3-page-pleine / contenu : identique (7 nœuds)
+P3-page-pleine / body : identique (9 nœuds)

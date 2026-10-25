@@ -240,3 +240,91 @@ auteurs, licences et adaptations dans ce fichier, conserver les notices amont et
 documenter les nouvelles reprises au plus près du code concerné. Les attributions
 non établies ci-dessus restent à compléter ; ce relevé ne les transforme pas en
 attributions certaines.
+
+## Migration vers Astra 4.13.8 (25 octobre 2026)
+
+La nouvelle référence est l'[archive officielle Astra 4.13.8](https://downloads.wordpress.org/theme/astra.4.13.8.zip),
+Brainstorm Force / WPAstra, sous GPL v2 ou ultérieure. Sa notice originale est
+conservée dans [licenses/astra-4.13.8-readme.txt](licenses/astra-4.13.8-readme.txt).
+SHA-256 du ZIP : `3cce1a750dcb699429117a88987aa8f10be404374492eef94379d2c4df6a6572`.
+
+Les copies directes suivantes remplacent les assets 4.11.0, sans modification :
+
+| Source Astra 4.13.8 | Destination | SHA-256 |
+| --- | --- | --- |
+| assets/css/minified/main.min.css | css/main.min.css | 84aad614f8b95ebd3a4ac6f7633e77323066d31da87afe3dafc8c14cd3d0f8fc |
+| assets/js/minified/frontend.min.js | js/frontend.min.js | 3b3a9a24246253beec04f3d2619082970c3aa861ca4ee34280662e3d4a509d20 |
+
+Le relevé 4.11.0 ci-dessus et sa notice restent conservés pour la provenance
+historique. Les couches transposées sont migrées et qualifiées séparément selon
+les plans du 24 octobre ; la copie des deux assets ne vaut pas preuve de parité
+pour le portage complet.
+
+Le catalogue fermé de `inc/astra_icones.php` est comparé entrée par entrée à
+`assets/svg/svgs.json` de 4.13.8 : les douze réseaux restent les mêmes. Les seuls
+changements sont le retrait des ID fixes des titres `email` et `google_reviews` ;
+les tracés restent identiques, avec leurs attributions et licences ci-dessus.
+L'amont retire aussi l'ID du titre de `trip_advisor`, absent du registre du port ; ce réseau n'est
+pas ajouté. La préparation de l'URL e-mail est une adaptation SPIP au rendu,
+suivant la protection de préfixe d'Astra, sans modification des données enregistrées.
+
+`inc/astra_responsive.php` transpose `Astra_Enqueue_Scripts::set_header_break_point_early()`
+(`inc/core/class-astra-enqueue-scripts.php`, 4.13.8) : même media query fondée sur
+`astra_header_break_point()` et même ordre des classes. Le seuil du port est fixe
+à 921 px. Les fragments `inclure/hfb/menu*-sans-js.html` sont une adaptation SPIP :
+la liste simple sous `<noscript>` est un écart déclaré au thème, décidé pour garder
+les destinations des menus accessibles sans JavaScript.
+
+`js/astra-navigation.js` est une adaptation SPIP distincte du bundle officiel :
+le déclencheur utilisé est mémorisé, le focus revient à une cible visible de
+l'en-tête et le piège de focus reste disponible après réouverture. Ces différences
+corrigent des défauts encore observés dans le `frontend.js` de 4.13.8 (retour au
+premier `.menu-toggle` et retrait du piège à la fermeture). Elles ne sont pas
+attribuées à des correctifs amont ; les rapports de parcours conservent le
+comportement WordPress avant adaptation.
+
+Les commandes de `inclure/hfb/menu-items.html` reprennent le rôle `button` et les
+informations de sous-menu des contrôles de 4.13.8 (`inc/extras.php` et
+`inc/core/class-astra-walker-page.php`), avec les libellés traduits de SPIP.
+Les widgets restent des listes statiques : leur flèche vide est décorative,
+sans classe de commande JS ni faux état fermé. L'adaptation séparée empêche le
+gestionnaire global d'ajouter cet état lors de l'activation du lien.
+Pour les boutons natifs mobiles, elle corrige aussi la confusion du premier
+bouton avec le déclencheur global (`navigation_accessibility()`), synchronise
+l'état avec la classe effective et ferme la branche quittée au clavier.
+Ces écarts au runtime de référence sont mesurés séparément ; les boutons natifs
+gardent leur activation Entrée/Espace, sans seconde simulation JavaScript.
+
+Les liens de boutons nettoyés par wp2spip reçoivent dans `css/astra-spip.css` les
+défauts rayon/ombre de `Astra_Dynamic_CSS::astra_default_forms_styling_dynamic_css()`
+(4.13.8), à même spécificité. Dans `inc/styles/bouton.php`, les règles originales
+restent conservées et des sélecteurs SPIP reprennent les mêmes déclarations et
+media queries pour ces liens. La référence indépendante `bouton-rayon` et les
+mesures du vrai import couvrent cette adaptation et les défauts responsive.
+
+L'outillage de preuve utilise [SPIP-Cli](https://git.spip.net/spip-contrib-outils/spip-cli).
+La [procédure SQLite](docs/inventaires/astra-4.13.8-qualification/outillage/spip-cli-prefixe-sqlite.md)
+identifie le commit et l'empreinte du fichier de la copie locale utilisée, ainsi
+que la correction d'expression nécessaire à la préparation privée.
+
+Les sorties courantes `tests/references/styles/attendus/` et
+`tests/references/transparent/attendus/`, ainsi que les feuilles dynamiques,
+builder, pages et compatibilité, sont régénérées depuis ce WordPress sous Astra
+4.13.8. Le tableau 4.11.0 en début de fichier décrit leur origine historique ;
+les anciennes révisions et preuves restent disponibles. `css/astra-blocs.css`
+reste issu de WordPress 7.1.3, et n’est pas réattribué à Astra.
+
+`inc/astra_liens.php` adapte au rendu SPIP la liste native
+[`wp_allowed_protocols()`](https://core.trac.wordpress.org/browser/tags/7.1.3/src/wp-includes/functions.php)
+de WordPress 7.1.3 (contributeurs WordPress, GPL v2 ou ultérieure), utilisée par
+`esc_url()` dans les composants Astra. L’échappement SPIP reste distinct ; les
+valeurs enregistrées ne sont pas réécrites.
+
+La règle `.entry-content .oembed_video .oe-video` de `css/astra-spip.css` est une
+adaptation originale d’habillage : elle retire le cadre du plugin
+[oEmbed](https://git.spip.net/spip-contrib-extensions/oembed), version 3.5.1,
+commit `e90f6a6db27f763ad78ad36c0398b39aeff4cf8c`, `css/oembed.css`, auteur b_b,
+GPL 3. Le plugin, ses modèles, son lecteur et ses crédits ne sont pas embarqués
+ni remplacés. La fixture locale et ses réponses sont rédigées pour ces tests,
+sans contenu de fournisseur tiers ; sa vignette reprend le PNG de test CC0 déjà
+crédité dans `tests/references/blocs/images/`.

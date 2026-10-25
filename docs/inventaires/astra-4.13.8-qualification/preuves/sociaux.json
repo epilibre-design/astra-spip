@@ -1,0 +1,438 @@
+{
+  "spip": [
+    {
+      "largeur": 1280,
+      "collisions": [],
+      "referencesAbsentes": [],
+      "titresFixes": 0,
+      "icones": [
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "ordinateur",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "ordinateur",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "mobile",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "mobile",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        }
+      ],
+      "survols": [
+        "rgb(0, 0, 0)",
+        "rgb(0, 0, 0)"
+      ]
+    },
+    {
+      "largeur": 768,
+      "collisions": [],
+      "referencesAbsentes": [],
+      "titresFixes": 0,
+      "icones": [
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "ordinateur",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "ordinateur",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "mobile",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "mobile",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        }
+      ],
+      "survols": [
+        "rgb(0, 0, 0)",
+        "rgb(0, 0, 0)"
+      ]
+    },
+    {
+      "largeur": 390,
+      "collisions": [],
+      "referencesAbsentes": [],
+      "titresFixes": 0,
+      "icones": [
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "ordinateur",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "ordinateur",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "mobile",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "mobile",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "MAILTO:nom@example.test",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        }
+      ],
+      "survols": [
+        "rgb(0, 0, 0)",
+        "rgb(0, 0, 0)"
+      ]
+    }
+  ],
+  "wordpress": [
+    {
+      "largeur": 1280,
+      "collisions": [],
+      "referencesAbsentes": [],
+      "titresFixes": 0,
+      "icones": [
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "ordinateur",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "ordinateur",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "mobile",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "mobile",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        }
+      ],
+      "survols": [
+        "rgb(0, 0, 0)",
+        "rgb(0, 0, 0)"
+      ]
+    },
+    {
+      "largeur": 768,
+      "collisions": [],
+      "referencesAbsentes": [],
+      "titresFixes": 0,
+      "icones": [
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "ordinateur",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "ordinateur",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "mobile",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "mobile",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        }
+      ],
+      "survols": [
+        "rgb(0, 0, 0)",
+        "rgb(0, 0, 0)"
+      ]
+    },
+    {
+      "largeur": 390,
+      "collisions": [],
+      "referencesAbsentes": [],
+      "titresFixes": 0,
+      "icones": [
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "ordinateur",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "ordinateur",
+          "visible": false,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "mobile",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "mobile",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "email",
+          "nom": "E-mail",
+          "href": "mailto:nom@example.test",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        },
+        {
+          "reseau": "google_reviews",
+          "nom": "Google Reviews",
+          "href": "https://example.test/avis",
+          "contexte": "pied",
+          "visible": true,
+          "width": "18px",
+          "height": "18px",
+          "fill": "rgb(0, 0, 0)"
+        }
+      ],
+      "survols": [
+        "rgb(0, 0, 0)",
+        "rgb(0, 0, 0)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+[
+    {
+        "url": "javascript:alert(1)",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "javascript:alert(1)",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "jav&amp;#x61;script:alert(1)",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "jav&amp;#x61;script:alert(1)",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "<!-- \/ -->javascript:alert(1)",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"&lt;!-- \/ --&gt;javascript:alert(1)\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"&lt;!-- \/ --&gt;javascript:alert(1)\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "<!-- \/ -->javascript:alert(1)",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"&lt;!-- \/ --&gt;javascript:alert(1)\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "<b title=\"\/\">javascript:alert(1)<\/b>",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"&lt;b title=&#034;\/&#034;&gt;javascript:alert(1)&lt;\/b&gt;\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"&lt;b title=&#034;\/&#034;&gt;javascript:alert(1)&lt;\/b&gt;\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "<b title=\"\/\">javascript:alert(1)<\/b>",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"&lt;b title=&#034;\/&#034;&gt;javascript:alert(1)&lt;\/b&gt;\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "<i title=\"?\">javascript:alert(1)<\/i>",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"&lt;i title=&#034;?&#034;&gt;javascript:alert(1)&lt;\/i&gt;\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"&lt;i title=&#034;?&#034;&gt;javascript:alert(1)&lt;\/i&gt;\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "<i title=\"?\">javascript:alert(1)<\/i>",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"&lt;i title=&#034;?&#034;&gt;javascript:alert(1)&lt;\/i&gt;\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "<i title=\"#\">javascript:alert(1)<\/i>",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"&lt;i title=&#034;#&#034;&gt;javascript:alert(1)&lt;\/i&gt;\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"&lt;i title=&#034;#&#034;&gt;javascript:alert(1)&lt;\/i&gt;\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "<i title=\"#\">javascript:alert(1)<\/i>",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"&lt;i title=&#034;#&#034;&gt;javascript:alert(1)&lt;\/i&gt;\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "https:\/\/example.test\/a?x=1&y=2",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"https:\/\/example.test\/a?x=1&#38;y=2\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"https:\/\/example.test\/a?x=1&#38;y=2\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "https:\/\/example.test\/a?x=1&y=2",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"https:\/\/example.test\/a?x=1&#38;y=2\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "https:\/\/example.test\/a?x=1&amp;y=2#fin",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"https:\/\/example.test\/a?x=1&#38;y=2#fin\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"https:\/\/example.test\/a?x=1&#38;y=2#fin\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "https:\/\/example.test\/a?x=1&amp;y=2#fin",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"https:\/\/example.test\/a?x=1&#38;y=2#fin\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "https:\/\/example.test\/a?message=<b>bonjour<\/b>&x=1",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"https:\/\/example.test\/a?message=&lt;b&gt;bonjour&lt;\/b&gt;&#38;x=1\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"https:\/\/example.test\/a?message=&lt;b&gt;bonjour&lt;\/b&gt;&#38;x=1\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "https:\/\/example.test\/a?message=<b>bonjour<\/b>&x=1",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"https:\/\/example.test\/a?message=&lt;b&gt;bonjour&lt;\/b&gt;&#38;x=1\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "https:\/\/example.test\/café?texte=été&x=1#été",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"https:\/\/example.test\/caf&#233;?texte=&#233;t&#233;&#38;x=1#&#233;t&#233;\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"https:\/\/example.test\/caf&#233;?texte=&#233;t&#233;&#38;x=1#&#233;t&#233;\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "https:\/\/example.test\/café?texte=été&x=1#été",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"https:\/\/example.test\/caf&#233;?texte=&#233;t&#233;&#38;x=1#&#233;t&#233;\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "MAILTO:nom@example.test",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"MAILTO:nom@example.test\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"MAILTO:nom@example.test\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "MAILTO:nom@example.test",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"MAILTO:nom@example.test\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "tel:+33123456789",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"tel:+33123456789\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"tel:+33123456789\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "tel:+33123456789",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"tel:+33123456789\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "#contact",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"#contact\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"#contact\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "#contact",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"#contact\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "\/contact",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"\/contact\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"\/contact\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "\/contact",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"\/contact\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "?page=contact",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"?page=contact\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"?page=contact\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "?page=contact",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"?page=contact\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "contact.html",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"contact.html\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"contact.html\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "contact.html",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"contact.html\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    },
+    {
+        "url": "\/\/example.test\/contact",
+        "fond": "button",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1\" data-section=\"section-hb-button-1\">\n\t<div class=\"ast-builder-button-wrap ast-builder-button-size-\"><a class=\"ast-custom-button-link\" href=\"\/\/example.test\/contact\" target=\"_self\" role=\"button\" aria-label=\"Test\">\n\t\t<div class=\"ast-custom-button\">Test<\/div>\n\t<\/a><a class=\"menu-link\" href=\"\/\/example.test\/contact\" target=\"_self\">Test<\/a><\/div>\n<\/div>"
+    },
+    {
+        "url": "\/\/example.test\/contact",
+        "fond": "social-icons",
+        "html": "<div class=\"ast-builder-layout-element ast-flex site-header-focus-item\" data-section=\"section-hb-social-icons-1\">\n\t<div class=\"ast-header-social-1-wrap ast-header-social-wrap\"><div class=\"header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled\"><a href=\"\/\/example.test\/contact\" aria-label=\"Facebook\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"--color: #557dbc; --background-color: transparent;\" class=\"ast-builder-social-element ast-inline-flex ast-facebook header-social-item\"><span aria-hidden=\"true\" class=\"ahfb-svg-iconset ast-inline-flex svg-baseline\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"0 0 448 512\">\n  <path d=\"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z\"\/>\n<\/svg><\/span><\/a><\/div><\/div>\n<\/div>"
+    }
+]

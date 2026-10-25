@@ -1,0 +1,9 @@
+{
+  "ordinateur": ["#ast-desktop-header .ast-email", "#colophon .ast-google_reviews"],
+  "mobile": ["#ast-mobile-header .ast-email", "#colophon .ast-google_reviews"],
+  "presents": ["#ast-desktop-header .ast-email", "#ast-mobile-header .ast-email", "#colophon .ast-email"],
+  "menuMobile": "dropdown",
+  "styles": [
+    {"selecteur": "#colophon .ast-google_reviews svg", "proprietes": ["width", "height", "fill"]}
+  ]
+}

@@ -126,6 +126,12 @@
 			"proprietes": [
 				"text-align"
 			]
+		},
+		{
+			"selecteur": ".ast-footer-copyright .ast-footer-copyright",
+			"proprietes": [
+				"text-align"
+			]
 		}
 	]
 }

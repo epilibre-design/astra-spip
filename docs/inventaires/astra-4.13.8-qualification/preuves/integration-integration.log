@@ -1,0 +1,12 @@
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+...........................................SSS................... 65 / 99 ( 65%)
+..................................                                99 / 99 (100%)
+
+Time: 00:07.655, Memory: 32.00 MB
+
+OK, but some tests were skipped!
+Tests: 99, Assertions: 623, Skipped: 3.

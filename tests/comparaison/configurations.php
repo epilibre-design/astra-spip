@@ -40,6 +40,22 @@ function astra_configurations_reference(): array {
 	$titres = ['page' => 'notre_jardin', 'textes' => ['notre_jardin' => $texte . '<p>Texte de la page.</p>']];
 	return [
 		'R0-defaut' => [],
+		'R26-css-cascade' => [
+			'page' => 'notre_jardin',
+			'styles' => ['font-weight-h2' => '700', 'header-menu1-color-responsive' => ['desktop' => '#111111'], 'header-menu1-h-color-responsive' => ['desktop' => '#00ff00'], 'header-menu1-h-bg-color-responsive' => ['desktop' => '#112233']],
+			'elements' => ['entete' => ['menu-1' => ['source' => 'pages']]],
+			'textes' => ['notre_jardin' => preg_replace('~<!--\s*/?wp:.*?-->~s', '', file_get_contents(__DIR__ . '/../references/base/contenu-cascade.html'))],
+		],
+		'R27-sociaux-ids' => [
+			'entete_ordinateur' => ['above' => ['above_right' => ['social-icons-1']]],
+			'entete_mobile' => ['above' => ['above_center' => ['social-icons-1']]],
+			'pied' => ['below' => ['below_1' => ['copyright'], 'below_2' => ['social-icons-1']]],
+			'rangees' => ['pied_below' => ['colonnes' => 2, 'repartition' => '2-equal']],
+			'elements' => array_fill_keys(['entete', 'pied'], ['social-icons-1' => ['reseaux' => [
+				['reseau' => 'email', 'url' => 'MAILTO:nom@example.test'],
+				['reseau' => 'google_reviews', 'url' => 'https://example.test/avis'],
+			]]]),
+		],
 		'R1-entete-complet' => [
 			'entete_ordinateur' => [
 				'above' => ['above_left' => ['html-1'], 'above_right' => ['social-icons-1']],
@@ -53,6 +69,41 @@ function astra_configurations_reference(): array {
 			],
 			'menu_mobile' => 'dropdown',
 			'elements' => ['entete' => [
+				'html-1' => ['texte' => 'Ouvert du lundi au vendredi'],
+				'button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact'],
+			]],
+		],
+		'R25-nav-sousmenus' => [
+			'entete_ordinateur' => [
+				'above' => ['above_left' => ['html-1'], 'above_right' => ['social-icons-1']],
+				'primary' => ['primary_left' => ['logo'], 'primary_right' => ['menu-1', 'search', 'button-1']],
+				'below' => ['below_center' => ['menu-2']],
+			],
+			'entete_mobile' => [
+				'popup' => ['popup_content' => ['mobile-menu']],
+				'above' => ['above_center' => ['menu-2']],
+				'primary' => ['primary_left' => ['logo'], 'primary_right' => ['search', 'mobile-trigger']],
+			],
+			'menu_mobile' => 'dropdown',
+			'elements' => ['entete' => [
+				'html-1' => ['texte' => 'Ouvert du lundi au vendredi'],
+				'button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact'],
+			]],
+		],
+		'R25-nav-sousmenus-pages' => [
+			'entete_ordinateur' => [
+				'above' => ['above_left' => ['html-1'], 'above_right' => ['social-icons-1']],
+				'primary' => ['primary_left' => ['logo'], 'primary_right' => ['menu-1', 'search', 'button-1']],
+				'below' => ['below_center' => ['menu-2']],
+			],
+			'entete_mobile' => [
+				'popup' => ['popup_content' => ['mobile-menu']],
+				'above' => ['above_center' => ['menu-2']],
+				'primary' => ['primary_left' => ['logo'], 'primary_right' => ['search', 'mobile-trigger']],
+			],
+			'menu_mobile' => 'dropdown',
+			'elements' => ['entete' => [
+				'menu-1' => ['source' => 'pages', 'id' => 0], 'menu-2' => ['source' => 'pages', 'id' => 0],
 				'html-1' => ['texte' => 'Ouvert du lundi au vendredi'],
 				'button-1' => ['libelle' => 'Nous contacter', 'lien' => 'https://example.org/contact'],
 			]],
@@ -71,6 +122,25 @@ function astra_configurations_reference(): array {
 				'html-2' => ['texte' => 'Livraison gratuite dès 50 €'],
 				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Horaires', 'texte' => 'Lundi–vendredi, 9 h – 18 h'],
 			]],
+		],
+		'R25-nav-offcanvas' => [
+			'entete_ordinateur' => [
+				'primary' => ['primary_left' => ['menu-1'], 'primary_center' => ['logo'], 'primary_right' => ['account', 'search']],
+				'below' => ['below_left' => ['widget-1'], 'below_right' => ['html-2']],
+			],
+			'entete_mobile' => [
+				'popup' => ['popup_content' => ['mobile-menu', 'search']],
+				'primary' => ['primary_left' => ['mobile-trigger'], 'primary_center' => ['logo'], 'primary_right' => ['account']],
+			],
+			'menu_mobile' => 'off-canvas',
+			'elements' => ['entete' => [
+				'html-2' => ['texte' => 'Livraison gratuite dès 50 €'],
+				'widget-1' => ['blocs' => ['texte'], 'titre' => 'Horaires', 'texte' => 'Lundi–vendredi, 9 h – 18 h'],
+			]],
+		],
+		'R25-nav-vide' => [
+			'menu_mobile' => 'off-canvas',
+			'entete_mobile' => ['primary' => ['primary_left' => [], 'primary_center' => [], 'primary_right' => []], 'popup' => ['popup_content' => []]],
 		],
 		'R3-pied-colonnes' => [
 			'pied' => [

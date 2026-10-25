@@ -152,8 +152,8 @@ Le plan ordonne les lots par dépendances et donne à chacun une validation
 intermédiaire exécutable isolément sur la branche commune, même avant l'intégration
 finale. Il distingue ces validations ciblées du rejeu complet obligatoire avant
 fusion vers main ; un lot ne peut pas dépendre de code futur non déclaré pour
-que ses propres tests soient exécutables. La question ouverte du repli sans
-JavaScript est tranchée avant l'implémentation du lot responsive.
+que ses propres tests soient exécutables. La décision de Gilles du repli sans
+JavaScript est définie dans la spec CSS/responsive : liste simple sous `<noscript>`.
 
 La matrice PHP/SPIP reste celle annoncée par le paquet : syntaxe PHP 7.4 pour le
 code compatible, équivalence des sorties pertinentes sous PHP 7.4/8.4, suites

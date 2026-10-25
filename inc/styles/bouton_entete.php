@@ -1,7 +1,7 @@
 <?php
 /**
  * Astra pour SPIP — bouton de l'en-tête (inc/builder/type/base/dynamic-css/button/
- * class-astra-button-component-dynamic-css.php d'Astra 4.11.0, règles ordinateur).
+ * class-astra-button-component-dynamic-css.php d'Astra 4.13.8, règles ordinateur).
  *
  * @license GPL-3.0-or-later
  */

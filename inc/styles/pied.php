@@ -2,7 +2,7 @@
 /**
  * Astra pour SPIP — pied de page : widgets (inc/builder/type/base/dynamic-css/widget/
  * class-astra-widget-component-dynamic-css.php) et copyright (inc/builder/type/footer/copyright/
- * dynamic-css/dynamic.css.php) d'Astra 4.11.0, règles ordinateur.
+ * dynamic-css/dynamic.css.php) d'Astra 4.13.8, règles ordinateur.
  *
  * @license GPL-3.0-or-later
  */
@@ -33,8 +33,8 @@ function astra_styles_pied(array $s, array $hfb): array {
 	$copyright = ['footer-copyright-color' => 1, 'font-size-section-footer-copyright' => 1];
 	if (array_intersect_key($s, $copyright) && astra_styles_element_place('copyright', $hfb, 'pied')) {
 		array_push($regles,
-			['', '.ast-footer-copyright', ['color' => astra_styles_ou($s, 'footer-copyright-color', 'var(--ast-global-color-3)')]],
-			['', '.ast-footer-copyright', ['font-size' => astra_styles_taille_police($s['font-size-section-footer-copyright'] ?? '', 16)]]
+			['', '.ast-footer-copyright.site-footer-focus-item', ['color' => astra_styles_ou($s, 'footer-copyright-color', 'var(--ast-global-color-3)')]],
+			['', '.ast-footer-copyright.site-footer-focus-item', ['font-size' => astra_styles_taille_police($s['font-size-section-footer-copyright'] ?? '', 16)]]
 		);
 	}
 	return $regles;

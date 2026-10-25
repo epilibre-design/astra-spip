@@ -1,0 +1,25 @@
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+..F                                                                 3 / 3 (100%)
+
+Time: 00:00.436, Memory: 22.00 MB
+
+There was 1 failure:
+
+1) LiensRenduTest::testLeHrefFinalPreserveLesUrlSansLesTransformerEnTexte
+button : <!-- / -->javascript:alert(1)
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'<!-- / -->javascript:alert(1)'
++'javascript:alert(1)'
+
+/tmp/astra-plan-migration-4138-20261024/tests/integration/LiensRenduTest.php:61
+/tmp/astra-plan-migration-4138-20261024/vendor/bin/phpunit:122
+
+FAILURES!
+Tests: 3, Assertions: 46, Failures: 1.

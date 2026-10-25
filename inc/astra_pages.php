@@ -42,7 +42,7 @@ function astra_page_disposition_effective(string $disposition): string {
 	return $disposition === 'defaut' ? 'normale' : $disposition;
 }
 
-/** Classes du body d'Astra pour une disposition (inc/markup-extras.php d'Astra 4.11.0). */
+/** Classes du body d'Astra pour une disposition (inc/markup-extras.php d'Astra 4.13.8). */
 function astra_page_classes_disposition(string $disposition): array {
 	$classes = ['normale' => 'ast-plain-container', 'etroite' => 'ast-narrow-container', 'pleine' => 'ast-page-builder-template'];
 	return [$classes[astra_page_disposition_effective($disposition)] ?? 'ast-plain-container'];
@@ -61,7 +61,7 @@ function astra_page_classes_body(int $id, array $reglages, bool $accueil, bool $
 	}
 	$classes[] = 'ast-desktop';
 	$classes = array_merge($classes, astra_page_classes_disposition($reglages['disposition']));
-	array_push($classes, 'ast-no-sidebar', 'astra-' . (defined('_ASTRA_VERSION_THEME') ? _ASTRA_VERSION_THEME : '4.11.0'), 'ast-single-post', 'ast-inherit-site-logo-transparent');
+	array_push($classes, 'ast-no-sidebar', 'astra-' . (defined('_ASTRA_VERSION_THEME') ? _ASTRA_VERSION_THEME : '4.13.8'), 'ast-single-post', 'ast-inherit-site-logo-transparent');
 	if ($transparent) {
 		$classes[] = 'ast-theme-transparent-header';
 	}

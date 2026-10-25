@@ -1,0 +1,250 @@
+{
+  "wordpress": [
+    {
+      "largeur": 1280,
+      "ordinateur": true,
+      "defauts": []
+    },
+    {
+      "largeur": 768,
+      "etats": [
+        {
+          "fermeture": "bouton",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": ""
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        },
+        {
+          "fermeture": "echap",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": ""
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        },
+        {
+          "fermeture": "voile",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": ""
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        }
+      ],
+      "redimensionnement": {
+        "balise": "BODY",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "(function(){if(window.matchMedia('(max-width:921.99px)').matches){document.body.classList."
+      },
+      "defauts": [
+        "boucle Maj+Tab echap",
+        "boucle Tab echap",
+        "boucle Maj+Tab voile",
+        "boucle Tab voile",
+        "retour logique dans en-tête après redimensionnement",
+        "piège conservé après redimensionnement"
+      ]
+    },
+    {
+      "largeur": 390,
+      "etats": [
+        {
+          "fermeture": "bouton",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": ""
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        },
+        {
+          "fermeture": "echap",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": ""
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        },
+        {
+          "fermeture": "voile",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": ""
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        }
+      ],
+      "redimensionnement": {
+        "balise": "BODY",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "(function(){if(window.matchMedia('(max-width:921.99px)').matches){document.body.classList."
+      },
+      "defauts": [
+        "boucle Maj+Tab echap",
+        "boucle Tab echap",
+        "boucle Maj+Tab voile",
+        "boucle Tab voile",
+        "retour logique dans en-tête après redimensionnement",
+        "piège conservé après redimensionnement"
+      ]
+    }
+  ],
+  "spip": [
+    {
+      "largeur": 1280,
+      "ordinateur": true,
+      "defauts": []
+    },
+    {
+      "largeur": 768,
+      "etats": [
+        {
+          "fermeture": "bouton",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": "Menu principal"
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        },
+        {
+          "fermeture": "echap",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": "Menu principal"
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        },
+        {
+          "fermeture": "voile",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": "Menu principal"
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        }
+      ],
+      "redimensionnement": {
+        "balise": "A",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "Mon site"
+      },
+      "defauts": []
+    },
+    {
+      "largeur": 390,
+      "etats": [
+        {
+          "fermeture": "bouton",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": "Menu principal"
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        },
+        {
+          "fermeture": "echap",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": "Menu principal"
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        },
+        {
+          "fermeture": "voile",
+          "focus": {
+            "balise": "BUTTON",
+            "id": "",
+            "visible": true,
+            "dansPanneau": false,
+            "texte": "Menu principal"
+          },
+          "tailleFermeture": {
+            "width": 45.78125,
+            "height": 52.78125
+          }
+        }
+      ],
+      "redimensionnement": {
+        "balise": "A",
+        "id": "",
+        "visible": true,
+        "dansPanneau": false,
+        "texte": "Mon site"
+      },
+      "defauts": []
+    }
+  ]
+}

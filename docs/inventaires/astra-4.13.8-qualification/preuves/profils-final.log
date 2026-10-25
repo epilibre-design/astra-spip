@@ -1,0 +1,222 @@
+wordpress [
+  '768 boucle Maj+Tab echap',
+  '768 boucle Tab echap',
+  '768 boucle Maj+Tab voile',
+  '768 boucle Tab voile',
+  '768 retour logique dans en-tête après redimensionnement',
+  '768 piège conservé après redimensionnement',
+  '390 boucle Maj+Tab echap',
+  '390 boucle Tab echap',
+  '390 boucle Maj+Tab voile',
+  '390 boucle Tab voile',
+  '390 retour logique dans en-tête après redimensionnement',
+  '390 piège conservé après redimensionnement'
+]
+spip []
+offcanvas : parcours SPIP conformes, comportement cible enregistré.
+wordpress [
+  '768 boucle Maj+Tab echap',
+  '768 boucle Tab echap',
+  '768 boucle Maj+Tab voile',
+  '768 boucle Tab voile',
+  '768 retour logique dans en-tête après redimensionnement',
+  '768 piège conservé après redimensionnement',
+  '390 boucle Maj+Tab echap',
+  '390 boucle Tab echap',
+  '390 boucle Maj+Tab voile',
+  '390 boucle Tab voile',
+  '390 retour logique dans en-tête après redimensionnement',
+  '390 piège conservé après redimensionnement'
+]
+spip []
+offcanvas : parcours SPIP conformes, comportement cible enregistré.
+wordpress [
+  '768 retour au déclencheur bouton',
+  '768 focus visible après bouton',
+  '768 boucle Maj+Tab echap',
+  '768 boucle Tab echap',
+  '768 retour au déclencheur echap',
+  '768 focus visible après echap',
+  '768 boucle Maj+Tab voile',
+  '768 boucle Tab voile',
+  '768 retour au déclencheur voile',
+  '768 retour logique dans en-tête après redimensionnement',
+  '768 piège conservé après redimensionnement',
+  '390 retour au déclencheur bouton',
+  '390 focus visible après bouton',
+  '390 boucle Maj+Tab echap',
+  '390 boucle Tab echap',
+  '390 retour au déclencheur echap',
+  '390 focus visible après echap',
+  '390 boucle Maj+Tab voile',
+  '390 boucle Tab voile',
+  '390 retour au déclencheur voile',
+  '390 retour logique dans en-tête après redimensionnement',
+  '390 piège conservé après redimensionnement'
+]
+spip []
+offcanvas : parcours SPIP conformes, comportement cible enregistré.
+wordpress [
+  '768 retour au déclencheur bouton',
+  '768 focus visible après bouton',
+  '768 boucle Maj+Tab echap',
+  '768 boucle Tab echap',
+  '768 retour au déclencheur echap',
+  '768 focus visible après echap',
+  '768 boucle Maj+Tab voile',
+  '768 boucle Tab voile',
+  '768 retour au déclencheur voile',
+  '768 retour logique dans en-tête après redimensionnement',
+  '768 repli sans logo sur masthead',
+  '768 tabindex provisoire',
+  '768 piège conservé après redimensionnement',
+  '390 retour au déclencheur bouton',
+  '390 focus visible après bouton',
+  '390 boucle Maj+Tab echap',
+  '390 boucle Tab echap',
+  '390 retour au déclencheur echap',
+  '390 focus visible après echap',
+  '390 boucle Maj+Tab voile',
+  '390 boucle Tab voile',
+  '390 retour au déclencheur voile',
+  '390 retour logique dans en-tête après redimensionnement',
+  '390 repli sans logo sur masthead',
+  '390 tabindex provisoire',
+  '390 piège conservé après redimensionnement'
+]
+spip []
+offcanvas : parcours SPIP conformes, comportement cible enregistré.
+wordpress [
+  '1280 ID uniques',
+  '768 sous-menu annoncé 0',
+  '768 aria synchronisée Enter commande 0',
+  '768 aria synchronisée Space commande 0',
+  '768 clic icône aria 0',
+  '768 clic icône aria 0',
+  '768 fermeture au départ du focus 0',
+  '768 sous-menu annoncé 1',
+  '768 fermeture au départ du focus 1',
+  '768 aria au départ du focus 1',
+  '768 ID uniques',
+  '390 sous-menu annoncé 0',
+  '390 aria synchronisée Enter commande 0',
+  '390 aria synchronisée Space commande 0',
+  '390 clic icône aria 0',
+  '390 clic icône aria 0',
+  '390 fermeture au départ du focus 0',
+  '390 sous-menu annoncé 1',
+  '390 fermeture au départ du focus 1',
+  '390 aria au départ du focus 1',
+  '390 ID uniques'
+]
+spip []
+sousmenus : parcours SPIP conformes, comportement cible enregistré.
+wordpress [
+  '1280 ID uniques',
+  '768 sous-menu annoncé 0',
+  '768 aria synchronisée Enter commande 0',
+  '768 aria synchronisée Space commande 0',
+  '768 clic icône aria 0',
+  '768 clic icône aria 0',
+  '768 fermeture au départ du focus 0',
+  '768 sous-menu annoncé 1',
+  '768 fermeture au départ du focus 1',
+  '768 aria au départ du focus 1',
+  '768 ID uniques',
+  '390 sous-menu annoncé 0',
+  '390 aria synchronisée Enter commande 0',
+  '390 aria synchronisée Space commande 0',
+  '390 clic icône aria 0',
+  '390 clic icône aria 0',
+  '390 fermeture au départ du focus 0',
+  '390 sous-menu annoncé 1',
+  '390 fermeture au départ du focus 1',
+  '390 aria au départ du focus 1',
+  '390 ID uniques'
+]
+spip []
+sousmenus : parcours SPIP conformes, comportement cible enregistré.
+wordpress []
+spip []
+vide : parcours SPIP conformes, comportement cible enregistré.
+wordpress [
+  '1280 flèche décorative 0',
+  '1280 aucun faux état fermé 0',
+  '1280 enfant accessible par Tab 0',
+  '1280 pas de faux état ajouté par le JS amont 0',
+  '1280 flèche décorative 1',
+  '1280 aucun faux état fermé 1',
+  '1280 enfant accessible par Tab 1',
+  '1280 pas de faux état ajouté par le JS amont 1',
+  '768 flèche décorative 0',
+  '768 aucun faux état fermé 0',
+  '768 pas de faux état ajouté par le JS amont 0',
+  '768 flèche décorative 1',
+  '768 aucun faux état fermé 1',
+  '768 pas de faux état ajouté par le JS amont 1',
+  '390 flèche décorative 0',
+  '390 aucun faux état fermé 0',
+  '390 pas de faux état ajouté par le JS amont 0',
+  '390 flèche décorative 1',
+  '390 aucun faux état fermé 1',
+  '390 pas de faux état ajouté par le JS amont 1'
+]
+spip []
+widgets : parcours SPIP conformes, comportement cible enregistré.
+wordpress []
+spip []
+evitement : parcours SPIP conformes, comportement cible enregistré.
+Retour en haut : apparition au défilement, dimensions et action conformes aux trois largeurs.
+Responsive : classes avant le bundle, seuils 921/922, repli sans JS et HTML partagé conformes.
+cascade : assertions et comparaison CSS réussies aux trois largeurs.
+replis : assertions et comparaison CSS réussies aux trois largeurs.
+cascade : assertions et comparaison CSS réussies aux trois largeurs.
+R27 : IDs, noms et e-mails valides aux trois largeurs ; styles et survol identiques à WordPress.
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+...............................................................  63 / 140 ( 45%)
+............................................................... 126 / 140 ( 90%)
+..............                                                  140 / 140 (100%)
+
+Time: 00:00.456, Memory: 12.00 MB
+
+OK (140 tests, 1780 assertions)
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+...........................................SSS................... 65 / 99 ( 65%)
+..................................                                99 / 99 (100%)
+
+Time: 00:07.853, Memory: 36.00 MB
+
+OK, but some tests were skipped!
+Tests: 99, Assertions: 623, Skipped: 3.
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.001s
+
+OK
+Dispositions rares : logo sans menu, pied RTL et espacements page/archive conformes.
+blocs : assertions et comparaison CSS réussies aux trois largeurs.
+ok    cover : document 4
+ok    media-text : document 5
+Cascade des blocs : OK
+Formulaire des styles : OK
+Formulaire : OK
+Répartitions : OK (14 répartitions × 3 appareils, 21 répartitions tablette et mobile, largeur des rangées)
+34 rendus réels : aucun protocole actif, valeurs interprétées par Chromium vérifiées.
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-plan-migration-4138-20261024/phpunit.xml
+
+...                                                                 3 / 3 (100%)
+
+Time: 00:00.630, Memory: 22.00 MB
+
+OK (3 tests, 134 assertions)

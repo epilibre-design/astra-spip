@@ -1,6 +1,6 @@
 <?php
 /**
- * Astra pour SPIP — identité du site (inc/class-astra-dynamic-css.php d'Astra 4.11.0) : couleurs
+ * Astra pour SPIP — identité du site (inc/class-astra-dynamic-css.php d'Astra 4.13.8) : couleurs
  * et tailles du titre et du slogan, affichage, largeur du logo.
  *
  * @license GPL-3.0-or-later

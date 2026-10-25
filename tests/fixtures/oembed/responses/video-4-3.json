@@ -1,0 +1,1 @@
+{"version":"1.0","type":"video","provider_name":"Astra preuve","provider_url":"@ORIGINE@/","title":"Vidéo locale classique","width":640,"height":480,"thumbnail_url":"@ORIGINE@/thumbnail.png","html":"<iframe src=\"@ORIGINE@/player/classique?essai=@ESSAI@\" width=\"640\" height=\"480\" title=\"Vidéo locale classique\" frameborder=\"0\" allowfullscreen></iframe>"}

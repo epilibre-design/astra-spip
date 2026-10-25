@@ -1,6 +1,6 @@
 # Références WordPress du builder d'en-tête et de pied de page
 
-Ces références servent de modèle au portage du Header/Footer Builder d'Astra 4.11.0 : pour
+Ces références servent de modèle au portage du Header/Footer Builder d'Astra 4.13.8 : pour
 chaque configuration, le WordPress de test produit le HTML, le CSS dynamique et des captures
 que le rendu SPIP doit reproduire.
 
@@ -8,7 +8,7 @@ Le dossier `sorties/` n'est pas versionné : il se régénère avec les commande
 
 ## Prérequis
 
-- Un WordPress de test avec le thème Astra officiel 4.11.0 actif, servi sur
+- Un WordPress de test avec le thème Astra officiel 4.13.8 actif, servi sur
   `http://127.0.0.1:8401` (variable `URL` pour une autre adresse) ; sa racine dans `WP`.
 - wp-cli (`wp`), PHP, curl.
 - Playwright installé dans un dossier `PW` (contenant `node_modules/playwright`) et Chromium dans
@@ -100,9 +100,9 @@ Vérifié le 2026-10-22 : HTML et CSS identiques.
 Les pages des configurations P (`ref_pages()`) ont les mêmes titres, textes et sous-pages que le
 SPIP d'intégration (`scripts/install-spip-test.sh`). Classes du `body` relevées :
 
-- P1-page : `wp-singular page-template-default page page-id-21 page-parent wp-theme-astra ast-desktop ast-plain-container ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled`
+- P1-page : `wp-singular page-template-default page page-id-21 page-parent wp-theme-astra ast-desktop ast-plain-container ast-no-sidebar astra-4.13.8 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled`
 - P2-accueil : les mêmes, précédées de `home`
-- P3-page-pleine : `wp-singular page-template-default page page-id-24 wp-theme-astra ast-desktop ast-page-builder-template ast-no-sidebar astra-4.11.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header` (ni `ast-normal-title-enabled`, ni `page-parent`)
+- P3-page-pleine : `wp-singular page-template-default page page-id-24 wp-theme-astra ast-desktop ast-page-builder-template ast-no-sidebar astra-4.13.8 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header` (ni `ast-normal-title-enabled`, ni `page-parent`)
 
 Les références R6–R11 reprennent les valeurs du modèle Garden Maintenance
 (`tests/references/styles/valeurs/<groupe>.json`) ; elles ne sont pas lues par
@@ -114,7 +114,7 @@ par un mu-plugin écrit par `ref_polices_locales()` (`commun.php`), sans Google 
 
 ## Styles du Customizer : attendus
 
-`tests/references/styles/` fixe le CSS qu'Astra 4.11.0 produit pour chaque groupe de styles :
+`tests/references/styles/` fixe le CSS qu'Astra 4.13.8 produit pour chaque groupe de styles :
 
 - `appliquer.php` : état R0, placement de Garden, options du groupe (`GROUPE=<groupe>`) ;
 - `capturer.sh` : `WP=… tests/references/styles/capturer.sh` capture le CSS dynamique sans option
@@ -171,7 +171,7 @@ Les références R18 à R23 passent par les clés `compatibilite` (méta `astra/
 
 ## En-tête transparent : attendus
 
-`tests/references/transparent/` fixe le CSS qu'Astra 4.11.0 ajoute sur une page à en-tête
+`tests/references/transparent/` fixe le CSS qu'Astra 4.13.8 ajoute sur une page à en-tête
 transparent (page « Notre jardin », méta de page `enabled`) :
 
 - `appliquer.php` : état P1, puis les options de `valeurs/<variante>.json` (`VARIANTE=…`) ;
@@ -228,3 +228,104 @@ pour les captures.
 Les SVG `twitter-x`, `bluesky` et `email` viennent également d'Astra, mais leur attribution
 à Font Awesome n'est pas établie. Le relevé des correspondances, les sources, les crédits
 et les notices conservées figurent dans [CREDITS.md](../../CREDITS.md).
+
+## Migration vers 4.13.8 : sites isolés et garde de capture
+
+La référence courante utilise `cible.json` (WordPress 7.1.3, Astra 4.13.8).
+Les preuves 4.11.0 sont archivées séparément ; elles ne sont pas renommées comme des mesures 4.13.8.
+Le [bilan intégré](../../docs/inventaires/astra-4.13.8-qualification/bilan.md) précise les différences, limites et décisions par entrée.
+Créer le site neuf avec `scripts/install-wp-reference.sh` en fournissant
+`WP_REFERENCE`, `URL_WP`, `ASTRA_REFERENCE_ARCHIVE` et `SQLITE_PLUGIN` (sources
+SQLite Database Integration 3.1.1). L'archive du cœur est épinglée et extraite par
+tar, puis contrôlée par `wp core verify-checksums`. Le dossier possède son propre
+wp-config.php, son plugin SQLite copié et sa base `wp-content/database/reference.sqlite`.
+Un dossier non vide sans marqueur est refusé ; la relance ne remet pas les options à zéro.
+Le premier passage installe les traductions fr_FR et ajoute les 12 articles de
+`wp/preparer-site.php`, pour exercer la pagination et obtenir un défilement réel
+lors des captures du pied (bouton retour en haut). Ces contenus sont propres aux tests.
+
+`php tests/references/verifier.php <WP_ROOT> <ZIP> <MANIFEST>` vérifie la version
+réelle du cœur, le thème actif et chaque fichier du thème contre le ZIP officiel.
+Les scripts de capture exigent `ASTRA_REFERENCE_ARCHIVE` et utilisent explicitement
+`cible.json` avant leur premier changement de configuration, sans charger les hooks du thème.
+
+Pour reconstruire l'archive historique, créer **un second dossier** et choisir
+`CIBLE=tests/references/cible-4.11.0.json` dans l'installateur, avec le ZIP 4.11.0.
+Vérifier ce site avec le manifeste historique explicite, puis utiliser les scripts
+extraits du commit 503819e ; ne pas détourner la garde des captures de migration.
+Les réglages et preuves historiques restent distincts des nouvelles références.
+
+### Extraction de base et portée des captures de composants (4.13.8)
+
+`base/capturer.sh <dossier-R0>` capture les sept contextes nécessaires (accueil,
+article, page, page étroite, recherche vide, archive, 404), avec la garde 4.13.8.
+`extraire_css_base.py <dossier-R0> base/substitutions.json` produit le CSS de base.
+Le registre recense six adaptations (largeurs et portée de la colonne principale),
+quatre exclusions/déplacements et 131 compléments conditionnels ; leurs déclarations
+viennent des captures, leur ordre et leur provenance sont explicites. Les familles
+de police par défaut restent celles de WordPress ; les polices du site sont définies
+par head-vars. La palette de neuf couleurs appartient à head-vars également.
+
+La régression réelle s'exécute avec `ASTRA_LEGACY_R0=<R0-4.11.0>` et
+`ASTRA_LEGACY_CSS=<css/astra-dynamic.css-de-503819e>` :
+`python3 -m unittest discover -s tests/references -p test_extraire_css_base.py`.
+Elle reproduit exactement les 614 règles historiques dans leur ordre, y compris
+les 60 px de #primary ; seul l'en-tête et le groupement de blocs media diffèrent.
+Sans archive locale, ce cas est indiqué comme non exécuté ; les tests synthétiques
+restent autonomes.
+
+La capture de `#colophon` exclut désormais le bouton `#ast-scroll-top`, fixé à la
+fenêtre et extérieur au builder. Sa présence dans une image du pied dépendait de
+la hauteur des articles précédents : cela créait des différences de contenu de
+fenêtre dans une mesure de composant. Le comparateur conserve la géométrie du pied,
+les couleurs et les seuils ; aucun masque n'est appliqué aux autres éléments.
+Son origine verticale est alignée au pixel physique le plus proche avant la
+capture, sans changer ses dimensions ni ses positions internes. Cela évite de
+confondre un arrondi du contenu précédent avec une différence de composant.
+`tests/e2e/comparaison_composants.cjs` vérifie cette portée sur deux hauteurs de page.
+Le bouton n'est pas ignoré dans la qualification : `tests/e2e/retour_haut.cjs`
+compare séparément son apparition après défilement, ses dimensions et son action
+avec WordPress à 1280, 768 et 390 px. Le bilan historique brut reste conservé ;
+les reprises 4.11.0 et 4.13.8 indiquent explicitement la méthode normalisée.
+
+Le profil `responsive` de `tests/e2e/css_reference.cjs` retarde le bundle de pied
+pour mesurer les classes avant son exécution, aux largeurs 921, 922, 1280, 768 et
+390 px. Les captures de cet état utilisent CDP : attendre `load` ou les polices
+prêtes débloquerait artificiellement le script que ce test doit retarder.
+Les deux moteurs sont comparés avec leur media query réelle, y compris l'arrondi
+de Chromium qui rend `(max-width:921.99px)` vrai à 922 px. Les modes de barre
+`overflow-y:hidden` et `scroll` sont enregistrés ; les barres sont superposées dans
+le Chromium de test. La largeur CSS fractionnaire ~921,95 n'a pas été reproduite.
+
+Les rendus supplémentaires sans JavaScript sont produits, configuration restaurée,
+par `tests/fixtures/responsive/rendus.php` via `spip php:eval`. Leur JSON privé est
+passé dans `ASTRA_RESPONSIVE_RENDUS`. Le profil vérifie R2, les pages, deux menus et
+un panneau vide. Avec JavaScript actif, aucune nav de repli n'est créée. Le
+comparateur HTML retire uniquement le `<noscript>` de cette adaptation déclarée ;
+les autres `<noscript>` et toute nav de repli active restent comparés.
+
+`tests/e2e/navigation.cjs URL offcanvas SORTIES` exerce R2/R25 et enregistre
+séparément les défauts observés dans WordPress. Dans la cible 4.13.8, le piège de
+focus est retiré à la fermeture et manque aux ouvertures suivantes. Son retour
+au premier bouton échoue si ce bouton est masqué ; au passage ordinateur, le
+focus peut revenir au body. `js/astra-navigation.js` corrige ces cas sans modifier
+le bundle, les classes d'ouverture ni les réglages.
+
+R25 reprend R2 et ajoute dans le pilote un padding technique de 24 px aux deux
+panneaux ; ce n'est pas une nouvelle option de configuration SPIP. Les variables
+`ASTRA_NAV_COMMANDE_MASQUEE=1` et `ASTRA_NAV_SANS_LIEN=1` ajoutent les cas techniques
+avant l'initialisation du bundle : bouton masqué avant le vrai bouton et en-tête
+sans lien de logo/titre. Le repli sur `#masthead` pose temporairement tabindex=-1
+et le retire au blur. R25-nav-vide vérifie l'absence de panneau/déclencheur et
+d'erreurs. Ces parcours Chromium ne constituent pas une certification avec un
+lecteur d'écran.
+
+Les variantes R25-nav-sousmenus et R25-nav-sousmenus-pages couvrent les menus 1/2
+et les branches rubriques/pages. Le profil sousmenus distingue le span de commande
+sur ordinateur du bouton natif mobile ; il compte les bascules de classe pour
+Entrée/Espace, vérifie l'ARIA, le clic sur l'icône et la fermeture au départ du
+focus. Le profil widgets vérifie la liste statique et la navigation réelle du
+lien parent. Les faux états encore produits par WordPress sont conservés dans
+ses rapports, sans alléger les assertions SPIP. La normalisation HTML de la cible
+retire seulement la classe JS de la flèche vide des widgets ; une flèche active
+dans le port ou une différence d'icône n'est pas effacée du comparatif.

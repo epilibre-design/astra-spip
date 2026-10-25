@@ -12,7 +12,7 @@ if (!defined('_ECRIRE_INC_VERSION')) {
 }
 
 /** Version du thème Astra d'origine dont le rendu est reproduit */
-define('_ASTRA_VERSION_THEME', '4.11.0');
+define('_ASTRA_VERSION_THEME', '4.13.8');
 
 include_once __DIR__ . '/inc/astra_hfb.php';
 include_once __DIR__ . '/inc/astra_hfb_saisie.php';
@@ -20,6 +20,8 @@ include_once __DIR__ . '/inc/astra_pages.php';
 include_once __DIR__ . '/inc/astra_styles_saisie.php';
 include_once __DIR__ . '/inc/astra_entete_transparent.php';
 include_once __DIR__ . '/inc/astra_compatibilite.php';
+include_once __DIR__ . '/inc/astra_responsive.php';
+include_once __DIR__ . '/inc/astra_liens.php';
 
 /** Réglages effectifs d'une page unique : `#ID_ARTICLE|astra_page_reglages`. */
 function filtre_astra_page_reglages_dist($id_article): array {
@@ -112,7 +114,7 @@ function astra_hfb_bouton(string $groupe, string $id): array {
 	$lien = trim((string) ($r['lien'] ?? ''));
 	return [
 		'libelle' => $libelle !== '' ? $libelle : _T('astra:bouton_defaut'),
-		'lien' => $lien !== '' ? $lien : url_de_base(),
+		'lien' => astra_url_lien($lien !== '' ? $lien : url_de_base()),
 		'cible' => ($r['nouvel_onglet'] ?? 'non') === 'oui' ? '_blank' : '_self',
 		'contour' => ($r['style'] ?? 'plein') === 'contour',
 	];
@@ -212,11 +214,8 @@ function astra_hfb_icones(string $groupe, string $id): array {
 		if (!isset($reseaux[$reseau])) {
 			continue;
 		}
-		$url = (string) ($item['url'] ?? '');
-		if ($reseau === 'email' && $url !== '' && strpos($url, 'mailto:') !== 0) {
-			$url = 'mailto:' . $url;
-		}
-		$icones[] = ['reseau' => $reseau, 'url' => $url, 'libelle' => $reseaux[$reseau][0], 'couleur' => $reseaux[$reseau][1], 'svg' => $svg[$reseau]];
+		$url = astra_lien_social($reseau, (string) ($item['url'] ?? ''));
+		$icones[] = ['reseau' => $reseau, 'url' => astra_url_lien($url), 'libelle' => $reseaux[$reseau][0], 'couleur' => $reseaux[$reseau][1], 'svg' => $svg[$reseau]];
 	}
 	return $icones;
 }
