@@ -1,6 +1,6 @@
 # Gravatar facultatif dans les commentaires — spécification
 
-Date : 2026-10-24. Statut : à relire (Gilles, Claude).
+Date : 2026-10-24. Statut : exécution autorisée par Gilles le 2026-10-26.
 
 ## Objectif et décision
 
@@ -22,7 +22,7 @@ description exacte : l'initiale est le repli en l'absence d'image fournie par le
   en majuscule ; un nom vide donne `?`.
 - `css/astra-spip.css` : initiale ronde de 50 px sur ordinateur, 2,5 em sous 921 px ; fond,
   couleur, bordure et ombre propres à ce substitut.
-- Astra 4.11.0, `inc/blog/single-blog.php`, fonction de rendu des commentaires :
+- Astra 4.13.8, `inc/blog/single-blog.php`, fonction de rendu des commentaires :
   `.ast-comment-avatar-wrap` contient `get_avatar($comment, 50)`. Les classes et styles du thème
   constituent la référence pour l'image.
 - [Plugin Gravatar](https://git.spip.net/spip-contrib-extensions/gravatar), version 3.0.0,
@@ -93,7 +93,7 @@ service, ses délais et son cache restent entièrement ceux du plugin.
   ou une seule initiale par message. Le reste du balisage du commentaire est inchangé.
 - L'image porte les classes `avatar avatar-50 photo`, sans `ast-avatar-initiale`. Les styles
   de couleur et de fond du substitut ne lui sont pas appliqués.
-- Taille nominale : 50 px, comme `get_avatar(..., 50)` d'Astra 4.11.0. Vérifier les dimensions
+- Taille nominale : 50 px, comme `get_avatar(..., 50)` d'Astra 4.13.8. Vérifier les dimensions
   effectives sur tablette et mobile contre la référence WordPress ; utiliser les règles du
   thème pour l'image. L'initiale garde exactement ses dimensions actuelles.
 - Le HTML produit par `gravatar_balise_imgx2()` peut contenir une taille intrinsèque doublée et
@@ -125,7 +125,7 @@ de repli d'Astra ; aucun essai d'activation de Gravatar sous SPIP 5 n'est à ajo
    alternatif vide et le repli. Faire le même contrôle sur une page unique avec commentaires.
 3. Le rendu sans plugin, y compris les noms accentués et vides, garde l'initiale et son HTML
    actuels. Compiler les squelettes dans un environnement où les fichiers Gravatar sont absents.
-4. Comparaison à WordPress sous Astra 4.11.0 avec un avatar de test local identique des deux
+4. Comparaison à WordPress sous Astra 4.13.8 avec un avatar de test local identique des deux
    côtés : captures et styles calculés à 1280, 768 et 390 px (dimensions, forme, alignement,
    espacement avec le nom). Aucune dépendance à un compte Gravatar réel.
 5. Tests déterministes : utiliser une image de test locale et, pour le vrai plugin, un cache
@@ -138,7 +138,7 @@ de repli d'Astra ; aucun essai d'activation de Gravatar sous SPIP 5 n'est à ajo
 
 Les résultats doivent identifier les commits d'Astra SPIP et de Gravatar, la version de SPIP,
 le navigateur, les dimensions et les commandes. Les preuves sont conservées suivant la
-convention du dépôt (branche `preuves`), avec la source et la licence de l'image de test.
+convention de qualification du dépôt (preuves versionnées avec la PR, liées au SHA testé), avec la source et la licence de l'image de test.
 
 ## Crédits et suite
 
@@ -146,7 +146,7 @@ Mettre à jour `README.md` (intégration facultative) et `CREDITS.md` : plugin G
 examinées, dépôt, auteurs déclarés (Thomas Beaumanoir, Clever Age, Fil, Cedric) et licence amont.
 Aucune source du plugin n'est copiée dans Astra SPIP ; sa licence est relevée dans le fichier
 `LICENSE` de la révision utilisée (texte GNU GPL v3 dans la révision examinée). Citer
-`inc/blog/single-blog.php` d'Astra 4.11.0 pour le balisage.
+`inc/blog/single-blog.php` d'Astra 4.13.8 pour le balisage.
 
 La version de livraison et les noms des nouveaux fichiers/filtres seront fixés dans le plan,
-après validation de cette spec. Ce document n'autorise aucune implémentation à ce stade.
+après validation de cette spec. L’implémentation est autorisée par la demande de Gilles du 2026-10-26.
