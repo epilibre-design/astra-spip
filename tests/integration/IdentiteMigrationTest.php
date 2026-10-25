@@ -42,6 +42,8 @@ final class IdentiteMigrationTest extends TestCase {
 		astra_cas_identite_appliquer(ASTRA_CAS_IDENTITE[$cas]);
 		astra_migrer_identite();
 		$avant = file_get_contents(__DIR__ . "/attendus/identite-$cas.html");
+		// La fixture historique garde localhost ; le domaine du site de test est configurable.
+		$avant = str_replace('http://localhost/', rtrim($GLOBALS['meta']['adresse_site'], '/') . '/', $avant);
 		$this->assertSame(self::visible($avant), self::visible(recuperer_fond('inclure/identite', [])));
 		$this->assertStringNotContainsString('site-description', recuperer_fond('inclure/identite', []));
 		$this->assertNull(lire_config('astra/afficher_slogan'));

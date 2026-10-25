@@ -117,3 +117,10 @@ comme le rendu plafonné à 60 px du port pour ce PNG de ratio 800:500. Cela iso
 visibilité sans menu, sans prétendre porter les options de taille responsive.
 Le mode `nettoyer` retire le logo de preuve SPIP et le mu-plugin RTL WordPress.
 Les rendus privés sont comparés via `ASTRA_CSS_RARES`, avec le profil blocs.
+
+Lors de la copie d'un SPIP de test, régler `adresse_site` sur son URL réelle avant
+de préparer les rendus rares : le pilote utilise le lien d'accueil du HTML pour
+résoudre ses assets. Un ancien `http://localhost` désignerait un autre serveur,
+et le contrôle « image servie » doit alors échouer. Les fixtures historiques
+d'identité conservent leur comparaison HTML stricte en adaptant seulement leur
+URL d'accueil au domaine configuré du site de test.
