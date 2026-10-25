@@ -1,0 +1,44 @@
+{
+  "ordinateur": [],
+  "mobile": [],
+  "presents": [],
+  "styles": [
+    {
+      "selecteur": ".footer-widget-area[data-section=\"sidebar-widgets-footer-widget-1\"].footer-widget-area-inner",
+      "proprietes": [
+        "text-align"
+      ]
+    },
+    {
+      "selecteur": ".footer-widget-area[data-section=\"sidebar-widgets-footer-widget-2\"].footer-widget-area-inner",
+      "proprietes": [
+        "text-align"
+      ]
+    },
+    {
+      "selecteur": ".footer-widget-area[data-section=\"sidebar-widgets-footer-widget-3\"].footer-widget-area-inner",
+      "proprietes": [
+        "text-align"
+      ]
+    },
+    {
+      "selecteur": ".footer-widget-area[data-section=\"sidebar-widgets-footer-widget-4\"].footer-widget-area-inner",
+      "proprietes": [
+        "text-align"
+      ]
+    },
+    {
+      "selecteur": ".ast-footer-copyright",
+      "proprietes": [
+        "text-align"
+      ]
+    },
+    {
+      "selecteur": ".footer-social-inner-wrap",
+      "proprietes": [
+        "text-align"
+      ]
+    }
+  ],
+  "menuMobile": "dropdown"
+}

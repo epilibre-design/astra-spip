@@ -1,0 +1,24 @@
+{
+  "wordpress": "7.1.3",
+  "astra": "4.13.8",
+  "profil": "flex, installation récente LTR left / RTL right ; ancien profil center hors périmètre",
+  "adaptations": {
+    "entierement_vides": "option omise selon le contrat sans réglage",
+    "neutralisation_SPIP": "inherit au bureau si option partielle, pour neutraliser le CSS figé left"
+  },
+  "sha256": {
+    "R30-widgets-alignements-absent.css": "97e063c53f16251693e16f40facf8df2e84e345ae2ce7f2e08a75217e1d16307",
+    "R30-widgets-alignements-blocs.css": "d117fc07e70a478eab79ee6f09d0095bb7abc978bb54a029bc8126f38ea6bb60",
+    "R30-widgets-alignements-deplace.css": "86289c75dc6dba7796ba2d320cec620704ac6353aaec03e63dfa8c158d84149b",
+    "R30-widgets-alignements-distincts.css": "53830b9f3d5aad98ee6fd2d67aa8b72643bd648a886e05dfe3991621e6c7f4d4",
+    "R30-widgets-alignements-entete.css": "97e063c53f16251693e16f40facf8df2e84e345ae2ce7f2e08a75217e1d16307",
+    "R30-widgets-alignements-mobile.css": "cd1b3a82705db9b7a4d0c72cbee8a8d2f68ad3d504ccea39d3850b544b0aa76c",
+    "R30-widgets-alignements-ordinateur.css": "aeeb15fb08a68ef265af82bd9b84a46edd440cda687d7740c7fdf6b01090b929",
+    "R30-widgets-alignements-rtl.css": "53830b9f3d5aad98ee6fd2d67aa8b72643bd648a886e05dfe3991621e6c7f4d4",
+    "R30-widgets-alignements-tablette.css": "6bb52eb5bcb9c6d927afe90175d1d93ec1a423d44c4ae4f8555976a731b229bd",
+    "R30-widgets-alignements-trous.css": "f8da5c9711992e30c1003d42308a93fbfd3b457665ef5b4e295aa9d128d9b83f",
+    "R30-widgets-alignements-vides.css": "e0a36e75fd22ef37a72b7e2ba1c65196f694196b07a4c2ab6224109debbb029f",
+    "R30-widgets-alignements-zone6.css": "1b31760b6c3c817f9036d96ea527ce9a2e68b4d17f8427649a8de40659bb478e",
+    "R30-widgets-alignements.css": "d117fc07e70a478eab79ee6f09d0095bb7abc978bb54a029bc8126f38ea6bb60"
+  }
+}

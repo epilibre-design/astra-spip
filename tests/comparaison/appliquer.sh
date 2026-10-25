@@ -21,6 +21,7 @@ foreach (['accueil_type', 'accueil_page', 'pages', 'styles', 'police_texte', 'po
 	effacer_config('astra/' . \$cle);
 }
 ecrire_meta('slogan_site', '');
+ecrire_meta('langue_site', 'fr');
 foreach (\$conf['meta'] ?? [] as \$meta => \$valeur) {
 	ecrire_meta(\$meta, \$valeur);
 }

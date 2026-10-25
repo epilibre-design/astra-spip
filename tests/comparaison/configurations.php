@@ -298,7 +298,7 @@ function astra_configurations_reference(): array {
 			'pages' => ['plein_ecran' => ['titre' => 'masquer', 'disposition' => 'pleine']],
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
 		],
-	], astra_configurations_identite_responsive());
+	], astra_configurations_identite_responsive(), astra_configurations_widgets_alignements());
 }
 
 /** Partie « builder » d'une configuration : sans les clés propres aux comparaisons de pages et aux styles. */
@@ -328,6 +328,31 @@ function astra_configurations_identite_responsive(): array {
    'elements'=>['entete'=>['button-1'=>['libelle'=>'Nous contacter','lien'=>'https://example.org/contact']], 'pied'=>[]]];
   if ($cas['transparent']) { $r[$nom]['page']='notre_jardin'; $r[$nom]['pages']=['notre_jardin'=>['transparent'=>'active']]; }
   for ($n=1;$n<=4;$n++) { $r[$nom]['elements']['pied']['widget-'.$n]=['blocs'=>['texte'],'titre'=>'Colonne '.$n,'texte'=>'Texte de la colonne '.$n]; }
+ }
+ return $r;
+}
+
+/** R30 : alignements physiques des quatre zones flex du pied. */
+function astra_configurations_widgets_alignements(): array {
+ $r = [];
+ foreach (json_decode(file_get_contents(__DIR__ . '/../references/responsive/widgets.json'), true) as $nom => $cas) {
+  $c = astra_configurations_identite_responsive()['R29-identite-responsive'];
+  unset($c['logo']);
+  $c['styles'] = $cas['styles'];
+  $c['meta'] = ['langue_site' => $cas['direction'] === 'rtl' ? 'ar' : 'fr'];
+  if (in_array($cas['placement'], ['absent', 'entete', 'deplace', 'zone6'], true)) { $c['pied']['primary']['primary_1'] = []; }
+  if ($cas['placement'] === 'entete') { $c['entete_ordinateur']['above']['above_left'] = ['widget-1']; }
+  if ($cas['placement'] === 'deplace') { $c['pied']['below']['below_1'] = ['widget-1']; }
+  if ($cas['placement'] === 'zone6') {
+   $c['pied']['primary'] = ['primary_6'=>['widget-1']];
+   $c['rangees']['pied_primary']['colonnes'] = 6;
+   $c['rangees']['pied_primary']['repartition']['desktop'] = '6-equal';
+  }
+  if ($cas['blocs'] === 'texte-aligne') {
+   $c['elements']['pied']['widget-1']['texte'] = '<p class="reference-aligne" style="text-align:right">Bloc explicitement aligné</p>';
+   $c['elements']['pied']['widget-2'] = ['blocs'=>['menu'], 'titre'=>'Colonne 2', 'menu'=>['source'=>'racine','id'=>0]];
+  }
+  $r[$nom] = $c;
  }
  return $r;
 }

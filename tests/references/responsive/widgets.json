@@ -1,0 +1,236 @@
+{
+  "R30-widgets-alignements": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "left",
+        "tablet": "center",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-2": {
+        "desktop": "left",
+        "tablet": "center",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-3": {
+        "desktop": "left",
+        "tablet": "center",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-4": {
+        "desktop": "left",
+        "tablet": "center",
+        "mobile": "center"
+      }
+    },
+    "placement": "quatre",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-distincts": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "left",
+        "tablet": "right",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-2": {
+        "desktop": "right",
+        "tablet": "left",
+        "mobile": "right"
+      },
+      "footer-widget-alignment-3": {
+        "desktop": "center",
+        "tablet": "right",
+        "mobile": "left"
+      },
+      "footer-widget-alignment-4": {
+        "desktop": "right",
+        "tablet": "center",
+        "mobile": "left"
+      }
+    },
+    "placement": "quatre",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-ordinateur": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "right",
+        "tablet": "",
+        "mobile": ""
+      }
+    },
+    "placement": "quatre",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-tablette": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "",
+        "tablet": "center",
+        "mobile": ""
+      }
+    },
+    "placement": "quatre",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-mobile": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "mobile": "right"
+      }
+    },
+    "placement": "quatre",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-trous": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "left",
+        "tablet": "",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-2": {
+        "desktop": "left",
+        "tablet": "right",
+        "mobile": ""
+      }
+    },
+    "placement": "quatre",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-vides": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "footer-widget-alignment-2": {
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "footer-widget-alignment-3": {
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      },
+      "footer-widget-alignment-4": {
+        "desktop": "",
+        "tablet": "",
+        "mobile": ""
+      }
+    },
+    "placement": "quatre",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-absent": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "right",
+        "tablet": "center",
+        "mobile": "left"
+      }
+    },
+    "placement": "absent",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-entete": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "right",
+        "tablet": "center",
+        "mobile": "left"
+      }
+    },
+    "placement": "entete",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-deplace": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "right",
+        "tablet": "center",
+        "mobile": "left"
+      }
+    },
+    "placement": "deplace",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-zone6": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "right",
+        "tablet": "center",
+        "mobile": "left"
+      }
+    },
+    "placement": "zone6",
+    "direction": "ltr",
+    "blocs": "texte"
+  },
+  "R30-widgets-alignements-blocs": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "left",
+        "tablet": "center",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-2": {
+        "desktop": "left",
+        "tablet": "center",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-3": {
+        "desktop": "left",
+        "tablet": "center",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-4": {
+        "desktop": "left",
+        "tablet": "center",
+        "mobile": "center"
+      }
+    },
+    "placement": "quatre",
+    "direction": "ltr",
+    "blocs": "texte-aligne"
+  },
+  "R30-widgets-alignements-rtl": {
+    "styles": {
+      "footer-widget-alignment-1": {
+        "desktop": "left",
+        "tablet": "right",
+        "mobile": "center"
+      },
+      "footer-widget-alignment-2": {
+        "desktop": "right",
+        "tablet": "left",
+        "mobile": "right"
+      },
+      "footer-widget-alignment-3": {
+        "desktop": "center",
+        "tablet": "right",
+        "mobile": "left"
+      },
+      "footer-widget-alignment-4": {
+        "desktop": "right",
+        "tablet": "center",
+        "mobile": "left"
+      }
+    },
+    "placement": "quatre",
+    "direction": "rtl",
+    "blocs": "texte"
+  }
+}
