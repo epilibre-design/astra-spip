@@ -124,7 +124,7 @@ final class StylesTest extends TestCase {
 			'button-color' => '#123456',
 		]);
 		$css = astra_styles_css($s, []);
-		$this->assertStringNotContainsString('1px', $css);
+		$this->assertSame(astra_styles_css(['button-color'=>'#123456'], []), $css, 'Les valeurs sans ordinateur ne changent aucune règle');
 		$this->assertStringContainsString('font-size:16px;font-size:1rem', $css);
 	}
 
@@ -192,8 +192,8 @@ final class StylesTest extends TestCase {
 
 	public function testSoulignementBouton(): void {
 		$css = astra_styles_css(['font-extras-button' => ['text-decoration' => 'underline']], []);
-		// Blocs, boutons du thème, puis surcharge du soulignement des liens de contenu.
-		$this->assertSame(3, substr_count($css, 'text-decoration:underline;'));
+		// Trois règles natives et leurs deux reprises de liens importés.
+		$this->assertSame(5, substr_count($css, 'text-decoration:underline;'));
 		$this->assertStringContainsString(',body .entry-content .wp-block-file .wp-block-file__button{text-decoration:underline;}', $css);
 		$css = astra_styles_css(['button-color' => '#123456'], []);
 		$this->assertStringContainsString(',body .entry-content .wp-block-file .wp-block-file__button{text-decoration:none;}', $css);

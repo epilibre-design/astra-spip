@@ -34,6 +34,8 @@ const AGENT='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gec
             });
             assert(Math.abs(valeurs.marges.bas-(valeurs.marges.taille*.3+10))<.1,nom+' marge du titre après la règle générique');
           }
+          valeurs.codeTitre=await page.evaluate(()=>{const h=document.querySelector('.astra-preuve-titre'),c=document.createElement('code');c.textContent='code';h.append(c);const mesure={code:getComputedStyle(c).fontSize,titre:getComputedStyle(h).fontSize};c.remove();return mesure});
+          assert.equal(valeurs.codeTitre.code,valeurs.codeTitre.titre,nom+' code dans un titre');
           // Fixture technique à trois niveaux : n'ajoute pas cette profondeur au builder.
           await page.evaluate(()=>{
             const menu=document.createElement('div');menu.className='ast-builder-menu-1 astra-preuve-menu';
@@ -57,6 +59,32 @@ const AGENT='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gec
           });
           assert.equal(valeurs.repli,'rgb(18, 52, 86)',nom+' repli champ date');
           assert.equal(valeurs.apres,valeurs.avant,nom+' palette restaurée');
+          valeurs.etiquettes=await page.evaluate(()=>{const f=document.createElement('fieldset');f.innerHTML='<legend>Légende</legend><label>Champ</label><span>Couleur palette</span>';document.querySelector('.entry-content').append(f);f.lastElementChild.style.color='var(--ast-global-color-2)';const couleurs=[...f.children].map(e=>getComputedStyle(e).color);f.remove();return couleurs});
+          assert.equal(valeurs.etiquettes[0],valeurs.etiquettes[2],nom+' legend palette');
+          assert.equal(valeurs.etiquettes[1],valeurs.etiquettes[2],nom+' label palette');
+        }else if(profil==='blocs'){
+          valeurs=await page.evaluate(()=>{
+            const lien=document.querySelector('.wp-block-button > a'),s=getComputedStyle(lien);
+            const colonnes=[...document.querySelectorAll('.entry-content .wp-block-columns')].map(e=>{const s=getComputedStyle(e);return {colonnes:e.children.length,display:s.display,gap:s.gap,width:e.getBoundingClientRect().width,enfants:[...e.children].map(c=>({width:c.getBoundingClientRect().width,display:getComputedStyle(c).display}))}});
+            return {rayon:s.borderRadius,ombre:s.boxShadow,taille:s.fontSize,haut:s.paddingTop,gauche:s.paddingLeft,colonnes};
+          });
+          assert.equal(valeurs.rayon,process.env.ASTRA_CSS_RAYON_BOUTON||'4px',nom+' rayon du bouton importé');
+          assert.equal(valeurs.ombre,'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',nom+' ombre du bouton importé');
+          assert(valeurs.colonnes.length>=2,nom+' deux et trois colonnes réellement importées');
+          // Sondes CSS natives, distinctes de l'import dont le comparateur garde les quatre pertes.
+          // wp2spip retire alignwide/full : ces classes ne sont pas prétendues conservées.
+          valeurs.sondes=await page.evaluate(()=>{
+            const contenu=document.querySelector('.entry-content'),modele=contenu.querySelector('.wp-block-columns'),mesures=[];
+            for(const alignement of['normal','wide','full']){
+              const e=modele.cloneNode(true);if(alignement!=='normal')e.classList.add('align'+alignement);contenu.append(e);
+              const r=e.getBoundingClientRect(),s=getComputedStyle(e);mesures.push({alignement,width:r.width,marginLeft:s.marginLeft,marginRight:s.marginRight,gap:s.gap});e.remove();
+            }
+            const h=document.createElement('h2');h.className='wp-block-heading';h.style.fontWeight='400';h.innerHTML='Titre avec <code>code</code>';contenu.append(h);
+            const titre={poids:getComputedStyle(h).fontWeight,taille:getComputedStyle(h).fontSize,code:getComputedStyle(h.firstElementChild).fontSize};h.remove();
+            return{origine:'sondes CSS natives après mesure de l’import, sans écriture éditoriale',colonnes:mesures,titre};
+          });
+          assert.equal(valeurs.sondes.titre.poids,'400',nom+' priorité de la graisse du bloc');
+          assert.equal(valeurs.sondes.titre.code,valeurs.sondes.titre.taille,nom+' code dans titre natif');
         }else{
           throw new Error('Profil '+profil+' : assertions à fournir dans sa tâche avant de l’exécuter');
         }
@@ -68,6 +96,7 @@ const AGENT='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gec
     }
     fs.writeFileSync(`${sorties}/mesures.json`,JSON.stringify(resultats,null,2)+'\n');
     if(resultats.wordpress)assert.deepEqual(resultats.spip,resultats.wordpress,'Propriétés CSS WordPress/SPIP');
+    if(profil==='blocs'&&process.env.ASTRA_CSS_RARES)await require('./lib/css-rares.cjs')(browser,process.env.ASTRA_CSS_RARES,sorties+'/rares');
     console.log(profil+' : assertions et comparaison CSS réussies aux trois largeurs.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

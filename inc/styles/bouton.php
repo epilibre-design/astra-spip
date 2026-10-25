@@ -97,5 +97,32 @@ function astra_styles_bouton(array $s): array {
 			}
 		}
 	}
-	return $regles;
+	// Sans marge ordinateur personnalisée, Astra conserve ses défauts plus étroits.
+	// Les réémettre après les propriétés ordinateur évite de les écraser en changeant le rayon seul.
+	if (!astra_styles_renseigne(astra_styles_ordi($padding))) {
+		foreach (['(max-width:921px)' => [14,28], '(max-width:544px)' => [12,24]] as $media => $defauts) {
+			$espaces = ['padding-top'=>$defauts[0].'px', 'padding-right'=>$defauts[1].'px',
+				'padding-bottom'=>$defauts[0].'px', 'padding-left'=>$defauts[1].'px'];
+			$regles[] = [$media, ASTRA_STYLES_SEL_BLOCS, $espaces];
+			$regles[] = [$media, ASTRA_STYLES_SEL_BOUTONS, $espaces];
+		}
+	}
+
+	// wp2spip retire les classes du lien, tout en gardant le conteneur natif.
+	// Reprises séparées : sélecteurs/ordre amont restent vérifiables tels quels.
+	// :is() conserve la spécificité de .wp-block-button__link (0,1,0).
+	$reprises = [
+		ASTRA_STYLES_SEL_BLOC_LIEN => '.wp-block-button :is(a,.wp-block-button__link)',
+		ASTRA_STYLES_SEL_BLOC_LIEN_SURVOL => '.wp-block-button :is(a,.wp-block-button__link):hover,.wp-block-button :is(a,.wp-block-button__link):focus',
+		ASTRA_STYLES_SEL_BLOCS => '.wp-block-button :is(a,.wp-block-button__link)',
+		ASTRA_STYLES_SEL_BLOCS_ARTICLE => '.ast-single-post .entry-content .wp-block-button :is(a,.wp-block-button__link)',
+	];
+	$adaptees = [];
+	foreach ($regles as $regle) {
+		$adaptees[] = $regle;
+		if (isset($reprises[$regle[1]])) {
+			$adaptees[] = [$regle[0], $reprises[$regle[1]], $regle[2]];
+		}
+	}
+	return $adaptees;
 }

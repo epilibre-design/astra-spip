@@ -15,12 +15,12 @@ php "$ICI/../verifier.php" "$WP" "$ASTRA_REFERENCE_ARCHIVE" "$ICI/../cible.json"
 css() {
 	curl -sf "$URL/" | php -r '$h = stream_get_contents(STDIN); if (!preg_match("~<style id=\"astra-theme-css-inline-css\">(.*?)</style>~s", $h, $m)) { exit(1); } echo $m[1];'
 }
-for groupe in base menu bouton bouton-entete identite pied sociaux menu-mobile; do
+for groupe in base menu bouton bouton-rayon bouton-entete identite pied sociaux menu-mobile; do
 	GROUPE=$groupe wp --path="$WP" eval-file "$ICI/appliquer.php"
 	css > "$ICI/attendus/.$groupe.complet.css"
 done
 mv "$ICI/attendus/.base.complet.css" "$ICI/attendus/base.css"
-for groupe in menu bouton bouton-entete identite pied sociaux menu-mobile; do
+for groupe in menu bouton bouton-rayon bouton-entete identite pied sociaux menu-mobile; do
 	python3 "$ICI/regles.py" "$ICI/attendus/base.css" "$ICI/attendus/.$groupe.complet.css" > "$ICI/attendus/$groupe.css"
 	rm "$ICI/attendus/.$groupe.complet.css"
 	echo "$groupe : $(wc -l < "$ICI/attendus/$groupe.css") règles"

@@ -264,7 +264,7 @@ Le catalogue fermé de `inc/astra_icones.php` est comparé entrée par entrée �
 `assets/svg/svgs.json` de 4.13.8 : les douze réseaux restent les mêmes. Les seuls
 changements sont le retrait des ID fixes des titres `email` et `google_reviews` ;
 les tracés restent identiques, avec leurs attributions et licences ci-dessus.
-L'amont retire aussi `trip_advisor`, absent du registre du port ; ce réseau n'est
+L'amont retire aussi l'ID du titre de `trip_advisor`, absent du registre du port ; ce réseau n'est
 pas ajouté. La préparation de l'URL e-mail est une adaptation SPIP au rendu,
 suivant la protection de préfixe d'Astra, sans modification des données enregistrées.
 
@@ -294,3 +294,15 @@ bouton avec le déclencheur global (`navigation_accessibility()`), synchronise
 l'état avec la classe effective et ferme la branche quittée au clavier.
 Ces écarts au runtime de référence sont mesurés séparément ; les boutons natifs
 gardent leur activation Entrée/Espace, sans seconde simulation JavaScript.
+
+Les liens de boutons nettoyés par wp2spip reçoivent dans `css/astra-spip.css` les
+défauts rayon/ombre de `Astra_Dynamic_CSS::astra_default_forms_styling_dynamic_css()`
+(4.13.8), à même spécificité. Dans `inc/styles/bouton.php`, les règles originales
+restent conservées et des sélecteurs SPIP reprennent les mêmes déclarations et
+media queries pour ces liens. La référence indépendante `bouton-rayon` et les
+mesures du vrai import couvrent cette adaptation et les défauts responsive.
+
+L'outillage de preuve utilise [SPIP-Cli](https://git.spip.net/spip-contrib-outils/spip-cli).
+La [procédure SQLite](docs/inventaires/astra-4.13.8-qualification/outillage/spip-cli-prefixe-sqlite.md)
+identifie le commit et l'empreinte du fichier de la copie locale utilisée, ainsi
+que la correction d'expression nécessaire à la préparation privée.

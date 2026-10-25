@@ -165,6 +165,10 @@ body .wp-block-columns, body .wp-block-buttons { display: flex; }
 :where(.wp-block-button > a) { border-radius: 9999px; box-shadow: none; padding: calc(.667em + 2px) calc(1.333em + 2px); text-decoration: none; }
 /* = :root :where(.wp-element-button, .wp-block-button__link) (global-styles-inline-css) */
 :root :where(.wp-block-button > a) { background-color: #32373c; border-width: 0; color: #fff; font-family: inherit; font-size: inherit; font-style: inherit; font-weight: inherit; letter-spacing: inherit; line-height: inherit; padding-top: calc(0.667em + 2px); padding-right: calc(1.333em + 2px); padding-bottom: calc(0.667em + 2px); padding-left: calc(1.333em + 2px); text-decoration: none; text-transform: inherit; }
+/* = a:where(.wp-block-button__link), Astra 4.13.8 inc/class-astra-dynamic-css.php
+   (nouveaux défauts de bouton). wp2spip garde le conteneur, retire la classe du lien.
+   Spécificité 0,0,1 comme l'amont : les réglages de rayon gardent leur priorité. */
+:where(.wp-block-button) > a { border-radius: 4px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05); }
 /* = .wp-block-button .wp-block-button__link (astra-dynamic.css) */
 .wp-block-button > a { border-color: var(--ast-global-color-0); background-color: var(--ast-global-color-0); color: #ffffff; font-family: inherit; font-weight: 500; line-height: 1em; font-size: 16px; font-size: 1rem; padding-top: 15px; padding-right: 30px; padding-bottom: 15px; padding-left: 30px; }
 .wp-block-button > a:hover, .wp-block-button > a:focus { color: #ffffff; background-color: var(--ast-global-color-1); border-color: var(--ast-global-color-1); }
