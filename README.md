@@ -8,6 +8,10 @@ thème WordPress, mêmes feuilles de style et même JavaScript. Les classes CSS 
 
 Compatibilité : SPIP 4.2 à 5.0.
 
+La version **1.7.0** ajoute l’identité responsive et les alignements des widgets du pied
+sur les trois appareils, ainsi que Gravatar facultatif dans les commentaires.
+Voir les [notes de version](docs/releases/1.7.0.md).
+
 ## Installation
 
 1. Copier le dossier dans `plugins/astra` (ou `plugins/auto/astra`).
