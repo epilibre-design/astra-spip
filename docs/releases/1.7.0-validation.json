@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-26",
+  "version": "1.7.0",
+  "functionalSourceCommit": "05dc563b49e7768ebcad0172d7bead19a4450e3a",
+  "previousTagCommit": "1fd187215c1086cb9f92d11c90f9315fec3b127f",
+  "runtime": {
+    "php": "8.4.27",
+    "phpunit": "11.5.57",
+    "spip": "4.4.28",
+    "phpLint": "7.4.33"
+  },
+  "results": {
+    "unit": {
+      "tests": 190,
+      "assertions": 2065,
+      "skipped": 0
+    },
+    "integration": {
+      "cases": 110,
+      "executed": 104,
+      "assertions": 653,
+      "skipped": 6,
+      "skipReasons": [
+        "GravatarRenduTest : site privé Gravatar absent,3cas",
+        "OembedRenduTest : sites privés oEmbed absents,3cas"
+      ]
+    },
+    "python": {
+      "cases": 28,
+      "executed": 27,
+      "skipped": 1,
+      "skipReason": "Archive privée R0 Astra4.11.0 absente"
+    },
+    "phpLintFiles": 181
+  },
+  "privateLogsSha256": {
+    "vendor/release-1.7.0/unitaires.log": "506f3432104ff2d7fe4f6830c7de355887d65b0fba898933845b582ee7c9a9ec",
+    "vendor/release-1.7.0/integration-complete.log": "fea4398063a67f0596db5bb10d8018a3768b409d8fa9c7de5c401e644750c3e8",
+    "vendor/release-1.7.0/python.log": "4bbf2f48e0fd45dccc7fac8b55538b0467353e98b8b3c0e29e86208a2cdeeaf6",
+    "vendor/release-1.7.0/lint-php74.log": "6c5220c3b59d02a6efdcaa839cd39d7cc9f8967852bdfba29f50833a995612e2",
+    "/tmp/astra-release-1.7.0-installation.log": "65d251a11c2dae27996f6097a424e0d9a5d542089e30e9bc277320411d83805f"
+  },
+  "privateImagesSha256": {
+    "vendor/release-1.7.0/images/logo-200x100.png": "5b0d906a01b7b06f0e432ae0068840be5b83598add472c095ee4025f6e36079c",
+    "vendor/release-1.7.0/images/logo-40x20.png": "901edce09b1ca26318a432f874dbac3cbc76687da00b9e4aede72bbba852eac0"
+  },
+  "installWarningCount": 10,
+  "visualQualificationRerun": false,
+  "functionalCodeChanged": false,
+  "installWarning": "Undefined array key \"langue_site\", ecrire/inc/rubriques.php:566, SPIP4.4.28"
+}
