@@ -53,5 +53,5 @@
 </BOUCLE_si_pages>
 
 <BOUCLE_si_menus(CONDITION){si #ENV{source}|=={menus}}>
-[(#INCLURE{fond=inclure/menu,env,id_menu=#ENV{id_source},identifiant=}|astra_menus_adapter{#ENV{niveaux}|=={1}|?{oui,#ENV{widget}}})]
+[(#INCLURE{fond=inclure/menu,env,type-page=#ENV{type_page},id_menu=#ENV{id_source},identifiant=}|astra_menus_adapter{#ENV{niveaux}|=={1}|?{oui,#ENV{widget}}})]
 </BOUCLE_si_menus>

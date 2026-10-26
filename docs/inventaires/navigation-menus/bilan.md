@@ -24,8 +24,8 @@ de migration. La qualification finale exclut explicitement `IdentiteMigrationTes
 
 - PHPUnit unitaire : **193 tests, 2 079 assertions**.
 - Installation neuve complète du script : réussite, Astra/Menus/Saisies actifs.
-- PHPUnit intégration sur cette installation : **101 cas, 92 exécutés,
-  639 assertions, 9 ignorés**. Commande :
+- PHPUnit intégration sur cette installation : **103 cas, 94 exécutés,
+  689 assertions, 9 ignorés**. Commande :
 
   ```sh
   SPIP_TEST_ROOT="$PWD/vendor/installation-spip" /src/astra-spip/vendor/bin/phpunit \
@@ -63,3 +63,20 @@ Pas de seconde revue indépendante après corrections.
 Les logs et mesures privés se trouvent dans `vendor/qualification/` du worktree.
 Les tests navigateur exigent Playwright, `URL`, et pour Menus `SPIP_CLI` et
 `SPIP_ROOT`, qui doivent désigner un site de test isolé.
+
+## Corrections après revue de la PR #27
+
+Deux régressions reproduites par des tests d’intégration en échec avant correction :
+
+- Traduire `type_page` vers `type-page` pour Menus. Le contexte courant traverse
+  aussi l’inclusion de secours sans JavaScript. Tests sur accueil, recherche et
+  article non correspondant, pour en-tête, menu mobile, pied, widget et repli.
+- Reporter les classes CSS configurées sur le menu dans la liste racine d’Astra,
+  en conservant ses propres classes et sans ajouter une liste imbriquée. Les
+  classes sont échappées comme attribut HTML dans chaque inclusion.
+
+La suite Menus compte désormais 3 tests et 69 assertions. La suite d’intégration
+finale, hors migration, compte 103 cas dont 94 exécutés, 689 assertions et les
+9 cas ignorés déjà documentés. Les 12 configurations navigateur Menus vérifient
+également la classe CSS du menu et l’état actif de l’accueil. Syntaxe PHP 7.4,
+JavaScript et `git diff --check` vérifiés.

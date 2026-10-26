@@ -42,4 +42,65 @@ final class MenusRenduTest extends TestCase {
 			if($avant===null)effacer_config('astra/hfb');else ecrire_config('astra/hfb',$avant);
 		}
 	}
+
+	public function testAccueilEtPageSpecialeOntUnEtatActifDansTousLesRendus(): void {
+		$this->avecMenuPages(function($menu) {
+			foreach (['sommaire'=>'Accueil libre','recherche'=>'Recherche libre','article'=>null] as $page=>$titre) {
+				foreach ($this->rendusMenu($menu,$page) as $fond=>$html) {
+					$x=$this->xpath($html);
+					$actifs=$x->query('//a[@aria-current="page"]');
+					$this->assertSame($titre===null?0:($fond==='header'?3:1),$actifs->length,$fond.' / '.$page);
+					if ($titre!==null) {
+						$this->assertSame($titre,$actifs->item(0)->textContent,$fond);
+						if ($fond!=='repli' && $fond!=='header') {
+							$this->assertStringContainsString('current-menu-item',$actifs->item(0)->parentNode->getAttribute('class'),$fond);
+						}
+					}
+				}
+			}
+		});
+	}
+
+	public function testClassesDuMenuSurLesListesAstra(): void {
+		$this->avecMenuPages(function($menu) {
+			foreach ($this->rendusMenu($menu,'sommaire') as $fond=>$html) {
+				$x=$this->xpath($html);
+				$this->assertGreaterThan(0,$x->query('//ul[contains(concat(" ",@class," ")," choix-libre ") and contains(concat(" ",@class," ")," css-ete ")]')->length,$fond);
+				$this->assertSame(0,$x->query('//ul/ul')->length,'Pas de liste racine imbriquée : '.$fond);
+			}
+		});
+	}
+
+	private function rendusMenu(int $menu,string $page): array {
+		$env=['source'=>'menus','id_source'=>$menu,'type_page'=>$page];
+		return [
+			'entete'=>recuperer_fond('inclure/hfb/menu',['id'=>'menu-1','numero'=>1,'groupe'=>'entete','appareil'=>'ordinateur']+$env),
+			'mobile'=>recuperer_fond('inclure/hfb/mobile-menu',$env),
+			'pied'=>recuperer_fond('inclure/hfb/menu',['id'=>'menu','groupe'=>'pied']+$env),
+			'widget'=>recuperer_fond('inclure/widgets/menu',['menu'=>['source'=>'menus','id'=>$menu],'numero'=>1,'groupe'=>'pied']+$env),
+			'repli'=>recuperer_fond('inclure/hfb/menu-sans-js',$env),
+			'header'=>recuperer_fond('inclure/header',$env),
+		];
+	}
+
+	private function avecMenuPages(callable $verifier): void {
+		$avant=lire_config('astra/hfb',null);
+		$menu=(int)sql_insertq('spip_menus',['titre'=>'Menu pages','identifiant'=>'astra-pages-review','css'=>'choix-libre css-ete']);
+		sql_insertq('spip_menus_entrees',['id_menu'=>$menu,'rang'=>1,'type_entree'=>'accueil','parametres'=>serialize(['titre'=>'Accueil libre'])]);
+		sql_insertq('spip_menus_entrees',['id_menu'=>$menu,'rang'=>2,'type_entree'=>'page_speciale','parametres'=>serialize(['titre'=>'Recherche libre','nom'=>'recherche'])]);
+		$source=['source'=>'menus','id'=>$menu];
+		try {
+			ecrire_config('astra/hfb',['elements'=>['entete'=>['menu-1'=>$source],'pied'=>['menu'=>$source]]]);
+			$verifier($menu);
+		} finally {
+			sql_delete('spip_menus_entrees','id_menu='.$menu);
+			sql_delete('spip_menus','id_menu='.$menu);
+			if($avant===null)effacer_config('astra/hfb');else ecrire_config('astra/hfb',$avant);
+		}
+	}
+
+	private function xpath(string $html): DOMXPath {
+		$d=new DOMDocument();@$d->loadHTML('<?xml encoding="utf-8"?>'.$html);
+		return new DOMXPath($d);
+	}
 }

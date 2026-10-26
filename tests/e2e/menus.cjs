@@ -4,7 +4,8 @@ function spip(code){return cp.execFileSync(cli[0],[...cli.slice(1),'php:eval',co
 (async()=>{
  const avant=spip('include_spip("inc/config"); echo base64_encode(serialize(lire_config("astra/hfb",null)));');
  const ids=JSON.parse(spip(`include_spip("inc/config");
- $m=sql_insertq("spip_menus",["titre"=>"Navigation libre test","identifiant"=>"astra-e2e"]);
+ $m=sql_insertq("spip_menus",["titre"=>"Navigation libre test","identifiant"=>"astra-e2e","css"=>"e2e-menu-css"]);
+ sql_insertq("spip_menus_entrees",["id_menu"=>$m,"rang"=>0,"type_entree"=>"accueil","parametres"=>serialize(["titre"=>"Accueil libre"])]);
  $e=sql_insertq("spip_menus_entrees",["id_menu"=>$m,"type_entree"=>"lien","parametres"=>serialize(["titre"=>"Parent libre","url"=>"https://example.test/parent"])]);
  $s=sql_insertq("spip_menus",["id_menus_entree"=>$e]);
  sql_insertq("spip_menus_entrees",["id_menu"=>$s,"type_entree"=>"lien","parametres"=>serialize(["titre"=>"Enfant libre","url"=>"https://example.test/enfant"])]);
@@ -53,6 +54,12 @@ function spip(code){return cp.execFileSync(cli[0],[...cli.slice(1),'php:eval',co
    assert(await p.locator('#footer-site-navigation').getByRole('link',{name:'Enfant libre',exact:true}).isVisible());
    assert.equal(await p.locator('#footer-site-navigation button').count(),0);
    assert(await p.locator('.widget_nav_menu').getByRole('link',{name:'Enfant libre',exact:true}).isVisible());
+   for(const liste of await p.locator('#ast-hf-menu-1,#ast-hf-mobile-menu,#astra-footer-menu,.widget_nav_menu ul.menu,.astra-liens-sans-js').all()) {
+    assert(await liste.evaluate(e=>e.classList.contains('e2e-menu-css')),'Classe Menus sur la liste Astra');
+   }
+   const accueil=p.locator('#astra-footer-menu').getByRole('link',{name:'Accueil libre',exact:true});
+   assert.equal(await accueil.getAttribute('aria-current'),'page');
+   assert(await accueil.evaluate(e=>e.parentElement.classList.contains('current-menu-item')));
    assert.deepEqual(erreurs,[]);await p.close();
   }
   }

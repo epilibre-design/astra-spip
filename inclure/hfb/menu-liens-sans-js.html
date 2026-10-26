@@ -18,6 +18,6 @@
 </li></BOUCLE_page></BOUCLE_pages></BOUCLE_si_pages>
 
 <BOUCLE_si_menus(CONDITION){si #ENV{source}|=={menus}}>
-#SET{menu_libre,#INCLURE{fond=inclure/menu,env,id_menu=#ENV{id_source},identifiant=}}
+#SET{menu_libre,#INCLURE{fond=inclure/menu,env,type-page=#ENV{type_page},id_menu=#ENV{id_source},identifiant=}}
 [(#GET{menu_libre}|astra_menus_adapter{sans-js})]
 </BOUCLE_si_menus>

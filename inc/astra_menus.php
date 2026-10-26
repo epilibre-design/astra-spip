@@ -84,3 +84,12 @@ function astra_menus_adapter(string $html, ?string $widget = ''): string {
 	}
 	return $r;
 }
+
+/** Classes éditoriales Menus à reporter sur la liste racine fournie par Astra. */
+function astra_menus_classes(?string $source, $id = 0): string {
+	if ($source !== 'menus' || (int) $id <= 0) {
+		return '';
+	}
+	include_spip('base/abstract_sql');
+	return trim((string) sql_getfetsel('css', 'spip_menus', 'id_menu=' . (int) $id . ' AND id_menus_entree=0'));
+}
