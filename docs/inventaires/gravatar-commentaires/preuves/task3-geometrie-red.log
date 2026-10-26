@@ -1,0 +1,26 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   '1280/largeur: 49.3125 != 47.796875',
++   '1280/hauteur: 49.3125 != 47.796875',
++   '1280/marge: 0px != 16px',
++   '1280/ecart: 17.1875 != 33.1875',
++   '1280: dimensions de capture différentes',
++   '768/marge: 7.296px != 14.592px',
++   '768/ecart: 9.671875 != 16.96875',
++   '768: dimensions de capture différentes',
++   '390/marge: 7.296px != 14.592px',
++   '390/ecart: 9.671875 != 16.96875',
++   '390: dimensions de capture différentes'
++ ]
+- []
+
+    at /tmp/astra-gravatar-20261026/tests/e2e/gravatar.cjs:26:85 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [Array],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

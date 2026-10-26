@@ -1,0 +1,18 @@
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-gravatar-20261026/phpunit.xml
+
+....F                                                               5 / 5 (100%)
+
+Time: 00:00.239, Memory: 10.00 MB
+
+There was 1 failure:
+
+1) GravatarTest::testImageLocaleDecorativeNominale
+Failed asserting that '<img src="local/cache-gravatar/opaque.jpg" class="avatar avatar-50 photo" style="" width="50" height="50" alt="" aria-hidden="true" />' [ASCII](length: 134) does not contain "style=" [ASCII](length: 6).
+
+/tmp/astra-gravatar-20261026/tests/unit/GravatarTest.php:12
+
+FAILURES!
+Tests: 5, Assertions: 25, Failures: 1.

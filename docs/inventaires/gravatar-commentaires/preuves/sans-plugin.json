@@ -1,0 +1,79 @@
+{
+  "mesures": {
+    "article-1280": [
+      {
+        "texte": "É",
+        "largeur": 50,
+        "hauteur": 50
+      },
+      {
+        "texte": "A",
+        "largeur": 50,
+        "hauteur": 50
+      }
+    ],
+    "page-1280": [
+      {
+        "texte": "É",
+        "largeur": 50,
+        "hauteur": 50
+      },
+      {
+        "texte": "A",
+        "largeur": 50,
+        "hauteur": 50
+      }
+    ],
+    "article-768": [
+      {
+        "texte": "É",
+        "largeur": 36.46875,
+        "hauteur": 36.46875
+      },
+      {
+        "texte": "A",
+        "largeur": 36.46875,
+        "hauteur": 36.46875
+      }
+    ],
+    "page-768": [
+      {
+        "texte": "É",
+        "largeur": 36.46875,
+        "hauteur": 36.46875
+      },
+      {
+        "texte": "A",
+        "largeur": 36.46875,
+        "hauteur": 36.46875
+      }
+    ],
+    "article-390": [
+      {
+        "texte": "É",
+        "largeur": 36.46875,
+        "hauteur": 36.46875
+      },
+      {
+        "texte": "A",
+        "largeur": 36.46875,
+        "hauteur": 36.46875
+      }
+    ],
+    "page-390": [
+      {
+        "texte": "É",
+        "largeur": 36.46875,
+        "hauteur": 36.46875
+      },
+      {
+        "texte": "A",
+        "largeur": 36.46875,
+        "hauteur": 36.46875
+      }
+    ]
+  },
+  "reseau": [],
+  "erreurs": [],
+  "mode": "sans-plugin"
+}

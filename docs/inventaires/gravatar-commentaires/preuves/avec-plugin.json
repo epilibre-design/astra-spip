@@ -1,0 +1,111 @@
+{
+  "mesures": {
+    "390": {
+      "wordpress": {
+        "largeur": 36.46875,
+        "hauteur": 36.46875,
+        "rayon": "50%",
+        "bordure": "1px",
+        "couleurBordure": "rgb(225, 232, 237)",
+        "fond": "rgba(0, 0, 0, 0)",
+        "rendu": "auto",
+        "fit": "fill",
+        "filtre": "none",
+        "opacite": "1",
+        "ombre": "rgba(0, 0, 0, 0.15) 0px 0px 5px 0px",
+        "marge": "7.296px",
+        "ecart": 9.671875,
+        "source_sha256": "ad569add9bf879b2767d9052c65ed1c7d4b5f82ac717e44fa2b5a4f93db31f5a"
+      },
+      "spip": {
+        "largeur": 36.46875,
+        "hauteur": 36.46875,
+        "rayon": "50%",
+        "bordure": "1px",
+        "couleurBordure": "rgb(225, 232, 237)",
+        "fond": "rgba(0, 0, 0, 0)",
+        "rendu": "auto",
+        "fit": "fill",
+        "filtre": "none",
+        "opacite": "1",
+        "ombre": "rgba(0, 0, 0, 0.15) 0px 0px 5px 0px",
+        "marge": "7.296px",
+        "ecart": 9.671875,
+        "source_sha256": "ad569add9bf879b2767d9052c65ed1c7d4b5f82ac717e44fa2b5a4f93db31f5a"
+      },
+      "pixels": 0
+    },
+    "768": {
+      "wordpress": {
+        "largeur": 36.46875,
+        "hauteur": 36.46875,
+        "rayon": "50%",
+        "bordure": "1px",
+        "couleurBordure": "rgb(225, 232, 237)",
+        "fond": "rgba(0, 0, 0, 0)",
+        "rendu": "auto",
+        "fit": "fill",
+        "filtre": "none",
+        "opacite": "1",
+        "ombre": "rgba(0, 0, 0, 0.15) 0px 0px 5px 0px",
+        "marge": "7.296px",
+        "ecart": 9.671875,
+        "source_sha256": "ad569add9bf879b2767d9052c65ed1c7d4b5f82ac717e44fa2b5a4f93db31f5a"
+      },
+      "spip": {
+        "largeur": 36.46875,
+        "hauteur": 36.46875,
+        "rayon": "50%",
+        "bordure": "1px",
+        "couleurBordure": "rgb(225, 232, 237)",
+        "fond": "rgba(0, 0, 0, 0)",
+        "rendu": "auto",
+        "fit": "fill",
+        "filtre": "none",
+        "opacite": "1",
+        "ombre": "rgba(0, 0, 0, 0.15) 0px 0px 5px 0px",
+        "marge": "7.296px",
+        "ecart": 9.671875,
+        "source_sha256": "ad569add9bf879b2767d9052c65ed1c7d4b5f82ac717e44fa2b5a4f93db31f5a"
+      },
+      "pixels": 0
+    },
+    "1280": {
+      "wordpress": {
+        "largeur": 49.15625,
+        "hauteur": 49.15625,
+        "rayon": "50%",
+        "bordure": "1px",
+        "couleurBordure": "rgb(225, 232, 237)",
+        "fond": "rgba(0, 0, 0, 0)",
+        "rendu": "auto",
+        "fit": "fill",
+        "filtre": "none",
+        "opacite": "1",
+        "ombre": "rgba(0, 0, 0, 0.15) 0px 0px 5px 0px",
+        "marge": "0px",
+        "ecart": 17.1875,
+        "source_sha256": "ad569add9bf879b2767d9052c65ed1c7d4b5f82ac717e44fa2b5a4f93db31f5a"
+      },
+      "spip": {
+        "largeur": 49.15625,
+        "hauteur": 49.15625,
+        "rayon": "50%",
+        "bordure": "1px",
+        "couleurBordure": "rgb(225, 232, 237)",
+        "fond": "rgba(0, 0, 0, 0)",
+        "rendu": "auto",
+        "fit": "fill",
+        "filtre": "none",
+        "opacite": "1",
+        "ombre": "rgba(0, 0, 0, 0.15) 0px 0px 5px 0px",
+        "marge": "0px",
+        "ecart": 17.1875,
+        "source_sha256": "ad569add9bf879b2767d9052c65ed1c7d4b5f82ac717e44fa2b5a4f93db31f5a"
+      },
+      "pixels": 0
+    }
+  },
+  "reseau": [],
+  "erreurs": []
+}

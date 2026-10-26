@@ -144,6 +144,17 @@ La migration depuis Astra 4.11.0 est qualifiée dans le [bilan 1.6.0](docs/inven
 - `css/astra-spip.css` : adaptations aux contenus produits par SPIP (documents, notes, chapo,
   formulaire de forum, fil d'Ariane, blocs importés…).
 
+## Avatars des commentaires
+
+Le plugin SPIP [Gravatar](https://git.spip.net/spip-contrib-extensions/gravatar) est
+facultatif et déclaré dans `<utilise>`. Quand Gravatar 3.x est actif sous SPIP 4.4,
+Astra utilise son image locale mise en cache, à partir de l’adresse du message.
+Sans image ou sans plugin, l’initiale est conservée. Aucun réglage ni collecte
+supplémentaire ; le plugin gère lui-même ses récupérations et son cache.
+Sous SPIP 5, où cette version de Gravatar ne s’active pas, le repli fonctionne.
+Les [preuves et limites](docs/inventaires/gravatar-commentaires/bilan.md) décrivent
+la comparaison avec Astra 4.13.8, sur article, réponse et page unique.
+
 ## Configuration
 
 - Page d'accueil : derniers articles ou une page unique.
