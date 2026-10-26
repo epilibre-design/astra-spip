@@ -23,6 +23,12 @@
 	.ast-avatar-initiale { width: 2.5em; height: 2.5em; font-size: 1em; }
 }
 .ast-comment-avatar-wrap { margin-right: 1em; }
+/* Avec une image, neutraliser seulement la marge du substitut : Astra 4.13.8,
+ * inc/dynamic-css/comments-flex.php (marge 0.5 em sous 921 px). */
+.ast-comment-avatar-wrap.ast-avatar-gravatar { margin-right: 0; }
+@media (max-width: 921px) {
+	.ast-comment-avatar-wrap.ast-avatar-gravatar { margin-right: 0.5em; }
+}
 
 /* Description des archives (rubriques, mots, auteurs) */
 .ast-archive-description .ast-breadcrumbs-wrapper { margin-top: .5em; }
