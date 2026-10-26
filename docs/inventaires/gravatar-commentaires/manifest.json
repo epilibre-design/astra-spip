@@ -110,6 +110,16 @@
     "task3-lint74.log": "3c6b202ced4a3f059a791b66f12e1af3dc166354a4c3a89e5a9a26ffe8d97f87",
     "task3-navigateur-final.log": "7ea67f3f1df0bd1d8ed70e7ae09fdb67d2674650eb753ec8b13ee54b82e1e6fd",
     "task3-navigateur-sans.log": "845633d6bdb675f2a64d6c7b93ff06b74b2103d258ccf310bd4aea66fec19132",
-    "task3-unit-final.log": "2cce06e636e9a8b2a17c409d21863cf678a6e5fffc383e4840f9e00a5a3dd020"
+    "task3-unit-final.log": "2cce06e636e9a8b2a17c409d21863cf678a6e5fffc383e4840f9e00a5a3dd020",
+    "environnement-navigateur.json": "59f7a9c189ba49f1d2c1a1984e5b0d0293ffd5ecb586e662db52ccc3180297fb"
+  },
+  "navigateur": {
+    "releve": "2026-10-26T06:00:17.149Z",
+    "playwright": "1.61.0",
+    "chromium": "149.0.7827.55",
+    "executable": "/home/gilles/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome",
+    "sha256": "2d18db9d8608b052b6a552ee00ec1e830f93692e928b65ecc67d693bd33fe801",
+    "mtime": "2026-07-11T09:41:44.773Z",
+    "remarque": "Relevé manuel après qualification, binaire et installation Playwright inchangés pendant les essais. Le pilote ne consigne pas encore cette information automatiquement."
   }
 }
