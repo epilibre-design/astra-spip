@@ -28,6 +28,7 @@
 	<utilise nom="pages" compatibilite="[2.0.0;]" />
 	<utilise nom="a2a" compatibilite="[4.2.0;]" />
 	<utilise nom="oembed" />
+	<utilise nom="gravatar" compatibilite="[3.0.0;3.*]" />
 
 	<pipeline nom="styliser" inclure="astra_pipelines.php" />
 	<pipeline nom="affiche_milieu" inclure="astra_pipelines.php" />

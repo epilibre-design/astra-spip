@@ -198,6 +198,23 @@ Webfonts Loader, la capture promotionnelle et ces illustrations ne sont pas
 embarqués dans Astra-spip : leur présence dans le thème WordPress ne signifie pas
 qu'ils sont tous redistribués par le portage.
 
+## Gravatar facultatif des commentaires
+
+L’intégration délègue à [Gravatar pour SPIP](https://git.spip.net/spip-contrib-extensions/gravatar),
+version 3.0.0, commit `dba78603edcb8c48fa55230f15b4dbecb97b8993`, APIs
+`gravatar()` et `gravatar_balise_imgx2()` de `gravatar_fonctions.php`.
+Auteurs déclarés : Thomas Beaumanoir, Clever Age, Fil et Cedric ; fichier `LICENSE`
+GNU GPL version 3 de cette révision. Les sources du plugin ne sont ni copiées ni distribuées
+par Astra SPIP. Le plugin reste facultatif, avec ses propres crédits et son cache.
+
+Le balisage de l’image et sa taille nominale viennent du commentaire d’Astra 4.13.8,
+`inc/blog/single-blog.php` (Brainstorm Force, GPL v2 ou ultérieure).
+La marge responsive de l’image suit `inc/dynamic-css/comments-flex.php` ; sa neutralisation
+conditionnelle dans le port ne change pas le substitut initial. Le filtre de délégation et les
+pilotes de test sont des adaptations originales du projet, GPL-3.0-or-later.
+`tests/fixtures/gravatar/portrait.jpg` est une image de test originale sans personne réelle,
+générée par `generer-image.php`, sous GPL-3.0-or-later. Elle ne provient pas de Gravatar.
+
 ## Polices locales
 
 Fichiers woff2 du sous-ensemble « latin » publiés par [Fontsource](https://fontsource.org/)

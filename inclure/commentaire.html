@@ -8,7 +8,7 @@
 <article id="forum#ID_FORUM" class="ast-comment">
 	<a id="comment#ID_FORUM"></a>
 	<div class="ast-comment-info">
-		<div class="ast-comment-avatar-wrap"><span class="avatar avatar-50 photo ast-avatar-initiale" aria-hidden="true">[(#NOM|textebrut|trim|sinon{?}|mb_substr{0,1}|mb_strtoupper)]</span></div>
+		#SET{avatar,#EMAIL|astra_commentaire_gravatar}<div class="ast-comment-avatar-wrap[(#GET{avatar}|oui) ast-avatar-gravatar]">[(#GET{avatar}|sinon{<span class="avatar avatar-50 photo ast-avatar-initiale" aria-hidden="true">[(#NOM|textebrut|trim|sinon{?}|mb_substr{0,1}|mb_strtoupper)]</span>})]</div>
 		<header class="ast-comment-meta ast-row ast-comment-author capitalize"><div class="ast-comment-cite-wrap"><cite><b class="fn">[(#NOM|sinon{<:astra:anonyme:>})]</b></cite></div><div class="ast-comment-time"><span class="timendate"><a href="#forum#ID_FORUM"><time datetime="[(#DATE|date_iso)]">[(#DATE|affdate)][ <:astra:a_heure:> (#DATE|heures_minutes)]</time></a></span></div></header> <!-- .ast-comment-meta -->
 	</div>
 	<section class="ast-comment-content comment entry-content">
