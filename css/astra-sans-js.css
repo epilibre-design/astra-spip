@@ -1,0 +1,34 @@
+/* Repli activé uniquement par <noscript> : ne modifie pas le rendu avec JS. */
+#masthead .astra-navigation-sans-js { display:none; }
+@media (max-width:922px) {
+ body #masthead { position:relative !important; }
+ body #masthead #ast-desktop-header { display:none !important; }
+ body #masthead #ast-mobile-header { display:block !important; }
+ #masthead .ast-mobile-header-content,
+ #masthead .main-header-menu-toggle,
+ #masthead .ast-mobile-header-wrap .main-header-bar-navigation { display:none !important; }
+ #masthead .astra-navigation-sans-js {
+  display:block;
+  padding:1em 20px;
+  background:var(--ast-global-color-5, #fff);
+  color:var(--ast-global-color-3, #222);
+  text-align:start;
+ }
+ #masthead .astra-navigation-sans-js ul {
+  display:block !important;
+  position:static !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  width:auto !important;
+  margin:0;
+  padding:0 0 0 1.25em;
+  list-style:disc;
+ }
+ #masthead .astra-navigation-sans-js li { display:list-item; }
+ #masthead .astra-navigation-sans-js a {
+  display:inline-block;
+  padding:.35em 0;
+  color:inherit;
+  overflow-wrap:anywhere;
+ }
+}

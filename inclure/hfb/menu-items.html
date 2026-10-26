@@ -4,15 +4,15 @@
 	(sous-menus déroulants, bouton de dépliage mobile).
 
 	Paramètres :
-	- source : racine | rubrique | groupe_mots | pages
-	- id_source : rubrique ou groupe de mots selon la source
-	- niveaux : 2 (avec sous-menus) ou 1
+	- source : racine | rubrique | groupe_mots | pages | menus
+	- id_source : rubrique, groupe de mots ou menu libre selon la source
+	- niveaux : 2 (avec sous-menus) ou 1 ; les menus libres gardent leur arbre, statique au pied
 	- accueil : 'oui' pour ajouter le lien « Accueil » (réglage menu_accueil)
 	- id_rubrique, id_secteur, id_article, type_page : page courante (état actif)
 	- widget : 'oui' pour le balisage du widget « Menu de navigation » de WordPress sous Astra
 	  (liste statique, flèche décorative, pas de commande de dépliage)
 
-][(#VAL{menu_accueil}|astra_conf|=={oui}|et{#ENV{accueil}|=={oui}}|oui)
+][(#VAL{menu_accueil}|astra_conf|=={oui}|et{#ENV{accueil}|=={oui}}|et{#ENV{source}|!={menus}}|oui)
 <li class="menu-item menu-item-home[ (#ENV{type_page}|=={sommaire}|oui)current-menu-item]"><a href="#URL_SITE_SPIP/" class="menu-link"><:astra:accueil:></a></li>]
 <BOUCLE_si_rubriques(CONDITION){si #ENV{source}|in_array{#LISTE{racine,rubrique}}}>
 <BOUCLE_rubriques(RUBRIQUES){id_parent=#ENV{source}|=={rubrique}|?{#ENV{id_source},0}}{par num titre, titre}>
@@ -51,3 +51,7 @@
 </BOUCLE_page>
 </BOUCLE_pages>
 </BOUCLE_si_pages>
+
+<BOUCLE_si_menus(CONDITION){si #ENV{source}|=={menus}}>
+[(#INCLURE{fond=inclure/menu,env,type-page=#ENV{type_page},id_menu=#ENV{id_source},identifiant=}|astra_menus_adapter{#ENV{niveaux}|=={1}|?{oui,#ENV{widget}}})]
+</BOUCLE_si_menus>

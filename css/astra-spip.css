@@ -213,3 +213,25 @@ body:not(.editor-styles-wrapper) .wp-block-cover > .spip_documents img { z-index
 	.wp-block-media-text > .wp-block-media-text__media { grid-column: 1; grid-row: 1; }
 	.wp-block-media-text > .wp-block-media-text__content { grid-column: 1; grid-row: 2; }
 }
+
+/* Menus libres : sous-listes statiques du pied, sans commande interactive. */
+#astra-footer-menu .menu-liste.sub-menu {
+ display:block;
+ position:static;
+ visibility:visible;
+ opacity:1;
+ width:auto;
+ margin:0;
+ padding-left:1em;
+ list-style:none;
+}
+/* Les entrées Menus sans lien ont aussi une commande accessible sur ordinateur. */
+.ast-desktop #masthead .astra-menu-sans-lien > .ast-menu-toggle {
+ display:inline-flex;
+ position:static;
+}
+.ast-desktop #masthead .astra-menu-sans-lien.ast-submenu-expanded > .sub-menu {
+ opacity:1;
+ visibility:visible;
+ left:0;
+}

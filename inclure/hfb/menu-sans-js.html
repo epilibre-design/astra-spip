@@ -1,5 +1,5 @@
 [(#REM) Écart déclaré à Astra : liens simples uniquement si JavaScript est désactivé. ]
 <BOUCLE_menus(DATA){source table, #VAL|astra_hfb_config|astra_responsive_menus_sans_js}>
-#SET{liens,#INCLURE{fond=inclure/hfb/menu-liens-sans-js,source=#VALEUR{source},id_source=#VALEUR{id_source},accueil=#VALEUR{accueil}}}
-[(#GET{liens}|trim|oui)<noscript><nav class="astra-navigation-sans-js" aria-label="[(#VALEUR{numero}|=={1}|?{<:astra:navigation_principale:>,<:astra:navigation_secondaire:>}|attribut_html)]"><ul class="astra-liens-sans-js">#GET{liens}</ul></nav></noscript>]
+#SET{liens,#INCLURE{fond=inclure/hfb/menu-liens-sans-js,env,source=#VALEUR{source},id_source=#VALEUR{id_source},accueil=#VALEUR{accueil}}}
+[(#GET{liens}|trim|oui)<noscript><nav class="astra-navigation-sans-js" aria-label="[(#VALEUR{numero}|=={1}|?{<:astra:navigation_principale:>,<:astra:navigation_secondaire:>}|attribut_html)]"><ul class="astra-liens-sans-js[ (#VALEUR{source}|astra_menus_classes{#VALEUR{id_source}}|attribut_html)]">#GET{liens}</ul></nav></noscript>]
 </BOUCLE_menus>

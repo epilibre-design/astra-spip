@@ -22,7 +22,7 @@
 		<BOUCLE_rangees_mobile(DATA){source table, #VAL{entete_mobile}|astra_hfb_rangees}>
 		<INCLURE{fond=inclure/hfb/rangee-mobile}{rangee=#VALEUR{rangee}}{id_rubrique}{id_secteur}{id_article}{type_page} />
 		</BOUCLE_rangees_mobile>
-		<INCLURE{fond=inclure/hfb/menu-sans-js} />
+		<INCLURE{fond=inclure/hfb/menu-sans-js}{id_rubrique}{id_secteur}{id_article}{type_page} />
 		<BOUCLE_si_deroulant(CONDITION){si #VAL|astra_hfb_menu_mobile|=={dropdown}}>
 		<B_panneau>
 		<div class="ast-mobile-header-content content-align-flex-start">

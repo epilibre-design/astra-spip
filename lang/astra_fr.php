@@ -167,6 +167,8 @@ return [
 	'hfb_source' => 'Source',
 	'hfb_source_groupe_mots' => 'Articles du groupe « @titre@ »',
 	'hfb_source_pages' => 'Pages uniques',
+	'hfb_gerer_menus_libres' => 'Créer et modifier les menus libres',
+	'hfb_source_menu_libre' => 'Menu libre : @titre@',
 	'hfb_source_racine' => 'Rubriques racines',
 	'hfb_source_rubrique' => 'Sous-rubriques de « @titre@ »',
 	'hfb_style' => 'Style',

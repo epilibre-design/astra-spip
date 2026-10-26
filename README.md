@@ -6,20 +6,38 @@ Le plugin reproduit le rendu d'Astra avec ses réglages par défaut : même bali
 thème WordPress, mêmes feuilles de style et même JavaScript. Les classes CSS d'Astra
 (`ast-separate-container`, `ast-right-sidebar`, `blog-layout-4`…) s'appliquent donc telles quelles.
 
-Compatibilité : SPIP 4.2 à 5.0.
+Compatibilité : **SPIP 4.4**. Le support de SPIP 5 est suspendu.
 
-La version **1.7.0** ajoute l’identité responsive et les alignements des widgets du pied
+La dernière version publiée, **1.7.0**, ajoute l’identité responsive et les alignements des widgets du pied
 sur les trois appareils, ainsi que Gravatar facultatif dans les commentaires.
 Voir les [notes de version](docs/releases/1.7.0.md).
 
 ## Installation
 
 1. Copier le dossier dans `plugins/astra` (ou `plugins/auto/astra`).
-2. Activer le plugin « Astra » dans l'espace privé.
-3. Régler le thème dans **Configuration › Squelettes › Thème Astra**.
+2. Installer et activer **Menus 3.1.2 ou ultérieur (branche 3)** et sa dépendance **Saisies**. Menus est obligatoire, y compris pour les sites qui conservent leurs menus automatiques.
+3. Activer le plugin « Astra » dans l'espace privé.
+4. Régler le thème dans **Configuration › Squelettes › Thème Astra**.
 
 Le plugin fournit ses propres squelettes et remplace ceux de `squelettes-dist`. Un dossier
 `squelettes/` à la racine du site reste prioritaire et permet de surcharger n'importe quel fichier.
+
+Le développement **1.8.0** cible SPIP 4.4 et intègre Menus obligatoirement.
+Voir le [bilan de qualification](docs/inventaires/navigation-menus/bilan.md).
+
+## Menus libres
+
+Créer le menu dans **Squelettes › Menus**, puis sélectionner **Menu libre : [titre]**
+dans le builder Astra, pour le menu principal, secondaire, celui du pied ou le bloc
+« menu » d’une zone de widgets. Menus gère les liens, leur ordre et leurs sous-menus ;
+Astra conserve la présentation et les commandes de navigation.
+
+Les sources automatiques existantes (rubriques, mots-clés, pages) sont conservées.
+Aucun menu n’est créé automatiquement. Un menu libre
+maîtrise toutes ses entrées : ajouter aussi son lien d’accueil dans Menus si souhaité.
+
+Sans JavaScript, les liens du menu mobile et leurs sous-liens restent affichés dans
+le flux jusqu’à 922 px, y compris avec un en-tête transparent.
 
 ## Correspondance avec le thème WordPress
 
@@ -257,8 +275,7 @@ La comparaison des blocs importés (WordPress sur MySQL, import par wp2spip) est
 
 `PW` désigne un dossier où sont installés `playwright`, `pixelmatch` et `pngjs` (npm).
 
-Le builder d'en-tête et de pied de page est vérifié sur SPIP 4.4 uniquement : SPIP 4.2 et 5.0,
-bien que déclarés compatibles, ne sont pas vérifiés pour cette fonction.
+Le builder d’en-tête et de pied de page cible SPIP 4.4.
 
 ## Licence
 

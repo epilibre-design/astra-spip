@@ -1,5 +1,5 @@
 [(#REM) Même source que le menu interactif ; aucun de ses contrôles ou sélecteurs. ]
-[(#VAL{menu_accueil}|astra_conf|=={oui}|et{#ENV{accueil}|=={oui}}|oui)<li><a href="#URL_SITE_SPIP/"><:astra:accueil:></a></li>]
+[(#VAL{menu_accueil}|astra_conf|=={oui}|et{#ENV{accueil}|=={oui}}|et{#ENV{source}|!={menus}}|oui)<li><a href="#URL_SITE_SPIP/"><:astra:accueil:></a></li>]
 <BOUCLE_si_rubriques(CONDITION){si #ENV{source}|in_array{#LISTE{racine,rubrique}}}>
 <BOUCLE_rubriques(RUBRIQUES){id_parent=#ENV{source}|=={rubrique}|?{#ENV{id_source},0}}{par num titre, titre}>
 <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
@@ -16,3 +16,8 @@
 <BOUCLE_page(ARTICLES){id_article=#VALEUR{id}}><li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
 <B_sous_pages><ul><BOUCLE_sous_pages(DATA){source table, #GET{enfants}}><BOUCLE_sous_page(ARTICLES){id_article=#VALEUR}><li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li></BOUCLE_sous_page></BOUCLE_sous_pages></ul></B_sous_pages>
 </li></BOUCLE_page></BOUCLE_pages></BOUCLE_si_pages>
+
+<BOUCLE_si_menus(CONDITION){si #ENV{source}|=={menus}}>
+#SET{menu_libre,#INCLURE{fond=inclure/menu,env,type-page=#ENV{type_page},id_menu=#ENV{id_source},identifiant=}}
+[(#GET{menu_libre}|astra_menus_adapter{sans-js})]
+</BOUCLE_si_menus>

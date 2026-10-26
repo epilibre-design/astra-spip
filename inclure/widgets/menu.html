@@ -7,7 +7,7 @@
 	id_rubrique, id_secteur, id_article, type_page
 
 ]#SET{menu,#ENV{menu}|sinon{#ARRAY{source,racine,id,0}}}<[(#ENV{balise,aside})] id="nav_menu-#ENV{groupe}-#ENV{numero}" class="widget widget_nav_menu">[
-	<h2 class="widget-title">(#ENV{titre}|textebrut)</h2>]<nav class="menu-[(#GET{menu}|table_valeur{source})]-container" aria-label="[(#ENV{titre}|textebrut|sinon{<:astra:menu:>}|attribut_html)]"><ul class="menu">
+	<h2 class="widget-title">(#ENV{titre}|textebrut)</h2>]<nav class="menu-[(#GET{menu}|table_valeur{source})]-container" aria-label="[(#ENV{titre}|textebrut|sinon{<:astra:menu:>}|attribut_html)]"><ul class="menu[ (#GET{menu}|table_valeur{source}|astra_menus_classes{#GET{menu}|table_valeur{id}}|attribut_html)]">
 		<INCLURE{fond=inclure/hfb/menu-items}{source=#GET{menu}|table_valeur{source}}{id_source=#GET{menu}|table_valeur{id}}{niveaux=2}{widget=oui}{id_rubrique}{id_secteur}{id_article}{type_page} />
 	</ul></nav>
 </[(#ENV{balise,aside})]>
