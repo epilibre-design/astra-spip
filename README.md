@@ -165,11 +165,22 @@ la comparaison avec Astra 4.13.8, sur article, réponse et page unique.
 - Polices du texte et des titres (pile CSS, ou Raleway et Poppins, fournies avec le thème et servies par le site), nombre d'articles par page.
 - Affichage des auteurs, des extraits, du lien « Accueil » et du bouton de retour en haut.
 - Neuvième couleur de la palette : hexadécimale ou `rgba()`, comme dans Astra.
-- **Couleurs et typographie** (Configuration › Squelettes) : réglages de style du Customizer d'Astra, sous leurs noms d'options (`header-menu1-color-responsive`, `button-radius-fields`…) — menus, bouton, bouton de l'en-tête, identité du site (couleurs, tailles, affichage du nom et du slogan, largeur du logo), widgets et copyright du pied, icônes sociales, bouton du menu mobile (minimal, plein ou contour). Les valeurs d'un `site.json` de modèle Astra se reprennent telles quelles ; seule la valeur ordinateur est appliquée, les valeurs tablette et mobile sont conservées. Sans réglage, rien ne change.
+- **Couleurs et typographie** (Configuration › Squelettes) : réglages de style du Customizer d'Astra, sous leurs noms d'options (`header-menu1-color-responsive`, `button-radius-fields`…) — menus, bouton, bouton de l'en-tête, identité du site (couleurs, tailles, affichage du nom et du slogan, largeur du logo), widgets et copyright du pied, icônes sociales, bouton du menu mobile (minimal, plein ou contour). Les valeurs d'un `site.json` de modèle Astra se reprennent telles quelles ; la plupart des groupes appliquent la valeur ordinateur et conservent tablette/mobile. L’identité, les alignements et les marges des rangées appliquent leurs trois appareils. Sans réglage, rien ne change.
+- **Identité responsive** : titre, slogan, visibilité et largeur du logo se règlent sur ordinateur,
+  tablette et mobile (921/544 px). Une taille vide laisse la cascade agir ; une visibilité absente
+  prend le défaut de son appareil, tandis que faux/0 reste explicite. Les valeurs déjà stockées
+  sur tablette/mobile deviennent actives. La définition du fichier de logo couvre la plus grande
+  largeur demandée sans agrandir l’original ; le cadre du bureau reste inchangé. Les logos distincts
+  mobile/transparent et le traitement SVG ne sont pas ajoutés.
 - **En-tête transparent** (même formulaire) : l'en-tête se superpose au début du contenu, avec ses propres couleurs, sur tout le site ou page par page, avec les exclusions d'Astra (archives, recherche, 404, accueil des derniers articles, pages, articles) et la restriction par appareil ; règles d'Astra 4.13.8 sur les trois appareils (`inc/astra_entete_transparent.php`). Logo propre à l'en-tête transparent : non repris.
 - Graisses des titres (`headings-font-weight`, `font-weight-h1` à `h6`), marge intérieure du
   bouton de l'en-tête et alignements du copyright et des icônes sociales du pied (même formulaire ;
   les alignements s'appliquent sur les trois appareils).
+- **Alignements des widgets du pied** : `footer-widget-alignment-1` à `-4`, sur les trois
+  appareils, dans leurs quatre sections du formulaire. « Sans réglage » laisse agir la cascade ;
+  tablette/mobile vides gardent la valeur du plus grand écran. Left/right restent physiques en
+  RTL. Les couleurs ne sont pas requises ; seuls les widgets placés au pied sont concernés,
+  dans le profil flex actuel d’Astra (les anciens profils non flex ne sont pas ajoutés).
 - **Marges des rangées** (même formulaire) : marges intérieures et extérieures des rangées haute,
   principale et basse de l'en-tête et du pied, du pied entier et marge extérieure de l'en-tête
   entier (`section-*-builder-padding`, `-margin`), saisies et appliquées sur les trois appareils,
@@ -261,3 +272,10 @@ Gallagher et Jonathan Neal (normalize.css, MIT).
 Les huit SVG identifiés comme issus de Font Awesome Free sont crédités à Fonticons,
 Inc., sous CC BY 4.0. Les autres SVG repris d'Astra et les limites de leur attribution
 sont recensés séparément dans `CREDITS.md`.
+
+Les [preuves de l’identité responsive](docs/inventaires/identite-responsive/bilan.md) identifient
+le commit testé, les oracles WordPress, les comparaisons et les limites conservées.
+
+Les [preuves des alignements des widgets](docs/inventaires/widgets-alignements/bilan.md)
+partagent la qualification historique du lot identité ; les douze mesures Garden ne sont
+mises à jour qu’après publication et un lot consommateur Garden.

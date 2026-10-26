@@ -1,0 +1,194 @@
+{
+  "commit_production_teste": "5208e6d0511d3d7c8df1685852f0b72efb801300",
+  "base": "0a70f6090e45cb2db07f273bfbbf635a71944b29",
+  "astra": "4.13.8",
+  "wordpress": "7.1.3",
+  "spip": "4.4.28",
+  "php": [
+    "7.4",
+    "8.4.27"
+  ],
+  "unitaires": {
+    "tests": 185,
+    "assertions": 2039
+  },
+  "integration": {
+    "tests": 107,
+    "assertions": 653,
+    "ignores": 3,
+    "raison": "oEmbed exercé séparément sur ses vrais sites avec/sans plugin"
+  },
+  "captures": {
+    "configurations": [
+      "R0-defaut",
+      "R26-css-cascade",
+      "R27-sociaux-ids",
+      "R1-entete-complet",
+      "R25-nav-sousmenus",
+      "R25-nav-sousmenus-pages",
+      "R2-entete-centre",
+      "R25-nav-offcanvas",
+      "R25-nav-vide",
+      "R3-pied-colonnes",
+      "R12-pied-appareils",
+      "R13-pied-widgets-menus",
+      "R15-sociaux-google",
+      "R4-pied-asymetrique",
+      "R5-rangees",
+      "R6-menu",
+      "R7-bouton",
+      "R8-identite",
+      "R9-pied-couleurs",
+      "R10-sociaux",
+      "R14-bouton-mobile",
+      "R11-combinee",
+      "R16-transparent-page",
+      "R17-transparent-global",
+      "R18-compat-sous-menu",
+      "R19-compat-polices-widgets",
+      "R20-titres-graisses",
+      "R20-titres-graisses-drapeau",
+      "R21-bouton-entete-marge",
+      "R21-bouton-entete-marge-valeur",
+      "R21-bouton-entete-marge-vide",
+      "R22-pied-alignements",
+      "R22-pied-alignements-ordinateur",
+      "R22-pied-alignements-tablette",
+      "R23-garden-compat",
+      "R24-pied-marges",
+      "R24-marges-toutes",
+      "R24-marges-rangees-vides",
+      "P1-page",
+      "P2-accueil",
+      "P3-page-pleine",
+      "R29-identite-responsive",
+      "R29-identite-responsive-ordinateur",
+      "R29-identite-responsive-tablette",
+      "R29-identite-responsive-mobile",
+      "R29-identite-responsive-trous",
+      "R29-identite-responsive-vides",
+      "R29-identite-responsive-zero-nombre",
+      "R29-identite-responsive-zero-chaine",
+      "R29-identite-responsive-unites",
+      "R29-identite-responsive-visibilites",
+      "R29-identite-responsive-logo-large",
+      "R29-identite-responsive-logo-sans-bureau",
+      "R29-identite-responsive-logo-petit",
+      "R29-identite-responsive-logo-ratio",
+      "R29-identite-responsive-transparent",
+      "R30-widgets-alignements",
+      "R30-widgets-alignements-distincts",
+      "R30-widgets-alignements-ordinateur",
+      "R30-widgets-alignements-tablette",
+      "R30-widgets-alignements-mobile",
+      "R30-widgets-alignements-trous",
+      "R30-widgets-alignements-vides",
+      "R30-widgets-alignements-deplace",
+      "R30-widgets-alignements-blocs",
+      "R30-widgets-alignements-rtl"
+    ],
+    "nombre_configurations": 66,
+    "verifications": 513,
+    "captures_pixels": 348,
+    "ecart_maximal_pourcent": 0.23,
+    "ecarts_finaux": [],
+    "reprise": {
+      "cas": "R29-identite-responsive-logo-petit",
+      "cause": "le clone Gravatar avait repris DB_PATH absolu du WordPress responsive ; clone corrigé, cas repris sans concurrence",
+      "code": 0
+    }
+  },
+  "mutations": [
+    {
+      "mutation": "bool-mobile",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "mutation": "lecture-desktop",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "mutation": "unite-inconnue",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "mutation": "source-bureau",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "mutation": "widget-index",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "mutation": "widget-placement",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "mutation": "widget-neutralisation",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "mutation": "widget-mobile-force",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "mutation": "widget-descendant",
+      "detectee": true,
+      "code": 1
+    },
+    {
+      "temoin_restaure": true,
+      "code": 0
+    }
+  ],
+  "limites_html": [
+    "R13 : nommage historique menu",
+    "R11 : contenu des articles de démonstration",
+    "R30-blocs : mêmes deux écarts de nommage de menu que R13, sans nouvel ignore"
+  ],
+  "actifs_officiels": {
+    "css/main.min.css": "84aad614f8b95ebd3a4ac6f7633e77323066d31da87afe3dafc8c14cd3d0f8fc",
+    "js/frontend.min.js": "3b3a9a24246253beec04f3d2619082970c3aa861ca4ee34280662e3d4a509d20"
+  },
+  "sha256": {
+    "blocs.log": "d0218aee8728e599d22e12c8fe84c6cacc51e31743c060463549d553055f12fc",
+    "captures-bilan.json": "e5c4417fbc86992be0ffa6f611efbe016f8d7710b5fb8da726cc0500c041e082",
+    "captures-reprise-logo-petit.log": "ab49c2193c2ca34e0af3e1dea0863ea4a61cd5e54d330b0aab965fb8eccb982d",
+    "captures.log": "2cdb0cdbe65c667342581c3444fba6d043e690793a0823080dd9f98700834194",
+    "codes.txt": "ead0df8d3fafe4d81a74542c0a85ace61258fb4361cefd112a7e157872bd66ef",
+    "html-defaut.log": "4e40e1f9a039d29f8e76e4bd2cf16891119e94fc9750f12b161e77c08d98a33d",
+    "html-explicite.log": "2b1c377b313be07e849c0462f3108f529c3af9f3b0e03755d7b369fabb365456",
+    "identite-final.json": "ffecb61e1ecc87bb7e92953811f0515168107567e4c14ae55bf044f87b24b249",
+    "identite-frontieres-final.json": "9202951a2c3c58c3c68e5b96a44ba08e97399129add6fa2d85eecec98e233092",
+    "integration.log": "482c11c42eba446a9274739618fa4b8e048d4d5e969688a6d3b4bc3a015544c7",
+    "lint-php74.log": "d8dbee24e465290695bc6b3972c32b9c0e54d2d5be6b612c1cab700b135b72f5",
+    "mutations.json": "65c633775d6a10d830ed347e52ec4097787ca49e2388c2c46c94fdeadc214f55",
+    "oembed-avec.log": "752cef328f1537eb327993b32e878dfd2be3b3107e3e91f69ba66263116cab18",
+    "oembed-classique-mesures.json": "2ed65b80b7ec4230a1d354f7e8c8c382df4b421e52e5f5d390eefdd560fe26dd",
+    "oembed-deja-mesures.json": "33fbfe4a200198cf570dfcb0a2435a3e6f6763c83de8a2e4256c79940cf46e6d",
+    "oembed-erreur-mesures.json": "64773ad79a4a1788295d928cf31657fa4ce399d4f491e0b39e4965d732db6e32",
+    "oembed-inconnu-mesures.json": "64773ad79a4a1788295d928cf31657fa4ce399d4f491e0b39e4965d732db6e32",
+    "oembed-invalide-mesures.json": "64773ad79a4a1788295d928cf31657fa4ce399d4f491e0b39e4965d732db6e32",
+    "oembed-large-mesures.json": "6023cdaf4b45428543e84072e136d8980fffc12655081dad22c7278d086a77f6",
+    "oembed-navigateur-classique.log": "853f88a874577ec83d0faa10113b32faf82a57a3bb4f58042d6d03c1065a55e3",
+    "oembed-navigateur-deja.log": "6cfd0a71f279205d8a552237282f3dd7da5cca39a1aebeed6808ce69cc821852",
+    "oembed-navigateur-erreur.log": "47fcd0f26553951764a89759bd4b687097e227b89c3a0565b38db9f69ca34f18",
+    "oembed-navigateur-inconnu.log": "47fcd0f26553951764a89759bd4b687097e227b89c3a0565b38db9f69ca34f18",
+    "oembed-navigateur-invalide.log": "47fcd0f26553951764a89759bd4b687097e227b89c3a0565b38db9f69ca34f18",
+    "oembed-navigateur-large.log": "853f88a874577ec83d0faa10113b32faf82a57a3bb4f58042d6d03c1065a55e3",
+    "oembed-navigateur-sans.log": "7703fbdc53eee42788231f2d2fbcbd1ac642c1d39e3396272f03353b7db3913a",
+    "oembed-sans-mesures.json": "fd4ab2473007a7612b1a89788106a54e5b7993ebb0a7f468043adaabafe21a34",
+    "oembed-sans.log": "9d6347fc9caf1569e818c04898369fddf9636560b20003a4f446f4b61df7cd88",
+    "python.log": "6273232de4d3ef7acd4ecafa5c86beeeb974f56586b21089a2990b3f72facbe6",
+    "sans-js-922.json": "55ba2365c07a356fbc3321d45e8baad9305c13f454fb78f92415d18a62fae560",
+    "unit.log": "15753c0bcca1cdbb41520b69ee7f7fe57e064f2566356851ad444bd766880721"
+  }
+}

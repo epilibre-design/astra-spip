@@ -1,0 +1,27 @@
+{
+  "wordpress": "7.1.3",
+  "astra": "4.13.8",
+  "profil": "base 16 px, drapeaux zéro/conversion absents",
+  "adaptations": {
+    "booléens": "complétés par appareil selon les défauts SPIP",
+    "tailles_entierement_vides": "option omise selon le contrat sans réglage"
+  },
+  "sha256": {
+    "R29-identite-responsive-logo-large.css": "d3d5eb418f4875bca5a237ce17ce54e4d40136049077528d9c0cfc1e438e473f",
+    "R29-identite-responsive-logo-petit.css": "d3d5eb418f4875bca5a237ce17ce54e4d40136049077528d9c0cfc1e438e473f",
+    "R29-identite-responsive-logo-ratio.css": "d3d5eb418f4875bca5a237ce17ce54e4d40136049077528d9c0cfc1e438e473f",
+    "R29-identite-responsive-logo-sans-bureau.css": "a7f0d1fe6ec39ef2b901eb5addc0516539a5421252c2882c74473f1023161508",
+    "R29-identite-responsive-masques.css": "467eff782519ae763ebed5611bb996c028e84e7cd4f246fe414ee7f2517fe6e5",
+    "R29-identite-responsive-mobile.css": "1a07a0c3a9ce246db71e647bd26b999cae9c43afba2446b3c23da034590ddca5",
+    "R29-identite-responsive-ordinateur.css": "1472527352d857152f702262ed7c032b0f7bf92907e2b3d125efd9f29cee33ba",
+    "R29-identite-responsive-tablette.css": "1bfa1f5eb30835b4cba5f200511ab23dd877ffaf687b3bc0d18ccba4a5ce9aa5",
+    "R29-identite-responsive-transparent.css": "0d98e00765630ac9cb050d6628bcd22df9fc4f427650150f6d3db64eef70c5a0",
+    "R29-identite-responsive-trous.css": "8923ea8edcc5337646c403c5de681668f2384773e95c9f323bd5bd03852b4e00",
+    "R29-identite-responsive-unites.css": "2bf93fc1807039af1d01c657923fbf03f0392e56de6a6aa9fe9d89ddff092950",
+    "R29-identite-responsive-vides.css": "8a5db0151b3d0c100fda7d6049b6db2a7e58c0c737073e882de2de48d8ca3687",
+    "R29-identite-responsive-visibilites.css": "682e6225855206da9a347bc513636769227559751f3d5012ad7925c8569b0e9b",
+    "R29-identite-responsive-zero-chaine.css": "77d57cc86e31710f20d5ce1febfc4e0973b8ebf8be21a1fc480655f0486a564b",
+    "R29-identite-responsive-zero-nombre.css": "1472527352d857152f702262ed7c032b0f7bf92907e2b3d125efd9f29cee33ba",
+    "R29-identite-responsive.css": "0d98e00765630ac9cb050d6628bcd22df9fc4f427650150f6d3db64eef70c5a0"
+  }
+}

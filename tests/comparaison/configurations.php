@@ -38,7 +38,7 @@ function astra_configurations_reference(): array {
 		$texte .= "<h$n>Titre de niveau $n</h$n>\n";
 	}
 	$titres = ['page' => 'notre_jardin', 'textes' => ['notre_jardin' => $texte . '<p>Texte de la page.</p>']];
-	return [
+	return array_replace([
 		'R0-defaut' => [],
 		'R26-css-cascade' => [
 			'page' => 'notre_jardin',
@@ -298,12 +298,12 @@ function astra_configurations_reference(): array {
 			'pages' => ['plein_ecran' => ['titre' => 'masquer', 'disposition' => 'pleine']],
 			'elements' => ['entete' => ['menu-1' => ['source' => 'pages', 'id' => 0]]],
 		],
-	];
+	], astra_configurations_identite_responsive(), astra_configurations_widgets_alignements());
 }
 
 /** Partie « builder » d'une configuration : sans les clés propres aux comparaisons de pages et aux styles. */
 function astra_configuration_hfb(array $c): array {
-	unset($c['page'], $c['astra'], $c['pages'], $c['styles'], $c['rubrique'], $c['meta']);
+	unset($c['page'], $c['astra'], $c['pages'], $c['styles'], $c['rubrique'], $c['meta'], $c['logo']);
 	return $c;
 }
 
@@ -314,4 +314,45 @@ function astra_configuration_styles(array $groupes): array {
 		$valeurs += json_decode(file_get_contents(dirname(__DIR__) . "/references/styles/valeurs/$groupe.json"), true);
 	}
 	return $valeurs;
+}
+
+/** Configurations R29, gardées dans la matrice qui sert aussi au témoin WordPress. */
+function astra_configurations_identite_responsive(): array {
+ $r = [];
+ foreach (json_decode(file_get_contents(__DIR__ . '/../references/responsive/identite.json'), true) as $nom => $cas) {
+  $r[$nom] = ['styles' => $cas['styles'], 'meta' => $cas['meta'], 'logo' => $cas['logo'],
+   'entete_ordinateur' => ['primary' => ['primary_left' => ['logo'], 'primary_right' => ['menu-1','button-1']]],
+   'entete_mobile' => ['primary' => ['primary_left' => ['logo'], 'primary_right' => ['mobile-trigger']]],
+   'pied' => ['primary' => ['primary_1'=>['widget-1'],'primary_2'=>['widget-2'],'primary_3'=>['widget-3'],'primary_4'=>['widget-4']], 'below'=>['below_1'=>['copyright'],'below_2'=>['social-icons-1']]],
+   'rangees' => ['pied_primary'=>['colonnes'=>4,'repartition'=>['desktop'=>'4-equal','tablet'=>'full','mobile'=>'full']], 'pied_below'=>['colonnes'=>2,'repartition'=>['desktop'=>'2-equal','tablet'=>'2-equal','mobile'=>'full']]],
+   'elements'=>['entete'=>['button-1'=>['libelle'=>'Nous contacter','lien'=>'https://example.org/contact']], 'pied'=>[]]];
+  if ($cas['transparent']) { $r[$nom]['page']='notre_jardin'; $r[$nom]['pages']=['notre_jardin'=>['transparent'=>'active']]; }
+  for ($n=1;$n<=4;$n++) { $r[$nom]['elements']['pied']['widget-'.$n]=['blocs'=>['texte'],'titre'=>'Colonne '.$n,'texte'=>'Texte de la colonne '.$n]; }
+ }
+ return $r;
+}
+
+/** R30 : alignements physiques des quatre zones flex du pied. */
+function astra_configurations_widgets_alignements(): array {
+ $r = [];
+ foreach (json_decode(file_get_contents(__DIR__ . '/../references/responsive/widgets.json'), true) as $nom => $cas) {
+  $c = astra_configurations_identite_responsive()['R29-identite-responsive'];
+  unset($c['logo']);
+  $c['styles'] = $cas['styles'];
+  $c['meta'] = ['langue_site' => $cas['direction'] === 'rtl' ? 'ar' : 'fr'];
+  if (in_array($cas['placement'], ['absent', 'entete', 'deplace', 'zone6'], true)) { $c['pied']['primary']['primary_1'] = []; }
+  if ($cas['placement'] === 'entete') { $c['entete_ordinateur']['above']['above_left'] = ['widget-1']; }
+  if ($cas['placement'] === 'deplace') { $c['pied']['below']['below_1'] = ['widget-1']; }
+  if ($cas['placement'] === 'zone6') {
+   $c['pied']['primary'] = ['primary_6'=>['widget-1']];
+   $c['rangees']['pied_primary']['colonnes'] = 6;
+   $c['rangees']['pied_primary']['repartition']['desktop'] = '6-equal';
+  }
+  if ($cas['blocs'] === 'texte-aligne') {
+   $c['elements']['pied']['widget-1']['texte'] = '<p class="reference-aligne" style="text-align:right">Bloc explicitement aligné</p>';
+   $c['elements']['pied']['widget-2'] = ['blocs'=>['menu'], 'titre'=>'Colonne 2', 'menu'=>['source'=>'racine','id'=>0]];
+  }
+  $r[$nom] = $c;
+ }
+ return $r;
 }

@@ -1,0 +1,6 @@
+.site-title{font-size:26px;font-size:1.625rem;display:none;}
+.site-header .site-description{font-size:15px;font-size:0.9375rem;display:none;}
+[@media (max-width:921px)] .site-title{display:none;}
+[@media (max-width:921px)] .site-header .site-description{display:none;}
+[@media (max-width:544px)] .site-title{display:none;}
+[@media (max-width:544px)] .site-header .site-description{display:none;}

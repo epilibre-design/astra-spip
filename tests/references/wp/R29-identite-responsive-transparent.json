@@ -1,0 +1,37 @@
+{
+  "ordinateur": [],
+  "mobile": [],
+  "presents": [],
+  "menuMobile": "dropdown",
+  "styles": [
+    {
+      "selecteur": ".site-title",
+      "proprietes": [
+        "font-size",
+        "display"
+      ]
+    },
+    {
+      "selecteur": ".site-header .site-description",
+      "proprietes": [
+        "font-size",
+        "display",
+        "color"
+      ]
+    },
+    {
+      "selecteur": "header .custom-logo-link img",
+      "proprietes": [
+        "width",
+        "height"
+      ]
+    },
+    {
+      "selecteur": "#masthead",
+      "proprietes": [
+        "height"
+      ]
+    }
+  ],
+  "chemin": "/?pagename=notre-jardin"
+}

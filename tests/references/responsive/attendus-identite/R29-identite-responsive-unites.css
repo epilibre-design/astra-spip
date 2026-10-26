@@ -1,0 +1,6 @@
+.site-title{font-size:1.5rem;display:block;}
+.site-header .site-description{font-size:80%;display:block;}
+[@media (max-width:921px)] .site-title{font-size:1.25em;display:block;}
+[@media (max-width:921px)] .site-header .site-description{font-size:12px;font-size:0.75rem;display:block;}
+[@media (max-width:544px)] .site-title{font-size:4vw;display:block;}
+[@media (max-width:544px)] .site-header .site-description{display:block;}

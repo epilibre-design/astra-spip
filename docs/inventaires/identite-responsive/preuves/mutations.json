@@ -1,0 +1,51 @@
+[
+  {
+    "mutation": "bool-mobile",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "mutation": "lecture-desktop",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "mutation": "unite-inconnue",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "mutation": "source-bureau",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "mutation": "widget-index",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "mutation": "widget-placement",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "mutation": "widget-neutralisation",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "mutation": "widget-mobile-force",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "mutation": "widget-descendant",
+    "detectee": true,
+    "code": 1
+  },
+  {
+    "temoin_restaure": true,
+    "code": 0
+  }
+]

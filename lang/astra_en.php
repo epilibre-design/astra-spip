@@ -3,6 +3,9 @@
 // Language file for the Astra theme for SPIP
 
 return [
+	'styles_sans_reglage' => 'No setting',
+	'styles_sans_reglage_explication' => 'No setting: the cascade applies.',
+	'style_widget_alignment' => 'Content alignment',
 
 	// A
 	'a_heure' => 'at',
@@ -414,4 +417,7 @@ return [
 	// W
 	'widgets_entete' => 'Header Widget',
 	'widgets_pied' => 'Footer Widget',
+	'styles_identite_appareils' => "An empty size follows the cascade. Empty visibility uses the device default: title visible, tagline hidden.",
+	'styles_unite_implicite' => "Implicit px",
+	'styles_unite_appareil' => "Unit",
 ];

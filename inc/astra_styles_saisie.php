@@ -19,10 +19,10 @@ function astra_styles_sections(): array {
 		'bouton' => '/^(button-|theme-button-|font-[a-z]+-button$)/',
 		'bouton_entete' => '/^(header-button1-|section-hb-button-1-)/',
 		'identite' => '/^(?!(hba-|hbb-)?transparent-).*(site-title|site-tagline|logo-width)/',
-		'widget_1' => '/^footer-widget-1-/',
-		'widget_2' => '/^footer-widget-2-/',
-		'widget_3' => '/^footer-widget-3-/',
-		'widget_4' => '/^footer-widget-4-/',
+		'widget_1' => '/^footer-widget-1-|^footer-widget-alignment-1$/',
+		'widget_2' => '/^footer-widget-2-|^footer-widget-alignment-2$/',
+		'widget_3' => '/^footer-widget-3-|^footer-widget-alignment-3$/',
+		'widget_4' => '/^footer-widget-4-|^footer-widget-alignment-4$/',
 		'copyright' => '/copyright/',
 		'sociaux_entete' => '/^header-social-1-/',
 		'sociaux_pied' => '/^footer-social-1-/',
@@ -42,6 +42,7 @@ function astra_styles_trois_appareils(array $d): bool {
 
 /** Clé de langue du libellé d'une option : les options d'éléments semblables la partagent. */
 function astra_styles_libelle(string $option): string {
+	if (preg_match('/^footer-widget-alignment-[1-4]$/', $option)) { return 'astra:style_widget_alignment'; }
 	$o = preg_replace(
 		['/^header-menu\d-/', '/^footer-widget-\d-/', '/^(header-button1|section-hb-button-1)-/', '/^(header|footer)-social-1-/'],
 		['menu-', 'widget-', 'bouton-entete-', 'social-'],
@@ -78,14 +79,23 @@ function astra_styles_champs($styles, string $section): array {
 			'valeurs' => $d['valeurs'] ?? [],
 			// Marges extérieures : nombres négatifs acceptés.
 			'signe' => !empty($d['signe']),
+			'sans_reglage' => $d['groupe'] === 'alignements-widgets',
 			// Alignements, marges des rangées : une valeur (et une unité) par appareil, toutes appliquées.
-			'appareils' => astra_styles_trois_appareils($d) ? array_map(function ($a) use ($option, $v) {
-				return [
+			'appareils' => astra_styles_trois_appareils($d) ? array_map(function ($a) use ($option, $v, $d) {
+				$ligne = [
 					'appareil' => $a, 'nom' => "s[$option][$a]", 'valeur' => is_array($v) ? ($v[$a] ?? '') : '',
 					// Une valeur importée sans unité reste inactive après enregistrement.
 					'nom_unite' => "s[$option][$a-unit]",
 					'unite' => is_array($v) ? ($v["$a-unit"] ?? (array_key_exists($a, $v) ? '' : 'px')) : 'px',
 				];
+				if ($d['groupe'] === 'identite') {
+					$ligne['id'] = 's_' . $option . ($a === 'desktop' ? '' : '_' . $a);
+					if (is_bool($ligne['valeur'])) {
+						$ligne['valeur'] = $ligne['valeur'] ? '1' : '0';
+					}
+					$ligne['unite'] = is_array($v) ? ($v[$a . '-unit'] ?? '') : '';
+				}
+				return $ligne;
 			}, ASTRA_STYLES_APPAREILS) : [],
 		];
 	}
@@ -116,6 +126,24 @@ function astra_styles_saisie_fusionner(array $existant, array $saisie): array {
 			$x = is_array($avant) ? $avant : [];
 			$appareils = astra_styles_trois_appareils($d) ? ASTRA_STYLES_APPAREILS : ['desktop'];
 			foreach (is_array($v) ? $v : [] as $cle => $val) {
+				if ($d['groupe'] === 'identite' && astra_styles_trois_appareils($d)) {
+					if ($d['type'] === 'taille' && substr((string) $cle, -5) === '-unit' && $val === '') {
+						unset($x[$cle]);
+						continue;
+					}
+					if (in_array($cle, $appareils, true)) {
+						if ($val === '' && !array_key_exists($cle, $x)) {
+							continue;
+						}
+						// Garder le type d'une feuille importée si le POST ne la change pas.
+						$ancien = $x[$cle] ?? null;
+						if (is_bool($ancien) && in_array($val, ['0', '1'], true) && $ancien === (bool) (int) $val) {
+							$val = $ancien;
+						} elseif ((is_int($ancien) || is_float($ancien)) && is_numeric($val) && (float) $ancien === (float) $val) {
+							$val = $ancien;
+						}
+					}
+				}
 				if (in_array($cle, $appareils, true) && is_array($val)) {
 					$x[$cle] = array_merge(is_array($x[$cle] ?? null) ? $x[$cle] : [], $val);
 				} elseif (in_array($cle, $appareils, true) || in_array(preg_replace('/-unit$/', '', (string) $cle), $appareils, true)) {

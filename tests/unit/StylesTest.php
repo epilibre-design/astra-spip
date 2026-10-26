@@ -120,11 +120,10 @@ final class StylesTest extends TestCase {
 		$this->assertSame(['top' => 1], astra_styles_ordi(['top' => 1]));
 		$s = astra_styles_normaliser([
 			'font-size-button' => ['tablet' => '18'],
-			'font-size-site-title' => ['desktop' => 'invalide', 'tablet' => '18', 'desktop-unit' => 'px'],
 			'button-color' => '#123456',
 		]);
 		$css = astra_styles_css($s, []);
-		$this->assertSame(astra_styles_css(['button-color'=>'#123456'], []), $css, 'Les valeurs sans ordinateur ne changent aucune règle');
+		$this->assertSame(astra_styles_css(['button-color'=>'#123456'], []), $css, 'Les styles hors identité restent limités à l’ordinateur');
 		$this->assertStringContainsString('font-size:16px;font-size:1rem', $css);
 	}
 

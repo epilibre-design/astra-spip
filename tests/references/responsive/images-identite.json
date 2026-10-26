@@ -1,0 +1,42 @@
+{
+  "logo-200x100": {
+    "url": "https://placehold.co/200x100/2a2a2a/ffffff.png?text=Logo",
+    "dimensions": [
+      200,
+      100
+    ],
+    "sha256": "5b0d906a01b7b06f0e432ae0068840be5b83598add472c095ee4025f6e36079c",
+    "format": "png",
+    "date": "2026-10-25"
+  },
+  "logo-120x60": {
+    "url": "https://placehold.co/120x60/2a2a2a/ffffff.png?text=Logo",
+    "dimensions": [
+      120,
+      60
+    ],
+    "sha256": "a7c7755aef6cbcd0292f1b459a0c10e52683d29cd7f32237364cac70d0c7491e",
+    "format": "png",
+    "date": "2026-10-25"
+  },
+  "logo-40x20": {
+    "url": "https://placehold.co/40x20/2a2a2a/ffffff.png?text=Logo",
+    "dimensions": [
+      40,
+      20
+    ],
+    "sha256": "901edce09b1ca26318a432f874dbac3cbc76687da00b9e4aede72bbba852eac0",
+    "format": "png",
+    "date": "2026-10-25"
+  },
+  "logo-80x116": {
+    "url": "https://placehold.co/80x116/2a2a2a/ffffff.png?text=Logo",
+    "dimensions": [
+      80,
+      116
+    ],
+    "sha256": "333d717353566162d48d51026a633639dd7f8c914e30a5760edeed743ca4a915",
+    "format": "png",
+    "date": "2026-10-25"
+  }
+}

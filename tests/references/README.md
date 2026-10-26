@@ -329,3 +329,31 @@ lien parent. Les faux états encore produits par WordPress sont conservés dans
 ses rapports, sans alléger les assertions SPIP. La normalisation HTML de la cible
 retire seulement la classe JS de la flèche vide des widgets ; une flèche active
 dans le port ou une différence d'icône n'est pas effacée du comparatif.
+
+## R29 : identité responsive
+
+`responsive/identite.json` déclare les 16 variantes ; `capturer-identite.sh` capture les
+oracles indépendants de la production SPIP, en vérifiant la cible officielle. Définir
+`WP`, `URL`, `ASTRA_REFERENCE_ARCHIVE`, `ASTRA_IMAGES` (snapshots locaux conformes au
+manifeste), et `PW` pour les sondes. Le pilote `tests/e2e/identite_responsive.cjs` compare
+1280/768/390, avec/sans JS ; `ASTRA_LARGEURS` exerce les frontières. Le cas sans textes
+visibles est traité par ce pilote et exclu des captures de zones générales.
+Les polices utilisent la conversion amont basée sur 16 px, même lorsque la racine
+calculée devient 14.592 px sous 921. Nombre zéro et chaîne zéro restent distincts.
+Voir le bilan versionné pour les valeurs partielles, la définition des logos et la limite
+préexistante sans JS à 922 px.
+
+## R30 : alignements des quatre widgets du pied
+
+`responsive/widgets.json` déclare treize variantes. `capturer-widgets.sh` relève les règles
+text-align des quatre sélecteurs flex exacts, puis remet WordPress à R0 et retire son propre
+mu-plugin RTL. Les tableaux partiels ne sont pas complétés ; les options entièrement vides
+sont omises selon le contrat du port. Le pilote `tests/e2e/widgets_alignements.cjs` mesure
+les quatre zones, copyright/icônes témoins, paragraphe aligné et direction réelle.
+Les cas absent, en-tête seul et zone 6 seule passent par ce pilote ; ils sont exclus des captures
+générales de zones absentes. Les deux noms de menu différents de R30-blocs sont consignés
+comme ceux de R13, sans modifier le comparateur HTML.
+
+`responsive/verifier_mutations.py`, avec `ASTRA_PREUVES` défini, introduit neuf erreurs
+sur une copie temporaire et exige leur détection, puis un témoin restauré vert.
+Les transformations ne touchent ni le code servi ni les bases de test.

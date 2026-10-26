@@ -408,8 +408,20 @@ function astra_identite_visible(string $option): bool {
 function astra_logo_reduire($img): string {
 	include_spip('inc/config');
 	include_spip('inc/filtres_images_mini');
-	$largeur = (int) (lire_config('astra/styles/ast-header-responsive-logo-width/desktop') ?? 0);
-	return $largeur > 0 ? image_reduire($img, $largeur, 0) : image_reduire($img, 0, 60);
+	$styles = astra_styles_normaliser(['ast-header-responsive-logo-width' => lire_config('astra/styles/ast-header-responsive-logo-width')]);
+	$largeurs = $styles['ast-header-responsive-logo-width'] ?? [];
+	$largeur = (int) ($largeurs['desktop'] ?? 0);
+	$bureau = $largeur > 0 ? image_reduire($img, $largeur, 0) : image_reduire($img, 0, 60);
+	$affichee = (int) extraire_attribut($bureau, 'width');
+	$necessaire = astra_identite_largeur_source($largeurs, $affichee);
+	if ($necessaire <= $affichee) {
+		return $bureau;
+	}
+	// Une tablette peut demander plus de pixels. Le filtre SPIP ne dépasse pas la
+	// définition de l'original ; le cadre et les attributs du bureau sont conservés.
+	$ressource = image_reduire($img, $necessaire, 0);
+	$source = extraire_attribut($ressource, 'src');
+	return $source ? inserer_attribut($bureau, 'src', $source) : $bureau;
 }
 
 /**

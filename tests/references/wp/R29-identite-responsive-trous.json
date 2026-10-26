@@ -1,0 +1,28 @@
+{
+  "ordinateur": [],
+  "mobile": [],
+  "presents": [],
+  "menuMobile": "dropdown",
+  "styles": [
+    {
+      "selecteur": ".site-title",
+      "proprietes": [
+        "font-size",
+        "display"
+      ]
+    },
+    {
+      "selecteur": "header .custom-logo-link img",
+      "proprietes": [
+        "width",
+        "height"
+      ]
+    },
+    {
+      "selecteur": "#masthead",
+      "proprietes": [
+        "height"
+      ]
+    }
+  ]
+}

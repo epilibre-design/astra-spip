@@ -1,0 +1,12 @@
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: /tmp/astra-responsive-20261025/phpunit.xml
+
+................................................SSS............  63 / 107 ( 58%)
+............................................                    107 / 107 (100%)
+
+Time: 00:11.336, Memory: 34.00 MB
+
+OK, but some tests were skipped!
+Tests: 107, Assertions: 653, Skipped: 3.

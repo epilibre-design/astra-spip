@@ -1,0 +1,38 @@
+ok    1280 px 0 wp-block-paragraph / p : 0.00 %
+ok    1280 px 1 wp-block-heading / h2 : 0.00 %
+ok    1280 px 2 wp-block-list / ul : 0.00 %
+ok    1280 px 3 wp-block-columns : 0.00 %
+ok    1280 px 4 wp-block-columns : 0.00 %
+ok    1280 px 5 wp-block-group : 0.00 %
+ok    1280 px 6 wp-block-quote : 0.00 %
+ok    1280 px 7 wp-block-pullquote : 0.00 %
+ok    1280 px 8 wp-block-table : 0.00 %
+ok    1280 px 9 wp-block-buttons : 0.00 %
+perte 1280 px 10 wp-block-separator / hr : converti, non comparé en image
+ok    1280 px 11 wp-block-cover : 0.00 %
+ok    1280 px 12 wp-block-media-text : 0.00 %
+perte 1280 px 13 wp-block-code / textarea : converti, non comparé en image
+perte 1280 px 14 wp-block-verse / blockquote : converti, non comparé en image
+ok    1280 px perte wp-block-separator bloc converti par wp2spip en filet SPIP (----) : classes wp-block-separator et has-alpha-channel-opacity perdues : height = 1px (attendu 1px)
+ok    1280 px perte wp-block-cover span.wp-block-cover__background.has-background-dim (assombrissement, réglage dimRatio) : opacity = null (attendu null)
+ok    1280 px perte wp-block-code bloc converti par wp2spip en <cadre> : pre.wp-block-code devient une zone de texte en lecture seule : resize = both (attendu both)
+ok    1280 px perte wp-block-verse bloc converti par wp2spip en <poesie> : pre.wp-block-verse devient blockquote.spip_poesie : white-space = normal (attendu normal)
+ok    390 px 0 wp-block-paragraph / p : 0.00 %
+ok    390 px 1 wp-block-heading / h2 : 0.00 %
+ok    390 px 2 wp-block-list / ul : 0.00 %
+ok    390 px 3 wp-block-columns : 0.00 %
+ok    390 px 4 wp-block-columns : 0.00 %
+ok    390 px 5 wp-block-group : 0.00 %
+ok    390 px 6 wp-block-quote : 0.00 %
+ok    390 px 7 wp-block-pullquote : 0.00 %
+ok    390 px 8 wp-block-table : 0.00 %
+ok    390 px 9 wp-block-buttons : 0.00 %
+perte 390 px 10 wp-block-separator / hr : converti, non comparé en image
+ok    390 px 11 wp-block-cover : 0.00 %
+ok    390 px 12 wp-block-media-text : 0.00 %
+perte 390 px 13 wp-block-code / textarea : converti, non comparé en image
+perte 390 px 14 wp-block-verse / blockquote : converti, non comparé en image
+ok    390 px perte wp-block-separator bloc converti par wp2spip en filet SPIP (----) : classes wp-block-separator et has-alpha-channel-opacity perdues : height = 1px (attendu 1px)
+ok    390 px perte wp-block-cover span.wp-block-cover__background.has-background-dim (assombrissement, réglage dimRatio) : opacity = null (attendu null)
+ok    390 px perte wp-block-code bloc converti par wp2spip en <cadre> : pre.wp-block-code devient une zone de texte en lecture seule : resize = both (attendu both)
+ok    390 px perte wp-block-verse bloc converti par wp2spip en <poesie> : pre.wp-block-verse devient blockquote.spip_poesie : white-space = normal (attendu normal)

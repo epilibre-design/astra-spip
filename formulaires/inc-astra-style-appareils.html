@@ -1,0 +1,28 @@
+[(#REM) Champs atomiques d'identité ; les marges et alignements gardent leurs structures.]
+<p class="explication"><:astra:styles_identite_appareils:></p>
+<div class="astra-styles-appareils">
+<BOUCLE_appareils(DATA){source tableau, #ENV{champ}|table_valeur{appareils}}>
+#SET{a,#VALEUR}
+<div class="astra-styles-appareil">
+	<label for="[(#GET{a}|table_valeur{id})]">[(#VAL{astra:styles_appareil_}|concat{#GET{a}|table_valeur{appareil}}|_T)]</label>
+	<BOUCLE_visibilite(CONDITION){si #ENV{champ}|table_valeur{type}|=={booleen}}>
+	<select id="[(#GET{a}|table_valeur{id})]" name="[(#GET{a}|table_valeur{nom})]">
+		<option value=""><:astra:styles_defaut:></option>
+		<option value="1"[(#GET{a}|table_valeur{valeur}|strval|=={1}|oui)selected="selected"]><:astra:styles_visible:></option>
+		<option value="0"[(#GET{a}|table_valeur{valeur}|strval|=={0}|oui)selected="selected"]><:astra:styles_masque:></option>
+	</select>
+	</BOUCLE_visibilite>
+	<BOUCLE_nombre(CONDITION){si #ENV{champ}|table_valeur{type}|!={booleen}}>
+	<input type="number" class="text" min="0" max="1000" step="any" id="[(#GET{a}|table_valeur{id})]" name="[(#GET{a}|table_valeur{nom})]" value="[(#GET{a}|table_valeur{valeur})]" />
+	<BOUCLE_taille(CONDITION){si #ENV{champ}|table_valeur{type}|=={taille}}>
+	<select name="[(#GET{a}|table_valeur{nom_unite})]" aria-label="<:astra:styles_unite_appareil:> [(#VAL{astra:styles_appareil_}|concat{#GET{a}|table_valeur{appareil}}|_T)]">
+		<option value=""><:astra:styles_unite_implicite:></option>
+		<BOUCLE_unites(DATA){source tableau, #ENV{champ}|table_valeur{unites}}>
+		<option value="#VALEUR"[(#VALEUR|=={#GET{a}|table_valeur{unite}}|oui)selected="selected"]>#VALEUR</option>
+		</BOUCLE_unites>
+	</select>
+	</BOUCLE_taille>
+	</BOUCLE_nombre>
+</div>
+</BOUCLE_appareils>
+</div>

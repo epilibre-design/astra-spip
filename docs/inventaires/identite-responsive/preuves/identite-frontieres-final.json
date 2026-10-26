@@ -1,0 +1,503 @@
+{
+  "cas": {
+    "R29-identite-responsive": {
+      "wordpress": {
+        "544": {
+          "titre": {
+            "font-size": "14.592px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "545": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "921": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "922": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "11px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        }
+      },
+      "spip": {
+        "544": {
+          "titre": {
+            "font-size": "14.592px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "545": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "921": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "922": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "11px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-visibilites": {
+      "wordpress": {
+        "544": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "none"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "545": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "921": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "922": {
+          "titre": {
+            "font-size": "26px",
+            "display": "none"
+          },
+          "slogan": {
+            "font-size": "15px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      },
+      "spip": {
+        "544": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "none"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "block",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "545": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "921": {
+          "titre": {
+            "font-size": "23.712px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "13.68px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "90.1562px"
+          }
+        },
+        "922": {
+          "titre": {
+            "font-size": "26px",
+            "display": "none"
+          },
+          "slogan": {
+            "font-size": "15px",
+            "display": "none",
+            "color": "rgb(51, 65, 85)"
+          },
+          "logo": {
+            "width": "120px",
+            "height": "60px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "93px"
+          }
+        }
+      }
+    },
+    "R29-identite-responsive-transparent": {
+      "wordpress": {
+        "544": {
+          "titre": {
+            "font-size": "14.592px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "545": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "921": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "922": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "11px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 120,
+            "naturalHeight": 60
+          },
+          "entete": {
+            "height": "80px"
+          }
+        }
+      },
+      "spip": {
+        "544": {
+          "titre": {
+            "font-size": "14.592px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.032px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "32px",
+            "height": "16px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "545": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "921": {
+          "titre": {
+            "font-size": "16.416px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "10.944px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        },
+        "922": {
+          "titre": {
+            "font-size": "20px",
+            "display": "block"
+          },
+          "slogan": {
+            "font-size": "11px",
+            "display": "block",
+            "color": "rgb(13, 60, 0)"
+          },
+          "logo": {
+            "width": "40px",
+            "height": "20px",
+            "naturalWidth": 40,
+            "naturalHeight": 20
+          },
+          "entete": {
+            "height": "80px"
+          }
+        }
+      }
+    }
+  },
+  "erreurs": []
+}

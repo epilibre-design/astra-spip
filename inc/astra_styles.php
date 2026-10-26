@@ -18,6 +18,8 @@ const ASTRA_STYLES_TAILLE_TEXTE = 16;
 /** Appareils des options responsives d'Astra. */
 const ASTRA_STYLES_APPAREILS = ['desktop', 'tablet', 'mobile'];
 
+require_once __DIR__ . '/astra_identite_responsive.php';
+
 /**
  * Registre des options : groupe, fichier source d'Astra 4.13.8, type, structure responsive,
  * unités ou valeurs acceptées, défaut d'Astra (documentation et tests : jamais écrit).
@@ -95,14 +97,14 @@ function astra_styles_registre(): array {
 		'section-hb-button-1-padding' => $cotes_r + ['defaut' => ['desktop' => ['top' => 15, 'right' => 30, 'bottom' => 15, 'left' => 30]]],
 	]);
 	$ajouter('identite', 'inc/class-astra-dynamic-css.php', [
-		'font-size-site-title' => $taille_r + ['defaut' => ['desktop' => 26, 'desktop-unit' => 'px']],
-		'font-size-site-tagline' => $taille_r + ['defaut' => ['desktop' => 15, 'desktop-unit' => 'px']],
+		'font-size-site-title' => ['appareils' => true, 'unites' => ['px', 'em', 'rem', 'vw', '%']] + $taille_r + ['defaut' => ['desktop' => 26, 'desktop-unit' => 'px']],
+		'font-size-site-tagline' => ['appareils' => true, 'unites' => ['px', 'em', 'rem', 'vw', '%']] + $taille_r + ['defaut' => ['desktop' => 15, 'desktop-unit' => 'px']],
 		'header-color-site-title' => $couleur + ['defaut' => 'var(--ast-global-color-2)'],
 		'header-color-h-site-title' => $couleur,
 		'header-color-site-tagline' => $couleur,
-		'display-site-title-responsive' => ['type' => 'booleen', 'responsive' => true, 'defaut' => ['desktop' => 1, 'tablet' => 1, 'mobile' => 1]],
-		'display-site-tagline-responsive' => ['type' => 'booleen', 'responsive' => true, 'defaut' => ['desktop' => 0, 'tablet' => 0, 'mobile' => 0]],
-		'ast-header-responsive-logo-width' => $nombre_r,
+		'display-site-title-responsive' => ['appareils' => true, 'type' => 'booleen', 'responsive' => true, 'defaut' => ['desktop' => 1, 'tablet' => 1, 'mobile' => 1]],
+		'display-site-tagline-responsive' => ['appareils' => true, 'type' => 'booleen', 'responsive' => true, 'defaut' => ['desktop' => 0, 'tablet' => 0, 'mobile' => 0]],
+		'ast-header-responsive-logo-width' => ['appareils' => true] + $nombre_r,
 	]);
 	$widgets = 'inc/builder/type/base/dynamic-css/widget/class-astra-widget-component-dynamic-css.php';
 	for ($n = 1; $n <= 4; $n++) {
@@ -113,6 +115,13 @@ function astra_styles_registre(): array {
 			"footer-widget-$n-link-h-color" => $couleur_r,
 			"footer-widget-$n-font-size" => $taille_r,
 			"footer-widget-$n-content-font-size" => $taille_r,
+		]);
+	}
+	// Installation récente : LTR left, RTL right ; anciens profils : center sur tablette/mobile.
+	// Ces défauts documentent l'amont et ne sont jamais enregistrés à la place d'une absence.
+	for ($n = 1; $n <= 4; $n++) {
+		$ajouter('alignements-widgets', 'inc/builder/type/footer/widget/dynamic-css/dynamic.css.php', [
+			"footer-widget-alignment-$n" => ['type'=>'alignement', 'responsive'=>true, 'defaut'=>['desktop'=>'left','tablet'=>'','mobile'=>'']],
 		]);
 	}
 	$ajouter('pied', 'inc/builder/type/footer/copyright/dynamic-css/dynamic.css.php', [
@@ -320,6 +329,15 @@ function astra_styles_normaliser_option(array $d, $v) {
 			$r[$cle] = $x;
 		}
 	}
+	// Unité des deux tailles d'identité : absente/vide = px implicites ; une unité
+	// inconnue retire aussi sa valeur, pour ne jamais réactiver en px une valeur refusée.
+	if ($d['groupe'] === 'identite' && $d['type'] === 'taille') {
+		foreach (ASTRA_STYLES_APPAREILS as $a) {
+			if (array_key_exists($a . '-unit', $v) && $v[$a . '-unit'] !== '' && !in_array($v[$a . '-unit'], $d['unites'], true)) {
+				unset($r[$a], $r[$a . '-unit']);
+			}
+		}
+	}
 	return $r ?: null;
 }
 
@@ -501,7 +519,7 @@ function astra_styles_ecrire(array $regles): string {
 }
 
 /** Modules de groupe (inc/styles/<module>.php), dans l'ordre où Astra émet leur CSS. */
-const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'pied', 'sociaux', 'alignements', 'menu_mobile', 'marges_rangees'];
+const ASTRA_STYLES_MODULES = ['titres', 'bouton', 'identite', 'menu', 'bouton_entete', 'alignements_widgets', 'pied', 'sociaux', 'alignements', 'menu_mobile', 'marges_rangees'];
 
 /**
  * CSS des styles du Customizer (vide sans réglage), dans l'ordre d'émission d'Astra. $compatibilite :

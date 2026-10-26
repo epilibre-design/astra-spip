@@ -130,4 +130,58 @@ final class StylesSaisieTest extends TestCase {
 			])
 		);
 	}
+	public function testCinqChampsIdentiteSurTroisAppareils(): void {
+		$champs = array_column(astra_styles_champs(['display-site-title-responsive'=>['tablet'=>false]], 'identite'), null, 'option');
+		$n = 0;
+		foreach (['ast-header-responsive-logo-width','font-size-site-title','font-size-site-tagline','display-site-title-responsive','display-site-tagline-responsive'] as $o) {
+			$this->assertSame(['desktop','tablet','mobile'],array_column($champs[$o]['appareils'],'appareil'));
+			$n += count($champs[$o]['appareils']);
+		}
+		$this->assertSame(15,$n);
+		$this->assertSame('0',$champs['display-site-title-responsive']['appareils'][1]['valeur']);
+		$this->assertSame('', $champs['font-size-site-title']['appareils'][1]['unite']);
+		$this->assertSame([], $champs['header-color-site-title']['appareils']);
+	}
+
+	public function testPremiereSaisieIdentiteMobileSeule(): void {
+		$v=['font-size-site-title'=>['mobile'=>'16','mobile-unit'=>'']];
+		$this->assertSame(['font-size-site-title'=>['mobile'=>'16']],astra_styles_saisie_fusionner([],$v));
+		$this->assertSame([],astra_styles_saisie_fusionner([],['font-size-site-title'=>['mobile'=>'','mobile-unit'=>'px']]));
+		$avant=['font-size-site-title'=>['desktop'=>'20','tablet'=>'18','mobile'=>'16','desktop-unit'=>'px']];
+		$r=astra_styles_saisie_fusionner($avant,['font-size-site-title'=>['mobile'=>'','mobile-unit'=>'']]);
+		$this->assertSame('18',$r['font-size-site-title']['tablet']);
+		$this->assertArrayNotHasKey('mobile-unit',$r['font-size-site-title']);
+	}
+
+	public function testPostIdentiqueGardeLeTypeDesValeursImportees(): void {
+		$avant=['display-site-title-responsive'=>['desktop'=>true,'tablet'=>false,'mobile'=>0], 'font-size-site-title'=>['desktop'=>20,'tablet'=>18.5]];
+		$post=['display-site-title-responsive'=>['desktop'=>'1','tablet'=>'0','mobile'=>'0'],'font-size-site-title'=>['desktop'=>'20','tablet'=>'18.5']];
+		$this->assertSame($avant,astra_styles_saisie_fusionner($avant,$post));
+	}
+
+	public function testPostPartielIdentiteNeCreePasDeFeuillesVides(): void {
+		$avant=['font-size-site-title'=>['tablet'=>18]];
+		$post=['font-size-site-title'=>['desktop'=>'','desktop-unit'=>'','tablet'=>'18','tablet-unit'=>'','mobile'=>'','mobile-unit'=>'']];
+		$this->assertSame($avant,astra_styles_saisie_fusionner($avant,$post));
+	}
+
+
+ public function testQuatreAlignementsDansLeursSections(): void {
+  for($n=1;$n<=4;$n++){
+   $ch=array_column(astra_styles_champs([],"widget_$n"),null,'option');$o="footer-widget-alignment-$n";
+   $this->assertSame('astra:style_widget_alignment',$ch[$o]['libelle']);
+   $this->assertSame(["s[$o][desktop]","s[$o][tablet]","s[$o][mobile]"],array_column($ch[$o]['appareils'],'nom'));
+  }
+ }
+ public function testSansReglageReserveAuxWidgets(): void {
+  for($n=1;$n<=4;$n++){
+   $ch=array_column(astra_styles_champs([],"widget_$n"),null,'option');
+   $this->assertTrue($ch["footer-widget-alignment-$n"]['sans_reglage'] ?? false);
+  }
+  foreach(['copyright','sociaux_pied'] as $section)foreach(astra_styles_champs([],$section) as $c)$this->assertFalse($c['sans_reglage']??false);
+ }
+ public function testPremiereSaisieAlignementWidgetTabletteSeule(): void {
+  $v=['footer-widget-alignment-3'=>['desktop'=>'','tablet'=>'center','mobile'=>'']];
+  $this->assertSame($v,astra_styles_saisie_fusionner([],$v));
+ }
 }
