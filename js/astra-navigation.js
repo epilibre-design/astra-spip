@@ -114,3 +114,31 @@
   if (sousmenu) sousmenu.style.display = 'none';
  });
 })();
+
+// Menus accepte des parents sans lien (texte libre, recherche). Le bundle amont
+// attache les boutons de sous-menu à l’en-tête mobile uniquement.
+(function () {
+ 'use strict';
+ const selecteur = '.ast-desktop #ast-desktop-header .astra-menu-sans-lien';
+ document.addEventListener('click', event => {
+  const bouton = event.target.closest(selecteur + ' > button.ast-menu-toggle');
+  if (!bouton) return;
+  const parent = bouton.parentElement;
+  const sousmenu = parent.querySelector(':scope > .sub-menu');
+  if (!sousmenu) return;
+  const ouvert = parent.classList.toggle('ast-submenu-expanded');
+  bouton.setAttribute('aria-expanded', String(ouvert));
+  sousmenu.style.display = ouvert ? 'block' : 'none';
+ });
+ document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  const parent = event.target.closest(selecteur + '.ast-submenu-expanded');
+  if (!parent) return;
+  event.preventDefault();
+  parent.classList.remove('ast-submenu-expanded');
+  parent.querySelector(':scope > .sub-menu').style.display = 'none';
+  const bouton = parent.querySelector(':scope > button.ast-menu-toggle');
+  bouton.setAttribute('aria-expanded', 'false');
+  bouton.focus();
+ });
+})();

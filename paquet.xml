@@ -1,10 +1,10 @@
 <paquet
 	prefix="astra"
 	categorie="squelette"
-	version="1.7.0"
+	version="1.8.0"
 	schema="1.0.0"
 	etat="test"
-	compatibilite="[4.2.0;5.0.*]"
+	compatibilite="[4.4.0;4.4.*]"
 	logo="images/astra-xx.svg"
 	documentation="https://wordpress.org/themes/astra/"
 >
@@ -24,6 +24,8 @@
 	<credit lien="https://github.com/itfoundry/Poppins">Police Poppins : The Poppins Project Authors (SIL OFL 1.1), fichiers Fontsource 5.1.0</credit>
 
 	<licence lien="https://spdx.org/licenses/GPL-3.0-or-later.html">GPL-3.0-or-later</licence>
+
+	<necessite nom="menus" compatibilite="[3.1.2;3.*]" />
 
 	<utilise nom="pages" compatibilite="[2.0.0;]" />
 	<utilise nom="a2a" compatibilite="[4.2.0;]" />

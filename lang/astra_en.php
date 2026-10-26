@@ -167,6 +167,8 @@ return [
 	'hfb_source' => 'Source',
 	'hfb_source_groupe_mots' => 'Articles of the « @titre@ » group',
 	'hfb_source_pages' => 'Single pages',
+	'hfb_gerer_menus_libres' => 'Create and edit custom menus',
+	'hfb_source_menu_libre' => 'Custom menu: @titre@',
 	'hfb_source_racine' => 'Top-level sections',
 	'hfb_source_rubrique' => 'Subsections of « @titre@ »',
 	'hfb_style' => 'Style',

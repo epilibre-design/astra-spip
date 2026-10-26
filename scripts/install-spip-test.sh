@@ -5,7 +5,7 @@
 set -eu
 
 ROOT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
-SPIP_ROOT="$ROOT_DIR/vendor/spip/spip"
+SPIP_ROOT="${SPIP_TEST_ROOT:-$ROOT_DIR/vendor/spip/spip}"
 : "${SPIP_CLI:?SPIP_CLI doit désigner spip-cli (avec le correctif MR !91)}"
 
 mkdir -p "$ROOT_DIR/vendor/spip"
@@ -25,6 +25,21 @@ if [ ! -f config/connect.php ]; then
 		--admin-nom='Admin Test' --admin-login=admin --admin-email=admin@example.test \
 		--admin-pass=adminadmin --adresse-site='http://localhost'
 fi
+
+# Dépendances obligatoires avant l’activation d’Astra. Tags amont figés.
+installer_git() { # <préfixe> <tag>
+ if [ ! -f "plugins/auto/$1/paquet.xml" ]; then
+  git clone --quiet --depth 1 --branch "$2" "https://git.spip.net/spip-contrib-extensions/$1.git" "plugins/auto/$1"
+ fi
+}
+installer_git saisies 6.4.1
+installer_git menus 3.1.2
+$SPIP_CLI plugins:activer saisies menus -y
+$SPIP_CLI plugins:maj:bdd
+for p in saisies menus; do
+ $SPIP_CLI php:eval "include_spip('inc/plugin'); echo test_plugin_actif('$p') ? 'actif' : 'inactif';" | grep -q '^actif$' \
+  || { echo "Le plugin $p n'est pas actif" >&2; exit 1; }
+done
 
 # plugins:activer peut sortir avec le code 0 sans rien activer : vérifier ensuite.
 $SPIP_CLI plugins:activer astra -y

@@ -21,6 +21,7 @@ include_once __DIR__ . '/inc/astra_styles_saisie.php';
 include_once __DIR__ . '/inc/astra_entete_transparent.php';
 include_once __DIR__ . '/inc/astra_compatibilite.php';
 include_once __DIR__ . '/inc/astra_responsive.php';
+include_once __DIR__ . '/inc/astra_menus.php';
 include_once __DIR__ . '/inc/astra_liens.php';
 include_once __DIR__ . '/inc/astra_gravatar.php';
 
@@ -513,7 +514,11 @@ function astra_hfb_libelle_zone(string $zone, string $builder = ''): string {
  */
 function astra_hfb_sources_menu(): array {
 	include_spip('base/abstract_sql');
+	include_spip('inc/filtres');
 	$sources = ['racine' => _T('astra:hfb_source_racine')];
+	foreach (sql_allfetsel('id_menu, titre', 'spip_menus', 'id_menus_entree=0', '', 'titre') as $menu) {
+		$sources['menus:' . $menu['id_menu']] = _T('astra:hfb_source_menu_libre', ['titre' => supprimer_numero(typo($menu['titre']))]);
+	}
 	foreach (sql_allfetsel('id_rubrique, titre', 'spip_rubriques', '', '', 'titre') as $r) {
 		$sources['rubrique:' . $r['id_rubrique']] = _T('astra:hfb_source_rubrique', ['titre' => supprimer_numero(typo($r['titre']))]);
 	}

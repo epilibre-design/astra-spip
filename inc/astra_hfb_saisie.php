@@ -126,15 +126,15 @@ function astra_hfb_saisie_depuis_config(array $config): array {
 	return $saisie;
 }
 
-/** Valeur du champ source_id d'un menu (racine, rubrique:<id>, groupe_mots:<id>, pages). */
+/** Valeur du champ source_id d'un menu (racine, rubrique:<id>, groupe_mots:<id>, pages, menus:<id>). */
 function astra_hfb_source_id(array $menu): string {
 	$source = (string) ($menu['source'] ?? 'racine');
-	return in_array($source, ['rubrique', 'groupe_mots'], true) ? $source . ':' . (int) ($menu['id'] ?? 0) : $source;
+	return in_array($source, ['rubrique', 'groupe_mots', 'menus'], true) ? $source . ':' . (int) ($menu['id'] ?? 0) : $source;
 }
 
 /** Source d'un menu à partir du champ source_id ; valeur inconnue : racine. */
 function astra_hfb_source_depuis_saisie(string $source_id): array {
-	if (preg_match('/^(rubrique|groupe_mots):(\d+)$/', $source_id, $m)) {
+	if (preg_match('/^(rubrique|groupe_mots|menus):(\d+)$/', $source_id, $m)) {
 		return ['source' => $m[1], 'id' => (int) $m[2]];
 	}
 	return ['source' => $source_id === 'pages' ? 'pages' : 'racine', 'id' => 0];
