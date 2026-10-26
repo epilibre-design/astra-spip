@@ -17,3 +17,17 @@
 - Ruling: qualifier une seule fois la matrice historique sur l’arbre combiné des deux lots — les suites et e2e propres à chaque tâche restent exécutés — coût : qualification commune explicitement liée au même SHA final.
 
 - Ruling: le clone WordPress copiait DB_PATH absolu ; correction de DB_PATH/WP_HOME/WP_SITEURL avant les mesures Gravatar — les variantes R29 pendant le chevauchement seront recapturées et requalifiées — coût : quelques mesures responsive à refaire, aucune sortie concurrente conservée comme preuve finale.
+
+- Final: Ruling: reviewer gpt-6-astra indisponible par quota avant tout avis ; reprise de la même revue par gpt-6.1-sol high disponible — conserver une véritable revue indépendante — coût : autre modèle, aucun verdict initial à substituer.
+
+- Final: Ruling: visibilité absente garde le défaut propre à son appareil, même après desktop=false — contrat explicitement approuvé et tests — coût : d’anciennes valeurs partielles deviennent actives comme annoncé.
+
+- Final: Ruling: conserver la limite amont sans JS à 922 px — même absence mesurée des deux côtés, hors extension demandée — coût : ce cas limite reste sans en-tête.
+
+- Final: Ruling: RTL global, anciens profils non flex, logos distincts/SVG, Retina et extensions tierces restent hors périmètre — pas de capacité nouvelle promise au-delà des deux specs — coût : ces usages nécessiteront d’autres lots.
+
+- Final: Ruling: le test d’inclusion CSS n’est pas seul une preuve d’exhaustivité/ordre — compléter son verdict par lecture du code/amont, tests d’ordre, rendus et neuf mutations — coût : une variation future doit conserver cette qualification complète.
+
+## Point mineur différé
+
+Final: minor (deferred): POST forgé avec feuille atomique remplacée par tableau vide (`mobile[]=`) peut supprimer cette valeur sans erreur ; mécanisme antérieur, DOM normal non concerné ; suivi distinct.
