@@ -1,0 +1,19 @@
+[(#REM)
+
+	Menu libre de Menus dans le balisage du menu de pied d’Astra, pour un squelette assemblé
+	(docs/interface-gabarits.md). Interface stable ; le builder garde ses propres inclusions.
+	Rend la liste seule : le squelette appelant fournit l’élément nav et son nom accessible.
+
+	Paramètres :
+	- identifiant : identifiant du menu dans Menus (obligatoire)
+	- disposition : horizontal (défaut) ou vertical
+	- id_rubrique, id_secteur, id_article, type_page : page courante (état actif des entrées)
+
+	Les entrées, leur ordre et leurs liens sont ceux de Menus (inclure/menu), adaptés par
+	astra_menus_adapter() ; un seul niveau, comme le menu de pied d’Astra. Rien si le menu n’existe pas.
+
+]<BOUCLE_menu(MENUS){identifiant=#ENV{identifiant}}{id_menus_entree=0}{0,1}>
+<div class="footer-nav-wrap"><ul class="ast-nav-menu ast-flex astra-footer-[(#ENV{disposition}|=={vertical}|?{vertical,horizontal})]-menu astra-footer-tablet-vertical-menu astra-footer-mobile-vertical-menu[ (#CSS|attribut_html)]">
+<INCLURE{fond=inclure/hfb/menu-items}{source=menus}{id_source=#ID_MENU}{niveaux=1}{id_rubrique}{id_secteur}{id_article}{type_page} />
+</ul></div>
+</BOUCLE_menu>
