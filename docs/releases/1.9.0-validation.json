@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-30",
+  "version": "1.9.0",
+  "functionalSourceCommit": "3e3bad40fd1476c6cdc1b71deba0cda04eb084ce",
+  "previousTagCommit": "81791f792e03ada2a15328c5fa24bc95bcc6146e",
+  "runtime": {
+    "php": "8.4.27",
+    "phpunit": "11.5.57",
+    "spip": "4.4.28",
+    "phpLint": "7.4.33"
+  },
+  "dependencies": {
+    "saisies": "6.4.1",
+    "menus": "3.1.2"
+  },
+  "results": {
+    "unit": {
+      "tests": 193,
+      "assertions": 2079,
+      "skipped": 0
+    },
+    "integration": {
+      "cases": 117,
+      "executed": 111,
+      "assertions": 745,
+      "skipped": 6,
+      "skipReasons": [
+        "GravatarRenduTest : site privé Gravatar absent, 3 cas",
+        "OembedRenduTest : sites privés oEmbed absents, 3 cas"
+      ]
+    },
+    "python": {
+      "cases": 28,
+      "executed": 27,
+      "skipped": 1,
+      "skipReason": "Archive privée R0 Astra 4.11.0 absente"
+    },
+    "phpLintFiles": 186
+  },
+  "privateLogsSha256": {
+    "vendor/release-1.9.0/unitaires.log": "e59943b3dbafb24bd3215e28f681b90f906afde79cbde237513ae723131370eb",
+    "vendor/release-1.9.0/integration-complete.log": "ea9a3b2da3d31234dc32d92ee91e9fc323fc5cfbe22b77a141231818fb13d31b",
+    "vendor/release-1.9.0/python.log": "fd677a873d2aec4bd62f69f5dcf15683f673622024594f95536711225b388c3d",
+    "vendor/release-1.9.0/lint-php74.log": "3ee0bf6c2f46ffc5fedecd993ca31bc8ac3356a3cdfcebf0dcf725263453aea7",
+    "vendor/release-1.9.0/installation.log": "7f2c4be1ad492de0d3a684ee43ffa7460fc5d5eda6f00328e834e50740ddc10f"
+  },
+  "privateImagesSha256": {
+    "vendor/release-1.7.0/images/logo-200x100.png": "5b0d906a01b7b06f0e432ae0068840be5b83598add472c095ee4025f6e36079c",
+    "vendor/release-1.7.0/images/logo-40x20.png": "901edce09b1ca26318a432f874dbac3cbc76687da00b9e4aede72bbba852eac0"
+  },
+  "installWarningCount": 10,
+  "visualQualificationRerun": false,
+  "functionalCodeChanged": false,
+  "installWarning": "Undefined array key \"langue_site\", ecrire/inc/rubriques.php:566, SPIP 4.4.28"
+}
