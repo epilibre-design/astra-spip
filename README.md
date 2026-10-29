@@ -8,9 +8,9 @@ thème WordPress, mêmes feuilles de style et même JavaScript. Les classes CSS 
 
 Compatibilité : **SPIP 4.4**. Le support de SPIP 5 est suspendu.
 
-La dernière version publiée, **1.7.0**, ajoute l’identité responsive et les alignements des widgets du pied
-sur les trois appareils, ainsi que Gravatar facultatif dans les commentaires.
-Voir les [notes de version](docs/releases/1.7.0.md).
+La dernière version publiée, **1.9.0**, réserve Astra à SPIP 4.4, rend Menus obligatoire avec les menus libres,
+corrige la navigation sans JavaScript et ajoute une [interface pour les gabarits assemblés](docs/interface-gabarits.md).
+Voir les [notes de version](docs/releases/1.9.0.md).
 
 ## Installation
 
@@ -22,8 +22,7 @@ Voir les [notes de version](docs/releases/1.7.0.md).
 Le plugin fournit ses propres squelettes et remplace ceux de `squelettes-dist`. Un dossier
 `squelettes/` à la racine du site reste prioritaire et permet de surcharger n'importe quel fichier.
 
-Le développement **1.9.0** cible SPIP 4.4 et intègre Menus obligatoirement. Il ajoute l’[interface des gabarits assemblés](docs/interface-gabarits.md), absente de la 1.8.0 de développement (`03a59e2`).
-Voir le [bilan de qualification](docs/inventaires/navigation-menus/bilan.md).
+Navigation et menus libres : voir le [bilan de qualification](docs/inventaires/navigation-menus/bilan.md).
 
 ## Menus libres
 
