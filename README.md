@@ -243,6 +243,7 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire.cjs
     RACINE=vendor/spip/spip URL=http://127.0.0.1:8404 SPIP_CLI=… NODE_PATH=$PW/node_modules node tests/e2e/repartitions.cjs
     URL=http://127.0.0.1:8404 NODE_PATH=$PW/node_modules node tests/e2e/tableaux.cjs
+    URL=http://127.0.0.1:8404 NODE_PATH=$PW/node_modules node tests/e2e/titre_entree.cjs
     URL=http://127.0.0.1:8404 LOGIN=admin MDP=adminadmin NODE_PATH=$PW/node_modules node tests/e2e/formulaire_styles.cjs
 
 - `comparer_html.php` compare l'ossature HTML de l'en-tête, du panneau mobile et du pied de
@@ -269,6 +270,7 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
 - `tests/e2e/formulaire_styles.cjs` vérifie le formulaire « Couleurs et typographie » de bout en
   bout (enregistrement, valeur refusée, site public) ;
 - `tests/e2e/formulaire.cjs` vérifie le formulaire de configuration de bout en bout ;
+- `tests/e2e/titre_entree.cjs` vérifie qu’un titre de classe `ast-titre-entree`, hors de `header.entry-header`, a les styles calculés du titre d’article ;
 - `tests/e2e/tableaux.cjs` vérifie que les tableaux SPIP du texte sont stylés, et pas ceux d'un
   bloc tableau importé (`figure.wp-block-table`) ;
 - `tests/e2e/repartitions.cjs` vérifie dans Chromium les quatorze répartitions de colonnes du
