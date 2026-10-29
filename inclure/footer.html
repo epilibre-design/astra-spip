@@ -1,53 +1,16 @@
 [(#REM)
 
-	Panneau latéral du menu mobile (mode off-canvas), pied de page (footer builder d'Astra),
-	bouton de retour en haut et scripts du thème.
+	Panneau latéral du menu mobile (inclure/panneau-lateral), pied de page du footer builder
+	(inclure/colophon), puis fermeture de #page, bouton de retour en haut et scripts
+	(inclure/page-fin). Inclusion de compatibilité, même sortie qu'en 1.8.0.
+	Voir docs/interface-gabarits.md.
 
 	Paramètres : id_rubrique, id_secteur, id_article, type_page (état actif des menus)
+	Lignes vides voulues : PHP absorbe le saut de ligne qui suit une inclusion dynamique, et chaque
+	inclusion est rendue sans espaces de début et de fin ; la sortie reste celle de la version 1.8.0.
 
-]<BOUCLE_si_lateral(CONDITION){si #VAL|astra_hfb_menu_mobile|=={off-canvas}}>
-<B_panneau>
-<div id="ast-mobile-popup-wrapper">
-	<div id="ast-mobile-popup" class="ast-mobile-popup-drawer content-align-flex-start ast-mobile-popup-right">
-		<div class="ast-mobile-popup-overlay"></div>
-		<div class="ast-mobile-popup-inner">
-			<div class="ast-mobile-popup-header">
-				<button type="button" id="menu-toggle-close" class="menu-toggle-close" aria-label="<:astra:panneau_fermer|attribut_html:>" tabindex="0">
-					<span class="ast-svg-iconset"><span aria-hidden="true" class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg class="ast-mobile-svg ast-close-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"></path></svg></span></span>
-				</button>
-			</div>
-			<div class="ast-mobile-popup-content">
-				<BOUCLE_panneau(DATA){source table, #VAL|astra_hfb_panneau}><INCLURE{fond=#VALEUR{fond}}{id=#VALEUR{id}}{numero=#VALEUR{numero}}{groupe=#VALEUR{groupe}}{appareil=panneau}{id_rubrique}{id_secteur}{id_article}{type_page} /></BOUCLE_panneau>
-			</div>
-			<div class="ast-desktop-popup-content"></div>
-		</div>
-	</div>
-</div>
-</B_panneau>
-</BOUCLE_si_lateral>
-<footer class="site-footer" id="colophon" itemtype="https://schema.org/WPFooter" itemscope="itemscope" itemid="#colophon">
-	<BOUCLE_rangees_pied(DATA){source table, #VAL{pied}|astra_hfb_rangees}>
-	<div class="[(#VALEUR{classes})]" data-section="section-[(#VALEUR{rangee})]-footer-builder">
-		<div class="ast-builder-grid-row-container-inner">
-			<div class="ast-builder-footer-grid-columns site-[(#VALEUR{rangee})]-footer-inner-wrap ast-builder-grid-row">
-				<BOUCLE_colonnes(DATA){source table, #VALEUR{colonnes}}>
-				<div class="site-footer-[(#_rangees_pied:VALEUR{rangee})]-section-[(#CLE)] site-footer-section site-footer-section-[(#CLE)]">
-					<BOUCLE_elements_pied(DATA){source table, #VALEUR}><INCLURE{fond=#VALEUR{fond}}{id=#VALEUR{id}}{numero=#VALEUR{numero}}{groupe=#VALEUR{groupe}}{appareil=ordinateur}{id_rubrique}{id_secteur}{id_article}{type_page} /></BOUCLE_elements_pied>
-				</div>
-				</BOUCLE_colonnes>
-			</div>
-		</div>
-	</div>
-	</BOUCLE_rangees_pied>
-</footer><!-- #colophon -->
-</div><!-- #page -->
-[(#VAL{bouton_haut}|astra_conf|=={oui}|oui)
-<div id="ast-scroll-top" tabindex="0" class="ast-scroll-top-icon ast-scroll-to-top-right" data-on-devices="both">
-	<span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span>
-	<span class="screen-reader-text"><:astra:retour_haut:></span>
-</div>]
-<script id="astra-theme-js-js-extra">
-var astra = {"break_point":"[(#VAL|astra_responsive_seuil_entete)]","isRtl":"[(#LANG_DIR|=={rtl}|?{1,''})]","is_scroll_to_id":"1","is_scroll_to_top":"[(#VAL{bouton_haut}|astra_conf|=={oui}|?{1,''})]","is_header_footer_builder_active":"1","responsive_cart_click":"flyout","is_dark_palette":""};
-</script>
-<script id="astra-theme-js-js" src="[(#CHEMIN{js/frontend.min.js}|timestamp)]"></script>
-<script id="astra-navigation-js" src="[(#CHEMIN{js/astra-navigation.js}|timestamp)]"></script>
+]<INCLURE{fond=inclure/panneau-lateral}{id_rubrique}{id_secteur}{id_article}{type_page} />
+
+<INCLURE{fond=inclure/colophon}{id_rubrique}{id_secteur}{id_article}{type_page} />
+
+<INCLURE{fond=inclure/page-fin} />

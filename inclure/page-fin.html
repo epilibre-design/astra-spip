@@ -1,0 +1,17 @@
+[(#REM)
+
+	Fermeture de l’enveloppe de page d’Astra : fin de div#page, bouton de retour en haut, scripts du thème.
+
+	Referme inclure/page-debut. Aucun paramètre.
+
+]</div><!-- #page -->
+[(#VAL{bouton_haut}|astra_conf|=={oui}|oui)
+<div id="ast-scroll-top" tabindex="0" class="ast-scroll-top-icon ast-scroll-to-top-right" data-on-devices="both">
+	<span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z" /></svg></span>
+	<span class="screen-reader-text"><:astra:retour_haut:></span>
+</div>]
+<script id="astra-theme-js-js-extra">
+var astra = {"break_point":"[(#VAL|astra_responsive_seuil_entete)]","isRtl":"[(#LANG_DIR|=={rtl}|?{1,''})]","is_scroll_to_id":"1","is_scroll_to_top":"[(#VAL{bouton_haut}|astra_conf|=={oui}|?{1,''})]","is_header_footer_builder_active":"1","responsive_cart_click":"flyout","is_dark_palette":""};
+</script>
+<script id="astra-theme-js-js" src="[(#CHEMIN{js/frontend.min.js}|timestamp)]"></script>
+<script id="astra-navigation-js" src="[(#CHEMIN{js/astra-navigation.js}|timestamp)]"></script>
