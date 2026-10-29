@@ -55,3 +55,13 @@ Chaque région se remplit soit par l’élément du builder (`masthead`, `coloph
 - `$accueil` : `oui` pour une page unique en accueil statique.
 
 Usage : `class="[(#VAL{article}|astra_body_class{#ENV{id_article}})]"`.
+
+## Titre d’entrée
+
+Dans une page d’Astra, le titre d’un article est `header.entry-header > h1.entry-title`, et c’est ce sélecteur qui lui donne sa taille et sa graisse. Un titre produit hors de cette structure, par exemple par un bloc, prend le même style avec la classe `ast-titre-entree` :
+
+```html
+<h1 class="entry-title ast-titre-entree">#TITRE</h1>
+```
+
+La taille, la graisse, l’interligne, la police et la couleur sont ceux du titre d’article (`tests/e2e/titre_entree.cjs`, à 1280 et 390 px). Les marges restent celles du conteneur. Le squelette garde un seul titre principal.
