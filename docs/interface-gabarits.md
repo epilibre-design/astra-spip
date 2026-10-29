@@ -39,6 +39,7 @@ Chaque région se remplit soit par l’élément du builder (`masthead`, `coloph
 | `inclure/masthead` | `header#masthead` du header builder : rangées ordinateur et mobile, panneau du menu mobile en mode déroulant | `type_page`, `id_rubrique`, `id_secteur`, `id_article` : page courante, pour l’état actif des menus |
 | `inclure/panneau-lateral` | Panneau du menu mobile en mode latéral (off-canvas) ; vide dans les autres modes | Mêmes paramètres que `masthead`. À inclure si `masthead` l’est, avant `page-fin` |
 | `inclure/colophon` | `footer#colophon` du footer builder | Mêmes paramètres que `masthead` |
+| `inclure/menu-libre` | Menu libre de Menus dans le balisage du menu de pied d’Astra : `div.footer-nav-wrap > ul.ast-nav-menu`, entrées `li.menu-item > a.menu-link`, classes CSS du menu reportées sur la liste. Liste seule : l’appelant fournit le `nav` et son nom accessible. Un niveau. Rien si le menu n’existe pas | `identifiant` : identifiant du menu dans Menus ; `disposition` : `horizontal` (défaut) ou `vertical` ; `type_page`, `id_rubrique`, `id_secteur`, `id_article` : état actif des entrées |
 | `inclure/page-fin` | Fermeture de `#page`, bouton de retour en haut s’il est activé, scripts du thème (`frontend.min.js`, navigation) | Aucun |
 
 `page-debut` et `page-fin` sont les deux moitiés de `#page` : elles s’emploient ensemble, et ce sont les seules inclusions de cette interface qui ne sont pas équilibrées. `masthead`, `panneau-lateral` et `colophon` sont des éléments équilibrés.
