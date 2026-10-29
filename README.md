@@ -22,7 +22,7 @@ Voir les [notes de version](docs/releases/1.7.0.md).
 Le plugin fournit ses propres squelettes et remplace ceux de `squelettes-dist`. Un dossier
 `squelettes/` à la racine du site reste prioritaire et permet de surcharger n'importe quel fichier.
 
-Le développement **1.8.0** cible SPIP 4.4 et intègre Menus obligatoirement.
+Le développement **1.9.0** cible SPIP 4.4 et intègre Menus obligatoirement. Il ajoute l’[interface des gabarits assemblés](docs/interface-gabarits.md), absente de la 1.8.0 de développement (`03a59e2`).
 Voir le [bilan de qualification](docs/inventaires/navigation-menus/bilan.md).
 
 ## Menus libres
