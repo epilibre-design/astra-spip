@@ -51,6 +51,9 @@
 .ast-surtitre, .ast-soustitre { margin: 0; color: var(--ast-global-color-3); }
 .ast-surtitre { text-transform: uppercase; font-size: .85em; letter-spacing: .05em; font-weight: 600; }
 .ast-soustitre { font-size: 1.15em; }
+/* Titre d'entrée produit hors de header.entry-header, par exemple par un bloc d'un gabarit assemblé
+   (docs/interface-gabarits.md) : mêmes valeurs que « header.entry-header .entry-title » d'astra-dynamic.css. */
+.entry-title.ast-titre-entree { font-weight: 600; font-size: 32px; font-size: 2rem; }
 .entry-content .chapo { font-size: 1.15em; font-weight: 500; color: var(--ast-global-color-2); }
 .entry-content .ps,
 .entry-content .notes,
