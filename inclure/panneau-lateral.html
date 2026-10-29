@@ -1,0 +1,27 @@
+[(#REM)
+
+	Panneau latéral du menu mobile (mode off-canvas) du header builder ; vide dans les autres modes.
+
+	À inclure avec inclure/masthead, avant inclure/page-fin.
+	Paramètres : id_rubrique, id_secteur, id_article, type_page (état actif des menus)
+
+]<BOUCLE_si_lateral(CONDITION){si #VAL|astra_hfb_menu_mobile|=={off-canvas}}>
+<B_panneau>
+<div id="ast-mobile-popup-wrapper">
+	<div id="ast-mobile-popup" class="ast-mobile-popup-drawer content-align-flex-start ast-mobile-popup-right">
+		<div class="ast-mobile-popup-overlay"></div>
+		<div class="ast-mobile-popup-inner">
+			<div class="ast-mobile-popup-header">
+				<button type="button" id="menu-toggle-close" class="menu-toggle-close" aria-label="<:astra:panneau_fermer|attribut_html:>" tabindex="0">
+					<span class="ast-svg-iconset"><span aria-hidden="true" class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg class="ast-mobile-svg ast-close-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"></path></svg></span></span>
+				</button>
+			</div>
+			<div class="ast-mobile-popup-content">
+				<BOUCLE_panneau(DATA){source table, #VAL|astra_hfb_panneau}><INCLURE{fond=#VALEUR{fond}}{id=#VALEUR{id}}{numero=#VALEUR{numero}}{groupe=#VALEUR{groupe}}{appareil=panneau}{id_rubrique}{id_secteur}{id_article}{type_page} /></BOUCLE_panneau>
+			</div>
+			<div class="ast-desktop-popup-content"></div>
+		</div>
+	</div>
+</div>
+</B_panneau>
+</BOUCLE_si_lateral>

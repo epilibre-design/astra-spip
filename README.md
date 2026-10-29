@@ -91,6 +91,13 @@ contient le CSS que le builder d'Astra ajoute. Chaque élément peut être surch
 La configuration est enregistrée dans la méta `astra/hfb`, avec la structure des options
 d'Astra (`header-desktop-items`, `header-mobile-items`, `footer-desktop-items`).
 
+## Gabarits assemblés
+
+Un squelette assemblé par ailleurs peut réutiliser l’enveloppe d’Astra sans recopier ses pages :
+`inclure/page-debut` et `inclure/page-fin` encadrent `#page`, `inclure/masthead` et `inclure/colophon`
+rendent l’en-tête et le pied du builder. `inclure/header` et `inclure/footer` composent ces éléments et
+gardent leur sortie. Paramètres, ordre et classes du `body` : [interface des gabarits assemblés](docs/interface-gabarits.md).
+
 ## Pages uniques
 
 Avec le plugin [Pages](https://contrib.spip.net/Pages-uniques) (facultatif), les articles hors
@@ -269,6 +276,15 @@ références, un WordPress de test et le SPIP de test servi par un serveur web :
   tablette et mobile choisies à part (dont `3-firstrow` et `3-lastrow`) et la largeur des
   rangées du pied avec un conteneur de 1600 px. Ces réglages sortent des cinq configurations
   de référence.
+
+`tests/comparaison/avant_apres.sh` capture le HTML et l’affichage (1280 et 390 px) des routes d’Astra pour
+plusieurs configurations du builder, sans autre plugin de gabarits ; `avant_apres.cjs comparer` compare deux
+captures (HTML entier, pixels). Il sert à vérifier qu’une réorganisation des squelettes ne change pas le rendu :
+
+    SPIP_CLI=… NODE_PATH=$PW/node_modules tests/comparaison/avant_apres.sh vendor/spip/spip http://127.0.0.1:8404 tests/comparaison/sorties/avant
+    # … modification …
+    SPIP_CLI=… NODE_PATH=$PW/node_modules tests/comparaison/avant_apres.sh vendor/spip/spip http://127.0.0.1:8404 tests/comparaison/sorties/apres
+    NODE_PATH=$PW/node_modules node tests/comparaison/avant_apres.cjs comparer tests/comparaison/sorties/avant tests/comparaison/sorties/apres
 
 La comparaison des blocs importés (WordPress sur MySQL, import par wp2spip) est décrite dans
 `tests/references/blocs/README.md`.
